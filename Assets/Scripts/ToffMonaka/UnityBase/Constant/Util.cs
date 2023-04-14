@@ -3,20 +3,20 @@
  * @brief Utilファイル
  */
 
-namespace ToffMonaka.UnityBase.Constant
+
+namespace ToffMonaka.UnityBase.Constant {
+/**
+ * @brief Utilクラス
+ */
+public static class Util
 {
-    /**
-     * @brief Utilクラス
-     */
-    public static class Util
-    {
 #if DEBUG
-        public const bool DEBUG_FLAG = true;
+    public const bool DEBUG_FLAG = true;
 #else
-        public const bool DEBUG_FLAG = false;
+    public const bool DEBUG_FLAG = false;
 #endif
-        public const string NAME = "C# ベースプロジェクト";
-        public const string COMPANY_NAME = "Toff Monaka Project";
-        public const string VERSION_NAME = "1.0.0";
-    }
+    public const string NAME = "C# ベースプロジェクト";
+    public const string COMPANY_NAME = "Toff Monaka Project";
+    public const string VERSION_NAME = "1.0.0";
+}
 }
