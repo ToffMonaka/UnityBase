@@ -4,16 +4,19 @@
  */
 
 
+using UnityEngine;
+
+
 namespace ToffMonaka.UnityBase {
 /**
  * @brief InitSceneクラス
  */
-public class PlayScene : UnityEngine.MonoBehaviour
+public class PlayScene : MonoBehaviour
 {
     /**
      * @brief Start関数
      */
-    void Start()
+    public void Start()
     {
         return;
     }
@@ -21,7 +24,7 @@ public class PlayScene : UnityEngine.MonoBehaviour
     /**
      * @brief Update関数
      */
-    void Update()
+    public void Update()
     {
         return;
     }

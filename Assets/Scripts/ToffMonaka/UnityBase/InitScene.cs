@@ -4,18 +4,22 @@
  */
 
 
+using UnityEngine;
+using UnityEngine.SceneManagement;
+
+
 namespace ToffMonaka.UnityBase {
 /**
  * @brief InitSceneクラス
  */
-public class InitScene : UnityEngine.MonoBehaviour
+public class InitScene : MonoBehaviour
 {
     /**
      * @brief Start関数
      */
-    void Start()
+    public void Start()
     {
-        this.Invoke(nameof(ChangeScene), 3.0f);
+        this.Invoke(nameof(_changeScene), 3.0f);
 
         return;
     }
@@ -23,17 +27,17 @@ public class InitScene : UnityEngine.MonoBehaviour
     /**
      * @brief Update関数
      */
-    void Update()
+    public void Update()
     {
         return;
     }
 
     /**
-     * @brief ChangeScene関数
+     * @brief _changeScene関数
      */
-    void ChangeScene()
+    private void _changeScene()
     {
-        UnityEngine.SceneManagement.SceneManager.LoadScene("PlayScene");
+        SceneManager.LoadScene("PlayScene");
 
         return;
     }

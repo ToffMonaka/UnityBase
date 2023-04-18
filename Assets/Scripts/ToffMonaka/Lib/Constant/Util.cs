@@ -15,7 +15,7 @@ public static class Util
 #else
     public const bool DEBUG_FLAG = false;
 #endif
-    public const string NAME = "Toff Monaka Library";
+    public const string NAME = "Toff Monaka ライブラリ";
     public const string COMPANY_NAME = "Toff Monaka Project";
     public const string VERSION_NAME = "1.0.0";
 }
