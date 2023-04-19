@@ -16,7 +16,7 @@ namespace ToffMonaka.Tool {
 public class PlaySetting : EditorWindow
 {
     private const int _START_SCENE_INDEX = 1;
-    private const string _ASSETS_STRING = "Assets/";
+    private const string _REMOVE_STRING = "Assets/";
 
     private string[] _startSceneArray = new string[0];
     private int _startSceneIndex = ToffMonaka.Tool.PlaySetting._START_SCENE_INDEX;
@@ -37,7 +37,7 @@ public class PlaySetting : EditorWindow
      */
     public void OnGUI()
     {
-        this._updateStartScene();
+        this._UpdateStartScene();
 
         this._startSceneIndex = EditorGUILayout.Popup("開始シーン", this._startSceneIndex, this._startSceneArray);
 
@@ -59,25 +59,26 @@ public class PlaySetting : EditorWindow
     }
 
     /**
-     * @brief _updateStartScene関数
+     * @brief _UpdateStartScene関数
      */
-    private void _updateStartScene()
+    private void _UpdateStartScene()
     {
         this._startSceneArray = new string[EditorBuildSettings.scenes.Length + 1];
         this._startSceneArray[0] = "デフォルト";
 
-        string scene_name = "";
+        string scene_path = "";
+        int scene_path_str_index = 0;
 
         for (int scenes_i = 0; scenes_i < EditorBuildSettings.scenes.Length; ++scenes_i) {
-            int path_str_index = EditorBuildSettings.scenes[scenes_i].path.IndexOf(ToffMonaka.Tool.PlaySetting._ASSETS_STRING);
+            scene_path_str_index = EditorBuildSettings.scenes[scenes_i].path.IndexOf(ToffMonaka.Tool.PlaySetting._REMOVE_STRING);
 
-            if (path_str_index >= 0) {
-                scene_name = EditorBuildSettings.scenes[scenes_i].path.Substring(path_str_index + ToffMonaka.Tool.PlaySetting._ASSETS_STRING.Length).Replace("/", "\u2215");
+            if (scene_path_str_index >= 0) {
+                scene_path = EditorBuildSettings.scenes[scenes_i].path.Substring(scene_path_str_index + ToffMonaka.Tool.PlaySetting._REMOVE_STRING.Length).Replace("/", "\u2215");
             } else {
-                scene_name = EditorBuildSettings.scenes[scenes_i].path.Replace("/", "\u2215");
+                scene_path = EditorBuildSettings.scenes[scenes_i].path.Replace("/", "\u2215");
             }
 
-            this._startSceneArray[scenes_i + 1] = "" + scenes_i + ": " + scene_name;
+            this._startSceneArray[scenes_i + 1] = "" + scenes_i + ": " + scene_path;
         }
 
         if (this._startSceneIndex >= this._startSceneArray.Length) {
