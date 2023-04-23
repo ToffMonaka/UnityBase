@@ -7,24 +7,24 @@
 using UnityEngine;
 
 
-namespace ToffMonaka.UnityBase {
+namespace ToffMonaka.UnityBase.Scene {
 /**
  * @brief InitSceneクラス
  */
-public class PlayScene : MonoBehaviour
+public class PlayScene : ToffMonaka.Lib.Scene.Scene
 {
     /**
-     * @brief Start関数
+     * @brief OnStart関数
      */
-    public void Start()
+    protected override void OnStart()
     {
         return;
     }
 
     /**
-     * @brief Update関数
+     * @brief OnUpdate関数
      */
-    public void Update()
+    protected override void OnUpdate()
     {
         return;
     }

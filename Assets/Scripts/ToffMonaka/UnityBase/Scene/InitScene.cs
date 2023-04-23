@@ -8,16 +8,16 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 
-namespace ToffMonaka.UnityBase {
+namespace ToffMonaka.UnityBase.Scene {
 /**
  * @brief InitSceneクラス
  */
-public class InitScene : MonoBehaviour
+public class InitScene : ToffMonaka.Lib.Scene.Scene
 {
     /**
-     * @brief Start関数
+     * @brief OnStart関数
      */
-    public void Start()
+    protected override void OnStart()
     {
         this.Invoke(nameof(_changeScene), 3.0f);
 
@@ -25,9 +25,9 @@ public class InitScene : MonoBehaviour
     }
 
     /**
-     * @brief Update関数
+     * @brief OnUpdate関数
      */
-    public void Update()
+    protected override void OnUpdate()
     {
         return;
     }
