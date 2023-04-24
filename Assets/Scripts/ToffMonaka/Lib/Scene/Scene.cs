@@ -5,6 +5,7 @@
 
 
 using UnityEngine;
+using UnityEngine.AddressableAssets;
 
 
 namespace ToffMonaka.Lib.Scene {
@@ -13,20 +14,25 @@ namespace ToffMonaka.Lib.Scene {
  */
 public abstract class Scene : MonoBehaviour
 {
+    private GameObject _subSceneNode = null;
+
+    public Camera mainCamera = null;
+    public GameObject mainLayoutNode = null;
+
     /**
      * @brief Start関数
      */
     public void Start()
     {
-        this.OnStart();
+        this._OnStart();
 
         return;
     }
 
     /**
-     * @brief OnStart関数
+     * @brief _OnStart関数
      */
-    protected virtual void OnStart()
+    protected virtual void _OnStart()
     {
         return;
     }
@@ -36,16 +42,55 @@ public abstract class Scene : MonoBehaviour
      */
     public void Update()
     {
-        this.OnUpdate();
+        this._OnUpdate();
 
         return;
     }
 
     /**
-     * @brief OnUpdate関数
+     * @brief _OnUpdate関数
      */
-    protected virtual void OnUpdate()
+    protected virtual void _OnUpdate()
     {
+        return;
+    }
+
+    /**
+     * @brief _LoadSubScene関数
+     * @param prefab_file_path (prefab_file_path)
+     */
+    protected async void _LoadSubScene(string prefab_file_path)
+    {
+        this._ReleaseSubScene();
+
+        if (prefab_file_path.Length <= 0) {
+            return;
+        }
+
+        this._subSceneNode = await Addressables.InstantiateAsync(prefab_file_path).Task;
+
+        this._subSceneNode.transform.parent = this.mainLayoutNode.transform;
+
+        var canvas_node = this._subSceneNode.transform.Find("Canvas").gameObject;
+
+        canvas_node.GetComponent<Canvas>().worldCamera = this.mainCamera;
+
+        return;
+    }
+
+    /**
+     * @brief _ReleaseSubScene関数
+     */
+    protected void _ReleaseSubScene()
+    {
+        if (this._subSceneNode == null) {
+            return;
+        }
+
+        Addressables.ReleaseInstance(this._subSceneNode);
+
+        this._subSceneNode = null;
+
         return;
     }
 }

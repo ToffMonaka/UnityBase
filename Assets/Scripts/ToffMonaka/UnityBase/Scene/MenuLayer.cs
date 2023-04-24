@@ -14,17 +14,17 @@ namespace ToffMonaka.UnityBase.Scene {
 public class MenuLayer : ToffMonaka.Lib.Scene.Layer
 {
     /**
-     * @brief OnStart関数
+     * @brief _OnStart関数
      */
-    protected override void OnStart()
+    protected override void _OnStart()
     {
         return;
     }
 
     /**
-     * @brief OnUpdate関数
+     * @brief _OnUpdate関数
      */
-    protected override void OnUpdate()
+    protected override void _OnUpdate()
     {
         return;
     }

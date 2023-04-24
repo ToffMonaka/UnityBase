@@ -15,27 +15,29 @@ namespace ToffMonaka.UnityBase.Scene {
 public class InitScene : ToffMonaka.Lib.Scene.Scene
 {
     /**
-     * @brief OnStart関数
+     * @brief _OnStart関数
      */
-    protected override void OnStart()
+    protected override void _OnStart()
     {
-        this.Invoke(nameof(_changeScene), 3.0f);
+        this._LoadSubScene("");
+
+        this.Invoke(nameof(_ChangeScene), 3.0f);
 
         return;
     }
 
     /**
-     * @brief OnUpdate関数
+     * @brief _OnUpdate関数
      */
-    protected override void OnUpdate()
+    protected override void _OnUpdate()
     {
         return;
     }
 
     /**
-     * @brief _changeScene関数
+     * @brief _ChangeScene関数
      */
-    private void _changeScene()
+    private void _ChangeScene()
     {
         SceneManager.LoadScene("PlayScene");
 

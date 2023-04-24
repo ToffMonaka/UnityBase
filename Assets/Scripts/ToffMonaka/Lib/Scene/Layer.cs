@@ -18,15 +18,15 @@ public abstract class Layer : MonoBehaviour
      */
     public void Start()
     {
-        this.OnStart();
+        this._OnStart();
 
         return;
     }
 
     /**
-     * @brief OnStart関数
+     * @brief _OnStart関数
      */
-    protected virtual void OnStart()
+    protected virtual void _OnStart()
     {
         return;
     }
@@ -36,15 +36,15 @@ public abstract class Layer : MonoBehaviour
      */
     public void Update()
     {
-        this.OnUpdate();
+        this._OnUpdate();
 
         return;
     }
 
     /**
-     * @brief OnUpdate関数
+     * @brief _OnUpdate関数
      */
-    protected virtual void OnUpdate()
+    protected virtual void _OnUpdate()
     {
         return;
     }
