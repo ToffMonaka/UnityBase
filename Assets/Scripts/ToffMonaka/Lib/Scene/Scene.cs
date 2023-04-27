@@ -14,25 +14,56 @@ namespace ToffMonaka.Lib.Scene {
  */
 public abstract class Scene : MonoBehaviour
 {
+    private bool _openedFlag = false;
     private GameObject _subSceneNode = null;
 
     public Camera mainCamera = null;
     public GameObject mainLayoutNode = null;
 
     /**
-     * @brief Start関数
+     * @brief OnEnable関数
      */
-    public void Start()
+    public void OnEnable()
     {
-        this._OnStart();
+        if (this._openedFlag) {
+            return;
+        }
+
+        this._OnOpen();
+
+        this._openedFlag = true;
 
         return;
     }
 
     /**
-     * @brief _OnStart関数
+     * @brief _OnOpen関数
      */
-    protected virtual void _OnStart()
+    protected virtual void _OnOpen()
+    {
+        return;
+    }
+
+    /**
+     * @brief OnDisable関数
+     */
+    public void OnDisable()
+    {
+        if (!this._openedFlag) {
+            return;
+        }
+
+        this._OnClose();
+
+        this._openedFlag = false;
+
+        return;
+    }
+
+    /**
+     * @brief _OnClose関数
+     */
+    protected virtual void _OnClose()
     {
         return;
     }
@@ -56,18 +87,29 @@ public abstract class Scene : MonoBehaviour
     }
 
     /**
-     * @brief _LoadSubScene関数
-     * @param prefab_file_path (prefab_file_path)
+     * @brief GetOpenedFlag関数
+     * @return opened_flg (opened_flag)
      */
-    protected async void _LoadSubScene(string prefab_file_path)
+    public bool GetOpenedFlag()
     {
-        this._ReleaseSubScene();
+        return (this._openedFlag);
+    }
+
+    /**
+     * @brief _CreateSubScene関数
+     * @param prefab_file_path (prefab_file_path)
+     * @return result (result)<br>
+     * 0未満=失敗
+     */
+    public int _CreateSubScene(string prefab_file_path)
+    {
+        this._DeleteSubScene();
 
         if (prefab_file_path.Length <= 0) {
-            return;
+            return (-1);
         }
 
-        this._subSceneNode = await Addressables.InstantiateAsync(prefab_file_path).Task;
+        this._subSceneNode = Addressables.InstantiateAsync(prefab_file_path).WaitForCompletion();
 
         this._subSceneNode.transform.parent = this.mainLayoutNode.transform;
 
@@ -75,13 +117,13 @@ public abstract class Scene : MonoBehaviour
 
         canvas_node.GetComponent<Canvas>().worldCamera = this.mainCamera;
 
-        return;
+        return (0);
     }
 
     /**
-     * @brief _ReleaseSubScene関数
+     * @brief _DeleteSubScene関数
      */
-    protected void _ReleaseSubScene()
+    public void _DeleteSubScene()
     {
         if (this._subSceneNode == null) {
             return;

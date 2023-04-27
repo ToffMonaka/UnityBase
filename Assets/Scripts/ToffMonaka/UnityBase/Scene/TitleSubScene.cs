@@ -14,9 +14,17 @@ namespace ToffMonaka.UnityBase.Scene {
 public class TitleSubScene : ToffMonaka.Lib.Scene.SubScene
 {
     /**
-     * @brief _OnStart関数
+     * @brief _OnOpen関数
      */
-    protected override void _OnStart()
+    protected override void _OnOpen()
+    {
+        return;
+    }
+
+    /**
+     * @brief _OnClose関数
+     */
+    protected override void _OnClose()
     {
         return;
     }

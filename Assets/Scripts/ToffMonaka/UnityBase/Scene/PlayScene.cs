@@ -14,12 +14,20 @@ namespace ToffMonaka.UnityBase.Scene {
 public class PlayScene : ToffMonaka.Lib.Scene.Scene
 {
     /**
-     * @brief _OnStart関数
+     * @brief _OnOpen関数
      */
-    protected override void _OnStart()
+    protected override void _OnOpen()
     {
-        this._LoadSubScene("Assets/Resources2/prefab/TitleSubScene.prefab");
+        this._CreateSubScene("Assets/Resources2/prefab/TitleSubScene.prefab");
 
+        return;
+    }
+
+    /**
+     * @brief _OnClose関数
+     */
+    protected override void _OnClose()
+    {
         return;
     }
 

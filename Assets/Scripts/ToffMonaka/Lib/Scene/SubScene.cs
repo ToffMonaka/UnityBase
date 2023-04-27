@@ -13,20 +13,52 @@ namespace ToffMonaka.Lib.Scene {
  */
 public abstract class SubScene : MonoBehaviour
 {
+    private bool _openedFlag = false;
+
     /**
-     * @brief Start関数
+     * @brief OnEnable関数
      */
-    public void Start()
+    public void OnEnable()
     {
-        this._OnStart();
+        if (this._openedFlag) {
+            return;
+        }
+
+        this._OnOpen();
+
+        this._openedFlag = true;
 
         return;
     }
 
     /**
-     * @brief _OnStart関数
+     * @brief _OnOpen関数
      */
-    protected virtual void _OnStart()
+    protected virtual void _OnOpen()
+    {
+        return;
+    }
+
+    /**
+     * @brief OnDisable関数
+     */
+    public void OnDisable()
+    {
+        if (!this._openedFlag) {
+            return;
+        }
+
+        this._OnClose();
+
+        this._openedFlag = false;
+
+        return;
+    }
+
+    /**
+     * @brief _OnClose関数
+     */
+    protected virtual void _OnClose()
     {
         return;
     }
@@ -47,6 +79,15 @@ public abstract class SubScene : MonoBehaviour
     protected virtual void _OnUpdate()
     {
         return;
+    }
+
+    /**
+     * @brief GetOpenedFlag関数
+     * @return opened_flg (opened_flag)
+     */
+    public bool GetOpenedFlag()
+    {
+        return (this._openedFlag);
     }
 }
 }
