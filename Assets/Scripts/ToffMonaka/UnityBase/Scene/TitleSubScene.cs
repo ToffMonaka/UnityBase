@@ -36,5 +36,15 @@ public class TitleSubScene : ToffMonaka.Lib.Scene.SubScene
     {
         return;
     }
+
+    /**
+     * @brief OnStartButtonPointerClickEvent関数
+     */
+    public void OnStartButtonPointerClickEvent()
+    {
+        Debug.Log("OnStartButtonPointerClickEvent");
+
+        return;
+    }
 }
 }

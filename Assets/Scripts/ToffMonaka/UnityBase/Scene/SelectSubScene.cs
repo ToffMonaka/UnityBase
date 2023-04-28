@@ -36,5 +36,25 @@ public class SelectSubScene : ToffMonaka.Lib.Scene.SubScene
     {
         return;
     }
+
+    /**
+     * @brief OnTest2DButtonPointerClickEvent関数
+     */
+    public void OnTest2DButtonPointerClickEvent()
+    {
+        Debug.Log("OnTest2DButtonPointerClickEvent");
+
+        return;
+    }
+
+    /**
+     * @brief OnTest3DButtonPointerClickEvent関数
+     */
+    public void OnTest3DButtonPointerClickEvent()
+    {
+        Debug.Log("OnTest3DButtonPointerClickEvent");
+
+        return;
+    }
 }
 }
