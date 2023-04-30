@@ -1,6 +1,6 @@
 ﻿/**
  * @file
- * @brief MenuLayerファイル
+ * @brief Test3DSubSceneNodeScriptファイル
  */
 
 
@@ -9,22 +9,22 @@ using UnityEngine;
 
 namespace ToffMonaka.UnityBase.Scene {
 /**
- * @brief MenuLayerクラス
+ * @brief Test3DSubSceneNodeScriptクラス
  */
-public class MenuLayer : ToffMonaka.Lib.Scene.Layer
+public class Test3DSubSceneNodeScript : ToffMonaka.Lib.Scene.SubSceneNodeScript
 {
     /**
-     * @brief _OnOpen関数
+     * @brief _OnActivate関数
      */
-    protected override void _OnOpen()
+    protected override void _OnActivate()
     {
         return;
     }
 
     /**
-     * @brief _OnClose関数
+     * @brief _OnDeactivate関数
      */
-    protected override void _OnClose()
+    protected override void _OnDeactivate()
     {
         return;
     }

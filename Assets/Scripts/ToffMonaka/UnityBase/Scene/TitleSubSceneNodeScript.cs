@@ -1,6 +1,6 @@
 ﻿/**
  * @file
- * @brief TitleSubSceneファイル
+ * @brief TitleSubSceneNodeScriptファイル
  */
 
 
@@ -9,22 +9,22 @@ using UnityEngine;
 
 namespace ToffMonaka.UnityBase.Scene {
 /**
- * @brief TitleSubSceneクラス
+ * @brief TitleSubSceneNodeScriptクラス
  */
-public class TitleSubScene : ToffMonaka.Lib.Scene.SubScene
+public class TitleSubSceneNodeScript : ToffMonaka.Lib.Scene.SubSceneNodeScript
 {
     /**
-     * @brief _OnOpen関数
+     * @brief _OnActivate関数
      */
-    protected override void _OnOpen()
+    protected override void _OnActivate()
     {
         return;
     }
 
     /**
-     * @brief _OnClose関数
+     * @brief _OnDeactivate関数
      */
-    protected override void _OnClose()
+    protected override void _OnDeactivate()
     {
         return;
     }
