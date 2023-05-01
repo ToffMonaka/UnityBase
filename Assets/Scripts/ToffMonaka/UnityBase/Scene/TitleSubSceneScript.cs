@@ -1,6 +1,6 @@
 ﻿/**
  * @file
- * @brief TitleSubSceneNodeScriptファイル
+ * @brief TitleSubSceneScriptファイル
  */
 
 
@@ -9,10 +9,20 @@ using UnityEngine;
 
 namespace ToffMonaka.UnityBase.Scene {
 /**
- * @brief TitleSubSceneNodeScriptクラス
+ * @brief TitleSubSceneScriptクラス
  */
-public class TitleSubSceneNodeScript : ToffMonaka.Lib.Scene.SubSceneNodeScript
+public class TitleSubSceneScript : ToffMonaka.Lib.Scene.SubSceneScript
 {
+    /**
+     * @brief コンストラクタ
+     */
+    public TitleSubSceneScript()
+    {
+        this.SetScriptType((int)ToffMonaka.UnityBase.Constant.Util.SCRIPT_TYPE.TITLE_SUB_SCENE);
+
+        return;
+    }
+
     /**
      * @brief _OnActivate関数
      */
@@ -42,7 +52,9 @@ public class TitleSubSceneNodeScript : ToffMonaka.Lib.Scene.SubSceneNodeScript
      */
     public void OnStartButtonPointerClickEvent()
     {
-        Debug.Log("OnStartButtonPointerClickEvent");
+        var scene_script = (ToffMonaka.Lib.Scene.SceneScript)this.GetHolder().Get((int)ToffMonaka.UnityBase.Constant.Util.SCRIPT_TYPE.PLAY_SCENE);
+
+        scene_script.ChangeSubScene("Assets/Resources2/prefab/SelectSubScene.prefab");
 
         return;
     }

@@ -1,6 +1,6 @@
 ﻿/**
  * @file
- * @brief Test3DSubSceneNodeScriptファイル
+ * @brief Test3DSubSceneScriptファイル
  */
 
 
@@ -9,10 +9,20 @@ using UnityEngine;
 
 namespace ToffMonaka.UnityBase.Scene {
 /**
- * @brief Test3DSubSceneNodeScriptクラス
+ * @brief Test3DSubSceneScriptクラス
  */
-public class Test3DSubSceneNodeScript : ToffMonaka.Lib.Scene.SubSceneNodeScript
+public class Test3DSubSceneScript : ToffMonaka.Lib.Scene.SubSceneScript
 {
+    /**
+     * @brief コンストラクタ
+     */
+    public Test3DSubSceneScript()
+    {
+        this.SetScriptType((int)ToffMonaka.UnityBase.Constant.Util.SCRIPT_TYPE.TEST_3D_SUB_SCENE);
+
+        return;
+    }
+
     /**
      * @brief _OnActivate関数
      */

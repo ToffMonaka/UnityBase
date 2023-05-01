@@ -1,6 +1,6 @@
 ﻿/**
  * @file
- * @brief PlaySceneNodeScriptファイル
+ * @brief MenuLayerScriptファイル
  */
 
 
@@ -9,17 +9,25 @@ using UnityEngine;
 
 namespace ToffMonaka.UnityBase.Scene {
 /**
- * @brief PlaySceneNodeScriptクラス
+ * @brief MenuLayerScriptクラス
  */
-public class PlaySceneNodeScript : ToffMonaka.Lib.Scene.SceneNodeScript
+public class MenuLayerScript : ToffMonaka.Lib.Scene.LayerScript
 {
+    /**
+     * @brief コンストラクタ
+     */
+    public MenuLayerScript()
+    {
+        this.SetScriptType((int)ToffMonaka.UnityBase.Constant.Util.SCRIPT_TYPE.MENU_SUB_LAYER);
+
+        return;
+    }
+
     /**
      * @brief _OnActivate関数
      */
     protected override void _OnActivate()
     {
-        this.ChangeSubScene("Assets/Resources2/prefab/TitleSubScene.prefab");
-
         return;
     }
 

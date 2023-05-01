@@ -1,28 +1,37 @@
 ﻿/**
  * @file
- * @brief InitSceneNodeScriptファイル
+ * @brief InitSceneScriptファイル
  */
 
 
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 
 namespace ToffMonaka.UnityBase.Scene {
 /**
- * @brief InitSceneNodeScriptクラス
+ * @brief InitSceneScriptクラス
  */
-public class InitSceneNodeScript : ToffMonaka.Lib.Scene.SceneNodeScript
+public class InitSceneScript : ToffMonaka.Lib.Scene.SceneScript
 {
     private int _progressType = 0;
     private float _progressElapsedTime = 0.0f;
+
+    /**
+     * @brief コンストラクタ
+     */
+    public InitSceneScript()
+    {
+        this.SetScriptType((int)ToffMonaka.UnityBase.Constant.Util.SCRIPT_TYPE.INIT_SCENE);
+
+        return;
+    }
 
     /**
      * @brief _OnActivate関数
      */
     protected override void _OnActivate()
     {
-        this.ChangeSubScene("");
+        this.Create(new ToffMonaka.Lib.Scene.ScriptHolder((int)ToffMonaka.UnityBase.Constant.Util.SCRIPT_TYPE_COUNT), "");
 
         this._progressType = 1;
         this._progressElapsedTime = 0.0f;

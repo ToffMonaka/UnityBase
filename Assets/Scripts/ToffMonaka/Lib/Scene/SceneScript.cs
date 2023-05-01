@@ -1,6 +1,6 @@
 ﻿/**
  * @file
- * @brief SceneNodeScriptファイル
+ * @brief SceneScriptファイル
  */
 
 
@@ -11,9 +11,9 @@ using UnityEngine.AddressableAssets;
 
 namespace ToffMonaka.Lib.Scene {
 /**
- * @brief SceneNodeScriptクラス
+ * @brief SceneScriptクラス
  */
-public abstract class SceneNodeScript : ToffMonaka.Lib.Scene.NodeScript
+public abstract class SceneScript : ToffMonaka.Lib.Scene.Script
 {
     private GameObject _subSceneNode = null;
 
@@ -33,7 +33,11 @@ public abstract class SceneNodeScript : ToffMonaka.Lib.Scene.NodeScript
      */
     protected override void _OnDeactivate2()
     {
-        this._DeleteSubScene();
+        if (this._subSceneNode != null) {
+            Addressables.ReleaseInstance(this._subSceneNode);
+
+            this._subSceneNode = null;
+        }
 
         return;
     }
@@ -44,6 +48,26 @@ public abstract class SceneNodeScript : ToffMonaka.Lib.Scene.NodeScript
     protected override void _OnUpdate2()
     {
         return;
+    }
+
+    /**
+     * @brief Create関数
+     * @param holder (holder)
+     * @param sub_scene_prefab_file_path (sub_scene_prefab_file_path)
+     * @return result (result)<br>
+     * 0未満=失敗
+     */
+    public int Create(ToffMonaka.Lib.Scene.ScriptHolder holder, string sub_scene_prefab_file_path)
+    {
+        if (holder == null) {
+            return (-1);
+        }
+
+        this.SetHolder(holder);
+
+        this.ChangeSubScene(sub_scene_prefab_file_path);
+
+        return (0);
     }
 
     /**
@@ -71,7 +95,11 @@ public abstract class SceneNodeScript : ToffMonaka.Lib.Scene.NodeScript
      */
     public int ChangeSubScene(string prefab_file_path)
     {
-        this._DeleteSubScene();
+        if (this._subSceneNode != null) {
+            Addressables.ReleaseInstance(this._subSceneNode);
+
+            this._subSceneNode = null;
+        }
 
         if (prefab_file_path.Length <= 0) {
             return (-1);
@@ -79,29 +107,9 @@ public abstract class SceneNodeScript : ToffMonaka.Lib.Scene.NodeScript
 
         this._subSceneNode = Addressables.InstantiateAsync(prefab_file_path).WaitForCompletion();
 
-        this._subSceneNode.transform.parent = this.subSceneLayoutNode.transform;
-
-        var canvas_node = this._subSceneNode.transform.Find("Canvas").gameObject;
-
-        canvas_node.GetComponent<Canvas>().worldCamera = this.mainCamera;
+        this._subSceneNode.GetComponent<ToffMonaka.Lib.Scene.SubSceneScript>().Create(this);
 
         return (0);
-    }
-
-    /**
-     * @brief _DeleteSubScene関数
-     */
-    private void _DeleteSubScene()
-    {
-        if (this._subSceneNode == null) {
-            return;
-        }
-
-        Addressables.ReleaseInstance(this._subSceneNode);
-
-        this._subSceneNode = null;
-
-        return;
     }
 }
 }

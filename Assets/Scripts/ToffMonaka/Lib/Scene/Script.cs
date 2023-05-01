@@ -1,6 +1,6 @@
 ﻿/**
  * @file
- * @brief NodeScriptファイル
+ * @brief Scriptファイル
  */
 
 
@@ -9,10 +9,13 @@ using UnityEngine;
 
 namespace ToffMonaka.Lib.Scene {
 /**
- * @brief NodeScriptクラス
+ * @brief Scriptクラス
  */
-public abstract class NodeScript : MonoBehaviour
+public abstract class Script : MonoBehaviour
 {
+    private int _scriptType = 0;
+    private ToffMonaka.Lib.Scene.ScriptHolder _holder = null;
+
     /**
      * @brief OnEnable関数
      */
@@ -119,6 +122,48 @@ public abstract class NodeScript : MonoBehaviour
     public void SetActivateFlag(bool activate_flg)
     {
         this.gameObject.SetActive(activate_flg);
+
+        return;
+    }
+
+    /**
+     * @brief GetScriptType関数
+     * @return script_type (script_type)
+     */
+    public int GetScriptType()
+    {
+        return (this._scriptType);
+    }
+
+    /**
+     * @brief SetScriptType関数
+     * @param script_type (script_type)
+     */
+    public void SetScriptType(int script_type)
+    {
+        this._scriptType = script_type;
+
+        return;
+    }
+
+    /**
+     * @brief GetHolder関数
+     * @return holder (holder)
+     */
+    public ToffMonaka.Lib.Scene.ScriptHolder GetHolder()
+    {
+        return (this._holder);
+    }
+
+    /**
+     * @brief SetHolder関数
+     * @param holder (holder)
+     */
+    public void SetHolder(ToffMonaka.Lib.Scene.ScriptHolder holder)
+    {
+        this._holder = holder;
+
+        this._holder.Add(this);
 
         return;
     }
