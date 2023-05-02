@@ -14,6 +14,16 @@ namespace ToffMonaka.Lib.Scene {
 public abstract class SubSceneScript : ToffMonaka.Lib.Scene.Script
 {
     /**
+     * @brief コンストラクタ
+     */
+    public SubSceneScript()
+    {
+        this._SetScriptType((int)ToffMonaka.Lib.Constant.Util.SCENE.SCRIPT_TYPE.SUB_SCENE);
+
+        return;
+    }
+
+    /**
      * @brief _OnActivate2関数
      */
     protected override void _OnActivate2()
@@ -38,6 +48,14 @@ public abstract class SubSceneScript : ToffMonaka.Lib.Scene.Script
     }
 
     /**
+     * @brief _OnDelete2関数
+     */
+    protected override void _OnDelete2()
+    {
+        return;
+    }
+
+    /**
      * @brief Create関数
      * @param scene_script (scene_script)
      * @return result (result)<br>
@@ -49,7 +67,7 @@ public abstract class SubSceneScript : ToffMonaka.Lib.Scene.Script
             return (-1);
         }
 
-        this.SetHolder(scene_script.GetHolder());
+        this._SetHolder(scene_script.GetHolder());
 
         this.gameObject.transform.parent = scene_script.subSceneLayoutNode.transform;
 

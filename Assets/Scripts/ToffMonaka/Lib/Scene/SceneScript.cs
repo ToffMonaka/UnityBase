@@ -21,6 +21,16 @@ public abstract class SceneScript : ToffMonaka.Lib.Scene.Script
     public GameObject subSceneLayoutNode = null;
 
     /**
+     * @brief コンストラクタ
+     */
+    public SceneScript()
+    {
+        this._SetScriptType((int)ToffMonaka.Lib.Constant.Util.SCENE.SCRIPT_TYPE.SCENE);
+
+        return;
+    }
+
+    /**
      * @brief _OnActivate2関数
      */
     protected override void _OnActivate2()
@@ -33,12 +43,6 @@ public abstract class SceneScript : ToffMonaka.Lib.Scene.Script
      */
     protected override void _OnDeactivate2()
     {
-        if (this._subSceneNode != null) {
-            Addressables.ReleaseInstance(this._subSceneNode);
-
-            this._subSceneNode = null;
-        }
-
         return;
     }
 
@@ -51,21 +55,34 @@ public abstract class SceneScript : ToffMonaka.Lib.Scene.Script
     }
 
     /**
+     * @brief _OnDelete2関数
+     */
+    protected override void _OnDelete2()
+    {
+        if (this._subSceneNode != null) {
+            this._subSceneNode.GetComponent<ToffMonaka.Lib.Scene.SubSceneScript>().Delete();
+
+            Addressables.ReleaseInstance(this._subSceneNode);
+
+            this._subSceneNode = null;
+        }
+
+        return;
+    }
+
+    /**
      * @brief Create関数
      * @param holder (holder)
-     * @param sub_scene_prefab_file_path (sub_scene_prefab_file_path)
      * @return result (result)<br>
      * 0未満=失敗
      */
-    public int Create(ToffMonaka.Lib.Scene.ScriptHolder holder, string sub_scene_prefab_file_path)
+    public int Create(ToffMonaka.Lib.Scene.ScriptHolder holder)
     {
         if (holder == null) {
             return (-1);
         }
 
-        this.SetHolder(holder);
-
-        this.ChangeSubScene(sub_scene_prefab_file_path);
+        this._SetHolder(holder);
 
         return (0);
     }
@@ -82,7 +99,7 @@ public abstract class SceneScript : ToffMonaka.Lib.Scene.Script
             return (-1);
         }
 
-        SceneManager.LoadScene("PlayScene");
+        SceneManager.LoadScene(name);
 
         return (0);
     }
@@ -96,6 +113,8 @@ public abstract class SceneScript : ToffMonaka.Lib.Scene.Script
     public int ChangeSubScene(string prefab_file_path)
     {
         if (this._subSceneNode != null) {
+            this._subSceneNode.GetComponent<ToffMonaka.Lib.Scene.SubSceneScript>().Delete();
+
             Addressables.ReleaseInstance(this._subSceneNode);
 
             this._subSceneNode = null;

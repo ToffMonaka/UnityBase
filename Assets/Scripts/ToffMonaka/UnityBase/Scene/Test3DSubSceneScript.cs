@@ -18,7 +18,7 @@ public class Test3DSubSceneScript : ToffMonaka.Lib.Scene.SubSceneScript
      */
     public Test3DSubSceneScript()
     {
-        this.SetScriptType((int)ToffMonaka.UnityBase.Constant.Util.SCRIPT_TYPE.TEST_3D_SUB_SCENE);
+        this._SetScriptIndex((int)ToffMonaka.UnityBase.Constant.Util.SCENE.SCRIPT_INDEX.TEST_3D_SUB_SCENE);
 
         return;
     }
@@ -43,6 +43,14 @@ public class Test3DSubSceneScript : ToffMonaka.Lib.Scene.SubSceneScript
      * @brief _OnUpdate関数
      */
     protected override void _OnUpdate()
+    {
+        return;
+    }
+
+    /**
+     * @brief _OnDelete関数
+     */
+    protected override void _OnDelete()
     {
         return;
     }

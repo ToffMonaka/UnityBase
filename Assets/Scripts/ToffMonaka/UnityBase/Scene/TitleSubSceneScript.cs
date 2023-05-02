@@ -18,7 +18,7 @@ public class TitleSubSceneScript : ToffMonaka.Lib.Scene.SubSceneScript
      */
     public TitleSubSceneScript()
     {
-        this.SetScriptType((int)ToffMonaka.UnityBase.Constant.Util.SCRIPT_TYPE.TITLE_SUB_SCENE);
+        this._SetScriptIndex((int)ToffMonaka.UnityBase.Constant.Util.SCENE.SCRIPT_INDEX.TITLE_SUB_SCENE);
 
         return;
     }
@@ -48,13 +48,19 @@ public class TitleSubSceneScript : ToffMonaka.Lib.Scene.SubSceneScript
     }
 
     /**
+     * @brief _OnDelete関数
+     */
+    protected override void _OnDelete()
+    {
+        return;
+    }
+
+    /**
      * @brief OnStartButtonPointerClickEvent関数
      */
     public void OnStartButtonPointerClickEvent()
     {
-        var scene_script = (ToffMonaka.Lib.Scene.SceneScript)this.GetHolder().Get((int)ToffMonaka.UnityBase.Constant.Util.SCRIPT_TYPE.PLAY_SCENE);
-
-        scene_script.ChangeSubScene("Assets/Resources2/prefab/SelectSubScene.prefab");
+        this.GetHolder().GetSceneScript().ChangeSubScene(ToffMonaka.UnityBase.Constant.Util.FILE_PATH.SELECT_SUB_SCENE_PREFAB);
 
         return;
     }

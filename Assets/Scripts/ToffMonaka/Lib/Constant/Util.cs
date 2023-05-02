@@ -18,5 +18,24 @@ public static class Util
     public const string NAME = "Toff Monaka ライブラリ";
     public const string COMPANY_NAME = "Toff Monaka Project";
     public const string VERSION_NAME = "1.0.0";
+
+    public static class FILE_PATH
+    {
+        public const string NONE = "";
+    }
+
+    public static class SCENE
+    {
+        public enum SCRIPT_TYPE
+        {
+            NONE = 0,
+            SCENE,
+            SUB_SCENE,
+            SUB_LAYER,
+		    USER,
+		    COUNT
+        }
+        public const int SCRIPT_TYPE_COUNT = (int)ToffMonaka.Lib.Constant.Util.SCENE.SCRIPT_TYPE.COUNT;
+    }
 }
 }

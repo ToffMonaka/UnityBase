@@ -18,7 +18,7 @@ public class PlaySceneScript : ToffMonaka.Lib.Scene.SceneScript
      */
     public PlaySceneScript()
     {
-        this.SetScriptType((int)ToffMonaka.UnityBase.Constant.Util.SCRIPT_TYPE.PLAY_SCENE);
+        this._SetScriptIndex((int)ToffMonaka.UnityBase.Constant.Util.SCENE.SCRIPT_INDEX.PLAY_SCENE);
 
         return;
     }
@@ -28,7 +28,8 @@ public class PlaySceneScript : ToffMonaka.Lib.Scene.SceneScript
      */
     protected override void _OnActivate()
     {
-        this.Create(new ToffMonaka.Lib.Scene.ScriptHolder((int)ToffMonaka.UnityBase.Constant.Util.SCRIPT_TYPE_COUNT), "Assets/Resources2/prefab/TitleSubScene.prefab");
+        this.Create(new ToffMonaka.Lib.Scene.ScriptHolder((int)ToffMonaka.UnityBase.Constant.Util.SCENE.SCRIPT_INDEX_COUNT));
+        this.ChangeSubScene(ToffMonaka.UnityBase.Constant.Util.FILE_PATH.TITLE_SUB_SCENE_PREFAB);
 
         return;
     }
@@ -38,6 +39,8 @@ public class PlaySceneScript : ToffMonaka.Lib.Scene.SceneScript
      */
     protected override void _OnDeactivate()
     {
+        this.Delete();
+
         return;
     }
 
@@ -45,6 +48,14 @@ public class PlaySceneScript : ToffMonaka.Lib.Scene.SceneScript
      * @brief _OnUpdate関数
      */
     protected override void _OnUpdate()
+    {
+        return;
+    }
+
+    /**
+     * @brief _OnDelete関数
+     */
+    protected override void _OnDelete()
     {
         return;
     }

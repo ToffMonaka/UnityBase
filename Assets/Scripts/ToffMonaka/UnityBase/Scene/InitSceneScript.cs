@@ -21,7 +21,7 @@ public class InitSceneScript : ToffMonaka.Lib.Scene.SceneScript
      */
     public InitSceneScript()
     {
-        this.SetScriptType((int)ToffMonaka.UnityBase.Constant.Util.SCRIPT_TYPE.INIT_SCENE);
+        this._SetScriptIndex((int)ToffMonaka.UnityBase.Constant.Util.SCENE.SCRIPT_INDEX.INIT_SCENE);
 
         return;
     }
@@ -31,7 +31,8 @@ public class InitSceneScript : ToffMonaka.Lib.Scene.SceneScript
      */
     protected override void _OnActivate()
     {
-        this.Create(new ToffMonaka.Lib.Scene.ScriptHolder((int)ToffMonaka.UnityBase.Constant.Util.SCRIPT_TYPE_COUNT), "");
+        this.Create(new ToffMonaka.Lib.Scene.ScriptHolder((int)ToffMonaka.UnityBase.Constant.Util.SCENE.SCRIPT_INDEX_COUNT));
+        this.ChangeSubScene(ToffMonaka.UnityBase.Constant.Util.FILE_PATH.NONE);
 
         this._progressType = 1;
         this._progressElapsedTime = 0.0f;
@@ -44,6 +45,8 @@ public class InitSceneScript : ToffMonaka.Lib.Scene.SceneScript
      */
     protected override void _OnDeactivate()
     {
+        this.Delete();
+
         return;
     }
 
@@ -57,7 +60,7 @@ public class InitSceneScript : ToffMonaka.Lib.Scene.SceneScript
             this._progressElapsedTime += Time.deltaTime;
 
             if (this._progressElapsedTime >= 3.0f) {
-                this.ChangeScene("PlayScene");
+                this.ChangeScene(ToffMonaka.UnityBase.Constant.Util.SCENE_NAME.PLAY_SCENE);
 
                 this._progressType = 2;
                 this._progressElapsedTime = 0.0f;
@@ -70,6 +73,14 @@ public class InitSceneScript : ToffMonaka.Lib.Scene.SceneScript
 		}
 		}
 
+        return;
+    }
+
+    /**
+     * @brief _OnDelete関数
+     */
+    protected override void _OnDelete()
+    {
         return;
     }
 }

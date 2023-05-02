@@ -1,6 +1,6 @@
 ﻿/**
  * @file
- * @brief LayerScriptファイル
+ * @brief SubLayerScriptファイル
  */
 
 
@@ -9,10 +9,20 @@ using UnityEngine;
 
 namespace ToffMonaka.Lib.Scene {
 /**
- * @brief LayerScriptクラス
+ * @brief SubLayerScriptクラス
  */
-public abstract class LayerScript : ToffMonaka.Lib.Scene.Script
+public abstract class SubLayerScript : ToffMonaka.Lib.Scene.Script
 {
+    /**
+     * @brief コンストラクタ
+     */
+    public SubLayerScript()
+    {
+        this._SetScriptType((int)ToffMonaka.Lib.Constant.Util.SCENE.SCRIPT_TYPE.SUB_LAYER);
+
+        return;
+    }
+
     /**
      * @brief _OnActivate2関数
      */
@@ -38,6 +48,14 @@ public abstract class LayerScript : ToffMonaka.Lib.Scene.Script
     }
 
     /**
+     * @brief _OnDelete2関数
+     */
+    protected override void _OnDelete2()
+    {
+        return;
+    }
+
+    /**
      * @brief Create関数
      * @param sub_scene_script (sub_scene_script)
      * @return result (result)<br>
@@ -49,7 +67,7 @@ public abstract class LayerScript : ToffMonaka.Lib.Scene.Script
             return (-1);
         }
 
-        this.SetHolder(sub_scene_script.GetHolder());
+        this._SetHolder(sub_scene_script.GetHolder());
 
         return (0);
     }

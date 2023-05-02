@@ -1,6 +1,6 @@
 ﻿/**
  * @file
- * @brief MenuLayerScriptファイル
+ * @brief MenuSubLayerScriptファイル
  */
 
 
@@ -9,16 +9,16 @@ using UnityEngine;
 
 namespace ToffMonaka.UnityBase.Scene {
 /**
- * @brief MenuLayerScriptクラス
+ * @brief MenuSubLayerScriptクラス
  */
-public class MenuLayerScript : ToffMonaka.Lib.Scene.LayerScript
+public class MenuSubLayerScript : ToffMonaka.Lib.Scene.SubLayerScript
 {
     /**
      * @brief コンストラクタ
      */
-    public MenuLayerScript()
+    public MenuSubLayerScript()
     {
-        this.SetScriptType((int)ToffMonaka.UnityBase.Constant.Util.SCRIPT_TYPE.MENU_SUB_LAYER);
+        this._SetScriptIndex((int)ToffMonaka.UnityBase.Constant.Util.SCENE.SCRIPT_INDEX.MENU_SUB_LAYER);
 
         return;
     }
@@ -43,6 +43,14 @@ public class MenuLayerScript : ToffMonaka.Lib.Scene.LayerScript
      * @brief _OnUpdate関数
      */
     protected override void _OnUpdate()
+    {
+        return;
+    }
+
+    /**
+     * @brief _OnDelete関数
+     */
+    protected override void _OnDelete()
     {
         return;
     }

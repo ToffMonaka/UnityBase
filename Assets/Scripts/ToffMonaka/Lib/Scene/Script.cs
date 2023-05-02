@@ -14,7 +14,16 @@ namespace ToffMonaka.Lib.Scene {
 public abstract class Script : MonoBehaviour
 {
     private int _scriptType = 0;
+    private int _scriptIndex = 0;
     private ToffMonaka.Lib.Scene.ScriptHolder _holder = null;
+
+    /**
+     * @brief Awake関数
+     */
+    private void Awake()
+    {
+        return;
+    }
 
     /**
      * @brief OnEnable関数
@@ -71,6 +80,14 @@ public abstract class Script : MonoBehaviour
     }
 
     /**
+     * @brief Start関数
+     */
+    private void Start()
+    {
+        return;
+    }
+
+    /**
      * @brief Update関数
      */
     private void Update()
@@ -93,6 +110,43 @@ public abstract class Script : MonoBehaviour
      * @brief _OnUpdate2関数
      */
     protected virtual void _OnUpdate2()
+    {
+        return;
+    }
+
+    /**
+     * @brief OnDestroy関数
+     */
+    private void OnDestroy()
+    {
+        return;
+    }
+
+    /**
+     * @brief Delete関数
+     */
+    public void Delete()
+    {
+        this._OnDelete();
+        this._OnDelete2();
+
+        this._SetHolder(null);
+
+        return;
+    }
+
+    /**
+     * @brief _OnDelete関数
+     */
+    protected virtual void _OnDelete()
+    {
+        return;
+    }
+
+    /**
+     * @brief _OnDelete2関数
+     */
+    protected virtual void _OnDelete2()
     {
         return;
     }
@@ -136,12 +190,32 @@ public abstract class Script : MonoBehaviour
     }
 
     /**
-     * @brief SetScriptType関数
+     * @brief _SetScriptType関数
      * @param script_type (script_type)
      */
-    public void SetScriptType(int script_type)
+    protected void _SetScriptType(int script_type)
     {
         this._scriptType = script_type;
+
+        return;
+    }
+
+    /**
+     * @brief GetScriptIndex関数
+     * @return script_index (script_index)
+     */
+    public int GetScriptIndex()
+    {
+        return (this._scriptIndex);
+    }
+
+    /**
+     * @brief _SetScriptIndex関数
+     * @param script_index (script_index)
+     */
+    protected void _SetScriptIndex(int script_index)
+    {
+        this._scriptIndex = script_index;
 
         return;
     }
@@ -156,14 +230,20 @@ public abstract class Script : MonoBehaviour
     }
 
     /**
-     * @brief SetHolder関数
+     * @brief _SetHolder関数
      * @param holder (holder)
      */
-    public void SetHolder(ToffMonaka.Lib.Scene.ScriptHolder holder)
+    protected void _SetHolder(ToffMonaka.Lib.Scene.ScriptHolder holder)
     {
+        if (this._holder != null) {
+            this._holder.Remove(this);
+        }
+
         this._holder = holder;
 
-        this._holder.Add(this);
+        if (this._holder != null) {
+            this._holder.Add(this);
+        }
 
         return;
     }
