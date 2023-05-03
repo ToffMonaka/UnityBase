@@ -17,7 +17,8 @@ public class ScriptHolder
     private List<ToffMonaka.Lib.Scene.Script>[] _script_array = null;
     private ToffMonaka.Lib.Scene.SceneScript _scene_script = null;
     private ToffMonaka.Lib.Scene.SubSceneScript _sub_scene_script = null;
-    private ToffMonaka.Lib.Scene.SubLayerScript[] _sub_layer_script_array = null;
+    private ToffMonaka.Lib.Scene.StaticSubLayerScript[] _static_sub_layer_script_array = null;
+    private List<ToffMonaka.Lib.Scene.DynamicSubLayerScript>[]  _dynamic_sub_layer_script_array = null;
 
     /**
      * @brief コンストラクタ
@@ -31,7 +32,12 @@ public class ScriptHolder
             this._script_array[script_i] = new List<ToffMonaka.Lib.Scene.Script>();
         }
 
-        this._sub_layer_script_array = new ToffMonaka.Lib.Scene.SubLayerScript[script_cnt];
+        this._static_sub_layer_script_array = new ToffMonaka.Lib.Scene.StaticSubLayerScript[script_cnt];
+        this._dynamic_sub_layer_script_array = new List<ToffMonaka.Lib.Scene.DynamicSubLayerScript>[script_cnt];
+
+        for (int script_i = 0; script_i < this._dynamic_sub_layer_script_array.Length; ++script_i) {
+            this._dynamic_sub_layer_script_array[script_i] = new List<ToffMonaka.Lib.Scene.DynamicSubLayerScript>();
+        }
 
         return;
     }
@@ -44,7 +50,7 @@ public class ScriptHolder
      */
     public ToffMonaka.Lib.Scene.Script Get(int script_inex)
     {
-        if ((script_inex <= 0)
+        if ((script_inex < 0)
         || (script_inex >= this._script_array.Length)) {
             return (null);
         }
@@ -64,7 +70,7 @@ public class ScriptHolder
      */
     public List<ToffMonaka.Lib.Scene.Script> GetContainer(int script_inex)
     {
-        if ((script_inex <= 0)
+        if ((script_inex < 0)
         || (script_inex >= this._script_array.Length)) {
             return (null);
         }
@@ -91,13 +97,23 @@ public class ScriptHolder
     }
 
     /**
-     * @brief GetSubLayerScript関数
+     * @brief GetStaticSubLayerScript関数
      * @param script_inex (script_inex)
-     * @return sub_layer_script (sub_layer_script)
+     * @return static_sub_layer_script (static_sub_layer_script)
      */
-    public ToffMonaka.Lib.Scene.SubLayerScript GetSubLayerScript(int script_inex)
+    public ToffMonaka.Lib.Scene.StaticSubLayerScript GetSubLayerScript(int script_inex)
     {
-        return (this._sub_layer_script_array[script_inex]);
+        return (this._static_sub_layer_script_array[script_inex]);
+    }
+
+    /**
+     * @brief GetDynamicLayerScriptContainer関数
+     * @param script_inex (script_inex)
+     * @return dynamic_sub_layer_script (dynamic_sub_layer_script)
+     */
+    public List<ToffMonaka.Lib.Scene.DynamicSubLayerScript> GetDynamicLayerScriptContainer(int script_inex)
+    {
+        return (this._dynamic_sub_layer_script_array[script_inex]);
     }
 
     /**
@@ -112,7 +128,7 @@ public class ScriptHolder
             return (-1);
         }
 
-        if ((script.GetScriptIndex() <= 0)
+        if ((script.GetScriptIndex() < 0)
         || (script.GetScriptIndex() >= this._script_array.Length)) {
             return (-1);
         }
@@ -134,8 +150,13 @@ public class ScriptHolder
 
 			break;
 		}
-		case (int)ToffMonaka.Lib.Constant.Util.SCENE.SCRIPT_TYPE.SUB_LAYER: {
-            this._sub_layer_script_array[script.GetScriptIndex()] = (ToffMonaka.Lib.Scene.SubLayerScript)script;
+		case (int)ToffMonaka.Lib.Constant.Util.SCENE.SCRIPT_TYPE.STATIC_SUB_LAYER: {
+            this._static_sub_layer_script_array[script.GetScriptIndex()] = (ToffMonaka.Lib.Scene.StaticSubLayerScript)script;
+
+			break;
+		}
+		case (int)ToffMonaka.Lib.Constant.Util.SCENE.SCRIPT_TYPE.DYNAMIC_SUB_LAYER: {
+            this._dynamic_sub_layer_script_array[script.GetScriptIndex()].Add((ToffMonaka.Lib.Scene.DynamicSubLayerScript)script);
 
 			break;
 		}
@@ -154,7 +175,7 @@ public class ScriptHolder
             return;
         }
 
-        if ((script.GetScriptIndex() <= 0)
+        if ((script.GetScriptIndex() < 0)
         || (script.GetScriptIndex() >= this._script_array.Length)) {
             return;
         }
@@ -167,23 +188,28 @@ public class ScriptHolder
 
 		switch (script.GetScriptType()) {
 		case (int)ToffMonaka.Lib.Constant.Util.SCENE.SCRIPT_TYPE.SCENE: {
-            if (this._scene_script == script) {
+            if (this._scene_script == (ToffMonaka.Lib.Scene.SceneScript)script) {
                 this._scene_script = null;
             }
 
 			break;
 		}
 		case (int)ToffMonaka.Lib.Constant.Util.SCENE.SCRIPT_TYPE.SUB_SCENE: {
-            if (this._sub_scene_script == script) {
+            if (this._sub_scene_script == (ToffMonaka.Lib.Scene.SubSceneScript)script) {
                 this._sub_scene_script = null;
             }
 
 			break;
 		}
-		case (int)ToffMonaka.Lib.Constant.Util.SCENE.SCRIPT_TYPE.SUB_LAYER: {
-            if (this._sub_layer_script_array[script.GetScriptIndex()] == script) {
-                this._sub_layer_script_array[script.GetScriptIndex()] = null;
+		case (int)ToffMonaka.Lib.Constant.Util.SCENE.SCRIPT_TYPE.STATIC_SUB_LAYER: {
+            if (this._static_sub_layer_script_array[script.GetScriptIndex()] == (ToffMonaka.Lib.Scene.StaticSubLayerScript)script) {
+                this._static_sub_layer_script_array[script.GetScriptIndex()] = null;
             }
+
+			break;
+		}
+		case (int)ToffMonaka.Lib.Constant.Util.SCENE.SCRIPT_TYPE.DYNAMIC_SUB_LAYER: {
+            this._dynamic_sub_layer_script_array[script.GetScriptIndex()].Remove((ToffMonaka.Lib.Scene.DynamicSubLayerScript)script);
 
 			break;
 		}

@@ -22,6 +22,25 @@ public abstract class Script : MonoBehaviour
      */
     private void Awake()
     {
+        this._OnAwake2();
+        this._OnAwake();
+
+        return;
+    }
+
+    /**
+     * @brief _OnAwake関数
+     */
+    protected virtual void _OnAwake()
+    {
+        return;
+    }
+
+    /**
+     * @brief _OnAwake2関数
+     */
+    protected virtual void _OnAwake2()
+    {
         return;
     }
 
@@ -30,24 +49,24 @@ public abstract class Script : MonoBehaviour
      */
     private void OnEnable()
     {
-        this._OnActivate();
-        this._OnActivate2();
+        this._OnActive2();
+        this._OnActive();
 
         return;
     }
 
     /**
-     * @brief _OnActivate関数
+     * @brief _OnActive関数
      */
-    protected virtual void _OnActivate()
+    protected virtual void _OnActive()
     {
         return;
     }
 
     /**
-     * @brief _OnActivate2関数
+     * @brief _OnActive2関数
      */
-    protected virtual void _OnActivate2()
+    protected virtual void _OnActive2()
     {
         return;
     }
@@ -57,24 +76,24 @@ public abstract class Script : MonoBehaviour
      */
     private void OnDisable()
     {
-        this._OnDeactivate();
-        this._OnDeactivate2();
+        this._OnDeactive();
+        this._OnDeactive2();
 
         return;
     }
 
     /**
-     * @brief _OnDeactivate関数
+     * @brief _OnDeactive関数
      */
-    protected virtual void _OnDeactivate()
+    protected virtual void _OnDeactive()
     {
         return;
     }
 
     /**
-     * @brief _OnDeactivate2関数
+     * @brief _OnDeactive2関数
      */
-    protected virtual void _OnDeactivate2()
+    protected virtual void _OnDeactive2()
     {
         return;
     }
@@ -84,6 +103,25 @@ public abstract class Script : MonoBehaviour
      */
     private void Start()
     {
+        this._OnFirstUpdate2();
+        this._OnFirstUpdate();
+
+        return;
+    }
+
+    /**
+     * @brief _OnFirstUpdate関数
+     */
+    protected virtual void _OnFirstUpdate()
+    {
+        return;
+    }
+
+    /**
+     * @brief _OnFirstUpdate2関数
+     */
+    protected virtual void _OnFirstUpdate2()
+    {
         return;
     }
 
@@ -92,8 +130,8 @@ public abstract class Script : MonoBehaviour
      */
     private void Update()
     {
-        this._OnUpdate();
         this._OnUpdate2();
+        this._OnUpdate();
 
         return;
     }
@@ -119,7 +157,56 @@ public abstract class Script : MonoBehaviour
      */
     private void OnDestroy()
     {
+        this.Delete();
+
         return;
+    }
+
+    /**
+     * @brief Create関数
+     * @param holder (holder)
+     * @return result (result)<br>
+     * 0未満=失敗
+     */
+    public int Create(ToffMonaka.Lib.Scene.ScriptHolder holder)
+    {
+        this._SetHolder(holder);
+
+        int create2_res = this._OnCreate2();
+
+        if (create2_res < 0) {
+            return (create2_res);
+        }
+
+        int create_res = this._OnCreate();
+
+        if (create_res < 0) {
+            return (create_res);
+        }
+
+        this.SetActiveFlag(true);
+
+        return (0);
+    }
+
+    /**
+     * @brief _OnCreate関数
+     * @return result (result)<br>
+     * 0未満=失敗
+     */
+    protected virtual int _OnCreate()
+    {
+        return (0);
+    }
+
+    /**
+     * @brief _OnCreate2関数
+     * @return result (result)<br>
+     * 0未満=失敗
+     */
+    protected virtual int _OnCreate2()
+    {
+        return (0);
     }
 
     /**
@@ -152,30 +239,30 @@ public abstract class Script : MonoBehaviour
     }
 
     /**
-     * @brief GetActivateFlag関数
-     * @return activate_flg (activate_flag)
+     * @brief GetActiveFlag関数
+     * @return active_flg (active_flag)
      */
-    public bool GetActivateFlag()
+    public bool GetActiveFlag()
     {
         return (this.gameObject.activeSelf);
     }
 
     /**
-     * @brief GetActivateFlagInHierarchy関数
-     * @return activate_flg (activate_flag)
+     * @brief GetActiveFlagInHierarchy関数
+     * @return active_flg (active_flag)
      */
-    public bool GetActivateFlagInHierarchy()
+    public bool GetActiveFlagInHierarchy()
     {
         return (this.gameObject.activeInHierarchy);
     }
 
     /**
-     * @brief SetActivateFlag関数
-     * @param activate_flg (activate_flag)
+     * @brief SetActiveFlag関数
+     * @param active_flg (active_flag)
      */
-    public void SetActivateFlag(bool activate_flg)
+    public void SetActiveFlag(bool active_flg)
     {
-        this.gameObject.SetActive(activate_flg);
+        this.gameObject.SetActive(active_flg);
 
         return;
     }

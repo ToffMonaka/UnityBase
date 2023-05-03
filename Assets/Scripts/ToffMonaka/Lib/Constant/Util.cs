@@ -31,7 +31,8 @@ public static class Util
             NONE = 0,
             SCENE,
             SUB_SCENE,
-            SUB_LAYER,
+            STATIC_SUB_LAYER,
+            DYNAMIC_SUB_LAYER,
 		    USER,
 		    COUNT
         }

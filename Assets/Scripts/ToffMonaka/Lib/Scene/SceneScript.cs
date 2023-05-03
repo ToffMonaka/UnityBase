@@ -31,17 +31,35 @@ public abstract class SceneScript : ToffMonaka.Lib.Scene.Script
     }
 
     /**
-     * @brief _OnActivate2関数
+     * @brief _OnAwake2関数
      */
-    protected override void _OnActivate2()
+    protected override void _OnAwake2()
+    {
+        this.SetActiveFlag(true);
+
+        return;
+    }
+
+    /**
+     * @brief _OnActive2関数
+     */
+    protected override void _OnActive2()
     {
         return;
     }
 
     /**
-     * @brief _OnDeactivate2関数
+     * @brief _OnDeactive2関数
      */
-    protected override void _OnDeactivate2()
+    protected override void _OnDeactive2()
+    {
+        return;
+    }
+
+    /**
+     * @brief _OnFirstUpdate2関数
+     */
+    protected override void _OnFirstUpdate2()
     {
         return;
     }
@@ -55,36 +73,27 @@ public abstract class SceneScript : ToffMonaka.Lib.Scene.Script
     }
 
     /**
+     * @brief _OnCreate2関数
+     * @return result (result)<br>
+     * 0未満=失敗
+     */
+    protected override int _OnCreate2()
+    {
+        return (0);
+    }
+
+    /**
      * @brief _OnDelete2関数
      */
     protected override void _OnDelete2()
     {
         if (this._subSceneNode != null) {
-            this._subSceneNode.GetComponent<ToffMonaka.Lib.Scene.SubSceneScript>().Delete();
-
             Addressables.ReleaseInstance(this._subSceneNode);
 
             this._subSceneNode = null;
         }
 
         return;
-    }
-
-    /**
-     * @brief Create関数
-     * @param holder (holder)
-     * @return result (result)<br>
-     * 0未満=失敗
-     */
-    public int Create(ToffMonaka.Lib.Scene.ScriptHolder holder)
-    {
-        if (holder == null) {
-            return (-1);
-        }
-
-        this._SetHolder(holder);
-
-        return (0);
     }
 
     /**
@@ -113,8 +122,6 @@ public abstract class SceneScript : ToffMonaka.Lib.Scene.Script
     public int ChangeSubScene(string prefab_file_path)
     {
         if (this._subSceneNode != null) {
-            this._subSceneNode.GetComponent<ToffMonaka.Lib.Scene.SubSceneScript>().Delete();
-
             Addressables.ReleaseInstance(this._subSceneNode);
 
             this._subSceneNode = null;
@@ -126,7 +133,9 @@ public abstract class SceneScript : ToffMonaka.Lib.Scene.Script
 
         this._subSceneNode = Addressables.InstantiateAsync(prefab_file_path).WaitForCompletion();
 
-        this._subSceneNode.GetComponent<ToffMonaka.Lib.Scene.SubSceneScript>().Create(this);
+        this._subSceneNode.transform.parent = this.subSceneLayoutNode.transform;
+
+        this._subSceneNode.GetComponent<ToffMonaka.Lib.Scene.SubSceneScript>().Create(this.GetHolder());
 
         return (0);
     }

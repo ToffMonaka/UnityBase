@@ -1,6 +1,6 @@
 ﻿/**
  * @file
- * @brief SubSceneScriptファイル
+ * @brief DynamicSubLayerScriptファイル
  */
 
 
@@ -9,18 +9,18 @@ using UnityEngine;
 
 namespace ToffMonaka.Lib.Scene {
 /**
- * @brief SubScenScripteクラス
+ * @brief DynamicSubLayerScriptクラス
  */
-public abstract class SubSceneScript : ToffMonaka.Lib.Scene.Script
+public abstract class DynamicSubLayerScript : ToffMonaka.Lib.Scene.Script
 {
     public GameObject coreNode = null;
 
     /**
      * @brief コンストラクタ
      */
-    public SubSceneScript()
+    public DynamicSubLayerScript()
     {
-        this._SetScriptType((int)ToffMonaka.Lib.Constant.Util.SCENE.SCRIPT_TYPE.SUB_SCENE);
+        this._SetScriptType((int)ToffMonaka.Lib.Constant.Util.SCENE.SCRIPT_TYPE.DYNAMIC_SUB_LAYER);
 
         return;
     }

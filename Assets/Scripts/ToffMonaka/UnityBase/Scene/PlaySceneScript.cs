@@ -24,23 +24,42 @@ public class PlaySceneScript : ToffMonaka.Lib.Scene.SceneScript
     }
 
     /**
-     * @brief _OnActivate関数
+     * @brief _OnAwake関数
      */
-    protected override void _OnActivate()
+    protected override void _OnAwake()
     {
         this.Create(new ToffMonaka.Lib.Scene.ScriptHolder((int)ToffMonaka.UnityBase.Constant.Util.SCENE.SCRIPT_INDEX_COUNT));
-        this.ChangeSubScene(ToffMonaka.UnityBase.Constant.Util.FILE_PATH.TITLE_SUB_SCENE_PREFAB);
 
         return;
     }
 
     /**
-     * @brief _OnDeactivate関数
+     * @brief _OnActive関数
      */
-    protected override void _OnDeactivate()
+    protected override void _OnActive()
     {
-        this.Delete();
+        if (this.GetHolder().GetSceneScript().ChangeSubScene(ToffMonaka.UnityBase.Constant.Util.FILE_PATH.TITLE_SUB_SCENE_PREFAB) >= 0) {
+            var script = (ToffMonaka.UnityBase.Scene.TitleSubSceneScript)this.GetHolder().GetSubSceneScript();
 
+            script.Open();
+        }
+
+        return;
+    }
+
+    /**
+     * @brief _OnDeactive関数
+     */
+    protected override void _OnDeactive()
+    {
+        return;
+    }
+
+    /**
+     * @brief _OnFirstUpdate関数
+     */
+    protected override void _OnFirstUpdate()
+    {
         return;
     }
 
@@ -50,6 +69,16 @@ public class PlaySceneScript : ToffMonaka.Lib.Scene.SceneScript
     protected override void _OnUpdate()
     {
         return;
+    }
+
+    /**
+     * @brief _OnCreate関数
+     * @return result (result)<br>
+     * 0未満=失敗
+     */
+    protected override int _OnCreate()
+    {
+        return (0);
     }
 
     /**

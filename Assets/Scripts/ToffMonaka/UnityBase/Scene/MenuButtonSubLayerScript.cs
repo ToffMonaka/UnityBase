@@ -1,6 +1,6 @@
 ﻿/**
  * @file
- * @brief InitSceneScriptファイル
+ * @brief MenuButtonSubLayerScriptファイル
  */
 
 
@@ -9,19 +9,16 @@ using UnityEngine;
 
 namespace ToffMonaka.UnityBase.Scene {
 /**
- * @brief InitSceneScriptクラス
+ * @brief MenuButtonSubLayerScriptクラス
  */
-public class InitSceneScript : ToffMonaka.Lib.Scene.SceneScript
+public class MenuButtonSubLayerScript : ToffMonaka.Lib.Scene.StaticSubLayerScript
 {
-    private int _progressType = 0;
-    private float _progressElapsedTime = 0.0f;
-
     /**
      * @brief コンストラクタ
      */
-    public InitSceneScript()
+    public MenuButtonSubLayerScript()
     {
-        this._SetScriptIndex((int)ToffMonaka.UnityBase.Constant.Util.SCENE.SCRIPT_INDEX.INIT_SCENE);
+        this._SetScriptIndex((int)ToffMonaka.UnityBase.Constant.Util.SCENE.SCRIPT_INDEX.MENU_BUTTON_SUB_LAYER);
 
         return;
     }
@@ -31,8 +28,6 @@ public class InitSceneScript : ToffMonaka.Lib.Scene.SceneScript
      */
     protected override void _OnAwake()
     {
-        this.Create(new ToffMonaka.Lib.Scene.ScriptHolder((int)ToffMonaka.UnityBase.Constant.Util.SCENE.SCRIPT_INDEX_COUNT));
-
         return;
     }
 
@@ -41,9 +36,6 @@ public class InitSceneScript : ToffMonaka.Lib.Scene.SceneScript
      */
     protected override void _OnActive()
     {
-        this._progressType = 1;
-        this._progressElapsedTime = 0.0f;
-
         return;
     }
 
@@ -68,24 +60,6 @@ public class InitSceneScript : ToffMonaka.Lib.Scene.SceneScript
      */
     protected override void _OnUpdate()
     {
-		switch (this._progressType) {
-		case 1: {
-            this._progressElapsedTime += Time.deltaTime;
-
-            if (this._progressElapsedTime >= 3.0f) {
-                this.ChangeScene(ToffMonaka.UnityBase.Constant.Util.SCENE_NAME.PLAY_SCENE);
-
-                this._progressType = 2;
-                this._progressElapsedTime = 0.0f;
-            }
-
-			break;
-		}
-		case 2: {
-			break;
-		}
-		}
-
         return;
     }
 
@@ -103,6 +77,24 @@ public class InitSceneScript : ToffMonaka.Lib.Scene.SceneScript
      * @brief _OnDelete関数
      */
     protected override void _OnDelete()
+    {
+        return;
+    }
+
+    /**
+     * @brief _OnOpen関数
+     * @return result (result)<br>
+     * 0未満=失敗
+     */
+    protected override int _OnOpen()
+    {
+        return (0);
+    }
+
+    /**
+     * @brief _OnClose関数
+     */
+    protected override void _OnClose()
     {
         return;
     }
