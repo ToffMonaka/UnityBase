@@ -45,6 +45,82 @@ public abstract class Script : MonoBehaviour
     }
 
     /**
+     * @brief OnDestroy関数
+     */
+    private void OnDestroy()
+    {
+        this._OnRelease();
+        this._OnRelease2();
+
+        this._SetHolder(null);
+
+        return;
+    }
+
+    /**
+     * @brief _OnRelease関数
+     */
+    protected virtual void _OnRelease()
+    {
+        return;
+    }
+
+    /**
+     * @brief _OnRelease2関数
+     */
+    protected virtual void _OnRelease2()
+    {
+        return;
+    }
+
+    /**
+     * @brief Create関数
+     * @param holder (holder)
+     * @return result (result)<br>
+     * 0未満=失敗
+     */
+    public int Create(ToffMonaka.Lib.Scene.ScriptHolder holder)
+    {
+        this._SetHolder(holder);
+
+        int create2_res = this._OnCreate2();
+
+        if (create2_res < 0) {
+            return (create2_res);
+        }
+
+        int create_res = this._OnCreate();
+
+        if (create_res < 0) {
+            return (create_res);
+        }
+
+        this.SetActiveFlag(true);
+
+        return (0);
+    }
+
+    /**
+     * @brief _OnCreate関数
+     * @return result (result)<br>
+     * 0未満=失敗
+     */
+    protected virtual int _OnCreate()
+    {
+        return (0);
+    }
+
+    /**
+     * @brief _OnCreate2関数
+     * @return result (result)<br>
+     * 0未満=失敗
+     */
+    protected virtual int _OnCreate2()
+    {
+        return (0);
+    }
+
+    /**
      * @brief OnEnable関数
      */
     private void OnEnable()
@@ -148,92 +224,6 @@ public abstract class Script : MonoBehaviour
      * @brief _OnUpdate2関数
      */
     protected virtual void _OnUpdate2()
-    {
-        return;
-    }
-
-    /**
-     * @brief OnDestroy関数
-     */
-    private void OnDestroy()
-    {
-        this.Delete();
-
-        return;
-    }
-
-    /**
-     * @brief Create関数
-     * @param holder (holder)
-     * @return result (result)<br>
-     * 0未満=失敗
-     */
-    public int Create(ToffMonaka.Lib.Scene.ScriptHolder holder)
-    {
-        this._SetHolder(holder);
-
-        int create2_res = this._OnCreate2();
-
-        if (create2_res < 0) {
-            return (create2_res);
-        }
-
-        int create_res = this._OnCreate();
-
-        if (create_res < 0) {
-            return (create_res);
-        }
-
-        this.SetActiveFlag(true);
-
-        return (0);
-    }
-
-    /**
-     * @brief _OnCreate関数
-     * @return result (result)<br>
-     * 0未満=失敗
-     */
-    protected virtual int _OnCreate()
-    {
-        return (0);
-    }
-
-    /**
-     * @brief _OnCreate2関数
-     * @return result (result)<br>
-     * 0未満=失敗
-     */
-    protected virtual int _OnCreate2()
-    {
-        return (0);
-    }
-
-    /**
-     * @brief Delete関数
-     */
-    public void Delete()
-    {
-        this._OnDelete();
-        this._OnDelete2();
-
-        this._SetHolder(null);
-
-        return;
-    }
-
-    /**
-     * @brief _OnDelete関数
-     */
-    protected virtual void _OnDelete()
-    {
-        return;
-    }
-
-    /**
-     * @brief _OnDelete2関数
-     */
-    protected virtual void _OnDelete2()
     {
         return;
     }

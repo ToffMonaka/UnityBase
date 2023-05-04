@@ -32,6 +32,28 @@ public class Test2DSubSceneScript : ToffMonaka.Lib.Scene.SubSceneScript
     }
 
     /**
+     * @brief _OnRelease関数
+     */
+    protected override void _OnRelease()
+    {
+        return;
+    }
+
+    /**
+     * @brief _OnCreate関数
+     * @return result (result)<br>
+     * 0未満=失敗
+     */
+    protected override int _OnCreate()
+    {
+        var canvas_node = this.GetCoreNode().transform.Find("Canvas").gameObject;
+
+        canvas_node.GetComponent<Canvas>().worldCamera = this.GetHolder().GetSceneScript().GetMainCamera();
+
+        return (0);
+    }
+
+    /**
      * @brief _OnActive関数
      */
     protected override void _OnActive()
@@ -59,24 +81,6 @@ public class Test2DSubSceneScript : ToffMonaka.Lib.Scene.SubSceneScript
      * @brief _OnUpdate関数
      */
     protected override void _OnUpdate()
-    {
-        return;
-    }
-
-    /**
-     * @brief _OnCreate関数
-     * @return result (result)<br>
-     * 0未満=失敗
-     */
-    protected override int _OnCreate()
-    {
-        return (0);
-    }
-
-    /**
-     * @brief _OnDelete関数
-     */
-    protected override void _OnDelete()
     {
         return;
     }

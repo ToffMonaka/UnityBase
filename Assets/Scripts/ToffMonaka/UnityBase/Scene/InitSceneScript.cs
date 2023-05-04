@@ -37,6 +37,24 @@ public class InitSceneScript : ToffMonaka.Lib.Scene.SceneScript
     }
 
     /**
+     * @brief _OnRelease関数
+     */
+    protected override void _OnRelease()
+    {
+        return;
+    }
+
+    /**
+     * @brief _OnCreate関数
+     * @return result (result)<br>
+     * 0未満=失敗
+     */
+    protected override int _OnCreate()
+    {
+        return (0);
+    }
+
+    /**
      * @brief _OnActive関数
      */
     protected override void _OnActive()
@@ -86,24 +104,6 @@ public class InitSceneScript : ToffMonaka.Lib.Scene.SceneScript
 		}
 		}
 
-        return;
-    }
-
-    /**
-     * @brief _OnCreate関数
-     * @return result (result)<br>
-     * 0未満=失敗
-     */
-    protected override int _OnCreate()
-    {
-        return (0);
-    }
-
-    /**
-     * @brief _OnDelete関数
-     */
-    protected override void _OnDelete()
-    {
         return;
     }
 }

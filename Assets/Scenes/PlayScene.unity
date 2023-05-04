@@ -236,8 +236,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d793f250b13b54a49a5feede8103090d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainCamera: {fileID: 634574222}
-  subSceneLayoutNode: {fileID: 1558150715}
+  _mainCamera: {fileID: 634574222}
+  _subSceneLayoutNode: {fileID: 1558150715}
 --- !u!4 &827315951
 Transform:
   m_ObjectHideFlags: 0

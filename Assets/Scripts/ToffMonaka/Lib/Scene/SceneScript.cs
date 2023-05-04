@@ -15,10 +15,10 @@ namespace ToffMonaka.Lib.Scene {
  */
 public abstract class SceneScript : ToffMonaka.Lib.Scene.Script
 {
-    private GameObject _subSceneNode = null;
+    [SerializeField] private Camera _mainCamera = null;
+    [SerializeField] private GameObject _subSceneLayoutNode = null;
 
-    public Camera mainCamera = null;
-    public GameObject subSceneLayoutNode = null;
+    private GameObject _subSceneNode = null;
 
     /**
      * @brief コンストラクタ
@@ -38,6 +38,30 @@ public abstract class SceneScript : ToffMonaka.Lib.Scene.Script
         this.SetActiveFlag(true);
 
         return;
+    }
+
+    /**
+     * @brief _OnRelease2関数
+     */
+    protected override void _OnRelease2()
+    {
+        if (this._subSceneNode != null) {
+            Addressables.ReleaseInstance(this._subSceneNode);
+
+            this._subSceneNode = null;
+        }
+
+        return;
+    }
+
+    /**
+     * @brief _OnCreate2関数
+     * @return result (result)<br>
+     * 0未満=失敗
+     */
+    protected override int _OnCreate2()
+    {
+        return (0);
     }
 
     /**
@@ -69,30 +93,6 @@ public abstract class SceneScript : ToffMonaka.Lib.Scene.Script
      */
     protected override void _OnUpdate2()
     {
-        return;
-    }
-
-    /**
-     * @brief _OnCreate2関数
-     * @return result (result)<br>
-     * 0未満=失敗
-     */
-    protected override int _OnCreate2()
-    {
-        return (0);
-    }
-
-    /**
-     * @brief _OnDelete2関数
-     */
-    protected override void _OnDelete2()
-    {
-        if (this._subSceneNode != null) {
-            Addressables.ReleaseInstance(this._subSceneNode);
-
-            this._subSceneNode = null;
-        }
-
         return;
     }
 
@@ -133,11 +133,29 @@ public abstract class SceneScript : ToffMonaka.Lib.Scene.Script
 
         this._subSceneNode = Addressables.InstantiateAsync(prefab_file_path).WaitForCompletion();
 
-        this._subSceneNode.transform.parent = this.subSceneLayoutNode.transform;
+        this._subSceneNode.transform.parent = this._subSceneLayoutNode.transform;
 
         this._subSceneNode.GetComponent<ToffMonaka.Lib.Scene.SubSceneScript>().Create(this.GetHolder());
 
         return (0);
+    }
+
+    /**
+     * @brief GetMainCamera関数
+     * @return main_camera (main_camera)
+     */
+    public Camera GetMainCamera()
+    {
+        return (this._mainCamera);
+    }
+
+    /**
+     * @brief GetSubSceneNode関数
+     * @return sub_scene_node (sub_scene_node)
+     */
+    public GameObject GetSubSceneNode()
+    {
+        return (this._subSceneNode);
     }
 }
 }

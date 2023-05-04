@@ -5,6 +5,8 @@
 
 
 using UnityEngine;
+using TMPro;
+using DG.Tweening;
 
 
 namespace ToffMonaka.UnityBase.Scene {
@@ -13,6 +15,10 @@ namespace ToffMonaka.UnityBase.Scene {
  */
 public class TitleSubSceneScript : ToffMonaka.Lib.Scene.SubSceneScript
 {
+    [SerializeField] private TextMeshProUGUI _startButtonText = null;
+    [SerializeField] private TextMeshProUGUI _companyNameText = null;
+    [SerializeField] private TextMeshProUGUI _versionNameText = null;
+
     /**
      * @brief コンストラクタ
      */
@@ -32,10 +38,37 @@ public class TitleSubSceneScript : ToffMonaka.Lib.Scene.SubSceneScript
     }
 
     /**
+     * @brief _OnRelease関数
+     */
+    protected override void _OnRelease()
+    {
+        return;
+    }
+
+    /**
+     * @brief _OnCreate関数
+     * @return result (result)<br>
+     * 0未満=失敗
+     */
+    protected override int _OnCreate()
+    {
+        var canvas_node = this.GetCoreNode().transform.Find("Canvas").gameObject;
+
+        canvas_node.GetComponent<Canvas>().worldCamera = this.GetHolder().GetSceneScript().GetMainCamera();
+
+        this._companyNameText.SetText(ToffMonaka.UnityBase.Constant.Util.COMPANY_NAME);
+        this._versionNameText.SetText("Version " + ToffMonaka.UnityBase.Constant.Util.VERSION_NAME);
+
+        return (0);
+    }
+
+    /**
      * @brief _OnActive関数
      */
     protected override void _OnActive()
     {
+        this._startButtonText.DOFade(0.0f, 1.0f).SetLoops(-1, LoopType.Yoyo).SetEase(Ease.InQuart).SetLink(this._startButtonText.gameObject);
+
         return;
     }
 
@@ -59,24 +92,6 @@ public class TitleSubSceneScript : ToffMonaka.Lib.Scene.SubSceneScript
      * @brief _OnUpdate関数
      */
     protected override void _OnUpdate()
-    {
-        return;
-    }
-
-    /**
-     * @brief _OnCreate関数
-     * @return result (result)<br>
-     * 0未満=失敗
-     */
-    protected override int _OnCreate()
-    {
-        return (0);
-    }
-
-    /**
-     * @brief _OnDelete関数
-     */
-    protected override void _OnDelete()
     {
         return;
     }

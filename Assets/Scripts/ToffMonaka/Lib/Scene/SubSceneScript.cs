@@ -13,7 +13,7 @@ namespace ToffMonaka.Lib.Scene {
  */
 public abstract class SubSceneScript : ToffMonaka.Lib.Scene.Script
 {
-    public GameObject coreNode = null;
+    [SerializeField] private GameObject _coreNode = null;
 
     /**
      * @brief コンストラクタ
@@ -31,9 +31,27 @@ public abstract class SubSceneScript : ToffMonaka.Lib.Scene.Script
     protected override void _OnAwake2()
     {
         this.SetActiveFlag(false);
-        this.coreNode.SetActive(false);
+        this._coreNode.SetActive(false);
 
         return;
+    }
+
+    /**
+     * @brief _OnRelease2関数
+     */
+    protected override void _OnRelease2()
+    {
+        return;
+    }
+
+    /**
+     * @brief _OnCreate2関数
+     * @return result (result)<br>
+     * 0未満=失敗
+     */
+    protected override int _OnCreate2()
+    {
+        return (0);
     }
 
     /**
@@ -69,24 +87,6 @@ public abstract class SubSceneScript : ToffMonaka.Lib.Scene.Script
     }
 
     /**
-     * @brief _OnCreate2関数
-     * @return result (result)<br>
-     * 0未満=失敗
-     */
-    protected override int _OnCreate2()
-    {
-        return (0);
-    }
-
-    /**
-     * @brief _OnDelete2関数
-     */
-    protected override void _OnDelete2()
-    {
-        return;
-    }
-
-    /**
      * @brief Open関数
      * @return result (result)<br>
      * 0未満=失敗
@@ -99,7 +99,7 @@ public abstract class SubSceneScript : ToffMonaka.Lib.Scene.Script
             return (open_res);
         }
 
-        this.coreNode.SetActive(true);
+        this._coreNode.SetActive(true);
 
         return (0);
     }
@@ -121,7 +121,7 @@ public abstract class SubSceneScript : ToffMonaka.Lib.Scene.Script
     {
         this._OnClose();
 
-        this.coreNode.SetActive(false);
+        this._coreNode.SetActive(false);
 
         return;
     }
@@ -132,6 +132,15 @@ public abstract class SubSceneScript : ToffMonaka.Lib.Scene.Script
     protected virtual void _OnClose()
     {
         return;
+    }
+
+    /**
+     * @brief GetCoreNode関数
+     * @return core_node (core_node)
+     */
+    public GameObject GetCoreNode()
+    {
+        return (this._coreNode);
     }
 }
 }
