@@ -1,7 +1,9 @@
 # UnityBase
 
+<br>
+
 AssetsにAddressableAssetsDataを追加<br>
-ウィンドウ -> パッケージマネージャー -> Unity レジストリ -> Addressables
+ウィンドウ -> パッケージマネージャー -> Unity レジストリ -> Addressables<br>
 をインポートして下さい。<br>
 
 AssetsにTextMesh Proを追加<br>
