@@ -13,6 +13,9 @@ namespace ToffMonaka.UnityBase.Scene {
  */
 public class SelectSubSceneScript : ToffMonaka.Lib.Scene.SubSceneScript
 {
+    private bool _test2DFlag = false;
+    private bool _test3DFlag = false;
+
     /**
      * @brief コンストラクタ
      */
@@ -68,14 +71,6 @@ public class SelectSubSceneScript : ToffMonaka.Lib.Scene.SubSceneScript
     {
         return;
     }
-        
-    /**
-     * @brief _OnFirstUpdate関数
-     */
-    protected override void _OnFirstUpdate()
-    {
-        return;
-    }
 
     /**
      * @brief _OnUpdate関数
@@ -87,12 +82,20 @@ public class SelectSubSceneScript : ToffMonaka.Lib.Scene.SubSceneScript
 
     /**
      * @brief _OnOpen関数
-     * @return result (result)<br>
-     * 0未満=失敗
      */
-    protected override int _OnOpen()
+    protected override void _OnOpen()
     {
-        return (0);
+        return;
+    }
+
+    /**
+     * @brief _OnUpdateOpen関数
+     */
+    protected override void _OnUpdateOpen()
+    {
+        this.CompleteOpen();
+
+        return;
     }
 
     /**
@@ -104,15 +107,39 @@ public class SelectSubSceneScript : ToffMonaka.Lib.Scene.SubSceneScript
     }
 
     /**
+     * @brief _OnUpdateClose関数
+     */
+    protected override void _OnUpdateClose()
+    {
+        this.CompleteClose();
+
+        if (this._test2DFlag) {
+            this.GetHolder().GetSceneScript().ChangeSubScene(ToffMonaka.UnityBase.Constant.Util.FILE_PATH.TEST_2D_SUB_SCENE_PREFAB);
+
+            var sub_scene_script = this.GetHolder().GetSubSceneScript() as ToffMonaka.UnityBase.Scene.Test2DSubSceneScript;
+
+            sub_scene_script.Open();
+        }
+
+        if (this._test3DFlag) {
+            this.GetHolder().GetSceneScript().ChangeSubScene(ToffMonaka.UnityBase.Constant.Util.FILE_PATH.TEST_3D_SUB_SCENE_PREFAB);
+
+            var sub_scene_script = this.GetHolder().GetSubSceneScript() as ToffMonaka.UnityBase.Scene.Test3DSubSceneScript;
+
+            sub_scene_script.Open();
+        }
+
+        return;
+    }
+
+    /**
      * @brief OnTest2DButtonPointerClickEvent関数
      */
     public void OnTest2DButtonPointerClickEvent()
     {
-        if (this.GetHolder().GetSceneScript().ChangeSubScene(ToffMonaka.UnityBase.Constant.Util.FILE_PATH.TEST_2D_SUB_SCENE_PREFAB) >= 0) {
-            var script = (ToffMonaka.UnityBase.Scene.Test2DSubSceneScript)this.GetHolder().GetSubSceneScript();
+        this.Close();
 
-            script.Open();
-        }
+        this._test2DFlag = true;
 
         return;
     }
@@ -122,11 +149,9 @@ public class SelectSubSceneScript : ToffMonaka.Lib.Scene.SubSceneScript
      */
     public void OnTest3DButtonPointerClickEvent()
     {
-        if (this.GetHolder().GetSceneScript().ChangeSubScene(ToffMonaka.UnityBase.Constant.Util.FILE_PATH.TEST_3D_SUB_SCENE_PREFAB) >= 0) {
-            var script = (ToffMonaka.UnityBase.Scene.Test3DSubSceneScript)this.GetHolder().GetSubSceneScript();
+        this.Close();
 
-            script.Open();
-        }
+        this._test3DFlag = true;
 
         return;
     }

@@ -68,14 +68,6 @@ public class Test2DSubSceneScript : ToffMonaka.Lib.Scene.SubSceneScript
     {
         return;
     }
-        
-    /**
-     * @brief _OnFirstUpdate関数
-     */
-    protected override void _OnFirstUpdate()
-    {
-        return;
-    }
 
     /**
      * @brief _OnUpdate関数
@@ -87,12 +79,20 @@ public class Test2DSubSceneScript : ToffMonaka.Lib.Scene.SubSceneScript
 
     /**
      * @brief _OnOpen関数
-     * @return result (result)<br>
-     * 0未満=失敗
      */
-    protected override int _OnOpen()
+    protected override void _OnOpen()
     {
-        return (0);
+        return;
+    }
+
+    /**
+     * @brief _OnUpdateOpen関数
+     */
+    protected override void _OnUpdateOpen()
+    {
+        this.CompleteOpen();
+
+        return;
     }
 
     /**
@@ -100,6 +100,16 @@ public class Test2DSubSceneScript : ToffMonaka.Lib.Scene.SubSceneScript
      */
     protected override void _OnClose()
     {
+        return;
+    }
+
+    /**
+     * @brief _OnUpdateClose関数
+     */
+    protected override void _OnUpdateClose()
+    {
+        this.CompleteClose();
+
         return;
     }
 }

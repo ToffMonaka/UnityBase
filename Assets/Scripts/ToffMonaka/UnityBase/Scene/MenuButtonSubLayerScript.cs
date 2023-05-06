@@ -66,14 +66,6 @@ public class MenuButtonSubLayerScript : ToffMonaka.Lib.Scene.StaticSubLayerScrip
     }
 
     /**
-     * @brief _OnFirstUpdate関数
-     */
-    protected override void _OnFirstUpdate()
-    {
-        return;
-    }
-
-    /**
      * @brief _OnUpdate関数
      */
     protected override void _OnUpdate()
@@ -83,12 +75,20 @@ public class MenuButtonSubLayerScript : ToffMonaka.Lib.Scene.StaticSubLayerScrip
 
     /**
      * @brief _OnOpen関数
-     * @return result (result)<br>
-     * 0未満=失敗
      */
-    protected override int _OnOpen()
+    protected override void _OnOpen()
     {
-        return (0);
+        return;
+    }
+
+    /**
+     * @brief _OnUpdateOpen関数
+     */
+    protected override void _OnUpdateOpen()
+    {
+        this.CompleteOpen();
+
+        return;
     }
 
     /**
@@ -96,6 +96,16 @@ public class MenuButtonSubLayerScript : ToffMonaka.Lib.Scene.StaticSubLayerScrip
      */
     protected override void _OnClose()
     {
+        return;
+    }
+
+    /**
+     * @brief _OnUpdateClose関数
+     */
+    protected override void _OnUpdateClose()
+    {
+        this.CompleteClose();
+
         return;
     }
 }

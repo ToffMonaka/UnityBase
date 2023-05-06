@@ -56,11 +56,11 @@ public class PlaySceneScript : ToffMonaka.Lib.Scene.SceneScript
      */
     protected override void _OnActive()
     {
-        if (this.GetHolder().GetSceneScript().ChangeSubScene(ToffMonaka.UnityBase.Constant.Util.FILE_PATH.TITLE_SUB_SCENE_PREFAB) >= 0) {
-            var script = (ToffMonaka.UnityBase.Scene.TitleSubSceneScript)this.GetHolder().GetSubSceneScript();
+        this.GetHolder().GetSceneScript().ChangeSubScene(ToffMonaka.UnityBase.Constant.Util.FILE_PATH.TITLE_SUB_SCENE_PREFAB);
 
-            script.Open();
-        }
+        var sub_scene_script = this.GetHolder().GetSubSceneScript() as ToffMonaka.UnityBase.Scene.TitleSubSceneScript;
+
+        sub_scene_script.Open();
 
         return;
     }
@@ -69,14 +69,6 @@ public class PlaySceneScript : ToffMonaka.Lib.Scene.SceneScript
      * @brief _OnDeactive関数
      */
     protected override void _OnDeactive()
-    {
-        return;
-    }
-
-    /**
-     * @brief _OnFirstUpdate関数
-     */
-    protected override void _OnFirstUpdate()
     {
         return;
     }

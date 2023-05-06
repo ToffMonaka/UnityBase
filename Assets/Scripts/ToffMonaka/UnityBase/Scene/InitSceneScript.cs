@@ -74,14 +74,6 @@ public class InitSceneScript : ToffMonaka.Lib.Scene.SceneScript
     }
 
     /**
-     * @brief _OnFirstUpdate関数
-     */
-    protected override void _OnFirstUpdate()
-    {
-        return;
-    }
-
-    /**
      * @brief _OnUpdate関数
      */
     protected override void _OnUpdate()

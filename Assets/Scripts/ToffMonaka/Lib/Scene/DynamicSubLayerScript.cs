@@ -15,6 +15,11 @@ public abstract class DynamicSubLayerScript : ToffMonaka.Lib.Scene.Script
 {
     [SerializeField] private GameObject _coreNode = null;
 
+    private bool _openFlag = false;
+    private bool _openedFlag = false;
+    private bool _closeFlag = false;
+    private bool _closedFlag = true;
+
     /**
      * @brief コンストラクタ
      */
@@ -83,35 +88,79 @@ public abstract class DynamicSubLayerScript : ToffMonaka.Lib.Scene.Script
      */
     protected override void _OnUpdate2()
     {
+        if (this._openFlag) {
+            this._OnUpdateOpen();
+        }
+
+        if (this._closeFlag) {
+            this._OnUpdateClose();
+        }
+
+        return;
+    }
+
+    /**
+     * @brief _OnFixedUpdate2関数
+     */
+    protected override void _OnFixedUpdate2()
+    {
+        return;
+    }
+
+    /**
+     * @brief _OnLateUpdate2関数
+     */
+    protected override void _OnLateUpdate2()
+    {
         return;
     }
 
     /**
      * @brief Open関数
-     * @return result (result)<br>
-     * 0未満=失敗
      */
-    public int Open()
+    public void Open()
     {
-        int open_res = this._OnOpen();
-
-        if (open_res < 0) {
-            return (open_res);
-        }
-
         this._coreNode.SetActive(true);
 
-        return (0);
+        this._OnOpen();
+
+        this._openFlag = true;
+        this._openedFlag = false;
+        this._closeFlag = false;
+        this._closedFlag = true;
+
+        return;
+    }
+
+    /**
+     * @brief CompleteOpen関数
+     */
+    protected void CompleteOpen()
+    {
+        if (!this._openFlag) {
+            return;
+        }
+
+        this._openFlag = false;
+        this._openedFlag = true;
+
+        return;
     }
 
     /**
      * @brief _OnOpen関数
-     * @return result (result)<br>
-     * 0未満=失敗
      */
-    protected virtual int _OnOpen()
+    protected virtual void _OnOpen()
     {
-        return (0);
+        return;
+    }
+
+    /**
+     * @brief _OnUpdateOpen関数
+     */
+    protected virtual void _OnUpdateOpen()
+    {
+        return;
     }
 
     /**
@@ -120,6 +169,26 @@ public abstract class DynamicSubLayerScript : ToffMonaka.Lib.Scene.Script
     public void Close()
     {
         this._OnClose();
+
+        this._openFlag = false;
+        this._openedFlag = true;
+        this._closeFlag = true;
+        this._closedFlag = false;
+
+        return;
+    }
+
+    /**
+     * @brief CompleteClose関数
+     */
+    protected void CompleteClose()
+    {
+        if (!this._closeFlag) {
+            return;
+        }
+
+        this._closeFlag = false;
+        this._closedFlag = true;
 
         this._coreNode.SetActive(false);
 
@@ -135,12 +204,56 @@ public abstract class DynamicSubLayerScript : ToffMonaka.Lib.Scene.Script
     }
 
     /**
+     * @brief _OnUpdateClose関数
+     */
+    protected virtual void _OnUpdateClose()
+    {
+        return;
+    }
+
+    /**
      * @brief GetCoreNode関数
      * @return core_node (core_node)
      */
     public GameObject GetCoreNode()
     {
         return (this._coreNode);
+    }
+
+    /**
+     * @brief GetOpenFlag関数
+     * @return open_flg (open_flag)
+     */
+    public bool GetOpenFlag()
+    {
+        return (this._openFlag);
+    }
+
+    /**
+     * @brief GetOpenedFlag関数
+     * @return opened_flg (opened_flag)
+     */
+    public bool GetOpenedFlag()
+    {
+        return (this._openedFlag);
+    }
+
+    /**
+     * @brief GetCloseFlag関数
+     * @return close_flg (close_flag)
+     */
+    public bool GetCloseFlag()
+    {
+        return (this._closeFlag);
+    }
+
+    /**
+     * @brief GetClosedFlag関数
+     * @return closed_flg (closed_flag)
+     */
+    public bool GetClosedFlag()
+    {
+        return (this._closedFlag);
     }
 }
 }

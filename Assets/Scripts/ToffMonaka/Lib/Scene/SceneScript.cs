@@ -97,6 +97,22 @@ public abstract class SceneScript : ToffMonaka.Lib.Scene.Script
     }
 
     /**
+     * @brief _OnFixedUpdate2関数
+     */
+    protected override void _OnFixedUpdate2()
+    {
+        return;
+    }
+
+    /**
+     * @brief _OnLateUpdate2関数
+     */
+    protected override void _OnLateUpdate2()
+    {
+        return;
+    }
+
+    /**
      * @brief ChangeScene関数
      * @param name (name)
      * @return result (result)<br>

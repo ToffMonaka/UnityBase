@@ -229,6 +229,60 @@ public abstract class Script : MonoBehaviour
     }
 
     /**
+     * @brief FixedUpdate関数
+     */
+    private void FixedUpdate()
+    {
+        this._OnFixedUpdate2();
+        this._OnFixedUpdate();
+
+        return;
+    }
+
+    /**
+     * @brief _OnFixedUpdate関数
+     */
+    protected virtual void _OnFixedUpdate()
+    {
+        return;
+    }
+
+    /**
+     * @brief _OnFixedUpdate2関数
+     */
+    protected virtual void _OnFixedUpdate2()
+    {
+        return;
+    }
+
+    /**
+     * @brief LateUpdate関数
+     */
+    private void LateUpdate()
+    {
+        this._OnLateUpdate2();
+        this._OnLateUpdate();
+
+        return;
+    }
+
+    /**
+     * @brief _OnLateUpdate関数
+     */
+    protected virtual void _OnLateUpdate()
+    {
+        return;
+    }
+
+    /**
+     * @brief _OnLateUpdate2関数
+     */
+    protected virtual void _OnLateUpdate2()
+    {
+        return;
+    }
+
+    /**
      * @brief GetActiveFlag関数
      * @return active_flg (active_flag)
      */

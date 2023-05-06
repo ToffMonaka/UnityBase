@@ -81,14 +81,6 @@ public class TitleSubSceneScript : ToffMonaka.Lib.Scene.SubSceneScript
     }
 
     /**
-     * @brief _OnFirstUpdate関数
-     */
-    protected override void _OnFirstUpdate()
-    {
-        return;
-    }
-
-    /**
      * @brief _OnUpdate関数
      */
     protected override void _OnUpdate()
@@ -98,12 +90,20 @@ public class TitleSubSceneScript : ToffMonaka.Lib.Scene.SubSceneScript
 
     /**
      * @brief _OnOpen関数
-     * @return result (result)<br>
-     * 0未満=失敗
      */
-    protected override int _OnOpen()
+    protected override void _OnOpen()
     {
-        return (0);
+        return;
+    }
+
+    /**
+     * @brief _OnUpdateOpen関数
+     */
+    protected override void _OnUpdateOpen()
+    {
+        this.CompleteOpen();
+
+        return;
     }
 
     /**
@@ -115,15 +115,27 @@ public class TitleSubSceneScript : ToffMonaka.Lib.Scene.SubSceneScript
     }
 
     /**
+     * @brief _OnUpdateClose関数
+     */
+    protected override void _OnUpdateClose()
+    {
+        this.CompleteClose();
+
+        this.GetHolder().GetSceneScript().ChangeSubScene(ToffMonaka.UnityBase.Constant.Util.FILE_PATH.SELECT_SUB_SCENE_PREFAB);
+
+        var sub_scene_script = this.GetHolder().GetSubSceneScript() as ToffMonaka.UnityBase.Scene.SelectSubSceneScript;
+
+        sub_scene_script.Open();
+
+        return;
+    }
+
+    /**
      * @brief OnStartButtonPointerClickEvent関数
      */
     public void OnStartButtonPointerClickEvent()
     {
-        if (this.GetHolder().GetSceneScript().ChangeSubScene(ToffMonaka.UnityBase.Constant.Util.FILE_PATH.SELECT_SUB_SCENE_PREFAB) >= 0) {
-            var script = (ToffMonaka.UnityBase.Scene.SelectSubSceneScript)this.GetHolder().GetSubSceneScript();
-
-            script.Open();
-        }
+        this.Close();
 
         return;
     }
