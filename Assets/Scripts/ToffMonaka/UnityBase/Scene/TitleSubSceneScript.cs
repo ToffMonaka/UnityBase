@@ -5,6 +5,7 @@
 
 
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 using DG.Tweening;
 
@@ -18,6 +19,9 @@ public class TitleSubSceneScript : ToffMonaka.Lib.Scene.SubSceneScript
     [SerializeField] private TextMeshProUGUI _startButtonText = null;
     [SerializeField] private TextMeshProUGUI _companyNameText = null;
     [SerializeField] private TextMeshProUGUI _versionNameText = null;
+    [SerializeField] private Image _fadeImage = null;
+
+    private Sequence _fadeImageSequence = null;
 
     /**
      * @brief コンストラクタ
@@ -93,6 +97,11 @@ public class TitleSubSceneScript : ToffMonaka.Lib.Scene.SubSceneScript
      */
     protected override void _OnOpen()
     {
+        this._fadeImage.gameObject.SetActive(true);
+        this._fadeImage.color = new Color32(8, 8, 8, 255);
+        this._fadeImageSequence = DOTween.Sequence();
+        this._fadeImageSequence.Append(this._fadeImage.DOFade(0.0f, 0.2f));
+
         return;
     }
 
@@ -101,7 +110,11 @@ public class TitleSubSceneScript : ToffMonaka.Lib.Scene.SubSceneScript
      */
     protected override void _OnUpdateOpen()
     {
-        this.CompleteOpen();
+        if (!this._fadeImageSequence.IsActive()) {
+            this.CompleteOpen();
+
+            this._fadeImage.gameObject.SetActive(false);
+        }
 
         return;
     }
@@ -111,6 +124,12 @@ public class TitleSubSceneScript : ToffMonaka.Lib.Scene.SubSceneScript
      */
     protected override void _OnClose()
     {
+        this._fadeImage.gameObject.SetActive(true);
+        this._fadeImage.color = new Color32(8, 8, 8, 0);
+        this._fadeImageSequence = DOTween.Sequence();
+        this._fadeImageSequence.Append(this._fadeImage.DOFade(1.0f, 0.2f));
+        this._fadeImageSequence.AppendInterval(0.05f);
+
         return;
     }
 
@@ -119,13 +138,15 @@ public class TitleSubSceneScript : ToffMonaka.Lib.Scene.SubSceneScript
      */
     protected override void _OnUpdateClose()
     {
-        this.CompleteClose();
+        if (!this._fadeImageSequence.IsActive()) {
+            this.CompleteClose();
 
-        this.GetHolder().GetSceneScript().ChangeSubScene(ToffMonaka.UnityBase.Constant.Util.FILE_PATH.SELECT_SUB_SCENE_PREFAB);
+            this.GetHolder().GetSceneScript().ChangeSubScene(ToffMonaka.UnityBase.Constant.Util.FILE_PATH.SELECT_SUB_SCENE_PREFAB);
 
-        var sub_scene_script = this.GetHolder().GetSubSceneScript() as ToffMonaka.UnityBase.Scene.SelectSubSceneScript;
+            var sub_scene_script = this.GetHolder().GetSubSceneScript() as ToffMonaka.UnityBase.Scene.SelectSubSceneScript;
 
-        sub_scene_script.Open();
+            sub_scene_script.Open();
+        }
 
         return;
     }
