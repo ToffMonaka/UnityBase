@@ -22,6 +22,7 @@ public static class Util
     public static class FILE_PATH
     {
         public const string NONE = "";
+        public const string INIT_SUB_SCENE_PREFAB = "Assets/Resources2/prefab/InitSubScene.prefab";
         public const string TITLE_SUB_SCENE_PREFAB = "Assets/Resources2/prefab/TitleSubScene.prefab";
         public const string SELECT_SUB_SCENE_PREFAB = "Assets/Resources2/prefab/SelectSubScene.prefab";
         public const string TEST_2D_SUB_SCENE_PREFAB = "Assets/Resources2/prefab/Test2DSubScene.prefab";
@@ -32,8 +33,8 @@ public static class Util
     {
         public enum SCRIPT_INDEX
         {
-            INIT_SCENE = 0,
-            PLAY_SCENE,
+            MAIN_SCENE = 0,
+            INIT_SUB_SCENE,
             TITLE_SUB_SCENE,
             SELECT_SUB_SCENE,
             TEST_2D_SUB_SCENE,
@@ -47,8 +48,7 @@ public static class Util
     public static class SCENE_NAME
     {
         public const string NONE = "";
-        public const string INIT_SCENE = "InitScene";
-        public const string PLAY_SCENE = "PlayScene";
+        public const string MAIN_SCENE = "MainScene";
     }
 }
 }

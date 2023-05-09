@@ -117,7 +117,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: title_logo_img
+      name: title_name_img
       rect:
         serializedVersion: 2
         x: 1
@@ -131,8 +131,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9d7d0ebb2e7816b4fa05d8110cf3b595
-      internalID: 676684228
+      spriteID: a82b7f70d9b65ef499054934adad1933
+      internalID: -851330472
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      title_logo_img: 676684228
+      title_name_img: -851330472
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

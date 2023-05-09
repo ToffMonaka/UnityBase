@@ -16,7 +16,6 @@ namespace ToffMonaka.Lib.Scene {
 public abstract class SceneScript : ToffMonaka.Lib.Scene.Script
 {
     [SerializeField] private Camera _mainCamera = null;
-    [SerializeField] private GameObject _subSceneLayoutNode = null;
 
     private GameObject _subSceneNode = null;
 
@@ -149,7 +148,7 @@ public abstract class SceneScript : ToffMonaka.Lib.Scene.Script
 
         this._subSceneNode = Addressables.InstantiateAsync(prefab_file_path).WaitForCompletion();
 
-        this._subSceneNode.transform.parent = this._subSceneLayoutNode.transform;
+        this._subSceneNode.transform.parent = this.gameObject.transform;
 
         this._subSceneNode.GetComponent<ToffMonaka.Lib.Scene.SubSceneScript>().Create(this.GetHolder());
 

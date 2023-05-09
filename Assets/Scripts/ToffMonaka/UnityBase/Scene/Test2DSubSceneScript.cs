@@ -15,9 +15,9 @@ namespace ToffMonaka.UnityBase.Scene {
  */
 public class Test2DSubSceneScript : ToffMonaka.Lib.Scene.SubSceneScript
 {
-    [SerializeField] private Image _fadeImage = null;
+    [SerializeField] private Image _openCloseFadeImage = null;
 
-    private Sequence _fadeImageSequence = null;
+    private Sequence _openCloseFadeSequence = null;
 
     /**
      * @brief コンストラクタ
@@ -88,10 +88,12 @@ public class Test2DSubSceneScript : ToffMonaka.Lib.Scene.SubSceneScript
      */
     protected override void _OnOpen()
     {
-        this._fadeImage.gameObject.SetActive(true);
-        this._fadeImage.color = new Color32(8, 8, 8, 255);
-        this._fadeImageSequence = DOTween.Sequence();
-        this._fadeImageSequence.Append(this._fadeImage.DOFade(0.0f, 0.2f));
+        this._openCloseFadeImage.gameObject.SetActive(true);
+        this._openCloseFadeImage.color = new Color32(8, 8, 8, 255);
+
+        this._openCloseFadeSequence = DOTween.Sequence();
+        this._openCloseFadeSequence.AppendInterval(0.05f);
+        this._openCloseFadeSequence.Append(this._openCloseFadeImage.DOFade(0.0f, 0.2f));
 
         return;
     }
@@ -101,10 +103,10 @@ public class Test2DSubSceneScript : ToffMonaka.Lib.Scene.SubSceneScript
      */
     protected override void _OnUpdateOpen()
     {
-        if (!this._fadeImageSequence.IsActive()) {
+        if (!this._openCloseFadeSequence.IsActive()) {
             this.CompleteOpen();
 
-            this._fadeImage.gameObject.SetActive(false);
+            this._openCloseFadeImage.gameObject.SetActive(false);
         }
 
         return;
@@ -115,11 +117,12 @@ public class Test2DSubSceneScript : ToffMonaka.Lib.Scene.SubSceneScript
      */
     protected override void _OnClose()
     {
-        this._fadeImage.gameObject.SetActive(true);
-        this._fadeImage.color = new Color32(8, 8, 8, 0);
-        this._fadeImageSequence = DOTween.Sequence();
-        this._fadeImageSequence.Append(this._fadeImage.DOFade(1.0f, 0.2f));
-        this._fadeImageSequence.AppendInterval(0.05f);
+        this._openCloseFadeImage.gameObject.SetActive(true);
+        this._openCloseFadeImage.color = new Color32(8, 8, 8, 0);
+
+        this._openCloseFadeSequence = DOTween.Sequence();
+        this._openCloseFadeSequence.Append(this._openCloseFadeImage.DOFade(1.0f, 0.2f));
+        this._openCloseFadeSequence.AppendInterval(0.05f);
 
         return;
     }
@@ -129,7 +132,7 @@ public class Test2DSubSceneScript : ToffMonaka.Lib.Scene.SubSceneScript
      */
     protected override void _OnUpdateClose()
     {
-        if (!this._fadeImageSequence.IsActive()) {
+        if (!this._openCloseFadeSequence.IsActive()) {
             this.CompleteClose();
         }
 
