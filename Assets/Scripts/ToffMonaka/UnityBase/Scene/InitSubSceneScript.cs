@@ -12,6 +12,13 @@ using DG.Tweening;
 
 namespace ToffMonaka.UnityBase.Scene {
 /**
+ * @brief InitSubSceneScriptCreateDescクラス
+ */
+public class InitSubSceneScriptCreateDesc : ToffMonaka.Lib.Scene.SubSceneScriptCreateDesc
+{
+}
+
+/**
  * @brief InitSubSceneScriptクラス
  */
 public class InitSubSceneScript : ToffMonaka.Lib.Scene.SubSceneScript
@@ -19,6 +26,7 @@ public class InitSubSceneScript : ToffMonaka.Lib.Scene.SubSceneScript
     [SerializeField] private TextMeshProUGUI _waitMessageText = null;
     [SerializeField] private Image _openCloseFadeImage = null;
 
+    public new ToffMonaka.UnityBase.Scene.InitSubSceneScriptCreateDesc createDesc{get; private set;} = null;
     private Sequence _openCloseFadeSequence = null;
     private int _progressType = 0;
     private float _progressElapsedTime = 0.0f;
@@ -111,6 +119,19 @@ public class InitSubSceneScript : ToffMonaka.Lib.Scene.SubSceneScript
     }
 
     /**
+     * @brief SetCreateDesc関数
+     * @param create_desc (create_desc)
+     */
+    public override void SetCreateDesc(ToffMonaka.Lib.Scene.ScriptCreateDesc create_desc)
+    {
+	    this.createDesc = create_desc as ToffMonaka.UnityBase.Scene.InitSubSceneScriptCreateDesc;
+
+        base.SetCreateDesc(this.createDesc);
+
+        return;
+    }
+
+    /**
      * @brief _OnOpen関数
      */
     protected override void _OnOpen()
@@ -153,10 +174,12 @@ public class InitSubSceneScript : ToffMonaka.Lib.Scene.SubSceneScript
         if (!this._openCloseFadeSequence.IsActive()) {
             this.CompleteClose();
 
-            this.GetHolder().GetSceneScript().ChangeSubScene(ToffMonaka.UnityBase.Constant.Util.FILE_PATH.TITLE_SUB_SCENE_PREFAB);
+            var sub_scene_script = this.GetHolder().GetSceneScript().ChangeSubScene(ToffMonaka.UnityBase.Constant.Util.FILE_PATH.TITLE_SUB_SCENE_PREFAB) as ToffMonaka.UnityBase.Scene.TitleSubSceneScript;
+            var sub_scene_script_create_desc = new ToffMonaka.UnityBase.Scene.TitleSubSceneScriptCreateDesc();
 
-            var sub_scene_script = this.GetHolder().GetSubSceneScript() as ToffMonaka.UnityBase.Scene.TitleSubSceneScript;
+            sub_scene_script_create_desc.holder = this.GetHolder();
 
+            sub_scene_script.Create(sub_scene_script_create_desc);
             sub_scene_script.Open();
         }
 

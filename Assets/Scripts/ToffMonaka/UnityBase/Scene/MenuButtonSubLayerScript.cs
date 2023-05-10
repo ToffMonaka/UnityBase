@@ -9,10 +9,19 @@ using UnityEngine;
 
 namespace ToffMonaka.UnityBase.Scene {
 /**
+ * @brief MenuButtonSubLayerCreateDescクラス
+ */
+public class MenuButtonSubLayerCreateDesc : ToffMonaka.Lib.Scene.StaticSubLayerScriptCreateDesc
+{
+}
+
+/**
  * @brief MenuButtonSubLayerScriptクラス
  */
 public class MenuButtonSubLayerScript : ToffMonaka.Lib.Scene.StaticSubLayerScript
 {
+    public new ToffMonaka.UnityBase.Scene.MenuButtonSubLayerCreateDesc createDesc{get; private set;} = null;
+
     /**
      * @brief コンストラクタ
      */
@@ -70,6 +79,19 @@ public class MenuButtonSubLayerScript : ToffMonaka.Lib.Scene.StaticSubLayerScrip
      */
     protected override void _OnUpdate()
     {
+        return;
+    }
+
+    /**
+     * @brief SetCreateDesc関数
+     * @param create_desc (create_desc)
+     */
+    public override void SetCreateDesc(ToffMonaka.Lib.Scene.ScriptCreateDesc create_desc)
+    {
+	    this.createDesc = create_desc as ToffMonaka.UnityBase.Scene.MenuButtonSubLayerCreateDesc;
+
+        base.SetCreateDesc(this.createDesc);
+
         return;
     }
 

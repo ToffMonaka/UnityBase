@@ -12,6 +12,13 @@ using DG.Tweening;
 
 namespace ToffMonaka.UnityBase.Scene {
 /**
+ * @brief TitleSubSceneScriptCreateDescクラス
+ */
+public class TitleSubSceneScriptCreateDesc : ToffMonaka.Lib.Scene.SubSceneScriptCreateDesc
+{
+}
+
+/**
  * @brief TitleSubSceneScriptクラス
  */
 public class TitleSubSceneScript : ToffMonaka.Lib.Scene.SubSceneScript
@@ -22,6 +29,7 @@ public class TitleSubSceneScript : ToffMonaka.Lib.Scene.SubSceneScript
     [SerializeField] private TextMeshProUGUI _versionNameText = null;
     [SerializeField] private Image _openCloseFadeImage = null;
 
+    public new ToffMonaka.UnityBase.Scene.TitleSubSceneScriptCreateDesc createDesc{get; private set;} = null;
     private Sequence _openCloseFadeSequence = null;
 
     /**
@@ -94,6 +102,19 @@ public class TitleSubSceneScript : ToffMonaka.Lib.Scene.SubSceneScript
     }
 
     /**
+     * @brief SetCreateDesc関数
+     * @param create_desc (create_desc)
+     */
+    public override void SetCreateDesc(ToffMonaka.Lib.Scene.ScriptCreateDesc create_desc)
+    {
+	    this.createDesc = create_desc as ToffMonaka.UnityBase.Scene.TitleSubSceneScriptCreateDesc;
+
+        base.SetCreateDesc(this.createDesc);
+
+        return;
+    }
+
+    /**
      * @brief _OnOpen関数
      */
     protected override void _OnOpen()
@@ -145,10 +166,12 @@ public class TitleSubSceneScript : ToffMonaka.Lib.Scene.SubSceneScript
         if (!this._openCloseFadeSequence.IsActive()) {
             this.CompleteClose();
 
-            this.GetHolder().GetSceneScript().ChangeSubScene(ToffMonaka.UnityBase.Constant.Util.FILE_PATH.SELECT_SUB_SCENE_PREFAB);
+            var sub_scene_script = this.GetHolder().GetSceneScript().ChangeSubScene(ToffMonaka.UnityBase.Constant.Util.FILE_PATH.SELECT_SUB_SCENE_PREFAB) as ToffMonaka.UnityBase.Scene.SelectSubSceneScript;
+            var sub_scene_script_create_desc = new ToffMonaka.UnityBase.Scene.SelectSubSceneScriptCreateDesc();
 
-            var sub_scene_script = this.GetHolder().GetSubSceneScript() as ToffMonaka.UnityBase.Scene.SelectSubSceneScript;
+            sub_scene_script_create_desc.holder = this.GetHolder();
 
+            sub_scene_script.Create(sub_scene_script_create_desc);
             sub_scene_script.Open();
         }
 

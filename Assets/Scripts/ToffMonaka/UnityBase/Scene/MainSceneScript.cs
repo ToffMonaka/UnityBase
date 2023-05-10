@@ -9,10 +9,19 @@ using UnityEngine;
 
 namespace ToffMonaka.UnityBase.Scene {
 /**
+ * @brief MainSceneScriptCreateDescクラス
+ */
+public class MainSceneScriptCreateDesc : ToffMonaka.Lib.Scene.SceneScriptCreateDesc
+{
+}
+
+/**
  * @brief MainSceneScriptクラス
  */
 public class MainSceneScript : ToffMonaka.Lib.Scene.SceneScript
 {
+    public new ToffMonaka.UnityBase.Scene.MainSceneScriptCreateDesc createDesc{get; private set;} = null;
+
     /**
      * @brief コンストラクタ
      */
@@ -28,7 +37,12 @@ public class MainSceneScript : ToffMonaka.Lib.Scene.SceneScript
      */
     protected override void _OnAwake()
     {
-        this.Create(new ToffMonaka.Lib.Scene.ScriptHolder((int)ToffMonaka.UnityBase.Constant.Util.SCENE.SCRIPT_INDEX_COUNT));
+        var create_desc = new ToffMonaka.UnityBase.Scene.MainSceneScriptCreateDesc();
+
+        create_desc.holder = new ToffMonaka.Lib.Scene.ScriptHolder((int)ToffMonaka.UnityBase.Constant.Util.SCENE.SCRIPT_INDEX_COUNT);
+
+        this.SetCreateDesc(create_desc);
+        this.Create();
 
         return;
     }
@@ -56,10 +70,12 @@ public class MainSceneScript : ToffMonaka.Lib.Scene.SceneScript
      */
     protected override void _OnActive()
     {
-        this.GetHolder().GetSceneScript().ChangeSubScene(ToffMonaka.UnityBase.Constant.Util.FILE_PATH.INIT_SUB_SCENE_PREFAB);
+        var sub_scene_script = this.GetHolder().GetSceneScript().ChangeSubScene(ToffMonaka.UnityBase.Constant.Util.FILE_PATH.INIT_SUB_SCENE_PREFAB) as ToffMonaka.UnityBase.Scene.InitSubSceneScript;
+        var sub_scene_script_create_desc = new ToffMonaka.UnityBase.Scene.InitSubSceneScriptCreateDesc();
 
-        var sub_scene_script = this.GetHolder().GetSubSceneScript() as ToffMonaka.UnityBase.Scene.InitSubSceneScript;
+        sub_scene_script_create_desc.holder = this.GetHolder();
 
+        sub_scene_script.Create(sub_scene_script_create_desc);
         sub_scene_script.Open();
 
         return;
@@ -78,6 +94,19 @@ public class MainSceneScript : ToffMonaka.Lib.Scene.SceneScript
      */
     protected override void _OnUpdate()
     {
+        return;
+    }
+
+    /**
+     * @brief SetCreateDesc関数
+     * @param create_desc (create_desc)
+     */
+    public override void SetCreateDesc(ToffMonaka.Lib.Scene.ScriptCreateDesc create_desc)
+    {
+	    this.createDesc = create_desc as ToffMonaka.UnityBase.Scene.MainSceneScriptCreateDesc;
+
+        base.SetCreateDesc(this.createDesc);
+
         return;
     }
 }

@@ -9,10 +9,19 @@ using UnityEngine;
 
 namespace ToffMonaka.Lib.Scene {
 /**
+ * @brief ScriptCreateDescクラス
+ */
+public class ScriptCreateDesc
+{
+    public ToffMonaka.Lib.Scene.ScriptHolder holder = null;
+}
+
+/**
  * @brief Scriptクラス
  */
 public abstract class Script : MonoBehaviour
 {
+    public ToffMonaka.Lib.Scene.ScriptCreateDesc createDesc{get; private set;} = null;
     private int _scriptType = 0;
     private int _scriptIndex = 0;
     private ToffMonaka.Lib.Scene.ScriptHolder _holder = null;
@@ -52,7 +61,7 @@ public abstract class Script : MonoBehaviour
         this._OnRelease();
         this._OnRelease2();
 
-        this._SetHolder(null);
+        this.SetHolder(null);
 
         return;
     }
@@ -75,13 +84,17 @@ public abstract class Script : MonoBehaviour
 
     /**
      * @brief Create関数
-     * @param holder (holder)
+     * @param desc (desc)
      * @return result (result)<br>
      * 0未満=失敗
      */
-    public int Create(ToffMonaka.Lib.Scene.ScriptHolder holder)
+    public int Create(ToffMonaka.Lib.Scene.ScriptCreateDesc desc = null)
     {
-        this._SetHolder(holder);
+        if (desc != null) {
+            this.SetCreateDesc(desc);
+        }
+
+        this.SetHolder(this.createDesc.holder);
 
         int create2_res = this._OnCreate2();
 
@@ -283,30 +296,12 @@ public abstract class Script : MonoBehaviour
     }
 
     /**
-     * @brief GetActiveFlag関数
-     * @return active_flg (active_flag)
+     * @brief SetCreateDesc関数
+     * @param create_desc (create_desc)
      */
-    public bool GetActiveFlag()
+    public virtual void SetCreateDesc(ToffMonaka.Lib.Scene.ScriptCreateDesc create_desc)
     {
-        return (this.gameObject.activeSelf);
-    }
-
-    /**
-     * @brief GetActiveFlagInHierarchy関数
-     * @return active_flg (active_flag)
-     */
-    public bool GetActiveFlagInHierarchy()
-    {
-        return (this.gameObject.activeInHierarchy);
-    }
-
-    /**
-     * @brief SetActiveFlag関数
-     * @param active_flg (active_flag)
-     */
-    public void SetActiveFlag(bool active_flg)
-    {
-        this.gameObject.SetActive(active_flg);
+        this.createDesc = create_desc;
 
         return;
     }
@@ -361,10 +356,10 @@ public abstract class Script : MonoBehaviour
     }
 
     /**
-     * @brief _SetHolder関数
+     * @brief SetHolder関数
      * @param holder (holder)
      */
-    protected void _SetHolder(ToffMonaka.Lib.Scene.ScriptHolder holder)
+    public void SetHolder(ToffMonaka.Lib.Scene.ScriptHolder holder)
     {
         if (this._holder != null) {
             this._holder.Remove(this);
@@ -375,6 +370,35 @@ public abstract class Script : MonoBehaviour
         if (this._holder != null) {
             this._holder.Add(this);
         }
+
+        return;
+    }
+
+    /**
+     * @brief GetActiveFlag関数
+     * @return active_flg (active_flag)
+     */
+    public bool GetActiveFlag()
+    {
+        return (this.gameObject.activeSelf);
+    }
+
+    /**
+     * @brief GetActiveFlagInHierarchy関数
+     * @return active_flg (active_flag)
+     */
+    public bool GetActiveFlagInHierarchy()
+    {
+        return (this.gameObject.activeInHierarchy);
+    }
+
+    /**
+     * @brief SetActiveFlag関数
+     * @param active_flg (active_flag)
+     */
+    public void SetActiveFlag(bool active_flg)
+    {
+        this.gameObject.SetActive(active_flg);
 
         return;
     }

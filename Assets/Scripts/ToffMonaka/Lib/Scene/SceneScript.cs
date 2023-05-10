@@ -11,12 +11,20 @@ using UnityEngine.AddressableAssets;
 
 namespace ToffMonaka.Lib.Scene {
 /**
+ * @brief SceneScriptCreateDescクラス
+ */
+public class SceneScriptCreateDesc : ToffMonaka.Lib.Scene.ScriptCreateDesc
+{
+}
+
+/**
  * @brief SceneScriptクラス
  */
 public abstract class SceneScript : ToffMonaka.Lib.Scene.Script
 {
     [SerializeField] private Camera _mainCamera = null;
 
+    public new ToffMonaka.Lib.Scene.SceneScriptCreateDesc createDesc{get; private set;} = null;
     private GameObject _subSceneNode = null;
 
     /**
@@ -112,29 +120,42 @@ public abstract class SceneScript : ToffMonaka.Lib.Scene.Script
     }
 
     /**
+     * @brief SetCreateDesc関数
+     * @param create_desc (create_desc)
+     */
+    public override void SetCreateDesc(ToffMonaka.Lib.Scene.ScriptCreateDesc create_desc)
+    {
+	    this.createDesc = create_desc as ToffMonaka.Lib.Scene.SceneScriptCreateDesc;
+
+        base.SetCreateDesc(this.createDesc);
+
+        return;
+    }
+
+    /**
      * @brief ChangeScene関数
      * @param name (name)
-     * @return result (result)<br>
-     * 0未満=失敗
+     * @return scene_script (scene_script)<br>
+     * null=失敗
      */
-    public int ChangeScene(string name)
+    public ToffMonaka.Lib.Scene.SceneScript ChangeScene(string name)
     {
         if (name.Length <= 0) {
-            return (-1);
+            return (null);
         }
 
         SceneManager.LoadScene(name);
 
-        return (0);
+        return (this);
     }
 
     /**
      * @brief ChangeSubScene関数
      * @param prefab_file_path (prefab_file_path)
-     * @return result (result)<br>
-     * 0未満=失敗
+     * @return sub_scene_script (sub_scene_script)<br>
+     * null=失敗
      */
-    public int ChangeSubScene(string prefab_file_path)
+    public ToffMonaka.Lib.Scene.SubSceneScript ChangeSubScene(string prefab_file_path)
     {
         if (this._subSceneNode != null) {
             Addressables.ReleaseInstance(this._subSceneNode);
@@ -143,16 +164,14 @@ public abstract class SceneScript : ToffMonaka.Lib.Scene.Script
         }
 
         if (prefab_file_path.Length <= 0) {
-            return (-1);
+            return (null);
         }
 
         this._subSceneNode = Addressables.InstantiateAsync(prefab_file_path).WaitForCompletion();
 
         this._subSceneNode.transform.parent = this.gameObject.transform;
 
-        this._subSceneNode.GetComponent<ToffMonaka.Lib.Scene.SubSceneScript>().Create(this.GetHolder());
-
-        return (0);
+        return (this._subSceneNode.GetComponent<ToffMonaka.Lib.Scene.SubSceneScript>());
     }
 
     /**

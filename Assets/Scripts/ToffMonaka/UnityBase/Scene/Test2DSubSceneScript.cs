@@ -11,12 +11,20 @@ using DG.Tweening;
 
 namespace ToffMonaka.UnityBase.Scene {
 /**
+ * @brief Test2DSubSceneScriptCreateDescクラス
+ */
+public class Test2DSubSceneScriptCreateDesc : ToffMonaka.Lib.Scene.SubSceneScriptCreateDesc
+{
+}
+
+/**
  * @brief Test2DSubSceneScriptクラス
  */
 public class Test2DSubSceneScript : ToffMonaka.Lib.Scene.SubSceneScript
 {
     [SerializeField] private Image _openCloseFadeImage = null;
 
+    public new ToffMonaka.UnityBase.Scene.Test2DSubSceneScriptCreateDesc createDesc{get; private set;} = null;
     private Sequence _openCloseFadeSequence = null;
 
     /**
@@ -80,6 +88,19 @@ public class Test2DSubSceneScript : ToffMonaka.Lib.Scene.SubSceneScript
      */
     protected override void _OnUpdate()
     {
+        return;
+    }
+
+    /**
+     * @brief SetCreateDesc関数
+     * @param create_desc (create_desc)
+     */
+    public override void SetCreateDesc(ToffMonaka.Lib.Scene.ScriptCreateDesc create_desc)
+    {
+	    this.createDesc = create_desc as ToffMonaka.UnityBase.Scene.Test2DSubSceneScriptCreateDesc;
+
+        base.SetCreateDesc(this.createDesc);
+
         return;
     }
 

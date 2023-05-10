@@ -9,12 +9,20 @@ using UnityEngine;
 
 namespace ToffMonaka.Lib.Scene {
 /**
+ * @brief DynamicSubLayerScriptCreateDescクラス
+ */
+public class DynamicSubLayerScriptCreateDesc : ToffMonaka.Lib.Scene.ScriptCreateDesc
+{
+}
+
+/**
  * @brief DynamicSubLayerScriptクラス
  */
 public abstract class DynamicSubLayerScript : ToffMonaka.Lib.Scene.Script
 {
     [SerializeField] private GameObject _coreNode = null;
 
+    public new ToffMonaka.Lib.Scene.DynamicSubLayerScriptCreateDesc createDesc{get; private set;} = null;
     private bool _openFlag = false;
     private bool _openedFlag = false;
     private bool _closeFlag = false;
@@ -112,6 +120,19 @@ public abstract class DynamicSubLayerScript : ToffMonaka.Lib.Scene.Script
      */
     protected override void _OnLateUpdate2()
     {
+        return;
+    }
+
+    /**
+     * @brief SetCreateDesc関数
+     * @param create_desc (create_desc)
+     */
+    public override void SetCreateDesc(ToffMonaka.Lib.Scene.ScriptCreateDesc create_desc)
+    {
+	    this.createDesc = create_desc as ToffMonaka.Lib.Scene.DynamicSubLayerScriptCreateDesc;
+
+        base.SetCreateDesc(this.createDesc);
+
         return;
     }
 

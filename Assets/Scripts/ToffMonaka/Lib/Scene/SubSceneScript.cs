@@ -9,12 +9,20 @@ using UnityEngine;
 
 namespace ToffMonaka.Lib.Scene {
 /**
+ * @brief SubSceneScriptCreateDescクラス
+ */
+public class SubSceneScriptCreateDesc : ToffMonaka.Lib.Scene.ScriptCreateDesc
+{
+}
+
+/**
  * @brief SubScenScripteクラス
  */
 public abstract class SubSceneScript : ToffMonaka.Lib.Scene.Script
 {
     [SerializeField] private GameObject _coreNode = null;
 
+    public new ToffMonaka.Lib.Scene.SubSceneScriptCreateDesc createDesc{get; private set;} = null;
     private bool _openFlag = false;
     private bool _openedFlag = false;
     private bool _closeFlag = false;
@@ -112,6 +120,19 @@ public abstract class SubSceneScript : ToffMonaka.Lib.Scene.Script
      */
     protected override void _OnLateUpdate2()
     {
+        return;
+    }
+
+    /**
+     * @brief SetCreateDesc関数
+     * @param create_desc (create_desc)
+     */
+    public override void SetCreateDesc(ToffMonaka.Lib.Scene.ScriptCreateDesc create_desc)
+    {
+	    this.createDesc = create_desc as ToffMonaka.Lib.Scene.SubSceneScriptCreateDesc;
+
+        base.SetCreateDesc(this.createDesc);
+
         return;
     }
 
