@@ -419,7 +419,7 @@ GameObject:
   - component: {fileID: 6033139673982942010}
   - component: {fileID: 6033139673982942011}
   m_Layer: 0
-  m_Name: Test3DSubScene
+  m_Name: Test3DStageSubScene
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -1,6 +1,6 @@
 ﻿/**
  * @file
- * @brief Test3DSubSceneScriptファイル
+ * @brief Test3DStageSubSceneScriptファイル
  */
 
 
@@ -11,28 +11,28 @@ using DG.Tweening;
 
 namespace ToffMonaka.UnityBase.Scene {
 /**
- * @brief Test3DSubSceneScriptCreateDescクラス
+ * @brief Test3DStageSubSceneScriptCreateDescクラス
  */
-public class Test3DSubSceneScriptCreateDesc : ToffMonaka.Lib.Scene.SubSceneScriptCreateDesc
+public class Test3DStageSubSceneScriptCreateDesc : ToffMonaka.Lib.Scene.SubSceneScriptCreateDesc
 {
 }
 
 /**
- * @brief Test3DSubSceneScriptクラス
+ * @brief Test3DStageSubSceneScriptクラス
  */
-public class Test3DSubSceneScript : ToffMonaka.Lib.Scene.SubSceneScript
+public class Test3DStageSubSceneScript : ToffMonaka.Lib.Scene.SubSceneScript
 {
     [SerializeField] private Image _openCloseFadeImage = null;
 
-    public new ToffMonaka.UnityBase.Scene.Test3DSubSceneScriptCreateDesc createDesc{get; private set;} = null;
+    public new ToffMonaka.UnityBase.Scene.Test3DStageSubSceneScriptCreateDesc createDesc{get; private set;} = null;
     private Sequence _openCloseFadeSequence = null;
 
     /**
      * @brief コンストラクタ
      */
-    public Test3DSubSceneScript()
+    public Test3DStageSubSceneScript()
     {
-        this._SetScriptIndex((int)ToffMonaka.UnityBase.Constant.Util.SCENE.SCRIPT_INDEX.TEST_3D_SUB_SCENE);
+        this._SetScriptIndex((int)ToffMonaka.UnityBase.Constant.Util.SCENE.SCRIPT_INDEX.TEST_3D_STAGE_SUB_SCENE);
 
         return;
     }
@@ -97,7 +97,7 @@ public class Test3DSubSceneScript : ToffMonaka.Lib.Scene.SubSceneScript
      */
     public override void SetCreateDesc(ToffMonaka.Lib.Scene.ScriptCreateDesc create_desc)
     {
-	    this.createDesc = create_desc as ToffMonaka.UnityBase.Scene.Test3DSubSceneScriptCreateDesc;
+	    this.createDesc = create_desc as ToffMonaka.UnityBase.Scene.Test3DStageSubSceneScriptCreateDesc;
 
         base.SetCreateDesc(this.createDesc);
 

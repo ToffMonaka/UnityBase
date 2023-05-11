@@ -193,7 +193,7 @@ GameObject:
   - component: {fileID: 5609580938440374916}
   - component: {fileID: 5609580938440374917}
   m_Layer: 0
-  m_Name: Test2DSubScene
+  m_Name: Test2DStageSubScene
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

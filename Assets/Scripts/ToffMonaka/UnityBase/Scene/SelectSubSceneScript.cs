@@ -22,12 +22,12 @@ public class SelectSubSceneScriptCreateDesc : ToffMonaka.Lib.Scene.SubSceneScrip
  */
 public class SelectSubSceneScript : ToffMonaka.Lib.Scene.SubSceneScript
 {
+    [SerializeField] private ToffMonaka.UnityBase.Scene.SelectSubSceneStageItemScript[] _stageItemScriptArray = new ToffMonaka.UnityBase.Scene.SelectSubSceneStageItemScript[2];
     [SerializeField] private Image _openCloseFadeImage = null;
 
     public new ToffMonaka.UnityBase.Scene.SelectSubSceneScriptCreateDesc createDesc{get; private set;} = null;
     private Sequence _openCloseFadeSequence = null;
-    private bool _test2DFlag = false;
-    private bool _test3DFlag = false;
+    private int _stageItemSelectIndex = 0;
 
     /**
      * @brief コンストラクタ
@@ -65,6 +65,9 @@ public class SelectSubSceneScript : ToffMonaka.Lib.Scene.SubSceneScript
         var canvas_node = this.GetCoreNode().transform.Find("Canvas").gameObject;
 
         canvas_node.GetComponent<Canvas>().worldCamera = this.GetHolder().GetSceneScript().GetMainCamera();
+
+        this._stageItemScriptArray[0].Set(this, 0, "Test2D");
+        this._stageItemScriptArray[1].Set(this, 1, "Test3D");
 
         return (0);
     }
@@ -158,9 +161,9 @@ public class SelectSubSceneScript : ToffMonaka.Lib.Scene.SubSceneScript
         if (!this._openCloseFadeSequence.IsActive()) {
             this.CompleteClose();
 
-            if (this._test2DFlag) {
-                var sub_scene_script = this.GetHolder().GetSceneScript().ChangeSubScene(ToffMonaka.UnityBase.Constant.Util.FILE_PATH.TEST_2D_SUB_SCENE_PREFAB) as ToffMonaka.UnityBase.Scene.Test2DSubSceneScript;
-                var sub_scene_script_create_desc = new ToffMonaka.UnityBase.Scene.Test2DSubSceneScriptCreateDesc();
+            if (this._stageItemSelectIndex == 0) {
+                var sub_scene_script = this.GetHolder().GetSceneScript().ChangeSubScene(ToffMonaka.UnityBase.Constant.Util.FILE_PATH.TEST_2D_STAGE_SUB_SCENE_PREFAB) as ToffMonaka.UnityBase.Scene.Test2DStageSubSceneScript;
+                var sub_scene_script_create_desc = new ToffMonaka.UnityBase.Scene.Test2DStageSubSceneScriptCreateDesc();
 
                 sub_scene_script_create_desc.holder = this.GetHolder();
 
@@ -168,9 +171,9 @@ public class SelectSubSceneScript : ToffMonaka.Lib.Scene.SubSceneScript
                 sub_scene_script.Open();
             }
 
-            if (this._test3DFlag) {
-                var sub_scene_script = this.GetHolder().GetSceneScript().ChangeSubScene(ToffMonaka.UnityBase.Constant.Util.FILE_PATH.TEST_3D_SUB_SCENE_PREFAB) as ToffMonaka.UnityBase.Scene.Test3DSubSceneScript;
-                var sub_scene_script_create_desc = new ToffMonaka.UnityBase.Scene.Test3DSubSceneScriptCreateDesc();
+            if (this._stageItemSelectIndex == 1) {
+                var sub_scene_script = this.GetHolder().GetSceneScript().ChangeSubScene(ToffMonaka.UnityBase.Constant.Util.FILE_PATH.TEST_3D_STAGE_SUB_SCENE_PREFAB) as ToffMonaka.UnityBase.Scene.Test3DStageSubSceneScript;
+                var sub_scene_script_create_desc = new ToffMonaka.UnityBase.Scene.Test3DStageSubSceneScriptCreateDesc();
 
                 sub_scene_script_create_desc.holder = this.GetHolder();
 
@@ -183,25 +186,21 @@ public class SelectSubSceneScript : ToffMonaka.Lib.Scene.SubSceneScript
     }
 
     /**
-     * @brief OnTest2DButtonPointerClickEvent関数
+     * @brief GetStageItemSelectIndex関数
+     * @return stage_item_select_index (stage_item_select_index)
      */
-    public void OnTest2DButtonPointerClickEvent()
+    public int GetStageItemSelectIndex()
     {
-        this.Close();
-
-        this._test2DFlag = true;
-
-        return;
+        return (this._stageItemSelectIndex);
     }
 
     /**
-     * @brief OnTest3DButtonPointerClickEvent関数
+     * @brief StageItemSelectIndex関数
+     * @param stage_item_select_index (stage_item_select_index)
      */
-    public void OnTest3DButtonPointerClickEvent()
+    public void SetStageItemSelectIndex(int stage_item_select_index)
     {
-        this.Close();
-
-        this._test3DFlag = true;
+        this._stageItemSelectIndex = stage_item_select_index;
 
         return;
     }

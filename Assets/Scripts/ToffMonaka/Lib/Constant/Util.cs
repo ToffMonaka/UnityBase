@@ -26,7 +26,7 @@ public static class Util
 
     public static class SCENE
     {
-        public enum SCRIPT_TYPE
+        public enum SCRIPT_TYPE : int
         {
             NONE = 0,
             SCENE,
