@@ -66,6 +66,19 @@ public class MainSceneScript : ToffMonaka.Lib.Scene.SceneScript
     }
 
     /**
+     * @brief SetCreateDesc関数
+     * @param create_desc (create_desc)
+     */
+    public override void SetCreateDesc(ToffMonaka.Lib.Scene.ScriptCreateDesc create_desc)
+    {
+	    this.createDesc = create_desc as ToffMonaka.UnityBase.Scene.MainSceneScriptCreateDesc;
+
+        base.SetCreateDesc(this.createDesc);
+
+        return;
+    }
+
+    /**
      * @brief _OnActive関数
      */
     protected override void _OnActive()
@@ -76,7 +89,7 @@ public class MainSceneScript : ToffMonaka.Lib.Scene.SceneScript
         sub_scene_script_create_desc.holder = this.GetHolder();
 
         sub_scene_script.Create(sub_scene_script_create_desc);
-        sub_scene_script.Open();
+        sub_scene_script.Open(0);
 
         return;
     }
@@ -94,19 +107,6 @@ public class MainSceneScript : ToffMonaka.Lib.Scene.SceneScript
      */
     protected override void _OnUpdate()
     {
-        return;
-    }
-
-    /**
-     * @brief SetCreateDesc関数
-     * @param create_desc (create_desc)
-     */
-    public override void SetCreateDesc(ToffMonaka.Lib.Scene.ScriptCreateDesc create_desc)
-    {
-	    this.createDesc = create_desc as ToffMonaka.UnityBase.Scene.MainSceneScriptCreateDesc;
-
-        base.SetCreateDesc(this.createDesc);
-
         return;
     }
 }

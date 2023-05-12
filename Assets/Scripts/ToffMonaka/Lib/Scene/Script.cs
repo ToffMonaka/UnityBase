@@ -61,7 +61,7 @@ public abstract class Script : MonoBehaviour
         this._OnRelease();
         this._OnRelease2();
 
-        this.SetHolder(null);
+        this._SetHolder(null);
 
         return;
     }
@@ -94,7 +94,7 @@ public abstract class Script : MonoBehaviour
             this.SetCreateDesc(desc);
         }
 
-        this.SetHolder(this.createDesc.holder);
+        this._SetHolder(this.createDesc.holder);
 
         int create2_res = this._OnCreate2();
 
@@ -108,7 +108,7 @@ public abstract class Script : MonoBehaviour
             return (create_res);
         }
 
-        this.SetActiveFlag(true);
+        this.gameObject.SetActive(true);
 
         return (0);
     }
@@ -131,6 +131,17 @@ public abstract class Script : MonoBehaviour
     protected virtual int _OnCreate2()
     {
         return (0);
+    }
+
+    /**
+     * @brief SetCreateDesc関数
+     * @param create_desc (create_desc)
+     */
+    public virtual void SetCreateDesc(ToffMonaka.Lib.Scene.ScriptCreateDesc create_desc)
+    {
+        this.createDesc = create_desc;
+
+        return;
     }
 
     /**
@@ -296,17 +307,6 @@ public abstract class Script : MonoBehaviour
     }
 
     /**
-     * @brief SetCreateDesc関数
-     * @param create_desc (create_desc)
-     */
-    public virtual void SetCreateDesc(ToffMonaka.Lib.Scene.ScriptCreateDesc create_desc)
-    {
-        this.createDesc = create_desc;
-
-        return;
-    }
-
-    /**
      * @brief GetScriptType関数
      * @return script_type (script_type)
      */
@@ -356,10 +356,10 @@ public abstract class Script : MonoBehaviour
     }
 
     /**
-     * @brief SetHolder関数
+     * @brief _SetHolder関数
      * @param holder (holder)
      */
-    public void SetHolder(ToffMonaka.Lib.Scene.ScriptHolder holder)
+    protected void _SetHolder(ToffMonaka.Lib.Scene.ScriptHolder holder)
     {
         if (this._holder != null) {
             this._holder.Remove(this);
@@ -370,35 +370,6 @@ public abstract class Script : MonoBehaviour
         if (this._holder != null) {
             this._holder.Add(this);
         }
-
-        return;
-    }
-
-    /**
-     * @brief GetActiveFlag関数
-     * @return active_flg (active_flag)
-     */
-    public bool GetActiveFlag()
-    {
-        return (this.gameObject.activeSelf);
-    }
-
-    /**
-     * @brief GetActiveFlagInHierarchy関数
-     * @return active_flg (active_flag)
-     */
-    public bool GetActiveFlagInHierarchy()
-    {
-        return (this.gameObject.activeInHierarchy);
-    }
-
-    /**
-     * @brief SetActiveFlag関数
-     * @param active_flg (active_flag)
-     */
-    public void SetActiveFlag(bool active_flg)
-    {
-        this.gameObject.SetActive(active_flg);
 
         return;
     }

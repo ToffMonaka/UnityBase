@@ -23,8 +23,10 @@ public abstract class StaticSubLayerScript : ToffMonaka.Lib.Scene.Script
     [SerializeField] private GameObject _coreNode = null;
 
     public new ToffMonaka.Lib.Scene.StaticSubLayerScriptCreateDesc createDesc{get; private set;} = null;
+    private int _openType = 0;
     private bool _openFlag = false;
     private bool _openedFlag = false;
+    private int _closeType = 0;
     private bool _closeFlag = false;
     private bool _closedFlag = true;
 
@@ -43,7 +45,7 @@ public abstract class StaticSubLayerScript : ToffMonaka.Lib.Scene.Script
      */
     protected override void _OnAwake2()
     {
-        this.SetActiveFlag(false);
+        this.gameObject.SetActive(false);
         this._coreNode.SetActive(false);
 
         return;
@@ -65,6 +67,19 @@ public abstract class StaticSubLayerScript : ToffMonaka.Lib.Scene.Script
     protected override int _OnCreate2()
     {
         return (0);
+    }
+
+    /**
+     * @brief SetCreateDesc関数
+     * @param create_desc (create_desc)
+     */
+    public override void SetCreateDesc(ToffMonaka.Lib.Scene.ScriptCreateDesc create_desc)
+    {
+	    this.createDesc = create_desc as ToffMonaka.Lib.Scene.StaticSubLayerScriptCreateDesc;
+
+        base.SetCreateDesc(this.createDesc);
+
+        return;
     }
 
     /**
@@ -124,31 +139,20 @@ public abstract class StaticSubLayerScript : ToffMonaka.Lib.Scene.Script
     }
 
     /**
-     * @brief SetCreateDesc関数
-     * @param create_desc (create_desc)
-     */
-    public override void SetCreateDesc(ToffMonaka.Lib.Scene.ScriptCreateDesc create_desc)
-    {
-	    this.createDesc = create_desc as ToffMonaka.Lib.Scene.StaticSubLayerScriptCreateDesc;
-
-        base.SetCreateDesc(this.createDesc);
-
-        return;
-    }
-
-    /**
      * @brief Open関数
+     * @param open_type (open_type)
      */
-    public void Open()
+    public void Open(int open_type)
     {
         this._coreNode.SetActive(true);
 
-        this._OnOpen();
-
+        this._openType = open_type;
         this._openFlag = true;
         this._openedFlag = false;
         this._closeFlag = false;
         this._closedFlag = true;
+
+        this._OnOpen();
 
         return;
     }
@@ -186,15 +190,17 @@ public abstract class StaticSubLayerScript : ToffMonaka.Lib.Scene.Script
 
     /**
      * @brief Close関数
+     * @param close_type (close_type)
      */
-    public void Close()
+    public void Close(int close_type)
     {
-        this._OnClose();
-
+        this._closeType = close_type;
         this._openFlag = false;
         this._openedFlag = true;
         this._closeFlag = true;
         this._closedFlag = false;
+
+        this._OnClose();
 
         return;
     }
@@ -242,6 +248,15 @@ public abstract class StaticSubLayerScript : ToffMonaka.Lib.Scene.Script
     }
 
     /**
+     * @brief GetOpenType関数
+     * @return open_type (open_type)
+     */
+    public int GetOpenType()
+    {
+        return (this._openType);
+    }
+
+    /**
      * @brief GetOpenFlag関数
      * @return open_flg (open_flag)
      */
@@ -257,6 +272,15 @@ public abstract class StaticSubLayerScript : ToffMonaka.Lib.Scene.Script
     public bool GetOpenedFlag()
     {
         return (this._openedFlag);
+    }
+
+    /**
+     * @brief GetCloseType関数
+     * @return close_type (close_type)
+     */
+    public int GetCloseType()
+    {
+        return (this._closeType);
     }
 
     /**

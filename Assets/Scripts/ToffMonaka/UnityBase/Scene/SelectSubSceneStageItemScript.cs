@@ -14,8 +14,8 @@ namespace ToffMonaka.UnityBase.Scene {
  */
 public class SelectSubSceneStageItemScript : MonoBehaviour
 {
-    [SerializeField] private TextMeshProUGUI _nameText = null;
-    [SerializeField] private AudioSource _clickAudioSource = null;
+    [SerializeField] private TextMeshProUGUI _text = null;
+    [SerializeField] private AudioSource _audioSource = null;
 
     private ToffMonaka.UnityBase.Scene.SelectSubSceneScript _selectSubSceneScript = null;
     private int _index = 0;
@@ -30,7 +30,7 @@ public class SelectSubSceneStageItemScript : MonoBehaviour
     {
         this._selectSubSceneScript = select_sub_scene_script;
         this._index = index;
-        this._nameText.SetText(name);
+        this._text.SetText(name);
 
         return;
     }
@@ -40,11 +40,11 @@ public class SelectSubSceneStageItemScript : MonoBehaviour
      */
     public void OnPointerClickEvent()
     {
-        AudioSource.PlayClipAtPoint(this._clickAudioSource.clip, this._selectSubSceneScript.GetHolder().GetSceneScript().GetMainCamera().gameObject.transform.position);
+        this._audioSource.PlayOneShot(this._audioSource.clip);
 
         this._selectSubSceneScript.SetStageItemSelectIndex(this._index);
 
-        this._selectSubSceneScript.Close();
+        this._selectSubSceneScript.Close(1);
 
         return;
     }

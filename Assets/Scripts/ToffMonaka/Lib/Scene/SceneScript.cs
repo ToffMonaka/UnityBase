@@ -42,7 +42,7 @@ public abstract class SceneScript : ToffMonaka.Lib.Scene.Script
      */
     protected override void _OnAwake2()
     {
-        this.SetActiveFlag(true);
+        this.gameObject.SetActive(true);
 
         return;
     }
@@ -69,6 +69,19 @@ public abstract class SceneScript : ToffMonaka.Lib.Scene.Script
     protected override int _OnCreate2()
     {
         return (0);
+    }
+
+    /**
+     * @brief SetCreateDesc関数
+     * @param create_desc (create_desc)
+     */
+    public override void SetCreateDesc(ToffMonaka.Lib.Scene.ScriptCreateDesc create_desc)
+    {
+	    this.createDesc = create_desc as ToffMonaka.Lib.Scene.SceneScriptCreateDesc;
+
+        base.SetCreateDesc(this.createDesc);
+
+        return;
     }
 
     /**
@@ -120,19 +133,6 @@ public abstract class SceneScript : ToffMonaka.Lib.Scene.Script
     }
 
     /**
-     * @brief SetCreateDesc関数
-     * @param create_desc (create_desc)
-     */
-    public override void SetCreateDesc(ToffMonaka.Lib.Scene.ScriptCreateDesc create_desc)
-    {
-	    this.createDesc = create_desc as ToffMonaka.Lib.Scene.SceneScriptCreateDesc;
-
-        base.SetCreateDesc(this.createDesc);
-
-        return;
-    }
-
-    /**
      * @brief ChangeScene関数
      * @param name (name)
      * @return scene_script (scene_script)<br>
@@ -167,9 +167,7 @@ public abstract class SceneScript : ToffMonaka.Lib.Scene.Script
             return (null);
         }
 
-        this._subSceneNode = Addressables.InstantiateAsync(prefab_file_path).WaitForCompletion();
-
-        this._subSceneNode.transform.parent = this.gameObject.transform;
+        this._subSceneNode = ToffMonaka.Lib.Scene.Util.GetNode(prefab_file_path, this.gameObject);
 
         return (this._subSceneNode.GetComponent<ToffMonaka.Lib.Scene.SubSceneScript>());
     }

@@ -59,6 +59,19 @@ public class MenuButtonSubLayerScript : ToffMonaka.Lib.Scene.StaticSubLayerScrip
     }
 
     /**
+     * @brief SetCreateDesc関数
+     * @param create_desc (create_desc)
+     */
+    public override void SetCreateDesc(ToffMonaka.Lib.Scene.ScriptCreateDesc create_desc)
+    {
+	    this.createDesc = create_desc as ToffMonaka.UnityBase.Scene.MenuButtonSubLayerCreateDesc;
+
+        base.SetCreateDesc(this.createDesc);
+
+        return;
+    }
+
+    /**
      * @brief _OnActive関数
      */
     protected override void _OnActive()
@@ -83,23 +96,19 @@ public class MenuButtonSubLayerScript : ToffMonaka.Lib.Scene.StaticSubLayerScrip
     }
 
     /**
-     * @brief SetCreateDesc関数
-     * @param create_desc (create_desc)
-     */
-    public override void SetCreateDesc(ToffMonaka.Lib.Scene.ScriptCreateDesc create_desc)
-    {
-	    this.createDesc = create_desc as ToffMonaka.UnityBase.Scene.MenuButtonSubLayerCreateDesc;
-
-        base.SetCreateDesc(this.createDesc);
-
-        return;
-    }
-
-    /**
      * @brief _OnOpen関数
      */
     protected override void _OnOpen()
     {
+		switch (this.GetOpenType()) {
+		case 1: {
+			break;
+		}
+		default: {
+			break;
+		}
+		}
+
         return;
     }
 
@@ -108,7 +117,18 @@ public class MenuButtonSubLayerScript : ToffMonaka.Lib.Scene.StaticSubLayerScrip
      */
     protected override void _OnUpdateOpen()
     {
-        this.CompleteOpen();
+		switch (this.GetOpenType()) {
+		case 1: {
+            this.CompleteOpen();
+
+			break;
+		}
+		default: {
+            this.CompleteOpen();
+
+			break;
+		}
+		}
 
         return;
     }
@@ -118,6 +138,15 @@ public class MenuButtonSubLayerScript : ToffMonaka.Lib.Scene.StaticSubLayerScrip
      */
     protected override void _OnClose()
     {
+		switch (this.GetCloseType()) {
+		case 1: {
+			break;
+		}
+		default: {
+			break;
+		}
+		}
+
         return;
     }
 
@@ -126,7 +155,18 @@ public class MenuButtonSubLayerScript : ToffMonaka.Lib.Scene.StaticSubLayerScrip
      */
     protected override void _OnUpdateClose()
     {
-        this.CompleteClose();
+		switch (this.GetCloseType()) {
+		case 1: {
+            this.CompleteClose();
+
+			break;
+		}
+		default: {
+            this.CompleteClose();
+
+			break;
+		}
+		}
 
         return;
     }

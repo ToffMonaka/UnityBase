@@ -33,7 +33,6 @@ public static class Util
             SUB_SCENE,
             STATIC_SUB_LAYER,
             DYNAMIC_SUB_LAYER,
-		    USER,
 		    COUNT
         }
         public const int SCRIPT_TYPE_COUNT = (int)ToffMonaka.Lib.Constant.Util.SCENE.SCRIPT_TYPE.COUNT;

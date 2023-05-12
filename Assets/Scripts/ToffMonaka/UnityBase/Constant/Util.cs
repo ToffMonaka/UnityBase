@@ -33,7 +33,8 @@ public static class Util
     {
         public enum SCRIPT_INDEX : int
         {
-            MAIN_SCENE = 0,
+            NONE = -1,
+            MAIN_SCENE,
             INIT_SUB_SCENE,
             TITLE_SUB_SCENE,
             SELECT_SUB_SCENE,
