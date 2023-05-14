@@ -4,6 +4,9 @@
  */
 
 
+using UnityEngine;
+
+
 namespace ToffMonaka.Lib.Graphic {
 /**
  * @brief Utilクラス
@@ -27,6 +30,10 @@ public static class Util
      */
     public static void SetManager(ToffMonaka.Lib.Graphic.Manager manager)
     {
+        if (ToffMonaka.Lib.Graphic.Util._manager != null) {
+            ToffMonaka.Lib.Graphic.Util._manager.Init();
+        }
+
         ToffMonaka.Lib.Graphic.Util._manager = manager;
 
         return;

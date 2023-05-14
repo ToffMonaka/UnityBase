@@ -17,13 +17,13 @@ public static class Util
     private static ToffMonaka.Lib.Scene.Manager _manager = null;
 
     /**
-     * @brief GetNode関数
+     * @brief GetPrefabNode関数
      * @param prefab_file_path (prefab_file_path)
      * @param parent_node (parent_node)
-     * @return node (node)<br>
+     * @return prefab_node (node)<br>
      * null=失敗
      */
-    public static GameObject GetNode(string prefab_file_path, GameObject parent_node)
+    public static GameObject GetPrefabNode(string prefab_file_path, GameObject parent_node)
     {
         if (prefab_file_path.Length <= 0) {
             return (null);
@@ -41,27 +41,20 @@ public static class Util
     }
 
     /**
-     * @brief GetScript関数
-     * @param prefab_file_path (prefab_file_path)
-     * @param parent_node (parent_node)
-     * @return script (script)<br>
-     * null=失敗
+     * @brief ReleasePrefabNode関数
+     * @param prefab_node (prefab_node)
      */
-    public static T GetScript<T>(string prefab_file_path, GameObject parent_node)
+    public static void ReleasePrefabNode(ref GameObject prefab_node)
     {
-        if (prefab_file_path.Length <= 0) {
-            return (default(T));
+        if (prefab_node == null) {
+            return;
         }
 
-        var node = Addressables.InstantiateAsync(prefab_file_path).WaitForCompletion();
+        Addressables.ReleaseInstance(prefab_node);
 
-        if (node == null) {
-            return (default(T));
-        }
+        prefab_node = null;
 
-        node.transform.parent = parent_node.transform;
-
-        return (node.GetComponent<T>());
+        return;
     }
 
     /**
@@ -79,6 +72,10 @@ public static class Util
      */
     public static void SetManager(ToffMonaka.Lib.Scene.Manager manager)
     {
+        if (ToffMonaka.Lib.Scene.Util._manager != null) {
+            ToffMonaka.Lib.Scene.Util._manager.Init();
+        }
+
         ToffMonaka.Lib.Scene.Util._manager = manager;
 
         return;

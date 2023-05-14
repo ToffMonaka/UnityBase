@@ -4,6 +4,9 @@
  */
 
 
+using UnityEngine;
+
+
 namespace ToffMonaka.Lib.Sound {
 /**
  * @brief Utilクラス
@@ -27,6 +30,10 @@ public static class Util
      */
     public static void SetManager(ToffMonaka.Lib.Sound.Manager manager)
     {
+        if (ToffMonaka.Lib.Sound.Util._manager != null) {
+            ToffMonaka.Lib.Sound.Util._manager.Init();
+        }
+
         ToffMonaka.Lib.Sound.Util._manager = manager;
 
         return;

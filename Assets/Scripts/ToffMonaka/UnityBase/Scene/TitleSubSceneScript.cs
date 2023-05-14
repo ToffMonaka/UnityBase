@@ -67,7 +67,7 @@ public class TitleSubSceneScript : ToffMonaka.Lib.Scene.SubSceneScript
     {
         var canvas_node = this.GetCoreNode().transform.Find("Canvas").gameObject;
 
-        canvas_node.GetComponent<Canvas>().worldCamera = this.GetHolder().GetSceneScript().GetMainCamera();
+        canvas_node.GetComponent<Canvas>().worldCamera = this.GetManager().GetSceneScript().GetMainCamera();
 
         this._companyNameText.SetText(ToffMonaka.UnityBase.Constant.Util.COMPANY_NAME);
         this._versionNameText.SetText("Version " + ToffMonaka.UnityBase.Constant.Util.VERSION_NAME);
@@ -201,13 +201,13 @@ public class TitleSubSceneScript : ToffMonaka.Lib.Scene.SubSceneScript
             if (!this._openCloseFadeSequence.IsActive()) {
                 this.CompleteClose();
 
-                var sub_scene_script = this.GetHolder().GetSceneScript().ChangeSubScene(ToffMonaka.UnityBase.Constant.Util.FILE_PATH.SELECT_SUB_SCENE_PREFAB) as ToffMonaka.UnityBase.Scene.SelectSubSceneScript;
-                var sub_scene_script_create_desc = new ToffMonaka.UnityBase.Scene.SelectSubSceneScriptCreateDesc();
+                {// SelectSubScene Create
+                    var script = this.GetManager().GetSceneScript().ChangeSubScene(ToffMonaka.UnityBase.Constant.Util.FILE_PATH.SELECT_SUB_SCENE_PREFAB) as ToffMonaka.UnityBase.Scene.SelectSubSceneScript;
+                    var script_create_desc = new ToffMonaka.UnityBase.Scene.SelectSubSceneScriptCreateDesc();
 
-                sub_scene_script_create_desc.holder = this.GetHolder();
-
-                sub_scene_script.Create(sub_scene_script_create_desc);
-                sub_scene_script.Open(1);
+                    script.Create(script_create_desc);
+                    script.Open(1);
+                }
             }
 
 			break;

@@ -62,7 +62,7 @@ public class Test2DStageSubSceneScript : ToffMonaka.Lib.Scene.SubSceneScript
     {
         var canvas_node = this.GetCoreNode().transform.Find("Canvas").gameObject;
 
-        canvas_node.GetComponent<Canvas>().worldCamera = this.GetHolder().GetSceneScript().GetMainCamera();
+        canvas_node.GetComponent<Canvas>().worldCamera = this.GetManager().GetSceneScript().GetMainCamera();
 
         return (0);
     }

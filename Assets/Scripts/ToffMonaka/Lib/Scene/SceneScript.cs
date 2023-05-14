@@ -6,7 +6,6 @@
 
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.AddressableAssets;
 
 
 namespace ToffMonaka.Lib.Scene {
@@ -42,8 +41,6 @@ public abstract class SceneScript : ToffMonaka.Lib.Scene.Script
      */
     protected override void _OnAwake2()
     {
-        this.gameObject.SetActive(true);
-
         return;
     }
 
@@ -52,11 +49,7 @@ public abstract class SceneScript : ToffMonaka.Lib.Scene.Script
      */
     protected override void _OnRelease2()
     {
-        if (this._subSceneNode != null) {
-            Addressables.ReleaseInstance(this._subSceneNode);
-
-            this._subSceneNode = null;
-        }
+        ToffMonaka.Lib.Scene.Util.ReleasePrefabNode(ref this._subSceneNode);
 
         return;
     }
@@ -157,17 +150,13 @@ public abstract class SceneScript : ToffMonaka.Lib.Scene.Script
      */
     public ToffMonaka.Lib.Scene.SubSceneScript ChangeSubScene(string prefab_file_path)
     {
-        if (this._subSceneNode != null) {
-            Addressables.ReleaseInstance(this._subSceneNode);
-
-            this._subSceneNode = null;
-        }
+        ToffMonaka.Lib.Scene.Util.ReleasePrefabNode(ref this._subSceneNode);
 
         if (prefab_file_path.Length <= 0) {
             return (null);
         }
 
-        this._subSceneNode = ToffMonaka.Lib.Scene.Util.GetNode(prefab_file_path, this.gameObject);
+        this._subSceneNode = ToffMonaka.Lib.Scene.Util.GetPrefabNode(prefab_file_path, this.gameObject);
 
         return (this._subSceneNode.GetComponent<ToffMonaka.Lib.Scene.SubSceneScript>());
     }

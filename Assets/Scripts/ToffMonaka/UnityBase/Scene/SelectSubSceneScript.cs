@@ -64,7 +64,7 @@ public class SelectSubSceneScript : ToffMonaka.Lib.Scene.SubSceneScript
     {
         var canvas_node = this.GetCoreNode().transform.Find("Canvas").gameObject;
 
-        canvas_node.GetComponent<Canvas>().worldCamera = this.GetHolder().GetSceneScript().GetMainCamera();
+        canvas_node.GetComponent<Canvas>().worldCamera = this.GetManager().GetSceneScript().GetMainCamera();
 
         this._stageItemScriptArray[0].Set(this, 0, "Test2D");
         this._stageItemScriptArray[1].Set(this, 1, "Test3D");
@@ -196,24 +196,22 @@ public class SelectSubSceneScript : ToffMonaka.Lib.Scene.SubSceneScript
             if (!this._openCloseFadeSequence.IsActive()) {
                 this.CompleteClose();
 
+                // Test2DStageSubScene Create
                 if (this._stageItemSelectIndex == 0) {
-                    var sub_scene_script = this.GetHolder().GetSceneScript().ChangeSubScene(ToffMonaka.UnityBase.Constant.Util.FILE_PATH.TEST_2D_STAGE_SUB_SCENE_PREFAB) as ToffMonaka.UnityBase.Scene.Test2DStageSubSceneScript;
-                    var sub_scene_script_create_desc = new ToffMonaka.UnityBase.Scene.Test2DStageSubSceneScriptCreateDesc();
+                    var script = this.GetManager().GetSceneScript().ChangeSubScene(ToffMonaka.UnityBase.Constant.Util.FILE_PATH.TEST_2D_STAGE_SUB_SCENE_PREFAB) as ToffMonaka.UnityBase.Scene.Test2DStageSubSceneScript;
+                    var script_create_desc = new ToffMonaka.UnityBase.Scene.Test2DStageSubSceneScriptCreateDesc();
 
-                    sub_scene_script_create_desc.holder = this.GetHolder();
-
-                    sub_scene_script.Create(sub_scene_script_create_desc);
-                    sub_scene_script.Open(1);
+                    script.Create(script_create_desc);
+                    script.Open(1);
                 }
 
+                // Test3DStageSubScene Create
                 if (this._stageItemSelectIndex == 1) {
-                    var sub_scene_script = this.GetHolder().GetSceneScript().ChangeSubScene(ToffMonaka.UnityBase.Constant.Util.FILE_PATH.TEST_3D_STAGE_SUB_SCENE_PREFAB) as ToffMonaka.UnityBase.Scene.Test3DStageSubSceneScript;
-                    var sub_scene_script_create_desc = new ToffMonaka.UnityBase.Scene.Test3DStageSubSceneScriptCreateDesc();
+                    var script = this.GetManager().GetSceneScript().ChangeSubScene(ToffMonaka.UnityBase.Constant.Util.FILE_PATH.TEST_3D_STAGE_SUB_SCENE_PREFAB) as ToffMonaka.UnityBase.Scene.Test3DStageSubSceneScript;
+                    var script_create_desc = new ToffMonaka.UnityBase.Scene.Test3DStageSubSceneScriptCreateDesc();
 
-                    sub_scene_script_create_desc.holder = this.GetHolder();
-
-                    sub_scene_script.Create(sub_scene_script_create_desc);
-                    sub_scene_script.Open(1);
+                    script.Create(script_create_desc);
+                    script.Open(1);
                 }
             }
 

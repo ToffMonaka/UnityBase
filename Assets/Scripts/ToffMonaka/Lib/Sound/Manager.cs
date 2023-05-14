@@ -4,6 +4,9 @@
  */
 
 
+using UnityEngine;
+
+
 namespace ToffMonaka.Lib.Sound {
 /**
  * @brief ManagerCreateDescクラス
@@ -20,6 +23,32 @@ public class Manager
     public ToffMonaka.Lib.Sound.ManagerCreateDesc createDesc{get; private set;} = null;
 
     /**
+     * @brief コンストラクタ
+     */
+    public Manager()
+    {
+        return;
+    }
+
+    /**
+     * @brief _Release関数
+     */
+    private void _Release()
+    {
+        return;
+    }
+
+    /**
+     * @brief Init関数
+     */
+    public virtual void Init()
+    {
+        this._Release();
+
+        return;
+    }
+
+    /**
      * @brief Create関数
      * @param desc (desc)
      * @return result (result)<br>
@@ -27,13 +56,20 @@ public class Manager
      */
     public int Create(ToffMonaka.Lib.Sound.ManagerCreateDesc desc = null)
     {
+        this.Init();
+
         if (desc != null) {
             this.SetCreateDesc(desc);
+        }
+
+        {// This Create
         }
 
         int create_res = this._OnCreate();
 
         if (create_res < 0) {
+            this.Init();
+
             return (create_res);
         }
 

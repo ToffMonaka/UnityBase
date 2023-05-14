@@ -4,6 +4,9 @@
  */
 
 
+using UnityEngine;
+
+
 namespace ToffMonaka.Lib.Constant {
 /**
  * @brief Utilクラス

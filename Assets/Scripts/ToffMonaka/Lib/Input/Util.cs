@@ -4,6 +4,9 @@
  */
 
 
+using UnityEngine;
+
+
 namespace ToffMonaka.Lib.Input {
 /**
  * @brief Utilクラス
@@ -27,6 +30,10 @@ public static class Util
      */
     public static void SetManager(ToffMonaka.Lib.Input.Manager manager)
     {
+        if (ToffMonaka.Lib.Input.Util._manager != null) {
+            ToffMonaka.Lib.Input.Util._manager.Init();
+        }
+
         ToffMonaka.Lib.Input.Util._manager = manager;
 
         return;

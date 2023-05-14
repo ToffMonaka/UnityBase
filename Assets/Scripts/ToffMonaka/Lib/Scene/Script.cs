@@ -13,7 +13,6 @@ namespace ToffMonaka.Lib.Scene {
  */
 public class ScriptCreateDesc
 {
-    public ToffMonaka.Lib.Scene.ScriptHolder holder = null;
 }
 
 /**
@@ -22,9 +21,9 @@ public class ScriptCreateDesc
 public abstract class Script : MonoBehaviour
 {
     public ToffMonaka.Lib.Scene.ScriptCreateDesc createDesc{get; private set;} = null;
+    private ToffMonaka.Lib.Scene.Manager _manager = null;
     private int _scriptType = 0;
     private int _scriptIndex = 0;
-    private ToffMonaka.Lib.Scene.ScriptHolder _holder = null;
 
     /**
      * @brief Awake関数
@@ -61,7 +60,11 @@ public abstract class Script : MonoBehaviour
         this._OnRelease();
         this._OnRelease2();
 
-        this._SetHolder(null);
+        if (this._manager != null) {
+            this._manager.RemoveScript(this);
+
+            this._manager = null;
+        }
 
         return;
     }
@@ -94,7 +97,15 @@ public abstract class Script : MonoBehaviour
             this.SetCreateDesc(desc);
         }
 
-        this._SetHolder(this.createDesc.holder);
+        {// This Create
+            if (ToffMonaka.Lib.Scene.Util.GetManager() != null) {
+                if (ToffMonaka.Lib.Scene.Util.GetManager().AddScript(this) < 0) {
+                    return (-1);
+                }
+            } else {
+                return (-1);
+            }
+        }
 
         int create2_res = this._OnCreate2();
 
@@ -307,6 +318,26 @@ public abstract class Script : MonoBehaviour
     }
 
     /**
+     * @brief GetManager関数
+     * @return manager (manager)
+     */
+    public ToffMonaka.Lib.Scene.Manager GetManager()
+    {
+        return (this._manager);
+    }
+
+    /**
+     * @brief SetManager関数
+     * @param manager (manager)
+     */
+    public void SetManager(ToffMonaka.Lib.Scene.Manager manager)
+    {
+        this._manager = manager;
+
+        return;
+    }
+
+    /**
      * @brief GetScriptType関数
      * @return script_type (script_type)
      */
@@ -342,34 +373,6 @@ public abstract class Script : MonoBehaviour
     protected void _SetScriptIndex(int script_index)
     {
         this._scriptIndex = script_index;
-
-        return;
-    }
-
-    /**
-     * @brief GetHolder関数
-     * @return holder (holder)
-     */
-    public ToffMonaka.Lib.Scene.ScriptHolder GetHolder()
-    {
-        return (this._holder);
-    }
-
-    /**
-     * @brief _SetHolder関数
-     * @param holder (holder)
-     */
-    protected void _SetHolder(ToffMonaka.Lib.Scene.ScriptHolder holder)
-    {
-        if (this._holder != null) {
-            this._holder.Remove(this);
-        }
-
-        this._holder = holder;
-
-        if (this._holder != null) {
-            this._holder.Add(this);
-        }
 
         return;
     }

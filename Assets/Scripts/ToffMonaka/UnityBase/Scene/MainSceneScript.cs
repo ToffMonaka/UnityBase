@@ -37,12 +37,13 @@ public class MainSceneScript : ToffMonaka.Lib.Scene.SceneScript
      */
     protected override void _OnAwake()
     {
-        var create_desc = new ToffMonaka.UnityBase.Scene.MainSceneScriptCreateDesc();
+        this._CreateManager();
 
-        create_desc.holder = new ToffMonaka.Lib.Scene.ScriptHolder((int)ToffMonaka.UnityBase.Constant.Util.SCENE.SCRIPT_INDEX_COUNT);
+        {// MainScene Create
+            var create_desc = new ToffMonaka.UnityBase.Scene.MainSceneScriptCreateDesc();
 
-        this.SetCreateDesc(create_desc);
-        this.Create();
+            this.Create(create_desc);
+        }
 
         return;
     }
@@ -52,6 +53,8 @@ public class MainSceneScript : ToffMonaka.Lib.Scene.SceneScript
      */
     protected override void _OnRelease()
     {
+        this._ReleaseManager();
+
         return;
     }
 
@@ -83,13 +86,13 @@ public class MainSceneScript : ToffMonaka.Lib.Scene.SceneScript
      */
     protected override void _OnActive()
     {
-        var sub_scene_script = this.GetHolder().GetSceneScript().ChangeSubScene(ToffMonaka.UnityBase.Constant.Util.FILE_PATH.INIT_SUB_SCENE_PREFAB) as ToffMonaka.UnityBase.Scene.InitSubSceneScript;
-        var sub_scene_script_create_desc = new ToffMonaka.UnityBase.Scene.InitSubSceneScriptCreateDesc();
+        {// InitSubScene Create
+            var script = this.GetManager().GetSceneScript().ChangeSubScene(ToffMonaka.UnityBase.Constant.Util.FILE_PATH.INIT_SUB_SCENE_PREFAB) as ToffMonaka.UnityBase.Scene.InitSubSceneScript;
+            var script_create_desc = new ToffMonaka.UnityBase.Scene.InitSubSceneScriptCreateDesc();
 
-        sub_scene_script_create_desc.holder = this.GetHolder();
-
-        sub_scene_script.Create(sub_scene_script_create_desc);
-        sub_scene_script.Open(0);
+            script.Create(script_create_desc);
+            script.Open(0);
+        }
 
         return;
     }
@@ -107,6 +110,85 @@ public class MainSceneScript : ToffMonaka.Lib.Scene.SceneScript
      */
     protected override void _OnUpdate()
     {
+        return;
+    }
+
+    /**
+     * @brief _CreateManager関数
+     * @return result (result)<br>
+     * 0未満=失敗
+     */
+    private int _CreateManager()
+    {
+        this._ReleaseManager();
+
+        {// InputManager Create
+            var manager = new ToffMonaka.Lib.Input.Manager();
+            var manager_create_desc = new ToffMonaka.Lib.Input.ManagerCreateDesc();
+
+            if (manager.Create(manager_create_desc) < 0) {
+                this._ReleaseManager();
+
+                return (-1);
+            }
+
+            ToffMonaka.Lib.Input.Util.SetManager(manager);
+        }
+
+        {// GraphicManager Create
+            var manager = new ToffMonaka.Lib.Graphic.Manager();
+            var manager_create_desc = new ToffMonaka.Lib.Graphic.ManagerCreateDesc();
+
+            if (manager.Create(manager_create_desc) < 0) {
+                this._ReleaseManager();
+
+                return (-1);
+            }
+
+            ToffMonaka.Lib.Graphic.Util.SetManager(manager);
+        }
+
+        {// SoundManager Create
+            var manager = new ToffMonaka.Lib.Sound.Manager();
+            var manager_create_desc = new ToffMonaka.Lib.Sound.ManagerCreateDesc();
+
+            if (manager.Create(manager_create_desc) < 0) {
+                this._ReleaseManager();
+
+                return (-1);
+            }
+
+            ToffMonaka.Lib.Sound.Util.SetManager(manager);
+        }
+
+        {// SceneManager Create
+            var manager = new ToffMonaka.Lib.Scene.Manager();
+            var manager_create_desc = new ToffMonaka.Lib.Scene.ManagerCreateDesc();
+
+            manager_create_desc.scriptCount = (int)ToffMonaka.UnityBase.Constant.Util.SCENE.SCRIPT_INDEX_COUNT;
+
+            if (manager.Create(manager_create_desc) < 0) {
+                this._ReleaseManager();
+
+                return (-1);
+            }
+
+            ToffMonaka.Lib.Scene.Util.SetManager(manager);
+        }
+
+        return (0);
+    }
+
+    /**
+     * @brief _ReleaseManager関数
+     */
+    private void _ReleaseManager()
+    {
+        ToffMonaka.Lib.Scene.Util.SetManager(null);
+        ToffMonaka.Lib.Sound.Util.SetManager(null);
+        ToffMonaka.Lib.Graphic.Util.SetManager(null);
+        ToffMonaka.Lib.Input.Util.SetManager(null);
+
         return;
     }
 }

@@ -4,6 +4,9 @@
  */
 
 
+using UnityEngine;
+
+
 namespace ToffMonaka.UnityBase.Constant {
 /**
  * @brief Utilクラス
