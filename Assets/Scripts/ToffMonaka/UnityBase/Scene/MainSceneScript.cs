@@ -37,8 +37,6 @@ public class MainSceneScript : ToffMonaka.Lib.Scene.SceneScript
      */
     protected override void _OnAwake()
     {
-        this._CreateManager();
-
         {// MainScene Create
             var create_desc = new ToffMonaka.UnityBase.Scene.MainSceneScriptCreateDesc();
 
@@ -49,12 +47,10 @@ public class MainSceneScript : ToffMonaka.Lib.Scene.SceneScript
     }
 
     /**
-     * @brief _OnRelease関数
+     * @brief _OnDestroy関数
      */
-    protected override void _OnRelease()
+    protected override void _OnDestroy()
     {
-        this._ReleaseManager();
-
         return;
     }
 
@@ -87,7 +83,7 @@ public class MainSceneScript : ToffMonaka.Lib.Scene.SceneScript
     protected override void _OnActive()
     {
         {// InitSubScene Create
-            var script = this.GetManager().GetSceneScript().ChangeSubScene(ToffMonaka.UnityBase.Constant.Util.FILE_PATH.INIT_SUB_SCENE_PREFAB) as ToffMonaka.UnityBase.Scene.InitSubSceneScript;
+            var script = this.GetManager().ChangeSubScene(ToffMonaka.UnityBase.Constant.Util.FILE_PATH.INIT_SUB_SCENE_PREFAB) as ToffMonaka.UnityBase.Scene.InitSubSceneScript;
             var script_create_desc = new ToffMonaka.UnityBase.Scene.InitSubSceneScriptCreateDesc();
 
             script.Create(script_create_desc);
@@ -110,6 +106,26 @@ public class MainSceneScript : ToffMonaka.Lib.Scene.SceneScript
      */
     protected override void _OnUpdate()
     {
+        return;
+    }
+
+    /**
+     * @brief _OnStartApplication関数
+     */
+    protected override void _OnStartApplication()
+    {
+        this._CreateManager();
+
+        return;
+    }
+
+    /**
+     * @brief _OnEndApplication関数
+     */
+    protected override void _OnEndApplication()
+    {
+        this._ReleaseManager();
+
         return;
     }
 

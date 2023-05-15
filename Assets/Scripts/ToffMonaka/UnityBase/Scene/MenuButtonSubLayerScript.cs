@@ -41,9 +41,9 @@ public class MenuButtonSubLayerScript : ToffMonaka.Lib.Scene.StaticSubLayerScrip
     }
 
     /**
-     * @brief _OnRelease関数
+     * @brief _OnDestroy関数
      */
-    protected override void _OnRelease()
+    protected override void _OnDestroy()
     {
         return;
     }

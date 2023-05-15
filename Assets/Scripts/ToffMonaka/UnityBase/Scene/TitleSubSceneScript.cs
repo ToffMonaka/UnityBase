@@ -51,9 +51,9 @@ public class TitleSubSceneScript : ToffMonaka.Lib.Scene.SubSceneScript
     }
 
     /**
-     * @brief _OnRelease関数
+     * @brief _OnDestroy関数
      */
-    protected override void _OnRelease()
+    protected override void _OnDestroy()
     {
         return;
     }
@@ -202,7 +202,7 @@ public class TitleSubSceneScript : ToffMonaka.Lib.Scene.SubSceneScript
                 this.CompleteClose();
 
                 {// SelectSubScene Create
-                    var script = this.GetManager().GetSceneScript().ChangeSubScene(ToffMonaka.UnityBase.Constant.Util.FILE_PATH.SELECT_SUB_SCENE_PREFAB) as ToffMonaka.UnityBase.Scene.SelectSubSceneScript;
+                    var script = this.GetManager().ChangeSubScene(ToffMonaka.UnityBase.Constant.Util.FILE_PATH.SELECT_SUB_SCENE_PREFAB) as ToffMonaka.UnityBase.Scene.SelectSubSceneScript;
                     var script_create_desc = new ToffMonaka.UnityBase.Scene.SelectSubSceneScriptCreateDesc();
 
                     script.Create(script_create_desc);

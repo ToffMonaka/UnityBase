@@ -30,7 +30,86 @@ public abstract class Script : MonoBehaviour
      */
     private void Awake()
     {
-        this._OnAwake2();
+        this._Awake();
+
+        return;
+    }
+
+    /**
+     * @brief OnDestroy関数
+     */
+    private void OnDestroy()
+    {
+        this._Destroy();
+
+        return;
+    }
+
+    /**
+     * @brief OnEnable関数
+     */
+    private void OnEnable()
+    {
+        this._Active();
+
+        return;
+    }
+
+    /**
+     * @brief OnDisable関数
+     */
+    private void OnDisable()
+    {
+        this._Deactive();
+
+        return;
+    }
+
+    /**
+     * @brief Start関数
+     */
+    private void Start()
+    {
+        this._FirstUpdate();
+
+        return;
+    }
+
+    /**
+     * @brief Update関数
+     */
+    private void Update()
+    {
+        this._Update();
+
+        return;
+    }
+
+    /**
+     * @brief FixedUpdate関数
+     */
+    private void FixedUpdate()
+    {
+        this._FixedUpdate();
+
+        return;
+    }
+
+    /**
+     * @brief LateUpdate関数
+     */
+    private void LateUpdate()
+    {
+        this._LateUpdate();
+
+        return;
+    }
+
+    /**
+     * @brief _Awake関数
+     */
+    protected virtual void _Awake()
+    {
         this._OnAwake();
 
         return;
@@ -45,20 +124,11 @@ public abstract class Script : MonoBehaviour
     }
 
     /**
-     * @brief _OnAwake2関数
+     * @brief _Destroy関数
      */
-    protected virtual void _OnAwake2()
+    protected virtual void _Destroy()
     {
-        return;
-    }
-
-    /**
-     * @brief OnDestroy関数
-     */
-    private void OnDestroy()
-    {
-        this._OnRelease();
-        this._OnRelease2();
+        this._OnDestroy();
 
         if (this._manager != null) {
             this._manager.RemoveScript(this);
@@ -70,18 +140,20 @@ public abstract class Script : MonoBehaviour
     }
 
     /**
-     * @brief _OnRelease関数
+     * @brief _OnDestroy関数
      */
-    protected virtual void _OnRelease()
+    protected virtual void _OnDestroy()
     {
         return;
     }
 
     /**
-     * @brief _OnRelease2関数
+     * @brief DestroyByManager関数
      */
-    protected virtual void _OnRelease2()
+    public void DestroyByManager()
     {
+        this._Destroy();
+
         return;
     }
 
@@ -107,12 +179,6 @@ public abstract class Script : MonoBehaviour
             }
         }
 
-        int create2_res = this._OnCreate2();
-
-        if (create2_res < 0) {
-            return (create2_res);
-        }
-
         int create_res = this._OnCreate();
 
         if (create_res < 0) {
@@ -135,16 +201,6 @@ public abstract class Script : MonoBehaviour
     }
 
     /**
-     * @brief _OnCreate2関数
-     * @return result (result)<br>
-     * 0未満=失敗
-     */
-    protected virtual int _OnCreate2()
-    {
-        return (0);
-    }
-
-    /**
      * @brief SetCreateDesc関数
      * @param create_desc (create_desc)
      */
@@ -156,11 +212,10 @@ public abstract class Script : MonoBehaviour
     }
 
     /**
-     * @brief OnEnable関数
+     * @brief _Active関数
      */
-    private void OnEnable()
+    protected virtual void _Active()
     {
-        this._OnActive2();
         this._OnActive();
 
         return;
@@ -175,20 +230,11 @@ public abstract class Script : MonoBehaviour
     }
 
     /**
-     * @brief _OnActive2関数
+     * @brief _Deactive関数
      */
-    protected virtual void _OnActive2()
-    {
-        return;
-    }
-
-    /**
-     * @brief OnDisable関数
-     */
-    private void OnDisable()
+    protected virtual void _Deactive()
     {
         this._OnDeactive();
-        this._OnDeactive2();
 
         return;
     }
@@ -202,19 +248,10 @@ public abstract class Script : MonoBehaviour
     }
 
     /**
-     * @brief _OnDeactive2関数
+     * @brief _FirstUpdate関数
      */
-    protected virtual void _OnDeactive2()
+    protected virtual void _FirstUpdate()
     {
-        return;
-    }
-
-    /**
-     * @brief Start関数
-     */
-    private void Start()
-    {
-        this._OnFirstUpdate2();
         this._OnFirstUpdate();
 
         return;
@@ -229,19 +266,10 @@ public abstract class Script : MonoBehaviour
     }
 
     /**
-     * @brief _OnFirstUpdate2関数
+     * @brief _Update関数
      */
-    protected virtual void _OnFirstUpdate2()
+    protected virtual void _Update()
     {
-        return;
-    }
-
-    /**
-     * @brief Update関数
-     */
-    private void Update()
-    {
-        this._OnUpdate2();
         this._OnUpdate();
 
         return;
@@ -256,19 +284,10 @@ public abstract class Script : MonoBehaviour
     }
 
     /**
-     * @brief _OnUpdate2関数
+     * @brief _FixedUpdate関数
      */
-    protected virtual void _OnUpdate2()
+    protected virtual void _FixedUpdate()
     {
-        return;
-    }
-
-    /**
-     * @brief FixedUpdate関数
-     */
-    private void FixedUpdate()
-    {
-        this._OnFixedUpdate2();
         this._OnFixedUpdate();
 
         return;
@@ -283,19 +302,10 @@ public abstract class Script : MonoBehaviour
     }
 
     /**
-     * @brief _OnFixedUpdate2関数
+     * @brief _LateUpdate関数
      */
-    protected virtual void _OnFixedUpdate2()
+    protected virtual void _LateUpdate()
     {
-        return;
-    }
-
-    /**
-     * @brief LateUpdate関数
-     */
-    private void LateUpdate()
-    {
-        this._OnLateUpdate2();
         this._OnLateUpdate();
 
         return;
@@ -305,14 +315,6 @@ public abstract class Script : MonoBehaviour
      * @brief _OnLateUpdate関数
      */
     protected virtual void _OnLateUpdate()
-    {
-        return;
-    }
-
-    /**
-     * @brief _OnLateUpdate2関数
-     */
-    protected virtual void _OnLateUpdate2()
     {
         return;
     }

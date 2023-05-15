@@ -41,32 +41,26 @@ public abstract class DynamicSubLayerScript : ToffMonaka.Lib.Scene.Script
     }
 
     /**
-     * @brief _OnAwake2関数
+     * @brief _Awake関数
      */
-    protected override void _OnAwake2()
+    protected override void _Awake()
     {
         this.gameObject.SetActive(false);
         this._coreNode.SetActive(false);
 
+        base._Awake();
+
         return;
     }
 
     /**
-     * @brief _OnRelease2関数
+     * @brief _Destroy関数
      */
-    protected override void _OnRelease2()
+    protected override void _Destroy()
     {
-        return;
-    }
+        base._Destroy();
 
-    /**
-     * @brief _OnCreate2関数
-     * @return result (result)<br>
-     * 0未満=失敗
-     */
-    protected override int _OnCreate2()
-    {
-        return (0);
+        return;
     }
 
     /**
@@ -83,33 +77,39 @@ public abstract class DynamicSubLayerScript : ToffMonaka.Lib.Scene.Script
     }
 
     /**
-     * @brief _OnActive2関数
+     * @brief _Active関数
      */
-    protected override void _OnActive2()
+    protected override void _Active()
     {
+        base._Active();
+
         return;
     }
 
     /**
-     * @brief _OnDeactive2関数
+     * @brief _Deactive関数
      */
-    protected override void _OnDeactive2()
+    protected override void _Deactive()
     {
+        base._Deactive();
+
         return;
     }
 
     /**
-     * @brief _OnFirstUpdate2関数
+     * @brief _FirstUpdate関数
      */
-    protected override void _OnFirstUpdate2()
+    protected override void _FirstUpdate()
     {
+        base._FirstUpdate();
+
         return;
     }
 
     /**
-     * @brief _OnUpdate2関数
+     * @brief _Update関数
      */
-    protected override void _OnUpdate2()
+    protected override void _Update()
     {
         if (this._openFlag) {
             this._OnUpdateOpen();
@@ -119,22 +119,28 @@ public abstract class DynamicSubLayerScript : ToffMonaka.Lib.Scene.Script
             this._OnUpdateClose();
         }
 
+        base._Update();
+
         return;
     }
 
     /**
-     * @brief _OnFixedUpdate2関数
+     * @brief _FixedUpdate関数
      */
-    protected override void _OnFixedUpdate2()
+    protected override void _FixedUpdate()
     {
+        base._FixedUpdate();
+
         return;
     }
 
     /**
-     * @brief _OnLateUpdate2関数
+     * @brief _LateUpdate関数
      */
-    protected override void _OnLateUpdate2()
+    protected override void _LateUpdate()
     {
+        base._LateUpdate();
+
         return;
     }
 
@@ -177,6 +183,8 @@ public abstract class DynamicSubLayerScript : ToffMonaka.Lib.Scene.Script
      */
     protected virtual void _OnOpen()
     {
+        this.CompleteOpen();
+
         return;
     }
 
@@ -185,6 +193,8 @@ public abstract class DynamicSubLayerScript : ToffMonaka.Lib.Scene.Script
      */
     protected virtual void _OnUpdateOpen()
     {
+        this.CompleteOpen();
+
         return;
     }
 
@@ -227,6 +237,8 @@ public abstract class DynamicSubLayerScript : ToffMonaka.Lib.Scene.Script
      */
     protected virtual void _OnClose()
     {
+        this.CompleteClose();
+
         return;
     }
 
@@ -235,6 +247,8 @@ public abstract class DynamicSubLayerScript : ToffMonaka.Lib.Scene.Script
      */
     protected virtual void _OnUpdateClose()
     {
+        this.CompleteClose();
+
         return;
     }
 

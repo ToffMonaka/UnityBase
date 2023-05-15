@@ -5,7 +5,6 @@
 
 
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 
 namespace ToffMonaka.Lib.Scene {
@@ -24,7 +23,6 @@ public abstract class SceneScript : ToffMonaka.Lib.Scene.Script
     [SerializeField] private Camera _mainCamera = null;
 
     public new ToffMonaka.Lib.Scene.SceneScriptCreateDesc createDesc{get; private set;} = null;
-    private GameObject _subSceneNode = null;
 
     /**
      * @brief コンストラクタ
@@ -37,31 +35,27 @@ public abstract class SceneScript : ToffMonaka.Lib.Scene.Script
     }
 
     /**
-     * @brief _OnAwake2関数
+     * @brief _Awake関数
      */
-    protected override void _OnAwake2()
+    protected override void _Awake()
     {
-        return;
-    }
+        this._OnStartApplication();
 
-    /**
-     * @brief _OnRelease2関数
-     */
-    protected override void _OnRelease2()
-    {
-        ToffMonaka.Lib.Scene.Util.ReleasePrefabNode(ref this._subSceneNode);
+        base._Awake();
 
         return;
     }
 
     /**
-     * @brief _OnCreate2関数
-     * @return result (result)<br>
-     * 0未満=失敗
+     * @brief _Destroy関数
      */
-    protected override int _OnCreate2()
+    protected override void _Destroy()
     {
-        return (0);
+        base._Destroy();
+
+        this._OnEndApplication();
+
+        return;
     }
 
     /**
@@ -78,87 +72,79 @@ public abstract class SceneScript : ToffMonaka.Lib.Scene.Script
     }
 
     /**
-     * @brief _OnActive2関数
+     * @brief _Active関数
      */
-    protected override void _OnActive2()
+    protected override void _Active()
+    {
+        base._Active();
+
+        return;
+    }
+
+    /**
+     * @brief _Deactive関数
+     */
+    protected override void _Deactive()
+    {
+        base._Deactive();
+
+        return;
+    }
+
+    /**
+     * @brief _FirstUpdate関数
+     */
+    protected override void _FirstUpdate()
+    {
+        base._FirstUpdate();
+
+        return;
+    }
+
+    /**
+     * @brief _Update関数
+     */
+    protected override void _Update()
+    {
+        base._Update();
+
+        return;
+    }
+
+    /**
+     * @brief _FixedUpdate関数
+     */
+    protected override void _FixedUpdate()
+    {
+        base._FixedUpdate();
+
+        return;
+    }
+
+    /**
+     * @brief _LateUpdate関数
+     */
+    protected override void _LateUpdate()
+    {
+        base._LateUpdate();
+
+        return;
+    }
+
+    /**
+     * @brief _OnStartApplication関数
+     */
+    protected virtual void _OnStartApplication()
     {
         return;
     }
 
     /**
-     * @brief _OnDeactive2関数
+     * @brief _OnEndApplication関数
      */
-    protected override void _OnDeactive2()
+    protected virtual void _OnEndApplication()
     {
         return;
-    }
-
-    /**
-     * @brief _OnFirstUpdate2関数
-     */
-    protected override void _OnFirstUpdate2()
-    {
-        return;
-    }
-
-    /**
-     * @brief _OnUpdate2関数
-     */
-    protected override void _OnUpdate2()
-    {
-        return;
-    }
-
-    /**
-     * @brief _OnFixedUpdate2関数
-     */
-    protected override void _OnFixedUpdate2()
-    {
-        return;
-    }
-
-    /**
-     * @brief _OnLateUpdate2関数
-     */
-    protected override void _OnLateUpdate2()
-    {
-        return;
-    }
-
-    /**
-     * @brief ChangeScene関数
-     * @param name (name)
-     * @return scene_script (scene_script)<br>
-     * null=失敗
-     */
-    public ToffMonaka.Lib.Scene.SceneScript ChangeScene(string name)
-    {
-        if (name.Length <= 0) {
-            return (null);
-        }
-
-        SceneManager.LoadScene(name);
-
-        return (this);
-    }
-
-    /**
-     * @brief ChangeSubScene関数
-     * @param prefab_file_path (prefab_file_path)
-     * @return sub_scene_script (sub_scene_script)<br>
-     * null=失敗
-     */
-    public ToffMonaka.Lib.Scene.SubSceneScript ChangeSubScene(string prefab_file_path)
-    {
-        ToffMonaka.Lib.Scene.Util.ReleasePrefabNode(ref this._subSceneNode);
-
-        if (prefab_file_path.Length <= 0) {
-            return (null);
-        }
-
-        this._subSceneNode = ToffMonaka.Lib.Scene.Util.GetPrefabNode(prefab_file_path, this.gameObject);
-
-        return (this._subSceneNode.GetComponent<ToffMonaka.Lib.Scene.SubSceneScript>());
     }
 
     /**
@@ -168,15 +154,6 @@ public abstract class SceneScript : ToffMonaka.Lib.Scene.Script
     public Camera GetMainCamera()
     {
         return (this._mainCamera);
-    }
-
-    /**
-     * @brief GetSubSceneNode関数
-     * @return sub_scene_node (sub_scene_node)
-     */
-    public GameObject GetSubSceneNode()
-    {
-        return (this._subSceneNode);
     }
 }
 }
