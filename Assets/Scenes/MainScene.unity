@@ -168,6 +168,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _mainCamera: {fileID: 519420031}
+  _bgmAudioClipArray:
+  - {fileID: 8300000, guid: 96100b418c223e941a548e43ddd1d9c7, type: 3}
+  - {fileID: 8300000, guid: dc53281f24abe3b4692adee5fe1b9c57, type: 3}
+  _seAudioClipArray:
+  - {fileID: 8300000, guid: af9a77d2190ad5a4ca5ff197ad45b650, type: 3}
+  - {fileID: 8300000, guid: 920bcf0188e87be45aad4e09c20eab04, type: 3}
+  - {fileID: 8300000, guid: 3693a61d6891de248a62ee830eae7d74, type: 3}
 --- !u!1 &464604843
 GameObject:
   m_ObjectHideFlags: 0

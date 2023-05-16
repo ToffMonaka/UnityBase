@@ -168,6 +168,9 @@ public class MainSceneScript : ToffMonaka.Lib.Scene.SceneScript
             var manager = new ToffMonaka.Lib.Sound.Manager();
             var manager_create_desc = new ToffMonaka.Lib.Sound.ManagerCreateDesc();
 
+            manager_create_desc.bgmAudioClipArray = this.GetBgmAudioClipArray();
+            manager_create_desc.seAudioClipArray = this.GetSeAudioClipArray();
+
             if (manager.Create(manager_create_desc) < 0) {
                 this._ReleaseManager();
 

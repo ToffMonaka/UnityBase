@@ -23,7 +23,7 @@ public class SelectSubSceneScriptCreateDesc : ToffMonaka.Lib.Scene.SubSceneScrip
 public class SelectSubSceneScript : ToffMonaka.Lib.Scene.SubSceneScript
 {
     [SerializeField] private Image _openCloseFadeImage = null;
-    [SerializeField] private ToffMonaka.UnityBase.Scene.SelectSubSceneStageItemScript[] _stageItemScriptArray = new ToffMonaka.UnityBase.Scene.SelectSubSceneStageItemScript[2];
+    [SerializeField] private ToffMonaka.UnityBase.Scene.SelectSubSceneStageItemScript[] _stageItemScriptArray = null;
 
     public new ToffMonaka.UnityBase.Scene.SelectSubSceneScriptCreateDesc createDesc{get; private set;} = null;
     private Sequence _openCloseFadeSequence = null;

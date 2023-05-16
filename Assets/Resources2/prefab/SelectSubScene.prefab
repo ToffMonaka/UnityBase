@@ -122,10 +122,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _coreNode: {fileID: 9143485639024815769}
+  _openCloseFadeImage: {fileID: 1117496808427389750}
   _stageItemScriptArray:
   - {fileID: 7102925586494359348}
   - {fileID: 6947454570178726727}
-  _openCloseFadeImage: {fileID: 1117496808427389750}
 --- !u!1 &5294265784579010669
 GameObject:
   m_ObjectHideFlags: 0

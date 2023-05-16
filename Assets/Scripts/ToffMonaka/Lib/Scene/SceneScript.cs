@@ -21,6 +21,8 @@ public class SceneScriptCreateDesc : ToffMonaka.Lib.Scene.ScriptCreateDesc
 public abstract class SceneScript : ToffMonaka.Lib.Scene.Script
 {
     [SerializeField] private Camera _mainCamera = null;
+    [SerializeField] private AudioClip[] _bgmAudioClipArray = null;
+    [SerializeField] private AudioClip[] _seAudioClipArray = null;
 
     public new ToffMonaka.Lib.Scene.SceneScriptCreateDesc createDesc{get; private set;} = null;
 
@@ -154,6 +156,24 @@ public abstract class SceneScript : ToffMonaka.Lib.Scene.Script
     public Camera GetMainCamera()
     {
         return (this._mainCamera);
+    }
+
+    /**
+     * @brief GetBgmAudioClipArray関数
+     * @return bgm_audio_clip_ary (bgm_audio_clip_array)
+     */
+    public AudioClip[] GetBgmAudioClipArray()
+    {
+        return (this._bgmAudioClipArray);
+    }
+
+    /**
+     * @brief GetSeAudioClipArray関数
+     * @return se_audio_clip_ary (se_audio_clip_array)
+     */
+    public AudioClip[] GetSeAudioClipArray()
+    {
+        return (this._seAudioClipArray);
     }
 }
 }

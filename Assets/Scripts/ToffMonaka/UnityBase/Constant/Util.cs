@@ -32,6 +32,37 @@ public static class Util
         public const string TEST_3D_STAGE_SUB_SCENE_PREFAB = "Assets/Resources2/prefab/Test3DStageSubScene.prefab";
     }
 
+    public static class INPUT
+    {
+    }
+
+    public static class GRAPHIC
+    {
+    }
+
+    public static class SOUND
+    {
+        public enum BGM_INDEX : int
+        {
+            NONE = -1,
+            TITLE,
+            SELECT,
+            MENU_BUTTON_SUB_LAYER,
+		    COUNT
+        }
+        public const int BGM_INDEX_COUNT = (int)ToffMonaka.UnityBase.Constant.Util.SOUND.BGM_INDEX.COUNT;
+
+        public enum SE_INDEX : int
+        {
+            NONE = -1,
+            OK,
+            OK2,
+            CANCEL,
+		    COUNT
+        }
+        public const int SE_INDEX_COUNT = (int)ToffMonaka.UnityBase.Constant.Util.SOUND.SE_INDEX.COUNT;
+    }
+
     public static class SCENE
     {
         public enum SCRIPT_INDEX : int
@@ -47,12 +78,12 @@ public static class Util
 		    COUNT
         }
         public const int SCRIPT_INDEX_COUNT = (int)ToffMonaka.UnityBase.Constant.Util.SCENE.SCRIPT_INDEX.COUNT;
-    }
 
-    public static class SCENE_NAME
-    {
-        public const string NONE = "";
-        public const string MAIN_SCENE = "MainScene";
+        public static class NAME
+        {
+            public const string NONE = "";
+            public const string MAIN = "MainScene";
+        }
     }
 }
 }

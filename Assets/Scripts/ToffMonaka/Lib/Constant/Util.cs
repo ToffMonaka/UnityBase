@@ -27,6 +27,18 @@ public static class Util
         public const string NONE = "";
     }
 
+    public static class INPUT
+    {
+    }
+
+    public static class GRAPHIC
+    {
+    }
+
+    public static class SOUND
+    {
+    }
+
     public static class SCENE
     {
         public enum SCRIPT_TYPE : int
