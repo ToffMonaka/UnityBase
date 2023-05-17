@@ -25,7 +25,6 @@ public class TitleSubSceneScript : ToffMonaka.Lib.Scene.SubSceneScript
 {
     [SerializeField] private Image _openCloseFadeImage = null;
     [SerializeField] private TextMeshProUGUI _startButtonText = null;
-    [SerializeField] private AudioSource _startButtonAudioSource = null;
     [SerializeField] private TextMeshProUGUI _companyNameText = null;
     [SerializeField] private TextMeshProUGUI _versionNameText = null;
 
@@ -93,6 +92,8 @@ public class TitleSubSceneScript : ToffMonaka.Lib.Scene.SubSceneScript
      */
     protected override void _OnActive()
     {
+        ToffMonaka.Lib.Sound.Util.GetManager().PlayBgm((int)ToffMonaka.UnityBase.Constant.Util.SOUND.BGM_INDEX.TITLE);
+
         this._startButtonText.DOFade(0.0f, 1.0f).SetLoops(-1, LoopType.Yoyo).SetEase(Ease.InQuart).SetDelay(1.0f).SetLink(this._startButtonText.gameObject);
 
         return;
@@ -227,7 +228,7 @@ public class TitleSubSceneScript : ToffMonaka.Lib.Scene.SubSceneScript
      */
     public void OnStartButtonPointerClickEvent()
     {
-        this._startButtonAudioSource.PlayOneShot(this._startButtonAudioSource.clip);
+        ToffMonaka.Lib.Sound.Util.GetManager().PlaySe((int)ToffMonaka.UnityBase.Constant.Util.SOUND.SE_INDEX.OK);
 
         this.Close(1);
 

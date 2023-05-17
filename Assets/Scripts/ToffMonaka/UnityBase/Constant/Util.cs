@@ -47,7 +47,6 @@ public static class Util
             NONE = -1,
             TITLE,
             SELECT,
-            MENU_BUTTON_SUB_LAYER,
 		    COUNT
         }
         public const int BGM_INDEX_COUNT = (int)ToffMonaka.UnityBase.Constant.Util.SOUND.BGM_INDEX.COUNT;

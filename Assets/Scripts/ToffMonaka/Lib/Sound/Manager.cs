@@ -5,6 +5,8 @@
 
 
 using UnityEngine;
+using System;
+using System.Collections.Generic;
 
 
 namespace ToffMonaka.Lib.Sound {
@@ -30,9 +32,11 @@ public class Manager
     private AudioClip[] _bgmAudioClipArray = null;
 	private float _bgmVolume = 1.0f;
 	private bool _bgmMuteFlag = false;
+    private AudioSource _bgmAudioSource = null;
     private AudioClip[] _seAudioClipArray = null;
 	private float _seVolume = 1.0f;
 	private bool _seMuteFlag = false;
+    private List<AudioSource> _seAudioSourceContainer = new List<AudioSource>();
 
     /**
      * @brief コンストラクタ
@@ -60,9 +64,11 @@ public class Manager
         this._bgmAudioClipArray = null;
 	    this._bgmVolume = 1.0f;
 	    this._bgmMuteFlag = false;
+        this._bgmAudioSource = null;
         this._seAudioClipArray = null;
 	    this._seVolume = 1.0f;
 	    this._seMuteFlag = false;
+        this._seAudioSourceContainer.Clear();
 
         return;
     }
@@ -85,9 +91,28 @@ public class Manager
             this._bgmAudioClipArray = (AudioClip[])this.createDesc.bgmAudioClipArray.Clone();
 	        this._bgmVolume = this.createDesc.bgmVolume;
 	        this._bgmMuteFlag = this.createDesc.bgmMuteFlag;
+
+            var bgm_node = new GameObject("Bgm");
+            var bgm_audio_src = bgm_node.AddComponent<AudioSource>();
+
+            bgm_audio_src.playOnAwake = false;
+            bgm_audio_src.loop = true;
+
+            this._bgmAudioSource = bgm_audio_src;
+
             this._seAudioClipArray = (AudioClip[])this.createDesc.seAudioClipArray.Clone();
 	        this._seVolume = this.createDesc.seVolume;
 	        this._seMuteFlag = this.createDesc.seMuteFlag;
+
+            for (int se_node_i = 0; se_node_i < 8; ++se_node_i) {
+                var se_node = new GameObject("Se" + ((se_node_i == 0) ? "" : (se_node_i + 1)));
+                var se_audio_src = se_node.AddComponent<AudioSource>();
+
+                se_audio_src.playOnAwake = false;
+                se_audio_src.loop = false;
+
+                this._seAudioSourceContainer.Add(se_audio_src);
+            }
         }
 
         int create_res = this._OnCreate();
@@ -128,6 +153,10 @@ public class Manager
      */
     public void PlayBgm(int bgm_index)
     {
+        this._bgmAudioSource.clip = this._bgmAudioClipArray[bgm_index];
+
+        this._bgmAudioSource.Play();
+
         return;
     }
 
@@ -136,6 +165,8 @@ public class Manager
      */
     public void StopBgm()
     {
+        this._bgmAudioSource.Stop();
+
         return;
     }
 
@@ -144,6 +175,8 @@ public class Manager
      */
     public void PauseBgm()
     {
+        this._bgmAudioSource.Pause();
+
         return;
     }
 
@@ -152,6 +185,8 @@ public class Manager
      */
     public void UnPauseBgm()
     {
+        this._bgmAudioSource.UnPause();
+
         return;
     }
 
@@ -201,6 +236,34 @@ public class Manager
      */
     public void PlaySe(int se_index)
     {
+        AudioSource se_audio_src = null;
+
+        foreach (var se_audio_src2 in this._seAudioSourceContainer) {
+            if (se_audio_src2.isPlaying) {
+                continue;
+            }
+
+            se_audio_src = se_audio_src2;
+
+            break;
+        }
+
+        if (se_audio_src == null) {
+            var se_node2 = new GameObject("Se" + (this._seAudioSourceContainer.Count + 1));
+            var se_audio_src2 = se_node2.AddComponent<AudioSource>();
+
+            se_audio_src2.playOnAwake = false;
+            se_audio_src2.loop = false;
+
+            this._seAudioSourceContainer.Add(se_audio_src2);
+
+            se_audio_src = se_audio_src2;
+        }
+
+        se_audio_src.clip = this._seAudioClipArray[se_index];
+
+        se_audio_src.Play();
+
         return;
     }
 
@@ -209,6 +272,10 @@ public class Manager
      */
     public void StopSe()
     {
+        foreach (var se_audio_src in this._seAudioSourceContainer) {
+            se_audio_src.Stop();
+        }
+
         return;
     }
 
@@ -217,6 +284,10 @@ public class Manager
      */
     public void PauseSe()
     {
+        foreach (var se_audio_src in this._seAudioSourceContainer) {
+            se_audio_src.Pause();
+        }
+
         return;
     }
 
@@ -225,6 +296,10 @@ public class Manager
      */
     public void UnPauseSe()
     {
+        foreach (var se_audio_src in this._seAudioSourceContainer) {
+            se_audio_src.UnPause();
+        }
+
         return;
     }
 
