@@ -1,31 +1,33 @@
 ﻿/**
  * @file
- * @brief Managerファイル
+ * @brief GraphicManagerファイル
  */
 
 
 using UnityEngine;
 
 
-namespace ToffMonaka.Lib.Sound {
+namespace ToffMonaka.Lib.Scene {
 /**
- * @brief ManagerCreateDescクラス
+ * @brief GraphicManagerCreateDescクラス
  */
-public class ManagerCreateDesc
+public class GraphicManagerCreateDesc
 {
+    public GameObject graphicNode = null;
 }
 
 /**
- * @brief Managerクラス
+ * @brief GraphicManagerクラス
  */
-public class Manager
+public class GraphicManager
 {
-    public ToffMonaka.Lib.Sound.ManagerCreateDesc createDesc{get; private set;} = null;
+    public ToffMonaka.Lib.Scene.GraphicManagerCreateDesc createDesc{get; private set;} = null;
+    private GameObject _graphicNode = null;
 
     /**
      * @brief コンストラクタ
      */
-    public Manager()
+    public GraphicManager()
     {
         return;
     }
@@ -45,6 +47,8 @@ public class Manager
     {
         this._Release();
 
+        this._graphicNode = null;
+
         return;
     }
 
@@ -54,7 +58,7 @@ public class Manager
      * @return result (result)<br>
      * 0未満=失敗
      */
-    public int Create(ToffMonaka.Lib.Sound.ManagerCreateDesc desc = null)
+    public int Create(ToffMonaka.Lib.Scene.GraphicManagerCreateDesc desc = null)
     {
         this.Init();
 
@@ -63,6 +67,7 @@ public class Manager
         }
 
         {// This Create
+            this._graphicNode= desc.graphicNode;
         }
 
         int create_res = this._OnCreate();
@@ -90,11 +95,20 @@ public class Manager
      * @brief SetCreateDesc関数
      * @param create_desc (create_desc)
      */
-    public virtual void SetCreateDesc(ToffMonaka.Lib.Sound.ManagerCreateDesc create_desc)
+    public virtual void SetCreateDesc(ToffMonaka.Lib.Scene.GraphicManagerCreateDesc create_desc)
     {
         this.createDesc = create_desc;
 
         return;
+    }
+
+    /**
+     * @brief GetGraphicNode関数
+     * @return graphic_node (graphic_node)
+     */
+    public GameObject GetGraphicNode()
+    {
+        return (this._graphicNode);
     }
 }
 }

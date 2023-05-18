@@ -90,7 +90,7 @@ public class SelectSubSceneScript : ToffMonaka.Lib.Scene.SubSceneScript
      */
     protected override void _OnActive()
     {
-        ToffMonaka.Lib.Sound.Util.GetManager().PlayBgm((int)ToffMonaka.UnityBase.Constant.Util.SOUND.BGM_INDEX.SELECT);
+        ToffMonaka.Lib.Scene.Util.GetSoundManager().PlayBgm((int)ToffMonaka.UnityBase.Constant.Util.SOUND.BGM_INDEX.SELECT);
 
         return;
     }

@@ -16,6 +16,7 @@ namespace ToffMonaka.Lib.Scene {
  */
 public class ManagerCreateDesc
 {
+    public GameObject sceneNode = null;
     public int scriptCount = 0;
 }
 
@@ -25,12 +26,13 @@ public class ManagerCreateDesc
 public class Manager
 {
     public ToffMonaka.Lib.Scene.ManagerCreateDesc createDesc{get; private set;} = null;
+    private GameObject _sceneNode = null;
+    private GameObject _subSceneNode = null;
     private List<ToffMonaka.Lib.Scene.Script>[] _scriptArray = null;
     private ToffMonaka.Lib.Scene.SceneScript _sceneScript = null;
     private ToffMonaka.Lib.Scene.SubSceneScript _subSceneScript = null;
     private ToffMonaka.Lib.Scene.StaticSubLayerScript[] _staticSubLayerScriptArray = null;
     private List<ToffMonaka.Lib.Scene.DynamicSubLayerScript>[]  _dynamicSubLayerScriptArray = null;
-    private GameObject _subSceneNode = null;
 
     /**
      * @brief コンストラクタ
@@ -45,6 +47,8 @@ public class Manager
      */
     private void _Release()
     {
+        ToffMonaka.Lib.Scene.Util.ReleasePrefabNode(ref this._subSceneNode);
+
         if (this._scriptArray != null) {
             foreach (var script_cont in this._scriptArray) {
                 var tmp_script_cont = new List<ToffMonaka.Lib.Scene.Script>(script_cont);
@@ -64,8 +68,6 @@ public class Manager
         this._staticSubLayerScriptArray = null;
         this._dynamicSubLayerScriptArray = null;
 
-        ToffMonaka.Lib.Scene.Util.ReleasePrefabNode(ref this._subSceneNode);
-
         return;
     }
 
@@ -75,6 +77,8 @@ public class Manager
     public virtual void Init()
     {
         this._Release();
+
+        this._sceneNode = null;
 
         return;
     }
@@ -94,6 +98,8 @@ public class Manager
         }
 
         {// This Create
+            this._sceneNode = desc.sceneNode;
+
             this._scriptArray = new List<ToffMonaka.Lib.Scene.Script>[this.createDesc.scriptCount];
 
             for (int script_i = 0; script_i < this._scriptArray.Length; ++script_i) {
@@ -138,6 +144,24 @@ public class Manager
         this.createDesc = create_desc;
 
         return;
+    }
+
+    /**
+     * @brief GetSceneNode関数
+     * @return scene_node (scene_node)
+     */
+    public GameObject GetSceneNode()
+    {
+        return (this._sceneNode);
+    }
+
+    /**
+     * @brief GetSubSceneNode関数
+     * @return sub_scene_node (sub_scene_node)
+     */
+    public GameObject GetSubSceneNode()
+    {
+        return (this._subSceneNode);
     }
 
     /**
@@ -323,7 +347,7 @@ public class Manager
 
         SceneManager.LoadScene(name);
 
-        return (this.GetSceneScript());
+        return (this._sceneNode.GetComponent<ToffMonaka.Lib.Scene.SceneScript>());
     }
 
     /**

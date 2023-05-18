@@ -15,6 +15,9 @@ namespace ToffMonaka.Lib.Scene {
 public static class Util
 {
     private static ToffMonaka.Lib.Scene.Manager _manager = null;
+    private static ToffMonaka.Lib.Scene.InputManager _inputManager = null;
+    private static ToffMonaka.Lib.Scene.GraphicManager _graphicManager = null;
+    private static ToffMonaka.Lib.Scene.SoundManager _soundManager = null;
 
     /**
      * @brief GetPrefabNode関数
@@ -77,6 +80,78 @@ public static class Util
         }
 
         ToffMonaka.Lib.Scene.Util._manager = manager;
+
+        return;
+    }
+
+    /**
+     * @brief GetInputManager関数
+     * @return input_manager (input_manager)
+     */
+    public static ToffMonaka.Lib.Scene.InputManager GetInputManager()
+    {
+        return (ToffMonaka.Lib.Scene.Util._inputManager);
+    }
+
+    /**
+     * @brief SetInputManager関数
+     * @param input_manager (input_manager)
+     */
+    public static void SetInputManager(ToffMonaka.Lib.Scene.InputManager input_manager)
+    {
+        if (ToffMonaka.Lib.Scene.Util._inputManager != null) {
+            ToffMonaka.Lib.Scene.Util._inputManager.Init();
+        }
+
+        ToffMonaka.Lib.Scene.Util._inputManager = input_manager;
+
+        return;
+    }
+
+    /**
+     * @brief GetGraphicManager関数
+     * @return graphic_manager (graphic_manager)
+     */
+    public static ToffMonaka.Lib.Scene.GraphicManager GetGraphicManager()
+    {
+        return (ToffMonaka.Lib.Scene.Util._graphicManager);
+    }
+
+    /**
+     * @brief SetGraphicManager関数
+     * @param graphic_manager (graphic_manager)
+     */
+    public static void SetGraphicManager(ToffMonaka.Lib.Scene.GraphicManager graphic_manager)
+    {
+        if (ToffMonaka.Lib.Scene.Util._graphicManager != null) {
+            ToffMonaka.Lib.Scene.Util._graphicManager.Init();
+        }
+
+        ToffMonaka.Lib.Scene.Util._graphicManager = graphic_manager;
+
+        return;
+    }
+
+    /**
+     * @brief GetSoundManager関数
+     * @return sound_manager (sound_manager)
+     */
+    public static ToffMonaka.Lib.Scene.SoundManager GetSoundManager()
+    {
+        return (ToffMonaka.Lib.Scene.Util._soundManager);
+    }
+
+    /**
+     * @brief SetSoundManager関数
+     * @param sound_manager (sound_manager)
+     */
+    public static void SetSoundManager(ToffMonaka.Lib.Scene.SoundManager sound_manager)
+    {
+        if (ToffMonaka.Lib.Scene.Util._soundManager != null) {
+            ToffMonaka.Lib.Scene.Util._soundManager.Init();
+        }
+
+        ToffMonaka.Lib.Scene.Util._soundManager = sound_manager;
 
         return;
     }

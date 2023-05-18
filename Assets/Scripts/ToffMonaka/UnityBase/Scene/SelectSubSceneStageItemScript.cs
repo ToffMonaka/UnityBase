@@ -39,7 +39,7 @@ public class SelectSubSceneStageItemScript : MonoBehaviour
      */
     public void OnPointerClickEvent()
     {
-        ToffMonaka.Lib.Sound.Util.GetManager().PlaySe((int)ToffMonaka.UnityBase.Constant.Util.SOUND.SE_INDEX.OK2);
+        ToffMonaka.Lib.Scene.Util.GetSoundManager().PlaySe((int)ToffMonaka.UnityBase.Constant.Util.SOUND.SE_INDEX.OK2);
 
         this._selectSubSceneScript.SetStageItemSelectIndex(this._index);
 

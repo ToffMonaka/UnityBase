@@ -21,8 +21,13 @@ public class SceneScriptCreateDesc : ToffMonaka.Lib.Scene.ScriptCreateDesc
 public abstract class SceneScript : ToffMonaka.Lib.Scene.Script
 {
     [SerializeField] private Camera _mainCamera = null;
-    [SerializeField] private AudioClip[] _bgmAudioClipArray = null;
-    [SerializeField] private AudioClip[] _seAudioClipArray = null;
+    [SerializeField] private GameObject _inputNode = null;
+    [SerializeField] private GameObject _graphicNode = null;
+    [SerializeField] private GameObject _soundNode = null;
+    [SerializeField] private GameObject _soundBgmNode = null;
+    [SerializeField] private AudioClip[] _soundBgmAudioClipArray = null;
+    [SerializeField] private GameObject _soundSeNode = null;
+    [SerializeField] private AudioClip[] _soundSeAudioClipArray = null;
 
     public new ToffMonaka.Lib.Scene.SceneScriptCreateDesc createDesc{get; private set;} = null;
 
@@ -159,21 +164,66 @@ public abstract class SceneScript : ToffMonaka.Lib.Scene.Script
     }
 
     /**
-     * @brief GetBgmAudioClipArray関数
-     * @return bgm_audio_clip_ary (bgm_audio_clip_array)
+     * @brief GetInputNode関数
+     * @return input_node (input_node)
      */
-    public AudioClip[] GetBgmAudioClipArray()
+    public GameObject GetInputNode()
     {
-        return (this._bgmAudioClipArray);
+        return (this._inputNode);
     }
 
     /**
-     * @brief GetSeAudioClipArray関数
-     * @return se_audio_clip_ary (se_audio_clip_array)
+     * @brief GetGraphicNode関数
+     * @return graphic_node (graphic_node)
      */
-    public AudioClip[] GetSeAudioClipArray()
+    public GameObject GetGraphicNode()
     {
-        return (this._seAudioClipArray);
+        return (this._graphicNode);
+    }
+
+    /**
+     * @brief GetSoundNode関数
+     * @return sound_node (sound_node)
+     */
+    public GameObject GetSoundNode()
+    {
+        return (this._soundNode);
+    }
+
+    /**
+     * @brief GetSoundBgmNode関数
+     * @return sound_bgm_node (sound_bgm_node)
+     */
+    public GameObject GetSoundBgmNode()
+    {
+        return (this._soundBgmNode);
+    }
+
+    /**
+     * @brief GetSoundBgmAudioClipArray関数
+     * @return sound_bgm_audio_clip_ary (sound_bgm_audio_clip_array)
+     */
+    public AudioClip[] GetSoundBgmAudioClipArray()
+    {
+        return (this._soundBgmAudioClipArray);
+    }
+
+    /**
+     * @brief GetSoundSeNode関数
+     * @return sound_se_node (sound_se_node)
+     */
+    public GameObject GetSoundSeNode()
+    {
+        return (this._soundSeNode);
+    }
+
+    /**
+     * @brief GetSoundSeAudioClipArray関数
+     * @return sound_se_audio_clip_ary (sound_se_audio_clip_array)
+     */
+    public AudioClip[] GetSoundSeAudioClipArray()
+    {
+        return (this._soundSeAudioClipArray);
     }
 }
 }
