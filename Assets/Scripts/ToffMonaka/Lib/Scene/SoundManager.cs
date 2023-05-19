@@ -34,15 +34,15 @@ public class SoundManager
     public ToffMonaka.Lib.Scene.SoundManagerCreateDesc createDesc{get; private set;} = null;
     private GameObject _soundNode = null;
     private GameObject _bgmNode = null;
+    private ToffMonaka.Lib.Scene.SoundBgmScript _bgmScript = null;
     private AudioClip[] _bgmAudioClipArray = null;
 	private float _bgmVolume = 1.0f;
 	private bool _bgmMuteFlag = false;
-    private AudioSource _bgmAudioSource = null;
     private GameObject _seNode = null;
+    private List<ToffMonaka.Lib.Scene.SoundSeScript> _seScriptContainer = new List<ToffMonaka.Lib.Scene.SoundSeScript>();
     private AudioClip[] _seAudioClipArray = null;
 	private float _seVolume = 1.0f;
 	private bool _seMuteFlag = false;
-    private List<AudioSource> _seAudioSourceContainer = new List<AudioSource>();
 
     /**
      * @brief コンストラクタ
@@ -69,15 +69,15 @@ public class SoundManager
 
         this._soundNode = null;
         this._bgmNode = null;
+        this._bgmScript = null;
         this._bgmAudioClipArray = null;
 	    this._bgmVolume = 1.0f;
 	    this._bgmMuteFlag = false;
-        this._bgmAudioSource = null;
         this._seNode = null;
+        this._seScriptContainer.Clear();
         this._seAudioClipArray = null;
 	    this._seVolume = 1.0f;
 	    this._seMuteFlag = false;
-        this._seAudioSourceContainer.Clear();
 
         return;
     }
@@ -99,24 +99,41 @@ public class SoundManager
         {// This Create
             this._soundNode= desc.soundNode;
 
+            this._bgmNode = desc.bgmNode;
+
+            var bgm_script = this._bgmNode.GetComponent<ToffMonaka.Lib.Scene.SoundBgmScript>();
+            var bgm_script_create_desc = new ToffMonaka.Lib.Scene.SoundBgmScriptCreateDesc();
+
+            bgm_script.Create(bgm_script_create_desc);
+
+            this._bgmScript = bgm_script;
+
             this._bgmAudioClipArray = (AudioClip[])this.createDesc.bgmAudioClipArray.Clone();
 	        this._bgmVolume = this.createDesc.bgmVolume;
 	        this._bgmMuteFlag = this.createDesc.bgmMuteFlag;
-            this._bgmNode = desc.bgmNode;
-            this._bgmAudioSource = this._bgmNode.GetComponent<AudioSource>();
+
+            this._seNode = desc.seNode;
+
+            for (int se_node_i = 0; se_node_i < 8; ++se_node_i) {
+                GameObject se_node = null;
+
+                if (se_node_i == 0) {
+                    se_node = this._seNode;
+                } else {
+                    se_node = GameObject.Instantiate(this._seNode, this._seNode.transform.parent);
+                }
+
+                var se_script = se_node.GetComponent<ToffMonaka.Lib.Scene.SoundSeScript>();
+                var se_script_create_desc = new ToffMonaka.Lib.Scene.SoundSeScriptCreateDesc();
+
+                se_script.Create(se_script_create_desc);
+
+                this._seScriptContainer.Add(se_script);
+            }
 
             this._seAudioClipArray = (AudioClip[])this.createDesc.seAudioClipArray.Clone();
 	        this._seVolume = this.createDesc.seVolume;
 	        this._seMuteFlag = this.createDesc.seMuteFlag;
-            this._seNode = desc.seNode;
-            this._seAudioSourceContainer.Add(this._seNode.GetComponent<AudioSource>());
-
-            for (int se_node_i = 1; se_node_i < 8; ++se_node_i) {
-                var se_node = GameObject.Instantiate(this._seNode, this._seNode.transform.parent);
-                var se_audio_src = se_node.GetComponent<AudioSource>();
-
-                this._seAudioSourceContainer.Add(se_audio_src);
-            }
         }
 
         int create_res = this._OnCreate();
@@ -166,9 +183,9 @@ public class SoundManager
      */
     public void PlayBgm(int bgm_index)
     {
-        this._bgmAudioSource.clip = this._bgmAudioClipArray[bgm_index];
-
-        this._bgmAudioSource.Play();
+        this._bgmScript.GetAudioSource().clip = this._bgmAudioClipArray[bgm_index];
+        this._bgmScript.gameObject.SetActive(true);
+        this._bgmScript.GetAudioSource().Play();
 
         return;
     }
@@ -178,7 +195,7 @@ public class SoundManager
      */
     public void StopBgm()
     {
-        this._bgmAudioSource.Stop();
+        this._bgmScript.GetAudioSource().Stop();
 
         return;
     }
@@ -188,7 +205,7 @@ public class SoundManager
      */
     public void PauseBgm()
     {
-        this._bgmAudioSource.Pause();
+        this._bgmScript.GetAudioSource().Pause();
 
         return;
     }
@@ -198,7 +215,7 @@ public class SoundManager
      */
     public void UnPauseBgm()
     {
-        this._bgmAudioSource.UnPause();
+        this._bgmScript.GetAudioSource().UnPause();
 
         return;
     }
@@ -249,30 +266,33 @@ public class SoundManager
      */
     public void PlaySe(int se_index)
     {
-        AudioSource se_audio_src = null;
+        ToffMonaka.Lib.Scene.SoundSeScript se_script = null;
 
-        foreach (var se_audio_src2 in this._seAudioSourceContainer) {
-            if (se_audio_src2.isPlaying) {
+        foreach (var se_script2 in this._seScriptContainer) {
+            if (se_script2.GetAudioSource().isPlaying) {
                 continue;
             }
 
-            se_audio_src = se_audio_src2;
+            se_script = se_script2;
 
             break;
         }
 
-        if (se_audio_src == null) {
+        if (se_script == null) {
             var se_node2 = GameObject.Instantiate(this._seNode, this._seNode.transform.parent);
-            var se_audio_src2 = se_node2.GetComponent<AudioSource>();
+            var se_script2 = se_node2.GetComponent<ToffMonaka.Lib.Scene.SoundSeScript>();
+            var se_script_create_desc2 = new ToffMonaka.Lib.Scene.SoundSeScriptCreateDesc();
 
-            this._seAudioSourceContainer.Add(se_audio_src2);
+            se_script2.Create(se_script_create_desc2);
 
-            se_audio_src = se_audio_src2;
+            this._seScriptContainer.Add(se_script2);
+
+            se_script = se_script2;
         }
 
-        se_audio_src.clip = this._seAudioClipArray[se_index];
-
-        se_audio_src.Play();
+        se_script.GetAudioSource().clip = this._seAudioClipArray[se_index];
+        se_script.gameObject.SetActive(true);
+        se_script.GetAudioSource().Play();
 
         return;
     }
@@ -282,8 +302,8 @@ public class SoundManager
      */
     public void StopSe()
     {
-        foreach (var se_audio_src in this._seAudioSourceContainer) {
-            se_audio_src.Stop();
+        foreach (var se_script in this._seScriptContainer) {
+            se_script.GetAudioSource().Stop();
         }
 
         return;
@@ -294,8 +314,8 @@ public class SoundManager
      */
     public void PauseSe()
     {
-        foreach (var se_audio_src in this._seAudioSourceContainer) {
-            se_audio_src.Pause();
+        foreach (var se_script in this._seScriptContainer) {
+            se_script.GetAudioSource().Pause();
         }
 
         return;
@@ -306,8 +326,8 @@ public class SoundManager
      */
     public void UnPauseSe()
     {
-        foreach (var se_audio_src in this._seAudioSourceContainer) {
-            se_audio_src.UnPause();
+        foreach (var se_script in this._seScriptContainer) {
+            se_script.GetAudioSource().UnPause();
         }
 
         return;

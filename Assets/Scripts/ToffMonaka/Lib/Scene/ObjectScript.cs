@@ -1,6 +1,6 @@
 ﻿/**
  * @file
- * @brief DynamicSubLayerScriptファイル
+ * @brief ObjectScriptファイル
  */
 
 
@@ -9,20 +9,20 @@ using UnityEngine;
 
 namespace ToffMonaka.Lib.Scene {
 /**
- * @brief DynamicSubLayerScriptCreateDescクラス
+ * @brief ObjectScriptCreateDescクラス
  */
-public class DynamicSubLayerScriptCreateDesc : ToffMonaka.Lib.Scene.ScriptCreateDesc
+public class ObjectScriptCreateDesc : ToffMonaka.Lib.Scene.ScriptCreateDesc
 {
 }
 
 /**
- * @brief DynamicSubLayerScriptクラス
+ * @brief ObjectScriptクラス
  */
-public abstract class DynamicSubLayerScript : ToffMonaka.Lib.Scene.Script
+public abstract class ObjectScript : ToffMonaka.Lib.Scene.Script
 {
     [SerializeField] private GameObject _coreNode = null;
 
-    public new ToffMonaka.Lib.Scene.DynamicSubLayerScriptCreateDesc createDesc{get; private set;} = null;
+    public new ToffMonaka.Lib.Scene.ObjectScriptCreateDesc createDesc{get; private set;} = null;
     private int _openType = 0;
     private bool _openFlag = false;
     private bool _openedFlag = false;
@@ -33,9 +33,9 @@ public abstract class DynamicSubLayerScript : ToffMonaka.Lib.Scene.Script
     /**
      * @brief コンストラクタ
      */
-    public DynamicSubLayerScript()
+    public ObjectScript()
     {
-        this._SetScriptType((int)ToffMonaka.Lib.Constant.Util.SCENE.SCRIPT_TYPE.DYNAMIC_SUB_LAYER);
+        this._SetScriptType((int)ToffMonaka.Lib.Constant.Util.SCENE.SCRIPT_TYPE.OBJECT);
 
         return;
     }
@@ -69,7 +69,7 @@ public abstract class DynamicSubLayerScript : ToffMonaka.Lib.Scene.Script
      */
     public override void SetCreateDesc(ToffMonaka.Lib.Scene.ScriptCreateDesc create_desc)
     {
-	    this.createDesc = create_desc as ToffMonaka.Lib.Scene.DynamicSubLayerScriptCreateDesc;
+	    this.createDesc = create_desc as ToffMonaka.Lib.Scene.ObjectScriptCreateDesc;
 
         base.SetCreateDesc(this.createDesc);
 

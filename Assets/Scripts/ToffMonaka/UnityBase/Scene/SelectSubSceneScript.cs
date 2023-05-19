@@ -64,7 +64,7 @@ public class SelectSubSceneScript : ToffMonaka.Lib.Scene.SubSceneScript
     {
         var canvas_node = this.GetCoreNode().transform.Find("Canvas").gameObject;
 
-        canvas_node.GetComponent<Canvas>().worldCamera = this.GetManager().GetSceneScript().GetMainCamera();
+        canvas_node.GetComponent<Canvas>().worldCamera = this.GetManager().GetMainSceneScript().GetMainCamera();
 
         this._stageItemScriptArray[0].Set(this, 0, "Test2D");
         this._stageItemScriptArray[1].Set(this, 1, "Test3D");

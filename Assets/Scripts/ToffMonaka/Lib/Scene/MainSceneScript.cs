@@ -1,6 +1,6 @@
 ﻿/**
  * @file
- * @brief SceneScriptファイル
+ * @brief MainSceneScriptファイル
  */
 
 
@@ -9,16 +9,16 @@ using UnityEngine;
 
 namespace ToffMonaka.Lib.Scene {
 /**
- * @brief SceneScriptCreateDescクラス
+ * @brief MainSceneScriptCreateDescクラス
  */
-public class SceneScriptCreateDesc : ToffMonaka.Lib.Scene.ScriptCreateDesc
+public class MainSceneScriptCreateDesc : ToffMonaka.Lib.Scene.ScriptCreateDesc
 {
 }
 
 /**
- * @brief SceneScriptクラス
+ * @brief MainSceneScriptクラス
  */
-public abstract class SceneScript : ToffMonaka.Lib.Scene.Script
+public abstract class MainSceneScript : ToffMonaka.Lib.Scene.Script
 {
     [SerializeField] private Camera _mainCamera = null;
     [SerializeField] private GameObject _inputNode = null;
@@ -29,14 +29,14 @@ public abstract class SceneScript : ToffMonaka.Lib.Scene.Script
     [SerializeField] private GameObject _soundSeNode = null;
     [SerializeField] private AudioClip[] _soundSeAudioClipArray = null;
 
-    public new ToffMonaka.Lib.Scene.SceneScriptCreateDesc createDesc{get; private set;} = null;
+    public new ToffMonaka.Lib.Scene.MainSceneScriptCreateDesc createDesc{get; private set;} = null;
 
     /**
      * @brief コンストラクタ
      */
-    public SceneScript()
+    public MainSceneScript()
     {
-        this._SetScriptType((int)ToffMonaka.Lib.Constant.Util.SCENE.SCRIPT_TYPE.SCENE);
+        this._SetScriptType((int)ToffMonaka.Lib.Constant.Util.SCENE.SCRIPT_TYPE.MAIN_SCENE);
 
         return;
     }
@@ -71,7 +71,7 @@ public abstract class SceneScript : ToffMonaka.Lib.Scene.Script
      */
     public override void SetCreateDesc(ToffMonaka.Lib.Scene.ScriptCreateDesc create_desc)
     {
-	    this.createDesc = create_desc as ToffMonaka.Lib.Scene.SceneScriptCreateDesc;
+	    this.createDesc = create_desc as ToffMonaka.Lib.Scene.MainSceneScriptCreateDesc;
 
         base.SetCreateDesc(this.createDesc);
 

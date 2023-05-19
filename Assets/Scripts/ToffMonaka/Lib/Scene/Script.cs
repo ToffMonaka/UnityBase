@@ -216,6 +216,10 @@ public abstract class Script : MonoBehaviour
      */
     protected virtual void _Active()
     {
+        if (this._manager == null) {
+            return;
+        }
+
         this._OnActive();
 
         return;
@@ -234,6 +238,10 @@ public abstract class Script : MonoBehaviour
      */
     protected virtual void _Deactive()
     {
+        if (this._manager == null) {
+            return;
+        }
+
         this._OnDeactive();
 
         return;

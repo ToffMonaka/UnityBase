@@ -66,8 +66,7 @@ public static class Util
     {
         public enum SCRIPT_INDEX : int
         {
-            NONE = -1,
-            MAIN_SCENE,
+            MAIN_SCENE = ToffMonaka.Lib.Constant.Util.SCENE.SCRIPT_INDEX.COUNT,
             INIT_SUB_SCENE,
             TITLE_SUB_SCENE,
             SELECT_SUB_SCENE,

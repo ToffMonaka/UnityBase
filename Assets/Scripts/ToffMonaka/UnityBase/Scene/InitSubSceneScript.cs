@@ -66,7 +66,7 @@ public class InitSubSceneScript : ToffMonaka.Lib.Scene.SubSceneScript
     {
         var canvas_node = this.GetCoreNode().transform.Find("Canvas").gameObject;
 
-        canvas_node.GetComponent<Canvas>().worldCamera = this.GetManager().GetSceneScript().GetMainCamera();
+        canvas_node.GetComponent<Canvas>().worldCamera = this.GetManager().GetMainSceneScript().GetMainCamera();
 
         this._waitMessageText.SetText("ちょっと待ってね。");
 

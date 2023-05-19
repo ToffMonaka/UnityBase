@@ -16,7 +16,7 @@ namespace ToffMonaka.Lib.Scene {
  */
 public class ManagerCreateDesc
 {
-    public GameObject sceneNode = null;
+    public GameObject mainSceneNode = null;
     public int scriptCount = 0;
 }
 
@@ -26,13 +26,13 @@ public class ManagerCreateDesc
 public class Manager
 {
     public ToffMonaka.Lib.Scene.ManagerCreateDesc createDesc{get; private set;} = null;
-    private GameObject _sceneNode = null;
+    private GameObject _mainSceneNode = null;
     private GameObject _subSceneNode = null;
     private List<ToffMonaka.Lib.Scene.Script>[] _scriptArray = null;
-    private ToffMonaka.Lib.Scene.SceneScript _sceneScript = null;
+    private ToffMonaka.Lib.Scene.MainSceneScript _mainSceneScript = null;
     private ToffMonaka.Lib.Scene.SubSceneScript _subSceneScript = null;
-    private ToffMonaka.Lib.Scene.StaticSubLayerScript[] _staticSubLayerScriptArray = null;
-    private List<ToffMonaka.Lib.Scene.DynamicSubLayerScript>[]  _dynamicSubLayerScriptArray = null;
+    private List<ToffMonaka.Lib.Scene.ObjectScript>[]  _objectScriptArray = null;
+    private List<ToffMonaka.Lib.Scene.SystemScript>[]  _systemScriptArray = null;
 
     /**
      * @brief コンストラクタ
@@ -63,10 +63,10 @@ public class Manager
             this._scriptArray = null;
         }
 
-        this._sceneScript = null;
+        this._mainSceneScript = null;
         this._subSceneScript = null;
-        this._staticSubLayerScriptArray = null;
-        this._dynamicSubLayerScriptArray = null;
+        this._objectScriptArray = null;
+        this._systemScriptArray = null;
 
         return;
     }
@@ -78,7 +78,7 @@ public class Manager
     {
         this._Release();
 
-        this._sceneNode = null;
+        this._mainSceneNode = null;
 
         return;
     }
@@ -98,7 +98,7 @@ public class Manager
         }
 
         {// This Create
-            this._sceneNode = desc.sceneNode;
+            this._mainSceneNode = desc.mainSceneNode;
 
             this._scriptArray = new List<ToffMonaka.Lib.Scene.Script>[this.createDesc.scriptCount];
 
@@ -106,11 +106,16 @@ public class Manager
                 this._scriptArray[script_i] = new List<ToffMonaka.Lib.Scene.Script>();
             }
 
-            this._staticSubLayerScriptArray = new ToffMonaka.Lib.Scene.StaticSubLayerScript[this.createDesc.scriptCount];
-            this._dynamicSubLayerScriptArray = new List<ToffMonaka.Lib.Scene.DynamicSubLayerScript>[this.createDesc.scriptCount];
+            this._objectScriptArray = new List<ToffMonaka.Lib.Scene.ObjectScript>[this.createDesc.scriptCount];
 
-            for (int script_i = 0; script_i < this._dynamicSubLayerScriptArray.Length; ++script_i) {
-                this._dynamicSubLayerScriptArray[script_i] = new List<ToffMonaka.Lib.Scene.DynamicSubLayerScript>();
+            for (int script_i = 0; script_i < this._objectScriptArray.Length; ++script_i) {
+                this._objectScriptArray[script_i] = new List<ToffMonaka.Lib.Scene.ObjectScript>();
+            }
+
+            this._systemScriptArray = new List<ToffMonaka.Lib.Scene.SystemScript>[this.createDesc.scriptCount];
+
+            for (int script_i = 0; script_i < this._systemScriptArray.Length; ++script_i) {
+                this._systemScriptArray[script_i] = new List<ToffMonaka.Lib.Scene.SystemScript>();
             }
         }
 
@@ -147,12 +152,12 @@ public class Manager
     }
 
     /**
-     * @brief GetSceneNode関数
-     * @return scene_node (scene_node)
+     * @brief GetMainSceneNode関数
+     * @return main_scene_node (main_scene_node)
      */
-    public GameObject GetSceneNode()
+    public GameObject GetMainSceneNode()
     {
-        return (this._sceneNode);
+        return (this._mainSceneNode);
     }
 
     /**
@@ -201,12 +206,12 @@ public class Manager
     }
 
     /**
-     * @brief GetSceneScript関数
-     * @return scene_script (scene_script)
+     * @brief GetMainSceneScript関数
+     * @return main_scene_script (main_scene_script)
      */
-    public ToffMonaka.Lib.Scene.SceneScript GetSceneScript()
+    public ToffMonaka.Lib.Scene.MainSceneScript GetMainSceneScript()
     {
-        return (this._sceneScript);
+        return (this._mainSceneScript);
     }
 
     /**
@@ -219,23 +224,23 @@ public class Manager
     }
 
     /**
-     * @brief GetStaticSubLayerScript関数
+     * @brief GetObjectScriptContainer関数
      * @param script_inex (script_inex)
-     * @return static_sub_layer_script (static_sub_layer_script)
+     * @return obj_script_cont (object_script_container)
      */
-    public ToffMonaka.Lib.Scene.StaticSubLayerScript GetStaticSubLayerScript(int script_inex)
+    public List<ToffMonaka.Lib.Scene.ObjectScript> GetObjectScriptContainer(int script_inex)
     {
-        return (this._staticSubLayerScriptArray[script_inex]);
+        return (this._objectScriptArray[script_inex]);
     }
 
     /**
-     * @brief GetDynamicSubLayerScriptContainer関数
+     * @brief GetSystemScriptContainer関数
      * @param script_inex (script_inex)
-     * @return dynamic_sub_layer_script_cont (dynamic_sub_layer_script_container)
+     * @return system_script_cont (system_script_container)
      */
-    public List<ToffMonaka.Lib.Scene.DynamicSubLayerScript> GetDynamicSubLayerScriptContainer(int script_inex)
+    public List<ToffMonaka.Lib.Scene.SystemScript> GetSystemScriptContainer(int script_inex)
     {
-        return (this._dynamicSubLayerScriptArray[script_inex]);
+        return (this._systemScriptArray[script_inex]);
     }
 
     /**
@@ -248,35 +253,36 @@ public class Manager
     {
         if ((script == null)
         || (script.GetManager() != null)
-        || (script.GetScriptIndex() < 0)
         || (script.GetScriptIndex() >= this._scriptArray.Length)) {
             return (-1);
         }
 
-        this._scriptArray[script.GetScriptIndex()].Add(script);
+        if (script.GetScriptIndex() >= 0) {
+            this._scriptArray[script.GetScriptIndex()].Add(script);
 
-		switch (script.GetScriptType()) {
-		case (int)ToffMonaka.Lib.Constant.Util.SCENE.SCRIPT_TYPE.SCENE: {
-            this._sceneScript = (ToffMonaka.Lib.Scene.SceneScript)script;
+		    switch (script.GetScriptType()) {
+		    case (int)ToffMonaka.Lib.Constant.Util.SCENE.SCRIPT_TYPE.MAIN_SCENE: {
+                this._mainSceneScript = (ToffMonaka.Lib.Scene.MainSceneScript)script;
 
-			break;
-		}
-		case (int)ToffMonaka.Lib.Constant.Util.SCENE.SCRIPT_TYPE.SUB_SCENE: {
-            this._subSceneScript = (ToffMonaka.Lib.Scene.SubSceneScript)script;
+			    break;
+		    }
+		    case (int)ToffMonaka.Lib.Constant.Util.SCENE.SCRIPT_TYPE.SUB_SCENE: {
+                this._subSceneScript = (ToffMonaka.Lib.Scene.SubSceneScript)script;
 
-			break;
-		}
-		case (int)ToffMonaka.Lib.Constant.Util.SCENE.SCRIPT_TYPE.STATIC_SUB_LAYER: {
-            this._staticSubLayerScriptArray[script.GetScriptIndex()] = (ToffMonaka.Lib.Scene.StaticSubLayerScript)script;
+			    break;
+		    }
+		    case (int)ToffMonaka.Lib.Constant.Util.SCENE.SCRIPT_TYPE.OBJECT: {
+                this._objectScriptArray[script.GetScriptIndex()].Add((ToffMonaka.Lib.Scene.ObjectScript)script);
 
-			break;
-		}
-		case (int)ToffMonaka.Lib.Constant.Util.SCENE.SCRIPT_TYPE.DYNAMIC_SUB_LAYER: {
-            this._dynamicSubLayerScriptArray[script.GetScriptIndex()].Add((ToffMonaka.Lib.Scene.DynamicSubLayerScript)script);
+			    break;
+		    }
+		    case (int)ToffMonaka.Lib.Constant.Util.SCENE.SCRIPT_TYPE.SYSTEM: {
+                this._systemScriptArray[script.GetScriptIndex()].Add((ToffMonaka.Lib.Scene.SystemScript)script);
 
-			break;
-		}
-		}
+			    break;
+		    }
+		    }
+        }
 
         script.SetManager(this);
 
@@ -291,41 +297,40 @@ public class Manager
     {
         if ((script == null)
         || (script.GetManager() == null)
-        || (script.GetScriptIndex() < 0)
         || (script.GetScriptIndex() >= this._scriptArray.Length)) {
             return;
         }
 
-        this._scriptArray[script.GetScriptIndex()].Remove(script);
+        if (script.GetScriptIndex() >= 0) {
+            this._scriptArray[script.GetScriptIndex()].Remove(script);
 
-		switch (script.GetScriptType()) {
-		case (int)ToffMonaka.Lib.Constant.Util.SCENE.SCRIPT_TYPE.SCENE: {
-            if (this._sceneScript == (ToffMonaka.Lib.Scene.SceneScript)script) {
-                this._sceneScript = null;
-            }
+		    switch (script.GetScriptType()) {
+		    case (int)ToffMonaka.Lib.Constant.Util.SCENE.SCRIPT_TYPE.MAIN_SCENE: {
+                if (this._mainSceneScript == (ToffMonaka.Lib.Scene.MainSceneScript)script) {
+                    this._mainSceneScript = null;
+                }
 
-			break;
-		}
-		case (int)ToffMonaka.Lib.Constant.Util.SCENE.SCRIPT_TYPE.SUB_SCENE: {
-            if (this._subSceneScript == (ToffMonaka.Lib.Scene.SubSceneScript)script) {
-                this._subSceneScript = null;
-            }
+			    break;
+		    }
+		    case (int)ToffMonaka.Lib.Constant.Util.SCENE.SCRIPT_TYPE.SUB_SCENE: {
+                if (this._subSceneScript == (ToffMonaka.Lib.Scene.SubSceneScript)script) {
+                    this._subSceneScript = null;
+                }
 
-			break;
-		}
-		case (int)ToffMonaka.Lib.Constant.Util.SCENE.SCRIPT_TYPE.STATIC_SUB_LAYER: {
-            if (this._staticSubLayerScriptArray[script.GetScriptIndex()] == (ToffMonaka.Lib.Scene.StaticSubLayerScript)script) {
-                this._staticSubLayerScriptArray[script.GetScriptIndex()] = null;
-            }
+			    break;
+		    }
+		    case (int)ToffMonaka.Lib.Constant.Util.SCENE.SCRIPT_TYPE.OBJECT: {
+                this._objectScriptArray[script.GetScriptIndex()].Remove((ToffMonaka.Lib.Scene.ObjectScript)script);
 
-			break;
-		}
-		case (int)ToffMonaka.Lib.Constant.Util.SCENE.SCRIPT_TYPE.DYNAMIC_SUB_LAYER: {
-            this._dynamicSubLayerScriptArray[script.GetScriptIndex()].Remove((ToffMonaka.Lib.Scene.DynamicSubLayerScript)script);
+			    break;
+		    }
+		    case (int)ToffMonaka.Lib.Constant.Util.SCENE.SCRIPT_TYPE.SYSTEM: {
+                this._systemScriptArray[script.GetScriptIndex()].Remove((ToffMonaka.Lib.Scene.SystemScript)script);
 
-			break;
-		}
-		}
+			    break;
+		    }
+		    }
+        }
 
         script.SetManager(null);
 
@@ -333,21 +338,21 @@ public class Manager
     }
 
     /**
-     * @brief ChangeScene関数
+     * @brief ChangeMainScene関数
      * @param name (name)
-     * @return scene_script (scene_script)<br>
+     * @return main_scene_script (main_scene_script)<br>
      * null=失敗
      */
-    public ToffMonaka.Lib.Scene.SceneScript ChangeScene(string name)
+    public ToffMonaka.Lib.Scene.MainSceneScript ChangeMainScene(string name)
     {
-        if ((this.GetSceneScript() == null)
+        if ((this._mainSceneNode == null)
         || (name.Length <= 0)) {
             return (null);
         }
 
         SceneManager.LoadScene(name);
 
-        return (this._sceneNode.GetComponent<ToffMonaka.Lib.Scene.SceneScript>());
+        return (this._mainSceneNode.GetComponent<ToffMonaka.Lib.Scene.MainSceneScript>());
     }
 
     /**
@@ -360,12 +365,12 @@ public class Manager
     {
         ToffMonaka.Lib.Scene.Util.ReleasePrefabNode(ref this._subSceneNode);
 
-        if ((this.GetSceneScript() == null)
+        if ((this._mainSceneNode == null)
         || (prefab_file_path.Length <= 0)) {
             return (null);
         }
 
-        this._subSceneNode = ToffMonaka.Lib.Scene.Util.GetPrefabNode(prefab_file_path, this.GetSceneScript().gameObject);
+        this._subSceneNode = ToffMonaka.Lib.Scene.Util.GetPrefabNode(prefab_file_path, this._mainSceneNode);
 
         return (this._subSceneNode.GetComponent<ToffMonaka.Lib.Scene.SubSceneScript>());
     }

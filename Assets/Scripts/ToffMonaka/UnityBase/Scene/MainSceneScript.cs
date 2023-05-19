@@ -11,14 +11,14 @@ namespace ToffMonaka.UnityBase.Scene {
 /**
  * @brief MainSceneScriptCreateDescクラス
  */
-public class MainSceneScriptCreateDesc : ToffMonaka.Lib.Scene.SceneScriptCreateDesc
+public class MainSceneScriptCreateDesc : ToffMonaka.Lib.Scene.MainSceneScriptCreateDesc
 {
 }
 
 /**
  * @brief MainSceneScriptクラス
  */
-public class MainSceneScript : ToffMonaka.Lib.Scene.SceneScript
+public class MainSceneScript : ToffMonaka.Lib.Scene.MainSceneScript
 {
     public new ToffMonaka.UnityBase.Scene.MainSceneScriptCreateDesc createDesc{get; private set;} = null;
 
@@ -181,7 +181,7 @@ public class MainSceneScript : ToffMonaka.Lib.Scene.SceneScript
             var manager = new ToffMonaka.Lib.Scene.Manager();
             var manager_create_desc = new ToffMonaka.Lib.Scene.ManagerCreateDesc();
 
-            manager_create_desc.sceneNode = this.gameObject;
+            manager_create_desc.mainSceneNode = this.gameObject;
             manager_create_desc.scriptCount = (int)ToffMonaka.UnityBase.Constant.Util.SCENE.SCRIPT_INDEX_COUNT;
 
             if (manager.Create(manager_create_desc) < 0) {

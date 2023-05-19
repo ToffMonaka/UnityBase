@@ -44,13 +44,22 @@ public static class Util
         public enum SCRIPT_TYPE : int
         {
             NONE = 0,
-            SCENE,
+            MAIN_SCENE,
             SUB_SCENE,
-            STATIC_SUB_LAYER,
-            DYNAMIC_SUB_LAYER,
+            OBJECT,
+            SYSTEM,
 		    COUNT
         }
         public const int SCRIPT_TYPE_COUNT = (int)ToffMonaka.Lib.Constant.Util.SCENE.SCRIPT_TYPE.COUNT;
+
+        public enum SCRIPT_INDEX : int
+        {
+            NONE = -1,
+            SOUND_BGM,
+            SOUND_SE,
+		    COUNT
+        }
+        public const int SCRIPT_INDEX_COUNT = (int)ToffMonaka.Lib.Constant.Util.SCENE.SCRIPT_INDEX.COUNT;
     }
 }
 }

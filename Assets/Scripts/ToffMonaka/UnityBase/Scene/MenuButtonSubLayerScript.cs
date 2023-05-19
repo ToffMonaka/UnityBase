@@ -11,14 +11,14 @@ namespace ToffMonaka.UnityBase.Scene {
 /**
  * @brief MenuButtonSubLayerCreateDescクラス
  */
-public class MenuButtonSubLayerCreateDesc : ToffMonaka.Lib.Scene.StaticSubLayerScriptCreateDesc
+public class MenuButtonSubLayerCreateDesc : ToffMonaka.Lib.Scene.ObjectScriptCreateDesc
 {
 }
 
 /**
  * @brief MenuButtonSubLayerScriptクラス
  */
-public class MenuButtonSubLayerScript : ToffMonaka.Lib.Scene.StaticSubLayerScript
+public class MenuButtonSubLayerScript : ToffMonaka.Lib.Scene.ObjectScript
 {
     public new ToffMonaka.UnityBase.Scene.MenuButtonSubLayerCreateDesc createDesc{get; private set;} = null;
 
