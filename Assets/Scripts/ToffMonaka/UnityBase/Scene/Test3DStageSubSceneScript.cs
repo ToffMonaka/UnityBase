@@ -60,7 +60,7 @@ public class Test3DStageSubSceneScript : ToffMonaka.Lib.Scene.SubSceneScript
      */
     protected override int _OnCreate()
     {
-        var canvas_node = this.GetCoreNode().transform.Find("Canvas").gameObject;
+        var canvas_node = this.transform.Find("Canvas").gameObject;
 
         canvas_node.GetComponent<Canvas>().worldCamera = this.GetManager().GetMainSceneScript().GetMainCamera();
 

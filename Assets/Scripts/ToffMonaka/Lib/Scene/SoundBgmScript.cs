@@ -95,7 +95,7 @@ public class SoundBgmScript : ToffMonaka.Lib.Scene.SystemScript
     protected override void _OnUpdate()
     {
         if (this._audioSource.isPlaying == false) {
-            this.gameObject.SetActive(false);
+            this.Close(0);
         }
 
         return;

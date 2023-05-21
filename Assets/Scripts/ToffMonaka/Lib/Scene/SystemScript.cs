@@ -37,8 +37,6 @@ public abstract class SystemScript : ToffMonaka.Lib.Scene.Script
      */
     protected override void _Awake()
     {
-        this.gameObject.SetActive(false);
-
         base._Awake();
 
         return;

@@ -105,6 +105,7 @@ public class SoundManager
             var bgm_script_create_desc = new ToffMonaka.Lib.Scene.SoundBgmScriptCreateDesc();
 
             bgm_script.Create(bgm_script_create_desc);
+            bgm_script.Open(0);
 
             this._bgmScript = bgm_script;
 
@@ -127,6 +128,7 @@ public class SoundManager
                 var se_script_create_desc = new ToffMonaka.Lib.Scene.SoundSeScriptCreateDesc();
 
                 se_script.Create(se_script_create_desc);
+                se_script.Open(0);
 
                 this._seScriptContainer.Add(se_script);
             }
@@ -183,8 +185,8 @@ public class SoundManager
      */
     public void PlayBgm(int bgm_index)
     {
+        this._bgmScript.Open(0);
         this._bgmScript.GetAudioSource().clip = this._bgmAudioClipArray[bgm_index];
-        this._bgmScript.gameObject.SetActive(true);
         this._bgmScript.GetAudioSource().Play();
 
         return;
@@ -290,8 +292,8 @@ public class SoundManager
             se_script = se_script2;
         }
 
+        se_script.Open(0);
         se_script.GetAudioSource().clip = this._seAudioClipArray[se_index];
-        se_script.gameObject.SetActive(true);
         se_script.GetAudioSource().Play();
 
         return;

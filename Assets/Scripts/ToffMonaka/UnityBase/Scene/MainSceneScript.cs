@@ -38,9 +38,11 @@ public class MainSceneScript : ToffMonaka.Lib.Scene.MainSceneScript
     protected override void _OnAwake()
     {
         {// MainScene Create
-            var create_desc = new ToffMonaka.UnityBase.Scene.MainSceneScriptCreateDesc();
+            var script = this;
+            var script_create_desc = new ToffMonaka.UnityBase.Scene.MainSceneScriptCreateDesc();
 
-            this.Create(create_desc);
+            script.Create(script_create_desc);
+            script.Open(0);
         }
 
         return;
