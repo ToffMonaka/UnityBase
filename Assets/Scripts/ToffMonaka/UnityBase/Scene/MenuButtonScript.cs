@@ -1,35 +1,33 @@
 ﻿/**
  * @file
- * @brief SoundBgmScriptファイル
+ * @brief MenuButtonScriptファイル
  */
 
 
 using UnityEngine;
 
 
-namespace ToffMonaka.Lib.Scene {
+namespace ToffMonaka.UnityBase.Scene {
 /**
- * @brief SoundBgmScriptCreateDescクラス
+ * @brief MenuButtonCreateDescクラス
  */
-public class SoundBgmScriptCreateDesc : ToffMonaka.Lib.Scene.ObjectScriptCreateDesc
+public class MenuButtonCreateDesc : ToffMonaka.Lib.Scene.ObjectScriptCreateDesc
 {
 }
 
 /**
- * @brief SoundBgmScriptクラス
+ * @brief MenuButtonScriptクラス
  */
-public class SoundBgmScript : ToffMonaka.Lib.Scene.ObjectScript
+public class MenuButtonScript : ToffMonaka.Lib.Scene.ObjectScript
 {
-    [SerializeField] private AudioSource _audioSource = null;
-
-    public new ToffMonaka.Lib.Scene.SoundBgmScriptCreateDesc createDesc{get; private set;} = null;
+    public new ToffMonaka.UnityBase.Scene.MenuButtonCreateDesc createDesc{get; private set;} = null;
 
     /**
      * @brief コンストラクタ
      */
-    public SoundBgmScript()
+    public MenuButtonScript()
     {
-        this._SetScriptIndex((int)ToffMonaka.Lib.Constant.Util.SCENE.SCRIPT_INDEX.SOUND_BGM);
+        this._SetScriptIndex((int)ToffMonaka.UnityBase.Constant.Util.SCENE.SCRIPT_INDEX.MENU_BUTTON);
 
         return;
     }
@@ -66,7 +64,7 @@ public class SoundBgmScript : ToffMonaka.Lib.Scene.ObjectScript
      */
     public override void SetCreateDesc(ToffMonaka.Lib.Scene.ScriptCreateDesc create_desc)
     {
-	    this.createDesc = create_desc as ToffMonaka.Lib.Scene.SoundBgmScriptCreateDesc;
+	    this.createDesc = create_desc as ToffMonaka.UnityBase.Scene.MenuButtonCreateDesc;
 
         base.SetCreateDesc(this.createDesc);
 
@@ -94,20 +92,47 @@ public class SoundBgmScript : ToffMonaka.Lib.Scene.ObjectScript
      */
     protected override void _OnUpdate()
     {
-        if (this._audioSource.isPlaying == false) {
-            this.Close(0);
-        }
+        return;
+    }
+
+    /**
+     * @brief _OnOpen関数
+     */
+    protected override void _OnOpen()
+    {
+        this.CompleteOpen();
 
         return;
     }
 
     /**
-     * @brief GetAudioSource関数
-     * @return audio_src (audio_source)
+     * @brief _OnUpdateOpen関数
      */
-    public AudioSource GetAudioSource()
+    protected override void _OnUpdateOpen()
     {
-        return (this._audioSource);
+        this.CompleteOpen();
+
+        return;
+    }
+
+    /**
+     * @brief _OnClose関数
+     */
+    protected override void _OnClose()
+    {
+        this.CompleteClose();
+
+        return;
+    }
+
+    /**
+     * @brief _OnUpdateClose関数
+     */
+    protected override void _OnUpdateClose()
+    {
+        this.CompleteClose();
+
+        return;
     }
 }
 }

@@ -11,14 +11,14 @@ namespace ToffMonaka.Lib.Scene {
 /**
  * @brief SoundSeScriptCreateDescクラス
  */
-public class SoundSeScriptCreateDesc : ToffMonaka.Lib.Scene.SystemScriptCreateDesc
+public class SoundSeScriptCreateDesc : ToffMonaka.Lib.Scene.ObjectScriptCreateDesc
 {
 }
 
 /**
  * @brief SoundSeScriptクラス
  */
-public class SoundSeScript : ToffMonaka.Lib.Scene.SystemScript
+public class SoundSeScript : ToffMonaka.Lib.Scene.ObjectScript
 {
     [SerializeField] private AudioSource _audioSource = null;
 

@@ -23,7 +23,7 @@ public class SelectSubSceneScriptCreateDesc : ToffMonaka.Lib.Scene.SubSceneScrip
 public class SelectSubSceneScript : ToffMonaka.Lib.Scene.SubSceneScript
 {
     [SerializeField] private Image _openCloseFadeImage = null;
-    [SerializeField] private ToffMonaka.UnityBase.Scene.SelectSubSceneStageItemScript[] _stageItemScriptArray = null;
+    [SerializeField] private ToffMonaka.UnityBase.Scene.SelectSubSceneStageButtonScript[] _stageButtonScriptArray = null;
 
     public new ToffMonaka.UnityBase.Scene.SelectSubSceneScriptCreateDesc createDesc{get; private set;} = null;
     private Sequence _openCloseFadeSequence = null;
@@ -66,8 +66,29 @@ public class SelectSubSceneScript : ToffMonaka.Lib.Scene.SubSceneScript
 
         canvas_node.GetComponent<Canvas>().worldCamera = this.GetManager().GetMainSceneScript().GetMainCamera();
 
-        this._stageItemScriptArray[0].Set(this, 0, "Test2D");
-        this._stageItemScriptArray[1].Set(this, 1, "Test3D");
+        {// SelectSubSceneStageButton Create
+            var script = this._stageButtonScriptArray[0];
+            var script_create_desc = new ToffMonaka.UnityBase.Scene.SelectSubSceneStageButtonCreateDesc();
+
+            script_create_desc.selectSubSceneScript = this;
+            script_create_desc.index = 0;
+            script_create_desc.name = "Test2D";
+
+            script.Create(script_create_desc);
+            script.Open(0);
+        }
+
+        {// SelectSubSceneStageButton Create
+            var script = this._stageButtonScriptArray[1];
+            var script_create_desc = new ToffMonaka.UnityBase.Scene.SelectSubSceneStageButtonCreateDesc();
+
+            script_create_desc.selectSubSceneScript = this;
+            script_create_desc.index = 1;
+            script_create_desc.name = "Test3D";
+
+            script.Create(script_create_desc);
+            script.Open(0);
+        }
 
         return (0);
     }

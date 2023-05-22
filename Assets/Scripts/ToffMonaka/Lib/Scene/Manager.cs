@@ -32,7 +32,6 @@ public class Manager
     private ToffMonaka.Lib.Scene.MainSceneScript _mainSceneScript = null;
     private ToffMonaka.Lib.Scene.SubSceneScript _subSceneScript = null;
     private List<ToffMonaka.Lib.Scene.ObjectScript>[]  _objectScriptArray = null;
-    private List<ToffMonaka.Lib.Scene.SystemScript>[]  _systemScriptArray = null;
 
     /**
      * @brief コンストラクタ
@@ -66,7 +65,6 @@ public class Manager
         this._mainSceneScript = null;
         this._subSceneScript = null;
         this._objectScriptArray = null;
-        this._systemScriptArray = null;
 
         return;
     }
@@ -110,12 +108,6 @@ public class Manager
 
             for (int script_i = 0; script_i < this._objectScriptArray.Length; ++script_i) {
                 this._objectScriptArray[script_i] = new List<ToffMonaka.Lib.Scene.ObjectScript>();
-            }
-
-            this._systemScriptArray = new List<ToffMonaka.Lib.Scene.SystemScript>[this.createDesc.scriptCount];
-
-            for (int script_i = 0; script_i < this._systemScriptArray.Length; ++script_i) {
-                this._systemScriptArray[script_i] = new List<ToffMonaka.Lib.Scene.SystemScript>();
             }
         }
 
@@ -234,16 +226,6 @@ public class Manager
     }
 
     /**
-     * @brief GetSystemScriptContainer関数
-     * @param script_inex (script_inex)
-     * @return system_script_cont (system_script_container)
-     */
-    public List<ToffMonaka.Lib.Scene.SystemScript> GetSystemScriptContainer(int script_inex)
-    {
-        return (this._systemScriptArray[script_inex]);
-    }
-
-    /**
      * @brief AddScript関数
      * @param script (script)
      * @return result (result)<br>
@@ -273,11 +255,6 @@ public class Manager
 		    }
 		    case (int)ToffMonaka.Lib.Constant.Util.SCENE.SCRIPT_TYPE.OBJECT: {
                 this._objectScriptArray[script.GetScriptIndex()].Add((ToffMonaka.Lib.Scene.ObjectScript)script);
-
-			    break;
-		    }
-		    case (int)ToffMonaka.Lib.Constant.Util.SCENE.SCRIPT_TYPE.SYSTEM: {
-                this._systemScriptArray[script.GetScriptIndex()].Add((ToffMonaka.Lib.Scene.SystemScript)script);
 
 			    break;
 		    }
@@ -321,11 +298,6 @@ public class Manager
 		    }
 		    case (int)ToffMonaka.Lib.Constant.Util.SCENE.SCRIPT_TYPE.OBJECT: {
                 this._objectScriptArray[script.GetScriptIndex()].Remove((ToffMonaka.Lib.Scene.ObjectScript)script);
-
-			    break;
-		    }
-		    case (int)ToffMonaka.Lib.Constant.Util.SCENE.SCRIPT_TYPE.SYSTEM: {
-                this._systemScriptArray[script.GetScriptIndex()].Remove((ToffMonaka.Lib.Scene.SystemScript)script);
 
 			    break;
 		    }

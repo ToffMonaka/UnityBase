@@ -47,7 +47,6 @@ public static class Util
             MAIN_SCENE,
             SUB_SCENE,
             OBJECT,
-            SYSTEM,
 		    COUNT
         }
         public const int SCRIPT_TYPE_COUNT = (int)ToffMonaka.Lib.Constant.Util.SCENE.SCRIPT_TYPE.COUNT;

@@ -28,6 +28,7 @@ public abstract class ObjectScript : ToffMonaka.Lib.Scene.Script
     public ObjectScript()
     {
         this._SetScriptType((int)ToffMonaka.Lib.Constant.Util.SCENE.SCRIPT_TYPE.OBJECT);
+        this._SetActiveAutoFlag(true);
 
         return;
     }

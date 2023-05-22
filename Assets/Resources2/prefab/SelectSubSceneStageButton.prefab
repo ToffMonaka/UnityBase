@@ -159,12 +159,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3126623846639166747}
-  - component: {fileID: 2960548706252503320}
+  - component: {fileID: 1422945514532417371}
   - component: {fileID: 2181128665614123398}
-  - component: {fileID: 5123429226818975762}
+  - component: {fileID: 2960548706252503320}
   - component: {fileID: 7462062625347589552}
   m_Layer: 5
-  m_Name: SelectSubSceneStageItem
+  m_Name: SelectSubSceneStageButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -191,14 +191,19 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 256, y: 64}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!222 &2960548706252503320
-CanvasRenderer:
+--- !u!114 &1422945514532417371
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8385515807706158245}
-  m_CullTransparentMesh: 1
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2a5b51c44129984281701115a6f7182, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _nameText: {fileID: 3746946642498403847}
 --- !u!114 &2181128665614123398
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -216,8 +221,8 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 5123429226818975762}
-          m_TargetAssemblyTypeName: ToffMonaka.UnityBase.Scene.SelectSubSceneStageItemScript,
+        - m_Target: {fileID: 1422945514532417371}
+          m_TargetAssemblyTypeName: ToffMonaka.UnityBase.Scene.SelectSubSceneStageButtonScript,
             Assembly-CSharp
           m_MethodName: OnPointerClickEvent
           m_Mode: 1
@@ -229,19 +234,14 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
---- !u!114 &5123429226818975762
-MonoBehaviour:
+--- !u!222 &2960548706252503320
+CanvasRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8385515807706158245}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a2a5b51c44129984281701115a6f7182, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _nameText: {fileID: 3746946642498403847}
+  m_CullTransparentMesh: 1
 --- !u!114 &7462062625347589552
 MonoBehaviour:
   m_ObjectHideFlags: 0

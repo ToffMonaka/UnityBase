@@ -24,13 +24,14 @@ public abstract class Script : MonoBehaviour
     private ToffMonaka.Lib.Scene.Manager _manager = null;
     private int _scriptType = 0;
     private int _scriptIndex = 0;
+    private bool _activeAutoFlag = true;
+    private bool _activedFlag = false;
     private int _openType = 0;
     private bool _openFlag = false;
     private bool _openedFlag = false;
     private int _closeType = 0;
     private bool _closeFlag = false;
     private bool _closedFlag = true;
-    private bool _activedFlag = false;
 
     /**
      * @brief Awake関数
@@ -117,8 +118,6 @@ public abstract class Script : MonoBehaviour
      */
     protected virtual void _Awake()
     {
-        this.gameObject.SetActive(false);
-
         this._OnAwake();
 
         return;
@@ -174,6 +173,13 @@ public abstract class Script : MonoBehaviour
      */
     public int Create(ToffMonaka.Lib.Scene.ScriptCreateDesc desc = null)
     {
+        if (this._manager == null) {
+            if (this._activeAutoFlag) {
+                this.gameObject.SetActive(true);
+                this.gameObject.SetActive(false);
+            }
+        }
+
         if (desc != null) {
             this.SetCreateDesc(desc);
         }
@@ -225,7 +231,7 @@ public abstract class Script : MonoBehaviour
     {
         if ((this._manager == null)
         || (this._activedFlag)) {
-            return;
+            //return;
         }
 
         this._OnActive();
@@ -410,12 +416,43 @@ public abstract class Script : MonoBehaviour
     }
 
     /**
+     * @brief GetActiveAutoFlag関数
+     * @return active_auto_flg (active_auto_flag)
+     */
+    public bool GetActiveAutoFlag()
+    {
+        return (this._activeAutoFlag);
+    }
+
+    /**
+     * @brief _SetActiveAutoFlag関数
+     * @param active_auto_flg (active_auto_flag)
+     */
+    protected void _SetActiveAutoFlag(bool active_auto_flg)
+    {
+        this._activeAutoFlag = active_auto_flg;
+
+        return;
+    }
+
+    /**
+     * @brief GetActivedFlag関数
+     * @return actived_flg (actived_flag)
+     */
+    public bool GetActivedFlag()
+    {
+        return (this._activedFlag);
+    }
+
+    /**
      * @brief Open関数
      * @param open_type (open_type)
      */
     public void Open(int open_type)
     {
-        this.gameObject.SetActive(true);
+        if (this._activeAutoFlag) {
+            this.gameObject.SetActive(true);
+        }
 
         if (!this.gameObject.activeSelf) {
             return;
@@ -496,7 +533,9 @@ public abstract class Script : MonoBehaviour
         this._closeFlag = false;
         this._closedFlag = true;
 
-        this.gameObject.SetActive(false);
+        if (this._activeAutoFlag) {
+            this.gameObject.SetActive(false);
+        }
 
         return;
     }
@@ -573,15 +612,6 @@ public abstract class Script : MonoBehaviour
     public bool GetClosedFlag()
     {
         return (this._closedFlag);
-    }
-
-    /**
-     * @brief GetActivedFlag関数
-     * @return actived_flg (actived_flag)
-     */
-    public bool GetActivedFlag()
-    {
-        return (this._activedFlag);
     }
 }
 }

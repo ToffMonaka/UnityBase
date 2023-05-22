@@ -1,33 +1,41 @@
 ﻿/**
  * @file
- * @brief MenuButtonSubLayerScriptファイル
+ * @brief SelectSubSceneStageButtonScriptファイル
  */
 
 
 using UnityEngine;
+using TMPro;
 
 
 namespace ToffMonaka.UnityBase.Scene {
 /**
- * @brief MenuButtonSubLayerCreateDescクラス
+ * @brief SelectSubSceneStageButtonCreateDescクラス
  */
-public class MenuButtonSubLayerCreateDesc : ToffMonaka.Lib.Scene.ObjectScriptCreateDesc
+public class SelectSubSceneStageButtonCreateDesc : ToffMonaka.Lib.Scene.ObjectScriptCreateDesc
 {
+    public ToffMonaka.UnityBase.Scene.SelectSubSceneScript selectSubSceneScript = null;
+    public int index = 0;
+    public string name = "";
 }
 
 /**
- * @brief MenuButtonSubLayerScriptクラス
+ * @brief SelectSubSceneStageButtonScriptクラス
  */
-public class MenuButtonSubLayerScript : ToffMonaka.Lib.Scene.ObjectScript
+public class SelectSubSceneStageButtonScript : ToffMonaka.Lib.Scene.ObjectScript
 {
-    public new ToffMonaka.UnityBase.Scene.MenuButtonSubLayerCreateDesc createDesc{get; private set;} = null;
+    [SerializeField] private TextMeshProUGUI _nameText = null;
+
+    public new ToffMonaka.UnityBase.Scene.SelectSubSceneStageButtonCreateDesc createDesc{get; private set;} = null;
+    private ToffMonaka.UnityBase.Scene.SelectSubSceneScript _selectSubSceneScript = null;
+    private int _index = 0;
 
     /**
      * @brief コンストラクタ
      */
-    public MenuButtonSubLayerScript()
+    public SelectSubSceneStageButtonScript()
     {
-        this._SetScriptIndex((int)ToffMonaka.UnityBase.Constant.Util.SCENE.SCRIPT_INDEX.MENU_BUTTON_SUB_LAYER);
+        this._SetScriptIndex((int)ToffMonaka.UnityBase.Constant.Util.SCENE.SCRIPT_INDEX.SELECT_SUB_SCENE_STAGE_BUTTON);
 
         return;
     }
@@ -55,6 +63,10 @@ public class MenuButtonSubLayerScript : ToffMonaka.Lib.Scene.ObjectScript
      */
     protected override int _OnCreate()
     {
+        this._selectSubSceneScript = this.createDesc.selectSubSceneScript;
+        this._index = this.createDesc.index;
+        this._nameText.SetText(this.createDesc.name);
+
         return (0);
     }
 
@@ -64,7 +76,7 @@ public class MenuButtonSubLayerScript : ToffMonaka.Lib.Scene.ObjectScript
      */
     public override void SetCreateDesc(ToffMonaka.Lib.Scene.ScriptCreateDesc create_desc)
     {
-	    this.createDesc = create_desc as ToffMonaka.UnityBase.Scene.MenuButtonSubLayerCreateDesc;
+	    this.createDesc = create_desc as ToffMonaka.UnityBase.Scene.SelectSubSceneStageButtonCreateDesc;
 
         base.SetCreateDesc(this.createDesc);
 
@@ -100,14 +112,7 @@ public class MenuButtonSubLayerScript : ToffMonaka.Lib.Scene.ObjectScript
      */
     protected override void _OnOpen()
     {
-		switch (this.GetOpenType()) {
-		case 1: {
-			break;
-		}
-		default: {
-			break;
-		}
-		}
+        this.CompleteOpen();
 
         return;
     }
@@ -117,18 +122,7 @@ public class MenuButtonSubLayerScript : ToffMonaka.Lib.Scene.ObjectScript
      */
     protected override void _OnUpdateOpen()
     {
-		switch (this.GetOpenType()) {
-		case 1: {
-            this.CompleteOpen();
-
-			break;
-		}
-		default: {
-            this.CompleteOpen();
-
-			break;
-		}
-		}
+        this.CompleteOpen();
 
         return;
     }
@@ -138,14 +132,7 @@ public class MenuButtonSubLayerScript : ToffMonaka.Lib.Scene.ObjectScript
      */
     protected override void _OnClose()
     {
-		switch (this.GetCloseType()) {
-		case 1: {
-			break;
-		}
-		default: {
-			break;
-		}
-		}
+        this.CompleteClose();
 
         return;
     }
@@ -155,18 +142,21 @@ public class MenuButtonSubLayerScript : ToffMonaka.Lib.Scene.ObjectScript
      */
     protected override void _OnUpdateClose()
     {
-		switch (this.GetCloseType()) {
-		case 1: {
-            this.CompleteClose();
+        this.CompleteClose();
 
-			break;
-		}
-		default: {
-            this.CompleteClose();
+        return;
+    }
 
-			break;
-		}
-		}
+    /**
+     * @brief OnPointerClickEvent関数
+     */
+    public void OnPointerClickEvent()
+    {
+        ToffMonaka.Lib.Scene.Util.GetSoundManager().PlaySe((int)ToffMonaka.UnityBase.Constant.Util.SOUND.SE_INDEX.OK2);
+
+        this._selectSubSceneScript.SetStageItemSelectIndex(this._index);
+
+        this._selectSubSceneScript.Close(1);
 
         return;
     }

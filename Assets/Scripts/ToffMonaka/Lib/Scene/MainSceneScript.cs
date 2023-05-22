@@ -37,6 +37,7 @@ public abstract class MainSceneScript : ToffMonaka.Lib.Scene.Script
     public MainSceneScript()
     {
         this._SetScriptType((int)ToffMonaka.Lib.Constant.Util.SCENE.SCRIPT_TYPE.MAIN_SCENE);
+        this._SetActiveAutoFlag(false);
 
         return;
     }
