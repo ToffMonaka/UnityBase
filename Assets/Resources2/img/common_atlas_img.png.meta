@@ -137,6 +137,48 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: btn_bg_img
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 157
+        width: 48
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 5, y: 5, z: 5, w: 5}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ecdad0dfa4edee84db3bf391ee307a58
+      internalID: -1077905005
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: btn_bg2_img
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 206
+        width: 48
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 5, y: 5, z: 5, w: 5}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e90d7da640b8e8548ac2ae44831b32ea
+      internalID: 1813550130
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -148,6 +190,8 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
+      btn_bg2_img: 1813550130
+      btn_bg_img: -1077905005
       title_name_img: -851330472
   spritePackingTag: 
   pSDRemoveMatte: 0

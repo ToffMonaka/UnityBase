@@ -98,10 +98,13 @@ public class SoundManager
 
         {// This Create
             this._soundNode= desc.soundNode;
-
             this._bgmNode = desc.bgmNode;
+            this._seNode = desc.seNode;
 
-            var bgm_script = this._bgmNode.GetComponent<ToffMonaka.Lib.Scene.SoundBgmScript>();
+            this._bgmNode.gameObject.SetActive(false);
+            this._seNode.gameObject.SetActive(false);
+
+            var bgm_script = GameObject.Instantiate(this._bgmNode, this._bgmNode.transform.parent).GetComponent<ToffMonaka.Lib.Scene.SoundBgmScript>();
             var bgm_script_create_desc = new ToffMonaka.Lib.Scene.SoundBgmScriptCreateDesc();
 
             bgm_script.Create(bgm_script_create_desc);
@@ -113,18 +116,8 @@ public class SoundManager
 	        this._bgmVolume = this.createDesc.bgmVolume;
 	        this._bgmMuteFlag = this.createDesc.bgmMuteFlag;
 
-            this._seNode = desc.seNode;
-
-            for (int se_node_i = 0; se_node_i < 8; ++se_node_i) {
-                GameObject se_node = null;
-
-                if (se_node_i == 0) {
-                    se_node = this._seNode;
-                } else {
-                    se_node = GameObject.Instantiate(this._seNode, this._seNode.transform.parent);
-                }
-
-                var se_script = se_node.GetComponent<ToffMonaka.Lib.Scene.SoundSeScript>();
+            for (int se_script_i = 0; se_script_i < 8; ++se_script_i) {
+                var se_script = GameObject.Instantiate(this._seNode, this._seNode.transform.parent).GetComponent<ToffMonaka.Lib.Scene.SoundSeScript>();
                 var se_script_create_desc = new ToffMonaka.Lib.Scene.SoundSeScriptCreateDesc();
 
                 se_script.Create(se_script_create_desc);
@@ -281,8 +274,7 @@ public class SoundManager
         }
 
         if (se_script == null) {
-            var se_node2 = GameObject.Instantiate(this._seNode, this._seNode.transform.parent);
-            var se_script2 = se_node2.GetComponent<ToffMonaka.Lib.Scene.SoundSeScript>();
+            var se_script2 = GameObject.Instantiate(this._seNode, this._seNode.transform.parent).GetComponent<ToffMonaka.Lib.Scene.SoundSeScript>();
             var se_script_create_desc2 = new ToffMonaka.Lib.Scene.SoundSeScriptCreateDesc();
 
             se_script2.Create(se_script_create_desc2);
