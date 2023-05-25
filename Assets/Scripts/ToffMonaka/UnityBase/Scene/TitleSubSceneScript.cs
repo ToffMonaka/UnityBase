@@ -234,5 +234,25 @@ public class TitleSubSceneScript : ToffMonaka.Lib.Scene.SubSceneScript
 
         return;
     }
+
+    /**
+     * @brief OnStartButtonPointerEnterEvent関数
+     */
+    public void OnStartButtonPointerEnterEvent()
+    {
+        this._startButtonText.gameObject.transform.DOScale(1.2f, 0.1f).SetLink(this._startButtonText.gameObject);
+
+        return;
+    }
+
+    /**
+     * @brief OnStartButtonPointerExitEvent関数
+     */
+    public void OnStartButtonPointerExitEvent()
+    {
+        this._startButtonText.gameObject.transform.DOScale(1.0f, 0.1f).SetLink(this._startButtonText.gameObject);
+
+        return;
+    }
 }
 }
