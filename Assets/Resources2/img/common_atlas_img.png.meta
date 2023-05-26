@@ -117,6 +117,69 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
+      name: menu_icon_img
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 190
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9549f6b328b7ce94e853626d39282f5c
+      internalID: -444311614
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sliced_bg_img
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 92
+        width: 48
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 5, y: 5, z: 5, w: 5}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aeb434c17a446aa458ba84c4582f9953
+      internalID: 2045713713
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sliced_bg2_img
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 141
+        width: 48
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 5, y: 5, z: 5, w: 5}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9c72aa3f552fc90418d68f14388b2c6c
+      internalID: 1020748398
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
       name: title_name_img
       rect:
         serializedVersion: 2
@@ -131,50 +194,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a82b7f70d9b65ef499054934adad1933
-      internalID: -851330472
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: btn_bg_img
-      rect:
-        serializedVersion: 2
-        x: 1
-        y: 157
-        width: 48
-        height: 48
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 5, y: 5, z: 5, w: 5}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: ecdad0dfa4edee84db3bf391ee307a58
-      internalID: -1077905005
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: btn_bg2_img
-      rect:
-        serializedVersion: 2
-        x: 1
-        y: 206
-        width: 48
-        height: 48
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 5, y: 5, z: 5, w: 5}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: e90d7da640b8e8548ac2ae44831b32ea
-      internalID: 1813550130
+      spriteID: a783efe74b9563749a1ff33d87efda7e
+      internalID: -1912320061
       vertices: []
       indices: 
       edges: []
@@ -190,9 +211,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      btn_bg2_img: 1813550130
-      btn_bg_img: -1077905005
-      title_name_img: -851330472
+      menu_icon_img: -444311614
+      sliced_bg2_img: 1020748398
+      sliced_bg_img: 2045713713
+      title_name_img: -1912320061
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
