@@ -27,8 +27,8 @@ public class SelectSubSceneScript : ToffMonaka.Lib.Scene.SubSceneScript
 
     public new ToffMonaka.UnityBase.Scene.SelectSubSceneScriptCreateDesc createDesc{get; private set;} = null;
     private Sequence _openCloseFadeSequence = null;
-    private ToffMonaka.UnityBase.Scene.SelectSubSceneStageSelectScript _stageSelectScript = null;
-    private int _stageIndex = 0;
+    private ToffMonaka.UnityBase.Scene.SelectStageSelectScript _stageSelectScript = null;
+    private ToffMonaka.UnityBase.Constant.Util.SCENE.STAGE_TYPE _stageType = ToffMonaka.UnityBase.Constant.Util.SCENE.STAGE_TYPE.NONE;
 
     /**
      * @brief コンストラクタ
@@ -68,8 +68,8 @@ public class SelectSubSceneScript : ToffMonaka.Lib.Scene.SubSceneScript
         canvas_node.GetComponent<Canvas>().worldCamera = this.GetManager().GetMainSceneScript().GetMainCamera();
 
         {// StageSelect Create
-            var script = this._stageSelectNode.GetComponent<ToffMonaka.UnityBase.Scene.SelectSubSceneStageSelectScript>();
-            var script_create_desc = new ToffMonaka.UnityBase.Scene.SelectSubSceneStageSelectScriptCreateDesc();
+            var script = this._stageSelectNode.GetComponent<ToffMonaka.UnityBase.Scene.SelectStageSelectScript>();
+            var script_create_desc = new ToffMonaka.UnityBase.Scene.SelectStageSelectScriptCreateDesc();
 
             script_create_desc.selectSubSceneScript = this;
 
@@ -209,7 +209,7 @@ public class SelectSubSceneScript : ToffMonaka.Lib.Scene.SubSceneScript
                 this.CompleteClose();
 
                 // Test2DStageSubScene Create
-                if (this._stageIndex == 0) {
+                if (this._stageType == ToffMonaka.UnityBase.Constant.Util.SCENE.STAGE_TYPE.TEST_2D) {
                     var script = this.GetManager().ChangeSubScene(ToffMonaka.UnityBase.Constant.Util.FILE_PATH.TEST_2D_STAGE_SUB_SCENE_PREFAB) as ToffMonaka.UnityBase.Scene.Test2DStageSubSceneScript;
                     var script_create_desc = new ToffMonaka.UnityBase.Scene.Test2DStageSubSceneScriptCreateDesc();
 
@@ -218,7 +218,7 @@ public class SelectSubSceneScript : ToffMonaka.Lib.Scene.SubSceneScript
                 }
 
                 // Test3DStageSubScene Create
-                if (this._stageIndex == 1) {
+                if (this._stageType == ToffMonaka.UnityBase.Constant.Util.SCENE.STAGE_TYPE.TEST_3D) {
                     var script = this.GetManager().ChangeSubScene(ToffMonaka.UnityBase.Constant.Util.FILE_PATH.TEST_3D_STAGE_SUB_SCENE_PREFAB) as ToffMonaka.UnityBase.Scene.Test3DStageSubSceneScript;
                     var script_create_desc = new ToffMonaka.UnityBase.Scene.Test3DStageSubSceneScriptCreateDesc();
 
@@ -240,21 +240,21 @@ public class SelectSubSceneScript : ToffMonaka.Lib.Scene.SubSceneScript
     }
 
     /**
-     * @brief GetStageIndex関数
-     * @return stage_index (stage_index)
+     * @brief GetStageType関数
+     * @return stage_type (stage_type)
      */
-    public int GetStageIndex()
+    public ToffMonaka.UnityBase.Constant.Util.SCENE.STAGE_TYPE GetStageIndex()
     {
-        return (this._stageIndex);
+        return (this._stageType);
     }
 
     /**
-     * @brief SetStageIndex関数
-     * @param stage_index (stage_index)
+     * @brief SetStageType関数
+     * @param stage_type (stage_type)
      */
-    public void SetStageIndex(int stage_index)
+    public void SetStageIndex(ToffMonaka.UnityBase.Constant.Util.SCENE.STAGE_TYPE stage_type)
     {
-        this._stageIndex = stage_index;
+        this._stageType = stage_type;
 
         return;
     }

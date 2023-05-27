@@ -243,17 +243,17 @@ public class Manager
             this._scriptArray[script.GetScriptIndex()].Add(script);
 
 		    switch (script.GetScriptType()) {
-		    case (int)ToffMonaka.Lib.Constant.Util.SCENE.SCRIPT_TYPE.MAIN_SCENE: {
+		    case ToffMonaka.Lib.Constant.Util.SCENE.SCRIPT_TYPE.MAIN_SCENE: {
                 this._mainSceneScript = (ToffMonaka.Lib.Scene.MainSceneScript)script;
 
 			    break;
 		    }
-		    case (int)ToffMonaka.Lib.Constant.Util.SCENE.SCRIPT_TYPE.SUB_SCENE: {
+		    case ToffMonaka.Lib.Constant.Util.SCENE.SCRIPT_TYPE.SUB_SCENE: {
                 this._subSceneScript = (ToffMonaka.Lib.Scene.SubSceneScript)script;
 
 			    break;
 		    }
-		    case (int)ToffMonaka.Lib.Constant.Util.SCENE.SCRIPT_TYPE.OBJECT: {
+		    case ToffMonaka.Lib.Constant.Util.SCENE.SCRIPT_TYPE.OBJECT: {
                 this._objectScriptArray[script.GetScriptIndex()].Add((ToffMonaka.Lib.Scene.ObjectScript)script);
 
 			    break;
@@ -282,21 +282,21 @@ public class Manager
             this._scriptArray[script.GetScriptIndex()].Remove(script);
 
 		    switch (script.GetScriptType()) {
-		    case (int)ToffMonaka.Lib.Constant.Util.SCENE.SCRIPT_TYPE.MAIN_SCENE: {
+		    case ToffMonaka.Lib.Constant.Util.SCENE.SCRIPT_TYPE.MAIN_SCENE: {
                 if (this._mainSceneScript == (ToffMonaka.Lib.Scene.MainSceneScript)script) {
                     this._mainSceneScript = null;
                 }
 
 			    break;
 		    }
-		    case (int)ToffMonaka.Lib.Constant.Util.SCENE.SCRIPT_TYPE.SUB_SCENE: {
+		    case ToffMonaka.Lib.Constant.Util.SCENE.SCRIPT_TYPE.SUB_SCENE: {
                 if (this._subSceneScript == (ToffMonaka.Lib.Scene.SubSceneScript)script) {
                     this._subSceneScript = null;
                 }
 
 			    break;
 		    }
-		    case (int)ToffMonaka.Lib.Constant.Util.SCENE.SCRIPT_TYPE.OBJECT: {
+		    case ToffMonaka.Lib.Constant.Util.SCENE.SCRIPT_TYPE.OBJECT: {
                 this._objectScriptArray[script.GetScriptIndex()].Remove((ToffMonaka.Lib.Scene.ObjectScript)script);
 
 			    break;

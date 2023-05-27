@@ -22,7 +22,7 @@ public abstract class Script : MonoBehaviour
 {
     public ToffMonaka.Lib.Scene.ScriptCreateDesc createDesc{get; private set;} = null;
     private ToffMonaka.Lib.Scene.Manager _manager = null;
-    private int _scriptType = 0;
+    private ToffMonaka.Lib.Constant.Util.SCENE.SCRIPT_TYPE _scriptType = ToffMonaka.Lib.Constant.Util.SCENE.SCRIPT_TYPE.NONE;
     private int _scriptIndex = 0;
     private bool _activeAutoFlag = true;
     private bool _activedFlag = false;
@@ -379,7 +379,7 @@ public abstract class Script : MonoBehaviour
      * @brief GetScriptType関数
      * @return script_type (script_type)
      */
-    public int GetScriptType()
+    public ToffMonaka.Lib.Constant.Util.SCENE.SCRIPT_TYPE GetScriptType()
     {
         return (this._scriptType);
     }
@@ -388,7 +388,7 @@ public abstract class Script : MonoBehaviour
      * @brief _SetScriptType関数
      * @param script_type (script_type)
      */
-    protected void _SetScriptType(int script_type)
+    protected void _SetScriptType(ToffMonaka.Lib.Constant.Util.SCENE.SCRIPT_TYPE script_type)
     {
         this._scriptType = script_type;
 

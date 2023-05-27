@@ -293,6 +293,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 425923215091775418}
+  - component: {fileID: 539342018206336027}
   m_Layer: 5
   m_Name: Menu
   m_TagString: Untagged
@@ -324,6 +325,18 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &539342018206336027
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2565543407403666359}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0716aff52ff7d5408c65b510e45c90e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2698109168360892540
 GameObject:
   m_ObjectHideFlags: 0
@@ -772,12 +785,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4040526920454163307}
+  - component: {fileID: 1736308856910510867}
   - component: {fileID: 4100494116706276443}
   - component: {fileID: 7724091167927685396}
   - component: {fileID: 8595661705306342450}
   - component: {fileID: 7724924776564210638}
   m_Layer: 5
-  m_Name: MainSelect
+  m_Name: Select
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -807,6 +821,18 @@ RectTransform:
   m_AnchoredPosition: {x: 4, y: -84}
   m_SizeDelta: {x: 372, y: 0}
   m_Pivot: {x: 0, y: 1}
+--- !u!114 &1736308856910510867
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5968430026183999910}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad95613d8af84fe44b183cf0b9a1ea32, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &4100494116706276443
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -894,6 +920,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2395386086706743664}
+  - component: {fileID: 5898188832322065501}
   - component: {fileID: 2938544696589792533}
   - component: {fileID: 3201795902410681204}
   - component: {fileID: 585657955801035363}
@@ -926,6 +953,18 @@ RectTransform:
   m_AnchoredPosition: {x: 4, y: -4}
   m_SizeDelta: {x: 80, y: 80}
   m_Pivot: {x: 0, y: 1}
+--- !u!114 &5898188832322065501
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6110306261763733753}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93f49d8d19e7e074ca0f8f625463cfb0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &2938544696589792533
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1262,12 +1301,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5288433669840088195}
+  - component: {fileID: 7832797390381899124}
   - component: {fileID: 9142394304681453218}
   - component: {fileID: 4913961088544213123}
   - component: {fileID: 1070347134104116066}
   - component: {fileID: 3534893731974860045}
   m_Layer: 5
-  m_Name: SubSelect
+  m_Name: Stage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1297,6 +1337,18 @@ RectTransform:
   m_AnchoredPosition: {x: 4, y: -84}
   m_SizeDelta: {x: 452, y: 0}
   m_Pivot: {x: 0, y: 1}
+--- !u!114 &7832797390381899124
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8350539373914477490}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 251665b9c8ab7a0499e4571ddaa14aa7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &9142394304681453218
 MonoBehaviour:
   m_ObjectHideFlags: 0

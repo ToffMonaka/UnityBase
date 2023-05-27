@@ -1,6 +1,6 @@
 ﻿/**
  * @file
- * @brief MenuButtonScriptファイル
+ * @brief MenuSelectScriptファイル
  */
 
 
@@ -9,25 +9,25 @@ using UnityEngine;
 
 namespace ToffMonaka.UnityBase.Scene {
 /**
- * @brief MenuButtonCreateDescクラス
+ * @brief MenuSelectScriptCreateDescクラス
  */
-public class MenuButtonCreateDesc : ToffMonaka.Lib.Scene.ObjectScriptCreateDesc
+public class MenuSelectScriptCreateDesc : ToffMonaka.Lib.Scene.ObjectScriptCreateDesc
 {
 }
 
 /**
- * @brief MenuButtonScriptクラス
+ * @brief MenuSelectScriptクラス
  */
-public class MenuButtonScript : ToffMonaka.Lib.Scene.ObjectScript
+public class MenuSelectScript : ToffMonaka.Lib.Scene.ObjectScript
 {
-    public new ToffMonaka.UnityBase.Scene.MenuButtonCreateDesc createDesc{get; private set;} = null;
+    public new ToffMonaka.UnityBase.Scene.MenuSelectScriptCreateDesc createDesc{get; private set;} = null;
 
     /**
      * @brief コンストラクタ
      */
-    public MenuButtonScript()
+    public MenuSelectScript()
     {
-        this._SetScriptIndex((int)ToffMonaka.UnityBase.Constant.Util.SCENE.SCRIPT_INDEX.MENU_BUTTON);
+        this._SetScriptIndex((int)ToffMonaka.UnityBase.Constant.Util.SCENE.SCRIPT_INDEX.MENU_SELECT);
 
         return;
     }
@@ -64,7 +64,7 @@ public class MenuButtonScript : ToffMonaka.Lib.Scene.ObjectScript
      */
     public override void SetCreateDesc(ToffMonaka.Lib.Scene.ScriptCreateDesc create_desc)
     {
-	    this.createDesc = create_desc as ToffMonaka.UnityBase.Scene.MenuButtonCreateDesc;
+	    this.createDesc = create_desc as ToffMonaka.UnityBase.Scene.MenuSelectScriptCreateDesc;
 
         base.SetCreateDesc(this.createDesc);
 

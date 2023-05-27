@@ -1,6 +1,6 @@
 ﻿/**
  * @file
- * @brief SelectSubSceneStageButtonScriptファイル
+ * @brief SelectStageButtonScriptファイル
  */
 
 
@@ -11,33 +11,32 @@ using TMPro;
 
 namespace ToffMonaka.UnityBase.Scene {
 /**
- * @brief SelectSubSceneStageButtonScriptCreateDescクラス
+ * @brief SelectStageButtonScriptCreateDescクラス
  */
-public class SelectSubSceneStageButtonScriptCreateDesc : ToffMonaka.Lib.Scene.ObjectScriptCreateDesc
+public class SelectStageButtonScriptCreateDesc : ToffMonaka.Lib.Scene.ObjectScriptCreateDesc
 {
     public ToffMonaka.UnityBase.Scene.SelectSubSceneScript selectSubSceneScript = null;
-    public int index = 0;
-    public string name = "";
+    public ToffMonaka.UnityBase.Constant.Util.SCENE.STAGE_TYPE stageType = ToffMonaka.UnityBase.Constant.Util.SCENE.STAGE_TYPE.NONE;
 }
 
 /**
- * @brief SelectSubSceneStageButtonScriptクラス
+ * @brief SelectStageButtonScriptクラス
  */
-public class SelectSubSceneStageButtonScript : ToffMonaka.Lib.Scene.ObjectScript
+public class SelectStageButtonScript : ToffMonaka.Lib.Scene.ObjectScript
 {
     [SerializeField] private TextMeshProUGUI _nameText = null;
     [SerializeField] private Image _coverImage = null;
 
-    public new ToffMonaka.UnityBase.Scene.SelectSubSceneStageButtonScriptCreateDesc createDesc{get; private set;} = null;
+    public new ToffMonaka.UnityBase.Scene.SelectStageButtonScriptCreateDesc createDesc{get; private set;} = null;
     private ToffMonaka.UnityBase.Scene.SelectSubSceneScript _selectSubSceneScript = null;
-    private int _index = 0;
+    private ToffMonaka.UnityBase.Constant.Util.SCENE.STAGE_TYPE _stageType = ToffMonaka.UnityBase.Constant.Util.SCENE.STAGE_TYPE.NONE;
 
     /**
      * @brief コンストラクタ
      */
-    public SelectSubSceneStageButtonScript()
+    public SelectStageButtonScript()
     {
-        this._SetScriptIndex((int)ToffMonaka.UnityBase.Constant.Util.SCENE.SCRIPT_INDEX.SELECT_SUB_SCENE_STAGE_SELECT_STAGE_BUTTON);
+        this._SetScriptIndex((int)ToffMonaka.UnityBase.Constant.Util.SCENE.SCRIPT_INDEX.SELECT_STAGE_BUTTON);
 
         return;
     }
@@ -66,8 +65,8 @@ public class SelectSubSceneStageButtonScript : ToffMonaka.Lib.Scene.ObjectScript
     protected override int _OnCreate()
     {
         this._selectSubSceneScript = this.createDesc.selectSubSceneScript;
-        this._index = this.createDesc.index;
-        this._nameText.SetText(this.createDesc.name);
+        this._stageType = this.createDesc.stageType;
+        this._nameText.SetText(ToffMonaka.UnityBase.Constant.Util.SCENE.STAGE_TYPE_NAME_ARRAY[(int)this._stageType]);
 
         return (0);
     }
@@ -78,7 +77,7 @@ public class SelectSubSceneStageButtonScript : ToffMonaka.Lib.Scene.ObjectScript
      */
     public override void SetCreateDesc(ToffMonaka.Lib.Scene.ScriptCreateDesc create_desc)
     {
-	    this.createDesc = create_desc as ToffMonaka.UnityBase.Scene.SelectSubSceneStageButtonScriptCreateDesc;
+	    this.createDesc = create_desc as ToffMonaka.UnityBase.Scene.SelectStageButtonScriptCreateDesc;
 
         base.SetCreateDesc(this.createDesc);
 
@@ -156,7 +155,7 @@ public class SelectSubSceneStageButtonScript : ToffMonaka.Lib.Scene.ObjectScript
     {
         ToffMonaka.Lib.Scene.Util.GetSoundManager().PlaySe((int)ToffMonaka.UnityBase.Constant.Util.SOUND.SE_INDEX.OK2);
 
-        this._selectSubSceneScript.SetStageIndex(this._index);
+        this._selectSubSceneScript.SetStageIndex(this._stageType);
         this._selectSubSceneScript.Close(1);
 
         return;

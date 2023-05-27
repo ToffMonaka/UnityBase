@@ -27,7 +27,7 @@ public abstract class SubSceneScript : ToffMonaka.Lib.Scene.Script
      */
     public SubSceneScript()
     {
-        this._SetScriptType((int)ToffMonaka.Lib.Constant.Util.SCENE.SCRIPT_TYPE.SUB_SCENE);
+        this._SetScriptType(ToffMonaka.Lib.Constant.Util.SCENE.SCRIPT_TYPE.SUB_SCENE);
         this._SetActiveAutoFlag(true);
 
         return;

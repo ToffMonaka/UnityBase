@@ -70,11 +70,16 @@ public static class Util
             INIT_SUB_SCENE,
             TITLE_SUB_SCENE,
             SELECT_SUB_SCENE,
-            SELECT_SUB_SCENE_STAGE_SELECT,
-            SELECT_SUB_SCENE_STAGE_SELECT_STAGE_BUTTON,
+            SELECT_STAGE_SELECT,
+            SELECT_STAGE_BUTTON,
             TEST_2D_STAGE_SUB_SCENE,
             TEST_3D_STAGE_SUB_SCENE,
-            MENU_BUTTON,
+            MENU,
+            MENU_START_BUTTON,
+            MENU_SELECT,
+            MENU_SELECT_STAGE_SELECT,
+            MENU_SELECT_STAGE_BUTTON,
+            MENU_STAGE,
 		    COUNT
         }
         public const int SCRIPT_INDEX_COUNT = (int)ToffMonaka.UnityBase.Constant.Util.SCENE.SCRIPT_INDEX.COUNT;
@@ -84,6 +89,21 @@ public static class Util
             public const string NONE = "";
             public const string MAIN = "MainScene";
         }
+
+        public enum STAGE_TYPE : int
+        {
+            NONE = 0,
+            TEST_2D,
+            TEST_3D,
+		    COUNT
+        }
+        public const int STAGE_TYPE_COUNT = (int)ToffMonaka.UnityBase.Constant.Util.SCENE.STAGE_TYPE.COUNT;
+
+        public static readonly string[] STAGE_TYPE_NAME_ARRAY = {
+            "",
+            "Test2D",
+            "Test3D"
+        };
     }
 }
 }
