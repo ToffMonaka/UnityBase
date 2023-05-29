@@ -5,6 +5,8 @@
 
 
 using UnityEngine;
+using UnityEngine.UI;
+using DG.Tweening;
 
 
 namespace ToffMonaka.UnityBase.Scene {
@@ -13,6 +15,7 @@ namespace ToffMonaka.UnityBase.Scene {
  */
 public class MenuStartButtonScriptCreateDesc : ToffMonaka.Lib.Scene.ObjectScriptCreateDesc
 {
+    public ToffMonaka.UnityBase.Scene.MenuScript menuScript = null;
 }
 
 /**
@@ -20,7 +23,11 @@ public class MenuStartButtonScriptCreateDesc : ToffMonaka.Lib.Scene.ObjectScript
  */
 public class MenuStartButtonScript : ToffMonaka.Lib.Scene.ObjectScript
 {
+    [SerializeField] private Image _coverImage = null;
+
     public new ToffMonaka.UnityBase.Scene.MenuStartButtonScriptCreateDesc createDesc{get; private set;} = null;
+    private Sequence _openCloseSequence = null;
+    private ToffMonaka.UnityBase.Scene.MenuScript _menuScript = null;
 
     /**
      * @brief コンストラクタ
@@ -55,6 +62,8 @@ public class MenuStartButtonScript : ToffMonaka.Lib.Scene.ObjectScript
      */
     protected override int _OnCreate()
     {
+        this._menuScript = this.createDesc.menuScript;
+
         return (0);
     }
 
@@ -100,7 +109,23 @@ public class MenuStartButtonScript : ToffMonaka.Lib.Scene.ObjectScript
      */
     protected override void _OnOpen()
     {
-        this.CompleteOpen();
+		switch (this.GetOpenType()) {
+		case 1: {
+            var transform = this.gameObject.GetComponent<RectTransform>();
+
+            transform.anchoredPosition = new Vector2(-transform.sizeDelta.x - 4.0f, transform.anchoredPosition.y);
+
+            this._openCloseSequence = DOTween.Sequence();
+            this._openCloseSequence.Append(transform.DOAnchorPosX(4.0f, 0.1f));
+
+			break;
+		}
+		default: {
+            this.CompleteOpen();
+
+			break;
+		}
+		}
 
         return;
     }
@@ -110,7 +135,20 @@ public class MenuStartButtonScript : ToffMonaka.Lib.Scene.ObjectScript
      */
     protected override void _OnUpdateOpen()
     {
-        this.CompleteOpen();
+		switch (this.GetOpenType()) {
+		case 1: {
+            if (!this._openCloseSequence.IsActive()) {
+                this.CompleteOpen();
+            }
+
+			break;
+		}
+		default: {
+            this.CompleteOpen();
+
+			break;
+		}
+		}
 
         return;
     }
@@ -120,7 +158,23 @@ public class MenuStartButtonScript : ToffMonaka.Lib.Scene.ObjectScript
      */
     protected override void _OnClose()
     {
-        this.CompleteClose();
+		switch (this.GetCloseType()) {
+		case 1: {
+            var transform = this.gameObject.GetComponent<RectTransform>();
+
+            transform.anchoredPosition = new Vector2(4.0f, transform.anchoredPosition.y);
+
+            this._openCloseSequence = DOTween.Sequence();
+            this._openCloseSequence.Append(transform.DOAnchorPosX(-transform.sizeDelta.x - 4.0f, 0.1f));
+
+			break;
+		}
+		default: {
+            this.CompleteClose();
+
+			break;
+		}
+		}
 
         return;
     }
@@ -130,7 +184,52 @@ public class MenuStartButtonScript : ToffMonaka.Lib.Scene.ObjectScript
      */
     protected override void _OnUpdateClose()
     {
-        this.CompleteClose();
+		switch (this.GetCloseType()) {
+		case 1: {
+            if (!this._openCloseSequence.IsActive()) {
+                this.CompleteClose();
+            }
+
+			break;
+		}
+		default: {
+            this.CompleteClose();
+
+			break;
+		}
+		}
+
+        return;
+    }
+
+    /**
+     * @brief OnPointerClickEvent関数
+     */
+    public void OnPointerClickEvent()
+    {
+        ToffMonaka.Lib.Scene.Util.GetSoundManager().PlaySe((int)ToffMonaka.UnityBase.Constant.Util.SOUND.SE_INDEX.OK2);
+
+        this._menuScript.ClickStartButton();
+
+        return;
+    }
+
+    /**
+     * @brief OnPointerEnterEvent関数
+     */
+    public void OnPointerEnterEvent()
+    {
+        this._coverImage.gameObject.SetActive(true);
+
+        return;
+    }
+
+    /**
+     * @brief OnPointerExitEvent関数
+     */
+    public void OnPointerExitEvent()
+    {
+        this._coverImage.gameObject.SetActive(false);
 
         return;
     }

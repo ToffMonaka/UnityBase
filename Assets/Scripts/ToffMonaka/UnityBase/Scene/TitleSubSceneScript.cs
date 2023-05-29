@@ -27,9 +27,11 @@ public class TitleSubSceneScript : ToffMonaka.Lib.Scene.SubSceneScript
     [SerializeField] private TextMeshProUGUI _startButtonText = null;
     [SerializeField] private TextMeshProUGUI _companyNameText = null;
     [SerializeField] private TextMeshProUGUI _versionNameText = null;
+    [SerializeField] private GameObject _menuNode = null;
 
     public new ToffMonaka.UnityBase.Scene.TitleSubSceneScriptCreateDesc createDesc{get; private set;} = null;
-    private Sequence _openCloseFadeSequence = null;
+    private Sequence _openCloseSequence = null;
+    private ToffMonaka.UnityBase.Scene.MenuScript _menuScript = null;
 
     /**
      * @brief コンストラクタ
@@ -70,6 +72,16 @@ public class TitleSubSceneScript : ToffMonaka.Lib.Scene.SubSceneScript
 
         this._companyNameText.SetText(ToffMonaka.UnityBase.Constant.Util.COMPANY_NAME);
         this._versionNameText.SetText("Version " + ToffMonaka.UnityBase.Constant.Util.VERSION_NAME);
+
+        {// MenuScript Create
+            var script = this._menuNode.GetComponent<ToffMonaka.UnityBase.Scene.MenuScript>();
+            var script_create_desc = new ToffMonaka.UnityBase.Scene.MenuScriptCreateDesc();
+
+            script.Create(script_create_desc);
+            script.Open(0);
+
+            this._menuScript = script;
+        }
 
         return (0);
     }
@@ -125,9 +137,9 @@ public class TitleSubSceneScript : ToffMonaka.Lib.Scene.SubSceneScript
             this._openCloseFadeImage.gameObject.SetActive(true);
             this._openCloseFadeImage.color = new Color32(8, 8, 8, 255);
 
-            this._openCloseFadeSequence = DOTween.Sequence();
-            this._openCloseFadeSequence.AppendInterval(0.05f);
-            this._openCloseFadeSequence.Append(this._openCloseFadeImage.DOFade(0.0f, 0.2f));
+            this._openCloseSequence = DOTween.Sequence();
+            this._openCloseSequence.AppendInterval(0.05f);
+            this._openCloseSequence.Append(this._openCloseFadeImage.DOFade(0.0f, 0.2f));
 
 			break;
 		}
@@ -148,7 +160,7 @@ public class TitleSubSceneScript : ToffMonaka.Lib.Scene.SubSceneScript
     {
 		switch (this.GetOpenType()) {
 		case 1: {
-            if (!this._openCloseFadeSequence.IsActive()) {
+            if (!this._openCloseSequence.IsActive()) {
                 this.CompleteOpen();
 
                 this._openCloseFadeImage.gameObject.SetActive(false);
@@ -176,9 +188,9 @@ public class TitleSubSceneScript : ToffMonaka.Lib.Scene.SubSceneScript
             this._openCloseFadeImage.gameObject.SetActive(true);
             this._openCloseFadeImage.color = new Color32(8, 8, 8, 0);
 
-            this._openCloseFadeSequence = DOTween.Sequence();
-            this._openCloseFadeSequence.Append(this._openCloseFadeImage.DOFade(1.0f, 0.2f));
-            this._openCloseFadeSequence.AppendInterval(0.05f);
+            this._openCloseSequence = DOTween.Sequence();
+            this._openCloseSequence.Append(this._openCloseFadeImage.DOFade(1.0f, 0.2f));
+            this._openCloseSequence.AppendInterval(0.05f);
 
 			break;
 		}
@@ -199,10 +211,10 @@ public class TitleSubSceneScript : ToffMonaka.Lib.Scene.SubSceneScript
     {
 		switch (this.GetCloseType()) {
 		case 1: {
-            if (!this._openCloseFadeSequence.IsActive()) {
+            if (!this._openCloseSequence.IsActive()) {
                 this.CompleteClose();
 
-                {// SelectSubScene Create
+                {// SelectSubSceneScript Create
                     var script = this.GetManager().ChangeSubScene(ToffMonaka.UnityBase.Constant.Util.FILE_PATH.SELECT_SUB_SCENE_PREFAB) as ToffMonaka.UnityBase.Scene.SelectSubSceneScript;
                     var script_create_desc = new ToffMonaka.UnityBase.Scene.SelectSubSceneScriptCreateDesc();
 
@@ -231,26 +243,6 @@ public class TitleSubSceneScript : ToffMonaka.Lib.Scene.SubSceneScript
         ToffMonaka.Lib.Scene.Util.GetSoundManager().PlaySe((int)ToffMonaka.UnityBase.Constant.Util.SOUND.SE_INDEX.OK);
 
         this.Close(1);
-
-        return;
-    }
-
-    /**
-     * @brief OnStartButtonPointerEnterEvent関数
-     */
-    public void OnStartButtonPointerEnterEvent()
-    {
-        this._startButtonText.gameObject.transform.DOScale(1.2f, 0.1f).SetLink(this._startButtonText.gameObject);
-
-        return;
-    }
-
-    /**
-     * @brief OnStartButtonPointerExitEvent関数
-     */
-    public void OnStartButtonPointerExitEvent()
-    {
-        this._startButtonText.gameObject.transform.DOScale(1.0f, 0.1f).SetLink(this._startButtonText.gameObject);
 
         return;
     }

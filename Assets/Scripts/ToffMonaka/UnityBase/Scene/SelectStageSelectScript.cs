@@ -70,7 +70,7 @@ public class SelectStageSelectScript : ToffMonaka.Lib.Scene.ObjectScript
 
         this._stageButtonNode.gameObject.SetActive(false);
 
-        {// StageButton Create
+        {// StageButtonScript Create
             var script = GameObject.Instantiate(this._stageButtonNode, this._stageButtonNode.transform.parent).GetComponent<ToffMonaka.UnityBase.Scene.SelectStageButtonScript>();
             var script_create_desc = new ToffMonaka.UnityBase.Scene.SelectStageButtonScriptCreateDesc();
 
@@ -83,7 +83,7 @@ public class SelectStageSelectScript : ToffMonaka.Lib.Scene.ObjectScript
             this._stageButtonScriptContainer.Add(script);
         }
 
-        {// StageButton Create
+        {// StageButtonScript Create
             var script = GameObject.Instantiate(this._stageButtonNode, this._stageButtonNode.transform.parent).GetComponent<ToffMonaka.UnityBase.Scene.SelectStageButtonScript>();
             var script_create_desc = new ToffMonaka.UnityBase.Scene.SelectStageButtonScriptCreateDesc();
 

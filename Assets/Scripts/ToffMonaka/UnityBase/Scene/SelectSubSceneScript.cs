@@ -26,7 +26,7 @@ public class SelectSubSceneScript : ToffMonaka.Lib.Scene.SubSceneScript
     [SerializeField] private GameObject _stageSelectNode = null;
 
     public new ToffMonaka.UnityBase.Scene.SelectSubSceneScriptCreateDesc createDesc{get; private set;} = null;
-    private Sequence _openCloseFadeSequence = null;
+    private Sequence _openCloseSequence = null;
     private ToffMonaka.UnityBase.Scene.SelectStageSelectScript _stageSelectScript = null;
     private ToffMonaka.UnityBase.Constant.Util.SCENE.STAGE_TYPE _stageType = ToffMonaka.UnityBase.Constant.Util.SCENE.STAGE_TYPE.NONE;
 
@@ -67,7 +67,7 @@ public class SelectSubSceneScript : ToffMonaka.Lib.Scene.SubSceneScript
 
         canvas_node.GetComponent<Canvas>().worldCamera = this.GetManager().GetMainSceneScript().GetMainCamera();
 
-        {// StageSelect Create
+        {// StageSelectScript Create
             var script = this._stageSelectNode.GetComponent<ToffMonaka.UnityBase.Scene.SelectStageSelectScript>();
             var script_create_desc = new ToffMonaka.UnityBase.Scene.SelectStageSelectScriptCreateDesc();
 
@@ -131,9 +131,9 @@ public class SelectSubSceneScript : ToffMonaka.Lib.Scene.SubSceneScript
             this._openCloseFadeImage.gameObject.SetActive(true);
             this._openCloseFadeImage.color = new Color32(8, 8, 8, 255);
 
-            this._openCloseFadeSequence = DOTween.Sequence();
-            this._openCloseFadeSequence.AppendInterval(0.05f);
-            this._openCloseFadeSequence.Append(this._openCloseFadeImage.DOFade(0.0f, 0.2f));
+            this._openCloseSequence = DOTween.Sequence();
+            this._openCloseSequence.AppendInterval(0.05f);
+            this._openCloseSequence.Append(this._openCloseFadeImage.DOFade(0.0f, 0.2f));
 
 			break;
 		}
@@ -154,7 +154,7 @@ public class SelectSubSceneScript : ToffMonaka.Lib.Scene.SubSceneScript
     {
 		switch (this.GetOpenType()) {
 		case 1: {
-            if (!this._openCloseFadeSequence.IsActive()) {
+            if (!this._openCloseSequence.IsActive()) {
                 this.CompleteOpen();
 
                 this._openCloseFadeImage.gameObject.SetActive(false);
@@ -182,9 +182,9 @@ public class SelectSubSceneScript : ToffMonaka.Lib.Scene.SubSceneScript
             this._openCloseFadeImage.gameObject.SetActive(true);
             this._openCloseFadeImage.color = new Color32(8, 8, 8, 0);
 
-            this._openCloseFadeSequence = DOTween.Sequence();
-            this._openCloseFadeSequence.Append(this._openCloseFadeImage.DOFade(1.0f, 0.2f));
-            this._openCloseFadeSequence.AppendInterval(0.05f);
+            this._openCloseSequence = DOTween.Sequence();
+            this._openCloseSequence.Append(this._openCloseFadeImage.DOFade(1.0f, 0.2f));
+            this._openCloseSequence.AppendInterval(0.05f);
 
 			break;
 		}
@@ -205,10 +205,10 @@ public class SelectSubSceneScript : ToffMonaka.Lib.Scene.SubSceneScript
     {
 		switch (this.GetCloseType()) {
 		case 1: {
-            if (!this._openCloseFadeSequence.IsActive()) {
+            if (!this._openCloseSequence.IsActive()) {
                 this.CompleteClose();
 
-                // Test2DStageSubScene Create
+                // Test2DStageSubSceneScript Create
                 if (this._stageType == ToffMonaka.UnityBase.Constant.Util.SCENE.STAGE_TYPE.TEST_2D) {
                     var script = this.GetManager().ChangeSubScene(ToffMonaka.UnityBase.Constant.Util.FILE_PATH.TEST_2D_STAGE_SUB_SCENE_PREFAB) as ToffMonaka.UnityBase.Scene.Test2DStageSubSceneScript;
                     var script_create_desc = new ToffMonaka.UnityBase.Scene.Test2DStageSubSceneScriptCreateDesc();
@@ -217,7 +217,7 @@ public class SelectSubSceneScript : ToffMonaka.Lib.Scene.SubSceneScript
                     script.Open(1);
                 }
 
-                // Test3DStageSubScene Create
+                // Test3DStageSubSceneScript Create
                 if (this._stageType == ToffMonaka.UnityBase.Constant.Util.SCENE.STAGE_TYPE.TEST_3D) {
                     var script = this.GetManager().ChangeSubScene(ToffMonaka.UnityBase.Constant.Util.FILE_PATH.TEST_3D_STAGE_SUB_SCENE_PREFAB) as ToffMonaka.UnityBase.Scene.Test3DStageSubSceneScript;
                     var script_create_desc = new ToffMonaka.UnityBase.Scene.Test3DStageSubSceneScriptCreateDesc();

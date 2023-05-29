@@ -5,6 +5,7 @@
 
 
 using UnityEngine;
+using UnityEngine.UI;
 
 
 namespace ToffMonaka.UnityBase.Scene {
@@ -20,7 +21,15 @@ public class MenuScriptCreateDesc : ToffMonaka.Lib.Scene.ObjectScriptCreateDesc
  */
 public class MenuScript : ToffMonaka.Lib.Scene.ObjectScript
 {
+    [SerializeField] private Image _backgroundImage = null;
+    [SerializeField] private GameObject _startButtonNode = null;
+    [SerializeField] private GameObject _selectNode = null;
+    [SerializeField] private GameObject _stageNode = null;
+
     public new ToffMonaka.UnityBase.Scene.MenuScriptCreateDesc createDesc{get; private set;} = null;
+    private ToffMonaka.UnityBase.Scene.MenuStartButtonScript _startButtonScript = null;
+    private ToffMonaka.UnityBase.Scene.MenuSelectScript _selectScript = null;
+    private ToffMonaka.UnityBase.Scene.MenuStageScript _stageScript = null;
 
     /**
      * @brief コンストラクタ
@@ -55,6 +64,38 @@ public class MenuScript : ToffMonaka.Lib.Scene.ObjectScript
      */
     protected override int _OnCreate()
     {
+        this._backgroundImage.gameObject.SetActive(false);
+
+        {// StartButtonScript Create
+            var script = this._startButtonNode.GetComponent<ToffMonaka.UnityBase.Scene.MenuStartButtonScript>();
+            var script_create_desc = new ToffMonaka.UnityBase.Scene.MenuStartButtonScriptCreateDesc();
+
+            script_create_desc.menuScript = this;
+
+            script.Create(script_create_desc);
+            script.Open(1);
+
+            this._startButtonScript = script;
+        }
+
+        {// SelectScript Create
+            var script = this._selectNode.GetComponent<ToffMonaka.UnityBase.Scene.MenuSelectScript>();
+            var script_create_desc = new ToffMonaka.UnityBase.Scene.MenuSelectScriptCreateDesc();
+
+            script.Create(script_create_desc);
+
+            this._selectScript = script;
+        }
+
+        {// StageScript Create
+            var script = this._stageNode.GetComponent<ToffMonaka.UnityBase.Scene.MenuStageScript>();
+            var script_create_desc = new ToffMonaka.UnityBase.Scene.MenuStageScriptCreateDesc();
+
+            script.Create(script_create_desc);
+
+            this._stageScript = script;
+        }
+
         return (0);
     }
 
@@ -131,6 +172,20 @@ public class MenuScript : ToffMonaka.Lib.Scene.ObjectScript
     protected override void _OnUpdateClose()
     {
         this.CompleteClose();
+
+        return;
+    }
+
+    /**
+     * @brief ClickStartButton関数
+     */
+    public void ClickStartButton()
+    {
+        if (this._backgroundImage.gameObject.activeSelf) {
+            this._backgroundImage.gameObject.SetActive(false);
+        } else {
+            this._backgroundImage.gameObject.SetActive(true);
+        }
 
         return;
     }

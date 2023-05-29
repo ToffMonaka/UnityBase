@@ -98,11 +98,32 @@ public static class Util
 		    COUNT
         }
         public const int STAGE_TYPE_COUNT = (int)ToffMonaka.UnityBase.Constant.Util.SCENE.STAGE_TYPE.COUNT;
-
         public static readonly string[] STAGE_TYPE_NAME_ARRAY = {
             "",
             "Test2D",
             "Test3D"
+        };
+
+        public enum MENU_STAGE_TYPE : int
+        {
+            NONE = 0,
+            OPTION,
+            FAQ,
+            STAFF,
+            LICENSE,
+            END,
+            CHEAT,
+		    COUNT
+        }
+        public const int MENU_STAGE_TYPE_COUNT = (int)ToffMonaka.UnityBase.Constant.Util.SCENE.MENU_STAGE_TYPE.COUNT;
+        public static readonly string[] MENU_STAGE_TYPE_NAME_ARRAY = {
+            "",
+            "オプション",
+            "FAQ",
+            "スタッフ",
+            "ライセンス",
+            "終了",
+            "チート"
         };
     }
 }

@@ -743,6 +743,7 @@ MonoBehaviour:
   _startButtonText: {fileID: 2028453824211646787}
   _companyNameText: {fileID: 3327949271293028749}
   _versionNameText: {fileID: 4741778531257964733}
+  _menuNode: {fileID: 712818505294106820}
 --- !u!1 &7515165048611226326
 GameObject:
   m_ObjectHideFlags: 0
@@ -804,40 +805,6 @@ MonoBehaviour:
           m_TargetAssemblyTypeName: ToffMonaka.UnityBase.Scene.TitleSubSceneScript,
             Assembly-CSharp
           m_MethodName: OnStartButtonPointerClickEvent
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  - eventID: 0
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 1097313806984316291}
-          m_TargetAssemblyTypeName: ToffMonaka.UnityBase.Scene.TitleSubSceneScript,
-            Assembly-CSharp
-          m_MethodName: OnStartButtonPointerEnterEvent
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  - eventID: 1
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 1097313806984316291}
-          m_TargetAssemblyTypeName: ToffMonaka.UnityBase.Scene.TitleSubSceneScript,
-            Assembly-CSharp
-          m_MethodName: OnStartButtonPointerExitEvent
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -1230,6 +1197,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3095d112a3f401a46846e6f1973f4bf1, type: 3}
+--- !u!1 &712818505294106820 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2565543407403666359, guid: 3095d112a3f401a46846e6f1973f4bf1, type: 3}
+  m_PrefabInstance: {fileID: 3062118467496139635}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &3429484991256882377 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 425923215091775418, guid: 3095d112a3f401a46846e6f1973f4bf1, type: 3}

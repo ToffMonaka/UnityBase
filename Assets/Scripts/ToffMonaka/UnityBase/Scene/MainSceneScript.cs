@@ -37,7 +37,7 @@ public class MainSceneScript : ToffMonaka.Lib.Scene.MainSceneScript
      */
     protected override void _OnAwake()
     {
-        {// MainScene Create
+        {// MainSceneScript Create
             var script = this;
             var script_create_desc = new ToffMonaka.UnityBase.Scene.MainSceneScriptCreateDesc();
 
@@ -84,7 +84,7 @@ public class MainSceneScript : ToffMonaka.Lib.Scene.MainSceneScript
      */
     protected override void _OnActive()
     {
-        {// InitSubScene Create
+        {// InitSubSceneScript Create
             var script = this.GetManager().ChangeSubScene(ToffMonaka.UnityBase.Constant.Util.FILE_PATH.INIT_SUB_SCENE_PREFAB) as ToffMonaka.UnityBase.Scene.InitSubSceneScript;
             var script_create_desc = new ToffMonaka.UnityBase.Scene.InitSubSceneScriptCreateDesc();
 

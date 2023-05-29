@@ -25,7 +25,7 @@ public class Test3DStageSubSceneScript : ToffMonaka.Lib.Scene.SubSceneScript
     [SerializeField] private Image _openCloseFadeImage = null;
 
     public new ToffMonaka.UnityBase.Scene.Test3DStageSubSceneScriptCreateDesc createDesc{get; private set;} = null;
-    private Sequence _openCloseFadeSequence = null;
+    private Sequence _openCloseSequence = null;
 
     /**
      * @brief コンストラクタ
@@ -114,9 +114,9 @@ public class Test3DStageSubSceneScript : ToffMonaka.Lib.Scene.SubSceneScript
             this._openCloseFadeImage.gameObject.SetActive(true);
             this._openCloseFadeImage.color = new Color32(8, 8, 8, 255);
 
-            this._openCloseFadeSequence = DOTween.Sequence();
-            this._openCloseFadeSequence.AppendInterval(0.05f);
-            this._openCloseFadeSequence.Append(this._openCloseFadeImage.DOFade(0.0f, 0.2f));
+            this._openCloseSequence = DOTween.Sequence();
+            this._openCloseSequence.AppendInterval(0.05f);
+            this._openCloseSequence.Append(this._openCloseFadeImage.DOFade(0.0f, 0.2f));
 
 			break;
 		}
@@ -137,7 +137,7 @@ public class Test3DStageSubSceneScript : ToffMonaka.Lib.Scene.SubSceneScript
     {
 		switch (this.GetOpenType()) {
 		case 1: {
-            if (!this._openCloseFadeSequence.IsActive()) {
+            if (!this._openCloseSequence.IsActive()) {
                 this.CompleteOpen();
 
                 this._openCloseFadeImage.gameObject.SetActive(false);
@@ -165,9 +165,9 @@ public class Test3DStageSubSceneScript : ToffMonaka.Lib.Scene.SubSceneScript
             this._openCloseFadeImage.gameObject.SetActive(true);
             this._openCloseFadeImage.color = new Color32(8, 8, 8, 0);
 
-            this._openCloseFadeSequence = DOTween.Sequence();
-            this._openCloseFadeSequence.Append(this._openCloseFadeImage.DOFade(1.0f, 0.2f));
-            this._openCloseFadeSequence.AppendInterval(0.05f);
+            this._openCloseSequence = DOTween.Sequence();
+            this._openCloseSequence.Append(this._openCloseFadeImage.DOFade(1.0f, 0.2f));
+            this._openCloseSequence.AppendInterval(0.05f);
 
 			break;
 		}
@@ -188,7 +188,7 @@ public class Test3DStageSubSceneScript : ToffMonaka.Lib.Scene.SubSceneScript
     {
 		switch (this.GetCloseType()) {
 		case 1: {
-            if (!this._openCloseFadeSequence.IsActive()) {
+            if (!this._openCloseSequence.IsActive()) {
                 this.CompleteClose();
             }
 
