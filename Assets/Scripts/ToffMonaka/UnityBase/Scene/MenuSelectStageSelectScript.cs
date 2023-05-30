@@ -5,6 +5,9 @@
 
 
 using UnityEngine;
+using System;
+using System.Collections.Generic;
+using TMPro;
 
 
 namespace ToffMonaka.UnityBase.Scene {
@@ -13,6 +16,7 @@ namespace ToffMonaka.UnityBase.Scene {
  */
 public class MenuSelectStageSelectScriptCreateDesc : ToffMonaka.Lib.Scene.ObjectScriptCreateDesc
 {
+    public ToffMonaka.UnityBase.Scene.MenuSelectScript selectScript = null;
 }
 
 /**
@@ -20,7 +24,13 @@ public class MenuSelectStageSelectScriptCreateDesc : ToffMonaka.Lib.Scene.Object
  */
 public class MenuSelectStageSelectScript : ToffMonaka.Lib.Scene.ObjectScript
 {
+    [SerializeField] private TextMeshProUGUI _nameText = null;
+    [SerializeField] private GameObject _stageButtonNode = null;
+
     public new ToffMonaka.UnityBase.Scene.MenuSelectStageSelectScriptCreateDesc createDesc{get; private set;} = null;
+
+    private ToffMonaka.UnityBase.Scene.MenuSelectScript _selectScript = null;
+    private List<ToffMonaka.UnityBase.Scene.MenuSelectStageButtonScript> _stageButtonScriptContainer = new List<ToffMonaka.UnityBase.Scene.MenuSelectStageButtonScript>();
 
     /**
      * @brief コンストラクタ
@@ -55,6 +65,78 @@ public class MenuSelectStageSelectScript : ToffMonaka.Lib.Scene.ObjectScript
      */
     protected override int _OnCreate()
     {
+        this._nameText.SetText("メニュー");
+
+        this._selectScript = this.createDesc.selectScript;
+
+        this._stageButtonNode.gameObject.SetActive(false);
+
+        {// StageButtonScript Create
+            var script = GameObject.Instantiate(this._stageButtonNode, this._stageButtonNode.transform.parent).GetComponent<ToffMonaka.UnityBase.Scene.MenuSelectStageButtonScript>();
+            var script_create_desc = new ToffMonaka.UnityBase.Scene.MenuSelectStageButtonScriptCreateDesc();
+
+            script_create_desc.stageSelectScript = this;
+            script_create_desc.stageType = ToffMonaka.UnityBase.Constant.Util.SCENE.MENU_STAGE_TYPE.OPTION;
+
+            script.Create(script_create_desc);
+            script.Open(0);
+
+            this._stageButtonScriptContainer.Add(script);
+        }
+
+        {// StageButtonScript Create
+            var script = GameObject.Instantiate(this._stageButtonNode, this._stageButtonNode.transform.parent).GetComponent<ToffMonaka.UnityBase.Scene.MenuSelectStageButtonScript>();
+            var script_create_desc = new ToffMonaka.UnityBase.Scene.MenuSelectStageButtonScriptCreateDesc();
+
+            script_create_desc.stageSelectScript = this;
+            script_create_desc.stageType = ToffMonaka.UnityBase.Constant.Util.SCENE.MENU_STAGE_TYPE.FAQ;
+
+            script.Create(script_create_desc);
+            script.Open(0);
+
+            this._stageButtonScriptContainer.Add(script);
+        }
+
+        {// StageButtonScript Create
+            var script = GameObject.Instantiate(this._stageButtonNode, this._stageButtonNode.transform.parent).GetComponent<ToffMonaka.UnityBase.Scene.MenuSelectStageButtonScript>();
+            var script_create_desc = new ToffMonaka.UnityBase.Scene.MenuSelectStageButtonScriptCreateDesc();
+
+            script_create_desc.stageSelectScript = this;
+            script_create_desc.stageType = ToffMonaka.UnityBase.Constant.Util.SCENE.MENU_STAGE_TYPE.STAFF;
+
+            script.Create(script_create_desc);
+            script.Open(0);
+
+            this._stageButtonScriptContainer.Add(script);
+        }
+
+        {// StageButtonScript Create
+            var script = GameObject.Instantiate(this._stageButtonNode, this._stageButtonNode.transform.parent).GetComponent<ToffMonaka.UnityBase.Scene.MenuSelectStageButtonScript>();
+            var script_create_desc = new ToffMonaka.UnityBase.Scene.MenuSelectStageButtonScriptCreateDesc();
+
+            script_create_desc.stageSelectScript = this;
+            script_create_desc.stageType = ToffMonaka.UnityBase.Constant.Util.SCENE.MENU_STAGE_TYPE.LICENSE;
+
+            script.Create(script_create_desc);
+            script.Open(0);
+
+            this._stageButtonScriptContainer.Add(script);
+        }
+
+        // StageButtonScript Create
+        if (ToffMonaka.UnityBase.Constant.Util.DEBUG_FLAG) {
+            var script = GameObject.Instantiate(this._stageButtonNode, this._stageButtonNode.transform.parent).GetComponent<ToffMonaka.UnityBase.Scene.MenuSelectStageButtonScript>();
+            var script_create_desc = new ToffMonaka.UnityBase.Scene.MenuSelectStageButtonScriptCreateDesc();
+
+            script_create_desc.stageSelectScript = this;
+            script_create_desc.stageType = ToffMonaka.UnityBase.Constant.Util.SCENE.MENU_STAGE_TYPE.CHEAT;
+
+            script.Create(script_create_desc);
+            script.Open(0);
+
+            this._stageButtonScriptContainer.Add(script);
+        }
+
         return (0);
     }
 
@@ -131,6 +213,17 @@ public class MenuSelectStageSelectScript : ToffMonaka.Lib.Scene.ObjectScript
     protected override void _OnUpdateClose()
     {
         this.CompleteClose();
+
+        return;
+    }
+
+    /**
+     * @brief RunStageButton関数
+     * @param stage_type (stage_type)
+     */
+    public void RunStageButton(ToffMonaka.UnityBase.Constant.Util.SCENE.MENU_STAGE_TYPE stage_type)
+    {
+        this._selectScript.RunStageButton(stage_type);
 
         return;
     }

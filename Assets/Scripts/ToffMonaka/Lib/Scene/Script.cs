@@ -21,6 +21,7 @@ public class ScriptCreateDesc
 public abstract class Script : MonoBehaviour
 {
     public ToffMonaka.Lib.Scene.ScriptCreateDesc createDesc{get; private set;} = null;
+
     private ToffMonaka.Lib.Scene.Manager _manager = null;
     private ToffMonaka.Lib.Constant.Util.SCENE.SCRIPT_TYPE _scriptType = ToffMonaka.Lib.Constant.Util.SCENE.SCRIPT_TYPE.NONE;
     private int _scriptIndex = 0;

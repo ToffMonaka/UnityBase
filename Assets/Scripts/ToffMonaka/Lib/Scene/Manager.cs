@@ -26,6 +26,7 @@ public class ManagerCreateDesc
 public class Manager
 {
     public ToffMonaka.Lib.Scene.ManagerCreateDesc createDesc{get; private set;} = null;
+
     private GameObject _mainSceneNode = null;
     private GameObject _subSceneNode = null;
     private List<ToffMonaka.Lib.Scene.Script>[] _scriptArray = null;

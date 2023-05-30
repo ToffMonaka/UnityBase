@@ -32,6 +32,7 @@ public class SoundManagerCreateDesc
 public class SoundManager
 {
     public ToffMonaka.Lib.Scene.SoundManagerCreateDesc createDesc{get; private set;} = null;
+
     private GameObject _soundNode = null;
     private GameObject _bgmNode = null;
     private ToffMonaka.Lib.Scene.SoundBgmScript _bgmScript = null;

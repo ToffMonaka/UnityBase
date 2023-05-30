@@ -22,6 +22,7 @@ public class GraphicManagerCreateDesc
 public class GraphicManager
 {
     public ToffMonaka.Lib.Scene.GraphicManagerCreateDesc createDesc{get; private set;} = null;
+
     private GameObject _graphicNode = null;
 
     /**

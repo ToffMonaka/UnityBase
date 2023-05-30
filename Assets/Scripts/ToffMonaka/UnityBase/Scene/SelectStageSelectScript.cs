@@ -16,7 +16,7 @@ namespace ToffMonaka.UnityBase.Scene {
  */
 public class SelectStageSelectScriptCreateDesc : ToffMonaka.Lib.Scene.ObjectScriptCreateDesc
 {
-    public ToffMonaka.UnityBase.Scene.SelectSubSceneScript selectSubSceneScript = null;
+    public ToffMonaka.UnityBase.Scene.SelectSubSceneScript selectScript = null;
 }
 
 /**
@@ -28,9 +28,9 @@ public class SelectStageSelectScript : ToffMonaka.Lib.Scene.ObjectScript
     [SerializeField] private GameObject _stageButtonNode = null;
 
     public new ToffMonaka.UnityBase.Scene.SelectStageSelectScriptCreateDesc createDesc{get; private set;} = null;
-    private ToffMonaka.UnityBase.Scene.SelectSubSceneScript _selectSubSceneScript = null;
+
+    private ToffMonaka.UnityBase.Scene.SelectSubSceneScript _selectScript = null;
     private List<ToffMonaka.UnityBase.Scene.SelectStageButtonScript> _stageButtonScriptContainer = new List<ToffMonaka.UnityBase.Scene.SelectStageButtonScript>();
-    private ToffMonaka.UnityBase.Constant.Util.SCENE.STAGE_TYPE _stageType = ToffMonaka.UnityBase.Constant.Util.SCENE.STAGE_TYPE.NONE;
 
     /**
      * @brief コンストラクタ
@@ -65,8 +65,9 @@ public class SelectStageSelectScript : ToffMonaka.Lib.Scene.ObjectScript
      */
     protected override int _OnCreate()
     {
-        this._selectSubSceneScript = this.createDesc.selectSubSceneScript;
         this._nameText.SetText("ステージ");
+
+        this._selectScript = this.createDesc.selectScript;
 
         this._stageButtonNode.gameObject.SetActive(false);
 
@@ -74,7 +75,7 @@ public class SelectStageSelectScript : ToffMonaka.Lib.Scene.ObjectScript
             var script = GameObject.Instantiate(this._stageButtonNode, this._stageButtonNode.transform.parent).GetComponent<ToffMonaka.UnityBase.Scene.SelectStageButtonScript>();
             var script_create_desc = new ToffMonaka.UnityBase.Scene.SelectStageButtonScriptCreateDesc();
 
-            script_create_desc.selectSubSceneScript = this._selectSubSceneScript;
+            script_create_desc.stageSelectScript = this;
             script_create_desc.stageType = ToffMonaka.UnityBase.Constant.Util.SCENE.STAGE_TYPE.TEST_2D;
 
             script.Create(script_create_desc);
@@ -87,7 +88,7 @@ public class SelectStageSelectScript : ToffMonaka.Lib.Scene.ObjectScript
             var script = GameObject.Instantiate(this._stageButtonNode, this._stageButtonNode.transform.parent).GetComponent<ToffMonaka.UnityBase.Scene.SelectStageButtonScript>();
             var script_create_desc = new ToffMonaka.UnityBase.Scene.SelectStageButtonScriptCreateDesc();
 
-            script_create_desc.selectSubSceneScript = this._selectSubSceneScript;
+            script_create_desc.stageSelectScript = this;
             script_create_desc.stageType = ToffMonaka.UnityBase.Constant.Util.SCENE.STAGE_TYPE.TEST_3D;
 
             script.Create(script_create_desc);
@@ -177,21 +178,12 @@ public class SelectStageSelectScript : ToffMonaka.Lib.Scene.ObjectScript
     }
 
     /**
-     * @brief GetStageType関数
-     * @return stage_type (stage_type)
-     */
-    public ToffMonaka.UnityBase.Constant.Util.SCENE.STAGE_TYPE GetStageIndex()
-    {
-        return (this._stageType);
-    }
-
-    /**
-     * @brief SetStageType関数
+     * @brief RunStageButton関数
      * @param stage_type (stage_type)
      */
-    public void SetStageIndex(ToffMonaka.UnityBase.Constant.Util.SCENE.STAGE_TYPE stage_type)
+    public void RunStageButton(ToffMonaka.UnityBase.Constant.Util.SCENE.STAGE_TYPE stage_type)
     {
-        this._stageType = stage_type;
+        this._selectScript.RunStageButton(stage_type);
 
         return;
     }

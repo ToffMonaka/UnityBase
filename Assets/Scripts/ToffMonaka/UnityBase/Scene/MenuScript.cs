@@ -27,6 +27,7 @@ public class MenuScript : ToffMonaka.Lib.Scene.ObjectScript
     [SerializeField] private GameObject _stageNode = null;
 
     public new ToffMonaka.UnityBase.Scene.MenuScriptCreateDesc createDesc{get; private set;} = null;
+
     private ToffMonaka.UnityBase.Scene.MenuStartButtonScript _startButtonScript = null;
     private ToffMonaka.UnityBase.Scene.MenuSelectScript _selectScript = null;
     private ToffMonaka.UnityBase.Scene.MenuStageScript _stageScript = null;
@@ -81,6 +82,8 @@ public class MenuScript : ToffMonaka.Lib.Scene.ObjectScript
         {// SelectScript Create
             var script = this._selectNode.GetComponent<ToffMonaka.UnityBase.Scene.MenuSelectScript>();
             var script_create_desc = new ToffMonaka.UnityBase.Scene.MenuSelectScriptCreateDesc();
+
+            script_create_desc.menuScript = this;
 
             script.Create(script_create_desc);
 
@@ -177,14 +180,18 @@ public class MenuScript : ToffMonaka.Lib.Scene.ObjectScript
     }
 
     /**
-     * @brief ClickStartButton関数
+     * @brief RunStartButton関数
      */
-    public void ClickStartButton()
+    public void RunStartButton()
     {
         if (this._backgroundImage.gameObject.activeSelf) {
             this._backgroundImage.gameObject.SetActive(false);
+
+            this._selectScript.Close(1);
         } else {
             this._backgroundImage.gameObject.SetActive(true);
+
+            this._selectScript.Open(1);
         }
 
         return;

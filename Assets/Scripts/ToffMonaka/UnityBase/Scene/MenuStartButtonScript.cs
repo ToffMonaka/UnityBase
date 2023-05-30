@@ -27,6 +27,7 @@ public class MenuStartButtonScript : ToffMonaka.Lib.Scene.ObjectScript
 
     public new ToffMonaka.UnityBase.Scene.MenuStartButtonScriptCreateDesc createDesc{get; private set;} = null;
     private Sequence _openCloseSequence = null;
+
     private ToffMonaka.UnityBase.Scene.MenuScript _menuScript = null;
 
     /**
@@ -109,19 +110,19 @@ public class MenuStartButtonScript : ToffMonaka.Lib.Scene.ObjectScript
      */
     protected override void _OnOpen()
     {
+        var rect_transform = this.gameObject.GetComponent<RectTransform>();
+
 		switch (this.GetOpenType()) {
 		case 1: {
-            var transform = this.gameObject.GetComponent<RectTransform>();
-
-            transform.anchoredPosition = new Vector2(-transform.sizeDelta.x - 4.0f, transform.anchoredPosition.y);
+            rect_transform.anchoredPosition = new Vector2(-rect_transform.sizeDelta.x - 4.0f, rect_transform.anchoredPosition.y);
 
             this._openCloseSequence = DOTween.Sequence();
-            this._openCloseSequence.Append(transform.DOAnchorPosX(4.0f, 0.1f));
+            this._openCloseSequence.Append(rect_transform.DOAnchorPosX(4.0f, 0.1f));
 
 			break;
 		}
 		default: {
-            this.CompleteOpen();
+            rect_transform.anchoredPosition = new Vector2(4.0f, rect_transform.anchoredPosition.y);
 
 			break;
 		}
@@ -158,19 +159,19 @@ public class MenuStartButtonScript : ToffMonaka.Lib.Scene.ObjectScript
      */
     protected override void _OnClose()
     {
+        var rect_transform = this.gameObject.GetComponent<RectTransform>();
+
 		switch (this.GetCloseType()) {
 		case 1: {
-            var transform = this.gameObject.GetComponent<RectTransform>();
-
-            transform.anchoredPosition = new Vector2(4.0f, transform.anchoredPosition.y);
+            rect_transform.anchoredPosition = new Vector2(4.0f, rect_transform.anchoredPosition.y);
 
             this._openCloseSequence = DOTween.Sequence();
-            this._openCloseSequence.Append(transform.DOAnchorPosX(-transform.sizeDelta.x - 4.0f, 0.1f));
+            this._openCloseSequence.Append(rect_transform.DOAnchorPosX(-rect_transform.sizeDelta.x - 4.0f, 0.1f));
 
 			break;
 		}
 		default: {
-            this.CompleteClose();
+            rect_transform.anchoredPosition = new Vector2(-rect_transform.sizeDelta.x - 4.0f, rect_transform.anchoredPosition.y);
 
 			break;
 		}
@@ -209,7 +210,7 @@ public class MenuStartButtonScript : ToffMonaka.Lib.Scene.ObjectScript
     {
         ToffMonaka.Lib.Scene.Util.GetSoundManager().PlaySe((int)ToffMonaka.UnityBase.Constant.Util.SOUND.SE_INDEX.OK2);
 
-        this._menuScript.ClickStartButton();
+        this._menuScript.RunStartButton();
 
         return;
     }

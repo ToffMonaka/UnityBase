@@ -5,6 +5,8 @@
 
 
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 
 namespace ToffMonaka.UnityBase.Scene {
@@ -13,6 +15,8 @@ namespace ToffMonaka.UnityBase.Scene {
  */
 public class MenuSelectStageButtonScriptCreateDesc : ToffMonaka.Lib.Scene.ObjectScriptCreateDesc
 {
+    public ToffMonaka.UnityBase.Scene.MenuSelectStageSelectScript stageSelectScript = null;
+    public ToffMonaka.UnityBase.Constant.Util.SCENE.MENU_STAGE_TYPE stageType = ToffMonaka.UnityBase.Constant.Util.SCENE.MENU_STAGE_TYPE.NONE;
 }
 
 /**
@@ -20,7 +24,13 @@ public class MenuSelectStageButtonScriptCreateDesc : ToffMonaka.Lib.Scene.Object
  */
 public class MenuSelectStageButtonScript : ToffMonaka.Lib.Scene.ObjectScript
 {
+    [SerializeField] private TextMeshProUGUI _nameText = null;
+    [SerializeField] private Image _coverImage = null;
+
     public new ToffMonaka.UnityBase.Scene.MenuSelectStageButtonScriptCreateDesc createDesc{get; private set;} = null;
+
+    private ToffMonaka.UnityBase.Scene.MenuSelectStageSelectScript _stageSelectScript = null;
+    private ToffMonaka.UnityBase.Constant.Util.SCENE.MENU_STAGE_TYPE _stageType = ToffMonaka.UnityBase.Constant.Util.SCENE.MENU_STAGE_TYPE.NONE;
 
     /**
      * @brief コンストラクタ
@@ -55,6 +65,11 @@ public class MenuSelectStageButtonScript : ToffMonaka.Lib.Scene.ObjectScript
      */
     protected override int _OnCreate()
     {
+        this._stageType = this.createDesc.stageType;
+        this._nameText.SetText(ToffMonaka.UnityBase.Constant.Util.SCENE.MENU_STAGE_TYPE_NAME_ARRAY[(int)this._stageType]);
+
+        this._stageSelectScript = this.createDesc.stageSelectScript;
+
         return (0);
     }
 
@@ -131,6 +146,38 @@ public class MenuSelectStageButtonScript : ToffMonaka.Lib.Scene.ObjectScript
     protected override void _OnUpdateClose()
     {
         this.CompleteClose();
+
+        return;
+    }
+
+    /**
+     * @brief OnPointerClickEvent関数
+     */
+    public void OnPointerClickEvent()
+    {
+        ToffMonaka.Lib.Scene.Util.GetSoundManager().PlaySe((int)ToffMonaka.UnityBase.Constant.Util.SOUND.SE_INDEX.OK2);
+
+        this._stageSelectScript.RunStageButton(this._stageType);
+
+        return;
+    }
+
+    /**
+     * @brief OnPointerEnterEvent関数
+     */
+    public void OnPointerEnterEvent()
+    {
+        this._coverImage.gameObject.SetActive(true);
+
+        return;
+    }
+
+    /**
+     * @brief OnPointerExitEvent関数
+     */
+    public void OnPointerExitEvent()
+    {
+        this._coverImage.gameObject.SetActive(false);
 
         return;
     }

@@ -22,6 +22,7 @@ public class InputManagerCreateDesc
 public class InputManager
 {
     public ToffMonaka.Lib.Scene.InputManagerCreateDesc createDesc{get; private set;} = null;
+
     private GameObject _inputNode = null;
 
     /**

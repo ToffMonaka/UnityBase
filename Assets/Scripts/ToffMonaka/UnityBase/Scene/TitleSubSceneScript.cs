@@ -31,6 +31,7 @@ public class TitleSubSceneScript : ToffMonaka.Lib.Scene.SubSceneScript
 
     public new ToffMonaka.UnityBase.Scene.TitleSubSceneScriptCreateDesc createDesc{get; private set;} = null;
     private Sequence _openCloseSequence = null;
+
     private ToffMonaka.UnityBase.Scene.MenuScript _menuScript = null;
 
     /**

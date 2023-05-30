@@ -24,11 +24,14 @@ public class SelectSubSceneScript : ToffMonaka.Lib.Scene.SubSceneScript
 {
     [SerializeField] private Image _openCloseFadeImage = null;
     [SerializeField] private GameObject _stageSelectNode = null;
+    [SerializeField] private GameObject _menuNode = null;
 
     public new ToffMonaka.UnityBase.Scene.SelectSubSceneScriptCreateDesc createDesc{get; private set;} = null;
     private Sequence _openCloseSequence = null;
+
     private ToffMonaka.UnityBase.Scene.SelectStageSelectScript _stageSelectScript = null;
     private ToffMonaka.UnityBase.Constant.Util.SCENE.STAGE_TYPE _stageType = ToffMonaka.UnityBase.Constant.Util.SCENE.STAGE_TYPE.NONE;
+    private ToffMonaka.UnityBase.Scene.MenuScript _menuScript = null;
 
     /**
      * @brief コンストラクタ
@@ -71,12 +74,22 @@ public class SelectSubSceneScript : ToffMonaka.Lib.Scene.SubSceneScript
             var script = this._stageSelectNode.GetComponent<ToffMonaka.UnityBase.Scene.SelectStageSelectScript>();
             var script_create_desc = new ToffMonaka.UnityBase.Scene.SelectStageSelectScriptCreateDesc();
 
-            script_create_desc.selectSubSceneScript = this;
+            script_create_desc.selectScript = this;
 
             script.Create(script_create_desc);
             script.Open(0);
 
             this._stageSelectScript = script;
+        }
+
+        {// MenuScript Create
+            var script = this._menuNode.GetComponent<ToffMonaka.UnityBase.Scene.MenuScript>();
+            var script_create_desc = new ToffMonaka.UnityBase.Scene.MenuScriptCreateDesc();
+
+            script.Create(script_create_desc);
+            script.Open(0);
+
+            this._menuScript = script;
         }
 
         return (0);
@@ -249,12 +262,14 @@ public class SelectSubSceneScript : ToffMonaka.Lib.Scene.SubSceneScript
     }
 
     /**
-     * @brief SetStageType関数
+     * @brief RunStageButton関数
      * @param stage_type (stage_type)
      */
-    public void SetStageIndex(ToffMonaka.UnityBase.Constant.Util.SCENE.STAGE_TYPE stage_type)
+    public void RunStageButton(ToffMonaka.UnityBase.Constant.Util.SCENE.STAGE_TYPE stage_type)
     {
         this._stageType = stage_type;
+
+        this.Close(1);
 
         return;
     }
