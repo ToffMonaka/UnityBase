@@ -5,39 +5,30 @@
 
 
 using UnityEngine;
-using DG.Tweening;
 
 
 namespace ToffMonaka.UnityBase.Scene {
 /**
  * @brief MenuSelectScriptCreateDescクラス
  */
-public class MenuSelectScriptCreateDesc : ToffMonaka.Lib.Scene.ObjectScriptCreateDesc
+public class MenuSelectScriptCreateDesc : ToffMonaka.Lib.Scene.SubSceneScriptCreateDesc
 {
-    public ToffMonaka.UnityBase.Scene.MenuScript menuScript = null;
 }
 
 /**
  * @brief MenuSelectScriptクラス
  */
-public class MenuSelectScript : ToffMonaka.Lib.Scene.ObjectScript
+public class MenuSelectScript : ToffMonaka.Lib.Scene.SubSceneScript
 {
-    [SerializeField] private GameObject _stageSelectNode = null;
-
     public new ToffMonaka.UnityBase.Scene.MenuSelectScriptCreateDesc createDesc{get; private set;} = null;
-    private Sequence _openCloseSequence = null;
 
-    private ToffMonaka.UnityBase.Scene.MenuScript _menuScript = null;
-    private ToffMonaka.UnityBase.Scene.MenuSelectStageSelectScript _stageSelectScript = null;
-    private ToffMonaka.UnityBase.Constant.Util.SCENE.MENU_STAGE_TYPE _stageType = ToffMonaka.UnityBase.Constant.Util.SCENE.MENU_STAGE_TYPE.NONE;
+    private ToffMonaka.UnityBase.Constant.Util.SCENE.MENU_SELECT_TYPE _selectType = ToffMonaka.UnityBase.Constant.Util.SCENE.MENU_SELECT_TYPE.NONE;
 
     /**
      * @brief コンストラクタ
      */
     public MenuSelectScript()
     {
-        this._SetScriptIndex((int)ToffMonaka.UnityBase.Constant.Util.SCENE.SCRIPT_INDEX.MENU_SELECT);
-
         return;
     }
 
@@ -64,20 +55,6 @@ public class MenuSelectScript : ToffMonaka.Lib.Scene.ObjectScript
      */
     protected override int _OnCreate()
     {
-        this._menuScript = this.createDesc.menuScript;
-
-        {// StageSelectScript Create
-            var script = this._stageSelectNode.GetComponent<ToffMonaka.UnityBase.Scene.MenuSelectStageSelectScript>();
-            var script_create_desc = new ToffMonaka.UnityBase.Scene.MenuSelectStageSelectScriptCreateDesc();
-
-            script_create_desc.selectScript = this;
-
-            script.Create(script_create_desc);
-            script.Open(0);
-
-            this._stageSelectScript = script;
-        }
-
         return (0);
     }
 
@@ -123,23 +100,7 @@ public class MenuSelectScript : ToffMonaka.Lib.Scene.ObjectScript
      */
     protected override void _OnOpen()
     {
-        var rect_transform = this.gameObject.GetComponent<RectTransform>();
-
-		switch (this.GetOpenType()) {
-		case 1: {
-            rect_transform.anchoredPosition = new Vector2(-rect_transform.sizeDelta.x - 4.0f, rect_transform.anchoredPosition.y);
-
-            this._openCloseSequence = DOTween.Sequence();
-            this._openCloseSequence.Append(rect_transform.DOAnchorPosX(4.0f, 0.1f));
-
-			break;
-		}
-		default: {
-            rect_transform.anchoredPosition = new Vector2(4.0f, rect_transform.anchoredPosition.y);
-
-			break;
-		}
-		}
+        this.CompleteOpen();
 
         return;
     }
@@ -149,20 +110,7 @@ public class MenuSelectScript : ToffMonaka.Lib.Scene.ObjectScript
      */
     protected override void _OnUpdateOpen()
     {
-		switch (this.GetOpenType()) {
-		case 1: {
-            if (!this._openCloseSequence.IsActive()) {
-                this.CompleteOpen();
-            }
-
-			break;
-		}
-		default: {
-            this.CompleteOpen();
-
-			break;
-		}
-		}
+        this.CompleteOpen();
 
         return;
     }
@@ -172,23 +120,7 @@ public class MenuSelectScript : ToffMonaka.Lib.Scene.ObjectScript
      */
     protected override void _OnClose()
     {
-        var rect_transform = this.gameObject.GetComponent<RectTransform>();
-
-		switch (this.GetCloseType()) {
-		case 1: {
-            rect_transform.anchoredPosition = new Vector2(4.0f, rect_transform.anchoredPosition.y);
-
-            this._openCloseSequence = DOTween.Sequence();
-            this._openCloseSequence.Append(rect_transform.DOAnchorPosX(-rect_transform.sizeDelta.x - 4.0f, 0.1f));
-
-			break;
-		}
-		default: {
-            rect_transform.anchoredPosition = new Vector2(-rect_transform.sizeDelta.x - 4.0f, rect_transform.anchoredPosition.y);
-
-			break;
-		}
-		}
+        this.CompleteClose();
 
         return;
     }
@@ -198,40 +130,27 @@ public class MenuSelectScript : ToffMonaka.Lib.Scene.ObjectScript
      */
     protected override void _OnUpdateClose()
     {
-		switch (this.GetCloseType()) {
-		case 1: {
-            if (!this._openCloseSequence.IsActive()) {
-                this.CompleteClose();
-            }
-
-			break;
-		}
-		default: {
-            this.CompleteClose();
-
-			break;
-		}
-		}
+        this.CompleteClose();
 
         return;
     }
 
     /**
-     * @brief GetStageType関数
-     * @return stage_type (stage_type)
+     * @brief GetSelectType関数
+     * @return select_type (select_type)
      */
-    public ToffMonaka.UnityBase.Constant.Util.SCENE.MENU_STAGE_TYPE GetStageIndex()
+    public ToffMonaka.UnityBase.Constant.Util.SCENE.MENU_SELECT_TYPE GetSelectType()
     {
-        return (this._stageType);
+        return (this._selectType);
     }
 
     /**
-     * @brief RunStageButton関数
-     * @param stage_type (stage_type)
+     * @brief _SetSelectType関数
+     * @param select_type (select_type)
      */
-    public void RunStageButton(ToffMonaka.UnityBase.Constant.Util.SCENE.MENU_STAGE_TYPE stage_type)
+    protected void _SetSelectType(ToffMonaka.UnityBase.Constant.Util.SCENE.MENU_SELECT_TYPE select_type)
     {
-        this._stageType = stage_type;
+        this._selectType = select_type;
 
         return;
     }

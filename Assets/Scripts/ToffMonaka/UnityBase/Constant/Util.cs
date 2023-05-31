@@ -27,7 +27,7 @@ public static class Util
         public const string NONE = "";
         public const string INIT_SUB_SCENE_PREFAB = "Assets/Resources2/prefab/InitSubScene.prefab";
         public const string TITLE_SUB_SCENE_PREFAB = "Assets/Resources2/prefab/TitleSubScene.prefab";
-        public const string SELECT_SUB_SCENE_PREFAB = "Assets/Resources2/prefab/SelectSubScene.prefab";
+        public const string STAGE_SELECT_SUB_SCENE_PREFAB = "Assets/Resources2/prefab/StageSelectSubScene.prefab";
         public const string TEST_2D_STAGE_SUB_SCENE_PREFAB = "Assets/Resources2/prefab/Test2DStageSubScene.prefab";
         public const string TEST_3D_STAGE_SUB_SCENE_PREFAB = "Assets/Resources2/prefab/Test3DStageSubScene.prefab";
     }
@@ -69,9 +69,8 @@ public static class Util
             MAIN_SCENE = ToffMonaka.Lib.Constant.Util.SCENE.SCRIPT_INDEX.COUNT,
             INIT_SUB_SCENE,
             TITLE_SUB_SCENE,
-            SELECT_SUB_SCENE,
-            SELECT_STAGE_SELECT,
-            SELECT_STAGE_BUTTON,
+            STAGE_SELECT_SUB_SCENE,
+            STAGE_SELECT_STAGE_BUTTON,
             TEST_2D_STAGE_SUB_SCENE,
             TEST_3D_STAGE_SUB_SCENE,
             MENU,
@@ -90,6 +89,18 @@ public static class Util
             public const string MAIN = "MainScene";
         }
 
+        public enum SELECT_TYPE : int
+        {
+            NONE = 0,
+            STAGE,
+		    COUNT
+        }
+        public const int SELECT_TYPE_COUNT = (int)ToffMonaka.UnityBase.Constant.Util.SCENE.SELECT_TYPE.COUNT;
+        public static readonly string[] SELECT_TYPE_NAME_ARRAY = {
+            "",
+            "ステージ"
+        };
+
         public enum STAGE_TYPE : int
         {
             NONE = 0,
@@ -100,8 +111,20 @@ public static class Util
         public const int STAGE_TYPE_COUNT = (int)ToffMonaka.UnityBase.Constant.Util.SCENE.STAGE_TYPE.COUNT;
         public static readonly string[] STAGE_TYPE_NAME_ARRAY = {
             "",
-            "Test2D",
-            "Test3D"
+            "テスト2D",
+            "テスト3D"
+        };
+
+        public enum MENU_SELECT_TYPE : int
+        {
+            NONE = 0,
+            STAGE,
+		    COUNT
+        }
+        public const int MENU_SELECT_TYPE_COUNT = (int)ToffMonaka.UnityBase.Constant.Util.SCENE.MENU_SELECT_TYPE.COUNT;
+        public static readonly string[] MENU_SELECT_TYPE_NAME_ARRAY = {
+            "",
+            "メニュー"
         };
 
         public enum MENU_STAGE_TYPE : int

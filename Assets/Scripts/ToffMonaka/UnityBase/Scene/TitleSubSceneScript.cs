@@ -215,9 +215,9 @@ public class TitleSubSceneScript : ToffMonaka.Lib.Scene.SubSceneScript
             if (!this._openCloseSequence.IsActive()) {
                 this.CompleteClose();
 
-                {// SelectSubSceneScript Create
-                    var script = this.GetManager().ChangeSubScene(ToffMonaka.UnityBase.Constant.Util.FILE_PATH.SELECT_SUB_SCENE_PREFAB) as ToffMonaka.UnityBase.Scene.SelectSubSceneScript;
-                    var script_create_desc = new ToffMonaka.UnityBase.Scene.SelectSubSceneScriptCreateDesc();
+                {// StageSelectSubSceneScript Create
+                    var script = this.GetManager().ChangeSubScene(ToffMonaka.UnityBase.Constant.Util.FILE_PATH.STAGE_SELECT_SUB_SCENE_PREFAB) as ToffMonaka.UnityBase.Scene.StageSelectSubSceneScript;
+                    var script_create_desc = new ToffMonaka.UnityBase.Scene.StageSelectSubSceneScriptCreateDesc();
 
                     script.Create(script_create_desc);
                     script.Open(1);

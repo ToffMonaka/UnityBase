@@ -436,7 +436,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7862533665556113384}
-  - component: {fileID: 6179495096384515496}
+  - component: {fileID: 3645492645046081828}
   - component: {fileID: 6357472523565581173}
   - component: {fileID: 8028598964034534379}
   - component: {fileID: 2445517307351078723}
@@ -469,7 +469,7 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 256, y: 64}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &6179495096384515496
+--- !u!114 &3645492645046081828
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -500,8 +500,8 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 6179495096384515496}
-          m_TargetAssemblyTypeName: ToffMonaka.UnityBase.Scene.SelectSubSceneStageButtonScript,
+        - m_Target: {fileID: 3645492645046081828}
+          m_TargetAssemblyTypeName: ToffMonaka.UnityBase.Scene.StageSelectStageButtonScript,
             Assembly-CSharp
           m_MethodName: OnPointerClickEvent
           m_Mode: 1
@@ -517,8 +517,8 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 6179495096384515496}
-          m_TargetAssemblyTypeName: ToffMonaka.UnityBase.Scene.SelectSubSceneStageSelectStageButtonScript,
+        - m_Target: {fileID: 3645492645046081828}
+          m_TargetAssemblyTypeName: ToffMonaka.UnityBase.Scene.StageSelectStageButtonScript,
             Assembly-CSharp
           m_MethodName: OnPointerEnterEvent
           m_Mode: 1
@@ -534,8 +534,8 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 6179495096384515496}
-          m_TargetAssemblyTypeName: ToffMonaka.UnityBase.Scene.SelectSubSceneStageSelectStageButtonScript,
+        - m_Target: {fileID: 3645492645046081828}
+          m_TargetAssemblyTypeName: ToffMonaka.UnityBase.Scene.StageSelectStageButtonScript,
             Assembly-CSharp
           m_MethodName: OnPointerExitEvent
           m_Mode: 1
@@ -670,9 +670,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5294265783352490190}
-  - component: {fileID: 5294265783352490191}
+  - component: {fileID: 1291654829082178253}
   m_Layer: 0
-  m_Name: SelectSubScene
+  m_Name: StageSelectSubScene
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -694,7 +694,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5294265783352490191
+--- !u!114 &1291654829082178253
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -703,12 +703,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 5294265783352490189}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e1afe8572a83b04789dbb3400d6359f, type: 3}
+  m_Script: {fileID: 11500000, guid: 4423c91888174cc4cad8c70ba10cac76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _openCloseFadeImage: {fileID: 1117496808427389750}
-  _stageSelectNode: {fileID: 5499301956580073851}
+  _nameText: {fileID: 3770722024597610136}
+  _stageButtonNode: {fileID: 3612446923405612630}
   _menuNode: {fileID: 8633288564100966070}
+  _openCloseFadeImage: {fileID: 1117496808427389750}
 --- !u!1 &5294265784579010669
 GameObject:
   m_ObjectHideFlags: 0
@@ -898,11 +899,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3113197976529538106}
-  - component: {fileID: 4409543561135525502}
   - component: {fileID: 4691289494747140296}
   - component: {fileID: 3835226523689442551}
   m_Layer: 5
-  m_Name: StageSelect
+  m_Name: Layout
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -932,20 +932,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &4409543561135525502
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5499301956580073851}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7d7764a9243ee784ea399782d1f13d5e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _nameText: {fileID: 3770722024597610136}
-  _stageButtonNode: {fileID: 3612446923405612630}
 --- !u!114 &4691289494747140296
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1019,10 +1005,10 @@ RectTransform:
   m_Father: {fileID: 724816104914334026}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 8}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 4}
+  m_SizeDelta: {x: 0, y: -8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5543226720737630982
 CanvasRenderer:
@@ -1144,7 +1130,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6452440919446355176}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0

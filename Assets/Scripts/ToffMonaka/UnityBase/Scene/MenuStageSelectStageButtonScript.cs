@@ -1,6 +1,6 @@
 ﻿/**
  * @file
- * @brief MenuSelectStageButtonScriptファイル
+ * @brief MenuStageSelectStageButtonScriptファイル
  */
 
 
@@ -11,31 +11,31 @@ using TMPro;
 
 namespace ToffMonaka.UnityBase.Scene {
 /**
- * @brief MenuSelectStageButtonScriptCreateDescクラス
+ * @brief MenuStageSelectStageButtonScriptCreateDescクラス
  */
-public class MenuSelectStageButtonScriptCreateDesc : ToffMonaka.Lib.Scene.ObjectScriptCreateDesc
+public class MenuStageSelectStageButtonScriptCreateDesc : ToffMonaka.Lib.Scene.ObjectScriptCreateDesc
 {
-    public ToffMonaka.UnityBase.Scene.MenuSelectStageSelectScript stageSelectScript = null;
+    public ToffMonaka.UnityBase.Scene.MenuStageSelectScript stageSelectScript = null;
     public ToffMonaka.UnityBase.Constant.Util.SCENE.MENU_STAGE_TYPE stageType = ToffMonaka.UnityBase.Constant.Util.SCENE.MENU_STAGE_TYPE.NONE;
 }
 
 /**
- * @brief MenuSelectStageButtonScriptクラス
+ * @brief MenuStageSelectStageButtonScriptクラス
  */
-public class MenuSelectStageButtonScript : ToffMonaka.Lib.Scene.ObjectScript
+public class MenuStageSelectStageButtonScript : ToffMonaka.Lib.Scene.ObjectScript
 {
     [SerializeField] private TextMeshProUGUI _nameText = null;
     [SerializeField] private Image _coverImage = null;
 
-    public new ToffMonaka.UnityBase.Scene.MenuSelectStageButtonScriptCreateDesc createDesc{get; private set;} = null;
+    public new ToffMonaka.UnityBase.Scene.MenuStageSelectStageButtonScriptCreateDesc createDesc{get; private set;} = null;
 
-    private ToffMonaka.UnityBase.Scene.MenuSelectStageSelectScript _stageSelectScript = null;
+    private ToffMonaka.UnityBase.Scene.MenuStageSelectScript _stageSelectScript = null;
     private ToffMonaka.UnityBase.Constant.Util.SCENE.MENU_STAGE_TYPE _stageType = ToffMonaka.UnityBase.Constant.Util.SCENE.MENU_STAGE_TYPE.NONE;
 
     /**
      * @brief コンストラクタ
      */
-    public MenuSelectStageButtonScript()
+    public MenuStageSelectStageButtonScript()
     {
         this._SetScriptIndex((int)ToffMonaka.UnityBase.Constant.Util.SCENE.SCRIPT_INDEX.MENU_SELECT_STAGE_BUTTON);
 
@@ -65,10 +65,10 @@ public class MenuSelectStageButtonScript : ToffMonaka.Lib.Scene.ObjectScript
      */
     protected override int _OnCreate()
     {
-        this._stageType = this.createDesc.stageType;
-        this._nameText.SetText(ToffMonaka.UnityBase.Constant.Util.SCENE.MENU_STAGE_TYPE_NAME_ARRAY[(int)this._stageType]);
-
         this._stageSelectScript = this.createDesc.stageSelectScript;
+        this._stageType = this.createDesc.stageType;
+
+        this._nameText.SetText(ToffMonaka.UnityBase.Constant.Util.SCENE.MENU_STAGE_TYPE_NAME_ARRAY[(int)this._stageType]);
 
         return (0);
     }
@@ -79,7 +79,7 @@ public class MenuSelectStageButtonScript : ToffMonaka.Lib.Scene.ObjectScript
      */
     public override void SetCreateDesc(ToffMonaka.Lib.Scene.ScriptCreateDesc create_desc)
     {
-	    this.createDesc = create_desc as ToffMonaka.UnityBase.Scene.MenuSelectStageButtonScriptCreateDesc;
+	    this.createDesc = create_desc as ToffMonaka.UnityBase.Scene.MenuStageSelectStageButtonScriptCreateDesc;
 
         base.SetCreateDesc(this.createDesc);
 

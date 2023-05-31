@@ -23,13 +23,13 @@ public class MenuScript : ToffMonaka.Lib.Scene.ObjectScript
 {
     [SerializeField] private Image _backgroundImage = null;
     [SerializeField] private GameObject _startButtonNode = null;
-    [SerializeField] private GameObject _selectNode = null;
+    [SerializeField] private GameObject _stageSelectNode = null;
     [SerializeField] private GameObject _stageNode = null;
 
     public new ToffMonaka.UnityBase.Scene.MenuScriptCreateDesc createDesc{get; private set;} = null;
 
     private ToffMonaka.UnityBase.Scene.MenuStartButtonScript _startButtonScript = null;
-    private ToffMonaka.UnityBase.Scene.MenuSelectScript _selectScript = null;
+    private ToffMonaka.UnityBase.Scene.MenuStageSelectScript _stageSelectScript = null;
     private ToffMonaka.UnityBase.Scene.MenuStageScript _stageScript = null;
 
     /**
@@ -79,15 +79,15 @@ public class MenuScript : ToffMonaka.Lib.Scene.ObjectScript
             this._startButtonScript = script;
         }
 
-        {// SelectScript Create
-            var script = this._selectNode.GetComponent<ToffMonaka.UnityBase.Scene.MenuSelectScript>();
-            var script_create_desc = new ToffMonaka.UnityBase.Scene.MenuSelectScriptCreateDesc();
+        {// StageSelectScript Create
+            var script = this._stageSelectNode.GetComponent<ToffMonaka.UnityBase.Scene.MenuStageSelectScript>();
+            var script_create_desc = new ToffMonaka.UnityBase.Scene.MenuStageSelectScriptCreateDesc();
 
             script_create_desc.menuScript = this;
 
             script.Create(script_create_desc);
 
-            this._selectScript = script;
+            this._stageSelectScript = script;
         }
 
         {// StageScript Create
@@ -187,11 +187,11 @@ public class MenuScript : ToffMonaka.Lib.Scene.ObjectScript
         if (this._backgroundImage.gameObject.activeSelf) {
             this._backgroundImage.gameObject.SetActive(false);
 
-            this._selectScript.Close(1);
+            this._stageSelectScript.Close(1);
         } else {
             this._backgroundImage.gameObject.SetActive(true);
 
-            this._selectScript.Open(1);
+            this._stageSelectScript.Open(1);
         }
 
         return;

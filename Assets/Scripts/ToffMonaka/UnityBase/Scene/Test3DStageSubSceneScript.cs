@@ -6,6 +6,7 @@
 
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 using DG.Tweening;
 
 
@@ -13,18 +14,22 @@ namespace ToffMonaka.UnityBase.Scene {
 /**
  * @brief Test3DStageSubSceneScriptCreateDescクラス
  */
-public class Test3DStageSubSceneScriptCreateDesc : ToffMonaka.Lib.Scene.SubSceneScriptCreateDesc
+public class Test3DStageSubSceneScriptCreateDesc : ToffMonaka.UnityBase.Scene.StageSubSceneScriptCreateDesc
 {
 }
 
 /**
  * @brief Test3DStageSubSceneScriptクラス
  */
-public class Test3DStageSubSceneScript : ToffMonaka.Lib.Scene.SubSceneScript
+public class Test3DStageSubSceneScript : ToffMonaka.UnityBase.Scene.StageSubSceneScript
 {
+    [SerializeField] private TextMeshProUGUI _nameText = null;
+    [SerializeField] private GameObject _menuNode = null;
     [SerializeField] private Image _openCloseFadeImage = null;
 
     public new ToffMonaka.UnityBase.Scene.Test3DStageSubSceneScriptCreateDesc createDesc{get; private set;} = null;
+
+    private ToffMonaka.UnityBase.Scene.MenuScript _menuScript = null;
     private Sequence _openCloseSequence = null;
 
     /**
@@ -33,6 +38,7 @@ public class Test3DStageSubSceneScript : ToffMonaka.Lib.Scene.SubSceneScript
     public Test3DStageSubSceneScript()
     {
         this._SetScriptIndex((int)ToffMonaka.UnityBase.Constant.Util.SCENE.SCRIPT_INDEX.TEST_3D_STAGE_SUB_SCENE);
+        this._SetStageType(ToffMonaka.UnityBase.Constant.Util.SCENE.STAGE_TYPE.TEST_3D);
 
         return;
     }
@@ -63,6 +69,18 @@ public class Test3DStageSubSceneScript : ToffMonaka.Lib.Scene.SubSceneScript
         var canvas_node = this.transform.Find("Canvas").gameObject;
 
         canvas_node.GetComponent<Canvas>().worldCamera = this.GetManager().GetMainSceneScript().GetMainCamera();
+
+        this._nameText.SetText(ToffMonaka.UnityBase.Constant.Util.SCENE.STAGE_TYPE_NAME_ARRAY[(int)this.GetStageType()]);
+
+        {// MenuScript Create
+            var script = this._menuNode.GetComponent<ToffMonaka.UnityBase.Scene.MenuScript>();
+            var script_create_desc = new ToffMonaka.UnityBase.Scene.MenuScriptCreateDesc();
+
+            script.Create(script_create_desc);
+            script.Open(0);
+
+            this._menuScript = script;
+        }
 
         return (0);
     }

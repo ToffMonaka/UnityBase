@@ -26,9 +26,9 @@ public class MenuStartButtonScript : ToffMonaka.Lib.Scene.ObjectScript
     [SerializeField] private Image _coverImage = null;
 
     public new ToffMonaka.UnityBase.Scene.MenuStartButtonScriptCreateDesc createDesc{get; private set;} = null;
-    private Sequence _openCloseSequence = null;
 
     private ToffMonaka.UnityBase.Scene.MenuScript _menuScript = null;
+    private Sequence _openCloseSequence = null;
 
     /**
      * @brief コンストラクタ
