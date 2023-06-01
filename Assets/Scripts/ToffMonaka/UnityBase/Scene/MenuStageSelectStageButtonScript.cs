@@ -37,7 +37,7 @@ public class MenuStageSelectStageButtonScript : ToffMonaka.Lib.Scene.ObjectScrip
      */
     public MenuStageSelectStageButtonScript()
     {
-        this._SetScriptIndex((int)ToffMonaka.UnityBase.Constant.Util.SCENE.SCRIPT_INDEX.MENU_SELECT_STAGE_BUTTON);
+        this._SetScriptIndex((int)ToffMonaka.UnityBase.Constant.Util.SCENE.SCRIPT_INDEX.MENU_STAGE_SELECT_STAGE_BUTTON);
 
         return;
     }

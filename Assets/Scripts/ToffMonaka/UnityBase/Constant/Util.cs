@@ -75,10 +75,14 @@ public static class Util
             TEST_3D_STAGE_SUB_SCENE,
             MENU,
             MENU_START_BUTTON,
-            MENU_SELECT,
-            MENU_SELECT_STAGE_SELECT,
-            MENU_SELECT_STAGE_BUTTON,
-            MENU_STAGE,
+            MENU_STAGE_SELECT,
+            MENU_STAGE_SELECT_STAGE_BUTTON,
+            MENU_OPTION_STAGE,
+            MENU_FAQ_STAGE,
+            MENU_STAFF_STAGE,
+            MENU_LICENSE_STAGE,
+            MENU_END_STAGE,
+            MENU_CHEAT_STAGE,
 		    COUNT
         }
         public const int SCRIPT_INDEX_COUNT = (int)ToffMonaka.UnityBase.Constant.Util.SCENE.SCRIPT_INDEX.COUNT;

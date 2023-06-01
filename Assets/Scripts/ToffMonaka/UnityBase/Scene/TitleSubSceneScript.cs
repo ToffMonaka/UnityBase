@@ -23,16 +23,16 @@ public class TitleSubSceneScriptCreateDesc : ToffMonaka.Lib.Scene.SubSceneScript
  */
 public class TitleSubSceneScript : ToffMonaka.Lib.Scene.SubSceneScript
 {
-    [SerializeField] private Image _openCloseFadeImage = null;
     [SerializeField] private TextMeshProUGUI _startButtonText = null;
     [SerializeField] private TextMeshProUGUI _companyNameText = null;
     [SerializeField] private TextMeshProUGUI _versionNameText = null;
     [SerializeField] private GameObject _menuNode = null;
+    [SerializeField] private Image _openCloseFadeImage = null;
 
     public new ToffMonaka.UnityBase.Scene.TitleSubSceneScriptCreateDesc createDesc{get; private set;} = null;
-    private Sequence _openCloseSequence = null;
 
     private ToffMonaka.UnityBase.Scene.MenuScript _menuScript = null;
+    private Sequence _openCloseSequence = null;
 
     /**
      * @brief コンストラクタ

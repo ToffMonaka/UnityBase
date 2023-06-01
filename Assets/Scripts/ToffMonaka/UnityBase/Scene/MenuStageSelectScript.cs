@@ -40,7 +40,7 @@ public class MenuStageSelectScript : ToffMonaka.UnityBase.Scene.MenuSelectScript
      */
     public MenuStageSelectScript()
     {
-        this._SetScriptIndex((int)ToffMonaka.UnityBase.Constant.Util.SCENE.SCRIPT_INDEX.MENU_SELECT_STAGE_SELECT);
+        this._SetScriptIndex((int)ToffMonaka.UnityBase.Constant.Util.SCENE.SCRIPT_INDEX.MENU_STAGE_SELECT);
         this._SetSelectType(ToffMonaka.UnityBase.Constant.Util.SCENE.MENU_SELECT_TYPE.STAGE);
 
         return;
@@ -190,15 +190,15 @@ public class MenuStageSelectScript : ToffMonaka.UnityBase.Scene.MenuSelectScript
 
 		switch (this.GetOpenType()) {
 		case 1: {
-            rect_transform.anchoredPosition = new Vector2(-rect_transform.sizeDelta.x - 4.0f, rect_transform.anchoredPosition.y);
+            rect_transform.anchoredPosition = new Vector2(-rect_transform.sizeDelta.x - 8.0f, rect_transform.anchoredPosition.y);
 
             this._openCloseSequence = DOTween.Sequence();
-            this._openCloseSequence.Append(rect_transform.DOAnchorPosX(4.0f, 0.1f));
+            this._openCloseSequence.Append(rect_transform.DOAnchorPosX(8.0f, 0.1f));
 
 			break;
 		}
 		default: {
-            rect_transform.anchoredPosition = new Vector2(4.0f, rect_transform.anchoredPosition.y);
+            rect_transform.anchoredPosition = new Vector2(8.0f, rect_transform.anchoredPosition.y);
 
 			break;
 		}
@@ -239,15 +239,15 @@ public class MenuStageSelectScript : ToffMonaka.UnityBase.Scene.MenuSelectScript
 
 		switch (this.GetCloseType()) {
 		case 1: {
-            rect_transform.anchoredPosition = new Vector2(4.0f, rect_transform.anchoredPosition.y);
+            rect_transform.anchoredPosition = new Vector2(8.0f, rect_transform.anchoredPosition.y);
 
             this._openCloseSequence = DOTween.Sequence();
-            this._openCloseSequence.Append(rect_transform.DOAnchorPosX(-rect_transform.sizeDelta.x - 4.0f, 0.1f));
+            this._openCloseSequence.Append(rect_transform.DOAnchorPosX(-rect_transform.sizeDelta.x - 8.0f, 0.1f));
 
 			break;
 		}
 		default: {
-            rect_transform.anchoredPosition = new Vector2(-rect_transform.sizeDelta.x - 4.0f, rect_transform.anchoredPosition.y);
+            rect_transform.anchoredPosition = new Vector2(-rect_transform.sizeDelta.x - 8.0f, rect_transform.anchoredPosition.y);
 
 			break;
 		}
@@ -295,6 +295,8 @@ public class MenuStageSelectScript : ToffMonaka.UnityBase.Scene.MenuSelectScript
     public void RunStageButton(ToffMonaka.UnityBase.Constant.Util.SCENE.MENU_STAGE_TYPE stage_type)
     {
         this._stageType = stage_type;
+
+        this._menuScript.RunStageButton(this._stageType);
 
         return;
     }

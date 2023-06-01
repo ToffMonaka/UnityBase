@@ -11,24 +11,24 @@ namespace ToffMonaka.UnityBase.Scene {
 /**
  * @brief MenuStageScriptCreateDescクラス
  */
-public class MenuStageScriptCreateDesc : ToffMonaka.Lib.Scene.ObjectScriptCreateDesc
+public class MenuStageScriptCreateDesc : ToffMonaka.Lib.Scene.SubSceneScriptCreateDesc
 {
 }
 
 /**
  * @brief MenuStageScriptクラス
  */
-public class MenuStageScript : ToffMonaka.Lib.Scene.ObjectScript
+public class MenuStageScript : ToffMonaka.Lib.Scene.SubSceneScript
 {
     public new ToffMonaka.UnityBase.Scene.MenuStageScriptCreateDesc createDesc{get; private set;} = null;
+
+    private ToffMonaka.UnityBase.Constant.Util.SCENE.MENU_STAGE_TYPE _stageType = ToffMonaka.UnityBase.Constant.Util.SCENE.MENU_STAGE_TYPE.NONE;
 
     /**
      * @brief コンストラクタ
      */
     public MenuStageScript()
     {
-        this._SetScriptIndex((int)ToffMonaka.UnityBase.Constant.Util.SCENE.SCRIPT_INDEX.MENU_STAGE);
-
         return;
     }
 
@@ -131,6 +131,26 @@ public class MenuStageScript : ToffMonaka.Lib.Scene.ObjectScript
     protected override void _OnUpdateClose()
     {
         this.CompleteClose();
+
+        return;
+    }
+
+    /**
+     * @brief GetStageType関数
+     * @return stage_type (stage_type)
+     */
+    public ToffMonaka.UnityBase.Constant.Util.SCENE.MENU_STAGE_TYPE GetStageType()
+    {
+        return (this._stageType);
+    }
+
+    /**
+     * @brief _SetStageType関数
+     * @param stage_type (stage_type)
+     */
+    protected void _SetStageType(ToffMonaka.UnityBase.Constant.Util.SCENE.MENU_STAGE_TYPE stage_type)
+    {
+        this._stageType = stage_type;
 
         return;
     }

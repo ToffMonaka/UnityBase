@@ -27,10 +27,10 @@ public class InitSubSceneScript : ToffMonaka.Lib.Scene.SubSceneScript
     [SerializeField] private TextMeshProUGUI _waitMessageText = null;
 
     public new ToffMonaka.UnityBase.Scene.InitSubSceneScriptCreateDesc createDesc{get; private set;} = null;
-    private Sequence _openCloseSequence = null;
 
     private int _progressType = 0;
     private float _progressElapsedTime = 0.0f;
+    private Sequence _openCloseSequence = null;
 
     /**
      * @brief コンストラクタ

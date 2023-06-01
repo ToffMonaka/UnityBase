@@ -511,6 +511,10 @@ public abstract class Script : MonoBehaviour
      */
     public void Close(int close_type)
     {
+        if (!this.gameObject.activeSelf) {
+            return;
+        }
+
         this._closeType = close_type;
         this._openFlag = false;
         this._openedFlag = true;

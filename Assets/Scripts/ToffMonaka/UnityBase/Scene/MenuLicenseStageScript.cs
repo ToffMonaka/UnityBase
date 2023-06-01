@@ -1,31 +1,31 @@
 ﻿/**
  * @file
- * @brief MenuStartButtonScriptファイル
+ * @brief MenuLicenseStageScriptファイル
  */
 
 
 using UnityEngine;
-using UnityEngine.UI;
+using TMPro;
 using DG.Tweening;
 
 
 namespace ToffMonaka.UnityBase.Scene {
 /**
- * @brief MenuStartButtonScriptCreateDescクラス
+ * @brief MenuLicenseStageScriptCreateDescクラス
  */
-public class MenuStartButtonScriptCreateDesc : ToffMonaka.Lib.Scene.ObjectScriptCreateDesc
+public class MenuLicenseStageScriptCreateDesc : ToffMonaka.UnityBase.Scene.MenuStageScriptCreateDesc
 {
     public ToffMonaka.UnityBase.Scene.MenuScript menuScript = null;
 }
 
 /**
- * @brief MenuStartButtonScriptクラス
+ * @brief MenuLicenseStageScriptクラス
  */
-public class MenuStartButtonScript : ToffMonaka.Lib.Scene.ObjectScript
+public class MenuLicenseStageScript : ToffMonaka.UnityBase.Scene.MenuStageScript
 {
-    [SerializeField] private Image _coverImage = null;
+    [SerializeField] private TextMeshProUGUI _nameText = null;
 
-    public new ToffMonaka.UnityBase.Scene.MenuStartButtonScriptCreateDesc createDesc{get; private set;} = null;
+    public new ToffMonaka.UnityBase.Scene.MenuLicenseStageScriptCreateDesc createDesc{get; private set;} = null;
 
     private ToffMonaka.UnityBase.Scene.MenuScript _menuScript = null;
     private Sequence _openCloseSequence = null;
@@ -33,9 +33,10 @@ public class MenuStartButtonScript : ToffMonaka.Lib.Scene.ObjectScript
     /**
      * @brief コンストラクタ
      */
-    public MenuStartButtonScript()
+    public MenuLicenseStageScript()
     {
-        this._SetScriptIndex((int)ToffMonaka.UnityBase.Constant.Util.SCENE.SCRIPT_INDEX.MENU_START_BUTTON);
+        this._SetScriptIndex((int)ToffMonaka.UnityBase.Constant.Util.SCENE.SCRIPT_INDEX.MENU_LICENSE_STAGE);
+        this._SetStageType(ToffMonaka.UnityBase.Constant.Util.SCENE.MENU_STAGE_TYPE.LICENSE);
 
         return;
     }
@@ -65,6 +66,8 @@ public class MenuStartButtonScript : ToffMonaka.Lib.Scene.ObjectScript
     {
         this._menuScript = this.createDesc.menuScript;
 
+        this._nameText.SetText(ToffMonaka.UnityBase.Constant.Util.SCENE.MENU_STAGE_TYPE_NAME_ARRAY[(int)this.GetStageType()]);
+
         return (0);
     }
 
@@ -74,7 +77,7 @@ public class MenuStartButtonScript : ToffMonaka.Lib.Scene.ObjectScript
      */
     public override void SetCreateDesc(ToffMonaka.Lib.Scene.ScriptCreateDesc create_desc)
     {
-	    this.createDesc = create_desc as ToffMonaka.UnityBase.Scene.MenuStartButtonScriptCreateDesc;
+	    this.createDesc = create_desc as ToffMonaka.UnityBase.Scene.MenuLicenseStageScriptCreateDesc;
 
         base.SetCreateDesc(this.createDesc);
 
@@ -199,38 +202,6 @@ public class MenuStartButtonScript : ToffMonaka.Lib.Scene.ObjectScript
 			break;
 		}
 		}
-
-        return;
-    }
-
-    /**
-     * @brief OnPointerClickEvent関数
-     */
-    public void OnPointerClickEvent()
-    {
-        ToffMonaka.Lib.Scene.Util.GetSoundManager().PlaySe((int)ToffMonaka.UnityBase.Constant.Util.SOUND.SE_INDEX.OK2);
-
-        this._menuScript.RunStartButton();
-
-        return;
-    }
-
-    /**
-     * @brief OnPointerEnterEvent関数
-     */
-    public void OnPointerEnterEvent()
-    {
-        this._coverImage.gameObject.SetActive(true);
-
-        return;
-    }
-
-    /**
-     * @brief OnPointerExitEvent関数
-     */
-    public void OnPointerExitEvent()
-    {
-        this._coverImage.gameObject.SetActive(false);
 
         return;
     }
