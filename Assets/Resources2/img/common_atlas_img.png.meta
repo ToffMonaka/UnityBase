@@ -200,6 +200,48 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: sliced_btn_cover_img
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 43
+        width: 48
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 5, y: 5, z: 5, w: 5}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: be23bfe2f5c666c46a5d3cd9932e5cb9
+      internalID: 779608807
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sliced_btn_img
+      rect:
+        serializedVersion: 2
+        x: 50
+        y: 141
+        width: 48
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 5, y: 5, z: 5, w: 5}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7d4e1cb567f5e3b4dada2dc4bef8ad5c
+      internalID: -549913937
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -214,6 +256,8 @@ TextureImporter:
       menu_icon_img: -444311614
       sliced_bg2_img: 1020748398
       sliced_bg_img: 2045713713
+      sliced_btn_cover_img: 779608807
+      sliced_btn_img: -549913937
       title_name_img: -1912320061
   spritePackingTag: 
   pSDRemoveMatte: 0

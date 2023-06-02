@@ -22,7 +22,7 @@ public class MenuScriptCreateDesc : ToffMonaka.Lib.Scene.ObjectScriptCreateDesc
 public class MenuScript : ToffMonaka.Lib.Scene.ObjectScript
 {
     [SerializeField] private Image _backgroundImage = null;
-    [SerializeField] private GameObject _startButtonNode = null;
+    [SerializeField] private GameObject _openCloseButtonNode = null;
     [SerializeField] private GameObject _stageSelectNode = null;
     [SerializeField] private GameObject _optionStageNode = null;
     [SerializeField] private GameObject _faqStageNode = null;
@@ -33,15 +33,15 @@ public class MenuScript : ToffMonaka.Lib.Scene.ObjectScript
 
     public new ToffMonaka.UnityBase.Scene.MenuScriptCreateDesc createDesc{get; private set;} = null;
 
-    private ToffMonaka.UnityBase.Scene.MenuStartButtonScript _startButtonScript = null;
+    private ToffMonaka.UnityBase.Scene.MenuOpenCloseButtonScript _openCloseButtonScript = null;
     private ToffMonaka.UnityBase.Scene.MenuStageSelectScript _stageSelectScript = null;
-    private ToffMonaka.UnityBase.Scene.MenuStageScript _currentStageScript = null;
     private ToffMonaka.UnityBase.Scene.MenuOptionStageScript _optionStageScript = null;
     private ToffMonaka.UnityBase.Scene.MenuFaqStageScript _faqStageScript = null;
     private ToffMonaka.UnityBase.Scene.MenuStaffStageScript _staffStageScript = null;
     private ToffMonaka.UnityBase.Scene.MenuLicenseStageScript _licenseStageScript = null;
     private ToffMonaka.UnityBase.Scene.MenuEndStageScript _endStageScript = null;
     private ToffMonaka.UnityBase.Scene.MenuCheatStageScript _cheatStageScript = null;
+    private ToffMonaka.UnityBase.Scene.MenuStageScript _openStageScript = null;
 
     /**
      * @brief コンストラクタ
@@ -78,16 +78,16 @@ public class MenuScript : ToffMonaka.Lib.Scene.ObjectScript
     {
         this._backgroundImage.gameObject.SetActive(false);
 
-        {// StartButtonScript Create
-            var script = this._startButtonNode.GetComponent<ToffMonaka.UnityBase.Scene.MenuStartButtonScript>();
-            var script_create_desc = new ToffMonaka.UnityBase.Scene.MenuStartButtonScriptCreateDesc();
+        {// OpenCloseButtonScript Create
+            var script = this._openCloseButtonNode.GetComponent<ToffMonaka.UnityBase.Scene.MenuOpenCloseButtonScript>();
+            var script_create_desc = new ToffMonaka.UnityBase.Scene.MenuOpenCloseButtonScriptCreateDesc();
 
             script_create_desc.menuScript = this;
 
             script.Create(script_create_desc);
             script.Open(1);
 
-            this._startButtonScript = script;
+            this._openCloseButtonScript = script;
         }
 
         {// StageSelectScript Create
@@ -248,9 +248,9 @@ public class MenuScript : ToffMonaka.Lib.Scene.ObjectScript
     }
 
     /**
-     * @brief RunStartButton関数
+     * @brief RunOpenCloseButton関数
      */
-    public void RunStartButton()
+    public void RunOpenCloseButton()
     {
         if (this._backgroundImage.gameObject.activeSelf) {
             this._backgroundImage.gameObject.SetActive(false);
@@ -262,8 +262,10 @@ public class MenuScript : ToffMonaka.Lib.Scene.ObjectScript
             this._stageSelectScript.Open(1);
         }
 
-        if (this._currentStageScript != null) {
-            this._currentStageScript.Close(1);
+        if (this._openStageScript != null) {
+            this._openStageScript.Close(1);
+
+            this._openStageScript = null;
         }
 
         return;
@@ -275,45 +277,78 @@ public class MenuScript : ToffMonaka.Lib.Scene.ObjectScript
      */
     public void RunStageButton(ToffMonaka.UnityBase.Constant.Util.SCENE.MENU_STAGE_TYPE stage_type)
     {
-        this._currentStageScript = null;
+        this._openStageScript = null;
 
 		switch (stage_type) {
 		case ToffMonaka.UnityBase.Constant.Util.SCENE.MENU_STAGE_TYPE.OPTION: {
-            this._currentStageScript = this._optionStageScript;
+            this._openStageScript = this._optionStageScript;
 
 			break;
 		}
 		case ToffMonaka.UnityBase.Constant.Util.SCENE.MENU_STAGE_TYPE.FAQ: {
-            this._currentStageScript = this._faqStageScript;
+            this._openStageScript = this._faqStageScript;
 
 			break;
 		}
 		case ToffMonaka.UnityBase.Constant.Util.SCENE.MENU_STAGE_TYPE.STAFF: {
-            this._currentStageScript = this._staffStageScript;
+            this._openStageScript = this._staffStageScript;
 
 			break;
 		}
 		case ToffMonaka.UnityBase.Constant.Util.SCENE.MENU_STAGE_TYPE.LICENSE: {
-            this._currentStageScript = this._licenseStageScript;
+            this._openStageScript = this._licenseStageScript;
 
 			break;
 		}
 		case ToffMonaka.UnityBase.Constant.Util.SCENE.MENU_STAGE_TYPE.END: {
-            this._currentStageScript = this._endStageScript;
+            this._openStageScript = this._endStageScript;
 
 			break;
 		}
 		case ToffMonaka.UnityBase.Constant.Util.SCENE.MENU_STAGE_TYPE.CHEAT: {
-            this._currentStageScript = this._cheatStageScript;
+            this._openStageScript = this._cheatStageScript;
 
 			break;
 		}
 		}
 
-        if (this._currentStageScript != null) {
+        if (this._openStageScript != null) {
             this._stageSelectScript.Close(1);
-            this._currentStageScript.Open(1);
+
+            this._openStageScript.Open(1);
         }
+
+        return;
+    }
+
+    /**
+     * @brief RunOkButton関数
+     */
+    public void RunOkButton()
+    {
+        if (this._openStageScript != null) {
+            this._openStageScript.Close(1);
+
+            this._openStageScript = null;
+        }
+
+        this._stageSelectScript.Open(1);
+
+        return;
+    }
+
+    /**
+     * @brief RunCancelButton関数
+     */
+    public void RunCancelButton()
+    {
+        if (this._openStageScript != null) {
+            this._openStageScript.Close(1);
+
+            this._openStageScript = null;
+        }
+
+        this._stageSelectScript.Open(1);
 
         return;
     }

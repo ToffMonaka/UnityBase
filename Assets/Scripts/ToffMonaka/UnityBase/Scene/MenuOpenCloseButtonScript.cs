@@ -1,6 +1,6 @@
 ﻿/**
  * @file
- * @brief MenuStartButtonScriptファイル
+ * @brief MenuOpenCloseButtonScriptファイル
  */
 
 
@@ -11,21 +11,21 @@ using DG.Tweening;
 
 namespace ToffMonaka.UnityBase.Scene {
 /**
- * @brief MenuStartButtonScriptCreateDescクラス
+ * @brief MenuOpenCloseButtonScriptCreateDescクラス
  */
-public class MenuStartButtonScriptCreateDesc : ToffMonaka.Lib.Scene.ObjectScriptCreateDesc
+public class MenuOpenCloseButtonScriptCreateDesc : ToffMonaka.Lib.Scene.ObjectScriptCreateDesc
 {
     public ToffMonaka.UnityBase.Scene.MenuScript menuScript = null;
 }
 
 /**
- * @brief MenuStartButtonScriptクラス
+ * @brief MenuOpenCloseButtonScriptクラス
  */
-public class MenuStartButtonScript : ToffMonaka.Lib.Scene.ObjectScript
+public class MenuOpenCloseButtonScript : ToffMonaka.Lib.Scene.ObjectScript
 {
     [SerializeField] private Image _coverImage = null;
 
-    public new ToffMonaka.UnityBase.Scene.MenuStartButtonScriptCreateDesc createDesc{get; private set;} = null;
+    public new ToffMonaka.UnityBase.Scene.MenuOpenCloseButtonScriptCreateDesc createDesc{get; private set;} = null;
 
     private ToffMonaka.UnityBase.Scene.MenuScript _menuScript = null;
     private Sequence _openCloseSequence = null;
@@ -33,9 +33,9 @@ public class MenuStartButtonScript : ToffMonaka.Lib.Scene.ObjectScript
     /**
      * @brief コンストラクタ
      */
-    public MenuStartButtonScript()
+    public MenuOpenCloseButtonScript()
     {
-        this._SetScriptIndex((int)ToffMonaka.UnityBase.Constant.Util.SCENE.SCRIPT_INDEX.MENU_START_BUTTON);
+        this._SetScriptIndex((int)ToffMonaka.UnityBase.Constant.Util.SCENE.SCRIPT_INDEX.MENU_OPEN_CLOSE_BUTTON);
 
         return;
     }
@@ -74,7 +74,7 @@ public class MenuStartButtonScript : ToffMonaka.Lib.Scene.ObjectScript
      */
     public override void SetCreateDesc(ToffMonaka.Lib.Scene.ScriptCreateDesc create_desc)
     {
-	    this.createDesc = create_desc as ToffMonaka.UnityBase.Scene.MenuStartButtonScriptCreateDesc;
+	    this.createDesc = create_desc as ToffMonaka.UnityBase.Scene.MenuOpenCloseButtonScriptCreateDesc;
 
         base.SetCreateDesc(this.createDesc);
 
@@ -210,7 +210,7 @@ public class MenuStartButtonScript : ToffMonaka.Lib.Scene.ObjectScript
     {
         ToffMonaka.Lib.Scene.Util.GetSoundManager().PlaySe((int)ToffMonaka.UnityBase.Constant.Util.SOUND.SE_INDEX.OK2);
 
-        this._menuScript.RunStartButton();
+        this._menuScript.RunOpenCloseButton();
 
         return;
     }

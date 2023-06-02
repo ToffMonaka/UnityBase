@@ -127,6 +127,19 @@ public class MenuStageSelectScript : ToffMonaka.UnityBase.Scene.MenuSelectScript
             this._stageButtonScriptContainer.Add(script);
         }
 
+        {// StageButtonScript Create
+            var script = GameObject.Instantiate(this._stageButtonNode, this._stageButtonNode.transform.parent).GetComponent<ToffMonaka.UnityBase.Scene.MenuStageSelectStageButtonScript>();
+            var script_create_desc = new ToffMonaka.UnityBase.Scene.MenuStageSelectStageButtonScriptCreateDesc();
+
+            script_create_desc.stageSelectScript = this;
+            script_create_desc.stageType = ToffMonaka.UnityBase.Constant.Util.SCENE.MENU_STAGE_TYPE.END;
+
+            script.Create(script_create_desc);
+            script.Open(0);
+
+            this._stageButtonScriptContainer.Add(script);
+        }
+
         // StageButtonScript Create
         if (ToffMonaka.UnityBase.Constant.Util.DEBUG_FLAG) {
             var script = GameObject.Instantiate(this._stageButtonNode, this._stageButtonNode.transform.parent).GetComponent<ToffMonaka.UnityBase.Scene.MenuStageSelectStageButtonScript>();

@@ -5,6 +5,7 @@
 
 
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 using DG.Tweening;
 
@@ -24,6 +25,8 @@ public class MenuFaqStageScriptCreateDesc : ToffMonaka.UnityBase.Scene.MenuStage
 public class MenuFaqStageScript : ToffMonaka.UnityBase.Scene.MenuStageScript
 {
     [SerializeField] private TextMeshProUGUI _nameText = null;
+    [SerializeField] private TextMeshProUGUI _cancelButtonNameText = null;
+    [SerializeField] private Image _cancelButtonCoverImage = null;
 
     public new ToffMonaka.UnityBase.Scene.MenuFaqStageScriptCreateDesc createDesc{get; private set;} = null;
 
@@ -67,6 +70,7 @@ public class MenuFaqStageScript : ToffMonaka.UnityBase.Scene.MenuStageScript
         this._menuScript = this.createDesc.menuScript;
 
         this._nameText.SetText(ToffMonaka.UnityBase.Constant.Util.SCENE.MENU_STAGE_TYPE_NAME_ARRAY[(int)this.GetStageType()]);
+        this._cancelButtonNameText.SetText("キャンセル");
 
         return (0);
     }
@@ -202,6 +206,38 @@ public class MenuFaqStageScript : ToffMonaka.UnityBase.Scene.MenuStageScript
 			break;
 		}
 		}
+
+        return;
+    }
+
+    /**
+     * @brief OnCancelButtonPointerClickEvent関数
+     */
+    public void OnCancelButtonPointerClickEvent()
+    {
+        ToffMonaka.Lib.Scene.Util.GetSoundManager().PlaySe((int)ToffMonaka.UnityBase.Constant.Util.SOUND.SE_INDEX.OK2);
+
+        this._menuScript.RunCancelButton();
+
+        return;
+    }
+
+    /**
+     * @brief OnCancelButtonPointerEnterEvent関数
+     */
+    public void OnCancelButtonPointerEnterEvent()
+    {
+        this._cancelButtonCoverImage.gameObject.SetActive(true);
+
+        return;
+    }
+
+    /**
+     * @brief OnCancelButtonPointerExitEvent関数
+     */
+    public void OnCancelButtonPointerExitEvent()
+    {
+        this._cancelButtonCoverImage.gameObject.SetActive(false);
 
         return;
     }

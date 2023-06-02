@@ -5,6 +5,7 @@
 
 
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 using DG.Tweening;
 
@@ -24,6 +25,10 @@ public class MenuOptionStageScriptCreateDesc : ToffMonaka.UnityBase.Scene.MenuSt
 public class MenuOptionStageScript : ToffMonaka.UnityBase.Scene.MenuStageScript
 {
     [SerializeField] private TextMeshProUGUI _nameText = null;
+    [SerializeField] private TextMeshProUGUI _okButtonNameText = null;
+    [SerializeField] private Image _okButtonCoverImage = null;
+    [SerializeField] private TextMeshProUGUI _cancelButtonNameText = null;
+    [SerializeField] private Image _cancelButtonCoverImage = null;
 
     public new ToffMonaka.UnityBase.Scene.MenuOptionStageScriptCreateDesc createDesc{get; private set;} = null;
 
@@ -67,6 +72,8 @@ public class MenuOptionStageScript : ToffMonaka.UnityBase.Scene.MenuStageScript
         this._menuScript = this.createDesc.menuScript;
 
         this._nameText.SetText(ToffMonaka.UnityBase.Constant.Util.SCENE.MENU_STAGE_TYPE_NAME_ARRAY[(int)this.GetStageType()]);
+        this._okButtonNameText.SetText("OK");
+        this._cancelButtonNameText.SetText("キャンセル");
 
         return (0);
     }
@@ -202,6 +209,70 @@ public class MenuOptionStageScript : ToffMonaka.UnityBase.Scene.MenuStageScript
 			break;
 		}
 		}
+
+        return;
+    }
+
+    /**
+     * @brief OnOkButtonPointerClickEvent関数
+     */
+    public void OnOkButtonPointerClickEvent()
+    {
+        ToffMonaka.Lib.Scene.Util.GetSoundManager().PlaySe((int)ToffMonaka.UnityBase.Constant.Util.SOUND.SE_INDEX.OK2);
+
+        this._menuScript.RunOkButton();
+
+        return;
+    }
+
+    /**
+     * @brief OnOkButtonPointerEnterEvent関数
+     */
+    public void OnOkButtonPointerEnterEvent()
+    {
+        this._okButtonCoverImage.gameObject.SetActive(true);
+
+        return;
+    }
+
+    /**
+     * @brief OnOkButtonPointerExitEvent関数
+     */
+    public void OnOkButtonPointerExitEvent()
+    {
+        this._okButtonCoverImage.gameObject.SetActive(false);
+
+        return;
+    }
+
+    /**
+     * @brief OnCancelButtonPointerClickEvent関数
+     */
+    public void OnCancelButtonPointerClickEvent()
+    {
+        ToffMonaka.Lib.Scene.Util.GetSoundManager().PlaySe((int)ToffMonaka.UnityBase.Constant.Util.SOUND.SE_INDEX.OK2);
+
+        this._menuScript.RunCancelButton();
+
+        return;
+    }
+
+    /**
+     * @brief OnCancelButtonPointerEnterEvent関数
+     */
+    public void OnCancelButtonPointerEnterEvent()
+    {
+        this._cancelButtonCoverImage.gameObject.SetActive(true);
+
+        return;
+    }
+
+    /**
+     * @brief OnCancelButtonPointerExitEvent関数
+     */
+    public void OnCancelButtonPointerExitEvent()
+    {
+        this._cancelButtonCoverImage.gameObject.SetActive(false);
 
         return;
     }

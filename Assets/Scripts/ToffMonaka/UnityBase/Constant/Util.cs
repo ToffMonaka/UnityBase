@@ -74,7 +74,7 @@ public static class Util
             TEST_2D_STAGE_SUB_SCENE,
             TEST_3D_STAGE_SUB_SCENE,
             MENU,
-            MENU_START_BUTTON,
+            MENU_OPEN_CLOSE_BUTTON,
             MENU_STAGE_SELECT,
             MENU_STAGE_SELECT_STAGE_BUTTON,
             MENU_OPTION_STAGE,
