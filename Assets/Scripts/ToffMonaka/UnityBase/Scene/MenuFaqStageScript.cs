@@ -25,6 +25,8 @@ public class MenuFaqStageScriptCreateDesc : ToffMonaka.UnityBase.Scene.MenuStage
 public class MenuFaqStageScript : ToffMonaka.UnityBase.Scene.MenuStageScript
 {
     [SerializeField] private TextMeshProUGUI _nameText = null;
+    [SerializeField] private ScrollRect _messageScrollRect = null;
+    [SerializeField] private GameObject _messageNode = null;
     [SerializeField] private TextMeshProUGUI _cancelButtonNameText = null;
     [SerializeField] private Image _cancelButtonCoverImage = null;
 
@@ -69,6 +71,30 @@ public class MenuFaqStageScript : ToffMonaka.UnityBase.Scene.MenuStageScript
     {
         this._menuScript = this.createDesc.menuScript;
 
+        this._messageNode.SetActive(false);
+
+        {// MessageNode Create
+            var en_str_ary = new string[]{
+                "Coming soon."
+            };
+            var jp_str_ary = new string[]{
+                "準備中です。"
+            };
+            string[] str_ary;
+
+            str_ary = jp_str_ary;
+
+            for (int str_i = 0; str_i < str_ary.Length; ++str_i) {
+                var str = (str_i <= 0) ? str_ary[str_i] : "\n" + str_ary[str_i];
+
+                var node = GameObject.Instantiate(this._messageNode, this._messageNode.transform.parent);
+
+                node.GetComponent<TextMeshProUGUI>().SetText(str);
+
+                node.SetActive(true);
+            }
+        }
+
         this._nameText.SetText(ToffMonaka.UnityBase.Constant.Util.SCENE.MENU_STAGE_TYPE_NAME_ARRAY[(int)this.GetStageType()]);
         this._cancelButtonNameText.SetText("キャンセル");
 
@@ -93,6 +119,8 @@ public class MenuFaqStageScript : ToffMonaka.UnityBase.Scene.MenuStageScript
      */
     protected override void _OnActive()
     {
+        this._messageScrollRect.verticalNormalizedPosition = 1.0f;
+
         return;
     }
 

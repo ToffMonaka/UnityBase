@@ -102,8 +102,8 @@ public class SoundManager
             this._bgmNode = desc.bgmNode;
             this._seNode = desc.seNode;
 
-            this._bgmNode.gameObject.SetActive(false);
-            this._seNode.gameObject.SetActive(false);
+            this._bgmNode.SetActive(false);
+            this._seNode.SetActive(false);
 
             var bgm_script = GameObject.Instantiate(this._bgmNode, this._bgmNode.transform.parent).GetComponent<ToffMonaka.Lib.Scene.SoundBgmScript>();
             var bgm_script_create_desc = new ToffMonaka.Lib.Scene.SoundBgmScriptCreateDesc();

@@ -73,7 +73,7 @@ public class MenuStageSelectScript : ToffMonaka.UnityBase.Scene.MenuSelectScript
 
         this._nameText.SetText(ToffMonaka.UnityBase.Constant.Util.SCENE.MENU_SELECT_TYPE_NAME_ARRAY[(int)this.GetSelectType()]);
 
-        this._stageButtonNode.gameObject.SetActive(false);
+        this._stageButtonNode.SetActive(false);
 
         {// StageButtonScript Create
             var script = GameObject.Instantiate(this._stageButtonNode, this._stageButtonNode.transform.parent).GetComponent<ToffMonaka.UnityBase.Scene.MenuStageSelectStageButtonScript>();
