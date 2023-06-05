@@ -118,6 +118,7 @@ public class MenuOpenCloseButtonScript : ToffMonaka.Lib.Scene.ObjectScript
 
             this._openCloseSequence = DOTween.Sequence();
             this._openCloseSequence.Append(rect_transform.DOAnchorPosX(8.0f, 0.1f));
+            this._openCloseSequence.SetLink(this.gameObject);
 
 			break;
 		}
@@ -167,6 +168,7 @@ public class MenuOpenCloseButtonScript : ToffMonaka.Lib.Scene.ObjectScript
 
             this._openCloseSequence = DOTween.Sequence();
             this._openCloseSequence.Append(rect_transform.DOAnchorPosX(-rect_transform.sizeDelta.x - 8.0f, 0.1f));
+            this._openCloseSequence.SetLink(this.gameObject);
 
 			break;
 		}

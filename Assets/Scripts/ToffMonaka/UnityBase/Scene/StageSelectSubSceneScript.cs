@@ -170,6 +170,7 @@ public class StageSelectSubSceneScript : ToffMonaka.UnityBase.Scene.SelectSubSce
             this._openCloseSequence = DOTween.Sequence();
             this._openCloseSequence.AppendInterval(0.05f);
             this._openCloseSequence.Append(this._openCloseFadeImage.DOFade(0.0f, 0.2f));
+            this._openCloseSequence.SetLink(this.gameObject);
 
 			break;
 		}
@@ -221,6 +222,7 @@ public class StageSelectSubSceneScript : ToffMonaka.UnityBase.Scene.SelectSubSce
             this._openCloseSequence = DOTween.Sequence();
             this._openCloseSequence.Append(this._openCloseFadeImage.DOFade(1.0f, 0.2f));
             this._openCloseSequence.AppendInterval(0.05f);
+            this._openCloseSequence.SetLink(this.gameObject);
 
 			break;
 		}

@@ -25,6 +25,11 @@ public class MenuEndStageScriptCreateDesc : ToffMonaka.UnityBase.Scene.MenuStage
 public class MenuEndStageScript : ToffMonaka.UnityBase.Scene.MenuStageScript
 {
     [SerializeField] private TextMeshProUGUI _nameText = null;
+    [SerializeField] private ScrollRect _editScrollRect = null;
+    [SerializeField] private Toggle _restartToggle = null;
+    [SerializeField] private TextMeshProUGUI _restartToggleNameText = null;
+    [SerializeField] private Toggle _endToggle = null;
+    [SerializeField] private TextMeshProUGUI _endToggleNameText = null;
     [SerializeField] private TextMeshProUGUI _okButtonNameText = null;
     [SerializeField] private Image _okButtonCoverImage = null;
     [SerializeField] private TextMeshProUGUI _cancelButtonNameText = null;
@@ -72,6 +77,8 @@ public class MenuEndStageScript : ToffMonaka.UnityBase.Scene.MenuStageScript
         this._menuScript = this.createDesc.menuScript;
 
         this._nameText.SetText(ToffMonaka.UnityBase.Constant.Util.SCENE.MENU_STAGE_TYPE_NAME_ARRAY[(int)this.GetStageType()]);
+        this._restartToggleNameText.SetText("再起動");
+        this._endToggleNameText.SetText("終了");
         this._okButtonNameText.SetText("OK");
         this._cancelButtonNameText.SetText("キャンセル");
 
@@ -96,6 +103,10 @@ public class MenuEndStageScript : ToffMonaka.UnityBase.Scene.MenuStageScript
      */
     protected override void _OnActive()
     {
+        this._editScrollRect.verticalNormalizedPosition = 1.0f;
+        this._restartToggle.SetIsOnWithoutNotify(false);
+        this._endToggle.SetIsOnWithoutNotify(false);
+
         return;
     }
 
@@ -128,6 +139,7 @@ public class MenuEndStageScript : ToffMonaka.UnityBase.Scene.MenuStageScript
 
             this._openCloseSequence = DOTween.Sequence();
             this._openCloseSequence.Append(rect_transform.DOAnchorPosX(8.0f, 0.1f));
+            this._openCloseSequence.SetLink(this.gameObject);
 
 			break;
 		}
@@ -177,6 +189,7 @@ public class MenuEndStageScript : ToffMonaka.UnityBase.Scene.MenuStageScript
 
             this._openCloseSequence = DOTween.Sequence();
             this._openCloseSequence.Append(rect_transform.DOAnchorPosX(-rect_transform.sizeDelta.x - 8.0f, 0.1f));
+            this._openCloseSequence.SetLink(this.gameObject);
 
 			break;
 		}
@@ -214,11 +227,61 @@ public class MenuEndStageScript : ToffMonaka.UnityBase.Scene.MenuStageScript
     }
 
     /**
+     * @brief OnRestartToggleValueChangedEvent関数
+     */
+    public void OnRestartToggleValueChangedEvent()
+    {
+        if (this.GetClosedFlag()) {
+            return;
+        }
+
+        if (this._restartToggle.isOn) {
+            ToffMonaka.Lib.Scene.Util.GetSoundManager().PlaySe((int)ToffMonaka.UnityBase.Constant.Util.SOUND.SE_INDEX.OK2);
+
+            this._endToggle.SetIsOnWithoutNotify(false);
+        } else {
+            ToffMonaka.Lib.Scene.Util.GetSoundManager().PlaySe((int)ToffMonaka.UnityBase.Constant.Util.SOUND.SE_INDEX.CANCEL);
+        }
+
+        return;
+    }
+
+    /**
+     * @brief OnEndToggleValueChangedEvent関数
+     */
+    public void OnEndToggleValueChangedEvent()
+    {
+        if (this.GetClosedFlag()) {
+            return;
+        }
+
+        if (this._endToggle.isOn) {
+            ToffMonaka.Lib.Scene.Util.GetSoundManager().PlaySe((int)ToffMonaka.UnityBase.Constant.Util.SOUND.SE_INDEX.OK2);
+
+            this._restartToggle.SetIsOnWithoutNotify(false);
+        } else {
+            ToffMonaka.Lib.Scene.Util.GetSoundManager().PlaySe((int)ToffMonaka.UnityBase.Constant.Util.SOUND.SE_INDEX.CANCEL);
+        }
+
+        return;
+    }
+
+    /**
      * @brief OnOkButtonPointerClickEvent関数
      */
     public void OnOkButtonPointerClickEvent()
     {
         ToffMonaka.Lib.Scene.Util.GetSoundManager().PlaySe((int)ToffMonaka.UnityBase.Constant.Util.SOUND.SE_INDEX.OK2);
+
+        if (this._restartToggle.isOn) {
+            ToffMonaka.Lib.Scene.Util.GetManager().ChangeMainScene(ToffMonaka.UnityBase.Constant.Util.SCENE.NAME.MAIN);
+        } else if (this._endToggle.isOn) {
+#if UNITY_EDITOR
+            UnityEditor.EditorApplication.isPlaying = false;
+#else
+            Application.Quit();
+#endif
+        }
 
         this._menuScript.RunOkButton();
 
@@ -250,7 +313,7 @@ public class MenuEndStageScript : ToffMonaka.UnityBase.Scene.MenuStageScript
      */
     public void OnCancelButtonPointerClickEvent()
     {
-        ToffMonaka.Lib.Scene.Util.GetSoundManager().PlaySe((int)ToffMonaka.UnityBase.Constant.Util.SOUND.SE_INDEX.OK2);
+        ToffMonaka.Lib.Scene.Util.GetSoundManager().PlaySe((int)ToffMonaka.UnityBase.Constant.Util.SOUND.SE_INDEX.CANCEL);
 
         this._menuScript.RunCancelButton();
 

@@ -232,7 +232,7 @@ public abstract class Script : MonoBehaviour
     {
         if ((this._manager == null)
         || (this._activedFlag)) {
-            //return;
+            return;
         }
 
         this._OnActive();
@@ -463,7 +463,7 @@ public abstract class Script : MonoBehaviour
         this._openFlag = true;
         this._openedFlag = false;
         this._closeFlag = false;
-        this._closedFlag = true;
+        this._closedFlag = false;
 
         this._OnOpen();
 
@@ -517,7 +517,7 @@ public abstract class Script : MonoBehaviour
 
         this._closeType = close_type;
         this._openFlag = false;
-        this._openedFlag = true;
+        this._openedFlag = false;
         this._closeFlag = true;
         this._closedFlag = false;
 
