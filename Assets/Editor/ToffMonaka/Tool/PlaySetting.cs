@@ -18,7 +18,7 @@ public class PlaySetting : EditorWindow
     private const int _START_SCENE_INDEX = 1;
     private const string _REMOVE_STRING = "Assets/";
 
-    private string[] _startSceneArray = new string[0];
+    private string[] _startSceneArray = System.Array.Empty<string>();
     private int _startSceneIndex = ToffMonaka.Tool.PlaySetting._START_SCENE_INDEX;
 
     /**

@@ -24,7 +24,7 @@ public class InitSubSceneScriptCreateDesc : ToffMonaka.Lib.Scene.SubSceneScriptC
 public class InitSubSceneScript : ToffMonaka.Lib.Scene.SubSceneScript
 {
     [SerializeField] private Image _openCloseFadeImage = null;
-    [SerializeField] private TextMeshProUGUI _waitMessageText = null;
+    [SerializeField] private TMP_Text _waitMessageText = null;
 
     public new ToffMonaka.UnityBase.Scene.InitSubSceneScriptCreateDesc createDesc{get; private set;} = null;
 

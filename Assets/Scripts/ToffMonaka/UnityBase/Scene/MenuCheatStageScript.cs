@@ -6,6 +6,8 @@
 
 using UnityEngine;
 using UnityEngine.UI;
+using System;
+using System.Collections.Generic;
 using TMPro;
 using DG.Tweening;
 
@@ -24,15 +26,20 @@ public class MenuCheatStageScriptCreateDesc : ToffMonaka.UnityBase.Scene.MenuSta
  */
 public class MenuCheatStageScript : ToffMonaka.UnityBase.Scene.MenuStageScript
 {
-    [SerializeField] private TextMeshProUGUI _nameText = null;
-    [SerializeField] private TextMeshProUGUI _okButtonNameText = null;
+    [SerializeField] private TMP_Text _nameText = null;
+    [SerializeField] private TMP_InputField _commandInputField = null;
+    [SerializeField] private TMP_Text _commandInputFieldNameText = null;
+    [SerializeField] private ScrollRect _commandScrollRect = null;
+    [SerializeField] private GameObject _commandButtonNode = null;
+    [SerializeField] private TMP_Text _okButtonNameText = null;
     [SerializeField] private Image _okButtonCoverImage = null;
-    [SerializeField] private TextMeshProUGUI _cancelButtonNameText = null;
+    [SerializeField] private TMP_Text _cancelButtonNameText = null;
     [SerializeField] private Image _cancelButtonCoverImage = null;
 
     public new ToffMonaka.UnityBase.Scene.MenuCheatStageScriptCreateDesc createDesc{get; private set;} = null;
 
     private ToffMonaka.UnityBase.Scene.MenuScript _menuScript = null;
+    private List<ToffMonaka.UnityBase.Scene.MenuCheatStageCommandButtonScript> _commandButtonScriptContainer = new List<ToffMonaka.UnityBase.Scene.MenuCheatStageCommandButtonScript>();
     private Sequence _openCloseSequence = null;
 
     /**
@@ -71,7 +78,38 @@ public class MenuCheatStageScript : ToffMonaka.UnityBase.Scene.MenuStageScript
     {
         this._menuScript = this.createDesc.menuScript;
 
-        this._nameText.SetText(ToffMonaka.UnityBase.Constant.Util.SCENE.MENU_STAGE_TYPE_NAME_ARRAY[(int)this.GetStageType()]);
+        this._nameText.SetText(ToffMonaka.UnityBase.Constant.Util.SCENE.MENU_STAGE_NAME_ARRAY[(int)this.GetStageType()]);
+
+        this._commandInputFieldNameText.SetText("コマンド");
+
+        this._commandButtonNode.SetActive(false);
+
+        {// CommandButtonScript Create
+            var script = GameObject.Instantiate(this._commandButtonNode, this._commandButtonNode.transform.parent).GetComponent<ToffMonaka.UnityBase.Scene.MenuCheatStageCommandButtonScript>();
+            var script_create_desc = new ToffMonaka.UnityBase.Scene.MenuCheatStageCommandButtonScriptCreateDesc();
+
+            script_create_desc.cheatStageScript = this;
+            script_create_desc.commandType = ToffMonaka.UnityBase.Constant.Util.SCENE.MENU_CHEAT_STAGE_COMMAND_TYPE.STORAGE_DELETE;
+
+            script.Create(script_create_desc);
+            script.Open(0);
+
+            this._commandButtonScriptContainer.Add(script);
+        }
+
+        {// CommandButtonScript Create
+            var script = GameObject.Instantiate(this._commandButtonNode, this._commandButtonNode.transform.parent).GetComponent<ToffMonaka.UnityBase.Scene.MenuCheatStageCommandButtonScript>();
+            var script_create_desc = new ToffMonaka.UnityBase.Scene.MenuCheatStageCommandButtonScriptCreateDesc();
+
+            script_create_desc.cheatStageScript = this;
+            script_create_desc.commandType = ToffMonaka.UnityBase.Constant.Util.SCENE.MENU_CHEAT_STAGE_COMMAND_TYPE.LOG;
+
+            script.Create(script_create_desc);
+            script.Open(0);
+
+            this._commandButtonScriptContainer.Add(script);
+        }
+
         this._okButtonNameText.SetText("OK");
         this._cancelButtonNameText.SetText("キャンセル");
 
@@ -96,6 +134,9 @@ public class MenuCheatStageScript : ToffMonaka.UnityBase.Scene.MenuStageScript
      */
     protected override void _OnActive()
     {
+        this._commandInputField.SetTextWithoutNotify("");
+        this._commandScrollRect.verticalNormalizedPosition = 1.0f;
+
         return;
     }
 
@@ -216,11 +257,68 @@ public class MenuCheatStageScript : ToffMonaka.UnityBase.Scene.MenuStageScript
     }
 
     /**
+     * @brief RunCommandButton関数
+     */
+    public void RunCommandButton(ToffMonaka.UnityBase.Constant.Util.SCENE.MENU_CHEAT_STAGE_COMMAND_TYPE cmd_type)
+    {
+        var param = ToffMonaka.UnityBase.Constant.Util.SCENE.MENU_CHEAT_STAGE_COMMAND_PARAMETER_ARRAY[(int)cmd_type];
+
+        if (param.Length > 0) {
+            this._commandInputField.SetTextWithoutNotify(ToffMonaka.UnityBase.Constant.Util.SCENE.MENU_CHEAT_STAGE_COMMAND_FUNCTION_ARRAY[(int)cmd_type] + " " + param);
+        } else {
+            this._commandInputField.SetTextWithoutNotify(ToffMonaka.UnityBase.Constant.Util.SCENE.MENU_CHEAT_STAGE_COMMAND_FUNCTION_ARRAY[(int)cmd_type]);
+        }
+
+        return;
+    }
+
+    /**
+     * @brief OnCommandInputFieldEndEditEvent関数
+     */
+    public void OnCommandInputFieldEndEditEvent()
+    {
+        return;
+    }
+
+    /**
      * @brief OnOkButtonPointerClickEvent関数
      */
     public void OnOkButtonPointerClickEvent()
     {
         ToffMonaka.Lib.Scene.Util.GetSoundManager().PlaySe((int)ToffMonaka.UnityBase.Constant.Util.SOUND.SE_INDEX.OK2);
+
+        var cmd_type = ToffMonaka.UnityBase.Constant.Util.SCENE.MENU_CHEAT_STAGE_COMMAND_TYPE.NONE;
+        var cmd_param_ary = System.Array.Empty<string>();
+
+        for (int command_type_i = 1; command_type_i < ToffMonaka.UnityBase.Constant.Util.SCENE.MENU_CHEAT_STAGE_COMMAND_TYPE_COUNT; ++command_type_i) {
+            int cmd_func_str_index = this._commandInputField.text.IndexOf(ToffMonaka.UnityBase.Constant.Util.SCENE.MENU_CHEAT_STAGE_COMMAND_FUNCTION_ARRAY[command_type_i]);
+
+            if (cmd_func_str_index >= 0) {
+                cmd_type = (ToffMonaka.UnityBase.Constant.Util.SCENE.MENU_CHEAT_STAGE_COMMAND_TYPE)command_type_i;
+                cmd_param_ary = this._commandInputField.text.Substring(cmd_func_str_index + ToffMonaka.UnityBase.Constant.Util.SCENE.MENU_CHEAT_STAGE_COMMAND_FUNCTION_ARRAY[command_type_i].Length).Split(',');
+
+                for (int cmd_param_i = 0; cmd_param_i < cmd_param_ary.Length; ++cmd_param_i) {
+                    cmd_param_ary[cmd_param_i] = cmd_param_ary[cmd_param_i].Trim();
+                }
+
+                break;
+            }
+        }
+
+		switch (cmd_type) {
+		case ToffMonaka.UnityBase.Constant.Util.SCENE.MENU_CHEAT_STAGE_COMMAND_TYPE.STORAGE_DELETE: {
+			break;
+		}
+		case ToffMonaka.UnityBase.Constant.Util.SCENE.MENU_CHEAT_STAGE_COMMAND_TYPE.LOG: {
+            if (cmd_param_ary.Length < 1) {
+    			break;
+            }
+
+            Debug.Log(cmd_param_ary[0]);
+
+			break;
+		}
+		}
 
         this._menuScript.RunOkButton();
 

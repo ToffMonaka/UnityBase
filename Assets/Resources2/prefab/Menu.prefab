@@ -583,7 +583,7 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_HorizontalAlignment: 1
-  m_VerticalAlignment: 512
+  m_VerticalAlignment: 1024
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -2156,6 +2156,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8429343049052271168}
+  - component: {fileID: 439449257700702003}
   - component: {fileID: 1766606117595784837}
   - component: {fileID: 6148073710653987064}
   - component: {fileID: 8194479941246047403}
@@ -2189,6 +2190,21 @@ RectTransform:
   m_AnchoredPosition: {x: 230, y: -42}
   m_SizeDelta: {x: 460, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &439449257700702003
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1252633328980816030}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: beebbc5e4a9932343b9be0663c6af461, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _nameText: {fileID: 2950540292237557017}
+  _detailText: {fileID: 1956280531633072428}
+  _coverImage: {fileID: 5615118956870745837}
 --- !u!114 &1766606117595784837
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2206,10 +2222,10 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 0}
-          m_TargetAssemblyTypeName: ToffMonaka.UnityBase.Scene.MenuSelectStageButtonScript,
+        - m_Target: {fileID: 439449257700702003}
+          m_TargetAssemblyTypeName: ToffMonaka.UnityBase.Scene.MenuCheatStageCommandButtonScript,
             Assembly-CSharp
-          m_MethodName: 
+          m_MethodName: OnPointerClickEvent
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -2223,10 +2239,10 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 0}
-          m_TargetAssemblyTypeName: ToffMonaka.UnityBase.Scene.MenuSelectStageButtonScript,
+        - m_Target: {fileID: 439449257700702003}
+          m_TargetAssemblyTypeName: ToffMonaka.UnityBase.Scene.MenuCheatStageCommandButtonScript,
             Assembly-CSharp
-          m_MethodName: 
+          m_MethodName: OnPointerEnterEvent
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -2240,10 +2256,10 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 0}
-          m_TargetAssemblyTypeName: ToffMonaka.UnityBase.Scene.MenuSelectStageButtonScript,
+        - m_Target: {fileID: 439449257700702003}
+          m_TargetAssemblyTypeName: ToffMonaka.UnityBase.Scene.MenuCheatStageCommandButtonScript,
             Assembly-CSharp
-          m_MethodName: 
+          m_MethodName: OnPointerExitEvent
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -4352,8 +4368,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 230, y: -24}
-  m_SizeDelta: {x: 460, y: 48}
+  m_AnchoredPosition: {x: 230, y: -22}
+  m_SizeDelta: {x: 460, y: 44}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1968462261285543318
 MonoBehaviour:
@@ -4875,8 +4891,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 230, y: -74}
-  m_SizeDelta: {x: 460, y: 44}
+  m_AnchoredPosition: {x: 230, y: -72}
+  m_SizeDelta: {x: 460, y: 48}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3646311805686307203
 CanvasRenderer:
@@ -4977,7 +4993,20 @@ MonoBehaviour:
   m_CharacterLimit: 0
   m_OnEndEdit:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 7303583434945111961}
+        m_TargetAssemblyTypeName: ToffMonaka.UnityBase.Scene.MenuCheatStageScript,
+          Assembly-CSharp
+        m_MethodName: OnCommandInputFieldEndEditEvent
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_OnSubmit:
     m_PersistentCalls:
       m_Calls: []
@@ -11823,6 +11852,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _nameText: {fileID: 5243167844452456029}
+  _commandInputField: {fileID: 3722826157310089117}
+  _commandInputFieldNameText: {fileID: 6581799221794815227}
+  _commandScrollRect: {fileID: 4210570946933997043}
+  _commandButtonNode: {fileID: 1252633328980816030}
   _okButtonNameText: {fileID: 3399895282076372730}
   _okButtonCoverImage: {fileID: 1146530419739096328}
   _cancelButtonNameText: {fileID: 1913100427331569588}

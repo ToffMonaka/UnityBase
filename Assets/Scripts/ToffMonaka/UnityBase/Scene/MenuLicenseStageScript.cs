@@ -24,10 +24,10 @@ public class MenuLicenseStageScriptCreateDesc : ToffMonaka.UnityBase.Scene.MenuS
  */
 public class MenuLicenseStageScript : ToffMonaka.UnityBase.Scene.MenuStageScript
 {
-    [SerializeField] private TextMeshProUGUI _nameText = null;
+    [SerializeField] private TMP_Text _nameText = null;
     [SerializeField] private ScrollRect _messageScrollRect = null;
     [SerializeField] private GameObject _messageNode = null;
-    [SerializeField] private TextMeshProUGUI _cancelButtonNameText = null;
+    [SerializeField] private TMP_Text _cancelButtonNameText = null;
     [SerializeField] private Image _cancelButtonCoverImage = null;
 
     public new ToffMonaka.UnityBase.Scene.MenuLicenseStageScriptCreateDesc createDesc{get; private set;} = null;
@@ -71,6 +71,8 @@ public class MenuLicenseStageScript : ToffMonaka.UnityBase.Scene.MenuStageScript
     {
         this._menuScript = this.createDesc.menuScript;
 
+        this._nameText.SetText(ToffMonaka.UnityBase.Constant.Util.SCENE.MENU_STAGE_NAME_ARRAY[(int)this.GetStageType()]);
+
         this._messageNode.SetActive(false);
 
         {// MessageNode Create
@@ -89,13 +91,12 @@ public class MenuLicenseStageScript : ToffMonaka.UnityBase.Scene.MenuStageScript
 
                 var node = GameObject.Instantiate(this._messageNode, this._messageNode.transform.parent);
 
-                node.GetComponent<TextMeshProUGUI>().SetText(str);
+                node.GetComponent<TMP_Text>().SetText(str);
 
                 node.SetActive(true);
             }
         }
 
-        this._nameText.SetText(ToffMonaka.UnityBase.Constant.Util.SCENE.MENU_STAGE_TYPE_NAME_ARRAY[(int)this.GetStageType()]);
         this._cancelButtonNameText.SetText("キャンセル");
 
         return (0);

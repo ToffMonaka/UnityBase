@@ -25,7 +25,7 @@ public class MenuStageSelectScriptCreateDesc : ToffMonaka.UnityBase.Scene.MenuSe
  */
 public class MenuStageSelectScript : ToffMonaka.UnityBase.Scene.MenuSelectScript
 {
-    [SerializeField] private TextMeshProUGUI _nameText = null;
+    [SerializeField] private TMP_Text _nameText = null;
     [SerializeField] private GameObject _stageButtonNode = null;
 
     public new ToffMonaka.UnityBase.Scene.MenuStageSelectScriptCreateDesc createDesc{get; private set;} = null;
@@ -71,7 +71,7 @@ public class MenuStageSelectScript : ToffMonaka.UnityBase.Scene.MenuSelectScript
     {
         this._menuScript = this.createDesc.menuScript;
 
-        this._nameText.SetText(ToffMonaka.UnityBase.Constant.Util.SCENE.MENU_SELECT_TYPE_NAME_ARRAY[(int)this.GetSelectType()]);
+        this._nameText.SetText(ToffMonaka.UnityBase.Constant.Util.SCENE.MENU_SELECT_NAME_ARRAY[(int)this.GetSelectType()]);
 
         this._stageButtonNode.SetActive(false);
 
@@ -292,15 +292,6 @@ public class MenuStageSelectScript : ToffMonaka.UnityBase.Scene.MenuSelectScript
 		}
 
         return;
-    }
-
-    /**
-     * @brief GetStageType関数
-     * @return stage_type (stage_type)
-     */
-    public ToffMonaka.UnityBase.Constant.Util.SCENE.MENU_STAGE_TYPE GetStageIndex()
-    {
-        return (this._stageType);
     }
 
     /**

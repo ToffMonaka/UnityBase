@@ -24,15 +24,15 @@ public class MenuEndStageScriptCreateDesc : ToffMonaka.UnityBase.Scene.MenuStage
  */
 public class MenuEndStageScript : ToffMonaka.UnityBase.Scene.MenuStageScript
 {
-    [SerializeField] private TextMeshProUGUI _nameText = null;
+    [SerializeField] private TMP_Text _nameText = null;
     [SerializeField] private ScrollRect _editScrollRect = null;
     [SerializeField] private Toggle _restartToggle = null;
-    [SerializeField] private TextMeshProUGUI _restartToggleNameText = null;
+    [SerializeField] private TMP_Text _restartToggleNameText = null;
     [SerializeField] private Toggle _endToggle = null;
-    [SerializeField] private TextMeshProUGUI _endToggleNameText = null;
-    [SerializeField] private TextMeshProUGUI _okButtonNameText = null;
+    [SerializeField] private TMP_Text _endToggleNameText = null;
+    [SerializeField] private TMP_Text _okButtonNameText = null;
     [SerializeField] private Image _okButtonCoverImage = null;
-    [SerializeField] private TextMeshProUGUI _cancelButtonNameText = null;
+    [SerializeField] private TMP_Text _cancelButtonNameText = null;
     [SerializeField] private Image _cancelButtonCoverImage = null;
 
     public new ToffMonaka.UnityBase.Scene.MenuEndStageScriptCreateDesc createDesc{get; private set;} = null;
@@ -76,9 +76,11 @@ public class MenuEndStageScript : ToffMonaka.UnityBase.Scene.MenuStageScript
     {
         this._menuScript = this.createDesc.menuScript;
 
-        this._nameText.SetText(ToffMonaka.UnityBase.Constant.Util.SCENE.MENU_STAGE_TYPE_NAME_ARRAY[(int)this.GetStageType()]);
+        this._nameText.SetText(ToffMonaka.UnityBase.Constant.Util.SCENE.MENU_STAGE_NAME_ARRAY[(int)this.GetStageType()]);
+
         this._restartToggleNameText.SetText("再起動");
         this._endToggleNameText.SetText("終了");
+
         this._okButtonNameText.SetText("OK");
         this._cancelButtonNameText.SetText("キャンセル");
 

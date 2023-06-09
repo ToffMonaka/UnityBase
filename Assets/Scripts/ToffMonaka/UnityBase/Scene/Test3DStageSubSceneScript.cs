@@ -23,7 +23,7 @@ public class Test3DStageSubSceneScriptCreateDesc : ToffMonaka.UnityBase.Scene.St
  */
 public class Test3DStageSubSceneScript : ToffMonaka.UnityBase.Scene.StageSubSceneScript
 {
-    [SerializeField] private TextMeshProUGUI _nameText = null;
+    [SerializeField] private TMP_Text _nameText = null;
     [SerializeField] private GameObject _menuNode = null;
     [SerializeField] private Image _openCloseFadeImage = null;
 
@@ -70,7 +70,7 @@ public class Test3DStageSubSceneScript : ToffMonaka.UnityBase.Scene.StageSubScen
 
         canvas_node.GetComponent<Canvas>().worldCamera = this.GetManager().GetMainSceneScript().GetMainCamera();
 
-        this._nameText.SetText(ToffMonaka.UnityBase.Constant.Util.SCENE.STAGE_TYPE_NAME_ARRAY[(int)this.GetStageType()]);
+        this._nameText.SetText(ToffMonaka.UnityBase.Constant.Util.SCENE.STAGE_NAME_ARRAY[(int)this.GetStageType()]);
 
         {// MenuScript Create
             var script = this._menuNode.GetComponent<ToffMonaka.UnityBase.Scene.MenuScript>();

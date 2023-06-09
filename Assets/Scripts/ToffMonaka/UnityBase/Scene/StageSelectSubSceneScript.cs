@@ -25,7 +25,7 @@ public class StageSelectSubSceneScriptCreateDesc : ToffMonaka.UnityBase.Scene.Se
  */
 public class StageSelectSubSceneScript : ToffMonaka.UnityBase.Scene.SelectSubSceneScript
 {
-    [SerializeField] private TextMeshProUGUI _nameText = null;
+    [SerializeField] private TMP_Text _nameText = null;
     [SerializeField] private GameObject _stageButtonNode = null;
     [SerializeField] private GameObject _menuNode = null;
     [SerializeField] private Image _openCloseFadeImage = null;
@@ -75,7 +75,7 @@ public class StageSelectSubSceneScript : ToffMonaka.UnityBase.Scene.SelectSubSce
 
         canvas_node.GetComponent<Canvas>().worldCamera = this.GetManager().GetMainSceneScript().GetMainCamera();
 
-        this._nameText.SetText(ToffMonaka.UnityBase.Constant.Util.SCENE.SELECT_TYPE_NAME_ARRAY[(int)this.GetSelectType()]);
+        this._nameText.SetText(ToffMonaka.UnityBase.Constant.Util.SCENE.SELECT_NAME_ARRAY[(int)this.GetSelectType()]);
 
         this._stageButtonNode.SetActive(false);
 
@@ -275,15 +275,6 @@ public class StageSelectSubSceneScript : ToffMonaka.UnityBase.Scene.SelectSubSce
 		}
 
         return;
-    }
-
-    /**
-     * @brief GetStageType関数
-     * @return stage_type (stage_type)
-     */
-    public ToffMonaka.UnityBase.Constant.Util.SCENE.STAGE_TYPE GetStageIndex()
-    {
-        return (this._stageType);
     }
 
     /**

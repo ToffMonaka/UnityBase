@@ -1,6 +1,6 @@
 ﻿/**
  * @file
- * @brief StageSelectStageButtonScriptファイル
+ * @brief MenuCheatStageCommandButtonScriptファイル
  */
 
 
@@ -11,33 +11,34 @@ using TMPro;
 
 namespace ToffMonaka.UnityBase.Scene {
 /**
- * @brief StageSelectStageButtonScriptCreateDescクラス
+ * @brief MenuCheatStageCommandButtonScriptCreateDescクラス
  */
-public class StageSelectStageButtonScriptCreateDesc : ToffMonaka.Lib.Scene.ObjectScriptCreateDesc
+public class MenuCheatStageCommandButtonScriptCreateDesc : ToffMonaka.Lib.Scene.ObjectScriptCreateDesc
 {
-    public ToffMonaka.UnityBase.Scene.StageSelectSubSceneScript stageSelectScript = null;
-    public ToffMonaka.UnityBase.Constant.Util.SCENE.STAGE_TYPE stageType = ToffMonaka.UnityBase.Constant.Util.SCENE.STAGE_TYPE.NONE;
+    public ToffMonaka.UnityBase.Scene.MenuCheatStageScript cheatStageScript = null;
+    public ToffMonaka.UnityBase.Constant.Util.SCENE.MENU_CHEAT_STAGE_COMMAND_TYPE commandType = ToffMonaka.UnityBase.Constant.Util.SCENE.MENU_CHEAT_STAGE_COMMAND_TYPE.NONE;
 }
 
 /**
- * @brief StageSelectStageButtonScriptクラス
+ * @brief MenuCheatStageCommandButtonScriptクラス
  */
-public class StageSelectStageButtonScript : ToffMonaka.Lib.Scene.ObjectScript
+public class MenuCheatStageCommandButtonScript : ToffMonaka.Lib.Scene.ObjectScript
 {
     [SerializeField] private TMP_Text _nameText = null;
+    [SerializeField] private TMP_Text _detailText = null;
     [SerializeField] private Image _coverImage = null;
 
-    public new ToffMonaka.UnityBase.Scene.StageSelectStageButtonScriptCreateDesc createDesc{get; private set;} = null;
+    public new ToffMonaka.UnityBase.Scene.MenuCheatStageCommandButtonScriptCreateDesc createDesc{get; private set;} = null;
 
-    private ToffMonaka.UnityBase.Scene.StageSelectSubSceneScript _stageSelectScript = null;
-    private ToffMonaka.UnityBase.Constant.Util.SCENE.STAGE_TYPE _stageType = ToffMonaka.UnityBase.Constant.Util.SCENE.STAGE_TYPE.NONE;
+    private ToffMonaka.UnityBase.Scene.MenuCheatStageScript _cheatStageScript = null;
+    private ToffMonaka.UnityBase.Constant.Util.SCENE.MENU_CHEAT_STAGE_COMMAND_TYPE _commandType = ToffMonaka.UnityBase.Constant.Util.SCENE.MENU_CHEAT_STAGE_COMMAND_TYPE.NONE;
 
     /**
      * @brief コンストラクタ
      */
-    public StageSelectStageButtonScript()
+    public MenuCheatStageCommandButtonScript()
     {
-        this._SetScriptIndex((int)ToffMonaka.UnityBase.Constant.Util.SCENE.SCRIPT_INDEX.STAGE_SELECT_STAGE_BUTTON);
+        this._SetScriptIndex((int)ToffMonaka.UnityBase.Constant.Util.SCENE.SCRIPT_INDEX.MENU_CHEAT_STAGE_COMMAND_BUTTON);
 
         return;
     }
@@ -65,10 +66,18 @@ public class StageSelectStageButtonScript : ToffMonaka.Lib.Scene.ObjectScript
      */
     protected override int _OnCreate()
     {
-        this._stageSelectScript = this.createDesc.stageSelectScript;
-        this._stageType = this.createDesc.stageType;
+        this._cheatStageScript = this.createDesc.cheatStageScript;
+        this._commandType = this.createDesc.commandType;
 
-        this._nameText.SetText(ToffMonaka.UnityBase.Constant.Util.SCENE.STAGE_NAME_ARRAY[(int)this._stageType]);
+        this._nameText.SetText(ToffMonaka.UnityBase.Constant.Util.SCENE.MENU_CHEAT_STAGE_COMMAND_NAME_ARRAY[(int)this._commandType]);
+
+        var param = ToffMonaka.UnityBase.Constant.Util.SCENE.MENU_CHEAT_STAGE_COMMAND_PARAMETER_ARRAY[(int)this._commandType];
+
+        if (param.Length > 0) {
+            this._detailText.SetText(ToffMonaka.UnityBase.Constant.Util.SCENE.MENU_CHEAT_STAGE_COMMAND_FUNCTION_ARRAY[(int)this._commandType] + " " + param);
+        } else {
+            this._detailText.SetText(ToffMonaka.UnityBase.Constant.Util.SCENE.MENU_CHEAT_STAGE_COMMAND_FUNCTION_ARRAY[(int)this._commandType]);
+        }
 
         return (0);
     }
@@ -79,7 +88,7 @@ public class StageSelectStageButtonScript : ToffMonaka.Lib.Scene.ObjectScript
      */
     public override void SetCreateDesc(ToffMonaka.Lib.Scene.ScriptCreateDesc create_desc)
     {
-	    this.createDesc = create_desc as ToffMonaka.UnityBase.Scene.StageSelectStageButtonScriptCreateDesc;
+	    this.createDesc = create_desc as ToffMonaka.UnityBase.Scene.MenuCheatStageCommandButtonScriptCreateDesc;
 
         base.SetCreateDesc(this.createDesc);
 
@@ -157,7 +166,7 @@ public class StageSelectStageButtonScript : ToffMonaka.Lib.Scene.ObjectScript
     {
         ToffMonaka.Lib.Scene.Util.GetSoundManager().PlaySe((int)ToffMonaka.UnityBase.Constant.Util.SOUND.SE_INDEX.OK2);
 
-        this._stageSelectScript.RunStageButton(this._stageType);
+        this._cheatStageScript.RunCommandButton(this._commandType);
 
         return;
     }

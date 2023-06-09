@@ -83,6 +83,7 @@ public static class Util
             MENU_LICENSE_STAGE,
             MENU_END_STAGE,
             MENU_CHEAT_STAGE,
+            MENU_CHEAT_STAGE_COMMAND_BUTTON,
 		    COUNT
         }
         public const int SCRIPT_INDEX_COUNT = (int)ToffMonaka.UnityBase.Constant.Util.SCENE.SCRIPT_INDEX.COUNT;
@@ -100,7 +101,7 @@ public static class Util
 		    COUNT
         }
         public const int SELECT_TYPE_COUNT = (int)ToffMonaka.UnityBase.Constant.Util.SCENE.SELECT_TYPE.COUNT;
-        public static readonly string[] SELECT_TYPE_NAME_ARRAY = {
+        public static readonly string[] SELECT_NAME_ARRAY = {
             "",
             "ステージ"
         };
@@ -113,7 +114,7 @@ public static class Util
 		    COUNT
         }
         public const int STAGE_TYPE_COUNT = (int)ToffMonaka.UnityBase.Constant.Util.SCENE.STAGE_TYPE.COUNT;
-        public static readonly string[] STAGE_TYPE_NAME_ARRAY = {
+        public static readonly string[] STAGE_NAME_ARRAY = {
             "",
             "テスト2D",
             "テスト3D"
@@ -126,7 +127,7 @@ public static class Util
 		    COUNT
         }
         public const int MENU_SELECT_TYPE_COUNT = (int)ToffMonaka.UnityBase.Constant.Util.SCENE.MENU_SELECT_TYPE.COUNT;
-        public static readonly string[] MENU_SELECT_TYPE_NAME_ARRAY = {
+        public static readonly string[] MENU_SELECT_NAME_ARRAY = {
             "",
             "メニュー"
         };
@@ -143,7 +144,7 @@ public static class Util
 		    COUNT
         }
         public const int MENU_STAGE_TYPE_COUNT = (int)ToffMonaka.UnityBase.Constant.Util.SCENE.MENU_STAGE_TYPE.COUNT;
-        public static readonly string[] MENU_STAGE_TYPE_NAME_ARRAY = {
+        public static readonly string[] MENU_STAGE_NAME_ARRAY = {
             "",
             "オプション",
             "FAQ",
@@ -151,6 +152,30 @@ public static class Util
             "ライセンス",
             "終了",
             "チート"
+        };
+
+        public enum MENU_CHEAT_STAGE_COMMAND_TYPE : int
+        {
+            NONE = 0,
+            STORAGE_DELETE,
+            LOG,
+		    COUNT
+        }
+        public const int MENU_CHEAT_STAGE_COMMAND_TYPE_COUNT = (int)ToffMonaka.UnityBase.Constant.Util.SCENE.MENU_CHEAT_STAGE_COMMAND_TYPE.COUNT;
+        public static readonly string[] MENU_CHEAT_STAGE_COMMAND_NAME_ARRAY = {
+            "",
+            "ストレージ削除",
+            "ログ"
+        };
+        public static readonly string[] MENU_CHEAT_STAGE_COMMAND_FUNCTION_ARRAY = {
+            "",
+            "/DeleteStorage",
+            "/Log"
+        };
+        public static readonly string[] MENU_CHEAT_STAGE_COMMAND_PARAMETER_ARRAY = {
+            "",
+            "",
+            "Text"
         };
     }
 }

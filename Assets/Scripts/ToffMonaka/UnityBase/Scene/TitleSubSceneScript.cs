@@ -23,9 +23,9 @@ public class TitleSubSceneScriptCreateDesc : ToffMonaka.Lib.Scene.SubSceneScript
  */
 public class TitleSubSceneScript : ToffMonaka.Lib.Scene.SubSceneScript
 {
-    [SerializeField] private TextMeshProUGUI _startButtonText = null;
-    [SerializeField] private TextMeshProUGUI _companyNameText = null;
-    [SerializeField] private TextMeshProUGUI _versionNameText = null;
+    [SerializeField] private TMP_Text _startButtonText = null;
+    [SerializeField] private TMP_Text _companyNameText = null;
+    [SerializeField] private TMP_Text _versionNameText = null;
     [SerializeField] private GameObject _menuNode = null;
     [SerializeField] private Image _openCloseFadeImage = null;
 
