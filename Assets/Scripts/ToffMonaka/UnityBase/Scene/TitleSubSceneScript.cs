@@ -23,7 +23,7 @@ public class TitleSubSceneScriptCreateDesc : ToffMonaka.Lib.Scene.SubSceneScript
  */
 public class TitleSubSceneScript : ToffMonaka.Lib.Scene.SubSceneScript
 {
-    [SerializeField] private TMP_Text _startButtonText = null;
+    [SerializeField] private TMP_Text _startButtonNameText = null;
     [SerializeField] private TMP_Text _companyNameText = null;
     [SerializeField] private TMP_Text _versionNameText = null;
     [SerializeField] private GameObject _menuNode = null;
@@ -107,7 +107,7 @@ public class TitleSubSceneScript : ToffMonaka.Lib.Scene.SubSceneScript
     {
         ToffMonaka.Lib.Scene.Util.GetSoundManager().PlayBgm((int)ToffMonaka.UnityBase.Constant.Util.SOUND.BGM_INDEX.TITLE);
 
-        this._startButtonText.DOFade(0.0f, 1.0f).SetLoops(-1, LoopType.Yoyo).SetEase(Ease.InQuart).SetDelay(1.0f).SetLink(this._startButtonText.gameObject);
+        this._startButtonNameText.DOFade(0.0f, 1.0f).SetLoops(-1, LoopType.Yoyo).SetEase(Ease.InQuart).SetDelay(1.0f).SetLink(this._startButtonNameText.gameObject);
 
         return;
     }

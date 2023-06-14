@@ -440,7 +440,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 48, y: -16}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -745,10 +745,10 @@ RectTransform:
   m_Father: {fileID: 4189877116499662094}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 214, y: -32}
-  m_SizeDelta: {x: 364, y: 64}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &6317721906436967988
 MonoBehaviour:
@@ -767,10 +767,10 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 0}
-          m_TargetAssemblyTypeName: ToffMonaka.UnityBase.Scene.MenuEndStageScript,
+        - m_Target: {fileID: 5157123649545789300}
+          m_TargetAssemblyTypeName: ToffMonaka.UnityBase.Scene.MenuOptionStageScript,
             Assembly-CSharp
-          m_MethodName: 
+          m_MethodName: OnLanguageButtonPointerClickEvent
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -784,10 +784,10 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 0}
-          m_TargetAssemblyTypeName: ToffMonaka.UnityBase.Scene.MenuEndStageScript,
+        - m_Target: {fileID: 5157123649545789300}
+          m_TargetAssemblyTypeName: ToffMonaka.UnityBase.Scene.MenuOptionStageScript,
             Assembly-CSharp
-          m_MethodName: 
+          m_MethodName: OnLanguageButtonPointerEnterEvent
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -801,10 +801,10 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 0}
-          m_TargetAssemblyTypeName: ToffMonaka.UnityBase.Scene.MenuEndStageScript,
+        - m_Target: {fileID: 5157123649545789300}
+          m_TargetAssemblyTypeName: ToffMonaka.UnityBase.Scene.MenuOptionStageScript,
             Assembly-CSharp
-          m_MethodName: 
+          m_MethodName: OnLanguageButtonPointerExitEvent
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -1499,10 +1499,10 @@ RectTransform:
   m_Father: {fileID: 5017333720559583643}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 214, y: -56}
-  m_SizeDelta: {x: 364, y: 112}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &6154969917481595408
 MonoBehaviour:
@@ -1775,10 +1775,10 @@ RectTransform:
   m_Father: {fileID: 8190256079592039987}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 230, y: -80}
-  m_SizeDelta: {x: 428, y: 128}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &4946583069307328268
 MonoBehaviour:
@@ -2381,7 +2381,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 644}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &3046884250805831628
 MonoBehaviour:
@@ -4040,10 +4040,10 @@ RectTransform:
   m_Father: {fileID: 8190256079592039987}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 230, y: -392}
-  m_SizeDelta: {x: 428, y: 464}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &410885980449974480
 MonoBehaviour:
@@ -4829,10 +4829,10 @@ RectTransform:
   m_Father: {fileID: 547314802502056496}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 182, y: -24}
-  m_SizeDelta: {x: 364, y: 48}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &3790292922389868352
 MonoBehaviour:
@@ -5364,10 +5364,10 @@ RectTransform:
   m_Father: {fileID: 709462619226703198}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 262, y: -812}
-  m_SizeDelta: {x: 492, y: 72}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 72}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &2648284624862238853
 GameObject:
@@ -5401,10 +5401,10 @@ RectTransform:
   m_Father: {fileID: 709462619226703198}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 262, y: -48}
-  m_SizeDelta: {x: 492, y: 64}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 64}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &2653943134759857867
 GameObject:
@@ -5681,10 +5681,10 @@ RectTransform:
   m_Father: {fileID: 5017333720559583643}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 214, y: -160}
-  m_SizeDelta: {x: 364, y: 64}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &3501240114083619086
 MonoBehaviour:
@@ -5901,7 +5901,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 48, y: -16}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -6229,7 +6229,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &9116004412340136202
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6265,6 +6265,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _nameText: {fileID: 1898566971483310765}
+  _editScrollRect: {fileID: 2061976648521620262}
+  _languageNameText: {fileID: 1431066173069427855}
+  _languageButtonNameText: {fileID: 4416823753698106363}
+  _languageButtonCoverImage: {fileID: 6644201281435823109}
+  _soundNameText: {fileID: 7537647176947370572}
+  _soundBgmVolumeSlider: {fileID: 2853714830138759243}
+  _soundBgmVolumeSliderNameText: {fileID: 6812081930864962882}
+  _soundBgmMuteToggle: {fileID: 2344768496384260752}
+  _soundBgmMuteToggleNameText: {fileID: 6124532756224742874}
+  _soundSeVolumeSlider: {fileID: 6155802443445465187}
+  _soundSeVolumeSliderNameText: {fileID: 2701786037457938624}
+  _soundSeMuteToggle: {fileID: 3885805575810566515}
+  _soundSeMuteToggleNameText: {fileID: 8050528759836626802}
   _okButtonNameText: {fileID: 972485925887992582}
   _okButtonCoverImage: {fileID: 4564848291684762882}
   _cancelButtonNameText: {fileID: 6326037241225433055}
@@ -6802,10 +6815,10 @@ RectTransform:
   m_Father: {fileID: 1652701503509052101}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 32, y: -32}
-  m_SizeDelta: {x: 64, y: 64}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2638601809599476602
 MonoBehaviour:
@@ -6874,10 +6887,10 @@ MonoBehaviour:
   onValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: ToffMonaka.UnityBase.Scene.MenuEndStageScript,
+      - m_Target: {fileID: 5157123649545789300}
+        m_TargetAssemblyTypeName: ToffMonaka.UnityBase.Scene.MenuOptionStageScript,
           Assembly-CSharp
-        m_MethodName: 
+        m_MethodName: OnSoundSeMuteToggleValueChangedEvent
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6921,10 +6934,10 @@ RectTransform:
   m_Father: {fileID: 709462619226703198}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 262, y: -767}
-  m_SizeDelta: {x: 492, y: 2}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 2}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3346611935070538741
 CanvasRenderer:
@@ -9422,7 +9435,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 864}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &4366677459882355515
 MonoBehaviour:
@@ -9706,10 +9719,10 @@ RectTransform:
   m_Father: {fileID: 1652701503509052101}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 222, y: -32}
-  m_SizeDelta: {x: 284, y: 64}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &6160255136030534182
 MonoBehaviour:
@@ -10422,10 +10435,10 @@ RectTransform:
   m_Father: {fileID: 709462619226703198}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 262, y: -428}
-  m_SizeDelta: {x: 492, y: 660}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 660}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &5368898274646822567
 GameObject:
@@ -10656,10 +10669,10 @@ RectTransform:
   m_Father: {fileID: 6864081489461405240}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 182, y: -24}
-  m_SizeDelta: {x: 364, y: 48}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &6713957777034468240
 MonoBehaviour:
@@ -11893,10 +11906,10 @@ RectTransform:
   m_Father: {fileID: 6676873358243106849}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 214, y: -24}
-  m_SizeDelta: {x: 428, y: 48}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &155501842192730969
 MonoBehaviour:
@@ -12450,10 +12463,10 @@ RectTransform:
   m_Father: {fileID: 6864081489461405240}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 182, y: -80}
-  m_SizeDelta: {x: 364, y: 64}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &4937437167210834820
 MonoBehaviour:
@@ -12525,7 +12538,20 @@ MonoBehaviour:
   m_Value: 0
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 5157123649545789300}
+        m_TargetAssemblyTypeName: ToffMonaka.UnityBase.Scene.MenuOptionStageScript,
+          Assembly-CSharp
+        m_MethodName: OnSoundSeVolumeSliderValueChangedEvent
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &6496737368330897152
 GameObject:
   m_ObjectHideFlags: 0
@@ -12561,10 +12587,10 @@ RectTransform:
   m_Father: {fileID: 547314802502056496}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 182, y: -80}
-  m_SizeDelta: {x: 364, y: 64}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2953790081802730621
 MonoBehaviour:
@@ -12636,7 +12662,20 @@ MonoBehaviour:
   m_Value: 0
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 5157123649545789300}
+        m_TargetAssemblyTypeName: ToffMonaka.UnityBase.Scene.MenuOptionStageScript,
+          Assembly-CSharp
+        m_MethodName: OnSoundBgmVolumeSliderValueChangedEvent
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &6505864505881145916
 GameObject:
   m_ObjectHideFlags: 0
@@ -13318,10 +13357,10 @@ RectTransform:
   m_Father: {fileID: 4108044017742516181}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 214, y: -264}
-  m_SizeDelta: {x: 428, y: 400}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &271520313881466626
 MonoBehaviour:
@@ -13947,10 +13986,10 @@ RectTransform:
   m_Father: {fileID: 2941128388960267837}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 222, y: -32}
-  m_SizeDelta: {x: 284, y: 64}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &4313516998767668024
 MonoBehaviour:
@@ -14084,10 +14123,10 @@ RectTransform:
   m_Father: {fileID: 6932078306287890323}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 230, y: -322}
-  m_SizeDelta: {x: 460, y: 640}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &7012691307652452560
 MonoBehaviour:
@@ -14290,10 +14329,10 @@ RectTransform:
   m_Father: {fileID: 4108044017742516181}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 214, y: -24}
-  m_SizeDelta: {x: 428, y: 48}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &8350381491944862612
 MonoBehaviour:
@@ -14759,10 +14798,10 @@ RectTransform:
   m_Father: {fileID: 6676873358243106849}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 214, y: -96}
-  m_SizeDelta: {x: 428, y: 64}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &7922468192990154723
 MonoBehaviour:
@@ -15808,7 +15847,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -16762,10 +16801,10 @@ RectTransform:
   m_Father: {fileID: 709462619226703198}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 262, y: -89}
-  m_SizeDelta: {x: 492, y: 2}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 2}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1657012987724927784
 CanvasRenderer:
@@ -16916,10 +16955,10 @@ RectTransform:
   m_Father: {fileID: 2941128388960267837}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 32, y: -32}
-  m_SizeDelta: {x: 64, y: 64}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &5485807708330534766
 MonoBehaviour:
@@ -16988,10 +17027,10 @@ MonoBehaviour:
   onValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: ToffMonaka.UnityBase.Scene.MenuEndStageScript,
+      - m_Target: {fileID: 5157123649545789300}
+        m_TargetAssemblyTypeName: ToffMonaka.UnityBase.Scene.MenuOptionStageScript,
           Assembly-CSharp
-        m_MethodName: 
+        m_MethodName: OnSoundBgmMuteToggleValueChangedEvent
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -17112,10 +17151,10 @@ RectTransform:
   m_Father: {fileID: 5017333720559583643}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 214, y: -264}
-  m_SizeDelta: {x: 364, y: 112}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &363847121613878226
 MonoBehaviour:
@@ -17741,10 +17780,10 @@ RectTransform:
   m_Father: {fileID: 5017333720559583643}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 214, y: -368}
-  m_SizeDelta: {x: 364, y: 64}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1518975169796635820
 MonoBehaviour:

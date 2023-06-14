@@ -739,11 +739,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26068051332692546b89166c29ae2d3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _openCloseFadeImage: {fileID: 1247214438239222002}
-  _startButtonText: {fileID: 2028453824211646787}
+  _startButtonNameText: {fileID: 2028453824211646787}
   _companyNameText: {fileID: 3327949271293028749}
   _versionNameText: {fileID: 4741778531257964733}
   _menuNode: {fileID: 6922340865325267346}
+  _openCloseFadeImage: {fileID: 1247214438239222002}
 --- !u!1 &7515165048611226326
 GameObject:
   m_ObjectHideFlags: 0

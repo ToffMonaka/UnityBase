@@ -6,6 +6,7 @@
 
 using UnityEngine;
 using UnityEngine.UI;
+using System;
 using TMPro;
 using DG.Tweening;
 
@@ -25,6 +26,19 @@ public class MenuOptionStageScriptCreateDesc : ToffMonaka.UnityBase.Scene.MenuSt
 public class MenuOptionStageScript : ToffMonaka.UnityBase.Scene.MenuStageScript
 {
     [SerializeField] private TMP_Text _nameText = null;
+    [SerializeField] private ScrollRect _editScrollRect = null;
+    [SerializeField] private TMP_Text _languageNameText = null;
+    [SerializeField] private TMP_Text _languageButtonNameText = null;
+    [SerializeField] private Image _languageButtonCoverImage = null;
+    [SerializeField] private TMP_Text _soundNameText = null;
+    [SerializeField] private Slider _soundBgmVolumeSlider = null;
+    [SerializeField] private TMP_Text _soundBgmVolumeSliderNameText = null;
+    [SerializeField] private Toggle _soundBgmMuteToggle = null;
+    [SerializeField] private TMP_Text _soundBgmMuteToggleNameText = null;
+    [SerializeField] private Slider _soundSeVolumeSlider = null;
+    [SerializeField] private TMP_Text _soundSeVolumeSliderNameText = null;
+    [SerializeField] private Toggle _soundSeMuteToggle = null;
+    [SerializeField] private TMP_Text _soundSeMuteToggleNameText = null;
     [SerializeField] private TMP_Text _okButtonNameText = null;
     [SerializeField] private Image _okButtonCoverImage = null;
     [SerializeField] private TMP_Text _cancelButtonNameText = null;
@@ -73,6 +87,14 @@ public class MenuOptionStageScript : ToffMonaka.UnityBase.Scene.MenuStageScript
 
         this._nameText.SetText(ToffMonaka.UnityBase.Constant.Util.SCENE.MENU_STAGE_NAME_ARRAY[(int)this.GetStageType()]);
 
+        this._languageNameText.SetText("言語");
+        this._languageButtonNameText.SetText("日本語");
+        this._soundNameText.SetText("サウンド");
+        this._soundBgmVolumeSliderNameText.SetText("BGMボリューム");
+        this._soundBgmMuteToggleNameText.SetText("BGMミュート");
+        this._soundSeVolumeSliderNameText.SetText("SEボリューム");
+        this._soundSeMuteToggleNameText.SetText("SEミュート");
+
         this._okButtonNameText.SetText("OK");
         this._cancelButtonNameText.SetText("キャンセル");
 
@@ -97,6 +119,12 @@ public class MenuOptionStageScript : ToffMonaka.UnityBase.Scene.MenuStageScript
      */
     protected override void _OnActive()
     {
+        this._editScrollRect.verticalNormalizedPosition = 1.0f;
+        this._soundBgmVolumeSlider.SetValueWithoutNotify((float)Math.Clamp(Math.Floor((double)ToffMonaka.Lib.Scene.Util.GetSoundManager().GetBgmVolume() * 10.0), 0.0, 10.0));
+        this._soundBgmMuteToggle.SetIsOnWithoutNotify(ToffMonaka.Lib.Scene.Util.GetSoundManager().GetBgmMuteFlag());
+        this._soundSeVolumeSlider.SetValueWithoutNotify((float)Math.Clamp(Math.Floor((double)ToffMonaka.Lib.Scene.Util.GetSoundManager().GetSeVolume() * 10.0), 0.0, 10.0));
+        this._soundSeMuteToggle.SetIsOnWithoutNotify(ToffMonaka.Lib.Scene.Util.GetSoundManager().GetSeMuteFlag());
+
         return;
     }
 
@@ -212,6 +240,100 @@ public class MenuOptionStageScript : ToffMonaka.UnityBase.Scene.MenuStageScript
 			break;
 		}
 		}
+
+        return;
+    }
+
+    /**
+     * @brief OnLanguageButtonPointerClickEvent関数
+     */
+    public void OnLanguageButtonPointerClickEvent()
+    {
+        ToffMonaka.Lib.Scene.Util.GetSoundManager().PlaySe((int)ToffMonaka.UnityBase.Constant.Util.SOUND.SE_INDEX.OK2);
+
+        return;
+    }
+
+    /**
+     * @brief OnLanguageButtonPointerEnterEvent関数
+     */
+    public void OnLanguageButtonPointerEnterEvent()
+    {
+        this._languageButtonCoverImage.gameObject.SetActive(true);
+
+        return;
+    }
+
+    /**
+     * @brief OnLanguageButtonPointerExitEvent関数
+     */
+    public void OnLanguageButtonPointerExitEvent()
+    {
+        this._languageButtonCoverImage.gameObject.SetActive(false);
+
+        return;
+    }
+
+    /**
+     * @brief OnSoundBgmVolumeSliderValueChangedEvent関数
+     */
+    public void OnSoundBgmVolumeSliderValueChangedEvent()
+    {
+        if (this.GetClosedFlag()) {
+            return;
+        }
+
+        ToffMonaka.Lib.Scene.Util.GetSoundManager().PlaySe((int)ToffMonaka.UnityBase.Constant.Util.SOUND.SE_INDEX.OK2);
+
+        return;
+    }
+
+    /**
+     * @brief OnSoundBgmMuteToggleValueChangedEvent関数
+     */
+    public void OnSoundBgmMuteToggleValueChangedEvent()
+    {
+        if (this.GetClosedFlag()) {
+            return;
+        }
+
+        if (this._soundBgmMuteToggle.isOn) {
+            ToffMonaka.Lib.Scene.Util.GetSoundManager().PlaySe((int)ToffMonaka.UnityBase.Constant.Util.SOUND.SE_INDEX.OK2);
+        } else {
+            ToffMonaka.Lib.Scene.Util.GetSoundManager().PlaySe((int)ToffMonaka.UnityBase.Constant.Util.SOUND.SE_INDEX.CANCEL);
+        }
+
+        return;
+    }
+
+    /**
+     * @brief OnSoundSeVolumeSliderValueChangedEvent関数
+     */
+    public void OnSoundSeVolumeSliderValueChangedEvent()
+    {
+        if (this.GetClosedFlag()) {
+            return;
+        }
+
+        ToffMonaka.Lib.Scene.Util.GetSoundManager().PlaySe((int)ToffMonaka.UnityBase.Constant.Util.SOUND.SE_INDEX.OK2);
+
+        return;
+    }
+
+    /**
+     * @brief OnSoundSeMuteToggleValueChangedEvent関数
+     */
+    public void OnSoundSeMuteToggleValueChangedEvent()
+    {
+        if (this.GetClosedFlag()) {
+            return;
+        }
+
+        if (this._soundSeMuteToggle.isOn) {
+            ToffMonaka.Lib.Scene.Util.GetSoundManager().PlaySe((int)ToffMonaka.UnityBase.Constant.Util.SOUND.SE_INDEX.OK2);
+        } else {
+            ToffMonaka.Lib.Scene.Util.GetSoundManager().PlaySe((int)ToffMonaka.UnityBase.Constant.Util.SOUND.SE_INDEX.CANCEL);
+        }
 
         return;
     }
