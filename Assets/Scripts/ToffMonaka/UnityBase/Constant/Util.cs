@@ -84,6 +84,8 @@ public static class Util
             MENU_END_STAGE,
             MENU_CHEAT_STAGE,
             MENU_CHEAT_STAGE_COMMAND_BUTTON,
+            MENU_LANGUAGE_SELECT_DIALOG,
+            MENU_LANGUAGE_SELECT_LANGUAGE_BUTTON,
 		    COUNT
         }
         public const int SCRIPT_INDEX_COUNT = (int)ToffMonaka.UnityBase.Constant.Util.SCENE.SCRIPT_INDEX.COUNT;
