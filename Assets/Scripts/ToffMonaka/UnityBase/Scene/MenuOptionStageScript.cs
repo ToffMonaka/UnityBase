@@ -17,7 +17,7 @@ namespace ToffMonaka.UnityBase.Scene {
  */
 public class MenuOptionStageScriptCreateDesc : ToffMonaka.UnityBase.Scene.MenuStageScriptCreateDesc
 {
-    public ToffMonaka.UnityBase.Scene.MenuScript menuScript = null;
+    public ToffMonaka.UnityBase.Scene.MenuScript parentScript = null;
 }
 
 /**
@@ -43,10 +43,12 @@ public class MenuOptionStageScript : ToffMonaka.UnityBase.Scene.MenuStageScript
     [SerializeField] private Image _okButtonCoverImage = null;
     [SerializeField] private TMP_Text _cancelButtonNameText = null;
     [SerializeField] private Image _cancelButtonCoverImage = null;
+    [SerializeField] private GameObject _languageSelectDialogNode = null;
 
     public new ToffMonaka.UnityBase.Scene.MenuOptionStageScriptCreateDesc createDesc{get; private set;} = null;
 
-    private ToffMonaka.UnityBase.Scene.MenuScript _menuScript = null;
+    private ToffMonaka.UnityBase.Scene.MenuScript _parentScript = null;
+    private ToffMonaka.UnityBase.Scene.MenuOptionStageLanguageSelectDialogScript _languageSelectDialogScript = null;
     private Sequence _openCloseSequence = null;
 
     /**
@@ -83,7 +85,7 @@ public class MenuOptionStageScript : ToffMonaka.UnityBase.Scene.MenuStageScript
      */
     protected override int _OnCreate()
     {
-        this._menuScript = this.createDesc.menuScript;
+        this._parentScript = this.createDesc.parentScript;
 
         this._nameText.SetText(ToffMonaka.UnityBase.Constant.Util.SCENE.MENU_STAGE_NAME_ARRAY[(int)this.GetStageType()]);
 
@@ -97,6 +99,17 @@ public class MenuOptionStageScript : ToffMonaka.UnityBase.Scene.MenuStageScript
 
         this._okButtonNameText.SetText("OK");
         this._cancelButtonNameText.SetText("キャンセル");
+
+        {// languageSelectDialogScript Create
+            var script = this._languageSelectDialogNode.GetComponent<ToffMonaka.UnityBase.Scene.MenuOptionStageLanguageSelectDialogScript>();
+            var script_create_desc = new ToffMonaka.UnityBase.Scene.MenuOptionStageLanguageSelectDialogScriptCreateDesc();
+
+            script_create_desc.parentScript = this;
+
+            script.Create(script_create_desc);
+
+            this._languageSelectDialogScript = script;
+        }
 
         return (0);
     }
@@ -176,20 +189,9 @@ public class MenuOptionStageScript : ToffMonaka.UnityBase.Scene.MenuStageScript
      */
     protected override void _OnUpdateOpen()
     {
-		switch (this.GetOpenType()) {
-		case 1: {
-            if (!this._openCloseSequence.IsActive()) {
-                this.CompleteOpen();
-            }
-
-			break;
-		}
-		default: {
+        if (!this._openCloseSequence.IsActive()) {
             this.CompleteOpen();
-
-			break;
-		}
-		}
+        }
 
         return;
     }
@@ -226,20 +228,9 @@ public class MenuOptionStageScript : ToffMonaka.UnityBase.Scene.MenuStageScript
      */
     protected override void _OnUpdateClose()
     {
-		switch (this.GetCloseType()) {
-		case 1: {
-            if (!this._openCloseSequence.IsActive()) {
-                this.CompleteClose();
-            }
-
-			break;
-		}
-		default: {
+        if (!this._openCloseSequence.IsActive()) {
             this.CompleteClose();
-
-			break;
-		}
-		}
+        }
 
         return;
     }
@@ -249,9 +240,13 @@ public class MenuOptionStageScript : ToffMonaka.UnityBase.Scene.MenuStageScript
      */
     public void OnLanguageButtonPointerClickEvent()
     {
+        if (this.GetClosedFlag()) {
+            return;
+        }
+
         ToffMonaka.Lib.Scene.Util.GetSoundManager().PlaySe((int)ToffMonaka.UnityBase.Constant.Util.SOUND.SE_INDEX.OK2);
 
-        this._menuScript.RunOptionStageLanguageButton();
+        this._languageSelectDialogScript.Open(1);
 
         return;
     }
@@ -261,6 +256,10 @@ public class MenuOptionStageScript : ToffMonaka.UnityBase.Scene.MenuStageScript
      */
     public void OnLanguageButtonPointerEnterEvent()
     {
+        if (this.GetClosedFlag()) {
+            return;
+        }
+
         this._languageButtonCoverImage.gameObject.SetActive(true);
 
         return;
@@ -271,6 +270,10 @@ public class MenuOptionStageScript : ToffMonaka.UnityBase.Scene.MenuStageScript
      */
     public void OnLanguageButtonPointerExitEvent()
     {
+        if (this.GetClosedFlag()) {
+            return;
+        }
+
         this._languageButtonCoverImage.gameObject.SetActive(false);
 
         return;
@@ -345,9 +348,13 @@ public class MenuOptionStageScript : ToffMonaka.UnityBase.Scene.MenuStageScript
      */
     public void OnOkButtonPointerClickEvent()
     {
+        if (this.GetClosedFlag()) {
+            return;
+        }
+
         ToffMonaka.Lib.Scene.Util.GetSoundManager().PlaySe((int)ToffMonaka.UnityBase.Constant.Util.SOUND.SE_INDEX.OK2);
 
-        this._menuScript.RunOkButton();
+        this._parentScript.RunOkButton();
 
         return;
     }
@@ -357,6 +364,10 @@ public class MenuOptionStageScript : ToffMonaka.UnityBase.Scene.MenuStageScript
      */
     public void OnOkButtonPointerEnterEvent()
     {
+        if (this.GetClosedFlag()) {
+            return;
+        }
+
         this._okButtonCoverImage.gameObject.SetActive(true);
 
         return;
@@ -367,6 +378,10 @@ public class MenuOptionStageScript : ToffMonaka.UnityBase.Scene.MenuStageScript
      */
     public void OnOkButtonPointerExitEvent()
     {
+        if (this.GetClosedFlag()) {
+            return;
+        }
+
         this._okButtonCoverImage.gameObject.SetActive(false);
 
         return;
@@ -377,9 +392,13 @@ public class MenuOptionStageScript : ToffMonaka.UnityBase.Scene.MenuStageScript
      */
     public void OnCancelButtonPointerClickEvent()
     {
+        if (this.GetClosedFlag()) {
+            return;
+        }
+
         ToffMonaka.Lib.Scene.Util.GetSoundManager().PlaySe((int)ToffMonaka.UnityBase.Constant.Util.SOUND.SE_INDEX.CANCEL);
 
-        this._menuScript.RunCancelButton();
+        this._parentScript.RunCancelButton();
 
         return;
     }
@@ -389,6 +408,10 @@ public class MenuOptionStageScript : ToffMonaka.UnityBase.Scene.MenuStageScript
      */
     public void OnCancelButtonPointerEnterEvent()
     {
+        if (this.GetClosedFlag()) {
+            return;
+        }
+
         this._cancelButtonCoverImage.gameObject.SetActive(true);
 
         return;
@@ -399,6 +422,10 @@ public class MenuOptionStageScript : ToffMonaka.UnityBase.Scene.MenuStageScript
      */
     public void OnCancelButtonPointerExitEvent()
     {
+        if (this.GetClosedFlag()) {
+            return;
+        }
+
         this._cancelButtonCoverImage.gameObject.SetActive(false);
 
         return;

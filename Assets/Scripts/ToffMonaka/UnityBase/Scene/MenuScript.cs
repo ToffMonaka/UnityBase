@@ -30,7 +30,6 @@ public class MenuScript : ToffMonaka.Lib.Scene.ObjectScript
     [SerializeField] private GameObject _licenseStageNode = null;
     [SerializeField] private GameObject _endStageNode = null;
     [SerializeField] private GameObject _cheatStageNode = null;
-    [SerializeField] private GameObject _languageSelectDialogNode = null;
 
     public new ToffMonaka.UnityBase.Scene.MenuScriptCreateDesc createDesc{get; private set;} = null;
 
@@ -43,7 +42,6 @@ public class MenuScript : ToffMonaka.Lib.Scene.ObjectScript
     private ToffMonaka.UnityBase.Scene.MenuEndStageScript _endStageScript = null;
     private ToffMonaka.UnityBase.Scene.MenuCheatStageScript _cheatStageScript = null;
     private ToffMonaka.UnityBase.Scene.MenuStageScript _openStageScript = null;
-    private ToffMonaka.UnityBase.Scene.MenuLanguageSelectDialogScript _languageSelectDialogScript = null;
 
     /**
      * @brief コンストラクタ
@@ -107,7 +105,7 @@ public class MenuScript : ToffMonaka.Lib.Scene.ObjectScript
             var script = this._optionStageNode.GetComponent<ToffMonaka.UnityBase.Scene.MenuOptionStageScript>();
             var script_create_desc = new ToffMonaka.UnityBase.Scene.MenuOptionStageScriptCreateDesc();
 
-            script_create_desc.menuScript = this;
+            script_create_desc.parentScript = this;
 
             script.Create(script_create_desc);
 
@@ -167,17 +165,6 @@ public class MenuScript : ToffMonaka.Lib.Scene.ObjectScript
             script.Create(script_create_desc);
 
             this._cheatStageScript = script;
-        }
-
-        {// LanguageSelectDialogScript Create
-            var script = this._languageSelectDialogNode.GetComponent<ToffMonaka.UnityBase.Scene.MenuLanguageSelectDialogScript>();
-            var script_create_desc = new ToffMonaka.UnityBase.Scene.MenuLanguageSelectDialogScriptCreateDesc();
-
-            script_create_desc.menuScript = this;
-
-            script.Create(script_create_desc);
-
-            this._languageSelectDialogScript = script;
         }
 
         return (0);
@@ -362,26 +349,6 @@ public class MenuScript : ToffMonaka.Lib.Scene.ObjectScript
         }
 
         this._stageSelectScript.Open(1);
-
-        return;
-    }
-
-    /**
-     * @brief RunOptionStageLanguageButton関数
-     */
-    public void RunOptionStageLanguageButton()
-    {
-        this._languageSelectDialogScript.Open(1);
-
-        return;
-    }
-
-    /**
-     * @brief RunLanguageSelectDialogCloseButton関数
-     */
-    public void RunLanguageSelectDialogCloseButton()
-    {
-        this._languageSelectDialogScript.Close(1);
 
         return;
     }

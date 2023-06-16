@@ -210,6 +210,10 @@ public class MenuOpenCloseButtonScript : ToffMonaka.Lib.Scene.ObjectScript
      */
     public void OnPointerClickEvent()
     {
+        if (this.GetClosedFlag()) {
+            return;
+        }
+
         ToffMonaka.Lib.Scene.Util.GetSoundManager().PlaySe((int)ToffMonaka.UnityBase.Constant.Util.SOUND.SE_INDEX.OK2);
 
         this._menuScript.RunOpenCloseButton();
@@ -222,6 +226,10 @@ public class MenuOpenCloseButtonScript : ToffMonaka.Lib.Scene.ObjectScript
      */
     public void OnPointerEnterEvent()
     {
+        if (this.GetClosedFlag()) {
+            return;
+        }
+
         this._coverImage.gameObject.SetActive(true);
 
         return;
@@ -232,6 +240,10 @@ public class MenuOpenCloseButtonScript : ToffMonaka.Lib.Scene.ObjectScript
      */
     public void OnPointerExitEvent()
     {
+        if (this.GetClosedFlag()) {
+            return;
+        }
+
         this._coverImage.gameObject.SetActive(false);
 
         return;

@@ -243,6 +243,10 @@ public class TitleSubSceneScript : ToffMonaka.Lib.Scene.SubSceneScript
      */
     public void OnStartButtonPointerClickEvent()
     {
+        if (this.GetClosedFlag()) {
+            return;
+        }
+
         ToffMonaka.Lib.Scene.Util.GetSoundManager().PlaySe((int)ToffMonaka.UnityBase.Constant.Util.SOUND.SE_INDEX.OK);
 
         this.Close(1);

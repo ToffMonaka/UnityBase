@@ -155,6 +155,10 @@ public class MenuStageSelectStageButtonScript : ToffMonaka.Lib.Scene.ObjectScrip
      */
     public void OnPointerClickEvent()
     {
+        if (this.GetClosedFlag()) {
+            return;
+        }
+
         ToffMonaka.Lib.Scene.Util.GetSoundManager().PlaySe((int)ToffMonaka.UnityBase.Constant.Util.SOUND.SE_INDEX.OK2);
 
         this._stageSelectScript.RunStageButton(this._stageType);
@@ -167,6 +171,10 @@ public class MenuStageSelectStageButtonScript : ToffMonaka.Lib.Scene.ObjectScrip
      */
     public void OnPointerEnterEvent()
     {
+        if (this.GetClosedFlag()) {
+            return;
+        }
+
         this._coverImage.gameObject.SetActive(true);
 
         return;
@@ -177,6 +185,10 @@ public class MenuStageSelectStageButtonScript : ToffMonaka.Lib.Scene.ObjectScrip
      */
     public void OnPointerExitEvent()
     {
+        if (this.GetClosedFlag()) {
+            return;
+        }
+
         this._coverImage.gameObject.SetActive(false);
 
         return;

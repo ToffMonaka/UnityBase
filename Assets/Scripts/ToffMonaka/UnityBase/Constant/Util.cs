@@ -78,14 +78,14 @@ public static class Util
             MENU_STAGE_SELECT,
             MENU_STAGE_SELECT_STAGE_BUTTON,
             MENU_OPTION_STAGE,
+            MENU_OPTION_STAGE_LANGUAGE_SELECT_DIALOG,
+            MENU_OPTION_STAGE_LANGUAGE_SELECT_LANGUAGE_BUTTON,
             MENU_FAQ_STAGE,
             MENU_STAFF_STAGE,
             MENU_LICENSE_STAGE,
             MENU_END_STAGE,
             MENU_CHEAT_STAGE,
             MENU_CHEAT_STAGE_COMMAND_BUTTON,
-            MENU_LANGUAGE_SELECT_DIALOG,
-            MENU_LANGUAGE_SELECT_LANGUAGE_BUTTON,
 		    COUNT
         }
         public const int SCRIPT_INDEX_COUNT = (int)ToffMonaka.UnityBase.Constant.Util.SCENE.SCRIPT_INDEX.COUNT;
@@ -160,25 +160,35 @@ public static class Util
         {
             NONE = 0,
             STORAGE_DELETE,
-            LOG,
 		    COUNT
         }
         public const int MENU_CHEAT_STAGE_COMMAND_TYPE_COUNT = (int)ToffMonaka.UnityBase.Constant.Util.SCENE.MENU_CHEAT_STAGE_COMMAND_TYPE.COUNT;
         public static readonly string[] MENU_CHEAT_STAGE_COMMAND_NAME_ARRAY = {
             "",
-            "ストレージ削除",
-            "ログ"
+            "ストレージ削除"
         };
         public static readonly string[] MENU_CHEAT_STAGE_COMMAND_FUNCTION_ARRAY = {
             "",
-            "/DeleteStorage",
-            "/Log"
+            "/DeleteStorage"
         };
         public static readonly string[] MENU_CHEAT_STAGE_COMMAND_PARAMETER_ARRAY = {
             "",
-            "",
-            "Text"
+            ""
         };
     }
+
+    public enum LANGUAGE_TYPE : int
+    {
+        NONE = 0,
+        ENGLISH,
+        JAPANESE,
+		COUNT
+    }
+    public const int LANGUAGE_TYPE_COUNT = (int)ToffMonaka.UnityBase.Constant.Util.LANGUAGE_TYPE.COUNT;
+    public static readonly string[] LANGUAGE_NAME_ARRAY = {
+        "",
+        "英語",
+        "日本語"
+    };
 }
 }

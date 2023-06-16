@@ -5253,12 +5253,12 @@ RectTransform:
   - {fileID: 2395386086706743664}
   - {fileID: 4040526920454163307}
   - {fileID: 9116004412340136202}
+  - {fileID: 8733820623407284815}
   - {fileID: 7522610680428822964}
   - {fileID: 7306513233000450428}
   - {fileID: 4842153915174550427}
   - {fileID: 7164876047798274764}
   - {fileID: 1332169460526939565}
-  - {fileID: 8733820623407284815}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5288,7 +5288,6 @@ MonoBehaviour:
   _licenseStageNode: {fileID: 5167169624566230421}
   _endStageNode: {fileID: 7631879988267341929}
   _cheatStageNode: {fileID: 6000233138965148718}
-  _languageSelectDialogNode: {fileID: 4288577271165469709}
 --- !u!1 &2565903149476896027
 GameObject:
   m_ObjectHideFlags: 0
@@ -6748,6 +6747,7 @@ MonoBehaviour:
   _okButtonCoverImage: {fileID: 4564848291684762882}
   _cancelButtonNameText: {fileID: 6326037241225433055}
   _cancelButtonCoverImage: {fileID: 1747122339541402506}
+  _languageSelectDialogNode: {fileID: 4288577271165469709}
 --- !u!1 &3261738485511990599
 GameObject:
   m_ObjectHideFlags: 0
@@ -8930,7 +8930,7 @@ GameObject:
   - component: {fileID: 7783879931152134206}
   - component: {fileID: 1229938178856110646}
   m_Layer: 5
-  m_Name: LanguageSelectDialog
+  m_Name: OptionStageLanguageSelectDialog
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8943,7 +8943,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4288577271165469709}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -8952,7 +8952,7 @@ RectTransform:
   - {fileID: 2299464889541231559}
   - {fileID: 1311710223069561859}
   m_Father: {fileID: 425923215091775418}
-  m_RootOrder: 9
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -8973,6 +8973,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _canvasGroup: {fileID: 1229938178856110646}
   _nameText: {fileID: 6291264848332015268}
+  _languageButtonNode: {fileID: 6645140615341237542}
   _closeButtonCoverImage: {fileID: 2427905053579377887}
 --- !u!225 &1229938178856110646
 CanvasGroup:
@@ -10717,7 +10718,7 @@ RectTransform:
   - {fileID: 2431111274861780829}
   - {fileID: 1250617833327664328}
   m_Father: {fileID: 425923215091775418}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -12180,7 +12181,7 @@ RectTransform:
   - {fileID: 5511485957025070748}
   - {fileID: 2420657995492415980}
   m_Father: {fileID: 425923215091775418}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -12537,7 +12538,7 @@ RectTransform:
   - {fileID: 8550991140554677198}
   - {fileID: 2621458211347985416}
   m_Father: {fileID: 425923215091775418}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -13603,7 +13604,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2769128967353614159}
-  - component: {fileID: 6622250411888347357}
+  - component: {fileID: 6817425398046809972}
+  - component: {fileID: 1008519753965019411}
   - component: {fileID: 9185509473394452581}
   - component: {fileID: 1589349712551768024}
   m_Layer: 5
@@ -13635,7 +13637,21 @@ RectTransform:
   m_AnchoredPosition: {x: 238, y: -288}
   m_SizeDelta: {x: 256, y: 64}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &6622250411888347357
+--- !u!114 &6817425398046809972
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6645140615341237542}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3018bd482b7ba24dac5b7faa27b554a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _nameText: {fileID: 8057116083941878297}
+  _coverImage: {fileID: 845104166122604771}
+--- !u!114 &1008519753965019411
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -13652,10 +13668,10 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 0}
-          m_TargetAssemblyTypeName: ToffMonaka.UnityBase.Scene.StageSelectStageButtonScript,
+        - m_Target: {fileID: 6817425398046809972}
+          m_TargetAssemblyTypeName: ToffMonaka.UnityBase.Scene.MenuOptionStageLanguageSelectLanguageButtonScript,
             Assembly-CSharp
-          m_MethodName: 
+          m_MethodName: OnPointerClickEvent
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -13669,10 +13685,10 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 0}
-          m_TargetAssemblyTypeName: ToffMonaka.UnityBase.Scene.StageSelectStageButtonScript,
+        - m_Target: {fileID: 6817425398046809972}
+          m_TargetAssemblyTypeName: ToffMonaka.UnityBase.Scene.MenuOptionStageLanguageSelectLanguageButtonScript,
             Assembly-CSharp
-          m_MethodName: 
+          m_MethodName: OnPointerEnterEvent
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -13686,10 +13702,10 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 0}
-          m_TargetAssemblyTypeName: ToffMonaka.UnityBase.Scene.StageSelectStageButtonScript,
+        - m_Target: {fileID: 6817425398046809972}
+          m_TargetAssemblyTypeName: ToffMonaka.UnityBase.Scene.MenuOptionStageLanguageSelectLanguageButtonScript,
             Assembly-CSharp
-          m_MethodName: 
+          m_MethodName: OnPointerExitEvent
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -16043,7 +16059,7 @@ RectTransform:
   - {fileID: 2020932016535096657}
   - {fileID: 6493977262517695236}
   m_Father: {fileID: 425923215091775418}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -16835,7 +16851,7 @@ RectTransform:
   - {fileID: 1727660842909424008}
   - {fileID: 2281618287430247723}
   m_Father: {fileID: 425923215091775418}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}

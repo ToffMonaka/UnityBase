@@ -1,6 +1,6 @@
 ﻿/**
  * @file
- * @brief MenuCheatStageCommandButtonScriptファイル
+ * @brief MenuOptionStageLanguageSelectLanguageButtonScriptファイル
  */
 
 
@@ -11,34 +11,33 @@ using TMPro;
 
 namespace ToffMonaka.UnityBase.Scene {
 /**
- * @brief MenuCheatStageCommandButtonScriptCreateDescクラス
+ * @brief MenuOptionStageLanguageSelectLanguageButtonScriptCreateDescクラス
  */
-public class MenuCheatStageCommandButtonScriptCreateDesc : ToffMonaka.Lib.Scene.ObjectScriptCreateDesc
+public class MenuOptionStageLanguageSelectLanguageButtonScriptCreateDesc : ToffMonaka.Lib.Scene.ObjectScriptCreateDesc
 {
-    public ToffMonaka.UnityBase.Scene.MenuCheatStageScript cheatStageScript = null;
-    public ToffMonaka.UnityBase.Constant.Util.SCENE.MENU_CHEAT_STAGE_COMMAND_TYPE commandType = ToffMonaka.UnityBase.Constant.Util.SCENE.MENU_CHEAT_STAGE_COMMAND_TYPE.NONE;
+    public ToffMonaka.UnityBase.Scene.MenuOptionStageLanguageSelectDialogScript parentScript = null;
+    public ToffMonaka.UnityBase.Constant.Util.LANGUAGE_TYPE languageType = ToffMonaka.UnityBase.Constant.Util.LANGUAGE_TYPE.NONE;
 }
 
 /**
- * @brief MenuCheatStageCommandButtonScriptクラス
+ * @brief MenuOptionStageLanguageSelectLanguageButtonScriptクラス
  */
-public class MenuCheatStageCommandButtonScript : ToffMonaka.Lib.Scene.ObjectScript
+public class MenuOptionStageLanguageSelectLanguageButtonScript : ToffMonaka.Lib.Scene.ObjectScript
 {
     [SerializeField] private TMP_Text _nameText = null;
-    [SerializeField] private TMP_Text _detailText = null;
     [SerializeField] private Image _coverImage = null;
 
-    public new ToffMonaka.UnityBase.Scene.MenuCheatStageCommandButtonScriptCreateDesc createDesc{get; private set;} = null;
+    public new ToffMonaka.UnityBase.Scene.MenuOptionStageLanguageSelectLanguageButtonScriptCreateDesc createDesc{get; private set;} = null;
 
-    private ToffMonaka.UnityBase.Scene.MenuCheatStageScript _cheatStageScript = null;
-    private ToffMonaka.UnityBase.Constant.Util.SCENE.MENU_CHEAT_STAGE_COMMAND_TYPE _commandType = ToffMonaka.UnityBase.Constant.Util.SCENE.MENU_CHEAT_STAGE_COMMAND_TYPE.NONE;
+    private ToffMonaka.UnityBase.Scene.MenuOptionStageLanguageSelectDialogScript _parentScript = null;
+    private ToffMonaka.UnityBase.Constant.Util.LANGUAGE_TYPE _languageType = ToffMonaka.UnityBase.Constant.Util.LANGUAGE_TYPE.NONE;
 
     /**
      * @brief コンストラクタ
      */
-    public MenuCheatStageCommandButtonScript()
+    public MenuOptionStageLanguageSelectLanguageButtonScript()
     {
-        this._SetScriptIndex((int)ToffMonaka.UnityBase.Constant.Util.SCENE.SCRIPT_INDEX.MENU_CHEAT_STAGE_COMMAND_BUTTON);
+        this._SetScriptIndex((int)ToffMonaka.UnityBase.Constant.Util.SCENE.SCRIPT_INDEX.MENU_OPTION_STAGE_LANGUAGE_SELECT_LANGUAGE_BUTTON);
 
         return;
     }
@@ -66,18 +65,10 @@ public class MenuCheatStageCommandButtonScript : ToffMonaka.Lib.Scene.ObjectScri
      */
     protected override int _OnCreate()
     {
-        this._cheatStageScript = this.createDesc.cheatStageScript;
-        this._commandType = this.createDesc.commandType;
+        this._parentScript = this.createDesc.parentScript;
+        this._languageType = this.createDesc.languageType;
 
-        this._nameText.SetText(ToffMonaka.UnityBase.Constant.Util.SCENE.MENU_CHEAT_STAGE_COMMAND_NAME_ARRAY[(int)this._commandType]);
-
-        var param = ToffMonaka.UnityBase.Constant.Util.SCENE.MENU_CHEAT_STAGE_COMMAND_PARAMETER_ARRAY[(int)this._commandType];
-
-        if (param.Length > 0) {
-            this._detailText.SetText(ToffMonaka.UnityBase.Constant.Util.SCENE.MENU_CHEAT_STAGE_COMMAND_FUNCTION_ARRAY[(int)this._commandType] + " " + param);
-        } else {
-            this._detailText.SetText(ToffMonaka.UnityBase.Constant.Util.SCENE.MENU_CHEAT_STAGE_COMMAND_FUNCTION_ARRAY[(int)this._commandType]);
-        }
+        this._nameText.SetText(ToffMonaka.UnityBase.Constant.Util.LANGUAGE_NAME_ARRAY[(int)this._languageType]);
 
         return (0);
     }
@@ -88,7 +79,7 @@ public class MenuCheatStageCommandButtonScript : ToffMonaka.Lib.Scene.ObjectScri
      */
     public override void SetCreateDesc(ToffMonaka.Lib.Scene.ScriptCreateDesc create_desc)
     {
-	    this.createDesc = create_desc as ToffMonaka.UnityBase.Scene.MenuCheatStageCommandButtonScriptCreateDesc;
+	    this.createDesc = create_desc as ToffMonaka.UnityBase.Scene.MenuOptionStageLanguageSelectLanguageButtonScriptCreateDesc;
 
         base.SetCreateDesc(this.createDesc);
 
@@ -169,8 +160,6 @@ public class MenuCheatStageCommandButtonScript : ToffMonaka.Lib.Scene.ObjectScri
         }
 
         ToffMonaka.Lib.Scene.Util.GetSoundManager().PlaySe((int)ToffMonaka.UnityBase.Constant.Util.SOUND.SE_INDEX.OK2);
-
-        this._cheatStageScript.RunCommandButton(this._commandType);
 
         return;
     }

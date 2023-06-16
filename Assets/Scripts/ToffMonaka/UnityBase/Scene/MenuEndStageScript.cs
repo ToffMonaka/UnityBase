@@ -273,6 +273,10 @@ public class MenuEndStageScript : ToffMonaka.UnityBase.Scene.MenuStageScript
      */
     public void OnOkButtonPointerClickEvent()
     {
+        if (this.GetClosedFlag()) {
+            return;
+        }
+
         ToffMonaka.Lib.Scene.Util.GetSoundManager().PlaySe((int)ToffMonaka.UnityBase.Constant.Util.SOUND.SE_INDEX.OK2);
 
         if (this._restartToggle.isOn) {
@@ -295,6 +299,10 @@ public class MenuEndStageScript : ToffMonaka.UnityBase.Scene.MenuStageScript
      */
     public void OnOkButtonPointerEnterEvent()
     {
+        if (this.GetClosedFlag()) {
+            return;
+        }
+
         this._okButtonCoverImage.gameObject.SetActive(true);
 
         return;
@@ -305,6 +313,10 @@ public class MenuEndStageScript : ToffMonaka.UnityBase.Scene.MenuStageScript
      */
     public void OnOkButtonPointerExitEvent()
     {
+        if (this.GetClosedFlag()) {
+            return;
+        }
+
         this._okButtonCoverImage.gameObject.SetActive(false);
 
         return;
@@ -315,6 +327,10 @@ public class MenuEndStageScript : ToffMonaka.UnityBase.Scene.MenuStageScript
      */
     public void OnCancelButtonPointerClickEvent()
     {
+        if (this.GetClosedFlag()) {
+            return;
+        }
+
         ToffMonaka.Lib.Scene.Util.GetSoundManager().PlaySe((int)ToffMonaka.UnityBase.Constant.Util.SOUND.SE_INDEX.CANCEL);
 
         this._menuScript.RunCancelButton();
@@ -327,6 +343,10 @@ public class MenuEndStageScript : ToffMonaka.UnityBase.Scene.MenuStageScript
      */
     public void OnCancelButtonPointerEnterEvent()
     {
+        if (this.GetClosedFlag()) {
+            return;
+        }
+
         this._cancelButtonCoverImage.gameObject.SetActive(true);
 
         return;
@@ -337,6 +357,10 @@ public class MenuEndStageScript : ToffMonaka.UnityBase.Scene.MenuStageScript
      */
     public void OnCancelButtonPointerExitEvent()
     {
+        if (this.GetClosedFlag()) {
+            return;
+        }
+
         this._cancelButtonCoverImage.gameObject.SetActive(false);
 
         return;

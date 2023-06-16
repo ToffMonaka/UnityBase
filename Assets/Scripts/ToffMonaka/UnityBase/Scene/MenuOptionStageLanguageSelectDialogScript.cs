@@ -1,44 +1,49 @@
 ﻿/**
  * @file
- * @brief MenuLanguageSelectDialogScriptファイル
+ * @brief MenuOptionStageLanguageSelectDialogScriptファイル
  */
 
 
 using UnityEngine;
 using UnityEngine.UI;
+using System;
+using System.Collections.Generic;
 using TMPro;
 using DG.Tweening;
 
 
 namespace ToffMonaka.UnityBase.Scene {
 /**
- * @brief MenuLanguageSelectDialogScriptCreateDescクラス
+ * @brief MenuOptionStageLanguageSelectDialogScriptCreateDescクラス
  */
-public class MenuLanguageSelectDialogScriptCreateDesc : ToffMonaka.Lib.Scene.ObjectScriptCreateDesc
+public class MenuOptionStageLanguageSelectDialogScriptCreateDesc : ToffMonaka.Lib.Scene.ObjectScriptCreateDesc
 {
-    public ToffMonaka.UnityBase.Scene.MenuScript menuScript = null;
+    public ToffMonaka.UnityBase.Scene.MenuOptionStageScript parentScript = null;
 }
 
 /**
- * @brief MenuLanguageSelectDialogScriptクラス
+ * @brief MenuOptionStageLanguageSelectDialogScriptクラス
  */
-public class MenuLanguageSelectDialogScript : ToffMonaka.Lib.Scene.ObjectScript
+public class MenuOptionStageLanguageSelectDialogScript : ToffMonaka.Lib.Scene.ObjectScript
 {
     [SerializeField] private CanvasGroup _canvasGroup = null;
     [SerializeField] private TMP_Text _nameText = null;
+    [SerializeField] private GameObject _languageButtonNode = null;
     [SerializeField] private Image _closeButtonCoverImage = null;
 
-    public new ToffMonaka.UnityBase.Scene.MenuLanguageSelectDialogScriptCreateDesc createDesc{get; private set;} = null;
+    public new ToffMonaka.UnityBase.Scene.MenuOptionStageLanguageSelectDialogScriptCreateDesc createDesc{get; private set;} = null;
 
-    private ToffMonaka.UnityBase.Scene.MenuScript _menuScript = null;
+    private ToffMonaka.UnityBase.Scene.MenuOptionStageScript _parentScript = null;
+    private List<ToffMonaka.UnityBase.Scene.MenuOptionStageLanguageSelectLanguageButtonScript> _languageButtonScriptContainer = new List<ToffMonaka.UnityBase.Scene.MenuOptionStageLanguageSelectLanguageButtonScript>();
+    private ToffMonaka.UnityBase.Constant.Util.LANGUAGE_TYPE _languageType = ToffMonaka.UnityBase.Constant.Util.LANGUAGE_TYPE.NONE;
     private Sequence _openCloseSequence = null;
 
     /**
      * @brief コンストラクタ
      */
-    public MenuLanguageSelectDialogScript()
+    public MenuOptionStageLanguageSelectDialogScript()
     {
-        this._SetScriptIndex((int)ToffMonaka.UnityBase.Constant.Util.SCENE.SCRIPT_INDEX.MENU_LANGUAGE_SELECT_DIALOG);
+        this._SetScriptIndex((int)ToffMonaka.UnityBase.Constant.Util.SCENE.SCRIPT_INDEX.MENU_OPTION_STAGE_LANGUAGE_SELECT_DIALOG);
 
         return;
     }
@@ -66,9 +71,37 @@ public class MenuLanguageSelectDialogScript : ToffMonaka.Lib.Scene.ObjectScript
      */
     protected override int _OnCreate()
     {
-        this._menuScript = this.createDesc.menuScript;
+        this._parentScript = this.createDesc.parentScript;
 
         this._nameText.SetText("言語");
+
+        this._languageButtonNode.SetActive(false);
+
+        {// LanguageButtonScript Create
+            var script = GameObject.Instantiate(this._languageButtonNode, this._languageButtonNode.transform.parent).GetComponent<ToffMonaka.UnityBase.Scene.MenuOptionStageLanguageSelectLanguageButtonScript>();
+            var script_create_desc = new ToffMonaka.UnityBase.Scene.MenuOptionStageLanguageSelectLanguageButtonScriptCreateDesc();
+
+            script_create_desc.parentScript = this;
+            script_create_desc.languageType = ToffMonaka.UnityBase.Constant.Util.LANGUAGE_TYPE.ENGLISH;
+
+            script.Create(script_create_desc);
+            script.Open(0);
+
+            this._languageButtonScriptContainer.Add(script);
+        }
+
+        {// LanguageButtonScript Create
+            var script = GameObject.Instantiate(this._languageButtonNode, this._languageButtonNode.transform.parent).GetComponent<ToffMonaka.UnityBase.Scene.MenuOptionStageLanguageSelectLanguageButtonScript>();
+            var script_create_desc = new ToffMonaka.UnityBase.Scene.MenuOptionStageLanguageSelectLanguageButtonScriptCreateDesc();
+
+            script_create_desc.parentScript = this;
+            script_create_desc.languageType = ToffMonaka.UnityBase.Constant.Util.LANGUAGE_TYPE.JAPANESE;
+
+            script.Create(script_create_desc);
+            script.Open(0);
+
+            this._languageButtonScriptContainer.Add(script);
+        }
 
         return (0);
     }
@@ -79,7 +112,7 @@ public class MenuLanguageSelectDialogScript : ToffMonaka.Lib.Scene.ObjectScript
      */
     public override void SetCreateDesc(ToffMonaka.Lib.Scene.ScriptCreateDesc create_desc)
     {
-	    this.createDesc = create_desc as ToffMonaka.UnityBase.Scene.MenuLanguageSelectDialogScriptCreateDesc;
+	    this.createDesc = create_desc as ToffMonaka.UnityBase.Scene.MenuOptionStageLanguageSelectDialogScriptCreateDesc;
 
         base.SetCreateDesc(this.createDesc);
 
@@ -140,20 +173,9 @@ public class MenuLanguageSelectDialogScript : ToffMonaka.Lib.Scene.ObjectScript
      */
     protected override void _OnUpdateOpen()
     {
-		switch (this.GetOpenType()) {
-		case 1: {
-            if (!this._openCloseSequence.IsActive()) {
-                this.CompleteOpen();
-            }
-
-			break;
-		}
-		default: {
+        if (!this._openCloseSequence.IsActive()) {
             this.CompleteOpen();
-
-			break;
-		}
-		}
+        }
 
         return;
     }
@@ -188,20 +210,9 @@ public class MenuLanguageSelectDialogScript : ToffMonaka.Lib.Scene.ObjectScript
      */
     protected override void _OnUpdateClose()
     {
-		switch (this.GetCloseType()) {
-		case 1: {
-            if (!this._openCloseSequence.IsActive()) {
-                this.CompleteClose();
-            }
-
-			break;
-		}
-		default: {
+        if (!this._openCloseSequence.IsActive()) {
             this.CompleteClose();
-
-			break;
-		}
-		}
+        }
 
         return;
     }
@@ -211,9 +222,13 @@ public class MenuLanguageSelectDialogScript : ToffMonaka.Lib.Scene.ObjectScript
      */
     public void OnCloseButtonPointerClickEvent()
     {
+        if (this.GetClosedFlag()) {
+            return;
+        }
+
         ToffMonaka.Lib.Scene.Util.GetSoundManager().PlaySe((int)ToffMonaka.UnityBase.Constant.Util.SOUND.SE_INDEX.CANCEL);
 
-        this._menuScript.RunLanguageSelectDialogCloseButton();
+        this.Close(1);
 
         return;
     }
@@ -223,6 +238,10 @@ public class MenuLanguageSelectDialogScript : ToffMonaka.Lib.Scene.ObjectScript
      */
     public void OnCloseButtonPointerEnterEvent()
     {
+        if (this.GetClosedFlag()) {
+            return;
+        }
+
         this._closeButtonCoverImage.gameObject.SetActive(true);
 
         return;
@@ -233,6 +252,10 @@ public class MenuLanguageSelectDialogScript : ToffMonaka.Lib.Scene.ObjectScript
      */
     public void OnCloseButtonPointerExitEvent()
     {
+        if (this.GetClosedFlag()) {
+            return;
+        }
+
         this._closeButtonCoverImage.gameObject.SetActive(false);
 
         return;

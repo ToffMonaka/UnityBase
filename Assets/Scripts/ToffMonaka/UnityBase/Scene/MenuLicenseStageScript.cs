@@ -246,6 +246,10 @@ public class MenuLicenseStageScript : ToffMonaka.UnityBase.Scene.MenuStageScript
      */
     public void OnCancelButtonPointerClickEvent()
     {
+        if (this.GetClosedFlag()) {
+            return;
+        }
+
         ToffMonaka.Lib.Scene.Util.GetSoundManager().PlaySe((int)ToffMonaka.UnityBase.Constant.Util.SOUND.SE_INDEX.CANCEL);
 
         this._menuScript.RunCancelButton();
@@ -258,6 +262,10 @@ public class MenuLicenseStageScript : ToffMonaka.UnityBase.Scene.MenuStageScript
      */
     public void OnCancelButtonPointerEnterEvent()
     {
+        if (this.GetClosedFlag()) {
+            return;
+        }
+
         this._cancelButtonCoverImage.gameObject.SetActive(true);
 
         return;
@@ -268,6 +276,10 @@ public class MenuLicenseStageScript : ToffMonaka.UnityBase.Scene.MenuStageScript
      */
     public void OnCancelButtonPointerExitEvent()
     {
+        if (this.GetClosedFlag()) {
+            return;
+        }
+
         this._cancelButtonCoverImage.gameObject.SetActive(false);
 
         return;

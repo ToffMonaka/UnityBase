@@ -97,19 +97,6 @@ public class MenuCheatStageScript : ToffMonaka.UnityBase.Scene.MenuStageScript
             this._commandButtonScriptContainer.Add(script);
         }
 
-        {// CommandButtonScript Create
-            var script = GameObject.Instantiate(this._commandButtonNode, this._commandButtonNode.transform.parent).GetComponent<ToffMonaka.UnityBase.Scene.MenuCheatStageCommandButtonScript>();
-            var script_create_desc = new ToffMonaka.UnityBase.Scene.MenuCheatStageCommandButtonScriptCreateDesc();
-
-            script_create_desc.cheatStageScript = this;
-            script_create_desc.commandType = ToffMonaka.UnityBase.Constant.Util.SCENE.MENU_CHEAT_STAGE_COMMAND_TYPE.LOG;
-
-            script.Create(script_create_desc);
-            script.Open(0);
-
-            this._commandButtonScriptContainer.Add(script);
-        }
-
         this._okButtonNameText.SetText("OK");
         this._cancelButtonNameText.SetText("キャンセル");
 
@@ -277,6 +264,10 @@ public class MenuCheatStageScript : ToffMonaka.UnityBase.Scene.MenuStageScript
      */
     public void OnCommandInputFieldEndEditEvent()
     {
+        if (this.GetClosedFlag()) {
+            return;
+        }
+
         return;
     }
 
@@ -285,6 +276,10 @@ public class MenuCheatStageScript : ToffMonaka.UnityBase.Scene.MenuStageScript
      */
     public void OnOkButtonPointerClickEvent()
     {
+        if (this.GetClosedFlag()) {
+            return;
+        }
+
         ToffMonaka.Lib.Scene.Util.GetSoundManager().PlaySe((int)ToffMonaka.UnityBase.Constant.Util.SOUND.SE_INDEX.OK2);
 
         var cmd_type = ToffMonaka.UnityBase.Constant.Util.SCENE.MENU_CHEAT_STAGE_COMMAND_TYPE.NONE;
@@ -309,15 +304,6 @@ public class MenuCheatStageScript : ToffMonaka.UnityBase.Scene.MenuStageScript
 		case ToffMonaka.UnityBase.Constant.Util.SCENE.MENU_CHEAT_STAGE_COMMAND_TYPE.STORAGE_DELETE: {
 			break;
 		}
-		case ToffMonaka.UnityBase.Constant.Util.SCENE.MENU_CHEAT_STAGE_COMMAND_TYPE.LOG: {
-            if (cmd_param_ary.Length < 1) {
-    			break;
-            }
-
-            Debug.Log(cmd_param_ary[0]);
-
-			break;
-		}
 		}
 
         this._menuScript.RunOkButton();
@@ -330,6 +316,10 @@ public class MenuCheatStageScript : ToffMonaka.UnityBase.Scene.MenuStageScript
      */
     public void OnOkButtonPointerEnterEvent()
     {
+        if (this.GetClosedFlag()) {
+            return;
+        }
+
         this._okButtonCoverImage.gameObject.SetActive(true);
 
         return;
@@ -340,6 +330,10 @@ public class MenuCheatStageScript : ToffMonaka.UnityBase.Scene.MenuStageScript
      */
     public void OnOkButtonPointerExitEvent()
     {
+        if (this.GetClosedFlag()) {
+            return;
+        }
+
         this._okButtonCoverImage.gameObject.SetActive(false);
 
         return;
@@ -350,6 +344,10 @@ public class MenuCheatStageScript : ToffMonaka.UnityBase.Scene.MenuStageScript
      */
     public void OnCancelButtonPointerClickEvent()
     {
+        if (this.GetClosedFlag()) {
+            return;
+        }
+
         ToffMonaka.Lib.Scene.Util.GetSoundManager().PlaySe((int)ToffMonaka.UnityBase.Constant.Util.SOUND.SE_INDEX.CANCEL);
 
         this._menuScript.RunCancelButton();
@@ -362,6 +360,10 @@ public class MenuCheatStageScript : ToffMonaka.UnityBase.Scene.MenuStageScript
      */
     public void OnCancelButtonPointerEnterEvent()
     {
+        if (this.GetClosedFlag()) {
+            return;
+        }
+
         this._cancelButtonCoverImage.gameObject.SetActive(true);
 
         return;
@@ -372,6 +374,10 @@ public class MenuCheatStageScript : ToffMonaka.UnityBase.Scene.MenuStageScript
      */
     public void OnCancelButtonPointerExitEvent()
     {
+        if (this.GetClosedFlag()) {
+            return;
+        }
+
         this._cancelButtonCoverImage.gameObject.SetActive(false);
 
         return;
