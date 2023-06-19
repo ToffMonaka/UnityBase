@@ -137,20 +137,9 @@ public class MenuOpenCloseButtonScript : ToffMonaka.Lib.Scene.ObjectScript
      */
     protected override void _OnUpdateOpen()
     {
-		switch (this.GetOpenType()) {
-		case 1: {
-            if (!this._openCloseSequence.IsActive()) {
-                this.CompleteOpen();
-            }
-
-			break;
-		}
-		default: {
+        if (!this._openCloseSequence.IsActive()) {
             this.CompleteOpen();
-
-			break;
-		}
-		}
+        }
 
         return;
     }
@@ -187,20 +176,9 @@ public class MenuOpenCloseButtonScript : ToffMonaka.Lib.Scene.ObjectScript
      */
     protected override void _OnUpdateClose()
     {
-		switch (this.GetCloseType()) {
-		case 1: {
-            if (!this._openCloseSequence.IsActive()) {
-                this.CompleteClose();
-            }
-
-			break;
-		}
-		default: {
+        if (!this._openCloseSequence.IsActive()) {
             this.CompleteClose();
-
-			break;
-		}
-		}
+        }
 
         return;
     }

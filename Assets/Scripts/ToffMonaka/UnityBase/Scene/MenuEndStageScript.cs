@@ -160,20 +160,9 @@ public class MenuEndStageScript : ToffMonaka.UnityBase.Scene.MenuStageScript
      */
     protected override void _OnUpdateOpen()
     {
-		switch (this.GetOpenType()) {
-		case 1: {
-            if (!this._openCloseSequence.IsActive()) {
-                this.CompleteOpen();
-            }
-
-			break;
-		}
-		default: {
+        if (!this._openCloseSequence.IsActive()) {
             this.CompleteOpen();
-
-			break;
-		}
-		}
+        }
 
         return;
     }
@@ -210,20 +199,9 @@ public class MenuEndStageScript : ToffMonaka.UnityBase.Scene.MenuStageScript
      */
     protected override void _OnUpdateClose()
     {
-		switch (this.GetCloseType()) {
-		case 1: {
-            if (!this._openCloseSequence.IsActive()) {
-                this.CompleteClose();
-            }
-
-			break;
-		}
-		default: {
+        if (!this._openCloseSequence.IsActive()) {
             this.CompleteClose();
-
-			break;
-		}
-		}
+        }
 
         return;
     }
@@ -289,7 +267,7 @@ public class MenuEndStageScript : ToffMonaka.UnityBase.Scene.MenuStageScript
 #endif
         }
 
-        this._menuScript.RunOkButton();
+        this._menuScript.RunStageOkButton();
 
         return;
     }
@@ -333,7 +311,7 @@ public class MenuEndStageScript : ToffMonaka.UnityBase.Scene.MenuStageScript
 
         ToffMonaka.Lib.Scene.Util.GetSoundManager().PlaySe((int)ToffMonaka.UnityBase.Constant.Util.SOUND.SE_INDEX.CANCEL);
 
-        this._menuScript.RunCancelButton();
+        this._menuScript.RunStageCancelButton();
 
         return;
     }

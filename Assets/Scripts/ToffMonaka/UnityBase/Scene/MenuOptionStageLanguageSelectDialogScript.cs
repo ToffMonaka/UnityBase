@@ -18,7 +18,7 @@ namespace ToffMonaka.UnityBase.Scene {
  */
 public class MenuOptionStageLanguageSelectDialogScriptCreateDesc : ToffMonaka.Lib.Scene.ObjectScriptCreateDesc
 {
-    public ToffMonaka.UnityBase.Scene.MenuOptionStageScript parentScript = null;
+    public ToffMonaka.UnityBase.Scene.MenuOptionStageScript menuOptionStageScript = null;
 }
 
 /**
@@ -33,7 +33,7 @@ public class MenuOptionStageLanguageSelectDialogScript : ToffMonaka.Lib.Scene.Ob
 
     public new ToffMonaka.UnityBase.Scene.MenuOptionStageLanguageSelectDialogScriptCreateDesc createDesc{get; private set;} = null;
 
-    private ToffMonaka.UnityBase.Scene.MenuOptionStageScript _parentScript = null;
+    private ToffMonaka.UnityBase.Scene.MenuOptionStageScript _menuOptionStageScript = null;
     private List<ToffMonaka.UnityBase.Scene.MenuOptionStageLanguageSelectLanguageButtonScript> _languageButtonScriptContainer = new List<ToffMonaka.UnityBase.Scene.MenuOptionStageLanguageSelectLanguageButtonScript>();
     private ToffMonaka.UnityBase.Constant.Util.LANGUAGE_TYPE _languageType = ToffMonaka.UnityBase.Constant.Util.LANGUAGE_TYPE.NONE;
     private Sequence _openCloseSequence = null;
@@ -71,7 +71,7 @@ public class MenuOptionStageLanguageSelectDialogScript : ToffMonaka.Lib.Scene.Ob
      */
     protected override int _OnCreate()
     {
-        this._parentScript = this.createDesc.parentScript;
+        this._menuOptionStageScript = this.createDesc.menuOptionStageScript;
 
         this._nameText.SetText("言語");
 
@@ -81,7 +81,7 @@ public class MenuOptionStageLanguageSelectDialogScript : ToffMonaka.Lib.Scene.Ob
             var script = GameObject.Instantiate(this._languageButtonNode, this._languageButtonNode.transform.parent).GetComponent<ToffMonaka.UnityBase.Scene.MenuOptionStageLanguageSelectLanguageButtonScript>();
             var script_create_desc = new ToffMonaka.UnityBase.Scene.MenuOptionStageLanguageSelectLanguageButtonScriptCreateDesc();
 
-            script_create_desc.parentScript = this;
+            script_create_desc.menuOptionStageLanguageSelectDialogScript = this;
             script_create_desc.languageType = ToffMonaka.UnityBase.Constant.Util.LANGUAGE_TYPE.ENGLISH;
 
             script.Create(script_create_desc);
@@ -94,7 +94,7 @@ public class MenuOptionStageLanguageSelectDialogScript : ToffMonaka.Lib.Scene.Ob
             var script = GameObject.Instantiate(this._languageButtonNode, this._languageButtonNode.transform.parent).GetComponent<ToffMonaka.UnityBase.Scene.MenuOptionStageLanguageSelectLanguageButtonScript>();
             var script_create_desc = new ToffMonaka.UnityBase.Scene.MenuOptionStageLanguageSelectLanguageButtonScriptCreateDesc();
 
-            script_create_desc.parentScript = this;
+            script_create_desc.menuOptionStageLanguageSelectDialogScript = this;
             script_create_desc.languageType = ToffMonaka.UnityBase.Constant.Util.LANGUAGE_TYPE.JAPANESE;
 
             script.Create(script_create_desc);
@@ -124,6 +124,8 @@ public class MenuOptionStageLanguageSelectDialogScript : ToffMonaka.Lib.Scene.Ob
      */
     protected override void _OnActive()
     {
+        this.SetLanguageType(ToffMonaka.UnityBase.Constant.Util.LANGUAGE_TYPE.NONE);
+
         return;
     }
 
@@ -228,7 +230,7 @@ public class MenuOptionStageLanguageSelectDialogScript : ToffMonaka.Lib.Scene.Ob
 
         ToffMonaka.Lib.Scene.Util.GetSoundManager().PlaySe((int)ToffMonaka.UnityBase.Constant.Util.SOUND.SE_INDEX.CANCEL);
 
-        this.Close(1);
+        this._menuOptionStageScript.RunLanguageSelectCloseButton();
 
         return;
     }
@@ -257,6 +259,39 @@ public class MenuOptionStageLanguageSelectDialogScript : ToffMonaka.Lib.Scene.Ob
         }
 
         this._closeButtonCoverImage.gameObject.SetActive(false);
+
+        return;
+    }
+
+    /**
+     * @brief GetLanguageType関数
+     * @return language_type (language_type)
+     */
+    public ToffMonaka.UnityBase.Constant.Util.LANGUAGE_TYPE GetLanguageType()
+    {
+        return (this._languageType);
+    }
+
+    /**
+     * @brief SetLanguageType関数
+     * @param language_type (language_type)
+     */
+    public void SetLanguageType(ToffMonaka.UnityBase.Constant.Util.LANGUAGE_TYPE language_type)
+    {
+        this._languageType = language_type;
+
+        return;
+    }
+
+    /**
+     * @brief RunLanguageButton関数
+     * @param language_type (language_type)
+     */
+    public void RunLanguageButton(ToffMonaka.UnityBase.Constant.Util.LANGUAGE_TYPE language_type)
+    {
+        this.SetLanguageType(language_type);
+
+        this._menuOptionStageScript.RunLanguageSelectLanguageButton(this._languageType);
 
         return;
     }

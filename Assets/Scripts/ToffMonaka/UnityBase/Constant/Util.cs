@@ -159,17 +159,17 @@ public static class Util
         public enum MENU_CHEAT_STAGE_COMMAND_TYPE : int
         {
             NONE = 0,
-            STORAGE_DELETE,
+            DATA_DELETE,
 		    COUNT
         }
         public const int MENU_CHEAT_STAGE_COMMAND_TYPE_COUNT = (int)ToffMonaka.UnityBase.Constant.Util.SCENE.MENU_CHEAT_STAGE_COMMAND_TYPE.COUNT;
         public static readonly string[] MENU_CHEAT_STAGE_COMMAND_NAME_ARRAY = {
             "",
-            "ストレージ削除"
+            "データ削除"
         };
         public static readonly string[] MENU_CHEAT_STAGE_COMMAND_FUNCTION_ARRAY = {
             "",
-            "/DeleteStorage"
+            "/DeleteData"
         };
         public static readonly string[] MENU_CHEAT_STAGE_COMMAND_PARAMETER_ARRAY = {
             "",

@@ -15,7 +15,7 @@ namespace ToffMonaka.UnityBase.Scene {
  */
 public class MenuCheatStageCommandButtonScriptCreateDesc : ToffMonaka.Lib.Scene.ObjectScriptCreateDesc
 {
-    public ToffMonaka.UnityBase.Scene.MenuCheatStageScript cheatStageScript = null;
+    public ToffMonaka.UnityBase.Scene.MenuCheatStageScript menuCheatStageScript = null;
     public ToffMonaka.UnityBase.Constant.Util.SCENE.MENU_CHEAT_STAGE_COMMAND_TYPE commandType = ToffMonaka.UnityBase.Constant.Util.SCENE.MENU_CHEAT_STAGE_COMMAND_TYPE.NONE;
 }
 
@@ -30,7 +30,7 @@ public class MenuCheatStageCommandButtonScript : ToffMonaka.Lib.Scene.ObjectScri
 
     public new ToffMonaka.UnityBase.Scene.MenuCheatStageCommandButtonScriptCreateDesc createDesc{get; private set;} = null;
 
-    private ToffMonaka.UnityBase.Scene.MenuCheatStageScript _cheatStageScript = null;
+    private ToffMonaka.UnityBase.Scene.MenuCheatStageScript _menuCheatStageScript = null;
     private ToffMonaka.UnityBase.Constant.Util.SCENE.MENU_CHEAT_STAGE_COMMAND_TYPE _commandType = ToffMonaka.UnityBase.Constant.Util.SCENE.MENU_CHEAT_STAGE_COMMAND_TYPE.NONE;
 
     /**
@@ -66,7 +66,7 @@ public class MenuCheatStageCommandButtonScript : ToffMonaka.Lib.Scene.ObjectScri
      */
     protected override int _OnCreate()
     {
-        this._cheatStageScript = this.createDesc.cheatStageScript;
+        this._menuCheatStageScript = this.createDesc.menuCheatStageScript;
         this._commandType = this.createDesc.commandType;
 
         this._nameText.SetText(ToffMonaka.UnityBase.Constant.Util.SCENE.MENU_CHEAT_STAGE_COMMAND_NAME_ARRAY[(int)this._commandType]);
@@ -170,7 +170,7 @@ public class MenuCheatStageCommandButtonScript : ToffMonaka.Lib.Scene.ObjectScri
 
         ToffMonaka.Lib.Scene.Util.GetSoundManager().PlaySe((int)ToffMonaka.UnityBase.Constant.Util.SOUND.SE_INDEX.OK2);
 
-        this._cheatStageScript.RunCommandButton(this._commandType);
+        this._menuCheatStageScript.RunCommandButton(this._commandType);
 
         return;
     }

@@ -15,7 +15,7 @@ namespace ToffMonaka.UnityBase.Scene {
  */
 public class MenuStageSelectStageButtonScriptCreateDesc : ToffMonaka.Lib.Scene.ObjectScriptCreateDesc
 {
-    public ToffMonaka.UnityBase.Scene.MenuStageSelectScript stageSelectScript = null;
+    public ToffMonaka.UnityBase.Scene.MenuStageSelectScript menuStageSelectScript = null;
     public ToffMonaka.UnityBase.Constant.Util.SCENE.MENU_STAGE_TYPE stageType = ToffMonaka.UnityBase.Constant.Util.SCENE.MENU_STAGE_TYPE.NONE;
 }
 
@@ -29,7 +29,7 @@ public class MenuStageSelectStageButtonScript : ToffMonaka.Lib.Scene.ObjectScrip
 
     public new ToffMonaka.UnityBase.Scene.MenuStageSelectStageButtonScriptCreateDesc createDesc{get; private set;} = null;
 
-    private ToffMonaka.UnityBase.Scene.MenuStageSelectScript _stageSelectScript = null;
+    private ToffMonaka.UnityBase.Scene.MenuStageSelectScript _menuStageSelectScript = null;
     private ToffMonaka.UnityBase.Constant.Util.SCENE.MENU_STAGE_TYPE _stageType = ToffMonaka.UnityBase.Constant.Util.SCENE.MENU_STAGE_TYPE.NONE;
 
     /**
@@ -65,7 +65,7 @@ public class MenuStageSelectStageButtonScript : ToffMonaka.Lib.Scene.ObjectScrip
      */
     protected override int _OnCreate()
     {
-        this._stageSelectScript = this.createDesc.stageSelectScript;
+        this._menuStageSelectScript = this.createDesc.menuStageSelectScript;
         this._stageType = this.createDesc.stageType;
 
         this._nameText.SetText(ToffMonaka.UnityBase.Constant.Util.SCENE.MENU_STAGE_NAME_ARRAY[(int)this._stageType]);
@@ -161,7 +161,7 @@ public class MenuStageSelectStageButtonScript : ToffMonaka.Lib.Scene.ObjectScrip
 
         ToffMonaka.Lib.Scene.Util.GetSoundManager().PlaySe((int)ToffMonaka.UnityBase.Constant.Util.SOUND.SE_INDEX.OK2);
 
-        this._stageSelectScript.RunStageButton(this._stageType);
+        this._menuStageSelectScript.RunStageButton(this._stageType);
 
         return;
     }
