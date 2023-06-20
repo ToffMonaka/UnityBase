@@ -32,7 +32,6 @@ public class TitleSubSceneScript : ToffMonaka.Lib.Scene.SubSceneScript
     public new ToffMonaka.UnityBase.Scene.TitleSubSceneScriptCreateDesc createDesc{get; private set;} = null;
 
     private ToffMonaka.UnityBase.Scene.MenuScript _menuScript = null;
-    private Sequence _openCloseSequence = null;
 
     /**
      * @brief コンストラクタ
@@ -138,10 +137,13 @@ public class TitleSubSceneScript : ToffMonaka.Lib.Scene.SubSceneScript
             this._openCloseFadeImage.gameObject.SetActive(true);
             this._openCloseFadeImage.color = new Color32(8, 8, 8, 255);
 
-            this._openCloseSequence = DOTween.Sequence();
-            this._openCloseSequence.AppendInterval(0.05f);
-            this._openCloseSequence.Append(this._openCloseFadeImage.DOFade(0.0f, 0.2f));
-            this._openCloseSequence.SetLink(this.gameObject);
+            var open_close_sequence = DOTween.Sequence();
+
+            open_close_sequence.AppendInterval(0.05f);
+            open_close_sequence.Append(this._openCloseFadeImage.DOFade(0.0f, 0.2f));
+            open_close_sequence.SetLink(this.gameObject);
+
+            this.AddOpenCloseSequence(open_close_sequence);
 
 			break;
 		}
@@ -160,22 +162,11 @@ public class TitleSubSceneScript : ToffMonaka.Lib.Scene.SubSceneScript
      */
     protected override void _OnUpdateOpen()
     {
-		switch (this.GetOpenType()) {
-		case 1: {
-            if (!this._openCloseSequence.IsActive()) {
-                this.CompleteOpen();
-
-                this._openCloseFadeImage.gameObject.SetActive(false);
-            }
-
-			break;
-		}
-		default: {
+        if (!this.IsActiveOpenCloseSequence()) {
             this.CompleteOpen();
 
-			break;
-		}
-		}
+            this._openCloseFadeImage.gameObject.SetActive(false);
+        }
 
         return;
     }
@@ -190,10 +181,13 @@ public class TitleSubSceneScript : ToffMonaka.Lib.Scene.SubSceneScript
             this._openCloseFadeImage.gameObject.SetActive(true);
             this._openCloseFadeImage.color = new Color32(8, 8, 8, 0);
 
-            this._openCloseSequence = DOTween.Sequence();
-            this._openCloseSequence.Append(this._openCloseFadeImage.DOFade(1.0f, 0.2f));
-            this._openCloseSequence.AppendInterval(0.05f);
-            this._openCloseSequence.SetLink(this.gameObject);
+            var open_close_sequence = DOTween.Sequence();
+
+            open_close_sequence.Append(this._openCloseFadeImage.DOFade(1.0f, 0.2f));
+            open_close_sequence.AppendInterval(0.05f);
+            open_close_sequence.SetLink(this.gameObject);
+
+            this.AddOpenCloseSequence(open_close_sequence);
 
 			break;
 		}
@@ -212,28 +206,17 @@ public class TitleSubSceneScript : ToffMonaka.Lib.Scene.SubSceneScript
      */
     protected override void _OnUpdateClose()
     {
-		switch (this.GetCloseType()) {
-		case 1: {
-            if (!this._openCloseSequence.IsActive()) {
-                this.CompleteClose();
-
-                {// StageSelectSubSceneScript Create
-                    var script = this.GetManager().ChangeSubScene(ToffMonaka.UnityBase.Constant.Util.FILE_PATH.STAGE_SELECT_SUB_SCENE_PREFAB) as ToffMonaka.UnityBase.Scene.StageSelectSubSceneScript;
-                    var script_create_desc = new ToffMonaka.UnityBase.Scene.StageSelectSubSceneScriptCreateDesc();
-
-                    script.Create(script_create_desc);
-                    script.Open(1);
-                }
-            }
-
-			break;
-		}
-		default: {
+        if (!this.IsActiveOpenCloseSequence()) {
             this.CompleteClose();
 
-			break;
-		}
-		}
+            {// StageSelectSubSceneScript Create
+                var script = this.GetManager().ChangeSubScene(ToffMonaka.UnityBase.Constant.Util.FILE_PATH.STAGE_SELECT_SUB_SCENE_PREFAB) as ToffMonaka.UnityBase.Scene.StageSelectSubSceneScript;
+                var script_create_desc = new ToffMonaka.UnityBase.Scene.StageSelectSubSceneScriptCreateDesc();
+
+                script.Create(script_create_desc);
+                script.Open(1);
+            }
+        }
 
         return;
     }

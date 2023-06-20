@@ -35,7 +35,6 @@ public class StageSelectSubSceneScript : ToffMonaka.UnityBase.Scene.SelectSubSce
     private List<ToffMonaka.UnityBase.Scene.StageSelectStageButtonScript> _stageButtonScriptContainer = new List<ToffMonaka.UnityBase.Scene.StageSelectStageButtonScript>();
     private ToffMonaka.UnityBase.Constant.Util.SCENE.STAGE_TYPE _stageType = ToffMonaka.UnityBase.Constant.Util.SCENE.STAGE_TYPE.NONE;
     private ToffMonaka.UnityBase.Scene.MenuScript _menuScript = null;
-    private Sequence _openCloseSequence = null;
 
     /**
      * @brief コンストラクタ
@@ -138,6 +137,8 @@ public class StageSelectSubSceneScript : ToffMonaka.UnityBase.Scene.SelectSubSce
     {
         ToffMonaka.Lib.Scene.Util.GetSoundManager().PlayBgm((int)ToffMonaka.UnityBase.Constant.Util.SOUND.BGM_INDEX.SELECT);
 
+        this.SetStageType(ToffMonaka.UnityBase.Constant.Util.SCENE.STAGE_TYPE.NONE);
+
         return;
     }
 
@@ -167,10 +168,13 @@ public class StageSelectSubSceneScript : ToffMonaka.UnityBase.Scene.SelectSubSce
             this._openCloseFadeImage.gameObject.SetActive(true);
             this._openCloseFadeImage.color = new Color32(8, 8, 8, 255);
 
-            this._openCloseSequence = DOTween.Sequence();
-            this._openCloseSequence.AppendInterval(0.05f);
-            this._openCloseSequence.Append(this._openCloseFadeImage.DOFade(0.0f, 0.2f));
-            this._openCloseSequence.SetLink(this.gameObject);
+            var open_close_sequence = DOTween.Sequence();
+
+            open_close_sequence.AppendInterval(0.05f);
+            open_close_sequence.Append(this._openCloseFadeImage.DOFade(0.0f, 0.2f));
+            open_close_sequence.SetLink(this.gameObject);
+
+            this.AddOpenCloseSequence(open_close_sequence);
 
 			break;
 		}
@@ -189,22 +193,11 @@ public class StageSelectSubSceneScript : ToffMonaka.UnityBase.Scene.SelectSubSce
      */
     protected override void _OnUpdateOpen()
     {
-		switch (this.GetOpenType()) {
-		case 1: {
-            if (!this._openCloseSequence.IsActive()) {
-                this.CompleteOpen();
-
-                this._openCloseFadeImage.gameObject.SetActive(false);
-            }
-
-			break;
-		}
-		default: {
+        if (!this.IsActiveOpenCloseSequence()) {
             this.CompleteOpen();
 
-			break;
-		}
-		}
+            this._openCloseFadeImage.gameObject.SetActive(false);
+        }
 
         return;
     }
@@ -219,10 +212,13 @@ public class StageSelectSubSceneScript : ToffMonaka.UnityBase.Scene.SelectSubSce
             this._openCloseFadeImage.gameObject.SetActive(true);
             this._openCloseFadeImage.color = new Color32(8, 8, 8, 0);
 
-            this._openCloseSequence = DOTween.Sequence();
-            this._openCloseSequence.Append(this._openCloseFadeImage.DOFade(1.0f, 0.2f));
-            this._openCloseSequence.AppendInterval(0.05f);
-            this._openCloseSequence.SetLink(this.gameObject);
+            var open_close_sequence = DOTween.Sequence();
+
+            open_close_sequence.Append(this._openCloseFadeImage.DOFade(1.0f, 0.2f));
+            open_close_sequence.AppendInterval(0.05f);
+            open_close_sequence.SetLink(this.gameObject);
+
+            this.AddOpenCloseSequence(open_close_sequence);
 
 			break;
 		}
@@ -241,13 +237,12 @@ public class StageSelectSubSceneScript : ToffMonaka.UnityBase.Scene.SelectSubSce
      */
     protected override void _OnUpdateClose()
     {
-		switch (this.GetCloseType()) {
-		case 1: {
-            if (!this._openCloseSequence.IsActive()) {
-                this.CompleteClose();
+        if (!this.IsActiveOpenCloseSequence()) {
+            this.CompleteClose();
 
-                // Test2DStageSubSceneScript Create
-                if (this._stageType == ToffMonaka.UnityBase.Constant.Util.SCENE.STAGE_TYPE.TEST_2D) {
+		    switch (this._stageType) {
+		    case ToffMonaka.UnityBase.Constant.Util.SCENE.STAGE_TYPE.TEST_2D: {
+                {// Test2DStageSubSceneScript Create
                     var script = this.GetManager().ChangeSubScene(ToffMonaka.UnityBase.Constant.Util.FILE_PATH.TEST_2D_STAGE_SUB_SCENE_PREFAB) as ToffMonaka.UnityBase.Scene.Test2DStageSubSceneScript;
                     var script_create_desc = new ToffMonaka.UnityBase.Scene.Test2DStageSubSceneScriptCreateDesc();
 
@@ -255,24 +250,41 @@ public class StageSelectSubSceneScript : ToffMonaka.UnityBase.Scene.SelectSubSce
                     script.Open(1);
                 }
 
-                // Test3DStageSubSceneScript Create
-                if (this._stageType == ToffMonaka.UnityBase.Constant.Util.SCENE.STAGE_TYPE.TEST_3D) {
+			    break;
+		    }
+		    case ToffMonaka.UnityBase.Constant.Util.SCENE.STAGE_TYPE.TEST_3D: {
+                {// Test3DStageSubSceneScript Create
                     var script = this.GetManager().ChangeSubScene(ToffMonaka.UnityBase.Constant.Util.FILE_PATH.TEST_3D_STAGE_SUB_SCENE_PREFAB) as ToffMonaka.UnityBase.Scene.Test3DStageSubSceneScript;
                     var script_create_desc = new ToffMonaka.UnityBase.Scene.Test3DStageSubSceneScriptCreateDesc();
 
                     script.Create(script_create_desc);
                     script.Open(1);
                 }
-            }
 
-			break;
-		}
-		default: {
-            this.CompleteClose();
+			    break;
+		    }
+		    }
+        }
 
-			break;
-		}
-		}
+        return;
+    }
+
+    /**
+     * @brief GetStageType関数
+     * @return stage_type (stage_type)
+     */
+    public ToffMonaka.UnityBase.Constant.Util.SCENE.STAGE_TYPE GetStageType()
+    {
+        return (this._stageType);
+    }
+
+    /**
+     * @brief SetStageType関数
+     * @param stage_type (stage_type)
+     */
+    public void SetStageType(ToffMonaka.UnityBase.Constant.Util.SCENE.STAGE_TYPE stage_type)
+    {
+        this._stageType = stage_type;
 
         return;
     }
@@ -283,7 +295,7 @@ public class StageSelectSubSceneScript : ToffMonaka.UnityBase.Scene.SelectSubSce
      */
     public void RunStageButton(ToffMonaka.UnityBase.Constant.Util.SCENE.STAGE_TYPE stage_type)
     {
-        this._stageType = stage_type;
+        this.SetStageType(stage_type);
 
         this.Close(1);
 

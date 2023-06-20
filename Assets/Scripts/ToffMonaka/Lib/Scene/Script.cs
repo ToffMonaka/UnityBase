@@ -5,6 +5,9 @@
 
 
 using UnityEngine;
+using System;
+using System.Collections.Generic;
+using DG.Tweening;
 
 
 namespace ToffMonaka.Lib.Scene {
@@ -33,6 +36,7 @@ public abstract class Script : MonoBehaviour
     private int _closeType = 0;
     private bool _closeFlag = false;
     private bool _closedFlag = true;
+    private List<Sequence> _openCloseSequenceContainer = new List<Sequence>();
 
     /**
      * @brief Awake関数
@@ -464,6 +468,7 @@ public abstract class Script : MonoBehaviour
         this._openedFlag = false;
         this._closeFlag = false;
         this._closedFlag = false;
+        this.RemoveOpenCloseSequence();
 
         this._OnOpen();
 
@@ -520,6 +525,7 @@ public abstract class Script : MonoBehaviour
         this._openedFlag = false;
         this._closeFlag = true;
         this._closedFlag = false;
+        this.RemoveOpenCloseSequence();
 
         this._OnClose();
 
@@ -617,6 +623,77 @@ public abstract class Script : MonoBehaviour
     public bool GetClosedFlag()
     {
         return (this._closedFlag);
+    }
+
+    /**
+     * @brief AddOpenCloseSequence関数
+     * @param open_close_sequence (open_close_sequence)
+     * @return result (result)<br>
+     * 0未満=失敗
+     */
+    public int AddOpenCloseSequence(Sequence open_close_sequence)
+    {
+        if (open_close_sequence == null) {
+            return (-1);
+        }
+
+        this._openCloseSequenceContainer.Add(open_close_sequence);
+
+        return (0);
+    }
+
+    /**
+     * @brief RemoveOpenCloseSequence関数
+     */
+    public void RemoveOpenCloseSequence()
+    {
+        foreach (var open_close_sequence in this._openCloseSequenceContainer) {
+            if (open_close_sequence.IsActive()) {
+                open_close_sequence.Kill();
+            }
+        }
+
+        this._openCloseSequenceContainer.Clear();
+
+        return;
+    }
+
+    /**
+     * @brief RemoveOpenCloseSequence関数
+     * @param open_close_sequence (open_close_sequence)
+     */
+    public void RemoveOpenCloseSequence(Sequence open_close_sequence)
+    {
+        if (open_close_sequence == null) {
+            return;
+        }
+
+        if (open_close_sequence.IsActive()) {
+            open_close_sequence.Kill();
+        }
+
+        this._openCloseSequenceContainer.Remove(open_close_sequence);
+
+        return;
+    }
+
+    /**
+     * @brief IsActiveOpenCloseSequence関数
+     * @return active_flg (active_flag)
+     */
+    public bool IsActiveOpenCloseSequence()
+    {
+        bool active_flg = false;
+
+        foreach (var open_close_sequence in this._openCloseSequenceContainer) {
+            if (open_close_sequence.IsActive()) {
+                active_flg = true;
+
+                break;
+            }
+        }
+
+        return (active_flg);
     }
 }
 }

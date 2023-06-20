@@ -23,14 +23,13 @@ public class InitSubSceneScriptCreateDesc : ToffMonaka.Lib.Scene.SubSceneScriptC
  */
 public class InitSubSceneScript : ToffMonaka.Lib.Scene.SubSceneScript
 {
-    [SerializeField] private Image _openCloseFadeImage = null;
     [SerializeField] private TMP_Text _waitMessageText = null;
+    [SerializeField] private Image _openCloseFadeImage = null;
 
     public new ToffMonaka.UnityBase.Scene.InitSubSceneScriptCreateDesc createDesc{get; private set;} = null;
 
     private int _progressType = 0;
     private float _progressElapsedTime = 0.0f;
-    private Sequence _openCloseSequence = null;
 
     /**
      * @brief コンストラクタ
@@ -92,8 +91,7 @@ public class InitSubSceneScript : ToffMonaka.Lib.Scene.SubSceneScript
      */
     protected override void _OnActive()
     {
-        this._progressType = 1;
-        this._progressElapsedTime = 0.0f;
+        this.SetProgressType(1);
 
         return;
     }
@@ -118,8 +116,7 @@ public class InitSubSceneScript : ToffMonaka.Lib.Scene.SubSceneScript
             if (this._progressElapsedTime >= 3.0f) {
                 this.Close(1);
 
-                this._progressType = 2;
-                this._progressElapsedTime = 0.0f;
+                this.SetProgressType(2);
             }
 
 			break;
@@ -142,10 +139,13 @@ public class InitSubSceneScript : ToffMonaka.Lib.Scene.SubSceneScript
             this._openCloseFadeImage.gameObject.SetActive(true);
             this._openCloseFadeImage.color = new Color32(8, 8, 8, 255);
 
-            this._openCloseSequence = DOTween.Sequence();
-            this._openCloseSequence.AppendInterval(0.05f);
-            this._openCloseSequence.Append(this._openCloseFadeImage.DOFade(0.0f, 0.2f));
-            this._openCloseSequence.SetLink(this.gameObject);
+            var open_close_sequence = DOTween.Sequence();
+
+            open_close_sequence.AppendInterval(0.05f);
+            open_close_sequence.Append(this._openCloseFadeImage.DOFade(0.0f, 0.2f));
+            open_close_sequence.SetLink(this.gameObject);
+
+            this.AddOpenCloseSequence(open_close_sequence);
 
 			break;
 		}
@@ -164,22 +164,11 @@ public class InitSubSceneScript : ToffMonaka.Lib.Scene.SubSceneScript
      */
     protected override void _OnUpdateOpen()
     {
-		switch (this.GetOpenType()) {
-		case 1: {
-            if (!this._openCloseSequence.IsActive()) {
-                this.CompleteOpen();
-
-                this._openCloseFadeImage.gameObject.SetActive(false);
-            }
-
-			break;
-		}
-		default: {
+        if (!this.IsActiveOpenCloseSequence()) {
             this.CompleteOpen();
 
-			break;
-		}
-		}
+            this._openCloseFadeImage.gameObject.SetActive(false);
+        }
 
         return;
     }
@@ -194,10 +183,13 @@ public class InitSubSceneScript : ToffMonaka.Lib.Scene.SubSceneScript
             this._openCloseFadeImage.gameObject.SetActive(true);
             this._openCloseFadeImage.color = new Color32(8, 8, 8, 0);
 
-            this._openCloseSequence = DOTween.Sequence();
-            this._openCloseSequence.Append(this._openCloseFadeImage.DOFade(1.0f, 0.2f));
-            this._openCloseSequence.AppendInterval(0.05f);
-            this._openCloseSequence.SetLink(this.gameObject);
+            var open_close_sequence = DOTween.Sequence();
+
+            open_close_sequence.Append(this._openCloseFadeImage.DOFade(1.0f, 0.2f));
+            open_close_sequence.AppendInterval(0.05f);
+            open_close_sequence.SetLink(this.gameObject);
+
+            this.AddOpenCloseSequence(open_close_sequence);
 
 			break;
 		}
@@ -216,28 +208,38 @@ public class InitSubSceneScript : ToffMonaka.Lib.Scene.SubSceneScript
      */
     protected override void _OnUpdateClose()
     {
-		switch (this.GetCloseType()) {
-		case 1: {
-            if (!this._openCloseSequence.IsActive()) {
-                this.CompleteClose();
-
-                {// TitleSubSceneScript Create
-                    var script = this.GetManager().ChangeSubScene(ToffMonaka.UnityBase.Constant.Util.FILE_PATH.TITLE_SUB_SCENE_PREFAB) as ToffMonaka.UnityBase.Scene.TitleSubSceneScript;
-                    var script_create_desc = new ToffMonaka.UnityBase.Scene.TitleSubSceneScriptCreateDesc();
-
-                    script.Create(script_create_desc);
-                    script.Open(1);
-                }
-            }
-
-			break;
-		}
-		default: {
+        if (!this.IsActiveOpenCloseSequence()) {
             this.CompleteClose();
 
-			break;
-		}
-		}
+            {// TitleSubSceneScript Create
+                var script = this.GetManager().ChangeSubScene(ToffMonaka.UnityBase.Constant.Util.FILE_PATH.TITLE_SUB_SCENE_PREFAB) as ToffMonaka.UnityBase.Scene.TitleSubSceneScript;
+                var script_create_desc = new ToffMonaka.UnityBase.Scene.TitleSubSceneScriptCreateDesc();
+
+                script.Create(script_create_desc);
+                script.Open(1);
+            }
+        }
+
+        return;
+    }
+
+    /**
+     * @brief GetProgressType関数
+     * @return progress_type (progress_type)
+     */
+    public int GetProgressType()
+    {
+        return (this._progressType);
+    }
+
+    /**
+     * @brief SetProgressType関数
+     * @param progress_type (progress_type)
+     */
+    public void SetProgressType(int progress_type)
+    {
+        this._progressType = progress_type;
+        this._progressElapsedTime = 0.0f;
 
         return;
     }

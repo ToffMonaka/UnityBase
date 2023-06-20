@@ -30,7 +30,6 @@ public class Test3DStageSubSceneScript : ToffMonaka.UnityBase.Scene.StageSubScen
     public new ToffMonaka.UnityBase.Scene.Test3DStageSubSceneScriptCreateDesc createDesc{get; private set;} = null;
 
     private ToffMonaka.UnityBase.Scene.MenuScript _menuScript = null;
-    private Sequence _openCloseSequence = null;
 
     /**
      * @brief コンストラクタ
@@ -132,10 +131,13 @@ public class Test3DStageSubSceneScript : ToffMonaka.UnityBase.Scene.StageSubScen
             this._openCloseFadeImage.gameObject.SetActive(true);
             this._openCloseFadeImage.color = new Color32(8, 8, 8, 255);
 
-            this._openCloseSequence = DOTween.Sequence();
-            this._openCloseSequence.AppendInterval(0.05f);
-            this._openCloseSequence.Append(this._openCloseFadeImage.DOFade(0.0f, 0.2f));
-            this._openCloseSequence.SetLink(this.gameObject);
+            var open_close_sequence = DOTween.Sequence();
+
+            open_close_sequence.AppendInterval(0.05f);
+            open_close_sequence.Append(this._openCloseFadeImage.DOFade(0.0f, 0.2f));
+            open_close_sequence.SetLink(this.gameObject);
+
+            this.AddOpenCloseSequence(open_close_sequence);
 
 			break;
 		}
@@ -154,22 +156,11 @@ public class Test3DStageSubSceneScript : ToffMonaka.UnityBase.Scene.StageSubScen
      */
     protected override void _OnUpdateOpen()
     {
-		switch (this.GetOpenType()) {
-		case 1: {
-            if (!this._openCloseSequence.IsActive()) {
-                this.CompleteOpen();
-
-                this._openCloseFadeImage.gameObject.SetActive(false);
-            }
-
-			break;
-		}
-		default: {
+        if (!this.IsActiveOpenCloseSequence()) {
             this.CompleteOpen();
 
-			break;
-		}
-		}
+            this._openCloseFadeImage.gameObject.SetActive(false);
+        }
 
         return;
     }
@@ -184,10 +175,13 @@ public class Test3DStageSubSceneScript : ToffMonaka.UnityBase.Scene.StageSubScen
             this._openCloseFadeImage.gameObject.SetActive(true);
             this._openCloseFadeImage.color = new Color32(8, 8, 8, 0);
 
-            this._openCloseSequence = DOTween.Sequence();
-            this._openCloseSequence.Append(this._openCloseFadeImage.DOFade(1.0f, 0.2f));
-            this._openCloseSequence.AppendInterval(0.05f);
-            this._openCloseSequence.SetLink(this.gameObject);
+            var open_close_sequence = DOTween.Sequence();
+
+            open_close_sequence.Append(this._openCloseFadeImage.DOFade(1.0f, 0.2f));
+            open_close_sequence.AppendInterval(0.05f);
+            open_close_sequence.SetLink(this.gameObject);
+
+            this.AddOpenCloseSequence(open_close_sequence);
 
 			break;
 		}
@@ -206,20 +200,9 @@ public class Test3DStageSubSceneScript : ToffMonaka.UnityBase.Scene.StageSubScen
      */
     protected override void _OnUpdateClose()
     {
-		switch (this.GetCloseType()) {
-		case 1: {
-            if (!this._openCloseSequence.IsActive()) {
-                this.CompleteClose();
-            }
-
-			break;
-		}
-		default: {
+        if (!this.IsActiveOpenCloseSequence()) {
             this.CompleteClose();
-
-			break;
-		}
-		}
+        }
 
         return;
     }

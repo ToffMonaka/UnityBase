@@ -33,7 +33,6 @@ public class MenuStageSelectScript : ToffMonaka.UnityBase.Scene.MenuSelectScript
     private ToffMonaka.UnityBase.Scene.MenuScript _menuScript = null;
     private List<ToffMonaka.UnityBase.Scene.MenuStageSelectStageButtonScript> _stageButtonScriptContainer = new List<ToffMonaka.UnityBase.Scene.MenuStageSelectStageButtonScript>();
     private ToffMonaka.UnityBase.Constant.Util.SCENE.MENU_STAGE_TYPE _stageType = ToffMonaka.UnityBase.Constant.Util.SCENE.MENU_STAGE_TYPE.NONE;
-    private Sequence _openCloseSequence = null;
 
     /**
      * @brief コンストラクタ
@@ -207,9 +206,12 @@ public class MenuStageSelectScript : ToffMonaka.UnityBase.Scene.MenuSelectScript
 		case 1: {
             rect_transform.anchoredPosition = new Vector2(-rect_transform.sizeDelta.x - 8.0f, rect_transform.anchoredPosition.y);
 
-            this._openCloseSequence = DOTween.Sequence();
-            this._openCloseSequence.Append(rect_transform.DOAnchorPosX(8.0f, 0.1f));
-            this._openCloseSequence.SetLink(this.gameObject);
+            var open_close_sequence = DOTween.Sequence();
+
+            open_close_sequence.Append(rect_transform.DOAnchorPosX(8.0f, 0.1f));
+            open_close_sequence.SetLink(this.gameObject);
+
+            this.AddOpenCloseSequence(open_close_sequence);
 
 			break;
 		}
@@ -228,7 +230,7 @@ public class MenuStageSelectScript : ToffMonaka.UnityBase.Scene.MenuSelectScript
      */
     protected override void _OnUpdateOpen()
     {
-        if (!this._openCloseSequence.IsActive()) {
+        if (!this.IsActiveOpenCloseSequence()) {
             this.CompleteOpen();
         }
 
@@ -246,9 +248,12 @@ public class MenuStageSelectScript : ToffMonaka.UnityBase.Scene.MenuSelectScript
 		case 1: {
             rect_transform.anchoredPosition = new Vector2(8.0f, rect_transform.anchoredPosition.y);
 
-            this._openCloseSequence = DOTween.Sequence();
-            this._openCloseSequence.Append(rect_transform.DOAnchorPosX(-rect_transform.sizeDelta.x - 8.0f, 0.1f));
-            this._openCloseSequence.SetLink(this.gameObject);
+            var open_close_sequence = DOTween.Sequence();
+
+            open_close_sequence.Append(rect_transform.DOAnchorPosX(-rect_transform.sizeDelta.x - 8.0f, 0.1f));
+            open_close_sequence.SetLink(this.gameObject);
+
+            this.AddOpenCloseSequence(open_close_sequence);
 
 			break;
 		}
@@ -267,7 +272,7 @@ public class MenuStageSelectScript : ToffMonaka.UnityBase.Scene.MenuSelectScript
      */
     protected override void _OnUpdateClose()
     {
-        if (!this._openCloseSequence.IsActive()) {
+        if (!this.IsActiveOpenCloseSequence()) {
             this.CompleteClose();
         }
 
