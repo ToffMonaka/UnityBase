@@ -53,6 +53,7 @@ public class MenuOptionStageScript : ToffMonaka.UnityBase.Scene.MenuStageScript
     private bool _soundBgmMuteFlag = false;
     private float _soundSeVolume = 1.0f;
     private bool _soundSeMuteFlag = false;
+    private uint _restartFlag = 0U;
     private ToffMonaka.UnityBase.Scene.MenuOptionStageLanguageSelectDialogScript _languageSelectDialogScript = null;
 
     /**
@@ -134,11 +135,11 @@ public class MenuOptionStageScript : ToffMonaka.UnityBase.Scene.MenuStageScript
     protected override void _OnActive()
     {
         this._editScrollRect.verticalNormalizedPosition = 1.0f;
-        this.SetLanguageType(ToffMonaka.UnityBase.Constant.Util.LANGUAGE_TYPE.JAPANESE);
-        this.SetSoundBgmVolume(ToffMonaka.Lib.Scene.Util.GetSoundManager().GetBgmVolume());
-        this.SetSoundBgmMuteFlag(ToffMonaka.Lib.Scene.Util.GetSoundManager().GetBgmMuteFlag());
-        this.SetSoundSeVolume(ToffMonaka.Lib.Scene.Util.GetSoundManager().GetSeVolume());
-        this.SetSoundSeMuteFlag(ToffMonaka.Lib.Scene.Util.GetSoundManager().GetSeMuteFlag());
+        this.SetLanguageType(ToffMonaka.UnityBase.Global.languageType);
+        this.SetSoundBgmVolume(ToffMonaka.UnityBase.Global.soundBgmVolume);
+        this.SetSoundBgmMuteFlag(ToffMonaka.UnityBase.Global.soundBgmMuteFlag);
+        this.SetSoundSeVolume(ToffMonaka.UnityBase.Global.soundSeVolume);
+        this.SetSoundSeMuteFlag(ToffMonaka.UnityBase.Global.soundSeMuteFlag);
 
         return;
     }
@@ -300,6 +301,8 @@ public class MenuOptionStageScript : ToffMonaka.UnityBase.Scene.MenuStageScript
 
         this.SetSoundBgmVolume(this._soundBgmVolumeSlider.value / 10.0f);
 
+        ToffMonaka.Lib.Scene.Util.GetSoundManager().SetBgmVolume(this._soundBgmVolume);
+
         return;
     }
 
@@ -320,6 +323,8 @@ public class MenuOptionStageScript : ToffMonaka.UnityBase.Scene.MenuStageScript
 
         this.SetSoundBgmMuteFlag(this._soundBgmMuteToggle.isOn);
 
+        ToffMonaka.Lib.Scene.Util.GetSoundManager().SetBgmMuteFlag(this._soundBgmMuteFlag);
+
         return;
     }
 
@@ -336,6 +341,8 @@ public class MenuOptionStageScript : ToffMonaka.UnityBase.Scene.MenuStageScript
 
         this.SetSoundSeVolume(this._soundSeVolumeSlider.value / 10.0f);
      
+        ToffMonaka.Lib.Scene.Util.GetSoundManager().SetSeVolume(this._soundSeVolume);
+
         return;
     }
 
@@ -356,6 +363,8 @@ public class MenuOptionStageScript : ToffMonaka.UnityBase.Scene.MenuStageScript
 
         this.SetSoundSeMuteFlag(this._soundSeMuteToggle.isOn);
 
+        ToffMonaka.Lib.Scene.Util.GetSoundManager().SetSeMuteFlag(this._soundSeMuteFlag);
+
         return;
     }
 
@@ -369,6 +378,16 @@ public class MenuOptionStageScript : ToffMonaka.UnityBase.Scene.MenuStageScript
         }
 
         ToffMonaka.Lib.Scene.Util.GetSoundManager().PlaySe((int)ToffMonaka.UnityBase.Constant.Util.SOUND.SE_INDEX.OK2);
+
+        ToffMonaka.UnityBase.Global.languageType = this._languageType;
+        ToffMonaka.UnityBase.Global.soundBgmVolume = this._soundBgmVolume;
+        ToffMonaka.UnityBase.Global.soundBgmMuteFlag = this._soundBgmMuteFlag;
+        ToffMonaka.UnityBase.Global.soundSeVolume = this._soundSeVolume;
+        ToffMonaka.UnityBase.Global.soundSeMuteFlag = this._soundSeMuteFlag;
+
+        if (this._restartFlag > 0U) {
+            ToffMonaka.Lib.Scene.Util.GetManager().ChangeMainScene(ToffMonaka.UnityBase.Constant.Util.SCENE.NAME.MAIN);
+        }
 
         this._menuScript.RunStageOkButton();
 
@@ -413,6 +432,11 @@ public class MenuOptionStageScript : ToffMonaka.UnityBase.Scene.MenuStageScript
         }
 
         ToffMonaka.Lib.Scene.Util.GetSoundManager().PlaySe((int)ToffMonaka.UnityBase.Constant.Util.SOUND.SE_INDEX.CANCEL);
+
+        ToffMonaka.Lib.Scene.Util.GetSoundManager().SetBgmVolume(ToffMonaka.UnityBase.Global.soundBgmVolume);
+        ToffMonaka.Lib.Scene.Util.GetSoundManager().SetBgmMuteFlag(ToffMonaka.UnityBase.Global.soundBgmMuteFlag);
+        ToffMonaka.Lib.Scene.Util.GetSoundManager().SetSeVolume(ToffMonaka.UnityBase.Global.soundSeVolume);
+        ToffMonaka.Lib.Scene.Util.GetSoundManager().SetSeMuteFlag(ToffMonaka.UnityBase.Global.soundSeMuteFlag);
 
         this._menuScript.RunStageCancelButton();
 
@@ -466,6 +490,8 @@ public class MenuOptionStageScript : ToffMonaka.UnityBase.Scene.MenuStageScript
 
         this._languageButtonNameText.SetText(ToffMonaka.UnityBase.Constant.Util.LANGUAGE_NAME_ARRAY[(int)this._languageType]);
 
+        this._SetRestartFlag((this._languageType != ToffMonaka.UnityBase.Global.languageType) ? (this._restartFlag | 0x0001U) : (this._restartFlag & ~0x0001U));
+
         return;
     }
 
@@ -484,7 +510,7 @@ public class MenuOptionStageScript : ToffMonaka.UnityBase.Scene.MenuStageScript
      */
     public void SetSoundBgmVolume(float sound_bgm_volume)
     {
-        this._soundBgmVolume = (float)Math.Clamp(Math.Round(sound_bgm_volume * 10.0f, MidpointRounding.AwayFromZero) / 10.0, 0.0, 1.0);
+        this._soundBgmVolume = (float)Math.Clamp(Math.Round(sound_bgm_volume, 1, MidpointRounding.AwayFromZero), 0.0, 1.0);
 
         this._soundBgmVolumeSliderNameText.SetText("BGMボリューム " + (this._soundBgmVolume * 10.0f));
         this._soundBgmVolumeSlider.SetValueWithoutNotify(this._soundBgmVolume * 10.0f);
@@ -529,7 +555,7 @@ public class MenuOptionStageScript : ToffMonaka.UnityBase.Scene.MenuStageScript
      */
     public void SetSoundSeVolume(float sound_se_volume)
     {
-        this._soundSeVolume = (float)Math.Clamp(Math.Round(sound_se_volume * 10.0f, MidpointRounding.AwayFromZero) / 10.0, 0.0, 1.0);
+        this._soundSeVolume = (float)Math.Clamp(Math.Round(sound_se_volume, 1, MidpointRounding.AwayFromZero), 0.0, 1.0);
 
         this._soundSeVolumeSliderNameText.SetText("SEボリューム " + (this._soundSeVolume * 10.0f));
         this._soundSeVolumeSlider.SetValueWithoutNotify(this._soundSeVolume * 10.0f);
@@ -555,6 +581,25 @@ public class MenuOptionStageScript : ToffMonaka.UnityBase.Scene.MenuStageScript
         this._soundSeMuteFlag = sound_se_mute_flg;
 
         this._soundSeMuteToggle.SetIsOnWithoutNotify(this._soundSeMuteFlag);
+
+        return;
+    }
+
+    /**
+     * @brief _SetRestartFlag関数
+     * @param restart_flg (restart_flag)
+     */
+    private void _SetRestartFlag(uint restart_flg)
+    {
+        this._restartFlag = restart_flg;
+
+        if (this._restartFlag > 0U) {
+            this._okButtonNameText.SetText("OK\n再起動");
+            this._okButtonNameText.fontSize = 20.0f;
+        } else {
+            this._okButtonNameText.SetText("OK");
+            this._okButtonNameText.fontSize = 32.0f;
+        }
 
         return;
     }

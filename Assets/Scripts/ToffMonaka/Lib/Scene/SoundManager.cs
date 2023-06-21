@@ -181,6 +181,7 @@ public class SoundManager
     {
         this._bgmScript.Open(0);
         this._bgmScript.GetAudioSource().clip = this._bgmAudioClipArray[bgm_index];
+        this._bgmScript.GetAudioSource().volume = (this._bgmMuteFlag) ? 0.0f : this._bgmVolume;
         this._bgmScript.GetAudioSource().Play();
 
         return;
@@ -231,7 +232,15 @@ public class SoundManager
      */
     public void SetBgmVolume(float bgm_volume)
     {
-        this._bgmVolume = bgm_volume;
+        float tmp_bgm_volume = Math.Clamp(bgm_volume, 0.0f, 1.0f);
+
+        if (tmp_bgm_volume == this._bgmVolume) {
+            return;
+        }
+
+        this._bgmVolume = tmp_bgm_volume;
+
+        this._FlushBgmVolume();
 
         return;
     }
@@ -251,7 +260,23 @@ public class SoundManager
      */
     public void SetBgmMuteFlag(bool bgm_mute_flg)
     {
+        if (bgm_mute_flg == this._bgmMuteFlag) {
+            return;
+        }
+
         this._bgmMuteFlag = bgm_mute_flg;
+
+        this._FlushBgmVolume();
+
+        return;
+    }
+
+    /**
+     * @brief _FlushBgmVolume関数
+     */
+    private void _FlushBgmVolume()
+    {
+        this._bgmScript.GetAudioSource().volume = (this._bgmMuteFlag) ? 0.0f : this._bgmVolume;
 
         return;
     }
@@ -287,6 +312,7 @@ public class SoundManager
 
         se_script.Open(0);
         se_script.GetAudioSource().clip = this._seAudioClipArray[se_index];
+        se_script.GetAudioSource().volume = (this._seMuteFlag) ? 0.0f : this._seVolume;
         se_script.GetAudioSource().Play();
 
         return;
@@ -343,7 +369,15 @@ public class SoundManager
      */
     public void SetSeVolume(float se_volume)
     {
-        this._seVolume = se_volume;
+        float tmp_se_volume = Math.Clamp(se_volume, 0.0f, 1.0f);
+
+        if (tmp_se_volume == this._seVolume) {
+            return;
+        }
+
+        this._seVolume = tmp_se_volume;
+
+        this._FlushSeVolume();
 
         return;
     }
@@ -363,7 +397,25 @@ public class SoundManager
      */
     public void SetSeMuteFlag(bool se_mute_flg)
     {
+        if (se_mute_flg == this._seMuteFlag) {
+            return;
+        }
+
         this._seMuteFlag = se_mute_flg;
+
+        this._FlushSeVolume();
+
+        return;
+    }
+
+    /**
+     * @brief _FlushSeVolume関数
+     */
+    private void _FlushSeVolume()
+    {
+        foreach (var se_script in this._seScriptContainer) {
+            se_script.GetAudioSource().volume = (this._seMuteFlag) ? 0.0f : this._seVolume;
+        }
 
         return;
     }

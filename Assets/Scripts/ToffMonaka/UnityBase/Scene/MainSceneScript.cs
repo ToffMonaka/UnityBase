@@ -116,6 +116,12 @@ public class MainSceneScript : ToffMonaka.Lib.Scene.MainSceneScript
      */
     protected override void _OnStartApplication()
     {
+        ToffMonaka.UnityBase.Global.languageType = ToffMonaka.UnityBase.Constant.Util.LANGUAGE_TYPE.ENGLISH;
+        ToffMonaka.UnityBase.Global.soundBgmVolume = 1.0f;
+        ToffMonaka.UnityBase.Global.soundBgmMuteFlag = false;
+        ToffMonaka.UnityBase.Global.soundSeVolume = 1.0f;
+        ToffMonaka.UnityBase.Global.soundSeMuteFlag = false;
+
         this._CreateManager();
 
         return;
@@ -234,6 +240,10 @@ public class MainSceneScript : ToffMonaka.Lib.Scene.MainSceneScript
             manager_create_desc.bgmAudioClipArray = this.GetSoundBgmAudioClipArray();
             manager_create_desc.seNode = this.GetSoundSeNode();
             manager_create_desc.seAudioClipArray = this.GetSoundSeAudioClipArray();
+            manager_create_desc.bgmVolume = ToffMonaka.UnityBase.Global.soundBgmVolume;
+            manager_create_desc.bgmMuteFlag = ToffMonaka.UnityBase.Global.soundBgmMuteFlag;
+            manager_create_desc.seVolume = ToffMonaka.UnityBase.Global.soundSeVolume;
+            manager_create_desc.seMuteFlag = ToffMonaka.UnityBase.Global.soundSeMuteFlag;
 
             if (manager.Create(manager_create_desc) < 0) {
                 this._ReleaseManager();
