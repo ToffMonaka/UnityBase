@@ -226,7 +226,7 @@ public class TitleSubSceneScript : ToffMonaka.Lib.Scene.SubSceneScript
      */
     public void OnStartButtonPointerClickEvent()
     {
-        if (this.GetClosedFlag()) {
+        if (!this.IsControllable()) {
             return;
         }
 

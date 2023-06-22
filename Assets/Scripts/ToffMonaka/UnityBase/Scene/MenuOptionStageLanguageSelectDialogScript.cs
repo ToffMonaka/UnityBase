@@ -229,7 +229,7 @@ public class MenuOptionStageLanguageSelectDialogScript : ToffMonaka.Lib.Scene.Ob
      */
     public void OnCloseButtonPointerClickEvent()
     {
-        if (this.GetClosedFlag()) {
+        if (!this.IsControllable()) {
             return;
         }
 
@@ -245,7 +245,7 @@ public class MenuOptionStageLanguageSelectDialogScript : ToffMonaka.Lib.Scene.Ob
      */
     public void OnCloseButtonPointerEnterEvent()
     {
-        if (this.GetClosedFlag()) {
+        if (!this.IsControllable()) {
             return;
         }
 
@@ -259,7 +259,7 @@ public class MenuOptionStageLanguageSelectDialogScript : ToffMonaka.Lib.Scene.Ob
      */
     public void OnCloseButtonPointerExitEvent()
     {
-        if (this.GetClosedFlag()) {
+        if (!this.IsControllable()) {
             return;
         }
 

@@ -164,7 +164,7 @@ public class MenuCheatStageCommandButtonScript : ToffMonaka.Lib.Scene.ObjectScri
      */
     public void OnPointerClickEvent()
     {
-        if (this.GetClosedFlag()) {
+        if (!this.IsControllable()) {
             return;
         }
 
@@ -180,7 +180,7 @@ public class MenuCheatStageCommandButtonScript : ToffMonaka.Lib.Scene.ObjectScri
      */
     public void OnPointerEnterEvent()
     {
-        if (this.GetClosedFlag()) {
+        if (!this.IsControllable()) {
             return;
         }
 
@@ -194,7 +194,7 @@ public class MenuCheatStageCommandButtonScript : ToffMonaka.Lib.Scene.ObjectScri
      */
     public void OnPointerExitEvent()
     {
-        if (this.GetClosedFlag()) {
+        if (!this.IsControllable()) {
             return;
         }
 

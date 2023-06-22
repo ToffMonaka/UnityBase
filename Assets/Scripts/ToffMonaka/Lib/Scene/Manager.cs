@@ -88,7 +88,7 @@ public class Manager
      * @return result (result)<br>
      * 0未満=失敗
      */
-    public int Create(ToffMonaka.Lib.Scene.ManagerCreateDesc desc = null)
+    public virtual int Create(ToffMonaka.Lib.Scene.ManagerCreateDesc desc = null)
     {
         this.Init();
 

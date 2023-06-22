@@ -193,7 +193,7 @@ public class MenuOpenCloseButtonScript : ToffMonaka.Lib.Scene.ObjectScript
      */
     public void OnPointerClickEvent()
     {
-        if (this.GetClosedFlag()) {
+        if (!this.IsControllable()) {
             return;
         }
 
@@ -209,7 +209,7 @@ public class MenuOpenCloseButtonScript : ToffMonaka.Lib.Scene.ObjectScript
      */
     public void OnPointerEnterEvent()
     {
-        if (this.GetClosedFlag()) {
+        if (!this.IsControllable()) {
             return;
         }
 
@@ -223,7 +223,7 @@ public class MenuOpenCloseButtonScript : ToffMonaka.Lib.Scene.ObjectScript
      */
     public void OnPointerExitEvent()
     {
-        if (this.GetClosedFlag()) {
+        if (!this.IsControllable()) {
             return;
         }
 

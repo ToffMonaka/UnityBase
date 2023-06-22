@@ -229,7 +229,7 @@ public class MenuFaqStageScript : ToffMonaka.UnityBase.Scene.MenuStageScript
      */
     public void OnCancelButtonPointerClickEvent()
     {
-        if (this.GetClosedFlag()) {
+        if (!this.IsControllable()) {
             return;
         }
 
@@ -245,7 +245,7 @@ public class MenuFaqStageScript : ToffMonaka.UnityBase.Scene.MenuStageScript
      */
     public void OnCancelButtonPointerEnterEvent()
     {
-        if (this.GetClosedFlag()) {
+        if (!this.IsControllable()) {
             return;
         }
 
@@ -259,7 +259,7 @@ public class MenuFaqStageScript : ToffMonaka.UnityBase.Scene.MenuStageScript
      */
     public void OnCancelButtonPointerExitEvent()
     {
-        if (this.GetClosedFlag()) {
+        if (!this.IsControllable()) {
             return;
         }
 

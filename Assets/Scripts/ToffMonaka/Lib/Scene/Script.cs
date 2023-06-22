@@ -176,7 +176,7 @@ public abstract class Script : MonoBehaviour
      * @return result (result)<br>
      * 0未満=失敗
      */
-    public int Create(ToffMonaka.Lib.Scene.ScriptCreateDesc desc = null)
+    public virtual int Create(ToffMonaka.Lib.Scene.ScriptCreateDesc desc = null)
     {
         if (this._manager == null) {
             if (this._activeAutoFlag) {
@@ -694,6 +694,23 @@ public abstract class Script : MonoBehaviour
         }
 
         return (active_flg);
+    }
+
+    /**
+     * @brief IsControllable関数
+     * @return controllable_flg (controllable_flag)
+     */
+    public virtual bool IsControllable()
+    {
+        if (this.GetClosedFlag()) {
+            return (false);
+        }
+
+        if (this.IsActiveOpenCloseSequence()) {
+            return (false);
+        }
+
+        return (true);
     }
 }
 }

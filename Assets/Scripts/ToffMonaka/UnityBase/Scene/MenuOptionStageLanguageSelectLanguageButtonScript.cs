@@ -155,7 +155,7 @@ public class MenuOptionStageLanguageSelectLanguageButtonScript : ToffMonaka.Lib.
      */
     public void OnPointerClickEvent()
     {
-        if (this.GetClosedFlag()) {
+        if (!this.IsControllable()) {
             return;
         }
 
@@ -171,7 +171,7 @@ public class MenuOptionStageLanguageSelectLanguageButtonScript : ToffMonaka.Lib.
      */
     public void OnPointerEnterEvent()
     {
-        if (this.GetClosedFlag()) {
+        if (!this.IsControllable()) {
             return;
         }
 
@@ -185,7 +185,7 @@ public class MenuOptionStageLanguageSelectLanguageButtonScript : ToffMonaka.Lib.
      */
     public void OnPointerExitEvent()
     {
-        if (this.GetClosedFlag()) {
+        if (!this.IsControllable()) {
             return;
         }
 

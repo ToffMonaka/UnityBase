@@ -59,7 +59,7 @@ public class GraphicManager
      * @return result (result)<br>
      * 0未満=失敗
      */
-    public int Create(ToffMonaka.Lib.Scene.GraphicManagerCreateDesc desc = null)
+    public virtual int Create(ToffMonaka.Lib.Scene.GraphicManagerCreateDesc desc = null)
     {
         this.Init();
 

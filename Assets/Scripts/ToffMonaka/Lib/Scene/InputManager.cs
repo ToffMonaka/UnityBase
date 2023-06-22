@@ -59,7 +59,7 @@ public class InputManager
      * @return result (result)<br>
      * 0未満=失敗
      */
-    public int Create(ToffMonaka.Lib.Scene.InputManagerCreateDesc desc = null)
+    public virtual int Create(ToffMonaka.Lib.Scene.InputManagerCreateDesc desc = null)
     {
         this.Init();
 

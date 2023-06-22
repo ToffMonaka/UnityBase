@@ -216,7 +216,7 @@ public class MenuEndStageScript : ToffMonaka.UnityBase.Scene.MenuStageScript
      */
     public void OnRestartToggleValueChangedEvent()
     {
-        if (this.GetClosedFlag()) {
+        if (!this.IsControllable()) {
             return;
         }
 
@@ -236,7 +236,7 @@ public class MenuEndStageScript : ToffMonaka.UnityBase.Scene.MenuStageScript
      */
     public void OnEndToggleValueChangedEvent()
     {
-        if (this.GetClosedFlag()) {
+        if (!this.IsControllable()) {
             return;
         }
 
@@ -256,7 +256,7 @@ public class MenuEndStageScript : ToffMonaka.UnityBase.Scene.MenuStageScript
      */
     public void OnOkButtonPointerClickEvent()
     {
-        if (this.GetClosedFlag()) {
+        if (!this.IsControllable()) {
             return;
         }
 
@@ -282,7 +282,7 @@ public class MenuEndStageScript : ToffMonaka.UnityBase.Scene.MenuStageScript
      */
     public void OnOkButtonPointerEnterEvent()
     {
-        if (this.GetClosedFlag()) {
+        if (!this.IsControllable()) {
             return;
         }
 
@@ -296,7 +296,7 @@ public class MenuEndStageScript : ToffMonaka.UnityBase.Scene.MenuStageScript
      */
     public void OnOkButtonPointerExitEvent()
     {
-        if (this.GetClosedFlag()) {
+        if (!this.IsControllable()) {
             return;
         }
 
@@ -310,7 +310,7 @@ public class MenuEndStageScript : ToffMonaka.UnityBase.Scene.MenuStageScript
      */
     public void OnCancelButtonPointerClickEvent()
     {
-        if (this.GetClosedFlag()) {
+        if (!this.IsControllable()) {
             return;
         }
 
@@ -326,7 +326,7 @@ public class MenuEndStageScript : ToffMonaka.UnityBase.Scene.MenuStageScript
      */
     public void OnCancelButtonPointerEnterEvent()
     {
-        if (this.GetClosedFlag()) {
+        if (!this.IsControllable()) {
             return;
         }
 
@@ -340,7 +340,7 @@ public class MenuEndStageScript : ToffMonaka.UnityBase.Scene.MenuStageScript
      */
     public void OnCancelButtonPointerExitEvent()
     {
-        if (this.GetClosedFlag()) {
+        if (!this.IsControllable()) {
             return;
         }
 

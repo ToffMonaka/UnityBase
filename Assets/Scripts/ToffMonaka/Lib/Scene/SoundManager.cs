@@ -89,7 +89,7 @@ public class SoundManager
      * @return result (result)<br>
      * 0未満=失敗
      */
-    public int Create(ToffMonaka.Lib.Scene.SoundManagerCreateDesc desc = null)
+    public virtual int Create(ToffMonaka.Lib.Scene.SoundManagerCreateDesc desc = null)
     {
         this.Init();
 
