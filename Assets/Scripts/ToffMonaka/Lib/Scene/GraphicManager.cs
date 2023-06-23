@@ -63,11 +63,11 @@ public class GraphicManager
     {
         this.Init();
 
-        if (desc != null) {
-            this.SetCreateDesc(desc);
-        }
-
         {// This Create
+            if (desc != null) {
+                this.SetCreateDesc(desc);
+            }
+
             this._graphicNode= desc.graphicNode;
         }
 

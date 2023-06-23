@@ -122,6 +122,8 @@ public class MenuCheatStageScript : ToffMonaka.UnityBase.Scene.MenuStageScript
     {
         this._commandInputField.SetTextWithoutNotify("");
         this._commandScrollRect.verticalNormalizedPosition = 1.0f;
+        this._okButtonCoverImage.gameObject.SetActive(false);
+        this._cancelButtonCoverImage.gameObject.SetActive(false);
 
         return;
     }

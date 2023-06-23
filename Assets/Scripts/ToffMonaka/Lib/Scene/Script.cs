@@ -185,11 +185,11 @@ public abstract class Script : MonoBehaviour
             }
         }
 
-        if (desc != null) {
-            this.SetCreateDesc(desc);
-        }
-
         {// This Create
+            if (desc != null) {
+                this.SetCreateDesc(desc);
+            }
+
             if (ToffMonaka.Lib.Scene.Util.GetManager() != null) {
                 if (ToffMonaka.Lib.Scene.Util.GetManager().AddScript(this) < 0) {
                     return (-1);

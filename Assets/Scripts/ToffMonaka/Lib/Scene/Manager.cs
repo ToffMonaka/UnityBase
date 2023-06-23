@@ -92,11 +92,11 @@ public class Manager
     {
         this.Init();
 
-        if (desc != null) {
-            this.SetCreateDesc(desc);
-        }
-
         {// This Create
+            if (desc != null) {
+                this.SetCreateDesc(desc);
+            }
+
             this._mainSceneNode = desc.mainSceneNode;
 
             this._scriptArray = new List<ToffMonaka.Lib.Scene.Script>[this.createDesc.scriptCount];

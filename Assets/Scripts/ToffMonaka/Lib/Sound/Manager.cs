@@ -58,11 +58,10 @@ public class Manager
     {
         this.Init();
 
-        if (desc != null) {
-            this.SetCreateDesc(desc);
-        }
-
         {// This Create
+            if (desc != null) {
+                this.SetCreateDesc(desc);
+            }
         }
 
         int create_res = this._OnCreate();

@@ -107,6 +107,8 @@ public class MenuEndStageScript : ToffMonaka.UnityBase.Scene.MenuStageScript
         this._editScrollRect.verticalNormalizedPosition = 1.0f;
         this._restartToggle.SetIsOnWithoutNotify(false);
         this._endToggle.SetIsOnWithoutNotify(false);
+        this._okButtonCoverImage.gameObject.SetActive(false);
+        this._cancelButtonCoverImage.gameObject.SetActive(false);
 
         return;
     }

@@ -1,31 +1,31 @@
 ﻿/**
  * @file
- * @brief Managerファイル
+ * @brief Fileファイル
  */
 
 
 using UnityEngine;
 
 
-namespace ToffMonaka.Lib.Input {
+namespace ToffMonaka.Lib.File {
 /**
- * @brief ManagerCreateDescクラス
+ * @brief FileCreateDescクラス
  */
-public class ManagerCreateDesc
+public class FileCreateDesc
 {
 }
 
 /**
- * @brief Managerクラス
+ * @brief Fileクラス
  */
-public class Manager
+public abstract class File
 {
-    public ToffMonaka.Lib.Input.ManagerCreateDesc createDesc{get; private set;} = null;
+    public ToffMonaka.Lib.File.FileCreateDesc createDesc{get; private set;} = null;
 
     /**
      * @brief コンストラクタ
      */
-    public Manager()
+    public File()
     {
         return;
     }
@@ -54,7 +54,7 @@ public class Manager
      * @return result (result)<br>
      * 0未満=失敗
      */
-    public virtual int Create(ToffMonaka.Lib.Input.ManagerCreateDesc desc = null)
+    public virtual int Create(ToffMonaka.Lib.File.FileCreateDesc desc = null)
     {
         this.Init();
 
@@ -89,7 +89,7 @@ public class Manager
      * @brief SetCreateDesc関数
      * @param create_desc (create_desc)
      */
-    public virtual void SetCreateDesc(ToffMonaka.Lib.Input.ManagerCreateDesc create_desc)
+    public virtual void SetCreateDesc(ToffMonaka.Lib.File.FileCreateDesc create_desc)
     {
         this.createDesc = create_desc;
 

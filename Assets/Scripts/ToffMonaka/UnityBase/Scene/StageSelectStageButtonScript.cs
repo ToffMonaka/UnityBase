@@ -91,6 +91,8 @@ public class StageSelectStageButtonScript : ToffMonaka.Lib.Scene.ObjectScript
      */
     protected override void _OnActive()
     {
+        this._coverImage.gameObject.SetActive(false);
+
         return;
     }
 

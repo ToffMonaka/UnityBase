@@ -124,6 +124,7 @@ public class MenuOptionStageLanguageSelectDialogScript : ToffMonaka.Lib.Scene.Ob
     protected override void _OnActive()
     {
         this.SetLanguageType(ToffMonaka.UnityBase.Constant.Util.LANGUAGE_TYPE.NONE);
+        this._closeButtonCoverImage.gameObject.SetActive(false);
 
         return;
     }

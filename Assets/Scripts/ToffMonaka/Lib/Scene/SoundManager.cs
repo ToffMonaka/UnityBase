@@ -93,11 +93,11 @@ public class SoundManager
     {
         this.Init();
 
-        if (desc != null) {
-            this.SetCreateDesc(desc);
-        }
-
         {// This Create
+            if (desc != null) {
+                this.SetCreateDesc(desc);
+            }
+
             this._soundNode= desc.soundNode;
             this._bgmNode = desc.bgmNode;
             this._seNode = desc.seNode;

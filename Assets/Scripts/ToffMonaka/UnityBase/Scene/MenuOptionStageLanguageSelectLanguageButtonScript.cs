@@ -91,6 +91,8 @@ public class MenuOptionStageLanguageSelectLanguageButtonScript : ToffMonaka.Lib.
      */
     protected override void _OnActive()
     {
+        this._coverImage.gameObject.SetActive(false);
+
         return;
     }
 

@@ -120,6 +120,7 @@ public class MenuStaffStageScript : ToffMonaka.UnityBase.Scene.MenuStageScript
     protected override void _OnActive()
     {
         this._messageScrollRect.verticalNormalizedPosition = 1.0f;
+        this._cancelButtonCoverImage.gameObject.SetActive(false);
 
         return;
     }

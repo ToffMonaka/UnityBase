@@ -100,6 +100,8 @@ public class MenuCheatStageCommandButtonScript : ToffMonaka.Lib.Scene.ObjectScri
      */
     protected override void _OnActive()
     {
+        this._coverImage.gameObject.SetActive(false);
+
         return;
     }
 

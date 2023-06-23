@@ -140,6 +140,9 @@ public class MenuOptionStageScript : ToffMonaka.UnityBase.Scene.MenuStageScript
         this.SetSoundBgmMuteFlag(ToffMonaka.UnityBase.Global.soundBgmMuteFlag);
         this.SetSoundSeVolume(ToffMonaka.UnityBase.Global.soundSeVolume);
         this.SetSoundSeMuteFlag(ToffMonaka.UnityBase.Global.soundSeMuteFlag);
+        this._languageButtonCoverImage.gameObject.SetActive(false);
+        this._okButtonCoverImage.gameObject.SetActive(false);
+        this._cancelButtonCoverImage.gameObject.SetActive(false);
 
         return;
     }
