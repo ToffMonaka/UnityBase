@@ -9,10 +9,273 @@ using UnityEngine;
 
 namespace ToffMonaka.Lib.File {
 /**
- * @brief FileCreateDescクラス
+ * @brief FileDataクラス
  */
-public class FileCreateDesc
+public abstract class FileData
 {
+    /**
+     * @brief コンストラクタ
+     */
+    public FileData()
+    {
+        return;
+    }
+
+    /**
+     * @brief _Release関数
+     */
+    private void _Release()
+    {
+        return;
+    }
+
+    /**
+     * @brief Init関数
+     */
+    public virtual void Init()
+    {
+        this._Release();
+
+        return;
+    }
+}
+
+/**
+ * @brief FileReadDescDataクラス
+ */
+public abstract class FileReadDescData
+{
+    public string filePath = "";
+
+    /**
+     * @brief コンストラクタ
+     */
+    public FileReadDescData()
+    {
+        return;
+    }
+
+    /**
+     * @brief _Release関数
+     */
+    private void _Release()
+    {
+        return;
+    }
+
+    /**
+     * @brief Init関数
+     */
+    public virtual void Init()
+    {
+        this._Release();
+
+        this.filePath = "";
+
+        return;
+    }
+
+    /**
+     * @brief IsEmpty関数
+     * @return result_flg (result_flag)<br>
+     * false=非空,true=空
+     */
+    public virtual bool IsEmpty()
+    {
+        return (this.filePath.Length == 0);
+    }
+}
+
+/**
+ * @brief FileReadDescクラス
+ */
+public class FileReadDesc<T> where T : ToffMonaka.Lib.File.FileReadDescData, new()
+{
+    public T data = new T();
+    public T parentData = null;
+
+    /**
+     * @brief コンストラクタ
+     */
+    public FileReadDesc()
+    {
+        return;
+    }
+
+    /**
+     * @brief コンストラクタ
+     * @param file_path (file_path)
+     */
+    public FileReadDesc(string file_path)
+    {
+        this.data.filePath = file_path;
+
+        return;
+    }
+
+    /**
+     * @brief _Release関数
+     */
+    private void _Release()
+    {
+        return;
+    }
+
+    /**
+     * @brief Init関数
+     */
+    public virtual void Init()
+    {
+        this._Release();
+
+	    this.data.Init();
+	    this.parentData = null;
+
+        return;
+    }
+
+    /**
+     * @brief Init関数
+     * @param file_path (file_path)
+     */
+    public virtual void Init(string file_path)
+    {
+        this._Release();
+
+	    this.data.Init();
+        this.data.filePath = file_path;
+	    this.parentData = null;
+
+        return;
+    }
+
+    /**
+     * @brief GetDataByParent関数
+     * @return dat (data)
+     */
+    public T GetDataByParent()
+    {
+        return (this.parentData ?? this.data);
+    }
+}
+
+/**
+ * @brief FileWriteDescDataクラス
+ */
+public abstract class FileWriteDescData
+{
+    public string filePath = "";
+
+    /**
+     * @brief コンストラクタ
+     */
+    public FileWriteDescData()
+    {
+        return;
+    }
+
+    /**
+     * @brief _Release関数
+     */
+    private void _Release()
+    {
+        return;
+    }
+
+    /**
+     * @brief Init関数
+     */
+    public virtual void Init()
+    {
+        this._Release();
+
+        this.filePath = "";
+
+        return;
+    }
+
+    /**
+     * @brief IsEmpty関数
+     * @return result_flg (result_flag)<br>
+     * false=非空,true=空
+     */
+    public virtual bool IsEmpty()
+    {
+        return (this.filePath.Length == 0);
+    }
+}
+
+/**
+ * @brief FileWriteDescクラス
+ */
+public class FileWriteDesc<T> where T : ToffMonaka.Lib.File.FileWriteDescData, new()
+{
+    public T data;
+    public T parentData;
+
+    /**
+     * @brief コンストラクタ
+     */
+    public FileWriteDesc()
+    {
+        return;
+    }
+
+    /**
+     * @brief コンストラクタ
+     * @param file_path (file_path)
+     */
+    public FileWriteDesc(string file_path)
+    {
+        this.data.filePath = file_path;
+
+        return;
+    }
+
+    /**
+     * @brief _Release関数
+     */
+    private void _Release()
+    {
+        return;
+    }
+
+    /**
+     * @brief Init関数
+     */
+    public virtual void Init()
+    {
+        this._Release();
+
+	    this.data.Init();
+	    this.parentData = null;
+
+        return;
+    }
+
+    /**
+     * @brief Init関数
+     * @param file_path (file_path)
+     */
+    public virtual void Init(string file_path)
+    {
+        this._Release();
+
+	    this.data.Init();
+        this.data.filePath = file_path;
+	    this.parentData = null;
+
+        return;
+    }
+
+    /**
+     * @brief GetDataByParent関数
+     * @return dat (data)
+     */
+    public T GetDataByParent()
+    {
+        return (this.parentData ?? this.data);
+    }
 }
 
 /**
@@ -20,8 +283,6 @@ public class FileCreateDesc
  */
 public abstract class File
 {
-    public ToffMonaka.Lib.File.FileCreateDesc createDesc{get; private set;} = null;
-
     /**
      * @brief コンストラクタ
      */
@@ -49,51 +310,43 @@ public abstract class File
     }
 
     /**
-     * @brief Create関数
-     * @param desc (desc)
+     * @brief Read関数
      * @return result (result)<br>
      * 0未満=失敗
      */
-    public virtual int Create(ToffMonaka.Lib.File.FileCreateDesc desc = null)
+    public int Read()
     {
-        this.Init();
-
-        {// This Create
-            if (desc != null) {
-                this.SetCreateDesc(desc);
-            }
-        }
-
-        int create_res = this._OnCreate();
-
-        if (create_res < 0) {
-            this.Init();
-
-            return (create_res);
-        }
-
-        return (0);
+        return (this._OnRead());
     }
 
     /**
-     * @brief _OnCreate関数
+     * @brief _OnRead関数
      * @return result (result)<br>
      * 0未満=失敗
      */
-    protected virtual int _OnCreate()
+    protected virtual int _OnRead()
     {
         return (0);
     }
 
     /**
-     * @brief SetCreateDesc関数
-     * @param create_desc (create_desc)
+     * @brief Write関数
+     * @return result (result)<br>
+     * 0未満=失敗
      */
-    public virtual void SetCreateDesc(ToffMonaka.Lib.File.FileCreateDesc create_desc)
+    public int Write()
     {
-        this.createDesc = create_desc;
+        return (this._OnWrite());
+    }
 
-        return;
+    /**
+     * @brief _OnWrite関数
+     * @return result (result)<br>
+     * 0未満=失敗
+     */
+    protected virtual int _OnWrite()
+    {
+        return (0);
     }
 }
 }
