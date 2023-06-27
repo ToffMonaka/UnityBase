@@ -5,6 +5,8 @@
 
 
 using UnityEngine;
+using System;
+using System.IO;
 
 
 namespace ToffMonaka.Lib.File {
@@ -224,7 +226,34 @@ public class BinaryFile : ToffMonaka.Lib.File.File
 		    return (-1);
 	    }
 
-        return (0);
+        int fs_res = 0;
+	    int buf_index = 0;
+	    var write_buf = new byte[2048];
+	    int write_size = 0;
+
+        try {
+            using (var fs = new FileStream(Application.persistentDataPath + "/" + desc_dat.filePath, (this.writeDesc.data.appendFlag) ? FileMode.Append : FileMode.Create, FileAccess.Write)) {
+                while (true) {
+				    write_size = Math.Min(this.data.buffer.Length - buf_index, write_buf.Length);
+
+                    Buffer.BlockCopy(this.data.buffer, buf_index, write_buf, 0, write_size);
+
+				    fs.Write(write_buf, 0, write_size);
+
+				    buf_index += write_size;
+
+				    if (buf_index >= this.data.buffer.Length) {
+					    break;
+				    }
+                }
+            }
+        } catch (IOException e) {
+            Debug.Log(e);
+
+            fs_res = -1;
+        }
+
+        return (fs_res);
     }
 }
 }
