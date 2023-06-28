@@ -5,8 +5,6 @@
 
 
 using UnityEngine;
-using System;
-using System.IO;
 
 
 namespace ToffMonaka.UnityBase.Scene {
@@ -127,32 +125,6 @@ public class MainSceneScript : ToffMonaka.Lib.Scene.MainSceneScript
         this._CreateManager();
 
         {// Test
-            byte[] write_dat = {1, 2, 3, 4, 5, 6};
-            byte[] read_dat = System.Array.Empty<byte>();
-
-            /*
-            try {
-                using (var fs = new FileStream(Application.persistentDataPath + "/test.dat", FileMode.Create, FileAccess.Write)) {
-                    fs.Write(write_dat, 0, write_dat.Length);
-                }
-            } catch (IOException e) {
-                Debug.Log(e);
-            }
-            */
-
-            try {
-                using (var fs = new FileStream(Application.persistentDataPath + "/test.dat", FileMode.Open, FileAccess.Read)) {
-                    read_dat = new byte[fs.Length];
-
-                    fs.Read(read_dat, 0, read_dat.Length);
-                }
-            } catch (IOException e) {
-                Debug.Log(e);
-            }
-
-            for (int read_dat_i = 0; read_dat_i < read_dat.Length; ++read_dat_i) {
-                Debug.Log("a1=" + read_dat[read_dat_i]);
-            }
         }
 
         return;

@@ -15,7 +15,7 @@ namespace ToffMonaka.Lib.File {
  */
 public class BinaryFileData : ToffMonaka.Lib.File.FileData
 {
-    public byte[] buffer = System.Array.Empty<byte>();
+    public byte[] buffer = Array.Empty<byte>();
 
     /**
      * @brief コンストラクタ
@@ -40,7 +40,7 @@ public class BinaryFileData : ToffMonaka.Lib.File.FileData
     {
         this._Release();
 
-        this.buffer = System.Array.Empty<byte>();
+        this.buffer = Array.Empty<byte>();
 
         base.Init();
 
@@ -53,7 +53,7 @@ public class BinaryFileData : ToffMonaka.Lib.File.FileData
  */
 public class BinaryFileReadDescData : ToffMonaka.Lib.File.FileReadDescData
 {
-    public byte[] buffer = System.Array.Empty<byte>();
+    public byte[] buffer = Array.Empty<byte>();
 
     /**
      * @brief コンストラクタ
@@ -78,7 +78,7 @@ public class BinaryFileReadDescData : ToffMonaka.Lib.File.FileReadDescData
     {
         this._Release();
 
-        this.buffer = System.Array.Empty<byte>();
+        this.buffer = Array.Empty<byte>();
 
         base.Init();
 
@@ -153,9 +153,9 @@ public class BinaryFileWriteDescData : ToffMonaka.Lib.File.FileWriteDescData
  */
 public class BinaryFile : ToffMonaka.Lib.File.File
 {
-	public ToffMonaka.Lib.File.BinaryFileData data;
-	public ToffMonaka.Lib.File.FileReadDesc<ToffMonaka.Lib.File.BinaryFileReadDescData> readDesc;
-	public ToffMonaka.Lib.File.FileWriteDesc<ToffMonaka.Lib.File.BinaryFileWriteDescData> writeDesc;
+	public ToffMonaka.Lib.File.BinaryFileData data = new ToffMonaka.Lib.File.BinaryFileData();
+	public ToffMonaka.Lib.File.FileReadDesc<ToffMonaka.Lib.File.BinaryFileReadDescData> readDesc = new ToffMonaka.Lib.File.FileReadDesc<ToffMonaka.Lib.File.BinaryFileReadDescData>();
+	public ToffMonaka.Lib.File.FileWriteDesc<ToffMonaka.Lib.File.BinaryFileWriteDescData> writeDesc = new ToffMonaka.Lib.File.FileWriteDesc<ToffMonaka.Lib.File.BinaryFileWriteDescData>();
 
     /**
      * @brief コンストラクタ
@@ -208,7 +208,43 @@ public class BinaryFile : ToffMonaka.Lib.File.File
 		    return (0);
 	    }
 
+        int fs_res = 0;
+        byte[] buf = Array.Empty<byte>();
+	    var read_buf = new byte[2048];
+	    int read_size = 0;
+
+        try {
+            using (var fs = new FileStream(Application.persistentDataPath + "/" + desc_dat.filePath, FileMode.Open, FileAccess.Read)) {
+    			while (true) {
+                    read_size = fs.Read(read_buf, 0, read_buf.Length);
+
+				    if (read_size > 0) {
+                        byte[] tmp_buf = new byte[buf.Length + read_size];
+
+                        Buffer.BlockCopy(buf, 0, tmp_buf, 0, buf.Length);
+                        Buffer.BlockCopy(read_buf, 0, tmp_buf, buf.Length, read_size);
+
+                        buf = tmp_buf;
+				    } else {
+					    break;
+				    }
+                }
+            }
+        } catch (IOException e) {
+            Debug.Log(e);
+
+            fs_res = -1;
+        }
+
+        if (fs_res < 0) {
+            return (-1);
+        }
+
 		this.data.Init();
+
+	    if (buf.Length > 0) {
+		    this.data.buffer = buf;
+	    }
 
         return (0);
     }
@@ -253,7 +289,11 @@ public class BinaryFile : ToffMonaka.Lib.File.File
             fs_res = -1;
         }
 
-        return (fs_res);
+        if (fs_res < 0) {
+            return (-1);
+        }
+
+        return (0);
     }
 }
 }

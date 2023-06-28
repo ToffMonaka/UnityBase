@@ -210,8 +210,8 @@ public abstract class FileWriteDescData
  */
 public class FileWriteDesc<T> where T : ToffMonaka.Lib.File.FileWriteDescData, new()
 {
-    public T data;
-    public T parentData;
+    public T data = new T();
+    public T parentData = null;
 
     /**
      * @brief コンストラクタ
