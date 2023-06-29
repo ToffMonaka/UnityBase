@@ -176,19 +176,5 @@ public static class Util
             ""
         };
     }
-
-    public enum LANGUAGE_TYPE : int
-    {
-        NONE = 0,
-        ENGLISH,
-        JAPANESE,
-		COUNT
-    }
-    public const int LANGUAGE_TYPE_COUNT = (int)ToffMonaka.UnityBase.Constant.Util.LANGUAGE_TYPE.COUNT;
-    public static readonly string[] LANGUAGE_NAME_ARRAY = {
-        "",
-        "英語",
-        "日本語"
-    };
 }
 }

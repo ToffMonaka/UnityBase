@@ -116,7 +116,7 @@ public class MainSceneScript : ToffMonaka.Lib.Scene.MainSceneScript
      */
     protected override void _OnStartApplication()
     {
-        ToffMonaka.UnityBase.Global.languageType = ToffMonaka.UnityBase.Constant.Util.LANGUAGE_TYPE.ENGLISH;
+        ToffMonaka.UnityBase.Global.languageType = ToffMonaka.Lib.Constant.Util.LANGUAGE_TYPE.ENGLISH;
         ToffMonaka.UnityBase.Global.soundBgmVolume = 1.0f;
         ToffMonaka.UnityBase.Global.soundBgmMuteFlag = false;
         ToffMonaka.UnityBase.Global.soundSeVolume = 1.0f;

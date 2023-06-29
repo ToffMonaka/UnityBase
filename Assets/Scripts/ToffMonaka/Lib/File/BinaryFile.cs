@@ -268,7 +268,7 @@ public class BinaryFile : ToffMonaka.Lib.File.File
 	    int write_size = 0;
 
         try {
-            using (var fs = new FileStream(Application.persistentDataPath + "/" + desc_dat.filePath, (this.writeDesc.data.appendFlag) ? FileMode.Append : FileMode.Create, FileAccess.Write)) {
+            using (var fs = new FileStream(Application.persistentDataPath + "/" + desc_dat.filePath, (desc_dat.appendFlag) ? FileMode.Append : FileMode.Create, FileAccess.Write)) {
                 while (true) {
 				    write_size = Math.Min(this.data.buffer.Length - buf_index, write_buf.Length);
 
