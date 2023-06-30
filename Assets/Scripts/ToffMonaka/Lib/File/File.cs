@@ -9,38 +9,6 @@ using UnityEngine;
 
 namespace ToffMonaka.Lib.File {
 /**
- * @brief FileDataクラス
- */
-public abstract class FileData
-{
-    /**
-     * @brief コンストラクタ
-     */
-    public FileData()
-    {
-        return;
-    }
-
-    /**
-     * @brief _Release関数
-     */
-    private void _Release()
-    {
-        return;
-    }
-
-    /**
-     * @brief Init関数
-     */
-    public virtual void Init()
-    {
-        this._Release();
-
-        return;
-    }
-}
-
-/**
  * @brief FileReadDescDataクラス
  */
 public abstract class FileReadDescData

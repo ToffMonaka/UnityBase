@@ -14,7 +14,7 @@ namespace ToffMonaka.Lib.File {
 /**
  * @brief TextFileDataクラス
  */
-public class TextFileData : ToffMonaka.Lib.File.BinaryFileData
+public class TextFileData
 {
     public List<string> lineTextContainer = new List<string>();
 
@@ -37,13 +37,11 @@ public class TextFileData : ToffMonaka.Lib.File.BinaryFileData
     /**
      * @brief Init関数
      */
-    public override void Init()
+    public virtual void Init()
     {
         this._Release();
 
         this.lineTextContainer.Clear();
-
-        base.Init();
 
         return;
     }

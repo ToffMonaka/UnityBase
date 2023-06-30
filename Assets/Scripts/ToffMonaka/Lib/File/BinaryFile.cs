@@ -13,7 +13,7 @@ namespace ToffMonaka.Lib.File {
 /**
  * @brief BinaryFileDataクラス
  */
-public class BinaryFileData : ToffMonaka.Lib.File.FileData
+public class BinaryFileData
 {
     public byte[] buffer = Array.Empty<byte>();
 
@@ -36,13 +36,11 @@ public class BinaryFileData : ToffMonaka.Lib.File.FileData
     /**
      * @brief Init関数
      */
-    public override void Init()
+    public virtual void Init()
     {
         this._Release();
 
         this.buffer = Array.Empty<byte>();
-
-        base.Init();
 
         return;
     }
@@ -211,7 +209,7 @@ public class BinaryFile : ToffMonaka.Lib.File.File
         int fs_res = 0;
         byte[] buf = Array.Empty<byte>();
 	    var read_buf = new byte[2048];
-	    int read_size = 0;
+	    int read_size;
 
         try {
             using (var fs = new FileStream(Application.persistentDataPath + "/" + desc_dat.filePath, FileMode.Open, FileAccess.Read)) {
@@ -265,7 +263,7 @@ public class BinaryFile : ToffMonaka.Lib.File.File
         int fs_res = 0;
 	    int buf_index = 0;
 	    var write_buf = new byte[2048];
-	    int write_size = 0;
+	    int write_size;
 
         try {
             using (var fs = new FileStream(Application.persistentDataPath + "/" + desc_dat.filePath, (desc_dat.appendFlag) ? FileMode.Append : FileMode.Create, FileAccess.Write)) {
