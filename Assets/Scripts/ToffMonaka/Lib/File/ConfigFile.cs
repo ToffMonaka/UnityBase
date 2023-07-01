@@ -221,8 +221,8 @@ public class ConfigFile : ToffMonaka.Lib.File.File
         string line_txt;
         int equal_str_index;
         int comment_str_index;
-        string val_name;
-        string val;
+        string val_name = "";
+        string val = "";
 
 	    foreach (var txt_file_line_txt in txt_file.data.lineTextContainer) {
 	        if (txt_file_line_txt.Length <= 0) {
