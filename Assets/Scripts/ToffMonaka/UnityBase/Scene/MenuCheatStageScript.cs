@@ -6,7 +6,6 @@
 
 using UnityEngine;
 using UnityEngine.UI;
-using System;
 using System.Collections.Generic;
 using TMPro;
 using DG.Tweening;
@@ -252,7 +251,7 @@ public class MenuCheatStageScript : ToffMonaka.UnityBase.Scene.MenuStageScript
         ToffMonaka.Lib.Scene.Util.GetSoundManager().PlaySe((int)ToffMonaka.UnityBase.Constant.Util.SOUND.SE_INDEX.OK2);
 
         var cmd_type = ToffMonaka.UnityBase.Constant.Util.SCENE.MENU_CHEAT_STAGE_COMMAND_TYPE.NONE;
-        var cmd_param_ary = Array.Empty<string>();
+        var cmd_param_ary = System.Array.Empty<string>();
 
         for (int command_type_i = 1; command_type_i < ToffMonaka.UnityBase.Constant.Util.SCENE.MENU_CHEAT_STAGE_COMMAND_TYPE_COUNT; ++command_type_i) {
             int cmd_func_str_index = this._commandInputField.text.IndexOf(ToffMonaka.UnityBase.Constant.Util.SCENE.MENU_CHEAT_STAGE_COMMAND_FUNCTION_ARRAY[command_type_i]);

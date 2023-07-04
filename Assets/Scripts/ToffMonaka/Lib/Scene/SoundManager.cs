@@ -5,7 +5,6 @@
 
 
 using UnityEngine;
-using System;
 using System.Collections.Generic;
 
 
@@ -232,7 +231,7 @@ public class SoundManager
      */
     public void SetBgmVolume(float bgm_volume)
     {
-        float tmp_bgm_volume = Math.Clamp(bgm_volume, 0.0f, 1.0f);
+        float tmp_bgm_volume = System.Math.Clamp(bgm_volume, 0.0f, 1.0f);
 
         if (tmp_bgm_volume == this._bgmVolume) {
             return;
@@ -369,7 +368,7 @@ public class SoundManager
      */
     public void SetSeVolume(float se_volume)
     {
-        float tmp_se_volume = Math.Clamp(se_volume, 0.0f, 1.0f);
+        float tmp_se_volume = System.Math.Clamp(se_volume, 0.0f, 1.0f);
 
         if (tmp_se_volume == this._seVolume) {
             return;

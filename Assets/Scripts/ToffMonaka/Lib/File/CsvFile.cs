@@ -5,8 +5,6 @@
 
 
 using UnityEngine;
-using System;
-using System.Collections.Generic;
 
 
 namespace ToffMonaka.Lib.File {
@@ -15,7 +13,7 @@ namespace ToffMonaka.Lib.File {
  */
 public class CsvFileData
 {
-	public string[][] valueArray = Array.Empty<string[]>();
+	public string[][] valueArray = System.Array.Empty<string[]>();
 
     /**
      * @brief コンストラクタ
@@ -40,7 +38,7 @@ public class CsvFileData
     {
         this._Release();
 
-        this.valueArray = Array.Empty<string[]>();
+        this.valueArray = System.Array.Empty<string[]>();
 
         return;
     }
@@ -235,11 +233,11 @@ public class CsvFile : ToffMonaka.Lib.File.File
 
         this.data.Init();
 
-        if (txt_file.data.lineTextContainer.Count <= 0) {
+        if (txt_file.data.lineStringContainer.Count <= 0) {
 	        return (0);
         }
 
-        string line_txt;
+        string line_str;
         int comma_str_index;
         int dq_str_index;
         int dq_str_sub_index;
@@ -249,22 +247,22 @@ public class CsvFile : ToffMonaka.Lib.File.File
 	    int val_cnt = 0;
         string val = "";
 
-	    foreach (var txt_file_line_txt in txt_file.data.lineTextContainer) {
-	        if (txt_file_line_txt.Length <= 0) {
+	    foreach (var txt_file_line_str in txt_file.data.lineStringContainer) {
+	        if (txt_file_line_str.Length <= 0) {
 		        continue;
 	        }
 
-	        line_txt = txt_file_line_txt;
+	        line_str = txt_file_line_str;
 
             {// コメントを削除
 	            dq_str_index = 0;
 	            dq_str_sub_index = 0;
 	            dq_str_cnt = 0;
 
-	            comment_str_index = line_txt.IndexOf(comment_str);
+	            comment_str_index = line_str.IndexOf(comment_str);
 
 	            while (comment_str_index >= 0) {
-		            dq_str_index = line_txt.IndexOf(dq_str, dq_str_sub_index);
+		            dq_str_index = line_str.IndexOf(dq_str, dq_str_sub_index);
 
 		            while (dq_str_index >= 0) {
 			            if (dq_str_index >= comment_str_index) {
@@ -275,22 +273,22 @@ public class CsvFile : ToffMonaka.Lib.File.File
 
 			            dq_str_sub_index = dq_str_index + dq_str.Length;
 
-			            dq_str_index = line_txt.IndexOf(dq_str, dq_str_index + dq_str.Length);
+			            dq_str_index = line_str.IndexOf(dq_str, dq_str_index + dq_str.Length);
 		            }
 
 		            if ((dq_str_cnt & 1) == 0) {
-			            line_txt.Remove(comment_str_index);
+			            line_str.Remove(comment_str_index);
 
 			            break;
 		            } else {
 			            dq_str_sub_index = comment_str_index + comment_str.Length;
 
-			            comment_str_index = line_txt.IndexOf(comment_str, comment_str_index + comment_str.Length);
+			            comment_str_index = line_str.IndexOf(comment_str, comment_str_index + comment_str.Length);
 		            }
 	            }
             }
 
-            if (line_txt.Length <= 0) {
+            if (line_str.Length <= 0) {
 	            continue;
             }
 
@@ -299,10 +297,10 @@ public class CsvFile : ToffMonaka.Lib.File.File
 	            dq_str_sub_index = 0;
 	            dq_str_cnt = 0;
 
-	            comma_str_index = line_txt.IndexOf(comma_str);
+	            comma_str_index = line_str.IndexOf(comma_str);
 
 	            while (comma_str_index >= 0) {
-		            dq_str_index = line_txt.IndexOf(dq_str, dq_str_sub_index);
+		            dq_str_index = line_str.IndexOf(dq_str, dq_str_sub_index);
 
 		            while (dq_str_index >= 0) {
 			            if (dq_str_index >= comma_str_index) {
@@ -311,24 +309,24 @@ public class CsvFile : ToffMonaka.Lib.File.File
 
 			            ++dq_str_cnt;
 
-			            dq_str_index = line_txt.IndexOf(dq_str, dq_str_index + dq_str.Length);
+			            dq_str_index = line_str.IndexOf(dq_str, dq_str_index + dq_str.Length);
 		            }
 
 		            if ((dq_str_cnt & 1U) == 0U) {
-			            line_txt = line_txt.Substring(0, comma_str_index) + newline_code_str + line_txt.Remove(0, comma_str_index + comma_str.Length);
+			            line_str = line_str.Substring(0, comma_str_index) + newline_code_str + line_str.Remove(0, comma_str_index + comma_str.Length);
 
 			            dq_str_sub_index = comma_str_index + newline_code_str.Length;
 
-			            comma_str_index = line_txt.IndexOf(comma_str, comma_str_index + newline_code_str.Length);
+			            comma_str_index = line_str.IndexOf(comma_str, comma_str_index + newline_code_str.Length);
 		            } else {
 			            dq_str_sub_index = comma_str_index + comma_str.Length;
 
-			            comma_str_index = line_txt.IndexOf(comma_str, comma_str_index + comma_str.Length);
+			            comma_str_index = line_str.IndexOf(comma_str, comma_str_index + comma_str.Length);
 		            }
 	            }
             }
 
-            string[] val_ary = line_txt.Split(newline_code_str);
+            string[] val_ary = line_str.Split(newline_code_str);
 
             for (int val_i = 0; val_i < val_ary.Length; ++val_i) {
                 val = val_ary[val_i];
@@ -337,7 +335,7 @@ public class CsvFile : ToffMonaka.Lib.File.File
 		            ddq_str_index = val.IndexOf(ddq_str);
 
 		            while (ddq_str_index >= 0) {
-			            val = val.Substring(0, ddq_str_index) + dq_str + line_txt.Remove(0, ddq_str_index + ddq_str.Length);
+			            val = val.Substring(0, ddq_str_index) + dq_str + line_str.Remove(0, ddq_str_index + ddq_str.Length);
 
 			            ddq_str_index = val.IndexOf(ddq_str, ddq_str_index + dq_str.Length);
 		            }
@@ -365,28 +363,20 @@ public class CsvFile : ToffMonaka.Lib.File.File
             if (val_ary.Length < val_cnt) {
                 int old_val_cnt = val_ary.Length;
 
-                Array.Resize(ref val_ary, val_cnt);
+                System.Array.Resize(ref val_ary, val_cnt);
 
 	            for (int empty_val_i = old_val_cnt; empty_val_i < val_ary.Length; ++empty_val_i) {
-                    val_ary[empty_val_i] = String.Empty;
+                    val_ary[empty_val_i] = System.String.Empty;
 	            }
             } else if (val_ary.Length > val_cnt) {
 	            val_cnt = val_ary.Length;
 
 	            for (int val_i = 0; val_i < this.data.valueArray.Length; ++val_i) {
-                    int old_val_cnt = this.data.valueArray[val_i].Length;
-
-                    Array.Resize(ref this.data.valueArray[val_i], val_cnt);
-
-	                for (int empty_val_i = old_val_cnt; empty_val_i < this.data.valueArray[val_i].Length; ++empty_val_i) {
-                        this.data.valueArray[val_i][empty_val_i] = String.Empty;
-	                }
+                    ToffMonaka.Lib.Array.Util.Resize(ref this.data.valueArray[val_i], val_cnt, System.String.Empty);
 	            }
             }
 
-            Array.Resize(ref this.data.valueArray, this.data.valueArray.Length + 1);
-
-            this.data.valueArray[this.data.valueArray.Length - 1] = val_ary;
+            ToffMonaka.Lib.Array.Util.Resize(ref this.data.valueArray, this.data.valueArray.Length + 1, val_ary);
         }
 
         return (0);
@@ -410,15 +400,15 @@ public class CsvFile : ToffMonaka.Lib.File.File
         var txt_file = new ToffMonaka.Lib.File.TextFile();
 
         if (this.data.valueArray.Length > 0) {
-	        string line_txt;
+	        string line_str;
 
 	        foreach (var val_ary in this.data.valueArray) {
-                line_txt = string.Join(comma_str, val_ary);
+                line_str = System.String.Join(comma_str, val_ary);
 
-		        txt_file.data.lineTextContainer.Add(line_txt);
+		        txt_file.data.lineStringContainer.Add(line_str);
 	        }
 
-	        txt_file.data.lineTextContainer.Add(String.Empty);
+	        txt_file.data.lineStringContainer.Add(System.String.Empty);
         }
 
         txt_file.writeDesc.parentData = desc_dat;

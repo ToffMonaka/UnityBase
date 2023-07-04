@@ -7,7 +7,6 @@
 using UnityEngine;
 using UnityEditor;
 using UnityEditor.SceneManagement;
-using System;
 
 
 namespace ToffMonaka.Tool {
@@ -19,7 +18,7 @@ public class PlaySetting : EditorWindow
     private const int _START_SCENE_INDEX = 1;
     private const string _REMOVE_STRING = "Assets/";
 
-    private string[] _startSceneArray = Array.Empty<string>();
+    private string[] _startSceneArray = System.Array.Empty<string>();
     private int _startSceneIndex = ToffMonaka.Tool.PlaySetting._START_SCENE_INDEX;
 
     /**

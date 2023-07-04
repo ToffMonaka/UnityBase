@@ -5,7 +5,6 @@
 
 
 using UnityEngine;
-using System;
 
 
 namespace ToffMonaka.UnityBase.Scene {

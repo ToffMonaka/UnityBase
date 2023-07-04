@@ -6,7 +6,6 @@
 
 using UnityEngine;
 using UnityEngine.UI;
-using System;
 using System.Collections.Generic;
 using TMPro;
 using DG.Tweening;

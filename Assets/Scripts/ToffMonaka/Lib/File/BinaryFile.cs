@@ -5,7 +5,6 @@
 
 
 using UnityEngine;
-using System;
 using System.IO;
 
 
@@ -15,7 +14,7 @@ namespace ToffMonaka.Lib.File {
  */
 public class BinaryFileData
 {
-    public byte[] buffer = Array.Empty<byte>();
+    public byte[] buffer = System.Array.Empty<byte>();
 
     /**
      * @brief コンストラクタ
@@ -40,7 +39,7 @@ public class BinaryFileData
     {
         this._Release();
 
-        this.buffer = Array.Empty<byte>();
+        this.buffer = System.Array.Empty<byte>();
 
         return;
     }
@@ -51,7 +50,7 @@ public class BinaryFileData
  */
 public class BinaryFileReadDescData : ToffMonaka.Lib.File.FileReadDescData
 {
-    public byte[] buffer = Array.Empty<byte>();
+    public byte[] buffer = System.Array.Empty<byte>();
 
     /**
      * @brief コンストラクタ
@@ -76,7 +75,7 @@ public class BinaryFileReadDescData : ToffMonaka.Lib.File.FileReadDescData
     {
         this._Release();
 
-        this.buffer = Array.Empty<byte>();
+        this.buffer = System.Array.Empty<byte>();
 
         base.Init();
 
@@ -207,7 +206,7 @@ public class BinaryFile : ToffMonaka.Lib.File.File
 	    }
 
         int fs_res = 0;
-        byte[] buf = Array.Empty<byte>();
+        byte[] buf = System.Array.Empty<byte>();
 	    var read_buf = new byte[2048];
 	    int read_size;
 
@@ -219,8 +218,8 @@ public class BinaryFile : ToffMonaka.Lib.File.File
 				    if (read_size > 0) {
                         byte[] tmp_buf = new byte[buf.Length + read_size];
 
-                        Buffer.BlockCopy(buf, 0, tmp_buf, 0, buf.Length);
-                        Buffer.BlockCopy(read_buf, 0, tmp_buf, buf.Length, read_size);
+                        System.Buffer.BlockCopy(buf, 0, tmp_buf, 0, buf.Length);
+                        System.Buffer.BlockCopy(read_buf, 0, tmp_buf, buf.Length, read_size);
 
                         buf = tmp_buf;
 				    } else {
@@ -268,9 +267,9 @@ public class BinaryFile : ToffMonaka.Lib.File.File
         try {
             using (var fs = new FileStream(Application.persistentDataPath + "/" + desc_dat.filePath, (desc_dat.appendFlag) ? FileMode.Append : FileMode.Create, FileAccess.Write)) {
                 while (true) {
-				    write_size = Math.Min(this.data.buffer.Length - buf_index, write_buf.Length);
+				    write_size = System.Math.Min(this.data.buffer.Length - buf_index, write_buf.Length);
 
-                    Buffer.BlockCopy(this.data.buffer, buf_index, write_buf, 0, write_size);
+                    System.Buffer.BlockCopy(this.data.buffer, buf_index, write_buf, 0, write_size);
 
 				    fs.Write(write_buf, 0, write_size);
 

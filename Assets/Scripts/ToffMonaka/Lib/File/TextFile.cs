@@ -5,7 +5,6 @@
 
 
 using UnityEngine;
-using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -16,7 +15,7 @@ namespace ToffMonaka.Lib.File {
  */
 public class TextFileData
 {
-    public List<string> lineTextContainer = new List<string>();
+    public List<string> lineStringContainer = new List<string>();
 
     /**
      * @brief コンストラクタ
@@ -41,7 +40,7 @@ public class TextFileData
     {
         this._Release();
 
-        this.lineTextContainer.Clear();
+        this.lineStringContainer.Clear();
 
         return;
     }
@@ -52,7 +51,7 @@ public class TextFileData
  */
 public class TextFileReadDescData : ToffMonaka.Lib.File.BinaryFileReadDescData
 {
-    public string text = "";
+    public string string_ = "";
 
     /**
      * @brief コンストラクタ
@@ -77,7 +76,7 @@ public class TextFileReadDescData : ToffMonaka.Lib.File.BinaryFileReadDescData
     {
         this._Release();
 
-        this.text = "";
+        this.string_ = "";
 
         base.Init();
 
@@ -91,7 +90,7 @@ public class TextFileReadDescData : ToffMonaka.Lib.File.BinaryFileReadDescData
      */
     public override bool IsEmpty()
     {
-	    if (this.text.Length > 0) {
+	    if (this.string_.Length > 0) {
 		    return (false);
 	    }
 
@@ -201,8 +200,8 @@ public class TextFile : ToffMonaka.Lib.File.File
 		    if (desc_dat.buffer.Length <= 0) {
 		        this.data.Init();
 
-		        if (desc_dat.text.Length > 0) {
-                    this.data.lineTextContainer = new List<string>(desc_dat.text.Split("\r\n"));
+		        if (desc_dat.string_.Length > 0) {
+                    this.data.lineStringContainer = new List<string>(desc_dat.string_.Split("\r\n"));
 		        }
 
 		        return (0);
@@ -225,7 +224,7 @@ public class TextFile : ToffMonaka.Lib.File.File
 
         string buf_str = Encoding.GetEncoding("shift_jis").GetString(bin_file.data.buffer);
 
-        this.data.lineTextContainer = new List<string>(buf_str.Split("\r\n"));
+        this.data.lineStringContainer = new List<string>(buf_str.Split("\r\n"));
 
         return (0);
     }
@@ -243,7 +242,7 @@ public class TextFile : ToffMonaka.Lib.File.File
 		    return (-1);
 	    }
 
-        string buf_str = string.Join("\r\n", this.data.lineTextContainer);
+        string buf_str = System.String.Join("\r\n", this.data.lineStringContainer);
 
         if (buf_str.Length > 0) {
 	        if ((desc_dat.appendFlag)

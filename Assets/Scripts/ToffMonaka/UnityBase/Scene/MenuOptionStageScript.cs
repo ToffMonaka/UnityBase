@@ -6,7 +6,6 @@
 
 using UnityEngine;
 using UnityEngine.UI;
-using System;
 using TMPro;
 using DG.Tweening;
 
@@ -513,7 +512,7 @@ public class MenuOptionStageScript : ToffMonaka.UnityBase.Scene.MenuStageScript
      */
     public void SetSoundBgmVolume(float sound_bgm_volume)
     {
-        this._soundBgmVolume = (float)Math.Clamp(Math.Round(sound_bgm_volume, 1, MidpointRounding.AwayFromZero), 0.0, 1.0);
+        this._soundBgmVolume = (float)System.Math.Clamp(System.Math.Round(sound_bgm_volume, 1, System.MidpointRounding.AwayFromZero), 0.0, 1.0);
 
         this._soundBgmVolumeSliderNameText.SetText("BGMボリューム " + (this._soundBgmVolume * 10.0f));
         this._soundBgmVolumeSlider.SetValueWithoutNotify(this._soundBgmVolume * 10.0f);
@@ -558,7 +557,7 @@ public class MenuOptionStageScript : ToffMonaka.UnityBase.Scene.MenuStageScript
      */
     public void SetSoundSeVolume(float sound_se_volume)
     {
-        this._soundSeVolume = (float)Math.Clamp(Math.Round(sound_se_volume, 1, MidpointRounding.AwayFromZero), 0.0, 1.0);
+        this._soundSeVolume = (float)System.Math.Clamp(System.Math.Round(sound_se_volume, 1, System.MidpointRounding.AwayFromZero), 0.0, 1.0);
 
         this._soundSeVolumeSliderNameText.SetText("SEボリューム " + (this._soundSeVolume * 10.0f));
         this._soundSeVolumeSlider.SetValueWithoutNotify(this._soundSeVolume * 10.0f);

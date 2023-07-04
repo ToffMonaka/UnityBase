@@ -6,7 +6,6 @@
 
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using System;
 using System.Collections.Generic;
 
 
