@@ -15,7 +15,7 @@ namespace ToffMonaka.Lib.File {
  */
 public class TextFileData
 {
-    public List<string> lineStringContainer = new List<string>();
+    public List<string> lineTextContainer = new List<string>();
 
     /**
      * @brief コンストラクタ
@@ -40,7 +40,7 @@ public class TextFileData
     {
         this._Release();
 
-        this.lineStringContainer.Clear();
+        this.lineTextContainer.Clear();
 
         return;
     }
@@ -51,7 +51,9 @@ public class TextFileData
  */
 public class TextFileReadDescData : ToffMonaka.Lib.File.BinaryFileReadDescData
 {
-    public string string_ = "";
+    public string text = "";
+    public string charsetName = "shift_jis";
+    public ToffMonaka.Lib.String.Util.NEWLINE_TYPE newlineType = ToffMonaka.Lib.String.Util.NEWLINE_TYPE.CRLF;
 
     /**
      * @brief コンストラクタ
@@ -76,7 +78,9 @@ public class TextFileReadDescData : ToffMonaka.Lib.File.BinaryFileReadDescData
     {
         this._Release();
 
-        this.string_ = "";
+        this.text = "";
+        this.charsetName = "shift_jis";
+        this.newlineType = ToffMonaka.Lib.String.Util.NEWLINE_TYPE.CRLF;
 
         base.Init();
 
@@ -90,7 +94,7 @@ public class TextFileReadDescData : ToffMonaka.Lib.File.BinaryFileReadDescData
      */
     public override bool IsEmpty()
     {
-	    if (this.string_.Length > 0) {
+	    if (this.text.Length > 0) {
 		    return (false);
 	    }
 
@@ -103,7 +107,9 @@ public class TextFileReadDescData : ToffMonaka.Lib.File.BinaryFileReadDescData
  */
 public class TextFileWriteDescData : ToffMonaka.Lib.File.BinaryFileWriteDescData
 {
-	public int appendNewlineCodeCount = 1;
+	public int appendNewlineCount = 1;
+    public string charsetName = "shift_jis";
+    public ToffMonaka.Lib.String.Util.NEWLINE_TYPE newlineType = ToffMonaka.Lib.String.Util.NEWLINE_TYPE.CRLF;
 
     /**
      * @brief コンストラクタ
@@ -128,7 +134,9 @@ public class TextFileWriteDescData : ToffMonaka.Lib.File.BinaryFileWriteDescData
     {
         this._Release();
 
-        this.appendNewlineCodeCount = 1;
+        this.appendNewlineCount = 1;
+        this.charsetName = "shift_jis";
+        this.newlineType = ToffMonaka.Lib.String.Util.NEWLINE_TYPE.CRLF;
 
         base.Init();
 
@@ -200,8 +208,8 @@ public class TextFile : ToffMonaka.Lib.File.File
 		    if (desc_dat.buffer.Length <= 0) {
 		        this.data.Init();
 
-		        if (desc_dat.string_.Length > 0) {
-                    this.data.lineStringContainer = new List<string>(desc_dat.string_.Split("\r\n"));
+		        if (desc_dat.text.Length > 0) {
+                    this.data.lineTextContainer = new List<string>(desc_dat.text.Split(ToffMonaka.Lib.String.Util.GetNewlineCode(desc_dat.newlineType)));
 		        }
 
 		        return (0);
@@ -222,9 +230,9 @@ public class TextFile : ToffMonaka.Lib.File.File
 	        return (0);
         }
 
-        string buf_str = Encoding.GetEncoding("shift_jis").GetString(bin_file.data.buffer);
+        string buf_str = Encoding.GetEncoding(desc_dat.charsetName).GetString(bin_file.data.buffer);
 
-        this.data.lineStringContainer = new List<string>(buf_str.Split("\r\n"));
+        this.data.lineTextContainer = new List<string>(buf_str.Split(ToffMonaka.Lib.String.Util.GetNewlineCode(desc_dat.newlineType)));
 
         return (0);
     }
@@ -242,24 +250,24 @@ public class TextFile : ToffMonaka.Lib.File.File
 		    return (-1);
 	    }
 
-        string buf_str = System.String.Join("\r\n", this.data.lineStringContainer);
+        string buf_str = System.String.Join(ToffMonaka.Lib.String.Util.GetNewlineCode(desc_dat.newlineType), this.data.lineTextContainer);
 
         if (buf_str.Length > 0) {
 	        if ((desc_dat.appendFlag)
-	        && (desc_dat.appendNewlineCodeCount > 0)) {
-		        string newline_code_str = "";
+	        && (desc_dat.appendNewlineCount > 0)) {
+		        string newline_code = "";
 
-		        for (int newline_code_i = 0; newline_code_i < desc_dat.appendNewlineCodeCount; ++newline_code_i) {
-			        newline_code_str += "\r\n";
+		        for (int newline_i = 0; newline_i < desc_dat.appendNewlineCount; ++newline_i) {
+			        newline_code += ToffMonaka.Lib.String.Util.GetNewlineCode(desc_dat.newlineType);
 		        }
 
-		        buf_str = buf_str.Insert(0, newline_code_str);
+		        buf_str = buf_str.Insert(0, newline_code);
 	        }
         }
 
         var bin_file = new ToffMonaka.Lib.File.BinaryFile();
 
-        bin_file.data.buffer = Encoding.GetEncoding("shift_jis").GetBytes(buf_str);
+        bin_file.data.buffer = Encoding.GetEncoding(desc_dat.charsetName).GetBytes(buf_str);
 
         bin_file.writeDesc.parentData = desc_dat;
 

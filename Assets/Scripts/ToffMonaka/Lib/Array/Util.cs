@@ -33,7 +33,7 @@ public static class Util
      */
     public static void Resize<T>(ref T[] ary, int cnt, T val)
     {
-        int old_cnt = ary.Length;
+        int old_cnt = (ary != null) ? ary.Length : 0;
 
         System.Array.Resize(ref ary, cnt);
 

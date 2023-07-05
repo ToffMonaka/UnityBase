@@ -125,29 +125,6 @@ public class MainSceneScript : ToffMonaka.Lib.Scene.MainSceneScript
         this._CreateManager();
 
         {// Test
-            var csv_file = new ToffMonaka.Lib.File.CsvFile();
-
-            /*
-            csv_file.data.valueArray = new string[][]{
-                new string[]{"11", "0", "0"},
-                new string[]{"21", "22", "0"},
-                new string[]{"31", "32", "33"},
-                new string[]{"41", "42", "43", "44"}
-            };
-
-            csv_file.writeDesc.data.filePath = "test.txt";
-
-            csv_file.Write();
-            */
-
-            csv_file.readDesc.data.filePath = "test.txt";
-
-            csv_file.Read();
-
-            Debug.Log("a1=" + csv_file.data.GetRowCount());
-            Debug.Log("a2=" + csv_file.data.GetColumnCount());
-
-            int a = 0;
         }
 
         return;
