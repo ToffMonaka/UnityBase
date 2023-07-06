@@ -116,11 +116,12 @@ public class MainSceneScript : ToffMonaka.Lib.Scene.MainSceneScript
      */
     protected override void _OnStartApplication()
     {
-        ToffMonaka.UnityBase.Global.languageType = ToffMonaka.Lib.Constant.Util.LANGUAGE_TYPE.ENGLISH;
-        ToffMonaka.UnityBase.Global.soundBgmVolume = 1.0f;
-        ToffMonaka.UnityBase.Global.soundBgmMuteFlag = false;
-        ToffMonaka.UnityBase.Global.soundSeVolume = 1.0f;
-        ToffMonaka.UnityBase.Global.soundSeMuteFlag = false;
+        {// SystemConfigFile Create
+            ToffMonaka.UnityBase.Global.systemConfigFile.readDesc.data.filePath = "sys_conf.ini";
+            ToffMonaka.UnityBase.Global.systemConfigFile.writeDesc.data.filePath = "sys_conf.ini";
+
+            ToffMonaka.UnityBase.Global.systemConfigFile.Read();
+        }
 
         this._CreateManager();
 
@@ -243,10 +244,10 @@ public class MainSceneScript : ToffMonaka.Lib.Scene.MainSceneScript
             manager_create_desc.bgmAudioClipArray = this.GetSoundBgmAudioClipArray();
             manager_create_desc.seNode = this.GetSoundSeNode();
             manager_create_desc.seAudioClipArray = this.GetSoundSeAudioClipArray();
-            manager_create_desc.bgmVolume = ToffMonaka.UnityBase.Global.soundBgmVolume;
-            manager_create_desc.bgmMuteFlag = ToffMonaka.UnityBase.Global.soundBgmMuteFlag;
-            manager_create_desc.seVolume = ToffMonaka.UnityBase.Global.soundSeVolume;
-            manager_create_desc.seMuteFlag = ToffMonaka.UnityBase.Global.soundSeMuteFlag;
+            manager_create_desc.bgmVolume = ToffMonaka.UnityBase.Global.systemConfigFile.data.soundBgmVolume;
+            manager_create_desc.bgmMuteFlag = ToffMonaka.UnityBase.Global.systemConfigFile.data.soundBgmMuteFlag;
+            manager_create_desc.seVolume = ToffMonaka.UnityBase.Global.systemConfigFile.data.soundSeVolume;
+            manager_create_desc.seMuteFlag = ToffMonaka.UnityBase.Global.systemConfigFile.data.soundSeMuteFlag;
 
             if (manager.Create(manager_create_desc) < 0) {
                 this._ReleaseManager();

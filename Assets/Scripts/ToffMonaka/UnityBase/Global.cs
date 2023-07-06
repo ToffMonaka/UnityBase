@@ -10,10 +10,6 @@ namespace ToffMonaka.UnityBase {
  */
 public static class Global
 {
-    public static ToffMonaka.Lib.Constant.Util.LANGUAGE_TYPE languageType = ToffMonaka.Lib.Constant.Util.LANGUAGE_TYPE.NONE;
-    public static float soundBgmVolume = 1.0f;
-    public static bool soundBgmMuteFlag = false;
-    public static float soundSeVolume = 1.0f;
-    public static bool soundSeMuteFlag = false;
+    public static ToffMonaka.UnityBase.Data.SystemConfigFile systemConfigFile = new ToffMonaka.UnityBase.Data.SystemConfigFile();
 }
 }

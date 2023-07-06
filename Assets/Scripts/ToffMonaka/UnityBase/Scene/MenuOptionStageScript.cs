@@ -134,11 +134,11 @@ public class MenuOptionStageScript : ToffMonaka.UnityBase.Scene.MenuStageScript
     protected override void _OnActive()
     {
         this._editScrollRect.verticalNormalizedPosition = 1.0f;
-        this.SetLanguageType(ToffMonaka.UnityBase.Global.languageType);
-        this.SetSoundBgmVolume(ToffMonaka.UnityBase.Global.soundBgmVolume);
-        this.SetSoundBgmMuteFlag(ToffMonaka.UnityBase.Global.soundBgmMuteFlag);
-        this.SetSoundSeVolume(ToffMonaka.UnityBase.Global.soundSeVolume);
-        this.SetSoundSeMuteFlag(ToffMonaka.UnityBase.Global.soundSeMuteFlag);
+        this.SetLanguageType(ToffMonaka.UnityBase.Global.systemConfigFile.data.languageType);
+        this.SetSoundBgmVolume(ToffMonaka.UnityBase.Global.systemConfigFile.data.soundBgmVolume);
+        this.SetSoundBgmMuteFlag(ToffMonaka.UnityBase.Global.systemConfigFile.data.soundBgmMuteFlag);
+        this.SetSoundSeVolume(ToffMonaka.UnityBase.Global.systemConfigFile.data.soundSeVolume);
+        this.SetSoundSeMuteFlag(ToffMonaka.UnityBase.Global.systemConfigFile.data.soundSeMuteFlag);
         this._languageButtonCoverImage.gameObject.SetActive(false);
         this._okButtonCoverImage.gameObject.SetActive(false);
         this._cancelButtonCoverImage.gameObject.SetActive(false);
@@ -381,11 +381,41 @@ public class MenuOptionStageScript : ToffMonaka.UnityBase.Scene.MenuStageScript
 
         ToffMonaka.Lib.Scene.Util.GetSoundManager().PlaySe((int)ToffMonaka.UnityBase.Constant.Util.SOUND.SE_INDEX.OK2);
 
-        ToffMonaka.UnityBase.Global.languageType = this._languageType;
-        ToffMonaka.UnityBase.Global.soundBgmVolume = this._soundBgmVolume;
-        ToffMonaka.UnityBase.Global.soundBgmMuteFlag = this._soundBgmMuteFlag;
-        ToffMonaka.UnityBase.Global.soundSeVolume = this._soundSeVolume;
-        ToffMonaka.UnityBase.Global.soundSeMuteFlag = this._soundSeMuteFlag;
+        bool write_flg = false;
+
+        if (this._languageType != ToffMonaka.UnityBase.Global.systemConfigFile.data.languageType) {
+            ToffMonaka.UnityBase.Global.systemConfigFile.data.languageType = this._languageType;
+
+            write_flg = true;
+        }
+
+        if (this._soundBgmVolume != ToffMonaka.UnityBase.Global.systemConfigFile.data.soundBgmVolume) {
+            ToffMonaka.UnityBase.Global.systemConfigFile.data.soundBgmVolume = this._soundBgmVolume;
+
+            write_flg = true;
+        }
+
+        if (this._soundBgmMuteFlag != ToffMonaka.UnityBase.Global.systemConfigFile.data.soundBgmMuteFlag) {
+            ToffMonaka.UnityBase.Global.systemConfigFile.data.soundBgmMuteFlag = this._soundBgmMuteFlag;
+
+            write_flg = true;
+        }
+
+        if (this._soundSeVolume != ToffMonaka.UnityBase.Global.systemConfigFile.data.soundSeVolume) {
+            ToffMonaka.UnityBase.Global.systemConfigFile.data.soundSeVolume = this._soundSeVolume;
+
+            write_flg = true;
+        }
+
+        if (this._soundSeMuteFlag != ToffMonaka.UnityBase.Global.systemConfigFile.data.soundSeMuteFlag) {
+            ToffMonaka.UnityBase.Global.systemConfigFile.data.soundSeMuteFlag = this._soundSeMuteFlag;
+
+            write_flg = true;
+        }
+
+        if (write_flg) {
+            ToffMonaka.UnityBase.Global.systemConfigFile.Write();
+        }
 
         if (this._restartFlag != 0U) {
             ToffMonaka.Lib.Scene.Util.GetManager().ChangeMainScene(ToffMonaka.UnityBase.Constant.Util.SCENE.NAME.MAIN);
@@ -435,10 +465,10 @@ public class MenuOptionStageScript : ToffMonaka.UnityBase.Scene.MenuStageScript
 
         ToffMonaka.Lib.Scene.Util.GetSoundManager().PlaySe((int)ToffMonaka.UnityBase.Constant.Util.SOUND.SE_INDEX.CANCEL);
 
-        ToffMonaka.Lib.Scene.Util.GetSoundManager().SetBgmVolume(ToffMonaka.UnityBase.Global.soundBgmVolume);
-        ToffMonaka.Lib.Scene.Util.GetSoundManager().SetBgmMuteFlag(ToffMonaka.UnityBase.Global.soundBgmMuteFlag);
-        ToffMonaka.Lib.Scene.Util.GetSoundManager().SetSeVolume(ToffMonaka.UnityBase.Global.soundSeVolume);
-        ToffMonaka.Lib.Scene.Util.GetSoundManager().SetSeMuteFlag(ToffMonaka.UnityBase.Global.soundSeMuteFlag);
+        ToffMonaka.Lib.Scene.Util.GetSoundManager().SetBgmVolume(ToffMonaka.UnityBase.Global.systemConfigFile.data.soundBgmVolume);
+        ToffMonaka.Lib.Scene.Util.GetSoundManager().SetBgmMuteFlag(ToffMonaka.UnityBase.Global.systemConfigFile.data.soundBgmMuteFlag);
+        ToffMonaka.Lib.Scene.Util.GetSoundManager().SetSeVolume(ToffMonaka.UnityBase.Global.systemConfigFile.data.soundSeVolume);
+        ToffMonaka.Lib.Scene.Util.GetSoundManager().SetSeMuteFlag(ToffMonaka.UnityBase.Global.systemConfigFile.data.soundSeMuteFlag);
 
         this._menuScript.RunStageCancelButton();
 
@@ -492,7 +522,7 @@ public class MenuOptionStageScript : ToffMonaka.UnityBase.Scene.MenuStageScript
 
         this._languageButtonNameText.SetText(ToffMonaka.Lib.Constant.Util.LANGUAGE_NAME_ARRAY[(int)this._languageType]);
 
-        this._SetRestartFlag((this._languageType != ToffMonaka.UnityBase.Global.languageType) ? (this._restartFlag | 0x0001U) : (this._restartFlag & ~0x0001U));
+        this._SetRestartFlag((this._languageType != ToffMonaka.UnityBase.Global.systemConfigFile.data.languageType) ? (this._restartFlag | 0x0001U) : (this._restartFlag & ~0x0001U));
 
         return;
     }
