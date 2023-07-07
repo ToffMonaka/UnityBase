@@ -7,7 +7,7 @@
 using UnityEngine;
 
 
-namespace ToffMonaka.Lib.File {
+namespace ToffMonaka.Lib.Data {
 /**
  * @brief FileReadDescDataクラス
  */
@@ -57,7 +57,7 @@ public abstract class FileReadDescData
 /**
  * @brief FileReadDescクラス
  */
-public class FileReadDesc<T> where T : ToffMonaka.Lib.File.FileReadDescData, new()
+public class FileReadDesc<T> where T : ToffMonaka.Lib.Data.FileReadDescData, new()
 {
     public T data = new T();
     public T parentData = null;
@@ -176,7 +176,7 @@ public abstract class FileWriteDescData
 /**
  * @brief FileWriteDescクラス
  */
-public class FileWriteDesc<T> where T : ToffMonaka.Lib.File.FileWriteDescData, new()
+public class FileWriteDesc<T> where T : ToffMonaka.Lib.Data.FileWriteDescData, new()
 {
     public T data = new T();
     public T parentData = null;

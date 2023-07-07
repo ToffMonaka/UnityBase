@@ -117,10 +117,14 @@ public class MainSceneScript : ToffMonaka.Lib.Scene.MainSceneScript
     protected override void _OnStartApplication()
     {
         {// SystemConfigFile Create
-            ToffMonaka.UnityBase.Global.systemConfigFile.readDesc.data.filePath = "sys_conf.ini";
-            ToffMonaka.UnityBase.Global.systemConfigFile.writeDesc.data.filePath = "sys_conf.ini";
+            ToffMonaka.UnityBase.Global.systemConfigFile.readDesc.data.filePath = Application.persistentDataPath + "/dat/sys_conf.ini";
+            ToffMonaka.UnityBase.Global.systemConfigFile.writeDesc.data.filePath = Application.persistentDataPath + "/dat/sys_conf.ini";
 
-            ToffMonaka.UnityBase.Global.systemConfigFile.Read();
+            if (ToffMonaka.Lib.Data.Util.IsExistFile(ToffMonaka.UnityBase.Global.systemConfigFile.readDesc.data.filePath)) {
+                ToffMonaka.UnityBase.Global.systemConfigFile.Read();
+            } else {
+                ToffMonaka.UnityBase.Global.systemConfigFile.Write();
+            }
         }
 
         this._CreateManager();

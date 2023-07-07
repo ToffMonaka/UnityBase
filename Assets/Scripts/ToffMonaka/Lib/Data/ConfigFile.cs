@@ -8,7 +8,7 @@ using UnityEngine;
 using System.Collections.Generic;
 
 
-namespace ToffMonaka.Lib.File {
+namespace ToffMonaka.Lib.Data {
 /**
  * @brief ConfigFileDataクラス
  */
@@ -46,15 +46,15 @@ public class ConfigFileData
 
     /**
      * @brief GetValue関数
-     * @param val_name (value_name)
+     * @param key (key)
      * @return val (value)<br>
      * null=失敗
      */
-    public string GetValue(string val_name)
+    public string GetValue(string key)
     {
         string val;
 
-        if (!this.valueContainer.TryGetValue(val_name, out val)) {
+        if (!this.valueContainer.TryGetValue(key, out val)) {
     	    return (null);
         }
 
@@ -65,7 +65,7 @@ public class ConfigFileData
 /**
  * @brief ConfigFileReadDescDataクラス
  */
-public class ConfigFileReadDescData : ToffMonaka.Lib.File.TextFileReadDescData
+public class ConfigFileReadDescData : ToffMonaka.Lib.Data.TextFileReadDescData
 {
     /**
      * @brief コンストラクタ
@@ -109,7 +109,7 @@ public class ConfigFileReadDescData : ToffMonaka.Lib.File.TextFileReadDescData
 /**
  * @brief ConfigFileWriteDescDataクラス
  */
-public class ConfigFileWriteDescData : ToffMonaka.Lib.File.TextFileWriteDescData
+public class ConfigFileWriteDescData : ToffMonaka.Lib.Data.TextFileWriteDescData
 {
     /**
      * @brief コンストラクタ
@@ -153,11 +153,11 @@ public class ConfigFileWriteDescData : ToffMonaka.Lib.File.TextFileWriteDescData
 /**
  * @brief ConfigFileクラス
  */
-public class ConfigFile : ToffMonaka.Lib.File.File
+public class ConfigFile : ToffMonaka.Lib.Data.File
 {
-	public ToffMonaka.Lib.File.ConfigFileData data = new ToffMonaka.Lib.File.ConfigFileData();
-	public ToffMonaka.Lib.File.FileReadDesc<ToffMonaka.Lib.File.ConfigFileReadDescData> readDesc = new ToffMonaka.Lib.File.FileReadDesc<ToffMonaka.Lib.File.ConfigFileReadDescData>();
-	public ToffMonaka.Lib.File.FileWriteDesc<ToffMonaka.Lib.File.ConfigFileWriteDescData> writeDesc = new ToffMonaka.Lib.File.FileWriteDesc<ToffMonaka.Lib.File.ConfigFileWriteDescData>();
+	public ToffMonaka.Lib.Data.ConfigFileData data = new ToffMonaka.Lib.Data.ConfigFileData();
+	public ToffMonaka.Lib.Data.FileReadDesc<ToffMonaka.Lib.Data.ConfigFileReadDescData> readDesc = new ToffMonaka.Lib.Data.FileReadDesc<ToffMonaka.Lib.Data.ConfigFileReadDescData>();
+	public ToffMonaka.Lib.Data.FileWriteDesc<ToffMonaka.Lib.Data.ConfigFileWriteDescData> writeDesc = new ToffMonaka.Lib.Data.FileWriteDesc<ToffMonaka.Lib.Data.ConfigFileWriteDescData>();
 
     /**
      * @brief コンストラクタ
@@ -194,7 +194,7 @@ public class ConfigFile : ToffMonaka.Lib.File.File
     /**
      * @brief _OnRead関数
      * @return result (result)<br>
-     * 0未満=失敗
+     * 0未満=失敗,-2=ファイル存在無し
      */
     protected override int _OnRead()
     {
@@ -203,12 +203,13 @@ public class ConfigFile : ToffMonaka.Lib.File.File
 
 	    var desc_dat = this.readDesc.GetDataByParent();
 
-        var txt_file = new ToffMonaka.Lib.File.TextFile();
+        var txt_file = new ToffMonaka.Lib.Data.TextFile();
+        int txt_file_read_res;
 
         txt_file.readDesc.parentData = desc_dat;
 
-        if (txt_file.Read() < 0) {
-	        return (-1);
+        if ((txt_file_read_res = txt_file.Read()) < 0) {
+	        return (txt_file_read_res);
         }
 
         this.data.Init();
@@ -220,7 +221,7 @@ public class ConfigFile : ToffMonaka.Lib.File.File
         string line_txt;
         int equal_str_index;
         int comment_str_index;
-        string val_name = "";
+        string key = "";
         string val = "";
 
 	    foreach (var txt_file_line_txt in txt_file.data.lineTextContainer) {
@@ -250,17 +251,17 @@ public class ConfigFile : ToffMonaka.Lib.File.File
 		        }
 	        }
 
-	        val_name = line_txt.Substring(0, equal_str_index);
-	        val_name = val_name.Trim();
+	        key = line_txt.Substring(0, equal_str_index);
+	        key = key.Trim();
 
-	        if (val_name.Length <= 0) {
+	        if (key.Length <= 0) {
 		        continue;
 	        }
 
 	        val = line_txt.Substring(equal_str_index + equal_str.Length);
 	        val = val.Trim();
 
-	        this.data.valueContainer.Add(val_name, val);
+	        this.data.valueContainer.Add(key, val);
         }
 
         return (0);
@@ -281,7 +282,8 @@ public class ConfigFile : ToffMonaka.Lib.File.File
 		    return (-1);
 	    }
 
-        var txt_file = new ToffMonaka.Lib.File.TextFile();
+        var txt_file = new ToffMonaka.Lib.Data.TextFile();
+        int txt_file_write_res;
 
         if (this.data.valueContainer.Count > 0) {
 	        string line_txt;
@@ -299,8 +301,8 @@ public class ConfigFile : ToffMonaka.Lib.File.File
 
         txt_file.writeDesc.parentData = desc_dat;
 
-        if (txt_file.Write() < 0) {
-	        return (-1);
+        if ((txt_file_write_res = txt_file.Write()) < 0) {
+	        return (txt_file_write_res);
         }
 
         return (0);

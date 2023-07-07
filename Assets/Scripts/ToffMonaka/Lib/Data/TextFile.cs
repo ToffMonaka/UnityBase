@@ -9,7 +9,7 @@ using System.Collections.Generic;
 using System.Text;
 
 
-namespace ToffMonaka.Lib.File {
+namespace ToffMonaka.Lib.Data {
 /**
  * @brief TextFileDataクラス
  */
@@ -49,7 +49,7 @@ public class TextFileData
 /**
  * @brief TextFileReadDescDataクラス
  */
-public class TextFileReadDescData : ToffMonaka.Lib.File.BinaryFileReadDescData
+public class TextFileReadDescData : ToffMonaka.Lib.Data.BinaryFileReadDescData
 {
     public string text = "";
     public string charsetName = "shift_jis";
@@ -105,7 +105,7 @@ public class TextFileReadDescData : ToffMonaka.Lib.File.BinaryFileReadDescData
 /**
  * @brief TextFileWriteDescDataクラス
  */
-public class TextFileWriteDescData : ToffMonaka.Lib.File.BinaryFileWriteDescData
+public class TextFileWriteDescData : ToffMonaka.Lib.Data.BinaryFileWriteDescData
 {
 	public int appendNewlineCount = 1;
     public string charsetName = "shift_jis";
@@ -157,11 +157,11 @@ public class TextFileWriteDescData : ToffMonaka.Lib.File.BinaryFileWriteDescData
 /**
  * @brief TextFileクラス
  */
-public class TextFile : ToffMonaka.Lib.File.File
+public class TextFile : ToffMonaka.Lib.Data.File
 {
-	public ToffMonaka.Lib.File.TextFileData data = new ToffMonaka.Lib.File.TextFileData();
-	public ToffMonaka.Lib.File.FileReadDesc<ToffMonaka.Lib.File.TextFileReadDescData> readDesc = new ToffMonaka.Lib.File.FileReadDesc<ToffMonaka.Lib.File.TextFileReadDescData>();
-	public ToffMonaka.Lib.File.FileWriteDesc<ToffMonaka.Lib.File.TextFileWriteDescData> writeDesc = new ToffMonaka.Lib.File.FileWriteDesc<ToffMonaka.Lib.File.TextFileWriteDescData>();
+	public ToffMonaka.Lib.Data.TextFileData data = new ToffMonaka.Lib.Data.TextFileData();
+	public ToffMonaka.Lib.Data.FileReadDesc<ToffMonaka.Lib.Data.TextFileReadDescData> readDesc = new ToffMonaka.Lib.Data.FileReadDesc<ToffMonaka.Lib.Data.TextFileReadDescData>();
+	public ToffMonaka.Lib.Data.FileWriteDesc<ToffMonaka.Lib.Data.TextFileWriteDescData> writeDesc = new ToffMonaka.Lib.Data.FileWriteDesc<ToffMonaka.Lib.Data.TextFileWriteDescData>();
 
     /**
      * @brief コンストラクタ
@@ -198,7 +198,7 @@ public class TextFile : ToffMonaka.Lib.File.File
     /**
      * @brief _OnRead関数
      * @return result (result)<br>
-     * 0未満=失敗
+     * 0未満=失敗,-2=ファイル存在無し
      */
     protected override int _OnRead()
     {
@@ -216,12 +216,13 @@ public class TextFile : ToffMonaka.Lib.File.File
             }
 	    }
 
-        var bin_file = new ToffMonaka.Lib.File.BinaryFile();
+        var bin_file = new ToffMonaka.Lib.Data.BinaryFile();
+        int bin_file_read_res;
 
         bin_file.readDesc.parentData = desc_dat;
 
-        if (bin_file.Read() < 0) {
-	        return (-1);
+        if ((bin_file_read_res = bin_file.Read()) < 0) {
+	        return (bin_file_read_res);
         }
 
         this.data.Init();
@@ -265,14 +266,15 @@ public class TextFile : ToffMonaka.Lib.File.File
 	        }
         }
 
-        var bin_file = new ToffMonaka.Lib.File.BinaryFile();
+        var bin_file = new ToffMonaka.Lib.Data.BinaryFile();
+        int bin_file_write_res;
 
         bin_file.data.buffer = Encoding.GetEncoding(desc_dat.charsetName).GetBytes(buf_str);
 
         bin_file.writeDesc.parentData = desc_dat;
 
-        if (bin_file.Write() < 0) {
-	        return (-1);
+        if ((bin_file_write_res = bin_file.Write()) < 0) {
+	        return (bin_file_write_res);
         }
 
         return (0);

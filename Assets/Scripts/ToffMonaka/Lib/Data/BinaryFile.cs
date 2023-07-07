@@ -8,7 +8,7 @@ using UnityEngine;
 using System.IO;
 
 
-namespace ToffMonaka.Lib.File {
+namespace ToffMonaka.Lib.Data {
 /**
  * @brief BinaryFileDataクラス
  */
@@ -48,7 +48,7 @@ public class BinaryFileData
 /**
  * @brief BinaryFileReadDescDataクラス
  */
-public class BinaryFileReadDescData : ToffMonaka.Lib.File.FileReadDescData
+public class BinaryFileReadDescData : ToffMonaka.Lib.Data.FileReadDescData
 {
     public byte[] buffer = System.Array.Empty<byte>();
 
@@ -100,7 +100,7 @@ public class BinaryFileReadDescData : ToffMonaka.Lib.File.FileReadDescData
 /**
  * @brief BinaryFileWriteDescDataクラス
  */
-public class BinaryFileWriteDescData : ToffMonaka.Lib.File.FileWriteDescData
+public class BinaryFileWriteDescData : ToffMonaka.Lib.Data.FileWriteDescData
 {
     public bool appendFlag = false;
 
@@ -148,11 +148,11 @@ public class BinaryFileWriteDescData : ToffMonaka.Lib.File.FileWriteDescData
 /**
  * @brief BinaryFileクラス
  */
-public class BinaryFile : ToffMonaka.Lib.File.File
+public class BinaryFile : ToffMonaka.Lib.Data.File
 {
-	public ToffMonaka.Lib.File.BinaryFileData data = new ToffMonaka.Lib.File.BinaryFileData();
-	public ToffMonaka.Lib.File.FileReadDesc<ToffMonaka.Lib.File.BinaryFileReadDescData> readDesc = new ToffMonaka.Lib.File.FileReadDesc<ToffMonaka.Lib.File.BinaryFileReadDescData>();
-	public ToffMonaka.Lib.File.FileWriteDesc<ToffMonaka.Lib.File.BinaryFileWriteDescData> writeDesc = new ToffMonaka.Lib.File.FileWriteDesc<ToffMonaka.Lib.File.BinaryFileWriteDescData>();
+	public ToffMonaka.Lib.Data.BinaryFileData data = new ToffMonaka.Lib.Data.BinaryFileData();
+	public ToffMonaka.Lib.Data.FileReadDesc<ToffMonaka.Lib.Data.BinaryFileReadDescData> readDesc = new ToffMonaka.Lib.Data.FileReadDesc<ToffMonaka.Lib.Data.BinaryFileReadDescData>();
+	public ToffMonaka.Lib.Data.FileWriteDesc<ToffMonaka.Lib.Data.BinaryFileWriteDescData> writeDesc = new ToffMonaka.Lib.Data.FileWriteDesc<ToffMonaka.Lib.Data.BinaryFileWriteDescData>();
 
     /**
      * @brief コンストラクタ
@@ -189,7 +189,7 @@ public class BinaryFile : ToffMonaka.Lib.File.File
     /**
      * @brief _OnRead関数
      * @return result (result)<br>
-     * 0未満=失敗
+     * 0未満=失敗,-2=ファイル存在無し
      */
     protected override int _OnRead()
     {
@@ -211,7 +211,7 @@ public class BinaryFile : ToffMonaka.Lib.File.File
 	    int read_size;
 
         try {
-            using (var fs = new FileStream(Application.persistentDataPath + "/" + desc_dat.filePath, FileMode.Open, FileAccess.Read)) {
+            using (var fs = new FileStream(desc_dat.filePath, FileMode.Open, FileAccess.Read)) {
     			while (true) {
                     read_size = fs.Read(read_buf, 0, read_buf.Length);
 
@@ -227,6 +227,10 @@ public class BinaryFile : ToffMonaka.Lib.File.File
 				    }
                 }
             }
+        } catch (FileNotFoundException e) {
+            Debug.Log(e);
+
+            fs_res = -2;
         } catch (IOException e) {
             Debug.Log(e);
 
@@ -234,7 +238,7 @@ public class BinaryFile : ToffMonaka.Lib.File.File
         }
 
         if (fs_res < 0) {
-            return (-1);
+            return (fs_res);
         }
 
 		this.data.Init();
@@ -259,13 +263,21 @@ public class BinaryFile : ToffMonaka.Lib.File.File
 		    return (-1);
 	    }
 
+        string dir_path = Path.GetDirectoryName(desc_dat.filePath);
+
+        if (dir_path.Length > 0) {
+            if (!Directory.Exists(dir_path)) {
+                Directory.CreateDirectory(dir_path);
+            }
+        }
+
         int fs_res = 0;
 	    int buf_index = 0;
 	    var write_buf = new byte[2048];
 	    int write_size;
 
         try {
-            using (var fs = new FileStream(Application.persistentDataPath + "/" + desc_dat.filePath, (desc_dat.appendFlag) ? FileMode.Append : FileMode.Create, FileAccess.Write)) {
+            using (var fs = new FileStream(desc_dat.filePath, (desc_dat.appendFlag) ? FileMode.Append : FileMode.Create, FileAccess.Write)) {
                 while (true) {
 				    write_size = System.Math.Min(this.data.buffer.Length - buf_index, write_buf.Length);
 
@@ -287,7 +299,7 @@ public class BinaryFile : ToffMonaka.Lib.File.File
         }
 
         if (fs_res < 0) {
-            return (-1);
+            return (fs_res);
         }
 
         return (0);

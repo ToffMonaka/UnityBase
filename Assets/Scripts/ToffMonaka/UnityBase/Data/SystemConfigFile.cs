@@ -14,7 +14,7 @@ namespace ToffMonaka.UnityBase.Data {
  */
 public class SystemConfigFileData
 {
-    public ToffMonaka.Lib.Constant.Util.LANGUAGE_TYPE languageType = ToffMonaka.Lib.Constant.Util.LANGUAGE_TYPE.ENGLISH;
+    public ToffMonaka.Lib.Constant.Util.LANGUAGE_TYPE systemLanguageType = ToffMonaka.Lib.Constant.Util.LANGUAGE_TYPE.ENGLISH;
     public float soundBgmVolume = 0.5f;
     public bool soundBgmMuteFlag = false;
     public float soundSeVolume = 0.5f;
@@ -43,7 +43,7 @@ public class SystemConfigFileData
     {
         this._Release();
 
-        this.languageType = ToffMonaka.Lib.Constant.Util.LANGUAGE_TYPE.ENGLISH;
+        this.systemLanguageType = ToffMonaka.Lib.Constant.Util.LANGUAGE_TYPE.ENGLISH;
         this.soundBgmVolume = 0.5f;
         this.soundBgmMuteFlag = false;
         this.soundSeVolume = 0.5f;
@@ -56,11 +56,11 @@ public class SystemConfigFileData
 /**
  * @brief SystemConfigFileクラス
  */
-public class SystemConfigFile : ToffMonaka.Lib.File.File
+public class SystemConfigFile : ToffMonaka.Lib.Data.File
 {
 	public ToffMonaka.UnityBase.Data.SystemConfigFileData data = new ToffMonaka.UnityBase.Data.SystemConfigFileData();
-	public ToffMonaka.Lib.File.FileReadDesc<ToffMonaka.Lib.File.IniFileReadDescData> readDesc = new ToffMonaka.Lib.File.FileReadDesc<ToffMonaka.Lib.File.IniFileReadDescData>();
-	public ToffMonaka.Lib.File.FileWriteDesc<ToffMonaka.Lib.File.IniFileWriteDescData> writeDesc = new ToffMonaka.Lib.File.FileWriteDesc<ToffMonaka.Lib.File.IniFileWriteDescData>();
+	public ToffMonaka.Lib.Data.FileReadDesc<ToffMonaka.Lib.Data.IniFileReadDescData> readDesc = new ToffMonaka.Lib.Data.FileReadDesc<ToffMonaka.Lib.Data.IniFileReadDescData>();
+	public ToffMonaka.Lib.Data.FileWriteDesc<ToffMonaka.Lib.Data.IniFileWriteDescData> writeDesc = new ToffMonaka.Lib.Data.FileWriteDesc<ToffMonaka.Lib.Data.IniFileWriteDescData>();
 
     /**
      * @brief コンストラクタ
@@ -97,18 +97,19 @@ public class SystemConfigFile : ToffMonaka.Lib.File.File
     /**
      * @brief _OnRead関数
      * @return result (result)<br>
-     * 0未満=失敗
+     * 0未満=失敗,-2=ファイル存在無し
      */
     protected override int _OnRead()
     {
 	    var desc_dat = this.readDesc.GetDataByParent();
 
-        var ini_file = new ToffMonaka.Lib.File.IniFile();
+        var ini_file = new ToffMonaka.Lib.Data.IniFile();
+        int ini_file_read_res;
 
         ini_file.readDesc.parentData = desc_dat;
 
-        if (ini_file.Read() < 0) {
-	        return (-1);
+        if ((ini_file_read_res = ini_file.Read()) < 0) {
+	        return (ini_file_read_res);
         }
 
         this.data.Init();
@@ -117,51 +118,51 @@ public class SystemConfigFile : ToffMonaka.Lib.File.File
 	        return (0);
         }
 
-        Dictionary<string, string> val_name_cont;
+        Dictionary<string, string> key_cont;
         string val;
 
-        {// Application Section Read
-	        val_name_cont = ini_file.data.GetValueNameContainer("APPLICATION");
+        {// System Section Read
+	        key_cont = ini_file.data.GetKeyContainer("SYSTEM");
 
-	        if (val_name_cont != null) {
-		        val = ini_file.data.GetValue(val_name_cont, "LANGUAGE_TYPE");
+	        if (key_cont != null) {
+		        val = ini_file.data.GetValue(key_cont, "LANGUAGE_TYPE");
 
 		        if (val != null) {
-                    this.data.languageType = (ToffMonaka.Lib.Constant.Util.LANGUAGE_TYPE)(int.Parse(val));
+                    this.data.systemLanguageType = (ToffMonaka.Lib.Constant.Util.LANGUAGE_TYPE)(int.Parse(val));
 		        }
 	        }
         }
 
         {// Graphic Section Read
-	        val_name_cont = ini_file.data.GetValueNameContainer("GRAPHIC");
+	        key_cont = ini_file.data.GetKeyContainer("GRAPHIC");
 
-	        if (val_name_cont != null) {
+	        if (key_cont != null) {
 	        }
         }
 
         {// Sound Section Read
-	        val_name_cont = ini_file.data.GetValueNameContainer("SOUND");
+	        key_cont = ini_file.data.GetKeyContainer("SOUND");
 
-	        if (val_name_cont != null) {
-		        val = ini_file.data.GetValue(val_name_cont, "BGM_VOLUME");
+	        if (key_cont != null) {
+		        val = ini_file.data.GetValue(key_cont, "BGM_VOLUME");
 
 		        if (val != null) {
                     this.data.soundBgmVolume = float.Parse(val);
 		        }
 
-		        val = ini_file.data.GetValue(val_name_cont, "BGM_MUTE_FLAG");
+		        val = ini_file.data.GetValue(key_cont, "BGM_MUTE_FLG");
 
 		        if (val != null) {
                     this.data.soundBgmMuteFlag = System.Convert.ToBoolean(int.Parse(val));
 		        }
 
-		        val = ini_file.data.GetValue(val_name_cont, "SE_VOLUME");
+		        val = ini_file.data.GetValue(key_cont, "SE_VOLUME");
 
 		        if (val != null) {
                     this.data.soundSeVolume = float.Parse(val);
 		        }
 
-		        val = ini_file.data.GetValue(val_name_cont, "SE_MUTE_FLAG");
+		        val = ini_file.data.GetValue(key_cont, "SE_MUTE_FLG");
 
 		        if (val != null) {
                     this.data.soundSeMuteFlag = System.Convert.ToBoolean(int.Parse(val));
@@ -189,11 +190,12 @@ public class SystemConfigFile : ToffMonaka.Lib.File.File
 		    return (-1);
 	    }
 
-        var txt_file = new ToffMonaka.Lib.File.TextFile();
+        var txt_file = new ToffMonaka.Lib.Data.TextFile();
+        int txt_file_write_res;
 
-        {// Application Section Write
-	        txt_file.data.lineTextContainer.Add(section_start_str + "APPLICATION" + section_end_str);
-	        txt_file.data.lineTextContainer.Add("LANGUAGE_TYPE" + equal_str + ((int)this.data.languageType).ToString());
+        {// System Section Write
+	        txt_file.data.lineTextContainer.Add(section_start_str + "SYSTEM" + section_end_str);
+	        txt_file.data.lineTextContainer.Add("LANGUAGE_TYPE" + equal_str + ((int)this.data.systemLanguageType).ToString());
 	        txt_file.data.lineTextContainer.Add(System.String.Empty);
         }
 
@@ -205,16 +207,16 @@ public class SystemConfigFile : ToffMonaka.Lib.File.File
         {// Sound Section Write
 	        txt_file.data.lineTextContainer.Add(section_start_str + "SOUND" + section_end_str);
 	        txt_file.data.lineTextContainer.Add("BGM_VOLUME" + equal_str + this.data.soundBgmVolume.ToString());
-	        txt_file.data.lineTextContainer.Add("BGM_MUTE_FLAG" + equal_str + System.Convert.ToInt32(this.data.soundBgmMuteFlag).ToString());
+	        txt_file.data.lineTextContainer.Add("BGM_MUTE_FLG" + equal_str + System.Convert.ToInt32(this.data.soundBgmMuteFlag).ToString());
 	        txt_file.data.lineTextContainer.Add("SE_VOLUME" + equal_str + this.data.soundSeVolume.ToString());
-	        txt_file.data.lineTextContainer.Add("SE_MUTE_FLAG" + equal_str + System.Convert.ToInt32(this.data.soundSeMuteFlag).ToString());
+	        txt_file.data.lineTextContainer.Add("SE_MUTE_FLG" + equal_str + System.Convert.ToInt32(this.data.soundSeMuteFlag).ToString());
 	        txt_file.data.lineTextContainer.Add(System.String.Empty);
         }
 
         txt_file.writeDesc.parentData = desc_dat;
 
-        if (txt_file.Write() < 0) {
-	        return (-1);
+        if ((txt_file_write_res = txt_file.Write()) < 0) {
+	        return (txt_file_write_res);
         }
 
         return (0);

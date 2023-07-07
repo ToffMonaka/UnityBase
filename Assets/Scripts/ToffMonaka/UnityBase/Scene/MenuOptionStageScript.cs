@@ -134,7 +134,7 @@ public class MenuOptionStageScript : ToffMonaka.UnityBase.Scene.MenuStageScript
     protected override void _OnActive()
     {
         this._editScrollRect.verticalNormalizedPosition = 1.0f;
-        this.SetLanguageType(ToffMonaka.UnityBase.Global.systemConfigFile.data.languageType);
+        this.SetLanguageType(ToffMonaka.UnityBase.Global.systemConfigFile.data.systemLanguageType);
         this.SetSoundBgmVolume(ToffMonaka.UnityBase.Global.systemConfigFile.data.soundBgmVolume);
         this.SetSoundBgmMuteFlag(ToffMonaka.UnityBase.Global.systemConfigFile.data.soundBgmMuteFlag);
         this.SetSoundSeVolume(ToffMonaka.UnityBase.Global.systemConfigFile.data.soundSeVolume);
@@ -383,8 +383,8 @@ public class MenuOptionStageScript : ToffMonaka.UnityBase.Scene.MenuStageScript
 
         bool write_flg = false;
 
-        if (this._languageType != ToffMonaka.UnityBase.Global.systemConfigFile.data.languageType) {
-            ToffMonaka.UnityBase.Global.systemConfigFile.data.languageType = this._languageType;
+        if (this._languageType != ToffMonaka.UnityBase.Global.systemConfigFile.data.systemLanguageType) {
+            ToffMonaka.UnityBase.Global.systemConfigFile.data.systemLanguageType = this._languageType;
 
             write_flg = true;
         }
@@ -522,7 +522,7 @@ public class MenuOptionStageScript : ToffMonaka.UnityBase.Scene.MenuStageScript
 
         this._languageButtonNameText.SetText(ToffMonaka.Lib.Constant.Util.LANGUAGE_NAME_ARRAY[(int)this._languageType]);
 
-        this._SetRestartFlag((this._languageType != ToffMonaka.UnityBase.Global.systemConfigFile.data.languageType) ? (this._restartFlag | 0x0001U) : (this._restartFlag & ~0x0001U));
+        this._SetRestartFlag((this._languageType != ToffMonaka.UnityBase.Global.systemConfigFile.data.systemLanguageType) ? (this._restartFlag | 0x0001U) : (this._restartFlag & ~0x0001U));
 
         return;
     }

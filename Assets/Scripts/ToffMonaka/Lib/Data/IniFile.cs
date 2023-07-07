@@ -8,7 +8,7 @@ using UnityEngine;
 using System.Collections.Generic;
 
 
-namespace ToffMonaka.Lib.File {
+namespace ToffMonaka.Lib.Data {
 /**
  * @brief IniFileDataクラス
  */
@@ -45,34 +45,34 @@ public class IniFileData
     }
 
     /**
-     * @brief GetValueNameContainer関数
+     * @brief GetKeyContainer関数
      * @param section_name (section_name)
-     * @return val_name_cont (valalue_name_container)<br>
+     * @return key_cont (key_container)<br>
      * null=失敗
      */
-    public Dictionary<string, string> GetValueNameContainer(string section_name)
+    public Dictionary<string, string> GetKeyContainer(string section_name)
     {
-        Dictionary<string, string> val_name_cont;
+        Dictionary<string, string> key_cont;
 
-        if (!this.valueContainer.TryGetValue(section_name, out val_name_cont)) {
+        if (!this.valueContainer.TryGetValue(section_name, out key_cont)) {
     	    return (null);
         }
 
-	    return (val_name_cont);
+	    return (key_cont);
     }
 
     /**
      * @brief GetValue関数
-     * @param val_name_cont (valalue_name_container)
-     * @param val_name (value_name)
+     * @param key_cont (key_container)
+     * @param key (key)
      * @return val (value)<br>
      * null=失敗
      */
-    public string GetValue(Dictionary<string, string> val_name_cont, string val_name)
+    public string GetValue(Dictionary<string, string> key_cont, string key)
     {
         string val;
 
-        if (!val_name_cont.TryGetValue(val_name, out val)) {
+        if (!key_cont.TryGetValue(key, out val)) {
     	    return (null);
         }
 
@@ -82,21 +82,21 @@ public class IniFileData
     /**
      * @brief GetValue関数
      * @param section_name (section_name)
-     * @param val_name (value_name)
+     * @param key (key)
      * @return val (value)<br>
      * null=失敗
      */
-    public string GetValue(string section_name, string val_name)
+    public string GetValue(string section_name, string key)
     {
-        Dictionary<string, string> val_name_cont;
+        Dictionary<string, string> key_cont;
 
-        if (!this.valueContainer.TryGetValue(section_name, out val_name_cont)) {
+        if (!this.valueContainer.TryGetValue(section_name, out key_cont)) {
     	    return (null);
         }
 
         string val;
 
-        if (!val_name_cont.TryGetValue(val_name, out val)) {
+        if (!key_cont.TryGetValue(key, out val)) {
     	    return (null);
         }
 
@@ -107,7 +107,7 @@ public class IniFileData
 /**
  * @brief IniFileReadDescDataクラス
  */
-public class IniFileReadDescData : ToffMonaka.Lib.File.TextFileReadDescData
+public class IniFileReadDescData : ToffMonaka.Lib.Data.TextFileReadDescData
 {
     /**
      * @brief コンストラクタ
@@ -151,7 +151,7 @@ public class IniFileReadDescData : ToffMonaka.Lib.File.TextFileReadDescData
 /**
  * @brief IniFileWriteDescDataクラス
  */
-public class IniFileWriteDescData : ToffMonaka.Lib.File.TextFileWriteDescData
+public class IniFileWriteDescData : ToffMonaka.Lib.Data.TextFileWriteDescData
 {
     /**
      * @brief コンストラクタ
@@ -195,11 +195,11 @@ public class IniFileWriteDescData : ToffMonaka.Lib.File.TextFileWriteDescData
 /**
  * @brief IniFileクラス
  */
-public class IniFile : ToffMonaka.Lib.File.File
+public class IniFile : ToffMonaka.Lib.Data.File
 {
-	public ToffMonaka.Lib.File.IniFileData data = new ToffMonaka.Lib.File.IniFileData();
-	public ToffMonaka.Lib.File.FileReadDesc<ToffMonaka.Lib.File.IniFileReadDescData> readDesc = new ToffMonaka.Lib.File.FileReadDesc<ToffMonaka.Lib.File.IniFileReadDescData>();
-	public ToffMonaka.Lib.File.FileWriteDesc<ToffMonaka.Lib.File.IniFileWriteDescData> writeDesc = new ToffMonaka.Lib.File.FileWriteDesc<ToffMonaka.Lib.File.IniFileWriteDescData>();
+	public ToffMonaka.Lib.Data.IniFileData data = new ToffMonaka.Lib.Data.IniFileData();
+	public ToffMonaka.Lib.Data.FileReadDesc<ToffMonaka.Lib.Data.IniFileReadDescData> readDesc = new ToffMonaka.Lib.Data.FileReadDesc<ToffMonaka.Lib.Data.IniFileReadDescData>();
+	public ToffMonaka.Lib.Data.FileWriteDesc<ToffMonaka.Lib.Data.IniFileWriteDescData> writeDesc = new ToffMonaka.Lib.Data.FileWriteDesc<ToffMonaka.Lib.Data.IniFileWriteDescData>();
 
     /**
      * @brief コンストラクタ
@@ -236,23 +236,24 @@ public class IniFile : ToffMonaka.Lib.File.File
     /**
      * @brief _OnRead関数
      * @return result (result)<br>
-     * 0未満=失敗
+     * 0未満=失敗,-2=ファイル存在無し
      */
     protected override int _OnRead()
     {
         const string section_start_str = "[";
         const string section_end_str = "]";
         const string equal_str = "=";
-        const string comment_str = "#";
+        const string comment_str = ";";
 
 	    var desc_dat = this.readDesc.GetDataByParent();
 
-        var txt_file = new ToffMonaka.Lib.File.TextFile();
+        var txt_file = new ToffMonaka.Lib.Data.TextFile();
+        int txt_file_read_res;
 
         txt_file.readDesc.parentData = desc_dat;
 
-        if (txt_file.Read() < 0) {
-	        return (-1);
+        if ((txt_file_read_res = txt_file.Read()) < 0) {
+	        return (txt_file_read_res);
         }
 
         this.data.Init();
@@ -267,7 +268,7 @@ public class IniFile : ToffMonaka.Lib.File.File
         int equal_str_index;
         int comment_str_index;
         string section_name = "";
-        string val_name = "";
+        string key = "";
         string val = "";
 
 	    foreach (var txt_file_line_txt in txt_file.data.lineTextContainer) {
@@ -319,23 +320,23 @@ public class IniFile : ToffMonaka.Lib.File.File
 		        }
 	        }
 
-            Dictionary<string, string> val_name_cont;
+            Dictionary<string, string> key_cont;
 
-            if (!this.data.valueContainer.TryGetValue(section_name, out val_name_cont)) {
+            if (!this.data.valueContainer.TryGetValue(section_name, out key_cont)) {
 		        continue;
             }
 
-	        val_name = line_txt.Substring(0, equal_str_index);
-	        val_name = val_name.Trim();
+	        key = line_txt.Substring(0, equal_str_index);
+	        key = key.Trim();
 
-	        if (val_name.Length <= 0) {
+	        if (key.Length <= 0) {
 		        continue;
 	        }
 
 	        val = line_txt.Substring(equal_str_index + equal_str.Length);
 	        val = val.Trim();
 
-	        val_name_cont.Add(val_name, val);
+	        key_cont.Add(key, val);
         }
 
         return (0);
@@ -358,19 +359,20 @@ public class IniFile : ToffMonaka.Lib.File.File
 		    return (-1);
 	    }
 
-        var txt_file = new ToffMonaka.Lib.File.TextFile();
+        var txt_file = new ToffMonaka.Lib.Data.TextFile();
+        int txt_file_write_res;
 
         if (this.data.valueContainer.Count > 0) {
 		    string line_txt;
 
-		    foreach (var val_name_cont in this.data.valueContainer) {
+		    foreach (var key_cont in this.data.valueContainer) {
 			    line_txt = section_start_str;
-			    line_txt += val_name_cont.Key;
+			    line_txt += key_cont.Key;
 			    line_txt += section_end_str;
 
 			    txt_file.data.lineTextContainer.Add(line_txt);
 
-			    foreach (var val in val_name_cont.Value) {
+			    foreach (var val in key_cont.Value) {
 				    line_txt = val.Key;
 				    line_txt += equal_str;
 				    line_txt += val.Value;
@@ -384,8 +386,8 @@ public class IniFile : ToffMonaka.Lib.File.File
 
         txt_file.writeDesc.parentData = desc_dat;
 
-        if (txt_file.Write() < 0) {
-	        return (-1);
+        if ((txt_file_write_res = txt_file.Write()) < 0) {
+	        return (txt_file_write_res);
         }
 
         return (0);

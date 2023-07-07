@@ -7,7 +7,7 @@
 using UnityEngine;
 
 
-namespace ToffMonaka.Lib.File {
+namespace ToffMonaka.Lib.Data {
 /**
  * @brief CsvFileDataクラス
  */
@@ -82,7 +82,7 @@ public class CsvFileData
 /**
  * @brief CsvFileReadDescDataクラス
  */
-public class CsvFileReadDescData : ToffMonaka.Lib.File.TextFileReadDescData
+public class CsvFileReadDescData : ToffMonaka.Lib.Data.TextFileReadDescData
 {
     /**
      * @brief コンストラクタ
@@ -126,7 +126,7 @@ public class CsvFileReadDescData : ToffMonaka.Lib.File.TextFileReadDescData
 /**
  * @brief CsvFileWriteDescDataクラス
  */
-public class CsvFileWriteDescData : ToffMonaka.Lib.File.TextFileWriteDescData
+public class CsvFileWriteDescData : ToffMonaka.Lib.Data.TextFileWriteDescData
 {
     /**
      * @brief コンストラクタ
@@ -170,11 +170,11 @@ public class CsvFileWriteDescData : ToffMonaka.Lib.File.TextFileWriteDescData
 /**
  * @brief CsvFileクラス
  */
-public class CsvFile : ToffMonaka.Lib.File.File
+public class CsvFile : ToffMonaka.Lib.Data.File
 {
-	public ToffMonaka.Lib.File.CsvFileData data = new ToffMonaka.Lib.File.CsvFileData();
-	public ToffMonaka.Lib.File.FileReadDesc<ToffMonaka.Lib.File.CsvFileReadDescData> readDesc = new ToffMonaka.Lib.File.FileReadDesc<ToffMonaka.Lib.File.CsvFileReadDescData>();
-	public ToffMonaka.Lib.File.FileWriteDesc<ToffMonaka.Lib.File.CsvFileWriteDescData> writeDesc = new ToffMonaka.Lib.File.FileWriteDesc<ToffMonaka.Lib.File.CsvFileWriteDescData>();
+	public ToffMonaka.Lib.Data.CsvFileData data = new ToffMonaka.Lib.Data.CsvFileData();
+	public ToffMonaka.Lib.Data.FileReadDesc<ToffMonaka.Lib.Data.CsvFileReadDescData> readDesc = new ToffMonaka.Lib.Data.FileReadDesc<ToffMonaka.Lib.Data.CsvFileReadDescData>();
+	public ToffMonaka.Lib.Data.FileWriteDesc<ToffMonaka.Lib.Data.CsvFileWriteDescData> writeDesc = new ToffMonaka.Lib.Data.FileWriteDesc<ToffMonaka.Lib.Data.CsvFileWriteDescData>();
 
     /**
      * @brief コンストラクタ
@@ -211,7 +211,7 @@ public class CsvFile : ToffMonaka.Lib.File.File
     /**
      * @brief _OnRead関数
      * @return result (result)<br>
-     * 0未満=失敗
+     * 0未満=失敗,-2=ファイル存在無し
      */
     protected override int _OnRead()
     {
@@ -222,12 +222,13 @@ public class CsvFile : ToffMonaka.Lib.File.File
 
 	    var desc_dat = this.readDesc.GetDataByParent();
 
-        var txt_file = new ToffMonaka.Lib.File.TextFile();
+        var txt_file = new ToffMonaka.Lib.Data.TextFile();
+        int txt_file_read_res;
 
         txt_file.readDesc.parentData = desc_dat;
 
-        if (txt_file.Read() < 0) {
-	        return (-1);
+        if ((txt_file_read_res = txt_file.Read()) < 0) {
+	        return (txt_file_read_res);
         }
 
         this.data.Init();
@@ -397,7 +398,8 @@ public class CsvFile : ToffMonaka.Lib.File.File
 		    return (-1);
 	    }
 
-        var txt_file = new ToffMonaka.Lib.File.TextFile();
+        var txt_file = new ToffMonaka.Lib.Data.TextFile();
+        int txt_file_write_res;
 
         if (this.data.valueArray.Length > 0) {
 	        string line_txt;
@@ -413,8 +415,8 @@ public class CsvFile : ToffMonaka.Lib.File.File
 
         txt_file.writeDesc.parentData = desc_dat;
 
-        if (txt_file.Write() < 0) {
-	        return (-1);
+        if ((txt_file_write_res = txt_file.Write()) < 0) {
+	        return (txt_file_write_res);
         }
 
         return (0);
