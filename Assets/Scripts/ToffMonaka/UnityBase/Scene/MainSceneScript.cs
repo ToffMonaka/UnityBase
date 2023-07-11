@@ -127,6 +127,25 @@ public class MainSceneScript : ToffMonaka.Lib.Scene.MainSceneScript
             }
         }
 
+        {// MstStringTableFile Create
+		    switch (ToffMonaka.UnityBase.Global.systemConfigFile.data.systemLanguageType) {
+		    case ToffMonaka.Lib.Constant.Util.LANGUAGE_TYPE.JAPANESE: {
+                ToffMonaka.UnityBase.Global.mstStringTableFile.readDesc.data.filePath = ToffMonaka.UnityBase.Constant.Util.FILE_PATH.MST_STRING_JAPANESE_TABLE;
+
+			    break;
+		    }
+		    default: {
+                ToffMonaka.UnityBase.Global.mstStringTableFile.readDesc.data.filePath = ToffMonaka.UnityBase.Constant.Util.FILE_PATH.MST_STRING_ENGLISH_TABLE;
+
+			    break;
+		    }
+		    }
+
+            ToffMonaka.UnityBase.Global.mstStringTableFile.readDesc.data.addressablesFlag = true;
+
+            ToffMonaka.UnityBase.Global.mstStringTableFile.Read();
+        }
+
         this._CreateManager();
 
         {// Test

@@ -30,6 +30,8 @@ public static class Util
         public const string STAGE_SELECT_SUB_SCENE_PREFAB = "Assets/Resources2/prefab/StageSelectSubScene.prefab";
         public const string TEST_2D_STAGE_SUB_SCENE_PREFAB = "Assets/Resources2/prefab/Test2DStageSubScene.prefab";
         public const string TEST_3D_STAGE_SUB_SCENE_PREFAB = "Assets/Resources2/prefab/Test3DStageSubScene.prefab";
+        public const string MST_STRING_ENGLISH_TABLE = "Assets/Resources2/dat/mst_str_en_tbl.csv";
+        public const string MST_STRING_JAPANESE_TABLE = "Assets/Resources2/dat/mst_str_jp_tbl.csv";
     }
 
     public static class INPUT

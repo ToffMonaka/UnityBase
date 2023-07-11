@@ -5,6 +5,7 @@
 
 
 using UnityEngine;
+using UnityEngine.AddressableAssets;
 using System.IO;
 
 
@@ -102,8 +103,6 @@ public class BinaryFileReadDescData : ToffMonaka.Lib.Data.FileReadDescData
  */
 public class BinaryFileWriteDescData : ToffMonaka.Lib.Data.FileWriteDescData
 {
-    public bool appendFlag = false;
-
     /**
      * @brief コンストラクタ
      */
@@ -126,8 +125,6 @@ public class BinaryFileWriteDescData : ToffMonaka.Lib.Data.FileWriteDescData
     public override void Init()
     {
         this._Release();
-
-        this.appendFlag = false;
 
         base.Init();
 
@@ -205,40 +202,53 @@ public class BinaryFile : ToffMonaka.Lib.Data.File
 		    return (0);
 	    }
 
-        int fs_res = 0;
         byte[] buf = System.Array.Empty<byte>();
-	    var read_buf = new byte[2048];
-	    int read_size;
 
-        try {
-            using (var fs = new FileStream(desc_dat.filePath, FileMode.Open, FileAccess.Read)) {
-    			while (true) {
-                    read_size = fs.Read(read_buf, 0, read_buf.Length);
+        if (desc_dat.addressablesFlag) {
+            var asset = Addressables.LoadAssetAsync<TextAsset>(desc_dat.filePath).WaitForCompletion();
 
-				    if (read_size > 0) {
-                        byte[] tmp_buf = new byte[buf.Length + read_size];
-
-                        System.Buffer.BlockCopy(buf, 0, tmp_buf, 0, buf.Length);
-                        System.Buffer.BlockCopy(read_buf, 0, tmp_buf, buf.Length, read_size);
-
-                        buf = tmp_buf;
-				    } else {
-					    break;
-				    }
-                }
+            if (asset == null) {
+                return (-2);
             }
-        } catch (FileNotFoundException e) {
-            Debug.Log(e);
 
-            fs_res = -2;
-        } catch (IOException e) {
-            Debug.Log(e);
+            buf = (byte[])asset.bytes.Clone();
 
-            fs_res = -1;
-        }
+            Addressables.Release(asset);
+        } else {
+            int fs_res = 0;
+	        var read_buf = new byte[2048];
+	        int read_size;
 
-        if (fs_res < 0) {
-            return (fs_res);
+            try {
+                using (var fs = new FileStream(desc_dat.filePath, FileMode.Open, FileAccess.Read)) {
+    			    while (true) {
+                        read_size = fs.Read(read_buf, 0, read_buf.Length);
+
+				        if (read_size > 0) {
+                            byte[] tmp_buf = new byte[buf.Length + read_size];
+
+                            System.Buffer.BlockCopy(buf, 0, tmp_buf, 0, buf.Length);
+                            System.Buffer.BlockCopy(read_buf, 0, tmp_buf, buf.Length, read_size);
+
+                            buf = tmp_buf;
+				        } else {
+					        break;
+				        }
+                    }
+                }
+            } catch (FileNotFoundException e) {
+                Debug.Log(e);
+
+                fs_res = -2;
+            } catch (IOException e) {
+                Debug.Log(e);
+
+                fs_res = -1;
+            }
+
+            if (fs_res < 0) {
+                return (fs_res);
+            }
         }
 
 		this.data.Init();
@@ -271,8 +281,9 @@ public class BinaryFile : ToffMonaka.Lib.Data.File
             }
         }
 
-        int fs_res = 0;
 	    int buf_index = 0;
+
+        int fs_res = 0;
 	    var write_buf = new byte[2048];
 	    int write_size;
 

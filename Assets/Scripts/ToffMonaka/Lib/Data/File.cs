@@ -14,6 +14,7 @@ namespace ToffMonaka.Lib.Data {
 public abstract class FileReadDescData
 {
     public string filePath = "";
+    public bool addressablesFlag = false;
 
     /**
      * @brief コンストラクタ
@@ -39,6 +40,7 @@ public abstract class FileReadDescData
         this._Release();
 
         this.filePath = "";
+        this.addressablesFlag = false;
 
         return;
     }
@@ -133,6 +135,7 @@ public class FileReadDesc<T> where T : ToffMonaka.Lib.Data.FileReadDescData, new
 public abstract class FileWriteDescData
 {
     public string filePath = "";
+    public bool appendFlag = false;
 
     /**
      * @brief コンストラクタ
@@ -158,6 +161,7 @@ public abstract class FileWriteDescData
         this._Release();
 
         this.filePath = "";
+        this.appendFlag = false;
 
         return;
     }

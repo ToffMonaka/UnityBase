@@ -278,7 +278,7 @@ public class CsvFile : ToffMonaka.Lib.Data.File
 		            }
 
 		            if ((dq_str_cnt & 1) == 0) {
-			            line_txt.Remove(comment_str_index);
+			            line_txt = line_txt.Remove(comment_str_index);
 
 			            break;
 		            } else {
@@ -346,7 +346,7 @@ public class CsvFile : ToffMonaka.Lib.Data.File
 		            dq_str_index = val.IndexOf(dq_str);
 
 		            if (dq_str_index >= 0) {
-			            val.Remove(0, dq_str_index + dq_str.Length);
+			            val = val.Remove(0, dq_str_index + dq_str.Length);
 		            }
 	            }
 
@@ -354,7 +354,7 @@ public class CsvFile : ToffMonaka.Lib.Data.File
 		            dq_str_index = val.LastIndexOf(dq_str);
 
 		            if (dq_str_index >= 0) {
-			            val.Remove(dq_str_index);
+			            val = val.Remove(dq_str_index);
 		            }
 	            }
 

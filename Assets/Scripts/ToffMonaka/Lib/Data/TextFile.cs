@@ -52,7 +52,7 @@ public class TextFileData
 public class TextFileReadDescData : ToffMonaka.Lib.Data.BinaryFileReadDescData
 {
     public string text = "";
-    public string charsetName = "shift_jis";
+    public string charsetName = "utf-8";
     public ToffMonaka.Lib.String.Util.NEWLINE_TYPE newlineType = ToffMonaka.Lib.String.Util.NEWLINE_TYPE.CRLF;
 
     /**
@@ -79,7 +79,7 @@ public class TextFileReadDescData : ToffMonaka.Lib.Data.BinaryFileReadDescData
         this._Release();
 
         this.text = "";
-        this.charsetName = "shift_jis";
+        this.charsetName = "utf-8";
         this.newlineType = ToffMonaka.Lib.String.Util.NEWLINE_TYPE.CRLF;
 
         base.Init();
@@ -108,7 +108,7 @@ public class TextFileReadDescData : ToffMonaka.Lib.Data.BinaryFileReadDescData
 public class TextFileWriteDescData : ToffMonaka.Lib.Data.BinaryFileWriteDescData
 {
 	public int appendNewlineCount = 1;
-    public string charsetName = "shift_jis";
+    public string charsetName = "utf-8";
     public ToffMonaka.Lib.String.Util.NEWLINE_TYPE newlineType = ToffMonaka.Lib.String.Util.NEWLINE_TYPE.CRLF;
 
     /**
@@ -135,7 +135,7 @@ public class TextFileWriteDescData : ToffMonaka.Lib.Data.BinaryFileWriteDescData
         this._Release();
 
         this.appendNewlineCount = 1;
-        this.charsetName = "shift_jis";
+        this.charsetName = "utf-8";
         this.newlineType = ToffMonaka.Lib.String.Util.NEWLINE_TYPE.CRLF;
 
         base.Init();
