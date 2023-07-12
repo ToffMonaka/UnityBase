@@ -178,5 +178,13 @@ public static class Util
             ""
         };
     }
+
+    public enum MST_STRING_ID : int
+    {
+        NONE = 0,
+        OK = 1,
+        OK_RESTART = 2,
+		CANCEL = 3
+    }
 }
 }

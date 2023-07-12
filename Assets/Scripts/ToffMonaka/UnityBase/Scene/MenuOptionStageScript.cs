@@ -98,8 +98,8 @@ public class MenuOptionStageScript : ToffMonaka.UnityBase.Scene.MenuStageScript
         this._soundBgmMuteToggleNameText.SetText("BGMミュート");
         this._soundSeMuteToggleNameText.SetText("SEミュート");
 
-        this._okButtonNameText.SetText("OK");
-        this._cancelButtonNameText.SetText("キャンセル");
+        this._okButtonNameText.SetText(ToffMonaka.UnityBase.Global.GetString(ToffMonaka.UnityBase.Constant.Util.MST_STRING_ID.OK));
+        this._cancelButtonNameText.SetText(ToffMonaka.UnityBase.Global.GetString(ToffMonaka.UnityBase.Constant.Util.MST_STRING_ID.CANCEL));
 
         {// languageSelectDialogScript Create
             var script = this._languageSelectDialogNode.GetComponent<ToffMonaka.UnityBase.Scene.MenuOptionStageLanguageSelectDialogScript>();
@@ -626,10 +626,10 @@ public class MenuOptionStageScript : ToffMonaka.UnityBase.Scene.MenuStageScript
         this._restartFlag = restart_flg;
 
         if (this._restartFlag != 0U) {
-            this._okButtonNameText.SetText("OK\n再起動");
+            this._okButtonNameText.SetText(ToffMonaka.UnityBase.Global.GetString(ToffMonaka.UnityBase.Constant.Util.MST_STRING_ID.OK_RESTART));
             this._okButtonNameText.fontSize = 20.0f;
         } else {
-            this._okButtonNameText.SetText("OK");
+            this._okButtonNameText.SetText(ToffMonaka.UnityBase.Global.GetString(ToffMonaka.UnityBase.Constant.Util.MST_STRING_ID.OK));
             this._okButtonNameText.fontSize = 32.0f;
         }
 

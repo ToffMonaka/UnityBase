@@ -15,7 +15,7 @@ namespace ToffMonaka.Lib.Data {
  */
 public class TextFileData
 {
-    public List<string> lineTextContainer = new List<string>();
+    public List<string> lineStringContainer = new List<string>();
 
     /**
      * @brief コンストラクタ
@@ -40,7 +40,7 @@ public class TextFileData
     {
         this._Release();
 
-        this.lineTextContainer.Clear();
+        this.lineStringContainer.Clear();
 
         return;
     }
@@ -51,8 +51,8 @@ public class TextFileData
  */
 public class TextFileReadDescData : ToffMonaka.Lib.Data.BinaryFileReadDescData
 {
-    public string text = "";
-    public string charsetName = "utf-8";
+    public string string_ = "";
+    public string charset = "utf-8";
     public ToffMonaka.Lib.String.Util.NEWLINE_TYPE newlineType = ToffMonaka.Lib.String.Util.NEWLINE_TYPE.CRLF;
 
     /**
@@ -78,8 +78,8 @@ public class TextFileReadDescData : ToffMonaka.Lib.Data.BinaryFileReadDescData
     {
         this._Release();
 
-        this.text = "";
-        this.charsetName = "utf-8";
+        this.string_ = "";
+        this.charset = "utf-8";
         this.newlineType = ToffMonaka.Lib.String.Util.NEWLINE_TYPE.CRLF;
 
         base.Init();
@@ -94,7 +94,7 @@ public class TextFileReadDescData : ToffMonaka.Lib.Data.BinaryFileReadDescData
      */
     public override bool IsEmpty()
     {
-	    if (this.text.Length > 0) {
+	    if (this.string_.Length > 0) {
 		    return (false);
 	    }
 
@@ -108,7 +108,7 @@ public class TextFileReadDescData : ToffMonaka.Lib.Data.BinaryFileReadDescData
 public class TextFileWriteDescData : ToffMonaka.Lib.Data.BinaryFileWriteDescData
 {
 	public int appendNewlineCount = 1;
-    public string charsetName = "utf-8";
+    public string charset = "utf-8";
     public ToffMonaka.Lib.String.Util.NEWLINE_TYPE newlineType = ToffMonaka.Lib.String.Util.NEWLINE_TYPE.CRLF;
 
     /**
@@ -135,7 +135,7 @@ public class TextFileWriteDescData : ToffMonaka.Lib.Data.BinaryFileWriteDescData
         this._Release();
 
         this.appendNewlineCount = 1;
-        this.charsetName = "utf-8";
+        this.charset = "utf-8";
         this.newlineType = ToffMonaka.Lib.String.Util.NEWLINE_TYPE.CRLF;
 
         base.Init();
@@ -208,8 +208,8 @@ public class TextFile : ToffMonaka.Lib.Data.File
 		    if (desc_dat.buffer.Length <= 0) {
 		        this.data.Init();
 
-		        if (desc_dat.text.Length > 0) {
-                    this.data.lineTextContainer = new List<string>(desc_dat.text.Split(ToffMonaka.Lib.String.Util.GetNewlineCode(desc_dat.newlineType)));
+		        if (desc_dat.string_.Length > 0) {
+                    this.data.lineStringContainer = new List<string>(desc_dat.string_.Split(ToffMonaka.Lib.String.Util.GetNewlineCode(desc_dat.newlineType)));
 		        }
 
 		        return (0);
@@ -231,9 +231,9 @@ public class TextFile : ToffMonaka.Lib.Data.File
 	        return (0);
         }
 
-        string buf_str = Encoding.GetEncoding(desc_dat.charsetName).GetString(bin_file.data.buffer);
+        string buf_str = Encoding.GetEncoding(desc_dat.charset).GetString(bin_file.data.buffer);
 
-        this.data.lineTextContainer = new List<string>(buf_str.Split(ToffMonaka.Lib.String.Util.GetNewlineCode(desc_dat.newlineType)));
+        this.data.lineStringContainer = new List<string>(buf_str.Split(ToffMonaka.Lib.String.Util.GetNewlineCode(desc_dat.newlineType)));
 
         return (0);
     }
@@ -251,7 +251,7 @@ public class TextFile : ToffMonaka.Lib.Data.File
 		    return (-1);
 	    }
 
-        string buf_str = System.String.Join(ToffMonaka.Lib.String.Util.GetNewlineCode(desc_dat.newlineType), this.data.lineTextContainer);
+        string buf_str = System.String.Join(ToffMonaka.Lib.String.Util.GetNewlineCode(desc_dat.newlineType), this.data.lineStringContainer);
 
         if (buf_str.Length > 0) {
 	        if ((desc_dat.appendFlag)
@@ -269,7 +269,7 @@ public class TextFile : ToffMonaka.Lib.Data.File
         var bin_file = new ToffMonaka.Lib.Data.BinaryFile();
         int bin_file_write_res;
 
-        bin_file.data.buffer = Encoding.GetEncoding(desc_dat.charsetName).GetBytes(buf_str);
+        bin_file.data.buffer = Encoding.GetEncoding(desc_dat.charset).GetBytes(buf_str);
 
         bin_file.writeDesc.parentData = desc_dat;
 

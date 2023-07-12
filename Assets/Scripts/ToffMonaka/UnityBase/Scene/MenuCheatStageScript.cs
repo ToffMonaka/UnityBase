@@ -95,8 +95,8 @@ public class MenuCheatStageScript : ToffMonaka.UnityBase.Scene.MenuStageScript
             this._commandButtonScriptContainer.Add(script);
         }
 
-        this._okButtonNameText.SetText("OK");
-        this._cancelButtonNameText.SetText("キャンセル");
+        this._okButtonNameText.SetText(ToffMonaka.UnityBase.Global.GetString(ToffMonaka.UnityBase.Constant.Util.MST_STRING_ID.OK));
+        this._cancelButtonNameText.SetText(ToffMonaka.UnityBase.Global.GetString(ToffMonaka.UnityBase.Constant.Util.MST_STRING_ID.CANCEL));
 
         return (0);
     }

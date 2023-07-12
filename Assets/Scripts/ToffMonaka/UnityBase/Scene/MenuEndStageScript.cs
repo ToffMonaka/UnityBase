@@ -80,8 +80,8 @@ public class MenuEndStageScript : ToffMonaka.UnityBase.Scene.MenuStageScript
         this._restartToggleNameText.SetText("再起動");
         this._endToggleNameText.SetText("終了");
 
-        this._okButtonNameText.SetText("OK");
-        this._cancelButtonNameText.SetText("キャンセル");
+        this._okButtonNameText.SetText(ToffMonaka.UnityBase.Global.GetString(ToffMonaka.UnityBase.Constant.Util.MST_STRING_ID.OK));
+        this._cancelButtonNameText.SetText(ToffMonaka.UnityBase.Global.GetString(ToffMonaka.UnityBase.Constant.Util.MST_STRING_ID.CANCEL));
 
         return (0);
     }

@@ -258,11 +258,11 @@ public class IniFile : ToffMonaka.Lib.Data.File
 
         this.data.Init();
 
-        if (txt_file.data.lineTextContainer.Count <= 0) {
+        if (txt_file.data.lineStringContainer.Count <= 0) {
 	        return (0);
         }
 
-        string line_txt;
+        string line_str;
         int section_start_str_index;
         int section_end_str_index;
         int equal_str_index;
@@ -271,42 +271,42 @@ public class IniFile : ToffMonaka.Lib.Data.File
         string key = "";
         string val = "";
 
-	    foreach (var txt_file_line_txt in txt_file.data.lineTextContainer) {
-	        if (txt_file_line_txt.Length <= 0) {
+	    foreach (var txt_file_line_str in txt_file.data.lineStringContainer) {
+	        if (txt_file_line_str.Length <= 0) {
 		        continue;
 	        }
 
-	        line_txt = txt_file_line_txt;
+	        line_str = txt_file_line_str;
 
 	        {// コメントを削除
-		        comment_str_index = line_txt.IndexOf(comment_str);
+		        comment_str_index = line_str.IndexOf(comment_str);
 
 		        if (comment_str_index >= 0) {
-			        line_txt = line_txt.Remove(comment_str_index);
+			        line_str = line_str.Remove(comment_str_index);
 		        }
 	        }
 
-	        if (line_txt.Length <= 0) {
+	        if (line_str.Length <= 0) {
 		        continue;
 	        }
 
 	        {// ｢=｣を確認
-		        equal_str_index = line_txt.IndexOf(equal_str);
+		        equal_str_index = line_str.IndexOf(equal_str);
 
 		        if (equal_str_index < 0) {
-			        section_start_str_index = line_txt.IndexOf(section_start_str);
+			        section_start_str_index = line_str.IndexOf(section_start_str);
 
 			        if (section_start_str_index < 0) {
 				        continue;
 			        }
 
-			        section_end_str_index = line_txt.IndexOf(section_end_str, section_start_str_index + section_start_str.Length);
+			        section_end_str_index = line_str.IndexOf(section_end_str, section_start_str_index + section_start_str.Length);
 
 			        if (section_end_str_index < 0) {
 				        continue;
 			        }
 
-			        string tmp_section_name = line_txt.Substring(section_start_str_index + section_start_str.Length, section_end_str_index - (section_start_str_index + section_start_str.Length));
+			        string tmp_section_name = line_str.Substring(section_start_str_index + section_start_str.Length, section_end_str_index - (section_start_str_index + section_start_str.Length));
 
 			        if (tmp_section_name.Length > 0) {
 				        section_name = tmp_section_name;
@@ -326,14 +326,14 @@ public class IniFile : ToffMonaka.Lib.Data.File
 		        continue;
             }
 
-	        key = line_txt.Substring(0, equal_str_index);
+	        key = line_str.Substring(0, equal_str_index);
 	        key = key.Trim();
 
 	        if (key.Length <= 0) {
 		        continue;
 	        }
 
-	        val = line_txt.Substring(equal_str_index + equal_str.Length);
+	        val = line_str.Substring(equal_str_index + equal_str.Length);
 	        val = val.Trim();
 
 	        key_cont.Add(key, val);
@@ -363,24 +363,24 @@ public class IniFile : ToffMonaka.Lib.Data.File
         int txt_file_write_res;
 
         if (this.data.valueContainer.Count > 0) {
-		    string line_txt;
+		    string line_str;
 
 		    foreach (var key_cont in this.data.valueContainer) {
-			    line_txt = section_start_str;
-			    line_txt += key_cont.Key;
-			    line_txt += section_end_str;
+			    line_str = section_start_str;
+			    line_str += key_cont.Key;
+			    line_str += section_end_str;
 
-			    txt_file.data.lineTextContainer.Add(line_txt);
+			    txt_file.data.lineStringContainer.Add(line_str);
 
 			    foreach (var val in key_cont.Value) {
-				    line_txt = val.Key;
-				    line_txt += equal_str;
-				    line_txt += val.Value;
+				    line_str = val.Key;
+				    line_str += equal_str;
+				    line_str += val.Value;
 
-				    txt_file.data.lineTextContainer.Add(line_txt);
+				    txt_file.data.lineStringContainer.Add(line_str);
 			    }
 
-			    txt_file.data.lineTextContainer.Add(System.String.Empty);
+			    txt_file.data.lineStringContainer.Add(System.String.Empty);
 		    }
         }
 

@@ -96,7 +96,7 @@ public class MenuFaqStageScript : ToffMonaka.UnityBase.Scene.MenuStageScript
             }
         }
 
-        this._cancelButtonNameText.SetText("キャンセル");
+        this._cancelButtonNameText.SetText(ToffMonaka.UnityBase.Global.GetString(ToffMonaka.UnityBase.Constant.Util.MST_STRING_ID.CANCEL));
 
         return (0);
     }
