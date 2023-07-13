@@ -60,19 +60,5 @@ public static class Util
         }
         public const int SCRIPT_INDEX_COUNT = (int)ToffMonaka.Lib.Constant.Util.SCENE.SCRIPT_INDEX.COUNT;
     }
-
-    public enum LANGUAGE_TYPE : int
-    {
-        NONE = 0,
-        ENGLISH,
-        JAPANESE,
-		COUNT
-    }
-    public const int LANGUAGE_TYPE_COUNT = (int)ToffMonaka.Lib.Constant.Util.LANGUAGE_TYPE.COUNT;
-    public static readonly string[] LANGUAGE_NAME_ARRAY = {
-        "",
-        "英語",
-        "日本語"
-    };
 }
 }

@@ -47,7 +47,7 @@ public class MenuOptionStageScript : ToffMonaka.UnityBase.Scene.MenuStageScript
     public new ToffMonaka.UnityBase.Scene.MenuOptionStageScriptCreateDesc createDesc{get; private set;} = null;
 
     private ToffMonaka.UnityBase.Scene.MenuScript _menuScript = null;
-    private ToffMonaka.Lib.Constant.Util.LANGUAGE_TYPE _languageType = ToffMonaka.Lib.Constant.Util.LANGUAGE_TYPE.NONE;
+    private ToffMonaka.UnityBase.Constant.Util.LANGUAGE_TYPE _languageType = ToffMonaka.UnityBase.Constant.Util.LANGUAGE_TYPE.NONE;
     private float _soundBgmVolume = 1.0f;
     private bool _soundBgmMuteFlag = false;
     private float _soundSeVolume = 1.0f;
@@ -91,12 +91,12 @@ public class MenuOptionStageScript : ToffMonaka.UnityBase.Scene.MenuStageScript
     {
         this._menuScript = this.createDesc.menuScript;
 
-        this._nameText.SetText(ToffMonaka.UnityBase.Constant.Util.SCENE.MENU_STAGE_NAME_ARRAY[(int)this.GetStageType()]);
+        this._nameText.SetText(ToffMonaka.UnityBase.Global.GetString(ToffMonaka.UnityBase.Constant.Util.SCENE.MENU_STAGE_NAME_MST_STRING_ID_ARRAY[(int)this.GetStageType()]));
 
-        this._languageNameText.SetText("言語");
-        this._soundNameText.SetText("サウンド");
-        this._soundBgmMuteToggleNameText.SetText("BGMミュート");
-        this._soundSeMuteToggleNameText.SetText("SEミュート");
+        this._languageNameText.SetText(ToffMonaka.UnityBase.Global.GetString(ToffMonaka.UnityBase.Constant.Util.MST_STRING_ID.LANGUAGE));
+        this._soundNameText.SetText(ToffMonaka.UnityBase.Global.GetString(ToffMonaka.UnityBase.Constant.Util.MST_STRING_ID.SOUND));
+        this._soundBgmMuteToggleNameText.SetText(ToffMonaka.UnityBase.Global.GetString(ToffMonaka.UnityBase.Constant.Util.MST_STRING_ID.BGM_MUTE));
+        this._soundSeMuteToggleNameText.SetText(ToffMonaka.UnityBase.Global.GetString(ToffMonaka.UnityBase.Constant.Util.MST_STRING_ID.SE_MUTE));
 
         this._okButtonNameText.SetText(ToffMonaka.UnityBase.Global.GetString(ToffMonaka.UnityBase.Constant.Util.MST_STRING_ID.OK));
         this._cancelButtonNameText.SetText(ToffMonaka.UnityBase.Global.GetString(ToffMonaka.UnityBase.Constant.Util.MST_STRING_ID.CANCEL));
@@ -507,7 +507,7 @@ public class MenuOptionStageScript : ToffMonaka.UnityBase.Scene.MenuStageScript
      * @brief GetLanguageType関数
      * @return language_type (language_type)
      */
-    public ToffMonaka.Lib.Constant.Util.LANGUAGE_TYPE GetLanguageType()
+    public ToffMonaka.UnityBase.Constant.Util.LANGUAGE_TYPE GetLanguageType()
     {
         return (this._languageType);
     }
@@ -516,11 +516,11 @@ public class MenuOptionStageScript : ToffMonaka.UnityBase.Scene.MenuStageScript
      * @brief SetLanguageType関数
      * @param language_type (language_type)
      */
-    public void SetLanguageType(ToffMonaka.Lib.Constant.Util.LANGUAGE_TYPE language_type)
+    public void SetLanguageType(ToffMonaka.UnityBase.Constant.Util.LANGUAGE_TYPE language_type)
     {
         this._languageType = language_type;
 
-        this._languageButtonNameText.SetText(ToffMonaka.Lib.Constant.Util.LANGUAGE_NAME_ARRAY[(int)this._languageType]);
+        this._languageButtonNameText.SetText(ToffMonaka.UnityBase.Global.GetString(ToffMonaka.UnityBase.Constant.Util.LANGUAGE_NAME_MST_STRING_ID_ARRAY[(int)this._languageType]));
 
         this._SetRestartFlag((this._languageType != ToffMonaka.UnityBase.Global.systemConfigFile.data.systemLanguageType) ? (this._restartFlag | 0x0001U) : (this._restartFlag & ~0x0001U));
 
@@ -544,7 +544,7 @@ public class MenuOptionStageScript : ToffMonaka.UnityBase.Scene.MenuStageScript
     {
         this._soundBgmVolume = (float)System.Math.Clamp(System.Math.Round(sound_bgm_volume, 1, System.MidpointRounding.AwayFromZero), 0.0, 1.0);
 
-        this._soundBgmVolumeSliderNameText.SetText("BGMボリューム " + (this._soundBgmVolume * 10.0f));
+        this._soundBgmVolumeSliderNameText.SetText(ToffMonaka.UnityBase.Global.GetString(ToffMonaka.UnityBase.Constant.Util.MST_STRING_ID.BGM_VOLUME) + " " + (this._soundBgmVolume * 10.0f));
         this._soundBgmVolumeSlider.SetValueWithoutNotify(this._soundBgmVolume * 10.0f);
 
         return;
@@ -589,7 +589,7 @@ public class MenuOptionStageScript : ToffMonaka.UnityBase.Scene.MenuStageScript
     {
         this._soundSeVolume = (float)System.Math.Clamp(System.Math.Round(sound_se_volume, 1, System.MidpointRounding.AwayFromZero), 0.0, 1.0);
 
-        this._soundSeVolumeSliderNameText.SetText("SEボリューム " + (this._soundSeVolume * 10.0f));
+        this._soundSeVolumeSliderNameText.SetText(ToffMonaka.UnityBase.Global.GetString(ToffMonaka.UnityBase.Constant.Util.MST_STRING_ID.SE_VOLUME) + " " + (this._soundSeVolume * 10.0f));
         this._soundSeVolumeSlider.SetValueWithoutNotify(this._soundSeVolume * 10.0f);
 
         return;
@@ -650,7 +650,7 @@ public class MenuOptionStageScript : ToffMonaka.UnityBase.Scene.MenuStageScript
      * @brief RunLanguageSelectLanguageButton関数
      * @param language_type (language_type)
      */
-    public void RunLanguageSelectLanguageButton(ToffMonaka.Lib.Constant.Util.LANGUAGE_TYPE language_type)
+    public void RunLanguageSelectLanguageButton(ToffMonaka.UnityBase.Constant.Util.LANGUAGE_TYPE language_type)
     {
         this.SetLanguageType(language_type);
 

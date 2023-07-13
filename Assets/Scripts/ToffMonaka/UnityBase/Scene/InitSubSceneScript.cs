@@ -68,7 +68,18 @@ public class InitSubSceneScript : ToffMonaka.Lib.Scene.SubSceneScript
 
         canvas_node.GetComponent<Canvas>().worldCamera = this.GetManager().GetMainSceneScript().GetMainCamera();
 
-        this._waitMessageText.SetText("ちょっと待ってね。");
+		switch (ToffMonaka.UnityBase.Global.systemConfigFile.data.systemLanguageType) {
+		case ToffMonaka.UnityBase.Constant.Util.LANGUAGE_TYPE.JAPANESE: {
+            this._waitMessageText.SetText("ちょっと待ってね。");
+
+			break;
+		}
+		default: {
+            this._waitMessageText.SetText("Please wait a second.");
+
+			break;
+		}
+		}
 
         return (0);
     }
@@ -113,15 +124,48 @@ public class InitSubSceneScript : ToffMonaka.Lib.Scene.SubSceneScript
 		case 1: {
             this._progressElapsedTime += Time.deltaTime;
 
-            if (this._progressElapsedTime >= 3.0f) {
-                this.Close(1);
-
-                this.SetProgressType(2);
-            }
+            this.SetProgressType(2);
 
 			break;
 		}
 		case 2: {
+            this._progressElapsedTime += Time.deltaTime;
+
+            {// MstStringTableFile Create
+		        switch (ToffMonaka.UnityBase.Global.systemConfigFile.data.systemLanguageType) {
+		        case ToffMonaka.UnityBase.Constant.Util.LANGUAGE_TYPE.JAPANESE: {
+                    ToffMonaka.UnityBase.Global.mstStringTableFile.readDesc.data.filePath = ToffMonaka.UnityBase.Constant.Util.FILE_PATH.MST_STRING_JAPANESE_TABLE;
+
+			        break;
+		        }
+		        default: {
+                    ToffMonaka.UnityBase.Global.mstStringTableFile.readDesc.data.filePath = ToffMonaka.UnityBase.Constant.Util.FILE_PATH.MST_STRING_ENGLISH_TABLE;
+
+			        break;
+		        }
+		        }
+
+                ToffMonaka.UnityBase.Global.mstStringTableFile.readDesc.data.addressablesFlag = true;
+
+                ToffMonaka.UnityBase.Global.mstStringTableFile.Read();
+            }
+
+            this.SetProgressType(3);
+
+			break;
+		}
+		case 3: {
+            this._progressElapsedTime += Time.deltaTime;
+
+            if (this._progressElapsedTime >= 3.0f) {
+                this.Close(1);
+
+                this.SetProgressType(4);
+            }
+
+			break;
+		}
+		case 4: {
 			break;
 		}
 		}

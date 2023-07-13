@@ -117,33 +117,14 @@ public class MainSceneScript : ToffMonaka.Lib.Scene.MainSceneScript
     protected override void _OnStartApplication()
     {
         {// SystemConfigFile Create
-            ToffMonaka.UnityBase.Global.systemConfigFile.readDesc.data.filePath = Application.persistentDataPath + "/dat/sys_conf.ini";
-            ToffMonaka.UnityBase.Global.systemConfigFile.writeDesc.data.filePath = Application.persistentDataPath + "/dat/sys_conf.ini";
+            ToffMonaka.UnityBase.Global.systemConfigFile.readDesc.data.filePath = Application.persistentDataPath + "/" + ToffMonaka.UnityBase.Constant.Util.FILE_PATH.SYSTEM_CONFIG;
+            ToffMonaka.UnityBase.Global.systemConfigFile.writeDesc.data.filePath = Application.persistentDataPath + "/" + ToffMonaka.UnityBase.Constant.Util.FILE_PATH.SYSTEM_CONFIG;
 
             if (ToffMonaka.Lib.Data.Util.IsExistFile(ToffMonaka.UnityBase.Global.systemConfigFile.readDesc.data.filePath)) {
                 ToffMonaka.UnityBase.Global.systemConfigFile.Read();
             } else {
                 ToffMonaka.UnityBase.Global.systemConfigFile.Write();
             }
-        }
-
-        {// MstStringTableFile Create
-		    switch (ToffMonaka.UnityBase.Global.systemConfigFile.data.systemLanguageType) {
-		    case ToffMonaka.Lib.Constant.Util.LANGUAGE_TYPE.JAPANESE: {
-                ToffMonaka.UnityBase.Global.mstStringTableFile.readDesc.data.filePath = ToffMonaka.UnityBase.Constant.Util.FILE_PATH.MST_STRING_JAPANESE_TABLE;
-
-			    break;
-		    }
-		    default: {
-                ToffMonaka.UnityBase.Global.mstStringTableFile.readDesc.data.filePath = ToffMonaka.UnityBase.Constant.Util.FILE_PATH.MST_STRING_ENGLISH_TABLE;
-
-			    break;
-		    }
-		    }
-
-            ToffMonaka.UnityBase.Global.mstStringTableFile.readDesc.data.addressablesFlag = true;
-
-            ToffMonaka.UnityBase.Global.mstStringTableFile.Read();
         }
 
         this._CreateManager();

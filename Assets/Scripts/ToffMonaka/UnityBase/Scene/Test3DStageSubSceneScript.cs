@@ -69,7 +69,7 @@ public class Test3DStageSubSceneScript : ToffMonaka.UnityBase.Scene.StageSubScen
 
         canvas_node.GetComponent<Canvas>().worldCamera = this.GetManager().GetMainSceneScript().GetMainCamera();
 
-        this._nameText.SetText(ToffMonaka.UnityBase.Constant.Util.SCENE.STAGE_NAME_ARRAY[(int)this.GetStageType()]);
+        this._nameText.SetText(ToffMonaka.UnityBase.Global.GetString(ToffMonaka.UnityBase.Constant.Util.SCENE.STAGE_NAME_MST_STRING_ID_ARRAY[(int)this.GetStageType()]));
 
         {// MenuScript Create
             var script = this._menuNode.GetComponent<ToffMonaka.UnityBase.Scene.MenuScript>();

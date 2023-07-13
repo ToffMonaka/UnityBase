@@ -73,7 +73,7 @@ public class StageSelectSubSceneScript : ToffMonaka.UnityBase.Scene.SelectSubSce
 
         canvas_node.GetComponent<Canvas>().worldCamera = this.GetManager().GetMainSceneScript().GetMainCamera();
 
-        this._nameText.SetText(ToffMonaka.UnityBase.Constant.Util.SCENE.SELECT_NAME_ARRAY[(int)this.GetSelectType()]);
+        this._nameText.SetText(ToffMonaka.UnityBase.Global.GetString(ToffMonaka.UnityBase.Constant.Util.SCENE.SELECT_NAME_MST_STRING_ID_ARRAY[(int)this.GetSelectType()]));
 
         this._stageButtonNode.SetActive(false);
 

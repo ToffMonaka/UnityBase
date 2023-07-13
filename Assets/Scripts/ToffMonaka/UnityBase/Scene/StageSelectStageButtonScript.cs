@@ -68,7 +68,7 @@ public class StageSelectStageButtonScript : ToffMonaka.Lib.Scene.ObjectScript
         this._stageSelectScript = this.createDesc.stageSelectScript;
         this._stageType = this.createDesc.stageType;
 
-        this._nameText.SetText(ToffMonaka.UnityBase.Constant.Util.SCENE.STAGE_NAME_ARRAY[(int)this._stageType]);
+        this._nameText.SetText(ToffMonaka.UnityBase.Global.GetString(ToffMonaka.UnityBase.Constant.Util.SCENE.STAGE_NAME_MST_STRING_ID_ARRAY[(int)this._stageType]));
 
         return (0);
     }

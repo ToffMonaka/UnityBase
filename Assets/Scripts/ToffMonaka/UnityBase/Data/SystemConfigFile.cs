@@ -14,7 +14,7 @@ namespace ToffMonaka.UnityBase.Data {
  */
 public class SystemConfigFileData
 {
-    public ToffMonaka.Lib.Constant.Util.LANGUAGE_TYPE systemLanguageType = ToffMonaka.Lib.Constant.Util.LANGUAGE_TYPE.ENGLISH;
+    public ToffMonaka.UnityBase.Constant.Util.LANGUAGE_TYPE systemLanguageType = ToffMonaka.UnityBase.Constant.Util.LANGUAGE_TYPE.ENGLISH;
     public float soundBgmVolume = 0.5f;
     public bool soundBgmMuteFlag = false;
     public float soundSeVolume = 0.5f;
@@ -43,7 +43,7 @@ public class SystemConfigFileData
     {
         this._Release();
 
-        this.systemLanguageType = ToffMonaka.Lib.Constant.Util.LANGUAGE_TYPE.ENGLISH;
+        this.systemLanguageType = ToffMonaka.UnityBase.Constant.Util.LANGUAGE_TYPE.ENGLISH;
         this.soundBgmVolume = 0.5f;
         this.soundBgmMuteFlag = false;
         this.soundSeVolume = 0.5f;
@@ -128,7 +128,7 @@ public class SystemConfigFile : ToffMonaka.Lib.Data.File
 		        val = ini_file.data.GetValue(key_cont, "LANGUAGE_TYPE");
 
 		        if (val != null) {
-                    this.data.systemLanguageType = (ToffMonaka.Lib.Constant.Util.LANGUAGE_TYPE)(int.Parse(val));
+                    this.data.systemLanguageType = (ToffMonaka.UnityBase.Constant.Util.LANGUAGE_TYPE)(int.Parse(val));
 		        }
 	        }
         }

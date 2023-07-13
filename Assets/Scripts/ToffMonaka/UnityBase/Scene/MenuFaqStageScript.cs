@@ -70,7 +70,7 @@ public class MenuFaqStageScript : ToffMonaka.UnityBase.Scene.MenuStageScript
     {
         this._menuScript = this.createDesc.menuScript;
 
-        this._nameText.SetText(ToffMonaka.UnityBase.Constant.Util.SCENE.MENU_STAGE_NAME_ARRAY[(int)this.GetStageType()]);
+        this._nameText.SetText(ToffMonaka.UnityBase.Global.GetString(ToffMonaka.UnityBase.Constant.Util.SCENE.MENU_STAGE_NAME_MST_STRING_ID_ARRAY[(int)this.GetStageType()]));
 
         this._messageNode.SetActive(false);
 
@@ -83,7 +83,18 @@ public class MenuFaqStageScript : ToffMonaka.UnityBase.Scene.MenuStageScript
             };
             string[] str_ary;
 
-            str_ary = jp_str_ary;
+		    switch (ToffMonaka.UnityBase.Global.systemConfigFile.data.systemLanguageType) {
+		    case ToffMonaka.UnityBase.Constant.Util.LANGUAGE_TYPE.JAPANESE: {
+                str_ary = jp_str_ary;
+
+			    break;
+		    }
+		    default: {
+                str_ary = en_str_ary;
+
+			    break;
+		    }
+		    }
 
             for (int str_i = 0; str_i < str_ary.Length; ++str_i) {
                 var str = (str_i <= 0) ? str_ary[str_i] : "\n" + str_ary[str_i];

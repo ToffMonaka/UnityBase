@@ -69,7 +69,7 @@ public class MenuCheatStageCommandButtonScript : ToffMonaka.Lib.Scene.ObjectScri
         this._menuCheatStageScript = this.createDesc.menuCheatStageScript;
         this._commandType = this.createDesc.commandType;
 
-        this._nameText.SetText(ToffMonaka.UnityBase.Constant.Util.SCENE.MENU_CHEAT_STAGE_COMMAND_NAME_ARRAY[(int)this._commandType]);
+        this._nameText.SetText(ToffMonaka.UnityBase.Global.GetString(ToffMonaka.UnityBase.Constant.Util.SCENE.MENU_CHEAT_STAGE_COMMAND_NAME_MST_STRING_ID_ARRAY[(int)this._commandType]));
 
         var param = ToffMonaka.UnityBase.Constant.Util.SCENE.MENU_CHEAT_STAGE_COMMAND_PARAMETER_ARRAY[(int)this._commandType];
 
