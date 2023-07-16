@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5005870214348295541}
   - component: {fileID: 5005870214348295540}
   m_Layer: 5
-  m_Name: WaitMessage
+  m_Name: Message
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -67,7 +67,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u3061\u3087\u3063\u3068\u5F85\u3063\u3066\u306D\u3002"
+  m_text: Message
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 10b1425359631ac45b19ba6289bceb8e, type: 2}
   m_sharedMaterial: {fileID: 6640080809031121270, guid: 10b1425359631ac45b19ba6289bceb8e, type: 2}
@@ -195,8 +195,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64a1ba76ea2c6ee47a43e2536b327d48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _messageText: {fileID: 5005870214348295541}
   _openCloseFadeImage: {fileID: 1761932240890258167}
-  _waitMessageText: {fileID: 5005870214348295541}
 --- !u!1 &5005870214630189813
 GameObject:
   m_ObjectHideFlags: 0

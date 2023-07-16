@@ -76,7 +76,7 @@ public class MenuLicenseStageScript : ToffMonaka.UnityBase.Scene.MenuStageScript
 
         {// MessageNode Create
             var en_str_ary = new string[]{
-                "Coming soon."
+                "In preparation."
             };
             var jp_str_ary = new string[]{
                 "準備中です。"

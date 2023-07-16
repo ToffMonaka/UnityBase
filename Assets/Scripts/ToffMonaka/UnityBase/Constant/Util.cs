@@ -206,7 +206,8 @@ public static class Util
         DELETE_DATA,
         STAGE,
         TEST_2D,
-        TEST_3D
+        TEST_3D,
+        IN_PREPARATION
     }
 
     public enum LANGUAGE_TYPE : int

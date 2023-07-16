@@ -23,7 +23,7 @@ public class InitSubSceneScriptCreateDesc : ToffMonaka.Lib.Scene.SubSceneScriptC
  */
 public class InitSubSceneScript : ToffMonaka.Lib.Scene.SubSceneScript
 {
-    [SerializeField] private TMP_Text _waitMessageText = null;
+    [SerializeField] private TMP_Text _messageText = null;
     [SerializeField] private Image _openCloseFadeImage = null;
 
     public new ToffMonaka.UnityBase.Scene.InitSubSceneScriptCreateDesc createDesc{get; private set;} = null;
@@ -70,12 +70,12 @@ public class InitSubSceneScript : ToffMonaka.Lib.Scene.SubSceneScript
 
 		switch (ToffMonaka.UnityBase.Global.systemConfigFile.data.systemLanguageType) {
 		case ToffMonaka.UnityBase.Constant.Util.LANGUAGE_TYPE.JAPANESE: {
-            this._waitMessageText.SetText("ちょっと待ってね。");
+            this._messageText.SetText("ちょっと待ってね。");
 
 			break;
 		}
 		default: {
-            this._waitMessageText.SetText("Please wait a second.");
+            this._messageText.SetText("Please wait a second.");
 
 			break;
 		}

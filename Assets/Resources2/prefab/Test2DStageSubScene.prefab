@@ -196,6 +196,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _nameText: {fileID: 7570988747602912193}
+  _messageText: {fileID: 5593372824670538165}
   _menuNode: {fileID: 8435002788330802877}
   _openCloseFadeImage: {fileID: 3394097602460832586}
 --- !u!1 &5609580938775930790
@@ -392,7 +393,7 @@ GameObject:
   - component: {fileID: 8510393522490027333}
   - component: {fileID: 5593372824670538165}
   m_Layer: 5
-  m_Name: ReadyMessage
+  m_Name: Message
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -460,7 +461,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u6E96\u5099\u4E2D\u3067\u3059\u3002"
+  m_text: Message
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 10b1425359631ac45b19ba6289bceb8e, type: 2}
   m_sharedMaterial: {fileID: 6640080809031121270, guid: 10b1425359631ac45b19ba6289bceb8e, type: 2}

@@ -299,11 +299,11 @@ public class MenuOptionStageScript : ToffMonaka.UnityBase.Scene.MenuStageScript
             return;
         }
 
-        ToffMonaka.Lib.Scene.Util.GetSoundManager().PlaySe((int)ToffMonaka.UnityBase.Constant.Util.SOUND.SE_INDEX.OK2);
-
         this.SetSoundBgmVolume(this._soundBgmVolumeSlider.value / 10.0f);
 
         ToffMonaka.Lib.Scene.Util.GetSoundManager().SetBgmVolume(this._soundBgmVolume);
+
+        ToffMonaka.Lib.Scene.Util.GetSoundManager().PlaySe((int)ToffMonaka.UnityBase.Constant.Util.SOUND.SE_INDEX.OK2);
 
         return;
     }
@@ -317,15 +317,15 @@ public class MenuOptionStageScript : ToffMonaka.UnityBase.Scene.MenuStageScript
             return;
         }
 
-        if (this._soundBgmMuteToggle.isOn) {
+        this.SetSoundBgmMuteFlag(this._soundBgmMuteToggle.isOn);
+
+        ToffMonaka.Lib.Scene.Util.GetSoundManager().SetBgmMuteFlag(this._soundBgmMuteFlag);
+
+        if (this._soundBgmMuteFlag) {
             ToffMonaka.Lib.Scene.Util.GetSoundManager().PlaySe((int)ToffMonaka.UnityBase.Constant.Util.SOUND.SE_INDEX.OK2);
         } else {
             ToffMonaka.Lib.Scene.Util.GetSoundManager().PlaySe((int)ToffMonaka.UnityBase.Constant.Util.SOUND.SE_INDEX.CANCEL);
         }
-
-        this.SetSoundBgmMuteFlag(this._soundBgmMuteToggle.isOn);
-
-        ToffMonaka.Lib.Scene.Util.GetSoundManager().SetBgmMuteFlag(this._soundBgmMuteFlag);
 
         return;
     }
@@ -339,11 +339,11 @@ public class MenuOptionStageScript : ToffMonaka.UnityBase.Scene.MenuStageScript
             return;
         }
 
-        ToffMonaka.Lib.Scene.Util.GetSoundManager().PlaySe((int)ToffMonaka.UnityBase.Constant.Util.SOUND.SE_INDEX.OK2);
-
         this.SetSoundSeVolume(this._soundSeVolumeSlider.value / 10.0f);
      
         ToffMonaka.Lib.Scene.Util.GetSoundManager().SetSeVolume(this._soundSeVolume);
+
+        ToffMonaka.Lib.Scene.Util.GetSoundManager().PlaySe((int)ToffMonaka.UnityBase.Constant.Util.SOUND.SE_INDEX.OK2);
 
         return;
     }
@@ -357,15 +357,15 @@ public class MenuOptionStageScript : ToffMonaka.UnityBase.Scene.MenuStageScript
             return;
         }
 
-        if (this._soundSeMuteToggle.isOn) {
+        this.SetSoundSeMuteFlag(this._soundSeMuteToggle.isOn);
+
+        ToffMonaka.Lib.Scene.Util.GetSoundManager().SetSeMuteFlag(this._soundSeMuteFlag);
+
+        if (this._soundSeMuteFlag) {
             ToffMonaka.Lib.Scene.Util.GetSoundManager().PlaySe((int)ToffMonaka.UnityBase.Constant.Util.SOUND.SE_INDEX.OK2);
         } else {
             ToffMonaka.Lib.Scene.Util.GetSoundManager().PlaySe((int)ToffMonaka.UnityBase.Constant.Util.SOUND.SE_INDEX.CANCEL);
         }
-
-        this.SetSoundSeMuteFlag(this._soundSeMuteToggle.isOn);
-
-        ToffMonaka.Lib.Scene.Util.GetSoundManager().SetSeMuteFlag(this._soundSeMuteFlag);
 
         return;
     }
