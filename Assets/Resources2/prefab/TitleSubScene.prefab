@@ -804,8 +804,8 @@ MonoBehaviour:
         - m_Target: {fileID: 1097313806984316291}
           m_TargetAssemblyTypeName: ToffMonaka.UnityBase.Scene.TitleSubSceneScript,
             Assembly-CSharp
-          m_MethodName: OnStartButtonPointerClickEvent
-          m_Mode: 1
+          m_MethodName: OnStartButtonPointerClick
+          m_Mode: 0
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

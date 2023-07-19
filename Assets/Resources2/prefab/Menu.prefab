@@ -319,8 +319,8 @@ MonoBehaviour:
       - m_Target: {fileID: 8219384215452730043}
         m_TargetAssemblyTypeName: ToffMonaka.UnityBase.Scene.MenuEndStageScript,
           Assembly-CSharp
-        m_MethodName: OnEndToggleValueChangedEvent
-        m_Mode: 1
+        m_MethodName: OnEndToggleValueChanged
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -770,8 +770,8 @@ MonoBehaviour:
         - m_Target: {fileID: 5157123649545789300}
           m_TargetAssemblyTypeName: ToffMonaka.UnityBase.Scene.MenuOptionStageScript,
             Assembly-CSharp
-          m_MethodName: OnLanguageButtonPointerClickEvent
-          m_Mode: 1
+          m_MethodName: OnLanguageButtonPointerClick
+          m_Mode: 0
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -787,8 +787,8 @@ MonoBehaviour:
         - m_Target: {fileID: 5157123649545789300}
           m_TargetAssemblyTypeName: ToffMonaka.UnityBase.Scene.MenuOptionStageScript,
             Assembly-CSharp
-          m_MethodName: OnLanguageButtonPointerEnterEvent
-          m_Mode: 1
+          m_MethodName: OnLanguageButtonPointerEnter
+          m_Mode: 0
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -804,8 +804,8 @@ MonoBehaviour:
         - m_Target: {fileID: 5157123649545789300}
           m_TargetAssemblyTypeName: ToffMonaka.UnityBase.Scene.MenuOptionStageScript,
             Assembly-CSharp
-          m_MethodName: OnLanguageButtonPointerExitEvent
-          m_Mode: 1
+          m_MethodName: OnLanguageButtonPointerExit
+          m_Mode: 0
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -1141,7 +1141,7 @@ MonoBehaviour:
   m_Elasticity: 0.1
   m_Inertia: 1
   m_DecelerationRate: 0.135
-  m_ScrollSensitivity: 1
+  m_ScrollSensitivity: 20
   m_Viewport: {fileID: 3844440940479347415}
   m_HorizontalScrollbar: {fileID: 0}
   m_VerticalScrollbar: {fileID: 3995391826615732161}
@@ -2157,7 +2157,6 @@ GameObject:
   m_Component:
   - component: {fileID: 8429343049052271168}
   - component: {fileID: 439449257700702003}
-  - component: {fileID: 1766606117595784837}
   - component: {fileID: 6148073710653987064}
   - component: {fileID: 8194479941246047403}
   m_Layer: 5
@@ -2205,70 +2204,6 @@ MonoBehaviour:
   _nameText: {fileID: 2950540292237557017}
   _detailText: {fileID: 1956280531633072428}
   _coverImage: {fileID: 5615118956870745837}
---- !u!114 &1766606117595784837
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1252633328980816030}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Delegates:
-  - eventID: 4
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 439449257700702003}
-          m_TargetAssemblyTypeName: ToffMonaka.UnityBase.Scene.MenuCheatStageCommandButtonScript,
-            Assembly-CSharp
-          m_MethodName: OnPointerClickEvent
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  - eventID: 0
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 439449257700702003}
-          m_TargetAssemblyTypeName: ToffMonaka.UnityBase.Scene.MenuCheatStageCommandButtonScript,
-            Assembly-CSharp
-          m_MethodName: OnPointerEnterEvent
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  - eventID: 1
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 439449257700702003}
-          m_TargetAssemblyTypeName: ToffMonaka.UnityBase.Scene.MenuCheatStageCommandButtonScript,
-            Assembly-CSharp
-          m_MethodName: OnPointerExitEvent
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
 --- !u!222 &6148073710653987064
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2759,8 +2694,8 @@ MonoBehaviour:
         - m_Target: {fileID: 5157123649545789300}
           m_TargetAssemblyTypeName: ToffMonaka.UnityBase.Scene.MenuOptionStageScript,
             Assembly-CSharp
-          m_MethodName: OnOkButtonPointerClickEvent
-          m_Mode: 1
+          m_MethodName: OnOkButtonPointerClick
+          m_Mode: 0
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -2776,8 +2711,8 @@ MonoBehaviour:
         - m_Target: {fileID: 5157123649545789300}
           m_TargetAssemblyTypeName: ToffMonaka.UnityBase.Scene.MenuOptionStageScript,
             Assembly-CSharp
-          m_MethodName: OnOkButtonPointerEnterEvent
-          m_Mode: 1
+          m_MethodName: OnOkButtonPointerEnter
+          m_Mode: 0
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -2793,8 +2728,8 @@ MonoBehaviour:
         - m_Target: {fileID: 5157123649545789300}
           m_TargetAssemblyTypeName: ToffMonaka.UnityBase.Scene.MenuOptionStageScript,
             Assembly-CSharp
-          m_MethodName: OnOkButtonPointerExitEvent
-          m_Mode: 1
+          m_MethodName: OnOkButtonPointerExit
+          m_Mode: 0
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -3012,7 +2947,7 @@ MonoBehaviour:
   m_Elasticity: 0.1
   m_Inertia: 1
   m_DecelerationRate: 0.135
-  m_ScrollSensitivity: 1
+  m_ScrollSensitivity: 20
   m_Viewport: {fileID: 6316595634870198447}
   m_HorizontalScrollbar: {fileID: 0}
   m_VerticalScrollbar: {fileID: 326679021319760714}
@@ -3777,8 +3712,8 @@ MonoBehaviour:
         - m_Target: {fileID: 5157123649545789300}
           m_TargetAssemblyTypeName: ToffMonaka.UnityBase.Scene.MenuOptionStageScript,
             Assembly-CSharp
-          m_MethodName: OnCancelButtonPointerClickEvent
-          m_Mode: 1
+          m_MethodName: OnCancelButtonPointerClick
+          m_Mode: 0
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -3794,8 +3729,8 @@ MonoBehaviour:
         - m_Target: {fileID: 5157123649545789300}
           m_TargetAssemblyTypeName: ToffMonaka.UnityBase.Scene.MenuOptionStageScript,
             Assembly-CSharp
-          m_MethodName: OnCancelButtonPointerEnterEvent
-          m_Mode: 1
+          m_MethodName: OnCancelButtonPointerEnter
+          m_Mode: 0
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -3811,8 +3746,8 @@ MonoBehaviour:
         - m_Target: {fileID: 5157123649545789300}
           m_TargetAssemblyTypeName: ToffMonaka.UnityBase.Scene.MenuOptionStageScript,
             Assembly-CSharp
-          m_MethodName: OnCancelButtonPointerExitEvent
-          m_Mode: 1
+          m_MethodName: OnCancelButtonPointerExit
+          m_Mode: 0
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -4716,7 +4651,7 @@ MonoBehaviour:
   m_Elasticity: 0.1
   m_Inertia: 1
   m_DecelerationRate: 0.135
-  m_ScrollSensitivity: 1
+  m_ScrollSensitivity: 20
   m_Viewport: {fileID: 6509503939550871191}
   m_HorizontalScrollbar: {fileID: 0}
   m_VerticalScrollbar: {fileID: 2360030617910534135}
@@ -5170,20 +5105,7 @@ MonoBehaviour:
   m_CharacterLimit: 0
   m_OnEndEdit:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 7303583434945111961}
-        m_TargetAssemblyTypeName: ToffMonaka.UnityBase.Scene.MenuCheatStageScript,
-          Assembly-CSharp
-        m_MethodName: OnCommandInputFieldEndEditEvent
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   m_OnSubmit:
     m_PersistentCalls:
       m_Calls: []
@@ -5346,7 +5268,7 @@ MonoBehaviour:
   m_Elasticity: 0.1
   m_Inertia: 1
   m_DecelerationRate: 0.135
-  m_ScrollSensitivity: 1
+  m_ScrollSensitivity: 20
   m_Viewport: {fileID: 4635862102626871208}
   m_HorizontalScrollbar: {fileID: 0}
   m_VerticalScrollbar: {fileID: 2764950345352328315}
@@ -7356,8 +7278,8 @@ MonoBehaviour:
       - m_Target: {fileID: 5157123649545789300}
         m_TargetAssemblyTypeName: ToffMonaka.UnityBase.Scene.MenuOptionStageScript,
           Assembly-CSharp
-        m_MethodName: OnSoundSeMuteToggleValueChangedEvent
-        m_Mode: 1
+        m_MethodName: OnSoundSeMuteToggleValueChanged
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -11014,8 +10936,8 @@ MonoBehaviour:
         - m_Target: {fileID: 8219384215452730043}
           m_TargetAssemblyTypeName: ToffMonaka.UnityBase.Scene.MenuEndStageScript,
             Assembly-CSharp
-          m_MethodName: OnCancelButtonPointerClickEvent
-          m_Mode: 1
+          m_MethodName: OnCancelButtonPointerClick
+          m_Mode: 0
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -11031,8 +10953,8 @@ MonoBehaviour:
         - m_Target: {fileID: 8219384215452730043}
           m_TargetAssemblyTypeName: ToffMonaka.UnityBase.Scene.MenuEndStageScript,
             Assembly-CSharp
-          m_MethodName: OnCancelButtonPointerEnterEvent
-          m_Mode: 1
+          m_MethodName: OnCancelButtonPointerEnter
+          m_Mode: 0
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -11048,8 +10970,8 @@ MonoBehaviour:
         - m_Target: {fileID: 8219384215452730043}
           m_TargetAssemblyTypeName: ToffMonaka.UnityBase.Scene.MenuEndStageScript,
             Assembly-CSharp
-          m_MethodName: OnCancelButtonPointerExitEvent
-          m_Mode: 1
+          m_MethodName: OnCancelButtonPointerExit
+          m_Mode: 0
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -11674,8 +11596,8 @@ MonoBehaviour:
         - m_Target: {fileID: 7303583434945111961}
           m_TargetAssemblyTypeName: ToffMonaka.UnityBase.Scene.MenuCheatStageScript,
             Assembly-CSharp
-          m_MethodName: OnOkButtonPointerClickEvent
-          m_Mode: 1
+          m_MethodName: OnOkButtonPointerClick
+          m_Mode: 0
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -11691,8 +11613,8 @@ MonoBehaviour:
         - m_Target: {fileID: 7303583434945111961}
           m_TargetAssemblyTypeName: ToffMonaka.UnityBase.Scene.MenuCheatStageScript,
             Assembly-CSharp
-          m_MethodName: OnOkButtonPointerEnterEvent
-          m_Mode: 1
+          m_MethodName: OnOkButtonPointerEnter
+          m_Mode: 0
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -11708,8 +11630,8 @@ MonoBehaviour:
         - m_Target: {fileID: 7303583434945111961}
           m_TargetAssemblyTypeName: ToffMonaka.UnityBase.Scene.MenuCheatStageScript,
             Assembly-CSharp
-          m_MethodName: OnOkButtonPointerExitEvent
-          m_Mode: 1
+          m_MethodName: OnOkButtonPointerExit
+          m_Mode: 0
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -12735,10 +12657,10 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 5898188832322065501}
-          m_TargetAssemblyTypeName: ToffMonaka.UnityBase.Scene.MenuStartButtonScript,
+          m_TargetAssemblyTypeName: ToffMonaka.UnityBase.Scene.MenuOpenCloseButtonScript,
             Assembly-CSharp
-          m_MethodName: OnPointerClickEvent
-          m_Mode: 1
+          m_MethodName: OnPointerClick
+          m_Mode: 0
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -12752,10 +12674,10 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 5898188832322065501}
-          m_TargetAssemblyTypeName: ToffMonaka.UnityBase.Scene.MenuStartButtonScript,
+          m_TargetAssemblyTypeName: ToffMonaka.UnityBase.Scene.MenuOpenCloseButtonScript,
             Assembly-CSharp
-          m_MethodName: OnPointerEnterEvent
-          m_Mode: 1
+          m_MethodName: OnPointerEnter
+          m_Mode: 0
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -12769,10 +12691,10 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 5898188832322065501}
-          m_TargetAssemblyTypeName: ToffMonaka.UnityBase.Scene.MenuStartButtonScript,
+          m_TargetAssemblyTypeName: ToffMonaka.UnityBase.Scene.MenuOpenCloseButtonScript,
             Assembly-CSharp
-          m_MethodName: OnPointerExitEvent
-          m_Mode: 1
+          m_MethodName: OnPointerExit
+          m_Mode: 0
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -13091,8 +13013,8 @@ MonoBehaviour:
         - m_Target: {fileID: 8219384215452730043}
           m_TargetAssemblyTypeName: ToffMonaka.UnityBase.Scene.MenuEndStageScript,
             Assembly-CSharp
-          m_MethodName: OnOkButtonPointerClickEvent
-          m_Mode: 1
+          m_MethodName: OnOkButtonPointerClick
+          m_Mode: 0
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -13108,8 +13030,8 @@ MonoBehaviour:
         - m_Target: {fileID: 8219384215452730043}
           m_TargetAssemblyTypeName: ToffMonaka.UnityBase.Scene.MenuEndStageScript,
             Assembly-CSharp
-          m_MethodName: OnOkButtonPointerEnterEvent
-          m_Mode: 1
+          m_MethodName: OnOkButtonPointerEnter
+          m_Mode: 0
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -13125,8 +13047,8 @@ MonoBehaviour:
         - m_Target: {fileID: 8219384215452730043}
           m_TargetAssemblyTypeName: ToffMonaka.UnityBase.Scene.MenuEndStageScript,
             Assembly-CSharp
-          m_MethodName: OnOkButtonPointerExitEvent
-          m_Mode: 1
+          m_MethodName: OnOkButtonPointerExit
+          m_Mode: 0
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -13370,8 +13292,8 @@ MonoBehaviour:
       - m_Target: {fileID: 5157123649545789300}
         m_TargetAssemblyTypeName: ToffMonaka.UnityBase.Scene.MenuOptionStageScript,
           Assembly-CSharp
-        m_MethodName: OnSoundSeVolumeSliderValueChangedEvent
-        m_Mode: 1
+        m_MethodName: OnSoundSeVolumeSliderValueChanged
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -13494,8 +13416,8 @@ MonoBehaviour:
       - m_Target: {fileID: 5157123649545789300}
         m_TargetAssemblyTypeName: ToffMonaka.UnityBase.Scene.MenuOptionStageScript,
           Assembly-CSharp
-        m_MethodName: OnSoundBgmVolumeSliderValueChangedEvent
-        m_Mode: 1
+        m_MethodName: OnSoundBgmVolumeSliderValueChanged
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -13605,7 +13527,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2769128967353614159}
   - component: {fileID: 6817425398046809972}
-  - component: {fileID: 1008519753965019411}
   - component: {fileID: 9185509473394452581}
   - component: {fileID: 1589349712551768024}
   m_Layer: 5
@@ -13651,70 +13572,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _nameText: {fileID: 8057116083941878297}
   _coverImage: {fileID: 845104166122604771}
---- !u!114 &1008519753965019411
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6645140615341237542}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Delegates:
-  - eventID: 4
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 6817425398046809972}
-          m_TargetAssemblyTypeName: ToffMonaka.UnityBase.Scene.MenuOptionStageLanguageSelectLanguageButtonScript,
-            Assembly-CSharp
-          m_MethodName: OnPointerClickEvent
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  - eventID: 0
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 6817425398046809972}
-          m_TargetAssemblyTypeName: ToffMonaka.UnityBase.Scene.MenuOptionStageLanguageSelectLanguageButtonScript,
-            Assembly-CSharp
-          m_MethodName: OnPointerEnterEvent
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  - eventID: 1
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 6817425398046809972}
-          m_TargetAssemblyTypeName: ToffMonaka.UnityBase.Scene.MenuOptionStageLanguageSelectLanguageButtonScript,
-            Assembly-CSharp
-          m_MethodName: OnPointerExitEvent
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
 --- !u!222 &9185509473394452581
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -14848,8 +14705,8 @@ MonoBehaviour:
         - m_Target: {fileID: 2524354789726119884}
           m_TargetAssemblyTypeName: ToffMonaka.UnityBase.Scene.MenuFaqStageScript,
             Assembly-CSharp
-          m_MethodName: OnCancelButtonPointerClickEvent
-          m_Mode: 1
+          m_MethodName: OnCancelButtonPointerClick
+          m_Mode: 0
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -14865,8 +14722,8 @@ MonoBehaviour:
         - m_Target: {fileID: 2524354789726119884}
           m_TargetAssemblyTypeName: ToffMonaka.UnityBase.Scene.MenuFaqStageScript,
             Assembly-CSharp
-          m_MethodName: OnCancelButtonPointerEnterEvent
-          m_Mode: 1
+          m_MethodName: OnCancelButtonPointerEnter
+          m_Mode: 0
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -14882,8 +14739,8 @@ MonoBehaviour:
         - m_Target: {fileID: 2524354789726119884}
           m_TargetAssemblyTypeName: ToffMonaka.UnityBase.Scene.MenuFaqStageScript,
             Assembly-CSharp
-          m_MethodName: OnCancelButtonPointerExitEvent
-          m_Mode: 1
+          m_MethodName: OnCancelButtonPointerExit
+          m_Mode: 0
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -15602,8 +15459,8 @@ MonoBehaviour:
       - m_Target: {fileID: 8219384215452730043}
         m_TargetAssemblyTypeName: ToffMonaka.UnityBase.Scene.MenuEndStageScript,
           Assembly-CSharp
-        m_MethodName: OnRestartToggleValueChangedEvent
-        m_Mode: 1
+        m_MethodName: OnRestartToggleValueChanged
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -16232,7 +16089,6 @@ GameObject:
   m_Component:
   - component: {fileID: 3694928659232261277}
   - component: {fileID: 2335158556932649560}
-  - component: {fileID: 87382172146748104}
   - component: {fileID: 1983829959039893110}
   - component: {fileID: 8165453883870889443}
   m_Layer: 5
@@ -16278,70 +16134,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _nameText: {fileID: 168129505337395637}
   _coverImage: {fileID: 348405955200624348}
---- !u!114 &87382172146748104
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7769016851166805710}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Delegates:
-  - eventID: 4
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 2335158556932649560}
-          m_TargetAssemblyTypeName: ToffMonaka.UnityBase.Scene.MenuSelectStageButtonScript,
-            Assembly-CSharp
-          m_MethodName: OnPointerClickEvent
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  - eventID: 0
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 2335158556932649560}
-          m_TargetAssemblyTypeName: ToffMonaka.UnityBase.Scene.MenuSelectStageButtonScript,
-            Assembly-CSharp
-          m_MethodName: OnPointerEnterEvent
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  - eventID: 1
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 2335158556932649560}
-          m_TargetAssemblyTypeName: ToffMonaka.UnityBase.Scene.MenuSelectStageButtonScript,
-            Assembly-CSharp
-          m_MethodName: OnPointerExitEvent
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
 --- !u!222 &1983829959039893110
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -16441,8 +16233,8 @@ MonoBehaviour:
         - m_Target: {fileID: 5664511488434716458}
           m_TargetAssemblyTypeName: ToffMonaka.UnityBase.Scene.MenuStaffStageScript,
             Assembly-CSharp
-          m_MethodName: OnCancelButtonPointerClickEvent
-          m_Mode: 1
+          m_MethodName: OnCancelButtonPointerClick
+          m_Mode: 0
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -16458,8 +16250,8 @@ MonoBehaviour:
         - m_Target: {fileID: 5664511488434716458}
           m_TargetAssemblyTypeName: ToffMonaka.UnityBase.Scene.MenuStaffStageScript,
             Assembly-CSharp
-          m_MethodName: OnCancelButtonPointerEnterEvent
-          m_Mode: 1
+          m_MethodName: OnCancelButtonPointerEnter
+          m_Mode: 0
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -16475,8 +16267,8 @@ MonoBehaviour:
         - m_Target: {fileID: 5664511488434716458}
           m_TargetAssemblyTypeName: ToffMonaka.UnityBase.Scene.MenuStaffStageScript,
             Assembly-CSharp
-          m_MethodName: OnCancelButtonPointerExitEvent
-          m_Mode: 1
+          m_MethodName: OnCancelButtonPointerExit
+          m_Mode: 0
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -17379,7 +17171,7 @@ MonoBehaviour:
   m_Elasticity: 0.1
   m_Inertia: 1
   m_DecelerationRate: 0.135
-  m_ScrollSensitivity: 1
+  m_ScrollSensitivity: 20
   m_Viewport: {fileID: 2149739283676844490}
   m_HorizontalScrollbar: {fileID: 0}
   m_VerticalScrollbar: {fileID: 5595523862280689545}
@@ -17679,8 +17471,8 @@ MonoBehaviour:
         - m_Target: {fileID: 251552391365341875}
           m_TargetAssemblyTypeName: ToffMonaka.UnityBase.Scene.MenuLicenseStageScript,
             Assembly-CSharp
-          m_MethodName: OnCancelButtonPointerClickEvent
-          m_Mode: 1
+          m_MethodName: OnCancelButtonPointerClick
+          m_Mode: 0
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -17696,8 +17488,8 @@ MonoBehaviour:
         - m_Target: {fileID: 251552391365341875}
           m_TargetAssemblyTypeName: ToffMonaka.UnityBase.Scene.MenuLicenseStageScript,
             Assembly-CSharp
-          m_MethodName: OnCancelButtonPointerEnterEvent
-          m_Mode: 1
+          m_MethodName: OnCancelButtonPointerEnter
+          m_Mode: 0
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -17713,8 +17505,8 @@ MonoBehaviour:
         - m_Target: {fileID: 251552391365341875}
           m_TargetAssemblyTypeName: ToffMonaka.UnityBase.Scene.MenuLicenseStageScript,
             Assembly-CSharp
-          m_MethodName: OnCancelButtonPointerExitEvent
-          m_Mode: 1
+          m_MethodName: OnCancelButtonPointerExit
+          m_Mode: 0
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -17819,7 +17611,7 @@ MonoBehaviour:
   m_Elasticity: 0.1
   m_Inertia: 1
   m_DecelerationRate: 0.135
-  m_ScrollSensitivity: 1
+  m_ScrollSensitivity: 20
   m_Viewport: {fileID: 6609183388736006285}
   m_HorizontalScrollbar: {fileID: 0}
   m_VerticalScrollbar: {fileID: 400821312413653711}
@@ -18168,8 +17960,8 @@ MonoBehaviour:
       - m_Target: {fileID: 5157123649545789300}
         m_TargetAssemblyTypeName: ToffMonaka.UnityBase.Scene.MenuOptionStageScript,
           Assembly-CSharp
-        m_MethodName: OnSoundBgmMuteToggleValueChangedEvent
-        m_Mode: 1
+        m_MethodName: OnSoundBgmMuteToggleValueChanged
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -18573,10 +18365,10 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 7783879931152134206}
-          m_TargetAssemblyTypeName: ToffMonaka.UnityBase.Scene.MenuLanguageSelectDialogScript,
+          m_TargetAssemblyTypeName: ToffMonaka.UnityBase.Scene.MenuOptionStageLanguageSelectDialogScript,
             Assembly-CSharp
-          m_MethodName: OnCloseButtonPointerClickEvent
-          m_Mode: 1
+          m_MethodName: OnCloseButtonPointerClick
+          m_Mode: 0
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -18590,10 +18382,10 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 7783879931152134206}
-          m_TargetAssemblyTypeName: ToffMonaka.UnityBase.Scene.MenuLanguageSelectDialogScript,
+          m_TargetAssemblyTypeName: ToffMonaka.UnityBase.Scene.MenuOptionStageLanguageSelectDialogScript,
             Assembly-CSharp
-          m_MethodName: OnCloseButtonPointerEnterEvent
-          m_Mode: 1
+          m_MethodName: OnCloseButtonPointerEnter
+          m_Mode: 0
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -18607,10 +18399,10 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 7783879931152134206}
-          m_TargetAssemblyTypeName: ToffMonaka.UnityBase.Scene.MenuLanguageSelectDialogScript,
+          m_TargetAssemblyTypeName: ToffMonaka.UnityBase.Scene.MenuOptionStageLanguageSelectDialogScript,
             Assembly-CSharp
-          m_MethodName: OnCloseButtonPointerExitEvent
-          m_Mode: 1
+          m_MethodName: OnCloseButtonPointerExit
+          m_Mode: 0
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -18718,8 +18510,8 @@ MonoBehaviour:
         - m_Target: {fileID: 7303583434945111961}
           m_TargetAssemblyTypeName: ToffMonaka.UnityBase.Scene.MenuCheatStageScript,
             Assembly-CSharp
-          m_MethodName: OnCancelButtonPointerClickEvent
-          m_Mode: 1
+          m_MethodName: OnCancelButtonPointerClick
+          m_Mode: 0
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -18735,8 +18527,8 @@ MonoBehaviour:
         - m_Target: {fileID: 7303583434945111961}
           m_TargetAssemblyTypeName: ToffMonaka.UnityBase.Scene.MenuCheatStageScript,
             Assembly-CSharp
-          m_MethodName: OnCancelButtonPointerEnterEvent
-          m_Mode: 1
+          m_MethodName: OnCancelButtonPointerEnter
+          m_Mode: 0
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -18752,8 +18544,8 @@ MonoBehaviour:
         - m_Target: {fileID: 7303583434945111961}
           m_TargetAssemblyTypeName: ToffMonaka.UnityBase.Scene.MenuCheatStageScript,
             Assembly-CSharp
-          m_MethodName: OnCancelButtonPointerExitEvent
-          m_Mode: 1
+          m_MethodName: OnCancelButtonPointerExit
+          m_Mode: 0
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

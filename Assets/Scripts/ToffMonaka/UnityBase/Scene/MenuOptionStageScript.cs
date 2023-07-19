@@ -6,6 +6,7 @@
 
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 using TMPro;
 using DG.Tweening;
 
@@ -247,9 +248,10 @@ public class MenuOptionStageScript : ToffMonaka.UnityBase.Scene.MenuStageScript
     }
 
     /**
-     * @brief OnLanguageButtonPointerClickEvent関数
+     * @brief OnLanguageButtonPointerClick関数
+     * @param event_dat (event_data)
      */
-    public void OnLanguageButtonPointerClickEvent()
+    public void OnLanguageButtonPointerClick(BaseEventData event_dat)
     {
         if (!this.IsControllable()) {
             return;
@@ -263,9 +265,10 @@ public class MenuOptionStageScript : ToffMonaka.UnityBase.Scene.MenuStageScript
     }
 
     /**
-     * @brief OnLanguageButtonPointerEnterEvent関数
+     * @brief OnLanguageButtonPointerEnter関数
+     * @param event_dat (event_data)
      */
-    public void OnLanguageButtonPointerEnterEvent()
+    public void OnLanguageButtonPointerEnter(BaseEventData event_dat)
     {
         if (!this.IsControllable()) {
             return;
@@ -277,9 +280,10 @@ public class MenuOptionStageScript : ToffMonaka.UnityBase.Scene.MenuStageScript
     }
 
     /**
-     * @brief OnLanguageButtonPointerExitEvent関数
+     * @brief OnLanguageButtonPointerExit関数
+     * @param event_dat (event_data)
      */
-    public void OnLanguageButtonPointerExitEvent()
+    public void OnLanguageButtonPointerExit(BaseEventData event_dat)
     {
         if (!this.IsControllable()) {
             return;
@@ -291,9 +295,10 @@ public class MenuOptionStageScript : ToffMonaka.UnityBase.Scene.MenuStageScript
     }
 
     /**
-     * @brief OnSoundBgmVolumeSliderValueChangedEvent関数
+     * @brief OnSoundBgmVolumeSliderValueChanged関数
+     * @param event_val (event_value)
      */
-    public void OnSoundBgmVolumeSliderValueChangedEvent()
+    public void OnSoundBgmVolumeSliderValueChanged(float event_val)
     {
         if (!this.IsControllable()) {
             return;
@@ -309,9 +314,10 @@ public class MenuOptionStageScript : ToffMonaka.UnityBase.Scene.MenuStageScript
     }
 
     /**
-     * @brief OnSoundBgmMuteToggleValueChangedEvent関数
+     * @brief OnSoundBgmMuteToggleValueChanged関数
+     * @param event_val (event_value)
      */
-    public void OnSoundBgmMuteToggleValueChangedEvent()
+    public void OnSoundBgmMuteToggleValueChanged(bool event_val)
     {
         if (!this.IsControllable()) {
             return;
@@ -331,9 +337,10 @@ public class MenuOptionStageScript : ToffMonaka.UnityBase.Scene.MenuStageScript
     }
 
     /**
-     * @brief OnSoundSeVolumeSliderValueChangedEvent関数
+     * @brief OnSoundSeVolumeSliderValueChanged関数
+     * @param event_val (event_value)
      */
-    public void OnSoundSeVolumeSliderValueChangedEvent()
+    public void OnSoundSeVolumeSliderValueChanged(float event_val)
     {
         if (!this.IsControllable()) {
             return;
@@ -349,9 +356,10 @@ public class MenuOptionStageScript : ToffMonaka.UnityBase.Scene.MenuStageScript
     }
 
     /**
-     * @brief OnSoundSeMuteToggleValueChangedEvent関数
+     * @brief OnSoundSeMuteToggleValueChanged関数
+     * @param event_val (event_value)
      */
-    public void OnSoundSeMuteToggleValueChangedEvent()
+    public void OnSoundSeMuteToggleValueChanged(bool event_val)
     {
         if (!this.IsControllable()) {
             return;
@@ -371,9 +379,10 @@ public class MenuOptionStageScript : ToffMonaka.UnityBase.Scene.MenuStageScript
     }
 
     /**
-     * @brief OnOkButtonPointerClickEvent関数
+     * @brief OnOkButtonPointerClick関数
+     * @param event_dat (event_data)
      */
-    public void OnOkButtonPointerClickEvent()
+    public void OnOkButtonPointerClick(BaseEventData event_dat)
     {
         if (!this.IsControllable()) {
             return;
@@ -427,9 +436,10 @@ public class MenuOptionStageScript : ToffMonaka.UnityBase.Scene.MenuStageScript
     }
 
     /**
-     * @brief OnOkButtonPointerEnterEvent関数
+     * @brief OnOkButtonPointerEnter関数
+     * @param event_dat (event_data)
      */
-    public void OnOkButtonPointerEnterEvent()
+    public void OnOkButtonPointerEnter(BaseEventData event_dat)
     {
         if (!this.IsControllable()) {
             return;
@@ -441,9 +451,10 @@ public class MenuOptionStageScript : ToffMonaka.UnityBase.Scene.MenuStageScript
     }
 
     /**
-     * @brief OnOkButtonPointerExitEvent関数
+     * @brief OnOkButtonPointerExit関数
+     * @param event_dat (event_data)
      */
-    public void OnOkButtonPointerExitEvent()
+    public void OnOkButtonPointerExit(BaseEventData event_dat)
     {
         if (!this.IsControllable()) {
             return;
@@ -455,9 +466,10 @@ public class MenuOptionStageScript : ToffMonaka.UnityBase.Scene.MenuStageScript
     }
 
     /**
-     * @brief OnCancelButtonPointerClickEvent関数
+     * @brief OnCancelButtonPointerClick関数
+     * @param event_dat (event_data)
      */
-    public void OnCancelButtonPointerClickEvent()
+    public void OnCancelButtonPointerClick(BaseEventData event_dat)
     {
         if (!this.IsControllable()) {
             return;
@@ -476,9 +488,10 @@ public class MenuOptionStageScript : ToffMonaka.UnityBase.Scene.MenuStageScript
     }
 
     /**
-     * @brief OnCancelButtonPointerEnterEvent関数
+     * @brief OnCancelButtonPointerEnter関数
+     * @param event_dat (event_data)
      */
-    public void OnCancelButtonPointerEnterEvent()
+    public void OnCancelButtonPointerEnter(BaseEventData event_dat)
     {
         if (!this.IsControllable()) {
             return;
@@ -490,9 +503,10 @@ public class MenuOptionStageScript : ToffMonaka.UnityBase.Scene.MenuStageScript
     }
 
     /**
-     * @brief OnCancelButtonPointerExitEvent関数
+     * @brief OnCancelButtonPointerExit関数
+     * @param event_dat (event_data)
      */
-    public void OnCancelButtonPointerExitEvent()
+    public void OnCancelButtonPointerExit(BaseEventData event_dat)
     {
         if (!this.IsControllable()) {
             return;

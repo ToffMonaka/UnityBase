@@ -6,6 +6,7 @@
 
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 using DG.Tweening;
 
 
@@ -191,9 +192,10 @@ public class MenuOpenCloseButtonScript : ToffMonaka.Lib.Scene.ObjectScript
     }
 
     /**
-     * @brief OnPointerClickEvent関数
+     * @brief OnPointerClick関数
+     * @param event_dat (event_data)
      */
-    public void OnPointerClickEvent()
+    public void OnPointerClick(BaseEventData event_dat)
     {
         if (!this.IsControllable()) {
             return;
@@ -207,9 +209,10 @@ public class MenuOpenCloseButtonScript : ToffMonaka.Lib.Scene.ObjectScript
     }
 
     /**
-     * @brief OnPointerEnterEvent関数
+     * @brief OnPointerEnter関数
+     * @param event_dat (event_data)
      */
-    public void OnPointerEnterEvent()
+    public void OnPointerEnter(BaseEventData event_dat)
     {
         if (!this.IsControllable()) {
             return;
@@ -221,9 +224,10 @@ public class MenuOpenCloseButtonScript : ToffMonaka.Lib.Scene.ObjectScript
     }
 
     /**
-     * @brief OnPointerExitEvent関数
+     * @brief OnPointerExit関数
+     * @param event_dat (event_data)
      */
-    public void OnPointerExitEvent()
+    public void OnPointerExit(BaseEventData event_dat)
     {
         if (!this.IsControllable()) {
             return;

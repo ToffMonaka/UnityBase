@@ -6,6 +6,7 @@
 
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 using TMPro;
 using DG.Tweening;
 
@@ -222,9 +223,10 @@ public class TitleSubSceneScript : ToffMonaka.Lib.Scene.SubSceneScript
     }
 
     /**
-     * @brief OnStartButtonPointerClickEvent関数
+     * @brief OnStartButtonPointerClick関数
+     * @param event_dat (event_data)
      */
-    public void OnStartButtonPointerClickEvent()
+    public void OnStartButtonPointerClick(BaseEventData event_dat)
     {
         if (!this.IsControllable()) {
             return;

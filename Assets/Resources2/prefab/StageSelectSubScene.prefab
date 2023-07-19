@@ -437,7 +437,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7862533665556113384}
   - component: {fileID: 3645492645046081828}
-  - component: {fileID: 6357472523565581173}
   - component: {fileID: 8028598964034534379}
   - component: {fileID: 2445517307351078723}
   m_Layer: 5
@@ -483,70 +482,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _nameText: {fileID: 3609701482840926964}
   _coverImage: {fileID: 8257991537643806272}
---- !u!114 &6357472523565581173
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3612446923405612630}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Delegates:
-  - eventID: 4
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 3645492645046081828}
-          m_TargetAssemblyTypeName: ToffMonaka.UnityBase.Scene.StageSelectStageButtonScript,
-            Assembly-CSharp
-          m_MethodName: OnPointerClickEvent
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  - eventID: 0
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 3645492645046081828}
-          m_TargetAssemblyTypeName: ToffMonaka.UnityBase.Scene.StageSelectStageButtonScript,
-            Assembly-CSharp
-          m_MethodName: OnPointerEnterEvent
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  - eventID: 1
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 3645492645046081828}
-          m_TargetAssemblyTypeName: ToffMonaka.UnityBase.Scene.StageSelectStageButtonScript,
-            Assembly-CSharp
-          m_MethodName: OnPointerExitEvent
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
 --- !u!222 &8028598964034534379
 CanvasRenderer:
   m_ObjectHideFlags: 0

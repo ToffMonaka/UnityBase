@@ -6,6 +6,7 @@
 
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 using TMPro;
 
 
@@ -22,7 +23,7 @@ public class MenuStageSelectStageButtonScriptCreateDesc : ToffMonaka.Lib.Scene.O
 /**
  * @brief MenuStageSelectStageButtonScriptクラス
  */
-public class MenuStageSelectStageButtonScript : ToffMonaka.Lib.Scene.ObjectScript
+public class MenuStageSelectStageButtonScript : ToffMonaka.Lib.Scene.ObjectScript, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
 {
     [SerializeField] private TMP_Text _nameText = null;
     [SerializeField] private Image _coverImage = null;
@@ -153,9 +154,10 @@ public class MenuStageSelectStageButtonScript : ToffMonaka.Lib.Scene.ObjectScrip
     }
 
     /**
-     * @brief OnPointerClickEvent関数
+     * @brief OnPointerClick関数
+     * @param event_dat (event_data)
      */
-    public void OnPointerClickEvent()
+    public void OnPointerClick(PointerEventData event_dat)
     {
         if (!this.IsControllable()) {
             return;
@@ -169,9 +171,10 @@ public class MenuStageSelectStageButtonScript : ToffMonaka.Lib.Scene.ObjectScrip
     }
 
     /**
-     * @brief OnPointerEnterEvent関数
+     * @brief OnPointerEnter関数
+     * @param event_dat (event_data)
      */
-    public void OnPointerEnterEvent()
+    public void OnPointerEnter(PointerEventData event_dat)
     {
         if (!this.IsControllable()) {
             return;
@@ -183,9 +186,10 @@ public class MenuStageSelectStageButtonScript : ToffMonaka.Lib.Scene.ObjectScrip
     }
 
     /**
-     * @brief OnPointerExitEvent関数
+     * @brief OnPointerExit関数
+     * @param event_dat (event_data)
      */
-    public void OnPointerExitEvent()
+    public void OnPointerExit(PointerEventData event_dat)
     {
         if (!this.IsControllable()) {
             return;

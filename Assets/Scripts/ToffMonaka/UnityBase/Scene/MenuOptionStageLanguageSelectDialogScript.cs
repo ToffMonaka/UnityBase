@@ -6,6 +6,7 @@
 
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 using System.Collections.Generic;
 using TMPro;
 using DG.Tweening;
@@ -225,9 +226,10 @@ public class MenuOptionStageLanguageSelectDialogScript : ToffMonaka.Lib.Scene.Ob
     }
 
     /**
-     * @brief OnCloseButtonPointerClickEvent関数
+     * @brief OnCloseButtonPointerClick関数
+     * @param event_dat (event_data)
      */
-    public void OnCloseButtonPointerClickEvent()
+    public void OnCloseButtonPointerClick(BaseEventData event_dat)
     {
         if (!this.IsControllable()) {
             return;
@@ -241,9 +243,10 @@ public class MenuOptionStageLanguageSelectDialogScript : ToffMonaka.Lib.Scene.Ob
     }
 
     /**
-     * @brief OnCloseButtonPointerEnterEvent関数
+     * @brief OnCloseButtonPointerEnter関数
+     * @param event_dat (event_data)
      */
-    public void OnCloseButtonPointerEnterEvent()
+    public void OnCloseButtonPointerEnter(BaseEventData event_dat)
     {
         if (!this.IsControllable()) {
             return;
@@ -255,9 +258,10 @@ public class MenuOptionStageLanguageSelectDialogScript : ToffMonaka.Lib.Scene.Ob
     }
 
     /**
-     * @brief OnCloseButtonPointerExitEvent関数
+     * @brief OnCloseButtonPointerExit関数
+     * @param event_dat (event_data)
      */
-    public void OnCloseButtonPointerExitEvent()
+    public void OnCloseButtonPointerExit(BaseEventData event_dat)
     {
         if (!this.IsControllable()) {
             return;
