@@ -76,26 +76,20 @@ public class MenuLicenseStageScript : ToffMonaka.UnityBase.Scene.MenuStageScript
         this._messageNode.SetActive(false);
 
         {// MessageNode Create
-            var en_str_ary = new string[]{
-                "In preparation."
+            var str_ary = new string[]{
+                "-----------------------------------\n" +
+                "Unity TextMeshPro\n" +
+                "-----------------------------------\n" +
+                "https://docs.unity3d.com/Packages/com.unity.textmeshpro@3.0/license/LICENSE.html\n" +
+                "\n" +
+                "TextMesh Pro copyright © 2021 Unity Technologies ApS\n" +
+                "\n" +
+                "Licensed under the Unity Companion License for Unity-dependent projects--see Unity\n" +
+                "Companion License.\n" +
+                "\n" +
+                "Unless expressly provided otherwise, the Software under this license is made available strictly on an “AS IS” BASIS WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED.\n" +
+                "Please review the license for details on these and other terms and conditions."
             };
-            var jp_str_ary = new string[]{
-                "準備中です。"
-            };
-            string[] str_ary;
-
-		    switch (ToffMonaka.UnityBase.Global.systemConfigFile.data.systemLanguageType) {
-		    case ToffMonaka.UnityBase.Constant.Util.LANGUAGE_TYPE.JAPANESE: {
-                str_ary = jp_str_ary;
-
-			    break;
-		    }
-		    default: {
-                str_ary = en_str_ary;
-
-			    break;
-		    }
-		    }
 
             for (int str_i = 0; str_i < str_ary.Length; ++str_i) {
                 var str = (str_i <= 0) ? str_ary[str_i] : "\n" + str_ary[str_i];

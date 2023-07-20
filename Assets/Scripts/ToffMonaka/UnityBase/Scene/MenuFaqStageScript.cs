@@ -77,10 +77,12 @@ public class MenuFaqStageScript : ToffMonaka.UnityBase.Scene.MenuStageScript
 
         {// MessageNode Create
             var en_str_ary = new string[]{
-                "In preparation."
+                "Q, What is the application to do?\n" +
+                "A, It is a Unity base application."
             };
             var jp_str_ary = new string[]{
-                "準備中です。"
+                "Q, 何をするアプリなんですか？\n" +
+                "A, Unityのベースアプリです。"
             };
             string[] str_ary;
 
