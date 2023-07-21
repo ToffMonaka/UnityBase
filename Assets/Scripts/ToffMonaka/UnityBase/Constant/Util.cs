@@ -86,6 +86,7 @@ public static class Util
             MENU_FAQ_STAGE,
             MENU_STAFF_STAGE,
             MENU_LICENSE_STAGE,
+            MENU_PRIVACY_POLICY_STAGE,
             MENU_END_STAGE,
             MENU_CHEAT_STAGE,
             MENU_CHEAT_STAGE_COMMAND_BUTTON,
@@ -144,6 +145,7 @@ public static class Util
             FAQ,
             STAFF,
             LICENSE,
+            PRIVACY_POLICY,
             END,
             CHEAT,
 		    COUNT
@@ -155,6 +157,7 @@ public static class Util
             ToffMonaka.UnityBase.Constant.Util.MST_STRING_ID.FAQ,
             ToffMonaka.UnityBase.Constant.Util.MST_STRING_ID.STAFF,
             ToffMonaka.UnityBase.Constant.Util.MST_STRING_ID.LICENSE,
+            ToffMonaka.UnityBase.Constant.Util.MST_STRING_ID.PRIVACY_POLICY,
             ToffMonaka.UnityBase.Constant.Util.MST_STRING_ID.EXIT,
             ToffMonaka.UnityBase.Constant.Util.MST_STRING_ID.CHEAT
         };
@@ -191,6 +194,7 @@ public static class Util
         FAQ,
         STAFF,
         LICENSE,
+        PRIVACY_POLICY,
         EXIT,
         CHEAT,
         LANGUAGE,

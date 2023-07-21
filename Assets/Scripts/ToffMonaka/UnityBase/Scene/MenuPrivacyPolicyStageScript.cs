@@ -1,41 +1,47 @@
 ﻿/**
  * @file
- * @brief MenuOpenCloseButtonScriptファイル
+ * @brief MenuPrivacyPolicyStageScriptファイル
  */
 
 
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using TMPro;
 using DG.Tweening;
 
 
 namespace ToffMonaka.UnityBase.Scene {
 /**
- * @brief MenuOpenCloseButtonScriptCreateDescクラス
+ * @brief MenuPrivacyPolicyStageScriptCreateDescクラス
  */
-public class MenuOpenCloseButtonScriptCreateDesc : ToffMonaka.Lib.Scene.ObjectScriptCreateDesc
+public class MenuPrivacyPolicyStageScriptCreateDesc : ToffMonaka.UnityBase.Scene.MenuStageScriptCreateDesc
 {
     public ToffMonaka.UnityBase.Scene.MenuScript menuScript = null;
 }
 
 /**
- * @brief MenuOpenCloseButtonScriptクラス
+ * @brief MenuPrivacyPolicyStageScriptクラス
  */
-public class MenuOpenCloseButtonScript : ToffMonaka.Lib.Scene.ObjectScript
+public class MenuPrivacyPolicyStageScript : ToffMonaka.UnityBase.Scene.MenuStageScript
 {
-    [SerializeField] private Image _coverImage = null;
+    [SerializeField] private TMP_Text _nameText = null;
+    [SerializeField] private ScrollRect _messageScrollRect = null;
+    [SerializeField] private GameObject _messageNode = null;
+    [SerializeField] private TMP_Text _cancelButtonNameText = null;
+    [SerializeField] private Image _cancelButtonCoverImage = null;
 
-    public new ToffMonaka.UnityBase.Scene.MenuOpenCloseButtonScriptCreateDesc createDesc{get; private set;} = null;
+    public new ToffMonaka.UnityBase.Scene.MenuPrivacyPolicyStageScriptCreateDesc createDesc{get; private set;} = null;
 
     private ToffMonaka.UnityBase.Scene.MenuScript _menuScript = null;
 
     /**
      * @brief コンストラクタ
      */
-    public MenuOpenCloseButtonScript()
+    public MenuPrivacyPolicyStageScript()
     {
-        this._SetScriptIndex((int)ToffMonaka.UnityBase.Constant.Util.SCENE.SCRIPT_INDEX.MENU_OPEN_CLOSE_BUTTON);
+        this._SetScriptIndex((int)ToffMonaka.UnityBase.Constant.Util.SCENE.SCRIPT_INDEX.MENU_PRIVACY_POLICY_STAGE);
+        this._SetStageType(ToffMonaka.UnityBase.Constant.Util.SCENE.MENU_STAGE_TYPE.PRIVACY_POLICY);
 
         return;
     }
@@ -65,6 +71,45 @@ public class MenuOpenCloseButtonScript : ToffMonaka.Lib.Scene.ObjectScript
     {
         this._menuScript = this.createDesc.menuScript;
 
+        this._nameText.SetText(ToffMonaka.UnityBase.Global.GetString(ToffMonaka.UnityBase.Constant.Util.SCENE.MENU_STAGE_NAME_MST_STRING_ID_ARRAY[(int)this.GetStageType()]));
+
+        this._messageNode.SetActive(false);
+
+        {// MessageNode Create
+            var en_str_ary = new string[]{
+                "In preparation."
+            };
+            var jp_str_ary = new string[]{
+                "準備中です。"
+            };
+            string[] str_ary;
+
+		    switch (ToffMonaka.UnityBase.Global.systemConfigFile.data.systemLanguageType) {
+		    case ToffMonaka.UnityBase.Constant.Util.LANGUAGE_TYPE.JAPANESE: {
+                str_ary = jp_str_ary;
+
+			    break;
+		    }
+		    default: {
+                str_ary = en_str_ary;
+
+			    break;
+		    }
+		    }
+
+            for (int str_i = 0; str_i < str_ary.Length; ++str_i) {
+                var str = (str_i <= 0) ? str_ary[str_i] : "\n" + str_ary[str_i];
+
+                var node = GameObject.Instantiate(this._messageNode, this._messageNode.transform.parent);
+
+                node.GetComponent<TMP_Text>().SetText(str);
+
+                node.SetActive(true);
+            }
+        }
+
+        this._cancelButtonNameText.SetText(ToffMonaka.UnityBase.Global.GetString(ToffMonaka.UnityBase.Constant.Util.MST_STRING_ID.CANCEL));
+
         return (0);
     }
 
@@ -74,7 +119,7 @@ public class MenuOpenCloseButtonScript : ToffMonaka.Lib.Scene.ObjectScript
      */
     public override void SetCreateDesc(ToffMonaka.Lib.Scene.ScriptCreateDesc create_desc)
     {
-	    this.createDesc = create_desc as ToffMonaka.UnityBase.Scene.MenuOpenCloseButtonScriptCreateDesc;
+	    this.createDesc = create_desc as ToffMonaka.UnityBase.Scene.MenuPrivacyPolicyStageScriptCreateDesc;
 
         base.SetCreateDesc(this.createDesc);
 
@@ -86,7 +131,8 @@ public class MenuOpenCloseButtonScript : ToffMonaka.Lib.Scene.ObjectScript
      */
     protected override void _OnActive()
     {
-        this._coverImage.gameObject.SetActive(false);
+        this._messageScrollRect.verticalNormalizedPosition = 1.0f;
+        this._cancelButtonCoverImage.gameObject.SetActive(false);
 
         return;
     }
@@ -192,52 +238,48 @@ public class MenuOpenCloseButtonScript : ToffMonaka.Lib.Scene.ObjectScript
     }
 
     /**
-     * @brief OnPointerClick関数
+     * @brief OnCancelButtonPointerClick関数
      * @param event_dat (event_data)
      */
-    public void OnPointerClick(BaseEventData event_dat)
+    public void OnCancelButtonPointerClick(BaseEventData event_dat)
     {
         if (!this.IsControllable()) {
             return;
         }
 
-        this._menuScript.RunOpenCloseButton();
+        ToffMonaka.Lib.Scene.Util.GetSoundManager().PlaySe((int)ToffMonaka.UnityBase.Constant.Util.SOUND.SE_INDEX.CANCEL);
 
-        if (this._menuScript.GetOpenSelectScript() != null) {
-            ToffMonaka.Lib.Scene.Util.GetSoundManager().PlaySe((int)ToffMonaka.UnityBase.Constant.Util.SOUND.SE_INDEX.OK2);
-        } else {
-            ToffMonaka.Lib.Scene.Util.GetSoundManager().PlaySe((int)ToffMonaka.UnityBase.Constant.Util.SOUND.SE_INDEX.CANCEL);
-        }
+        this._menuScript.RunStageCancelButton();
 
         return;
     }
 
     /**
-     * @brief OnPointerEnter関数
+     * @brief OnCancelButtonPointerEnter関数
      * @param event_dat (event_data)
      */
-    public void OnPointerEnter(BaseEventData event_dat)
+    public void OnCancelButtonPointerEnter(BaseEventData event_dat)
     {
         if (!this.IsControllable()) {
             return;
         }
 
-        this._coverImage.gameObject.SetActive(true);
+        this._cancelButtonCoverImage.gameObject.SetActive(true);
 
         return;
     }
 
     /**
-     * @brief OnPointerExit関数
+     * @brief OnCancelButtonPointerExit関数
      * @param event_dat (event_data)
      */
-    public void OnPointerExit(BaseEventData event_dat)
+    public void OnCancelButtonPointerExit(BaseEventData event_dat)
     {
         if (!this.IsControllable()) {
             return;
         }
 
-        this._coverImage.gameObject.SetActive(false);
+        this._cancelButtonCoverImage.gameObject.SetActive(false);
 
         return;
     }

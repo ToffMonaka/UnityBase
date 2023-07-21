@@ -28,6 +28,7 @@ public class MenuScript : ToffMonaka.Lib.Scene.ObjectScript
     [SerializeField] private GameObject _faqStageNode = null;
     [SerializeField] private GameObject _staffStageNode = null;
     [SerializeField] private GameObject _licenseStageNode = null;
+    [SerializeField] private GameObject _privacyPolicyStageNode = null;
     [SerializeField] private GameObject _endStageNode = null;
     [SerializeField] private GameObject _cheatStageNode = null;
 
@@ -40,6 +41,7 @@ public class MenuScript : ToffMonaka.Lib.Scene.ObjectScript
     private ToffMonaka.UnityBase.Scene.MenuFaqStageScript _faqStageScript = null;
     private ToffMonaka.UnityBase.Scene.MenuStaffStageScript _staffStageScript = null;
     private ToffMonaka.UnityBase.Scene.MenuLicenseStageScript _licenseStageScript = null;
+    private ToffMonaka.UnityBase.Scene.MenuPrivacyPolicyStageScript _privacyPolicyStageScript = null;
     private ToffMonaka.UnityBase.Scene.MenuEndStageScript _endStageScript = null;
     private ToffMonaka.UnityBase.Scene.MenuCheatStageScript _cheatStageScript = null;
     private ToffMonaka.UnityBase.Scene.MenuStageScript _openStageScript = null;
@@ -146,6 +148,17 @@ public class MenuScript : ToffMonaka.Lib.Scene.ObjectScript
             this._licenseStageScript = script;
         }
 
+        {// PrivacyPolicyStageScript Create
+            var script = this._privacyPolicyStageNode.GetComponent<ToffMonaka.UnityBase.Scene.MenuPrivacyPolicyStageScript>();
+            var script_create_desc = new ToffMonaka.UnityBase.Scene.MenuPrivacyPolicyStageScriptCreateDesc();
+
+            script_create_desc.menuScript = this;
+
+            script.Create(script_create_desc);
+
+            this._privacyPolicyStageScript = script;
+        }
+
         {// EndStageScript Create
             var script = this._endStageNode.GetComponent<ToffMonaka.UnityBase.Scene.MenuEndStageScript>();
             var script_create_desc = new ToffMonaka.UnityBase.Scene.MenuEndStageScriptCreateDesc();
@@ -249,6 +262,24 @@ public class MenuScript : ToffMonaka.Lib.Scene.ObjectScript
     }
 
     /**
+     * @brief GetOpenSelectScript関数
+     * @return open_select_script (open_select_script)
+     */
+    public ToffMonaka.UnityBase.Scene.MenuSelectScript GetOpenSelectScript()
+    {
+        return (this._openSelectScript);
+    }
+
+    /**
+     * @brief GetOpenStageScript関数
+     * @return open_stage_script (open_stage_script)
+     */
+    public ToffMonaka.UnityBase.Scene.MenuStageScript GetOpenStageScript()
+    {
+        return (this._openStageScript);
+    }
+
+    /**
      * @brief RunOpenCloseButton関数
      */
     public void RunOpenCloseButton()
@@ -304,6 +335,11 @@ public class MenuScript : ToffMonaka.Lib.Scene.ObjectScript
 		}
 		case ToffMonaka.UnityBase.Constant.Util.SCENE.MENU_STAGE_TYPE.LICENSE: {
             open_stage_script = this._licenseStageScript;
+
+			break;
+		}
+		case ToffMonaka.UnityBase.Constant.Util.SCENE.MENU_STAGE_TYPE.PRIVACY_POLICY: {
+            open_stage_script = this._privacyPolicyStageScript;
 
 			break;
 		}
