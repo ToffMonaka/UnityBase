@@ -365,7 +365,7 @@ public class MenuPrivacyPolicyStageScript : ToffMonaka.UnityBase.Scene.MenuStage
      * @brief OnCancelButtonPointerClick関数
      * @param event_dat (event_data)
      */
-    public void OnCancelButtonPointerClick(BaseEventData event_dat)
+    public void OnCancelButtonPointerClick(PointerEventData event_dat)
     {
         if (!this.IsControllable()) {
             return;
@@ -382,7 +382,7 @@ public class MenuPrivacyPolicyStageScript : ToffMonaka.UnityBase.Scene.MenuStage
      * @brief OnCancelButtonPointerEnter関数
      * @param event_dat (event_data)
      */
-    public void OnCancelButtonPointerEnter(BaseEventData event_dat)
+    public void OnCancelButtonPointerEnter(PointerEventData event_dat)
     {
         if (!this.IsControllable()) {
             return;
@@ -397,7 +397,7 @@ public class MenuPrivacyPolicyStageScript : ToffMonaka.UnityBase.Scene.MenuStage
      * @brief OnCancelButtonPointerExit関数
      * @param event_dat (event_data)
      */
-    public void OnCancelButtonPointerExit(BaseEventData event_dat)
+    public void OnCancelButtonPointerExit(PointerEventData event_dat)
     {
         if (!this.IsControllable()) {
             return;

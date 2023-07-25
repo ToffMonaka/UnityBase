@@ -226,7 +226,7 @@ public class TitleSubSceneScript : ToffMonaka.Lib.Scene.SubSceneScript
      * @brief OnStartButtonPointerClick関数
      * @param event_dat (event_data)
      */
-    public void OnStartButtonPointerClick(BaseEventData event_dat)
+    public void OnStartButtonPointerClick(PointerEventData event_dat)
     {
         if (!this.IsControllable()) {
             return;

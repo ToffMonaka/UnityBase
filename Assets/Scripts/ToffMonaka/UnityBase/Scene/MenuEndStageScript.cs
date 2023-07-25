@@ -260,7 +260,7 @@ public class MenuEndStageScript : ToffMonaka.UnityBase.Scene.MenuStageScript
      * @brief OnOkButtonPointerClick関数
      * @param event_dat (event_data)
      */
-    public void OnOkButtonPointerClick(BaseEventData event_dat)
+    public void OnOkButtonPointerClick(PointerEventData event_dat)
     {
         if (!this.IsControllable()) {
             return;
@@ -287,7 +287,7 @@ public class MenuEndStageScript : ToffMonaka.UnityBase.Scene.MenuStageScript
      * @brief OnOkButtonPointerEnter関数
      * @param event_dat (event_data)
      */
-    public void OnOkButtonPointerEnter(BaseEventData event_dat)
+    public void OnOkButtonPointerEnter(PointerEventData event_dat)
     {
         if (!this.IsControllable()) {
             return;
@@ -302,7 +302,7 @@ public class MenuEndStageScript : ToffMonaka.UnityBase.Scene.MenuStageScript
      * @brief OnOkButtonPointerExit関数
      * @param event_dat (event_data)
      */
-    public void OnOkButtonPointerExit(BaseEventData event_dat)
+    public void OnOkButtonPointerExit(PointerEventData event_dat)
     {
         if (!this.IsControllable()) {
             return;
@@ -317,7 +317,7 @@ public class MenuEndStageScript : ToffMonaka.UnityBase.Scene.MenuStageScript
      * @brief OnCancelButtonPointerClick関数
      * @param event_dat (event_data)
      */
-    public void OnCancelButtonPointerClick(BaseEventData event_dat)
+    public void OnCancelButtonPointerClick(PointerEventData event_dat)
     {
         if (!this.IsControllable()) {
             return;
@@ -334,7 +334,7 @@ public class MenuEndStageScript : ToffMonaka.UnityBase.Scene.MenuStageScript
      * @brief OnCancelButtonPointerEnter関数
      * @param event_dat (event_data)
      */
-    public void OnCancelButtonPointerEnter(BaseEventData event_dat)
+    public void OnCancelButtonPointerEnter(PointerEventData event_dat)
     {
         if (!this.IsControllable()) {
             return;
@@ -349,7 +349,7 @@ public class MenuEndStageScript : ToffMonaka.UnityBase.Scene.MenuStageScript
      * @brief OnCancelButtonPointerExit関数
      * @param event_dat (event_data)
      */
-    public void OnCancelButtonPointerExit(BaseEventData event_dat)
+    public void OnCancelButtonPointerExit(PointerEventData event_dat)
     {
         if (!this.IsControllable()) {
             return;

@@ -229,7 +229,7 @@ public class MenuOptionStageLanguageSelectDialogScript : ToffMonaka.Lib.Scene.Ob
      * @brief OnCloseButtonPointerClick関数
      * @param event_dat (event_data)
      */
-    public void OnCloseButtonPointerClick(BaseEventData event_dat)
+    public void OnCloseButtonPointerClick(PointerEventData event_dat)
     {
         if (!this.IsControllable()) {
             return;
@@ -246,7 +246,7 @@ public class MenuOptionStageLanguageSelectDialogScript : ToffMonaka.Lib.Scene.Ob
      * @brief OnCloseButtonPointerEnter関数
      * @param event_dat (event_data)
      */
-    public void OnCloseButtonPointerEnter(BaseEventData event_dat)
+    public void OnCloseButtonPointerEnter(PointerEventData event_dat)
     {
         if (!this.IsControllable()) {
             return;
@@ -261,7 +261,7 @@ public class MenuOptionStageLanguageSelectDialogScript : ToffMonaka.Lib.Scene.Ob
      * @brief OnCloseButtonPointerExit関数
      * @param event_dat (event_data)
      */
-    public void OnCloseButtonPointerExit(BaseEventData event_dat)
+    public void OnCloseButtonPointerExit(PointerEventData event_dat)
     {
         if (!this.IsControllable()) {
             return;

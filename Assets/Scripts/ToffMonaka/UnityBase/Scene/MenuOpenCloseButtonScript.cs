@@ -22,7 +22,7 @@ public class MenuOpenCloseButtonScriptCreateDesc : ToffMonaka.Lib.Scene.ObjectSc
 /**
  * @brief MenuOpenCloseButtonScriptクラス
  */
-public class MenuOpenCloseButtonScript : ToffMonaka.Lib.Scene.ObjectScript
+public class MenuOpenCloseButtonScript : ToffMonaka.Lib.Scene.ObjectScript, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
 {
     [SerializeField] private Image _coverImage = null;
 
@@ -195,7 +195,7 @@ public class MenuOpenCloseButtonScript : ToffMonaka.Lib.Scene.ObjectScript
      * @brief OnPointerClick関数
      * @param event_dat (event_data)
      */
-    public void OnPointerClick(BaseEventData event_dat)
+    public void OnPointerClick(PointerEventData event_dat)
     {
         if (!this.IsControllable()) {
             return;
@@ -216,7 +216,7 @@ public class MenuOpenCloseButtonScript : ToffMonaka.Lib.Scene.ObjectScript
      * @brief OnPointerEnter関数
      * @param event_dat (event_data)
      */
-    public void OnPointerEnter(BaseEventData event_dat)
+    public void OnPointerEnter(PointerEventData event_dat)
     {
         if (!this.IsControllable()) {
             return;
@@ -231,7 +231,7 @@ public class MenuOpenCloseButtonScript : ToffMonaka.Lib.Scene.ObjectScript
      * @brief OnPointerExit関数
      * @param event_dat (event_data)
      */
-    public void OnPointerExit(BaseEventData event_dat)
+    public void OnPointerExit(PointerEventData event_dat)
     {
         if (!this.IsControllable()) {
             return;
