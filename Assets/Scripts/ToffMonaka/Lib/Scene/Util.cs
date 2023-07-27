@@ -22,11 +22,35 @@ public static class Util
     /**
      * @brief GetPrefabNode関数
      * @param prefab_file_path (prefab_file_path)
+     * @return prefab_node (node)<br>
+     * null=失敗
+     */
+    public static GameObject GetPrefabNode(string prefab_file_path)
+    {
+        return (ToffMonaka.Lib.Scene.Util.GetPrefabNode(prefab_file_path, null, false));
+    }
+
+    /**
+     * @brief GetPrefabNode関数
+     * @param prefab_file_path (prefab_file_path)
      * @param parent_node (parent_node)
      * @return prefab_node (node)<br>
      * null=失敗
      */
     public static GameObject GetPrefabNode(string prefab_file_path, GameObject parent_node)
+    {
+        return (ToffMonaka.Lib.Scene.Util.GetPrefabNode(prefab_file_path, parent_node, false));
+    }
+
+    /**
+     * @brief GetPrefabNode関数
+     * @param prefab_file_path (prefab_file_path)
+     * @param parent_node (parent_node)
+     * @param pos_keep_flg (position_keep_flag)
+     * @return prefab_node (node)<br>
+     * null=失敗
+     */
+    public static GameObject GetPrefabNode(string prefab_file_path, GameObject parent_node, bool pos_keep_flg)
     {
         if (prefab_file_path.Length <= 0) {
             return (null);
@@ -38,7 +62,7 @@ public static class Util
             return (null);
         }
 
-        node.transform.parent = parent_node.transform;
+        node.transform.SetParent(parent_node.transform, pos_keep_flg);
 
         return (node);
     }

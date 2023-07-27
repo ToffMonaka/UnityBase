@@ -33,6 +33,7 @@ public static class Util
         public const string STAGE_SELECT_SUB_SCENE_PREFAB = "Assets/Resources2/prefab/StageSelectSubScene.prefab";
         public const string TEST_2D_STAGE_SUB_SCENE_PREFAB = "Assets/Resources2/prefab/Test2DStageSubScene.prefab";
         public const string TEST_3D_STAGE_SUB_SCENE_PREFAB = "Assets/Resources2/prefab/Test3DStageSubScene.prefab";
+        public const string MENU_OPTION_STAGE_LANGUAGE_SELECT_DIALOG_PREFAB = "Assets/Resources2/prefab/MenuOptionStageLanguageSelectDialog.prefab";
     }
 
     public static class INPUT
