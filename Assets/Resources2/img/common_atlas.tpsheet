@@ -4,7 +4,7 @@
 # To import these sprites into your Unity project, download "TexturePackerImporter":
 # https://www.codeandweb.com/texturepacker/unity
 #
-# $TexturePacker:SmartUpdate:adc3874142c5a258940d27c35ecd284e:4d6e5ea341c704ad67626c3ebbb49999:4f8d4a19b0e7fa0415e4a2acc4ecace8$
+# $TexturePacker:SmartUpdate:bfc3219dce3972eb508dc42687c39425:388fd632084fc4da65d2898696729f89:4f8d4a19b0e7fa0415e4a2acc4ecace8$
 #
 :format=40300
 :texture=common_atlas_img.png

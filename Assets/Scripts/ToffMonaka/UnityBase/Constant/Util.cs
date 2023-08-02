@@ -18,7 +18,7 @@ public static class Util
 #else
     public const bool DEBUG_FLAG = false;
 #endif
-    public const string NAME = "C# ベースプロジェクト";
+    public const string NAME = "Unity Base";
     public const string COMPANY_NAME = "Toff Monaka Project";
     public const string VERSION_NAME = "1.0.0";
 
