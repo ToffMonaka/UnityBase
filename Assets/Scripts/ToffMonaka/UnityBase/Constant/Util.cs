@@ -18,9 +18,13 @@ public static class Util
 #else
     public const bool DEBUG_FLAG = false;
 #endif
-    public const string NAME = "Unity Base";
-    public const string COMPANY_NAME = "Toff Monaka Project";
-    public const string VERSION_NAME = "1.0.0";
+
+    public static class PROJECT
+    {
+        public const string NAME = "Unity Base";
+        public const string COMPANY_NAME = "Toff Monaka Project";
+        public const string VERSION_NAME = "1.0.0";
+    }
 
     public static class FILE_PATH
     {

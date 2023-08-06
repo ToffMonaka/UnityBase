@@ -71,8 +71,8 @@ public class TitleSubSceneScript : ToffMonaka.Lib.Scene.SubSceneScript
 
         canvas_node.GetComponent<Canvas>().worldCamera = this.GetManager().GetMainSceneScript().GetMainCamera();
 
-        this._companyNameText.SetText(ToffMonaka.UnityBase.Constant.Util.COMPANY_NAME);
-        this._versionNameText.SetText("Version " + ToffMonaka.UnityBase.Constant.Util.VERSION_NAME);
+        this._companyNameText.SetText(ToffMonaka.UnityBase.Constant.Util.PROJECT.COMPANY_NAME);
+        this._versionNameText.SetText("Version " + ToffMonaka.UnityBase.Constant.Util.PROJECT.VERSION_NAME);
 
         {// MenuScript Create
             var script = this._menuNode.GetComponent<ToffMonaka.UnityBase.Scene.MenuScript>();

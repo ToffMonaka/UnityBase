@@ -153,6 +153,7 @@ public class MenuStageSelectScript : ToffMonaka.UnityBase.Scene.MenuSelectScript
 
         // StageButtonScript Create
         if (ToffMonaka.UnityBase.Constant.Util.DEBUG_FLAG) {
+#pragma warning disable CS0162
             var script = GameObject.Instantiate(this._stageButtonNode, this._stageButtonNode.transform.parent).GetComponent<ToffMonaka.UnityBase.Scene.MenuStageSelectStageButtonScript>();
             var script_create_desc = new ToffMonaka.UnityBase.Scene.MenuStageSelectStageButtonScriptCreateDesc();
 
@@ -163,6 +164,7 @@ public class MenuStageSelectScript : ToffMonaka.UnityBase.Scene.MenuSelectScript
             script.Open(0);
 
             this._stageButtonScriptContainer.Add(script);
+#pragma warning restore CS0162
         }
 
         return (0);
