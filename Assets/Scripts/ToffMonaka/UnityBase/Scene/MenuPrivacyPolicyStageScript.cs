@@ -11,19 +11,20 @@ using TMPro;
 using DG.Tweening;
 
 
-namespace ToffMonaka.UnityBase.Scene {
+namespace ToffMonaka {
+namespace UnityBase.Scene {
 /**
  * @brief MenuPrivacyPolicyStageScriptCreateDescクラス
  */
-public class MenuPrivacyPolicyStageScriptCreateDesc : ToffMonaka.UnityBase.Scene.MenuStageScriptCreateDesc
+public class MenuPrivacyPolicyStageScriptCreateDesc : UnityBase.Scene.MenuStageScriptCreateDesc
 {
-    public ToffMonaka.UnityBase.Scene.MenuScript menuScript = null;
+    public UnityBase.Scene.MenuScript menuScript = null;
 }
 
 /**
  * @brief MenuPrivacyPolicyStageScriptクラス
  */
-public class MenuPrivacyPolicyStageScript : ToffMonaka.UnityBase.Scene.MenuStageScript
+public class MenuPrivacyPolicyStageScript : UnityBase.Scene.MenuStageScript
 {
     [SerializeField] private TMP_Text _nameText = null;
     [SerializeField] private ScrollRect _messageScrollRect = null;
@@ -31,17 +32,17 @@ public class MenuPrivacyPolicyStageScript : ToffMonaka.UnityBase.Scene.MenuStage
     [SerializeField] private TMP_Text _cancelButtonNameText = null;
     [SerializeField] private Image _cancelButtonCoverImage = null;
 
-    public new ToffMonaka.UnityBase.Scene.MenuPrivacyPolicyStageScriptCreateDesc createDesc{get; private set;} = null;
+    public new UnityBase.Scene.MenuPrivacyPolicyStageScriptCreateDesc createDesc{get; private set;} = null;
 
-    private ToffMonaka.UnityBase.Scene.MenuScript _menuScript = null;
+    private UnityBase.Scene.MenuScript _menuScript = null;
 
     /**
      * @brief コンストラクタ
      */
     public MenuPrivacyPolicyStageScript()
     {
-        this._SetScriptIndex((int)ToffMonaka.UnityBase.Constant.Util.SCENE.SCRIPT_INDEX.MENU_PRIVACY_POLICY_STAGE);
-        this._SetStageType(ToffMonaka.UnityBase.Constant.Util.SCENE.MENU_STAGE_TYPE.PRIVACY_POLICY);
+        this._SetScriptIndex((int)UnityBase.Constant.Util.SCENE.SCRIPT_INDEX.MENU_PRIVACY_POLICY_STAGE);
+        this._SetStageType(UnityBase.Constant.Util.SCENE.MENU_STAGE_TYPE.PRIVACY_POLICY);
 
         return;
     }
@@ -71,7 +72,7 @@ public class MenuPrivacyPolicyStageScript : ToffMonaka.UnityBase.Scene.MenuStage
     {
         this._menuScript = this.createDesc.menuScript;
 
-        this._nameText.SetText(ToffMonaka.UnityBase.Global.GetString(ToffMonaka.UnityBase.Constant.Util.SCENE.MENU_STAGE_NAME_MST_STRING_ID_ARRAY[(int)this.GetStageType()]));
+        this._nameText.SetText(UnityBase.Global.GetString(UnityBase.Constant.Util.SCENE.MENU_STAGE_NAME_MST_STRING_ID_ARRAY[(int)this.GetStageType()]));
 
         this._messageNode.SetActive(false);
 
@@ -208,8 +209,8 @@ public class MenuPrivacyPolicyStageScript : ToffMonaka.UnityBase.Scene.MenuStage
             };
             string[] str_ary;
 
-		    switch (ToffMonaka.UnityBase.Global.systemConfigFile.data.systemLanguageType) {
-		    case ToffMonaka.UnityBase.Constant.Util.LANGUAGE_TYPE.JAPANESE: {
+		    switch (UnityBase.Global.systemConfigFile.data.systemLanguageType) {
+		    case UnityBase.Constant.Util.LANGUAGE_TYPE.JAPANESE: {
                 str_ary = jp_str_ary;
 
 			    break;
@@ -232,7 +233,7 @@ public class MenuPrivacyPolicyStageScript : ToffMonaka.UnityBase.Scene.MenuStage
             }
         }
 
-        this._cancelButtonNameText.SetText(ToffMonaka.UnityBase.Global.GetString(ToffMonaka.UnityBase.Constant.Util.MST_STRING_ID.CANCEL));
+        this._cancelButtonNameText.SetText(UnityBase.Global.GetString(UnityBase.Constant.Util.MST_STRING_ID.CANCEL));
 
         return (0);
     }
@@ -241,9 +242,9 @@ public class MenuPrivacyPolicyStageScript : ToffMonaka.UnityBase.Scene.MenuStage
      * @brief SetCreateDesc関数
      * @param create_desc (create_desc)
      */
-    public override void SetCreateDesc(ToffMonaka.Lib.Scene.ScriptCreateDesc create_desc)
+    public override void SetCreateDesc(Lib.Scene.ScriptCreateDesc create_desc)
     {
-	    this.createDesc = create_desc as ToffMonaka.UnityBase.Scene.MenuPrivacyPolicyStageScriptCreateDesc;
+	    this.createDesc = create_desc as UnityBase.Scene.MenuPrivacyPolicyStageScriptCreateDesc;
 
         base.SetCreateDesc(this.createDesc);
 
@@ -371,7 +372,7 @@ public class MenuPrivacyPolicyStageScript : ToffMonaka.UnityBase.Scene.MenuStage
             return;
         }
 
-        ToffMonaka.Lib.Scene.Util.GetSoundManager().PlaySe((int)ToffMonaka.UnityBase.Constant.Util.SOUND.SE_INDEX.CANCEL);
+        Lib.Scene.Util.GetSoundManager().PlaySe((int)UnityBase.Constant.Util.SOUND.SE_INDEX.CANCEL);
 
         this._menuScript.RunStageCancelButton();
 
@@ -407,5 +408,6 @@ public class MenuPrivacyPolicyStageScript : ToffMonaka.UnityBase.Scene.MenuStage
 
         return;
     }
+}
 }
 }

@@ -7,7 +7,8 @@
 using UnityEngine;
 
 
-namespace ToffMonaka.UnityBase.Constant {
+namespace ToffMonaka {
+namespace UnityBase.Constant {
 /**
  * @brief Utilクラス
  */
@@ -57,7 +58,7 @@ public static class Util
             SELECT,
 		    COUNT
         }
-        public const int BGM_INDEX_COUNT = (int)ToffMonaka.UnityBase.Constant.Util.SOUND.BGM_INDEX.COUNT;
+        public const int BGM_INDEX_COUNT = (int)UnityBase.Constant.Util.SOUND.BGM_INDEX.COUNT;
 
         public enum SE_INDEX : int
         {
@@ -67,14 +68,14 @@ public static class Util
             CANCEL,
 		    COUNT
         }
-        public const int SE_INDEX_COUNT = (int)ToffMonaka.UnityBase.Constant.Util.SOUND.SE_INDEX.COUNT;
+        public const int SE_INDEX_COUNT = (int)UnityBase.Constant.Util.SOUND.SE_INDEX.COUNT;
     }
 
     public static class SCENE
     {
         public enum SCRIPT_INDEX : int
         {
-            MAIN_SCENE = ToffMonaka.Lib.Constant.Util.SCENE.SCRIPT_INDEX.COUNT,
+            MAIN_SCENE = Lib.Constant.Util.SCENE.SCRIPT_INDEX.COUNT,
             INIT_SUB_SCENE,
             TITLE_SUB_SCENE,
             STAGE_SELECT_SUB_SCENE,
@@ -97,7 +98,7 @@ public static class Util
             MENU_CHEAT_STAGE_COMMAND_BUTTON,
 		    COUNT
         }
-        public const int SCRIPT_INDEX_COUNT = (int)ToffMonaka.UnityBase.Constant.Util.SCENE.SCRIPT_INDEX.COUNT;
+        public const int SCRIPT_INDEX_COUNT = (int)UnityBase.Constant.Util.SCENE.SCRIPT_INDEX.COUNT;
 
         public static class NAME
         {
@@ -111,10 +112,10 @@ public static class Util
             STAGE,
 		    COUNT
         }
-        public const int SELECT_TYPE_COUNT = (int)ToffMonaka.UnityBase.Constant.Util.SCENE.SELECT_TYPE.COUNT;
-        public static readonly ToffMonaka.UnityBase.Constant.Util.MST_STRING_ID[] SELECT_NAME_MST_STRING_ID_ARRAY = {
-            ToffMonaka.UnityBase.Constant.Util.MST_STRING_ID.NONE,
-            ToffMonaka.UnityBase.Constant.Util.MST_STRING_ID.STAGE
+        public const int SELECT_TYPE_COUNT = (int)UnityBase.Constant.Util.SCENE.SELECT_TYPE.COUNT;
+        public static readonly UnityBase.Constant.Util.MST_STRING_ID[] SELECT_NAME_MST_STRING_ID_ARRAY = {
+            UnityBase.Constant.Util.MST_STRING_ID.NONE,
+            UnityBase.Constant.Util.MST_STRING_ID.STAGE
         };
 
         public enum STAGE_TYPE : int
@@ -124,11 +125,11 @@ public static class Util
             TEST_3D,
 		    COUNT
         }
-        public const int STAGE_TYPE_COUNT = (int)ToffMonaka.UnityBase.Constant.Util.SCENE.STAGE_TYPE.COUNT;
-        public static readonly ToffMonaka.UnityBase.Constant.Util.MST_STRING_ID[] STAGE_NAME_MST_STRING_ID_ARRAY = {
-            ToffMonaka.UnityBase.Constant.Util.MST_STRING_ID.NONE,
-            ToffMonaka.UnityBase.Constant.Util.MST_STRING_ID.TEST_2D,
-            ToffMonaka.UnityBase.Constant.Util.MST_STRING_ID.TEST_3D
+        public const int STAGE_TYPE_COUNT = (int)UnityBase.Constant.Util.SCENE.STAGE_TYPE.COUNT;
+        public static readonly UnityBase.Constant.Util.MST_STRING_ID[] STAGE_NAME_MST_STRING_ID_ARRAY = {
+            UnityBase.Constant.Util.MST_STRING_ID.NONE,
+            UnityBase.Constant.Util.MST_STRING_ID.TEST_2D,
+            UnityBase.Constant.Util.MST_STRING_ID.TEST_3D
         };
 
         public enum MENU_SELECT_TYPE : int
@@ -137,10 +138,10 @@ public static class Util
             STAGE,
 		    COUNT
         }
-        public const int MENU_SELECT_TYPE_COUNT = (int)ToffMonaka.UnityBase.Constant.Util.SCENE.MENU_SELECT_TYPE.COUNT;
-        public static readonly ToffMonaka.UnityBase.Constant.Util.MST_STRING_ID[] MENU_SELECT_NAME_MST_STRING_ID_ARRAY = {
-            ToffMonaka.UnityBase.Constant.Util.MST_STRING_ID.NONE,
-            ToffMonaka.UnityBase.Constant.Util.MST_STRING_ID.MENU
+        public const int MENU_SELECT_TYPE_COUNT = (int)UnityBase.Constant.Util.SCENE.MENU_SELECT_TYPE.COUNT;
+        public static readonly UnityBase.Constant.Util.MST_STRING_ID[] MENU_SELECT_NAME_MST_STRING_ID_ARRAY = {
+            UnityBase.Constant.Util.MST_STRING_ID.NONE,
+            UnityBase.Constant.Util.MST_STRING_ID.MENU
         };
 
         public enum MENU_STAGE_TYPE : int
@@ -155,16 +156,16 @@ public static class Util
             CHEAT,
 		    COUNT
         }
-        public const int MENU_STAGE_TYPE_COUNT = (int)ToffMonaka.UnityBase.Constant.Util.SCENE.MENU_STAGE_TYPE.COUNT;
-        public static readonly ToffMonaka.UnityBase.Constant.Util.MST_STRING_ID[] MENU_STAGE_NAME_MST_STRING_ID_ARRAY = {
-            ToffMonaka.UnityBase.Constant.Util.MST_STRING_ID.NONE,
-            ToffMonaka.UnityBase.Constant.Util.MST_STRING_ID.OPTION,
-            ToffMonaka.UnityBase.Constant.Util.MST_STRING_ID.FAQ,
-            ToffMonaka.UnityBase.Constant.Util.MST_STRING_ID.STAFF,
-            ToffMonaka.UnityBase.Constant.Util.MST_STRING_ID.LICENSE,
-            ToffMonaka.UnityBase.Constant.Util.MST_STRING_ID.PRIVACY_POLICY,
-            ToffMonaka.UnityBase.Constant.Util.MST_STRING_ID.EXIT,
-            ToffMonaka.UnityBase.Constant.Util.MST_STRING_ID.CHEAT
+        public const int MENU_STAGE_TYPE_COUNT = (int)UnityBase.Constant.Util.SCENE.MENU_STAGE_TYPE.COUNT;
+        public static readonly UnityBase.Constant.Util.MST_STRING_ID[] MENU_STAGE_NAME_MST_STRING_ID_ARRAY = {
+            UnityBase.Constant.Util.MST_STRING_ID.NONE,
+            UnityBase.Constant.Util.MST_STRING_ID.OPTION,
+            UnityBase.Constant.Util.MST_STRING_ID.FAQ,
+            UnityBase.Constant.Util.MST_STRING_ID.STAFF,
+            UnityBase.Constant.Util.MST_STRING_ID.LICENSE,
+            UnityBase.Constant.Util.MST_STRING_ID.PRIVACY_POLICY,
+            UnityBase.Constant.Util.MST_STRING_ID.EXIT,
+            UnityBase.Constant.Util.MST_STRING_ID.CHEAT
         };
 
         public enum MENU_CHEAT_STAGE_COMMAND_TYPE : int
@@ -173,10 +174,10 @@ public static class Util
             DATA_DELETE,
 		    COUNT
         }
-        public const int MENU_CHEAT_STAGE_COMMAND_TYPE_COUNT = (int)ToffMonaka.UnityBase.Constant.Util.SCENE.MENU_CHEAT_STAGE_COMMAND_TYPE.COUNT;
-        public static readonly ToffMonaka.UnityBase.Constant.Util.MST_STRING_ID[] MENU_CHEAT_STAGE_COMMAND_NAME_MST_STRING_ID_ARRAY = {
-            ToffMonaka.UnityBase.Constant.Util.MST_STRING_ID.NONE,
-            ToffMonaka.UnityBase.Constant.Util.MST_STRING_ID.DELETE_DATA
+        public const int MENU_CHEAT_STAGE_COMMAND_TYPE_COUNT = (int)UnityBase.Constant.Util.SCENE.MENU_CHEAT_STAGE_COMMAND_TYPE.COUNT;
+        public static readonly UnityBase.Constant.Util.MST_STRING_ID[] MENU_CHEAT_STAGE_COMMAND_NAME_MST_STRING_ID_ARRAY = {
+            UnityBase.Constant.Util.MST_STRING_ID.NONE,
+            UnityBase.Constant.Util.MST_STRING_ID.DELETE_DATA
         };
         public static readonly string[] MENU_CHEAT_STAGE_COMMAND_FUNCTION_ARRAY = {
             "",
@@ -226,11 +227,12 @@ public static class Util
         JAPANESE,
 		COUNT
     }
-    public const int LANGUAGE_TYPE_COUNT = (int)ToffMonaka.UnityBase.Constant.Util.LANGUAGE_TYPE.COUNT;
-    public static readonly ToffMonaka.UnityBase.Constant.Util.MST_STRING_ID[] LANGUAGE_NAME_MST_STRING_ID_ARRAY = {
-        ToffMonaka.UnityBase.Constant.Util.MST_STRING_ID.NONE,
-        ToffMonaka.UnityBase.Constant.Util.MST_STRING_ID.ENGLISH,
-        ToffMonaka.UnityBase.Constant.Util.MST_STRING_ID.JAPANESE
+    public const int LANGUAGE_TYPE_COUNT = (int)UnityBase.Constant.Util.LANGUAGE_TYPE.COUNT;
+    public static readonly UnityBase.Constant.Util.MST_STRING_ID[] LANGUAGE_NAME_MST_STRING_ID_ARRAY = {
+        UnityBase.Constant.Util.MST_STRING_ID.NONE,
+        UnityBase.Constant.Util.MST_STRING_ID.ENGLISH,
+        UnityBase.Constant.Util.MST_STRING_ID.JAPANESE
     };
+}
 }
 }

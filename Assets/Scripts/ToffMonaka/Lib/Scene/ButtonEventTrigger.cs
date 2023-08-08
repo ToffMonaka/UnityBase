@@ -9,7 +9,8 @@ using UnityEngine.EventSystems;
 using UnityEngine.Events;
 
 
-namespace ToffMonaka.Lib.Scene {
+namespace ToffMonaka {
+namespace Lib.Scene {
 /**
  * @brief ButtonEventTriggerクラス
  */
@@ -53,5 +54,6 @@ public class ButtonEventTrigger : MonoBehaviour, IPointerClickHandler, IPointerE
 
         return;
     }
+}
 }
 }

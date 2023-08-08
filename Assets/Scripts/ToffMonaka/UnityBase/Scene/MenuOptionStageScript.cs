@@ -11,19 +11,20 @@ using TMPro;
 using DG.Tweening;
 
 
-namespace ToffMonaka.UnityBase.Scene {
+namespace ToffMonaka {
+namespace UnityBase.Scene {
 /**
  * @brief MenuOptionStageScriptCreateDescクラス
  */
-public class MenuOptionStageScriptCreateDesc : ToffMonaka.UnityBase.Scene.MenuStageScriptCreateDesc
+public class MenuOptionStageScriptCreateDesc : UnityBase.Scene.MenuStageScriptCreateDesc
 {
-    public ToffMonaka.UnityBase.Scene.MenuScript menuScript = null;
+    public UnityBase.Scene.MenuScript menuScript = null;
 }
 
 /**
  * @brief MenuOptionStageScriptクラス
  */
-public class MenuOptionStageScript : ToffMonaka.UnityBase.Scene.MenuStageScript
+public class MenuOptionStageScript : UnityBase.Scene.MenuStageScript
 {
     [SerializeField] private TMP_Text _nameText = null;
     [SerializeField] private ScrollRect _editScrollRect = null;
@@ -44,25 +45,25 @@ public class MenuOptionStageScript : ToffMonaka.UnityBase.Scene.MenuStageScript
     [SerializeField] private TMP_Text _cancelButtonNameText = null;
     [SerializeField] private Image _cancelButtonCoverImage = null;
 
-    public new ToffMonaka.UnityBase.Scene.MenuOptionStageScriptCreateDesc createDesc{get; private set;} = null;
+    public new UnityBase.Scene.MenuOptionStageScriptCreateDesc createDesc{get; private set;} = null;
 
-    private ToffMonaka.UnityBase.Scene.MenuScript _menuScript = null;
-    private ToffMonaka.UnityBase.Constant.Util.LANGUAGE_TYPE _languageType = ToffMonaka.UnityBase.Constant.Util.LANGUAGE_TYPE.NONE;
+    private UnityBase.Scene.MenuScript _menuScript = null;
+    private UnityBase.Constant.Util.LANGUAGE_TYPE _languageType = UnityBase.Constant.Util.LANGUAGE_TYPE.NONE;
     private float _soundBgmVolume = 1.0f;
     private bool _soundBgmMuteFlag = false;
     private float _soundSeVolume = 1.0f;
     private bool _soundSeMuteFlag = false;
     private uint _restartFlag = 0U;
     private GameObject _languageSelectDialogNode = null;
-    private ToffMonaka.UnityBase.Scene.MenuOptionStageLanguageSelectDialogScript _languageSelectDialogScript = null;
+    private UnityBase.Scene.MenuOptionStageLanguageSelectDialogScript _languageSelectDialogScript = null;
 
     /**
      * @brief コンストラクタ
      */
     public MenuOptionStageScript()
     {
-        this._SetScriptIndex((int)ToffMonaka.UnityBase.Constant.Util.SCENE.SCRIPT_INDEX.MENU_OPTION_STAGE);
-        this._SetStageType(ToffMonaka.UnityBase.Constant.Util.SCENE.MENU_STAGE_TYPE.OPTION);
+        this._SetScriptIndex((int)UnityBase.Constant.Util.SCENE.SCRIPT_INDEX.MENU_OPTION_STAGE);
+        this._SetStageType(UnityBase.Constant.Util.SCENE.MENU_STAGE_TYPE.OPTION);
 
         return;
     }
@@ -81,7 +82,7 @@ public class MenuOptionStageScript : ToffMonaka.UnityBase.Scene.MenuStageScript
     protected override void _OnDestroy()
     {
         if (this._languageSelectDialogScript != null) {
-            ToffMonaka.Lib.Scene.Util.ReleasePrefabNode(ref this._languageSelectDialogNode);
+            Lib.Scene.Util.ReleasePrefabNode(ref this._languageSelectDialogNode);
 
             this._languageSelectDialogScript = null;
         }
@@ -98,15 +99,15 @@ public class MenuOptionStageScript : ToffMonaka.UnityBase.Scene.MenuStageScript
     {
         this._menuScript = this.createDesc.menuScript;
 
-        this._nameText.SetText(ToffMonaka.UnityBase.Global.GetString(ToffMonaka.UnityBase.Constant.Util.SCENE.MENU_STAGE_NAME_MST_STRING_ID_ARRAY[(int)this.GetStageType()]));
+        this._nameText.SetText(UnityBase.Global.GetString(UnityBase.Constant.Util.SCENE.MENU_STAGE_NAME_MST_STRING_ID_ARRAY[(int)this.GetStageType()]));
 
-        this._languageNameText.SetText(ToffMonaka.UnityBase.Global.GetString(ToffMonaka.UnityBase.Constant.Util.MST_STRING_ID.LANGUAGE));
-        this._soundNameText.SetText(ToffMonaka.UnityBase.Global.GetString(ToffMonaka.UnityBase.Constant.Util.MST_STRING_ID.SOUND));
-        this._soundBgmMuteToggleNameText.SetText(ToffMonaka.UnityBase.Global.GetString(ToffMonaka.UnityBase.Constant.Util.MST_STRING_ID.BGM_MUTE));
-        this._soundSeMuteToggleNameText.SetText(ToffMonaka.UnityBase.Global.GetString(ToffMonaka.UnityBase.Constant.Util.MST_STRING_ID.SE_MUTE));
+        this._languageNameText.SetText(UnityBase.Global.GetString(UnityBase.Constant.Util.MST_STRING_ID.LANGUAGE));
+        this._soundNameText.SetText(UnityBase.Global.GetString(UnityBase.Constant.Util.MST_STRING_ID.SOUND));
+        this._soundBgmMuteToggleNameText.SetText(UnityBase.Global.GetString(UnityBase.Constant.Util.MST_STRING_ID.BGM_MUTE));
+        this._soundSeMuteToggleNameText.SetText(UnityBase.Global.GetString(UnityBase.Constant.Util.MST_STRING_ID.SE_MUTE));
 
-        this._okButtonNameText.SetText(ToffMonaka.UnityBase.Global.GetString(ToffMonaka.UnityBase.Constant.Util.MST_STRING_ID.OK));
-        this._cancelButtonNameText.SetText(ToffMonaka.UnityBase.Global.GetString(ToffMonaka.UnityBase.Constant.Util.MST_STRING_ID.CANCEL));
+        this._okButtonNameText.SetText(UnityBase.Global.GetString(UnityBase.Constant.Util.MST_STRING_ID.OK));
+        this._cancelButtonNameText.SetText(UnityBase.Global.GetString(UnityBase.Constant.Util.MST_STRING_ID.CANCEL));
 
         return (0);
     }
@@ -115,9 +116,9 @@ public class MenuOptionStageScript : ToffMonaka.UnityBase.Scene.MenuStageScript
      * @brief SetCreateDesc関数
      * @param create_desc (create_desc)
      */
-    public override void SetCreateDesc(ToffMonaka.Lib.Scene.ScriptCreateDesc create_desc)
+    public override void SetCreateDesc(Lib.Scene.ScriptCreateDesc create_desc)
     {
-	    this.createDesc = create_desc as ToffMonaka.UnityBase.Scene.MenuOptionStageScriptCreateDesc;
+	    this.createDesc = create_desc as UnityBase.Scene.MenuOptionStageScriptCreateDesc;
 
         base.SetCreateDesc(this.createDesc);
 
@@ -130,11 +131,11 @@ public class MenuOptionStageScript : ToffMonaka.UnityBase.Scene.MenuStageScript
     protected override void _OnActive()
     {
         this._editScrollRect.verticalNormalizedPosition = 1.0f;
-        this.SetLanguageType(ToffMonaka.UnityBase.Global.systemConfigFile.data.systemLanguageType);
-        this.SetSoundBgmVolume(ToffMonaka.UnityBase.Global.systemConfigFile.data.soundBgmVolume);
-        this.SetSoundBgmMuteFlag(ToffMonaka.UnityBase.Global.systemConfigFile.data.soundBgmMuteFlag);
-        this.SetSoundSeVolume(ToffMonaka.UnityBase.Global.systemConfigFile.data.soundSeVolume);
-        this.SetSoundSeMuteFlag(ToffMonaka.UnityBase.Global.systemConfigFile.data.soundSeMuteFlag);
+        this.SetLanguageType(UnityBase.Global.systemConfigFile.data.systemLanguageType);
+        this.SetSoundBgmVolume(UnityBase.Global.systemConfigFile.data.soundBgmVolume);
+        this.SetSoundBgmMuteFlag(UnityBase.Global.systemConfigFile.data.soundBgmMuteFlag);
+        this.SetSoundSeVolume(UnityBase.Global.systemConfigFile.data.soundSeVolume);
+        this.SetSoundSeMuteFlag(UnityBase.Global.systemConfigFile.data.soundSeMuteFlag);
         this._languageButtonCoverImage.gameObject.SetActive(false);
         this._okButtonCoverImage.gameObject.SetActive(false);
         this._cancelButtonCoverImage.gameObject.SetActive(false);
@@ -252,14 +253,14 @@ public class MenuOptionStageScript : ToffMonaka.UnityBase.Scene.MenuStageScript
             return;
         }
 
-        ToffMonaka.Lib.Scene.Util.GetSoundManager().PlaySe((int)ToffMonaka.UnityBase.Constant.Util.SOUND.SE_INDEX.OK2);
+        Lib.Scene.Util.GetSoundManager().PlaySe((int)UnityBase.Constant.Util.SOUND.SE_INDEX.OK2);
 
         // languageSelectDialogScript Create
         if (this._languageSelectDialogScript == null) {
-            this._languageSelectDialogNode = ToffMonaka.Lib.Scene.Util.GetPrefabNode(ToffMonaka.UnityBase.Constant.Util.FILE_PATH.MENU_OPTION_STAGE_LANGUAGE_SELECT_DIALOG_PREFAB, this._menuScript.gameObject);
+            this._languageSelectDialogNode = Lib.Scene.Util.GetPrefabNode(UnityBase.Constant.Util.FILE_PATH.MENU_OPTION_STAGE_LANGUAGE_SELECT_DIALOG_PREFAB, this._menuScript.gameObject);
 
-            var script = this._languageSelectDialogNode.GetComponent<ToffMonaka.UnityBase.Scene.MenuOptionStageLanguageSelectDialogScript>();
-            var script_create_desc = new ToffMonaka.UnityBase.Scene.MenuOptionStageLanguageSelectDialogScriptCreateDesc();
+            var script = this._languageSelectDialogNode.GetComponent<UnityBase.Scene.MenuOptionStageLanguageSelectDialogScript>();
+            var script_create_desc = new UnityBase.Scene.MenuOptionStageLanguageSelectDialogScriptCreateDesc();
 
             script_create_desc.menuOptionStageScript = this;
 
@@ -315,9 +316,9 @@ public class MenuOptionStageScript : ToffMonaka.UnityBase.Scene.MenuStageScript
 
         this.SetSoundBgmVolume(this._soundBgmVolumeSlider.value / 10.0f);
 
-        ToffMonaka.Lib.Scene.Util.GetSoundManager().SetBgmVolume(this._soundBgmVolume);
+        Lib.Scene.Util.GetSoundManager().SetBgmVolume(this._soundBgmVolume);
 
-        ToffMonaka.Lib.Scene.Util.GetSoundManager().PlaySe((int)ToffMonaka.UnityBase.Constant.Util.SOUND.SE_INDEX.OK2);
+        Lib.Scene.Util.GetSoundManager().PlaySe((int)UnityBase.Constant.Util.SOUND.SE_INDEX.OK2);
 
         return;
     }
@@ -334,12 +335,12 @@ public class MenuOptionStageScript : ToffMonaka.UnityBase.Scene.MenuStageScript
 
         this.SetSoundBgmMuteFlag(this._soundBgmMuteToggle.isOn);
 
-        ToffMonaka.Lib.Scene.Util.GetSoundManager().SetBgmMuteFlag(this._soundBgmMuteFlag);
+        Lib.Scene.Util.GetSoundManager().SetBgmMuteFlag(this._soundBgmMuteFlag);
 
         if (this._soundBgmMuteFlag) {
-            ToffMonaka.Lib.Scene.Util.GetSoundManager().PlaySe((int)ToffMonaka.UnityBase.Constant.Util.SOUND.SE_INDEX.OK2);
+            Lib.Scene.Util.GetSoundManager().PlaySe((int)UnityBase.Constant.Util.SOUND.SE_INDEX.OK2);
         } else {
-            ToffMonaka.Lib.Scene.Util.GetSoundManager().PlaySe((int)ToffMonaka.UnityBase.Constant.Util.SOUND.SE_INDEX.CANCEL);
+            Lib.Scene.Util.GetSoundManager().PlaySe((int)UnityBase.Constant.Util.SOUND.SE_INDEX.CANCEL);
         }
 
         return;
@@ -357,9 +358,9 @@ public class MenuOptionStageScript : ToffMonaka.UnityBase.Scene.MenuStageScript
 
         this.SetSoundSeVolume(this._soundSeVolumeSlider.value / 10.0f);
      
-        ToffMonaka.Lib.Scene.Util.GetSoundManager().SetSeVolume(this._soundSeVolume);
+        Lib.Scene.Util.GetSoundManager().SetSeVolume(this._soundSeVolume);
 
-        ToffMonaka.Lib.Scene.Util.GetSoundManager().PlaySe((int)ToffMonaka.UnityBase.Constant.Util.SOUND.SE_INDEX.OK2);
+        Lib.Scene.Util.GetSoundManager().PlaySe((int)UnityBase.Constant.Util.SOUND.SE_INDEX.OK2);
 
         return;
     }
@@ -376,12 +377,12 @@ public class MenuOptionStageScript : ToffMonaka.UnityBase.Scene.MenuStageScript
 
         this.SetSoundSeMuteFlag(this._soundSeMuteToggle.isOn);
 
-        ToffMonaka.Lib.Scene.Util.GetSoundManager().SetSeMuteFlag(this._soundSeMuteFlag);
+        Lib.Scene.Util.GetSoundManager().SetSeMuteFlag(this._soundSeMuteFlag);
 
         if (this._soundSeMuteFlag) {
-            ToffMonaka.Lib.Scene.Util.GetSoundManager().PlaySe((int)ToffMonaka.UnityBase.Constant.Util.SOUND.SE_INDEX.OK2);
+            Lib.Scene.Util.GetSoundManager().PlaySe((int)UnityBase.Constant.Util.SOUND.SE_INDEX.OK2);
         } else {
-            ToffMonaka.Lib.Scene.Util.GetSoundManager().PlaySe((int)ToffMonaka.UnityBase.Constant.Util.SOUND.SE_INDEX.CANCEL);
+            Lib.Scene.Util.GetSoundManager().PlaySe((int)UnityBase.Constant.Util.SOUND.SE_INDEX.CANCEL);
         }
 
         return;
@@ -397,46 +398,46 @@ public class MenuOptionStageScript : ToffMonaka.UnityBase.Scene.MenuStageScript
             return;
         }
 
-        ToffMonaka.Lib.Scene.Util.GetSoundManager().PlaySe((int)ToffMonaka.UnityBase.Constant.Util.SOUND.SE_INDEX.OK2);
+        Lib.Scene.Util.GetSoundManager().PlaySe((int)UnityBase.Constant.Util.SOUND.SE_INDEX.OK2);
 
         bool write_flg = false;
 
-        if (this._languageType != ToffMonaka.UnityBase.Global.systemConfigFile.data.systemLanguageType) {
-            ToffMonaka.UnityBase.Global.systemConfigFile.data.systemLanguageType = this._languageType;
+        if (this._languageType != UnityBase.Global.systemConfigFile.data.systemLanguageType) {
+            UnityBase.Global.systemConfigFile.data.systemLanguageType = this._languageType;
 
             write_flg = true;
         }
 
-        if (this._soundBgmVolume != ToffMonaka.UnityBase.Global.systemConfigFile.data.soundBgmVolume) {
-            ToffMonaka.UnityBase.Global.systemConfigFile.data.soundBgmVolume = this._soundBgmVolume;
+        if (this._soundBgmVolume != UnityBase.Global.systemConfigFile.data.soundBgmVolume) {
+            UnityBase.Global.systemConfigFile.data.soundBgmVolume = this._soundBgmVolume;
 
             write_flg = true;
         }
 
-        if (this._soundBgmMuteFlag != ToffMonaka.UnityBase.Global.systemConfigFile.data.soundBgmMuteFlag) {
-            ToffMonaka.UnityBase.Global.systemConfigFile.data.soundBgmMuteFlag = this._soundBgmMuteFlag;
+        if (this._soundBgmMuteFlag != UnityBase.Global.systemConfigFile.data.soundBgmMuteFlag) {
+            UnityBase.Global.systemConfigFile.data.soundBgmMuteFlag = this._soundBgmMuteFlag;
 
             write_flg = true;
         }
 
-        if (this._soundSeVolume != ToffMonaka.UnityBase.Global.systemConfigFile.data.soundSeVolume) {
-            ToffMonaka.UnityBase.Global.systemConfigFile.data.soundSeVolume = this._soundSeVolume;
+        if (this._soundSeVolume != UnityBase.Global.systemConfigFile.data.soundSeVolume) {
+            UnityBase.Global.systemConfigFile.data.soundSeVolume = this._soundSeVolume;
 
             write_flg = true;
         }
 
-        if (this._soundSeMuteFlag != ToffMonaka.UnityBase.Global.systemConfigFile.data.soundSeMuteFlag) {
-            ToffMonaka.UnityBase.Global.systemConfigFile.data.soundSeMuteFlag = this._soundSeMuteFlag;
+        if (this._soundSeMuteFlag != UnityBase.Global.systemConfigFile.data.soundSeMuteFlag) {
+            UnityBase.Global.systemConfigFile.data.soundSeMuteFlag = this._soundSeMuteFlag;
 
             write_flg = true;
         }
 
         if (write_flg) {
-            ToffMonaka.UnityBase.Global.systemConfigFile.Write();
+            UnityBase.Global.systemConfigFile.Write();
         }
 
         if (this._restartFlag != 0U) {
-            ToffMonaka.Lib.Scene.Util.GetManager().ChangeMainScene(ToffMonaka.UnityBase.Constant.Util.SCENE.NAME.MAIN);
+            Lib.Scene.Util.GetManager().ChangeMainScene(UnityBase.Constant.Util.SCENE.NAME.MAIN);
         }
 
         this._menuScript.RunStageOkButton();
@@ -484,12 +485,12 @@ public class MenuOptionStageScript : ToffMonaka.UnityBase.Scene.MenuStageScript
             return;
         }
 
-        ToffMonaka.Lib.Scene.Util.GetSoundManager().PlaySe((int)ToffMonaka.UnityBase.Constant.Util.SOUND.SE_INDEX.CANCEL);
+        Lib.Scene.Util.GetSoundManager().PlaySe((int)UnityBase.Constant.Util.SOUND.SE_INDEX.CANCEL);
 
-        ToffMonaka.Lib.Scene.Util.GetSoundManager().SetBgmVolume(ToffMonaka.UnityBase.Global.systemConfigFile.data.soundBgmVolume);
-        ToffMonaka.Lib.Scene.Util.GetSoundManager().SetBgmMuteFlag(ToffMonaka.UnityBase.Global.systemConfigFile.data.soundBgmMuteFlag);
-        ToffMonaka.Lib.Scene.Util.GetSoundManager().SetSeVolume(ToffMonaka.UnityBase.Global.systemConfigFile.data.soundSeVolume);
-        ToffMonaka.Lib.Scene.Util.GetSoundManager().SetSeMuteFlag(ToffMonaka.UnityBase.Global.systemConfigFile.data.soundSeMuteFlag);
+        Lib.Scene.Util.GetSoundManager().SetBgmVolume(UnityBase.Global.systemConfigFile.data.soundBgmVolume);
+        Lib.Scene.Util.GetSoundManager().SetBgmMuteFlag(UnityBase.Global.systemConfigFile.data.soundBgmMuteFlag);
+        Lib.Scene.Util.GetSoundManager().SetSeVolume(UnityBase.Global.systemConfigFile.data.soundSeVolume);
+        Lib.Scene.Util.GetSoundManager().SetSeMuteFlag(UnityBase.Global.systemConfigFile.data.soundSeMuteFlag);
 
         this._menuScript.RunStageCancelButton();
 
@@ -530,7 +531,7 @@ public class MenuOptionStageScript : ToffMonaka.UnityBase.Scene.MenuStageScript
      * @brief GetLanguageType関数
      * @return language_type (language_type)
      */
-    public ToffMonaka.UnityBase.Constant.Util.LANGUAGE_TYPE GetLanguageType()
+    public UnityBase.Constant.Util.LANGUAGE_TYPE GetLanguageType()
     {
         return (this._languageType);
     }
@@ -539,13 +540,13 @@ public class MenuOptionStageScript : ToffMonaka.UnityBase.Scene.MenuStageScript
      * @brief SetLanguageType関数
      * @param language_type (language_type)
      */
-    public void SetLanguageType(ToffMonaka.UnityBase.Constant.Util.LANGUAGE_TYPE language_type)
+    public void SetLanguageType(UnityBase.Constant.Util.LANGUAGE_TYPE language_type)
     {
         this._languageType = language_type;
 
-        this._languageButtonNameText.SetText(ToffMonaka.UnityBase.Global.GetString(ToffMonaka.UnityBase.Constant.Util.LANGUAGE_NAME_MST_STRING_ID_ARRAY[(int)this._languageType]));
+        this._languageButtonNameText.SetText(UnityBase.Global.GetString(UnityBase.Constant.Util.LANGUAGE_NAME_MST_STRING_ID_ARRAY[(int)this._languageType]));
 
-        this._SetRestartFlag((this._languageType != ToffMonaka.UnityBase.Global.systemConfigFile.data.systemLanguageType) ? (this._restartFlag | 0x0001U) : (this._restartFlag & ~0x0001U));
+        this._SetRestartFlag((this._languageType != UnityBase.Global.systemConfigFile.data.systemLanguageType) ? (this._restartFlag | 0x0001U) : (this._restartFlag & ~0x0001U));
 
         return;
     }
@@ -567,7 +568,7 @@ public class MenuOptionStageScript : ToffMonaka.UnityBase.Scene.MenuStageScript
     {
         this._soundBgmVolume = (float)System.Math.Clamp(System.Math.Round(sound_bgm_volume, 1, System.MidpointRounding.AwayFromZero), 0.0, 1.0);
 
-        this._soundBgmVolumeSliderNameText.SetText(ToffMonaka.UnityBase.Global.GetString(ToffMonaka.UnityBase.Constant.Util.MST_STRING_ID.BGM_VOLUME) + " " + (this._soundBgmVolume * 10.0f));
+        this._soundBgmVolumeSliderNameText.SetText(UnityBase.Global.GetString(UnityBase.Constant.Util.MST_STRING_ID.BGM_VOLUME) + " " + (this._soundBgmVolume * 10.0f));
         this._soundBgmVolumeSlider.SetValueWithoutNotify(this._soundBgmVolume * 10.0f);
 
         return;
@@ -612,7 +613,7 @@ public class MenuOptionStageScript : ToffMonaka.UnityBase.Scene.MenuStageScript
     {
         this._soundSeVolume = (float)System.Math.Clamp(System.Math.Round(sound_se_volume, 1, System.MidpointRounding.AwayFromZero), 0.0, 1.0);
 
-        this._soundSeVolumeSliderNameText.SetText(ToffMonaka.UnityBase.Global.GetString(ToffMonaka.UnityBase.Constant.Util.MST_STRING_ID.SE_VOLUME) + " " + (this._soundSeVolume * 10.0f));
+        this._soundSeVolumeSliderNameText.SetText(UnityBase.Global.GetString(UnityBase.Constant.Util.MST_STRING_ID.SE_VOLUME) + " " + (this._soundSeVolume * 10.0f));
         this._soundSeVolumeSlider.SetValueWithoutNotify(this._soundSeVolume * 10.0f);
 
         return;
@@ -649,10 +650,10 @@ public class MenuOptionStageScript : ToffMonaka.UnityBase.Scene.MenuStageScript
         this._restartFlag = restart_flg;
 
         if (this._restartFlag != 0U) {
-            this._okButtonNameText.SetText(ToffMonaka.UnityBase.Global.GetString(ToffMonaka.UnityBase.Constant.Util.MST_STRING_ID.OK_RESTART));
+            this._okButtonNameText.SetText(UnityBase.Global.GetString(UnityBase.Constant.Util.MST_STRING_ID.OK_RESTART));
             this._okButtonNameText.fontSize = 20.0f;
         } else {
-            this._okButtonNameText.SetText(ToffMonaka.UnityBase.Global.GetString(ToffMonaka.UnityBase.Constant.Util.MST_STRING_ID.OK));
+            this._okButtonNameText.SetText(UnityBase.Global.GetString(UnityBase.Constant.Util.MST_STRING_ID.OK));
             this._okButtonNameText.fontSize = 32.0f;
         }
 
@@ -673,7 +674,7 @@ public class MenuOptionStageScript : ToffMonaka.UnityBase.Scene.MenuStageScript
      * @brief RunLanguageSelectLanguageButton関数
      * @param language_type (language_type)
      */
-    public void RunLanguageSelectLanguageButton(ToffMonaka.UnityBase.Constant.Util.LANGUAGE_TYPE language_type)
+    public void RunLanguageSelectLanguageButton(UnityBase.Constant.Util.LANGUAGE_TYPE language_type)
     {
         this.SetLanguageType(language_type);
 
@@ -681,5 +682,6 @@ public class MenuOptionStageScript : ToffMonaka.UnityBase.Scene.MenuStageScript
 
         return;
     }
+}
 }
 }

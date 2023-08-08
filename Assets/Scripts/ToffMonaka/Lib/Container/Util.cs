@@ -7,11 +7,13 @@
 using UnityEngine;
 
 
-namespace ToffMonaka.Lib.Container {
+namespace ToffMonaka {
+namespace Lib.Container {
 /**
  * @brief Utilクラス
  */
 public static class Util
 {
+}
 }
 }

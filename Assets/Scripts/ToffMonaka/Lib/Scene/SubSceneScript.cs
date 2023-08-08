@@ -7,27 +7,28 @@
 using UnityEngine;
 
 
-namespace ToffMonaka.Lib.Scene {
+namespace ToffMonaka {
+namespace Lib.Scene {
 /**
  * @brief SubSceneScriptCreateDescクラス
  */
-public class SubSceneScriptCreateDesc : ToffMonaka.Lib.Scene.ScriptCreateDesc
+public class SubSceneScriptCreateDesc : Lib.Scene.ScriptCreateDesc
 {
 }
 
 /**
  * @brief SubScenScripteクラス
  */
-public abstract class SubSceneScript : ToffMonaka.Lib.Scene.Script
+public abstract class SubSceneScript : Lib.Scene.Script
 {
-    public new ToffMonaka.Lib.Scene.SubSceneScriptCreateDesc createDesc{get; private set;} = null;
+    public new Lib.Scene.SubSceneScriptCreateDesc createDesc{get; private set;} = null;
 
     /**
      * @brief コンストラクタ
      */
     public SubSceneScript()
     {
-        this._SetScriptType(ToffMonaka.Lib.Constant.Util.SCENE.SCRIPT_TYPE.SUB_SCENE);
+        this._SetScriptType(Lib.Constant.Util.SCENE.SCRIPT_TYPE.SUB_SCENE);
         this._SetActiveAutoFlag(true);
 
         return;
@@ -57,9 +58,9 @@ public abstract class SubSceneScript : ToffMonaka.Lib.Scene.Script
      * @brief SetCreateDesc関数
      * @param create_desc (create_desc)
      */
-    public override void SetCreateDesc(ToffMonaka.Lib.Scene.ScriptCreateDesc create_desc)
+    public override void SetCreateDesc(Lib.Scene.ScriptCreateDesc create_desc)
     {
-	    this.createDesc = create_desc as ToffMonaka.Lib.Scene.SubSceneScriptCreateDesc;
+	    this.createDesc = create_desc as Lib.Scene.SubSceneScriptCreateDesc;
 
         base.SetCreateDesc(this.createDesc);
 
@@ -125,5 +126,6 @@ public abstract class SubSceneScript : ToffMonaka.Lib.Scene.Script
 
         return;
     }
+}
 }
 }

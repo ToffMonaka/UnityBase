@@ -7,7 +7,8 @@
 using UnityEngine;
 
 
-namespace ToffMonaka.UnityBase.Data {
+namespace ToffMonaka {
+namespace UnityBase.Data {
 /**
  * @brief MstStringEntityクラス
  */
@@ -51,7 +52,7 @@ public class MstStringEntity
  */
 public class MstStringTableFileData
 {
-	public ToffMonaka.UnityBase.Data.MstStringEntity[] entityArray = System.Array.Empty<ToffMonaka.UnityBase.Data.MstStringEntity>();
+	public UnityBase.Data.MstStringEntity[] entityArray = System.Array.Empty<UnityBase.Data.MstStringEntity>();
 
     /**
      * @brief コンストラクタ
@@ -76,7 +77,7 @@ public class MstStringTableFileData
     {
         this._Release();
 
-    	this.entityArray = System.Array.Empty<ToffMonaka.UnityBase.Data.MstStringEntity>();
+    	this.entityArray = System.Array.Empty<UnityBase.Data.MstStringEntity>();
 
         return;
     }
@@ -87,7 +88,7 @@ public class MstStringTableFileData
      * @return entity (entity)<br>
      * null=失敗
      */
-    public ToffMonaka.UnityBase.Data.MstStringEntity GetEntity(int mst_str_id)
+    public UnityBase.Data.MstStringEntity GetEntity(int mst_str_id)
     {
 	    if (mst_str_id >= this.entityArray.Length) {
 		    return (null);
@@ -102,7 +103,7 @@ public class MstStringTableFileData
      * @return entity (entity)<br>
      * null=失敗
      */
-    public ToffMonaka.UnityBase.Data.MstStringEntity GetEntityFast(int mst_str_id)
+    public UnityBase.Data.MstStringEntity GetEntityFast(int mst_str_id)
     {
 	    return (this.entityArray[mst_str_id]);
     }
@@ -111,11 +112,11 @@ public class MstStringTableFileData
 /**
  * @brief MstStringTableFileクラス
  */
-public class MstStringTableFile : ToffMonaka.Lib.Data.File
+public class MstStringTableFile : Lib.Data.File
 {
-	public ToffMonaka.UnityBase.Data.MstStringTableFileData data = new ToffMonaka.UnityBase.Data.MstStringTableFileData();
-	public ToffMonaka.Lib.Data.FileReadDesc<ToffMonaka.Lib.Data.CsvFileReadDescData> readDesc = new ToffMonaka.Lib.Data.FileReadDesc<ToffMonaka.Lib.Data.CsvFileReadDescData>();
-	public ToffMonaka.Lib.Data.FileWriteDesc<ToffMonaka.Lib.Data.CsvFileWriteDescData> writeDesc = new ToffMonaka.Lib.Data.FileWriteDesc<ToffMonaka.Lib.Data.CsvFileWriteDescData>();
+	public UnityBase.Data.MstStringTableFileData data = new UnityBase.Data.MstStringTableFileData();
+	public Lib.Data.FileReadDesc<Lib.Data.CsvFileReadDescData> readDesc = new Lib.Data.FileReadDesc<Lib.Data.CsvFileReadDescData>();
+	public Lib.Data.FileWriteDesc<Lib.Data.CsvFileWriteDescData> writeDesc = new Lib.Data.FileWriteDesc<Lib.Data.CsvFileWriteDescData>();
 
     /**
      * @brief コンストラクタ
@@ -158,7 +159,7 @@ public class MstStringTableFile : ToffMonaka.Lib.Data.File
     {
 	    var desc_dat = this.readDesc.GetDataByParent();
 
-        var csv_file = new ToffMonaka.Lib.Data.CsvFile();
+        var csv_file = new Lib.Data.CsvFile();
         int csv_file_read_res;
 
         csv_file.readDesc.parentData = desc_dat;
@@ -177,10 +178,10 @@ public class MstStringTableFile : ToffMonaka.Lib.Data.File
 	        return (-1);
         }
 
-        this.data.entityArray = new ToffMonaka.UnityBase.Data.MstStringEntity[csv_file.data.GetRowCount()];
+        this.data.entityArray = new UnityBase.Data.MstStringEntity[csv_file.data.GetRowCount()];
 
         for (int val_i = 0; val_i < csv_file.data.GetRowCount(); ++val_i) {
-            var entity = new ToffMonaka.UnityBase.Data.MstStringEntity();
+            var entity = new UnityBase.Data.MstStringEntity();
 
             entity.mstStringId = int.Parse(csv_file.data.GetValueFast(val_i, 0));
             entity.string_ = csv_file.data.GetValueFast(val_i, 1);
@@ -200,5 +201,6 @@ public class MstStringTableFile : ToffMonaka.Lib.Data.File
     {
         return (-1);
     }
+}
 }
 }

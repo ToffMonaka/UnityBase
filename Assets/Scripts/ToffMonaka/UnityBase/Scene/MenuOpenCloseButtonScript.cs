@@ -10,32 +10,33 @@ using UnityEngine.EventSystems;
 using DG.Tweening;
 
 
-namespace ToffMonaka.UnityBase.Scene {
+namespace ToffMonaka {
+namespace UnityBase.Scene {
 /**
  * @brief MenuOpenCloseButtonScriptCreateDescクラス
  */
-public class MenuOpenCloseButtonScriptCreateDesc : ToffMonaka.Lib.Scene.ObjectScriptCreateDesc
+public class MenuOpenCloseButtonScriptCreateDesc : Lib.Scene.ObjectScriptCreateDesc
 {
-    public ToffMonaka.UnityBase.Scene.MenuScript menuScript = null;
+    public UnityBase.Scene.MenuScript menuScript = null;
 }
 
 /**
  * @brief MenuOpenCloseButtonScriptクラス
  */
-public class MenuOpenCloseButtonScript : ToffMonaka.Lib.Scene.ObjectScript, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
+public class MenuOpenCloseButtonScript : Lib.Scene.ObjectScript, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
 {
     [SerializeField] private Image _coverImage = null;
 
-    public new ToffMonaka.UnityBase.Scene.MenuOpenCloseButtonScriptCreateDesc createDesc{get; private set;} = null;
+    public new UnityBase.Scene.MenuOpenCloseButtonScriptCreateDesc createDesc{get; private set;} = null;
 
-    private ToffMonaka.UnityBase.Scene.MenuScript _menuScript = null;
+    private UnityBase.Scene.MenuScript _menuScript = null;
 
     /**
      * @brief コンストラクタ
      */
     public MenuOpenCloseButtonScript()
     {
-        this._SetScriptIndex((int)ToffMonaka.UnityBase.Constant.Util.SCENE.SCRIPT_INDEX.MENU_OPEN_CLOSE_BUTTON);
+        this._SetScriptIndex((int)UnityBase.Constant.Util.SCENE.SCRIPT_INDEX.MENU_OPEN_CLOSE_BUTTON);
 
         return;
     }
@@ -72,9 +73,9 @@ public class MenuOpenCloseButtonScript : ToffMonaka.Lib.Scene.ObjectScript, IPoi
      * @brief SetCreateDesc関数
      * @param create_desc (create_desc)
      */
-    public override void SetCreateDesc(ToffMonaka.Lib.Scene.ScriptCreateDesc create_desc)
+    public override void SetCreateDesc(Lib.Scene.ScriptCreateDesc create_desc)
     {
-	    this.createDesc = create_desc as ToffMonaka.UnityBase.Scene.MenuOpenCloseButtonScriptCreateDesc;
+	    this.createDesc = create_desc as UnityBase.Scene.MenuOpenCloseButtonScriptCreateDesc;
 
         base.SetCreateDesc(this.createDesc);
 
@@ -204,9 +205,9 @@ public class MenuOpenCloseButtonScript : ToffMonaka.Lib.Scene.ObjectScript, IPoi
         this._menuScript.RunOpenCloseButton();
 
         if (this._menuScript.GetOpenSelectScript() != null) {
-            ToffMonaka.Lib.Scene.Util.GetSoundManager().PlaySe((int)ToffMonaka.UnityBase.Constant.Util.SOUND.SE_INDEX.OK2);
+            Lib.Scene.Util.GetSoundManager().PlaySe((int)UnityBase.Constant.Util.SOUND.SE_INDEX.OK2);
         } else {
-            ToffMonaka.Lib.Scene.Util.GetSoundManager().PlaySe((int)ToffMonaka.UnityBase.Constant.Util.SOUND.SE_INDEX.CANCEL);
+            Lib.Scene.Util.GetSoundManager().PlaySe((int)UnityBase.Constant.Util.SOUND.SE_INDEX.CANCEL);
         }
 
         return;
@@ -241,5 +242,6 @@ public class MenuOpenCloseButtonScript : ToffMonaka.Lib.Scene.ObjectScript, IPoi
 
         return;
     }
+}
 }
 }

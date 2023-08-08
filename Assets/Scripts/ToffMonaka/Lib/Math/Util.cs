@@ -7,11 +7,13 @@
 using UnityEngine;
 
 
-namespace ToffMonaka.Lib.Math {
+namespace ToffMonaka {
+namespace Lib.Math {
 /**
  * @brief Utilクラス
  */
 public static class Util
 {
+}
 }
 }

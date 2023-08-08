@@ -10,23 +10,24 @@ using TMPro;
 using DG.Tweening;
 
 
-namespace ToffMonaka.UnityBase.Scene {
+namespace ToffMonaka {
+namespace UnityBase.Scene {
 /**
  * @brief InitSubSceneScriptCreateDescクラス
  */
-public class InitSubSceneScriptCreateDesc : ToffMonaka.Lib.Scene.SubSceneScriptCreateDesc
+public class InitSubSceneScriptCreateDesc : Lib.Scene.SubSceneScriptCreateDesc
 {
 }
 
 /**
  * @brief InitSubSceneScriptクラス
  */
-public class InitSubSceneScript : ToffMonaka.Lib.Scene.SubSceneScript
+public class InitSubSceneScript : Lib.Scene.SubSceneScript
 {
     [SerializeField] private TMP_Text _messageText = null;
     [SerializeField] private Image _openCloseFadeImage = null;
 
-    public new ToffMonaka.UnityBase.Scene.InitSubSceneScriptCreateDesc createDesc{get; private set;} = null;
+    public new UnityBase.Scene.InitSubSceneScriptCreateDesc createDesc{get; private set;} = null;
 
     private int _progressType = 0;
     private float _progressElapsedTime = 0.0f;
@@ -36,7 +37,7 @@ public class InitSubSceneScript : ToffMonaka.Lib.Scene.SubSceneScript
      */
     public InitSubSceneScript()
     {
-        this._SetScriptIndex((int)ToffMonaka.UnityBase.Constant.Util.SCENE.SCRIPT_INDEX.INIT_SUB_SCENE);
+        this._SetScriptIndex((int)UnityBase.Constant.Util.SCENE.SCRIPT_INDEX.INIT_SUB_SCENE);
 
         return;
     }
@@ -68,8 +69,8 @@ public class InitSubSceneScript : ToffMonaka.Lib.Scene.SubSceneScript
 
         canvas_node.GetComponent<Canvas>().worldCamera = this.GetManager().GetMainSceneScript().GetMainCamera();
 
-		switch (ToffMonaka.UnityBase.Global.systemConfigFile.data.systemLanguageType) {
-		case ToffMonaka.UnityBase.Constant.Util.LANGUAGE_TYPE.JAPANESE: {
+		switch (UnityBase.Global.systemConfigFile.data.systemLanguageType) {
+		case UnityBase.Constant.Util.LANGUAGE_TYPE.JAPANESE: {
             this._messageText.SetText("ちょっと待ってね。");
 
 			break;
@@ -88,9 +89,9 @@ public class InitSubSceneScript : ToffMonaka.Lib.Scene.SubSceneScript
      * @brief SetCreateDesc関数
      * @param create_desc (create_desc)
      */
-    public override void SetCreateDesc(ToffMonaka.Lib.Scene.ScriptCreateDesc create_desc)
+    public override void SetCreateDesc(Lib.Scene.ScriptCreateDesc create_desc)
     {
-	    this.createDesc = create_desc as ToffMonaka.UnityBase.Scene.InitSubSceneScriptCreateDesc;
+	    this.createDesc = create_desc as UnityBase.Scene.InitSubSceneScriptCreateDesc;
 
         base.SetCreateDesc(this.createDesc);
 
@@ -132,22 +133,22 @@ public class InitSubSceneScript : ToffMonaka.Lib.Scene.SubSceneScript
             this._progressElapsedTime += Time.deltaTime;
 
             {// MstStringTableFile Create
-		        switch (ToffMonaka.UnityBase.Global.systemConfigFile.data.systemLanguageType) {
-		        case ToffMonaka.UnityBase.Constant.Util.LANGUAGE_TYPE.JAPANESE: {
-                    ToffMonaka.UnityBase.Global.mstStringTableFile.readDesc.data.filePath = ToffMonaka.UnityBase.Constant.Util.FILE_PATH.MST_STRING_JAPANESE_TABLE;
+		        switch (UnityBase.Global.systemConfigFile.data.systemLanguageType) {
+		        case UnityBase.Constant.Util.LANGUAGE_TYPE.JAPANESE: {
+                    UnityBase.Global.mstStringTableFile.readDesc.data.filePath = UnityBase.Constant.Util.FILE_PATH.MST_STRING_JAPANESE_TABLE;
 
 			        break;
 		        }
 		        default: {
-                    ToffMonaka.UnityBase.Global.mstStringTableFile.readDesc.data.filePath = ToffMonaka.UnityBase.Constant.Util.FILE_PATH.MST_STRING_ENGLISH_TABLE;
+                    UnityBase.Global.mstStringTableFile.readDesc.data.filePath = UnityBase.Constant.Util.FILE_PATH.MST_STRING_ENGLISH_TABLE;
 
 			        break;
 		        }
 		        }
 
-                ToffMonaka.UnityBase.Global.mstStringTableFile.readDesc.data.addressablesFlag = true;
+                UnityBase.Global.mstStringTableFile.readDesc.data.addressablesFlag = true;
 
-                ToffMonaka.UnityBase.Global.mstStringTableFile.Read();
+                UnityBase.Global.mstStringTableFile.Read();
             }
 
             this.SetProgressType(3);
@@ -256,8 +257,8 @@ public class InitSubSceneScript : ToffMonaka.Lib.Scene.SubSceneScript
             this.CompleteClose();
 
             {// TitleSubSceneScript Create
-                var script = this.GetManager().ChangeSubScene(ToffMonaka.UnityBase.Constant.Util.FILE_PATH.TITLE_SUB_SCENE_PREFAB) as ToffMonaka.UnityBase.Scene.TitleSubSceneScript;
-                var script_create_desc = new ToffMonaka.UnityBase.Scene.TitleSubSceneScriptCreateDesc();
+                var script = this.GetManager().ChangeSubScene(UnityBase.Constant.Util.FILE_PATH.TITLE_SUB_SCENE_PREFAB) as UnityBase.Scene.TitleSubSceneScript;
+                var script_create_desc = new UnityBase.Scene.TitleSubSceneScriptCreateDesc();
 
                 script.Create(script_create_desc);
                 script.Open(1);
@@ -287,5 +288,6 @@ public class InitSubSceneScript : ToffMonaka.Lib.Scene.SubSceneScript
 
         return;
     }
+}
 }
 }

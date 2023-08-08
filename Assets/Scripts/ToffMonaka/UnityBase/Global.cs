@@ -7,14 +7,15 @@
 using UnityEngine;
 
 
-namespace ToffMonaka.UnityBase {
+namespace ToffMonaka {
+namespace UnityBase {
 /**
  * @brief Globalクラス
  */
 public static class Global
 {
-    public static ToffMonaka.UnityBase.Data.SystemConfigFile systemConfigFile = new ToffMonaka.UnityBase.Data.SystemConfigFile();
-    public static ToffMonaka.UnityBase.Data.MstStringTableFile mstStringTableFile = new ToffMonaka.UnityBase.Data.MstStringTableFile();
+    public static UnityBase.Data.SystemConfigFile systemConfigFile = new UnityBase.Data.SystemConfigFile();
+    public static UnityBase.Data.MstStringTableFile mstStringTableFile = new UnityBase.Data.MstStringTableFile();
 
     /**
      * @brief GetString関数
@@ -23,7 +24,7 @@ public static class Global
      */
     public static string GetString(int mst_str_id)
     {
-        var entity = ToffMonaka.UnityBase.Global.mstStringTableFile.data.GetEntity(mst_str_id);
+        var entity = UnityBase.Global.mstStringTableFile.data.GetEntity(mst_str_id);
 
         return ((entity != null) ? entity.string_ : System.String.Empty);
     }
@@ -33,9 +34,10 @@ public static class Global
      * @param mst_str_id (mst_string_id)
      * @return str (string)
      */
-    public static string GetString(ToffMonaka.UnityBase.Constant.Util.MST_STRING_ID mst_str_id)
+    public static string GetString(UnityBase.Constant.Util.MST_STRING_ID mst_str_id)
     {
-        return (ToffMonaka.UnityBase.Global.mstStringTableFile.data.GetEntityFast((int)mst_str_id).string_);
+        return (UnityBase.Global.mstStringTableFile.data.GetEntityFast((int)mst_str_id).string_);
     }
+}
 }
 }

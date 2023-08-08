@@ -11,18 +11,19 @@ using TMPro;
 using DG.Tweening;
 
 
-namespace ToffMonaka.UnityBase.Scene {
+namespace ToffMonaka {
+namespace UnityBase.Scene {
 /**
  * @brief TitleSubSceneScriptCreateDescクラス
  */
-public class TitleSubSceneScriptCreateDesc : ToffMonaka.Lib.Scene.SubSceneScriptCreateDesc
+public class TitleSubSceneScriptCreateDesc : Lib.Scene.SubSceneScriptCreateDesc
 {
 }
 
 /**
  * @brief TitleSubSceneScriptクラス
  */
-public class TitleSubSceneScript : ToffMonaka.Lib.Scene.SubSceneScript
+public class TitleSubSceneScript : Lib.Scene.SubSceneScript
 {
     [SerializeField] private TMP_Text _startButtonNameText = null;
     [SerializeField] private TMP_Text _companyNameText = null;
@@ -30,16 +31,16 @@ public class TitleSubSceneScript : ToffMonaka.Lib.Scene.SubSceneScript
     [SerializeField] private GameObject _menuNode = null;
     [SerializeField] private Image _openCloseFadeImage = null;
 
-    public new ToffMonaka.UnityBase.Scene.TitleSubSceneScriptCreateDesc createDesc{get; private set;} = null;
+    public new UnityBase.Scene.TitleSubSceneScriptCreateDesc createDesc{get; private set;} = null;
 
-    private ToffMonaka.UnityBase.Scene.MenuScript _menuScript = null;
+    private UnityBase.Scene.MenuScript _menuScript = null;
 
     /**
      * @brief コンストラクタ
      */
     public TitleSubSceneScript()
     {
-        this._SetScriptIndex((int)ToffMonaka.UnityBase.Constant.Util.SCENE.SCRIPT_INDEX.TITLE_SUB_SCENE);
+        this._SetScriptIndex((int)UnityBase.Constant.Util.SCENE.SCRIPT_INDEX.TITLE_SUB_SCENE);
 
         return;
     }
@@ -71,12 +72,12 @@ public class TitleSubSceneScript : ToffMonaka.Lib.Scene.SubSceneScript
 
         canvas_node.GetComponent<Canvas>().worldCamera = this.GetManager().GetMainSceneScript().GetMainCamera();
 
-        this._companyNameText.SetText(ToffMonaka.UnityBase.Constant.Util.PROJECT.COMPANY_NAME);
-        this._versionNameText.SetText("Version " + ToffMonaka.UnityBase.Constant.Util.PROJECT.VERSION_NAME);
+        this._companyNameText.SetText(UnityBase.Constant.Util.PROJECT.COMPANY_NAME);
+        this._versionNameText.SetText("Version " + UnityBase.Constant.Util.PROJECT.VERSION_NAME);
 
         {// MenuScript Create
-            var script = this._menuNode.GetComponent<ToffMonaka.UnityBase.Scene.MenuScript>();
-            var script_create_desc = new ToffMonaka.UnityBase.Scene.MenuScriptCreateDesc();
+            var script = this._menuNode.GetComponent<UnityBase.Scene.MenuScript>();
+            var script_create_desc = new UnityBase.Scene.MenuScriptCreateDesc();
 
             script.Create(script_create_desc);
             script.Open(0);
@@ -91,9 +92,9 @@ public class TitleSubSceneScript : ToffMonaka.Lib.Scene.SubSceneScript
      * @brief SetCreateDesc関数
      * @param create_desc (create_desc)
      */
-    public override void SetCreateDesc(ToffMonaka.Lib.Scene.ScriptCreateDesc create_desc)
+    public override void SetCreateDesc(Lib.Scene.ScriptCreateDesc create_desc)
     {
-	    this.createDesc = create_desc as ToffMonaka.UnityBase.Scene.TitleSubSceneScriptCreateDesc;
+	    this.createDesc = create_desc as UnityBase.Scene.TitleSubSceneScriptCreateDesc;
 
         base.SetCreateDesc(this.createDesc);
 
@@ -105,7 +106,7 @@ public class TitleSubSceneScript : ToffMonaka.Lib.Scene.SubSceneScript
      */
     protected override void _OnActive()
     {
-        ToffMonaka.Lib.Scene.Util.GetSoundManager().PlayBgm((int)ToffMonaka.UnityBase.Constant.Util.SOUND.BGM_INDEX.TITLE);
+        Lib.Scene.Util.GetSoundManager().PlayBgm((int)UnityBase.Constant.Util.SOUND.BGM_INDEX.TITLE);
 
         this._startButtonNameText.DOFade(0.0f, 1.0f).SetLoops(-1, LoopType.Yoyo).SetEase(Ease.InQuart).SetDelay(1.0f).SetLink(this._startButtonNameText.gameObject);
 
@@ -211,8 +212,8 @@ public class TitleSubSceneScript : ToffMonaka.Lib.Scene.SubSceneScript
             this.CompleteClose();
 
             {// StageSelectSubSceneScript Create
-                var script = this.GetManager().ChangeSubScene(ToffMonaka.UnityBase.Constant.Util.FILE_PATH.STAGE_SELECT_SUB_SCENE_PREFAB) as ToffMonaka.UnityBase.Scene.StageSelectSubSceneScript;
-                var script_create_desc = new ToffMonaka.UnityBase.Scene.StageSelectSubSceneScriptCreateDesc();
+                var script = this.GetManager().ChangeSubScene(UnityBase.Constant.Util.FILE_PATH.STAGE_SELECT_SUB_SCENE_PREFAB) as UnityBase.Scene.StageSelectSubSceneScript;
+                var script_create_desc = new UnityBase.Scene.StageSelectSubSceneScriptCreateDesc();
 
                 script.Create(script_create_desc);
                 script.Open(1);
@@ -232,11 +233,12 @@ public class TitleSubSceneScript : ToffMonaka.Lib.Scene.SubSceneScript
             return;
         }
 
-        ToffMonaka.Lib.Scene.Util.GetSoundManager().PlaySe((int)ToffMonaka.UnityBase.Constant.Util.SOUND.SE_INDEX.OK);
+        Lib.Scene.Util.GetSoundManager().PlaySe((int)UnityBase.Constant.Util.SOUND.SE_INDEX.OK);
 
         this.Close(1);
 
         return;
     }
+}
 }
 }

@@ -7,7 +7,8 @@
 using UnityEngine;
 
 
-namespace ToffMonaka.Lib.Scene {
+namespace ToffMonaka {
+namespace Lib.Scene {
 /**
  * @brief InputManagerCreateDescクラス
  */
@@ -21,7 +22,7 @@ public class InputManagerCreateDesc
  */
 public class InputManager
 {
-    public ToffMonaka.Lib.Scene.InputManagerCreateDesc createDesc{get; private set;} = null;
+    public Lib.Scene.InputManagerCreateDesc createDesc{get; private set;} = null;
 
     private GameObject _inputNode = null;
 
@@ -59,7 +60,7 @@ public class InputManager
      * @return result (result)<br>
      * 0未満=失敗
      */
-    public virtual int Create(ToffMonaka.Lib.Scene.InputManagerCreateDesc desc = null)
+    public virtual int Create(Lib.Scene.InputManagerCreateDesc desc = null)
     {
         this.Init();
 
@@ -96,7 +97,7 @@ public class InputManager
      * @brief SetCreateDesc関数
      * @param create_desc (create_desc)
      */
-    public virtual void SetCreateDesc(ToffMonaka.Lib.Scene.InputManagerCreateDesc create_desc)
+    public virtual void SetCreateDesc(Lib.Scene.InputManagerCreateDesc create_desc)
     {
         this.createDesc = create_desc;
 
@@ -111,5 +112,6 @@ public class InputManager
     {
         return (this._inputNode);
     }
+}
 }
 }

@@ -7,27 +7,28 @@
 using UnityEngine;
 
 
-namespace ToffMonaka.UnityBase.Scene {
+namespace ToffMonaka {
+namespace UnityBase.Scene {
 /**
  * @brief MainSceneScriptCreateDescクラス
  */
-public class MainSceneScriptCreateDesc : ToffMonaka.Lib.Scene.MainSceneScriptCreateDesc
+public class MainSceneScriptCreateDesc : Lib.Scene.MainSceneScriptCreateDesc
 {
 }
 
 /**
  * @brief MainSceneScriptクラス
  */
-public class MainSceneScript : ToffMonaka.Lib.Scene.MainSceneScript
+public class MainSceneScript : Lib.Scene.MainSceneScript
 {
-    public new ToffMonaka.UnityBase.Scene.MainSceneScriptCreateDesc createDesc{get; private set;} = null;
+    public new UnityBase.Scene.MainSceneScriptCreateDesc createDesc{get; private set;} = null;
 
     /**
      * @brief コンストラクタ
      */
     public MainSceneScript()
     {
-        this._SetScriptIndex((int)ToffMonaka.UnityBase.Constant.Util.SCENE.SCRIPT_INDEX.MAIN_SCENE);
+        this._SetScriptIndex((int)UnityBase.Constant.Util.SCENE.SCRIPT_INDEX.MAIN_SCENE);
 
         return;
     }
@@ -39,7 +40,7 @@ public class MainSceneScript : ToffMonaka.Lib.Scene.MainSceneScript
     {
         {// MainSceneScript Create
             var script = this;
-            var script_create_desc = new ToffMonaka.UnityBase.Scene.MainSceneScriptCreateDesc();
+            var script_create_desc = new UnityBase.Scene.MainSceneScriptCreateDesc();
 
             script.Create(script_create_desc);
             script.Open(0);
@@ -70,9 +71,9 @@ public class MainSceneScript : ToffMonaka.Lib.Scene.MainSceneScript
      * @brief SetCreateDesc関数
      * @param create_desc (create_desc)
      */
-    public override void SetCreateDesc(ToffMonaka.Lib.Scene.ScriptCreateDesc create_desc)
+    public override void SetCreateDesc(Lib.Scene.ScriptCreateDesc create_desc)
     {
-	    this.createDesc = create_desc as ToffMonaka.UnityBase.Scene.MainSceneScriptCreateDesc;
+	    this.createDesc = create_desc as UnityBase.Scene.MainSceneScriptCreateDesc;
 
         base.SetCreateDesc(this.createDesc);
 
@@ -85,8 +86,8 @@ public class MainSceneScript : ToffMonaka.Lib.Scene.MainSceneScript
     protected override void _OnActive()
     {
         {// InitSubSceneScript Create
-            var script = this.GetManager().ChangeSubScene(ToffMonaka.UnityBase.Constant.Util.FILE_PATH.INIT_SUB_SCENE_PREFAB) as ToffMonaka.UnityBase.Scene.InitSubSceneScript;
-            var script_create_desc = new ToffMonaka.UnityBase.Scene.InitSubSceneScriptCreateDesc();
+            var script = this.GetManager().ChangeSubScene(UnityBase.Constant.Util.FILE_PATH.INIT_SUB_SCENE_PREFAB) as UnityBase.Scene.InitSubSceneScript;
+            var script_create_desc = new UnityBase.Scene.InitSubSceneScriptCreateDesc();
 
             script.Create(script_create_desc);
             script.Open(0);
@@ -117,13 +118,13 @@ public class MainSceneScript : ToffMonaka.Lib.Scene.MainSceneScript
     protected override void _OnStartApplication()
     {
         {// SystemConfigFile Create
-            ToffMonaka.UnityBase.Global.systemConfigFile.readDesc.data.filePath = Application.persistentDataPath + "/" + ToffMonaka.UnityBase.Constant.Util.FILE_PATH.SYSTEM_CONFIG;
-            ToffMonaka.UnityBase.Global.systemConfigFile.writeDesc.data.filePath = Application.persistentDataPath + "/" + ToffMonaka.UnityBase.Constant.Util.FILE_PATH.SYSTEM_CONFIG;
+            UnityBase.Global.systemConfigFile.readDesc.data.filePath = Application.persistentDataPath + "/" + UnityBase.Constant.Util.FILE_PATH.SYSTEM_CONFIG;
+            UnityBase.Global.systemConfigFile.writeDesc.data.filePath = Application.persistentDataPath + "/" + UnityBase.Constant.Util.FILE_PATH.SYSTEM_CONFIG;
 
-            if (ToffMonaka.Lib.Data.Util.IsExistFile(ToffMonaka.UnityBase.Global.systemConfigFile.readDesc.data.filePath)) {
-                ToffMonaka.UnityBase.Global.systemConfigFile.Read();
+            if (Lib.Data.Util.IsExistFile(UnityBase.Global.systemConfigFile.readDesc.data.filePath)) {
+                UnityBase.Global.systemConfigFile.Read();
             } else {
-                ToffMonaka.UnityBase.Global.systemConfigFile.Write();
+                UnityBase.Global.systemConfigFile.Write();
             }
         }
 
@@ -155,8 +156,8 @@ public class MainSceneScript : ToffMonaka.Lib.Scene.MainSceneScript
         this._ReleaseManager();
 
         {// InputManager Create
-            var manager = new ToffMonaka.Lib.Input.Manager();
-            var manager_create_desc = new ToffMonaka.Lib.Input.ManagerCreateDesc();
+            var manager = new Lib.Input.Manager();
+            var manager_create_desc = new Lib.Input.ManagerCreateDesc();
 
             if (manager.Create(manager_create_desc) < 0) {
                 this._ReleaseManager();
@@ -164,12 +165,12 @@ public class MainSceneScript : ToffMonaka.Lib.Scene.MainSceneScript
                 return (-1);
             }
 
-            ToffMonaka.Lib.Input.Util.SetManager(manager);
+            Lib.Input.Util.SetManager(manager);
         }
 
         {// GraphicManager Create
-            var manager = new ToffMonaka.Lib.Graphic.Manager();
-            var manager_create_desc = new ToffMonaka.Lib.Graphic.ManagerCreateDesc();
+            var manager = new Lib.Graphic.Manager();
+            var manager_create_desc = new Lib.Graphic.ManagerCreateDesc();
 
             if (manager.Create(manager_create_desc) < 0) {
                 this._ReleaseManager();
@@ -177,12 +178,12 @@ public class MainSceneScript : ToffMonaka.Lib.Scene.MainSceneScript
                 return (-1);
             }
 
-            ToffMonaka.Lib.Graphic.Util.SetManager(manager);
+            Lib.Graphic.Util.SetManager(manager);
         }
 
         {// SoundManager Create
-            var manager = new ToffMonaka.Lib.Sound.Manager();
-            var manager_create_desc = new ToffMonaka.Lib.Sound.ManagerCreateDesc();
+            var manager = new Lib.Sound.Manager();
+            var manager_create_desc = new Lib.Sound.ManagerCreateDesc();
 
             if (manager.Create(manager_create_desc) < 0) {
                 this._ReleaseManager();
@@ -190,15 +191,15 @@ public class MainSceneScript : ToffMonaka.Lib.Scene.MainSceneScript
                 return (-1);
             }
 
-            ToffMonaka.Lib.Sound.Util.SetManager(manager);
+            Lib.Sound.Util.SetManager(manager);
         }
 
         {// SceneManager Create
-            var manager = new ToffMonaka.Lib.Scene.Manager();
-            var manager_create_desc = new ToffMonaka.Lib.Scene.ManagerCreateDesc();
+            var manager = new Lib.Scene.Manager();
+            var manager_create_desc = new Lib.Scene.ManagerCreateDesc();
 
             manager_create_desc.mainSceneNode = this.gameObject;
-            manager_create_desc.scriptCount = (int)ToffMonaka.UnityBase.Constant.Util.SCENE.SCRIPT_INDEX_COUNT;
+            manager_create_desc.scriptCount = (int)UnityBase.Constant.Util.SCENE.SCRIPT_INDEX_COUNT;
 
             if (manager.Create(manager_create_desc) < 0) {
                 this._ReleaseManager();
@@ -206,12 +207,12 @@ public class MainSceneScript : ToffMonaka.Lib.Scene.MainSceneScript
                 return (-1);
             }
 
-            ToffMonaka.Lib.Scene.Util.SetManager(manager);
+            Lib.Scene.Util.SetManager(manager);
         }
 
         {// SceneInputManager Create
-            var manager = new ToffMonaka.Lib.Scene.InputManager();
-            var manager_create_desc = new ToffMonaka.Lib.Scene.InputManagerCreateDesc();
+            var manager = new Lib.Scene.InputManager();
+            var manager_create_desc = new Lib.Scene.InputManagerCreateDesc();
 
             manager_create_desc.inputNode = this.GetInputNode();
 
@@ -221,12 +222,12 @@ public class MainSceneScript : ToffMonaka.Lib.Scene.MainSceneScript
                 return (-1);
             }
 
-            ToffMonaka.Lib.Scene.Util.SetInputManager(manager);
+            Lib.Scene.Util.SetInputManager(manager);
         }
 
         {// SceneGraphicManager Create
-            var manager = new ToffMonaka.Lib.Scene.GraphicManager();
-            var manager_create_desc = new ToffMonaka.Lib.Scene.GraphicManagerCreateDesc();
+            var manager = new Lib.Scene.GraphicManager();
+            var manager_create_desc = new Lib.Scene.GraphicManagerCreateDesc();
 
             manager_create_desc.graphicNode = this.GetGraphicNode();
 
@@ -236,22 +237,22 @@ public class MainSceneScript : ToffMonaka.Lib.Scene.MainSceneScript
                 return (-1);
             }
 
-            ToffMonaka.Lib.Scene.Util.SetGraphicManager(manager);
+            Lib.Scene.Util.SetGraphicManager(manager);
         }
 
         {// SceneSoundManager Create
-            var manager = new ToffMonaka.Lib.Scene.SoundManager();
-            var manager_create_desc = new ToffMonaka.Lib.Scene.SoundManagerCreateDesc();
+            var manager = new Lib.Scene.SoundManager();
+            var manager_create_desc = new Lib.Scene.SoundManagerCreateDesc();
 
             manager_create_desc.soundNode = this.GetSoundNode();
             manager_create_desc.bgmNode = this.GetSoundBgmNode();
             manager_create_desc.bgmAudioClipArray = this.GetSoundBgmAudioClipArray();
             manager_create_desc.seNode = this.GetSoundSeNode();
             manager_create_desc.seAudioClipArray = this.GetSoundSeAudioClipArray();
-            manager_create_desc.bgmVolume = ToffMonaka.UnityBase.Global.systemConfigFile.data.soundBgmVolume;
-            manager_create_desc.bgmMuteFlag = ToffMonaka.UnityBase.Global.systemConfigFile.data.soundBgmMuteFlag;
-            manager_create_desc.seVolume = ToffMonaka.UnityBase.Global.systemConfigFile.data.soundSeVolume;
-            manager_create_desc.seMuteFlag = ToffMonaka.UnityBase.Global.systemConfigFile.data.soundSeMuteFlag;
+            manager_create_desc.bgmVolume = UnityBase.Global.systemConfigFile.data.soundBgmVolume;
+            manager_create_desc.bgmMuteFlag = UnityBase.Global.systemConfigFile.data.soundBgmMuteFlag;
+            manager_create_desc.seVolume = UnityBase.Global.systemConfigFile.data.soundSeVolume;
+            manager_create_desc.seMuteFlag = UnityBase.Global.systemConfigFile.data.soundSeMuteFlag;
 
             if (manager.Create(manager_create_desc) < 0) {
                 this._ReleaseManager();
@@ -259,7 +260,7 @@ public class MainSceneScript : ToffMonaka.Lib.Scene.MainSceneScript
                 return (-1);
             }
 
-            ToffMonaka.Lib.Scene.Util.SetSoundManager(manager);
+            Lib.Scene.Util.SetSoundManager(manager);
         }
 
         return (0);
@@ -270,15 +271,16 @@ public class MainSceneScript : ToffMonaka.Lib.Scene.MainSceneScript
      */
     private void _ReleaseManager()
     {
-        ToffMonaka.Lib.Scene.Util.SetSoundManager(null);
-        ToffMonaka.Lib.Scene.Util.SetGraphicManager(null);
-        ToffMonaka.Lib.Scene.Util.SetInputManager(null);
-        ToffMonaka.Lib.Scene.Util.SetManager(null);
-        ToffMonaka.Lib.Sound.Util.SetManager(null);
-        ToffMonaka.Lib.Graphic.Util.SetManager(null);
-        ToffMonaka.Lib.Input.Util.SetManager(null);
+        Lib.Scene.Util.SetSoundManager(null);
+        Lib.Scene.Util.SetGraphicManager(null);
+        Lib.Scene.Util.SetInputManager(null);
+        Lib.Scene.Util.SetManager(null);
+        Lib.Sound.Util.SetManager(null);
+        Lib.Graphic.Util.SetManager(null);
+        Lib.Input.Util.SetManager(null);
 
         return;
     }
+}
 }
 }

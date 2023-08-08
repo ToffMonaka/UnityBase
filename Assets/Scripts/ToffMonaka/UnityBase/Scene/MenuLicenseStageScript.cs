@@ -11,19 +11,20 @@ using TMPro;
 using DG.Tweening;
 
 
-namespace ToffMonaka.UnityBase.Scene {
+namespace ToffMonaka {
+namespace UnityBase.Scene {
 /**
  * @brief MenuLicenseStageScriptCreateDescクラス
  */
-public class MenuLicenseStageScriptCreateDesc : ToffMonaka.UnityBase.Scene.MenuStageScriptCreateDesc
+public class MenuLicenseStageScriptCreateDesc : UnityBase.Scene.MenuStageScriptCreateDesc
 {
-    public ToffMonaka.UnityBase.Scene.MenuScript menuScript = null;
+    public UnityBase.Scene.MenuScript menuScript = null;
 }
 
 /**
  * @brief MenuLicenseStageScriptクラス
  */
-public class MenuLicenseStageScript : ToffMonaka.UnityBase.Scene.MenuStageScript
+public class MenuLicenseStageScript : UnityBase.Scene.MenuStageScript
 {
     [SerializeField] private TMP_Text _nameText = null;
     [SerializeField] private ScrollRect _messageScrollRect = null;
@@ -31,17 +32,17 @@ public class MenuLicenseStageScript : ToffMonaka.UnityBase.Scene.MenuStageScript
     [SerializeField] private TMP_Text _cancelButtonNameText = null;
     [SerializeField] private Image _cancelButtonCoverImage = null;
 
-    public new ToffMonaka.UnityBase.Scene.MenuLicenseStageScriptCreateDesc createDesc{get; private set;} = null;
+    public new UnityBase.Scene.MenuLicenseStageScriptCreateDesc createDesc{get; private set;} = null;
 
-    private ToffMonaka.UnityBase.Scene.MenuScript _menuScript = null;
+    private UnityBase.Scene.MenuScript _menuScript = null;
 
     /**
      * @brief コンストラクタ
      */
     public MenuLicenseStageScript()
     {
-        this._SetScriptIndex((int)ToffMonaka.UnityBase.Constant.Util.SCENE.SCRIPT_INDEX.MENU_LICENSE_STAGE);
-        this._SetStageType(ToffMonaka.UnityBase.Constant.Util.SCENE.MENU_STAGE_TYPE.LICENSE);
+        this._SetScriptIndex((int)UnityBase.Constant.Util.SCENE.SCRIPT_INDEX.MENU_LICENSE_STAGE);
+        this._SetStageType(UnityBase.Constant.Util.SCENE.MENU_STAGE_TYPE.LICENSE);
 
         return;
     }
@@ -71,7 +72,7 @@ public class MenuLicenseStageScript : ToffMonaka.UnityBase.Scene.MenuStageScript
     {
         this._menuScript = this.createDesc.menuScript;
 
-        this._nameText.SetText(ToffMonaka.UnityBase.Global.GetString(ToffMonaka.UnityBase.Constant.Util.SCENE.MENU_STAGE_NAME_MST_STRING_ID_ARRAY[(int)this.GetStageType()]));
+        this._nameText.SetText(UnityBase.Global.GetString(UnityBase.Constant.Util.SCENE.MENU_STAGE_NAME_MST_STRING_ID_ARRAY[(int)this.GetStageType()]));
 
         this._messageNode.SetActive(false);
 
@@ -102,7 +103,7 @@ public class MenuLicenseStageScript : ToffMonaka.UnityBase.Scene.MenuStageScript
             }
         }
 
-        this._cancelButtonNameText.SetText(ToffMonaka.UnityBase.Global.GetString(ToffMonaka.UnityBase.Constant.Util.MST_STRING_ID.CANCEL));
+        this._cancelButtonNameText.SetText(UnityBase.Global.GetString(UnityBase.Constant.Util.MST_STRING_ID.CANCEL));
 
         return (0);
     }
@@ -111,9 +112,9 @@ public class MenuLicenseStageScript : ToffMonaka.UnityBase.Scene.MenuStageScript
      * @brief SetCreateDesc関数
      * @param create_desc (create_desc)
      */
-    public override void SetCreateDesc(ToffMonaka.Lib.Scene.ScriptCreateDesc create_desc)
+    public override void SetCreateDesc(Lib.Scene.ScriptCreateDesc create_desc)
     {
-	    this.createDesc = create_desc as ToffMonaka.UnityBase.Scene.MenuLicenseStageScriptCreateDesc;
+	    this.createDesc = create_desc as UnityBase.Scene.MenuLicenseStageScriptCreateDesc;
 
         base.SetCreateDesc(this.createDesc);
 
@@ -241,7 +242,7 @@ public class MenuLicenseStageScript : ToffMonaka.UnityBase.Scene.MenuStageScript
             return;
         }
 
-        ToffMonaka.Lib.Scene.Util.GetSoundManager().PlaySe((int)ToffMonaka.UnityBase.Constant.Util.SOUND.SE_INDEX.CANCEL);
+        Lib.Scene.Util.GetSoundManager().PlaySe((int)UnityBase.Constant.Util.SOUND.SE_INDEX.CANCEL);
 
         this._menuScript.RunStageCancelButton();
 
@@ -277,5 +278,6 @@ public class MenuLicenseStageScript : ToffMonaka.UnityBase.Scene.MenuStageScript
 
         return;
     }
+}
 }
 }

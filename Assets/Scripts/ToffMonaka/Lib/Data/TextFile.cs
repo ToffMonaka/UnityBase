@@ -9,7 +9,8 @@ using System.Collections.Generic;
 using System.Text;
 
 
-namespace ToffMonaka.Lib.Data {
+namespace ToffMonaka {
+namespace Lib.Data {
 /**
  * @brief TextFileDataクラス
  */
@@ -49,11 +50,11 @@ public class TextFileData
 /**
  * @brief TextFileReadDescDataクラス
  */
-public class TextFileReadDescData : ToffMonaka.Lib.Data.BinaryFileReadDescData
+public class TextFileReadDescData : Lib.Data.BinaryFileReadDescData
 {
     public string string_ = "";
     public string charset = "utf-8";
-    public ToffMonaka.Lib.String.Util.NEWLINE_TYPE newlineType = ToffMonaka.Lib.String.Util.NEWLINE_TYPE.CRLF;
+    public Lib.String.Util.NEWLINE_TYPE newlineType = Lib.String.Util.NEWLINE_TYPE.CRLF;
 
     /**
      * @brief コンストラクタ
@@ -80,7 +81,7 @@ public class TextFileReadDescData : ToffMonaka.Lib.Data.BinaryFileReadDescData
 
         this.string_ = "";
         this.charset = "utf-8";
-        this.newlineType = ToffMonaka.Lib.String.Util.NEWLINE_TYPE.CRLF;
+        this.newlineType = Lib.String.Util.NEWLINE_TYPE.CRLF;
 
         base.Init();
 
@@ -105,11 +106,11 @@ public class TextFileReadDescData : ToffMonaka.Lib.Data.BinaryFileReadDescData
 /**
  * @brief TextFileWriteDescDataクラス
  */
-public class TextFileWriteDescData : ToffMonaka.Lib.Data.BinaryFileWriteDescData
+public class TextFileWriteDescData : Lib.Data.BinaryFileWriteDescData
 {
 	public int appendNewlineCount = 1;
     public string charset = "utf-8";
-    public ToffMonaka.Lib.String.Util.NEWLINE_TYPE newlineType = ToffMonaka.Lib.String.Util.NEWLINE_TYPE.CRLF;
+    public Lib.String.Util.NEWLINE_TYPE newlineType = Lib.String.Util.NEWLINE_TYPE.CRLF;
 
     /**
      * @brief コンストラクタ
@@ -136,7 +137,7 @@ public class TextFileWriteDescData : ToffMonaka.Lib.Data.BinaryFileWriteDescData
 
         this.appendNewlineCount = 1;
         this.charset = "utf-8";
-        this.newlineType = ToffMonaka.Lib.String.Util.NEWLINE_TYPE.CRLF;
+        this.newlineType = Lib.String.Util.NEWLINE_TYPE.CRLF;
 
         base.Init();
 
@@ -157,11 +158,11 @@ public class TextFileWriteDescData : ToffMonaka.Lib.Data.BinaryFileWriteDescData
 /**
  * @brief TextFileクラス
  */
-public class TextFile : ToffMonaka.Lib.Data.File
+public class TextFile : Lib.Data.File
 {
-	public ToffMonaka.Lib.Data.TextFileData data = new ToffMonaka.Lib.Data.TextFileData();
-	public ToffMonaka.Lib.Data.FileReadDesc<ToffMonaka.Lib.Data.TextFileReadDescData> readDesc = new ToffMonaka.Lib.Data.FileReadDesc<ToffMonaka.Lib.Data.TextFileReadDescData>();
-	public ToffMonaka.Lib.Data.FileWriteDesc<ToffMonaka.Lib.Data.TextFileWriteDescData> writeDesc = new ToffMonaka.Lib.Data.FileWriteDesc<ToffMonaka.Lib.Data.TextFileWriteDescData>();
+	public Lib.Data.TextFileData data = new Lib.Data.TextFileData();
+	public Lib.Data.FileReadDesc<Lib.Data.TextFileReadDescData> readDesc = new Lib.Data.FileReadDesc<Lib.Data.TextFileReadDescData>();
+	public Lib.Data.FileWriteDesc<Lib.Data.TextFileWriteDescData> writeDesc = new Lib.Data.FileWriteDesc<Lib.Data.TextFileWriteDescData>();
 
     /**
      * @brief コンストラクタ
@@ -209,14 +210,14 @@ public class TextFile : ToffMonaka.Lib.Data.File
 		        this.data.Init();
 
 		        if (desc_dat.string_.Length > 0) {
-                    this.data.lineStringContainer = new List<string>(desc_dat.string_.Split(ToffMonaka.Lib.String.Util.GetNewlineCode(desc_dat.newlineType)));
+                    this.data.lineStringContainer = new List<string>(desc_dat.string_.Split(Lib.String.Util.GetNewlineCode(desc_dat.newlineType)));
 		        }
 
 		        return (0);
             }
 	    }
 
-        var bin_file = new ToffMonaka.Lib.Data.BinaryFile();
+        var bin_file = new Lib.Data.BinaryFile();
         int bin_file_read_res;
 
         bin_file.readDesc.parentData = desc_dat;
@@ -233,7 +234,7 @@ public class TextFile : ToffMonaka.Lib.Data.File
 
         string buf_str = Encoding.GetEncoding(desc_dat.charset).GetString(bin_file.data.buffer);
 
-        this.data.lineStringContainer = new List<string>(buf_str.Split(ToffMonaka.Lib.String.Util.GetNewlineCode(desc_dat.newlineType)));
+        this.data.lineStringContainer = new List<string>(buf_str.Split(Lib.String.Util.GetNewlineCode(desc_dat.newlineType)));
 
         return (0);
     }
@@ -251,7 +252,7 @@ public class TextFile : ToffMonaka.Lib.Data.File
 		    return (-1);
 	    }
 
-        string buf_str = System.String.Join(ToffMonaka.Lib.String.Util.GetNewlineCode(desc_dat.newlineType), this.data.lineStringContainer);
+        string buf_str = System.String.Join(Lib.String.Util.GetNewlineCode(desc_dat.newlineType), this.data.lineStringContainer);
 
         if (buf_str.Length > 0) {
 	        if ((desc_dat.appendFlag)
@@ -259,14 +260,14 @@ public class TextFile : ToffMonaka.Lib.Data.File
 		        string newline_code = "";
 
 		        for (int newline_i = 0; newline_i < desc_dat.appendNewlineCount; ++newline_i) {
-			        newline_code += ToffMonaka.Lib.String.Util.GetNewlineCode(desc_dat.newlineType);
+			        newline_code += Lib.String.Util.GetNewlineCode(desc_dat.newlineType);
 		        }
 
 		        buf_str = buf_str.Insert(0, newline_code);
 	        }
         }
 
-        var bin_file = new ToffMonaka.Lib.Data.BinaryFile();
+        var bin_file = new Lib.Data.BinaryFile();
         int bin_file_write_res;
 
         bin_file.data.buffer = Encoding.GetEncoding(desc_dat.charset).GetBytes(buf_str);
@@ -279,5 +280,6 @@ public class TextFile : ToffMonaka.Lib.Data.File
 
         return (0);
     }
+}
 }
 }

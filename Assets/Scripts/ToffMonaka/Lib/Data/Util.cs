@@ -7,7 +7,8 @@
 using UnityEngine;
 
 
-namespace ToffMonaka.Lib.Data {
+namespace ToffMonaka {
+namespace Lib.Data {
 /**
  * @brief Utilクラス
  */
@@ -42,5 +43,6 @@ public static class Util
 
         return (System.IO.Directory.Exists(dir_path));
     }
+}
 }
 }

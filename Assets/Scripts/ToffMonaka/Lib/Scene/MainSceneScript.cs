@@ -7,18 +7,19 @@
 using UnityEngine;
 
 
-namespace ToffMonaka.Lib.Scene {
+namespace ToffMonaka {
+namespace Lib.Scene {
 /**
  * @brief MainSceneScriptCreateDescクラス
  */
-public class MainSceneScriptCreateDesc : ToffMonaka.Lib.Scene.ScriptCreateDesc
+public class MainSceneScriptCreateDesc : Lib.Scene.ScriptCreateDesc
 {
 }
 
 /**
  * @brief MainSceneScriptクラス
  */
-public abstract class MainSceneScript : ToffMonaka.Lib.Scene.Script
+public abstract class MainSceneScript : Lib.Scene.Script
 {
     [SerializeField] private Camera _mainCamera = null;
     [SerializeField] private GameObject _inputNode = null;
@@ -29,14 +30,14 @@ public abstract class MainSceneScript : ToffMonaka.Lib.Scene.Script
     [SerializeField] private GameObject _soundSeNode = null;
     [SerializeField] private AudioClip[] _soundSeAudioClipArray = null;
 
-    public new ToffMonaka.Lib.Scene.MainSceneScriptCreateDesc createDesc{get; private set;} = null;
+    public new Lib.Scene.MainSceneScriptCreateDesc createDesc{get; private set;} = null;
 
     /**
      * @brief コンストラクタ
      */
     public MainSceneScript()
     {
-        this._SetScriptType(ToffMonaka.Lib.Constant.Util.SCENE.SCRIPT_TYPE.MAIN_SCENE);
+        this._SetScriptType(Lib.Constant.Util.SCENE.SCRIPT_TYPE.MAIN_SCENE);
         this._SetActiveAutoFlag(false);
 
         return;
@@ -70,9 +71,9 @@ public abstract class MainSceneScript : ToffMonaka.Lib.Scene.Script
      * @brief SetCreateDesc関数
      * @param create_desc (create_desc)
      */
-    public override void SetCreateDesc(ToffMonaka.Lib.Scene.ScriptCreateDesc create_desc)
+    public override void SetCreateDesc(Lib.Scene.ScriptCreateDesc create_desc)
     {
-	    this.createDesc = create_desc as ToffMonaka.Lib.Scene.MainSceneScriptCreateDesc;
+	    this.createDesc = create_desc as Lib.Scene.MainSceneScriptCreateDesc;
 
         base.SetCreateDesc(this.createDesc);
 
@@ -226,5 +227,6 @@ public abstract class MainSceneScript : ToffMonaka.Lib.Scene.Script
     {
         return (this._soundSeAudioClipArray);
     }
+}
 }
 }

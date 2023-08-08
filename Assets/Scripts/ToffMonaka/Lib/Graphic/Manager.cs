@@ -7,7 +7,8 @@
 using UnityEngine;
 
 
-namespace ToffMonaka.Lib.Graphic {
+namespace ToffMonaka {
+namespace Lib.Graphic {
 /**
  * @brief ManagerCreateDescクラス
  */
@@ -20,7 +21,7 @@ public class ManagerCreateDesc
  */
 public class Manager
 {
-    public ToffMonaka.Lib.Graphic.ManagerCreateDesc createDesc{get; private set;} = null;
+    public Lib.Graphic.ManagerCreateDesc createDesc{get; private set;} = null;
 
     /**
      * @brief コンストラクタ
@@ -54,7 +55,7 @@ public class Manager
      * @return result (result)<br>
      * 0未満=失敗
      */
-    public virtual int Create(ToffMonaka.Lib.Graphic.ManagerCreateDesc desc = null)
+    public virtual int Create(Lib.Graphic.ManagerCreateDesc desc = null)
     {
         this.Init();
 
@@ -89,11 +90,12 @@ public class Manager
      * @brief SetCreateDesc関数
      * @param create_desc (create_desc)
      */
-    public virtual void SetCreateDesc(ToffMonaka.Lib.Graphic.ManagerCreateDesc create_desc)
+    public virtual void SetCreateDesc(Lib.Graphic.ManagerCreateDesc create_desc)
     {
         this.createDesc = create_desc;
 
         return;
     }
+}
 }
 }

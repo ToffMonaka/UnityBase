@@ -8,13 +8,14 @@ using UnityEngine;
 using System.Collections.Generic;
 
 
-namespace ToffMonaka.UnityBase.Data {
+namespace ToffMonaka {
+namespace UnityBase.Data {
 /**
  * @brief SystemConfigFileDataクラス
  */
 public class SystemConfigFileData
 {
-    public ToffMonaka.UnityBase.Constant.Util.LANGUAGE_TYPE systemLanguageType = ToffMonaka.UnityBase.Constant.Util.LANGUAGE_TYPE.ENGLISH;
+    public UnityBase.Constant.Util.LANGUAGE_TYPE systemLanguageType = UnityBase.Constant.Util.LANGUAGE_TYPE.ENGLISH;
     public float soundBgmVolume = 0.5f;
     public bool soundBgmMuteFlag = false;
     public float soundSeVolume = 0.5f;
@@ -43,7 +44,7 @@ public class SystemConfigFileData
     {
         this._Release();
 
-        this.systemLanguageType = ToffMonaka.UnityBase.Constant.Util.LANGUAGE_TYPE.ENGLISH;
+        this.systemLanguageType = UnityBase.Constant.Util.LANGUAGE_TYPE.ENGLISH;
         this.soundBgmVolume = 0.5f;
         this.soundBgmMuteFlag = false;
         this.soundSeVolume = 0.5f;
@@ -56,11 +57,11 @@ public class SystemConfigFileData
 /**
  * @brief SystemConfigFileクラス
  */
-public class SystemConfigFile : ToffMonaka.Lib.Data.File
+public class SystemConfigFile : Lib.Data.File
 {
-	public ToffMonaka.UnityBase.Data.SystemConfigFileData data = new ToffMonaka.UnityBase.Data.SystemConfigFileData();
-	public ToffMonaka.Lib.Data.FileReadDesc<ToffMonaka.Lib.Data.IniFileReadDescData> readDesc = new ToffMonaka.Lib.Data.FileReadDesc<ToffMonaka.Lib.Data.IniFileReadDescData>();
-	public ToffMonaka.Lib.Data.FileWriteDesc<ToffMonaka.Lib.Data.IniFileWriteDescData> writeDesc = new ToffMonaka.Lib.Data.FileWriteDesc<ToffMonaka.Lib.Data.IniFileWriteDescData>();
+	public UnityBase.Data.SystemConfigFileData data = new UnityBase.Data.SystemConfigFileData();
+	public Lib.Data.FileReadDesc<Lib.Data.IniFileReadDescData> readDesc = new Lib.Data.FileReadDesc<Lib.Data.IniFileReadDescData>();
+	public Lib.Data.FileWriteDesc<Lib.Data.IniFileWriteDescData> writeDesc = new Lib.Data.FileWriteDesc<Lib.Data.IniFileWriteDescData>();
 
     /**
      * @brief コンストラクタ
@@ -103,7 +104,7 @@ public class SystemConfigFile : ToffMonaka.Lib.Data.File
     {
 	    var desc_dat = this.readDesc.GetDataByParent();
 
-        var ini_file = new ToffMonaka.Lib.Data.IniFile();
+        var ini_file = new Lib.Data.IniFile();
         int ini_file_read_res;
 
         ini_file.readDesc.parentData = desc_dat;
@@ -128,7 +129,7 @@ public class SystemConfigFile : ToffMonaka.Lib.Data.File
 		        val = ini_file.data.GetValue(key_cont, "LANGUAGE_TYPE");
 
 		        if (val != null) {
-                    this.data.systemLanguageType = (ToffMonaka.UnityBase.Constant.Util.LANGUAGE_TYPE)(int.Parse(val));
+                    this.data.systemLanguageType = (UnityBase.Constant.Util.LANGUAGE_TYPE)(int.Parse(val));
 		        }
 	        }
         }
@@ -190,7 +191,7 @@ public class SystemConfigFile : ToffMonaka.Lib.Data.File
 		    return (-1);
 	    }
 
-        var txt_file = new ToffMonaka.Lib.Data.TextFile();
+        var txt_file = new Lib.Data.TextFile();
         int txt_file_write_res;
 
         {// System Section Write
@@ -221,5 +222,6 @@ public class SystemConfigFile : ToffMonaka.Lib.Data.File
 
         return (0);
     }
+}
 }
 }

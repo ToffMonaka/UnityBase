@@ -8,7 +8,8 @@ using UnityEngine;
 using System.Collections.Generic;
 
 
-namespace ToffMonaka.Lib.Data {
+namespace ToffMonaka {
+namespace Lib.Data {
 /**
  * @brief ConfigFileDataクラス
  */
@@ -65,7 +66,7 @@ public class ConfigFileData
 /**
  * @brief ConfigFileReadDescDataクラス
  */
-public class ConfigFileReadDescData : ToffMonaka.Lib.Data.TextFileReadDescData
+public class ConfigFileReadDescData : Lib.Data.TextFileReadDescData
 {
     /**
      * @brief コンストラクタ
@@ -109,7 +110,7 @@ public class ConfigFileReadDescData : ToffMonaka.Lib.Data.TextFileReadDescData
 /**
  * @brief ConfigFileWriteDescDataクラス
  */
-public class ConfigFileWriteDescData : ToffMonaka.Lib.Data.TextFileWriteDescData
+public class ConfigFileWriteDescData : Lib.Data.TextFileWriteDescData
 {
     /**
      * @brief コンストラクタ
@@ -153,11 +154,11 @@ public class ConfigFileWriteDescData : ToffMonaka.Lib.Data.TextFileWriteDescData
 /**
  * @brief ConfigFileクラス
  */
-public class ConfigFile : ToffMonaka.Lib.Data.File
+public class ConfigFile : Lib.Data.File
 {
-	public ToffMonaka.Lib.Data.ConfigFileData data = new ToffMonaka.Lib.Data.ConfigFileData();
-	public ToffMonaka.Lib.Data.FileReadDesc<ToffMonaka.Lib.Data.ConfigFileReadDescData> readDesc = new ToffMonaka.Lib.Data.FileReadDesc<ToffMonaka.Lib.Data.ConfigFileReadDescData>();
-	public ToffMonaka.Lib.Data.FileWriteDesc<ToffMonaka.Lib.Data.ConfigFileWriteDescData> writeDesc = new ToffMonaka.Lib.Data.FileWriteDesc<ToffMonaka.Lib.Data.ConfigFileWriteDescData>();
+	public Lib.Data.ConfigFileData data = new Lib.Data.ConfigFileData();
+	public Lib.Data.FileReadDesc<Lib.Data.ConfigFileReadDescData> readDesc = new Lib.Data.FileReadDesc<Lib.Data.ConfigFileReadDescData>();
+	public Lib.Data.FileWriteDesc<Lib.Data.ConfigFileWriteDescData> writeDesc = new Lib.Data.FileWriteDesc<Lib.Data.ConfigFileWriteDescData>();
 
     /**
      * @brief コンストラクタ
@@ -203,7 +204,7 @@ public class ConfigFile : ToffMonaka.Lib.Data.File
 
 	    var desc_dat = this.readDesc.GetDataByParent();
 
-        var txt_file = new ToffMonaka.Lib.Data.TextFile();
+        var txt_file = new Lib.Data.TextFile();
         int txt_file_read_res;
 
         txt_file.readDesc.parentData = desc_dat;
@@ -282,7 +283,7 @@ public class ConfigFile : ToffMonaka.Lib.Data.File
 		    return (-1);
 	    }
 
-        var txt_file = new ToffMonaka.Lib.Data.TextFile();
+        var txt_file = new Lib.Data.TextFile();
         int txt_file_write_res;
 
         if (this.data.valueContainer.Count > 0) {
@@ -307,5 +308,6 @@ public class ConfigFile : ToffMonaka.Lib.Data.File
 
         return (0);
     }
+}
 }
 }

@@ -8,7 +8,8 @@ using UnityEngine;
 using System.Collections.Generic;
 
 
-namespace ToffMonaka.Lib.Data {
+namespace ToffMonaka {
+namespace Lib.Data {
 /**
  * @brief IniFileDataクラス
  */
@@ -107,7 +108,7 @@ public class IniFileData
 /**
  * @brief IniFileReadDescDataクラス
  */
-public class IniFileReadDescData : ToffMonaka.Lib.Data.TextFileReadDescData
+public class IniFileReadDescData : Lib.Data.TextFileReadDescData
 {
     /**
      * @brief コンストラクタ
@@ -151,7 +152,7 @@ public class IniFileReadDescData : ToffMonaka.Lib.Data.TextFileReadDescData
 /**
  * @brief IniFileWriteDescDataクラス
  */
-public class IniFileWriteDescData : ToffMonaka.Lib.Data.TextFileWriteDescData
+public class IniFileWriteDescData : Lib.Data.TextFileWriteDescData
 {
     /**
      * @brief コンストラクタ
@@ -195,11 +196,11 @@ public class IniFileWriteDescData : ToffMonaka.Lib.Data.TextFileWriteDescData
 /**
  * @brief IniFileクラス
  */
-public class IniFile : ToffMonaka.Lib.Data.File
+public class IniFile : Lib.Data.File
 {
-	public ToffMonaka.Lib.Data.IniFileData data = new ToffMonaka.Lib.Data.IniFileData();
-	public ToffMonaka.Lib.Data.FileReadDesc<ToffMonaka.Lib.Data.IniFileReadDescData> readDesc = new ToffMonaka.Lib.Data.FileReadDesc<ToffMonaka.Lib.Data.IniFileReadDescData>();
-	public ToffMonaka.Lib.Data.FileWriteDesc<ToffMonaka.Lib.Data.IniFileWriteDescData> writeDesc = new ToffMonaka.Lib.Data.FileWriteDesc<ToffMonaka.Lib.Data.IniFileWriteDescData>();
+	public Lib.Data.IniFileData data = new Lib.Data.IniFileData();
+	public Lib.Data.FileReadDesc<Lib.Data.IniFileReadDescData> readDesc = new Lib.Data.FileReadDesc<Lib.Data.IniFileReadDescData>();
+	public Lib.Data.FileWriteDesc<Lib.Data.IniFileWriteDescData> writeDesc = new Lib.Data.FileWriteDesc<Lib.Data.IniFileWriteDescData>();
 
     /**
      * @brief コンストラクタ
@@ -247,7 +248,7 @@ public class IniFile : ToffMonaka.Lib.Data.File
 
 	    var desc_dat = this.readDesc.GetDataByParent();
 
-        var txt_file = new ToffMonaka.Lib.Data.TextFile();
+        var txt_file = new Lib.Data.TextFile();
         int txt_file_read_res;
 
         txt_file.readDesc.parentData = desc_dat;
@@ -359,7 +360,7 @@ public class IniFile : ToffMonaka.Lib.Data.File
 		    return (-1);
 	    }
 
-        var txt_file = new ToffMonaka.Lib.Data.TextFile();
+        var txt_file = new Lib.Data.TextFile();
         int txt_file_write_res;
 
         if (this.data.valueContainer.Count > 0) {
@@ -392,5 +393,6 @@ public class IniFile : ToffMonaka.Lib.Data.File
 
         return (0);
     }
+}
 }
 }

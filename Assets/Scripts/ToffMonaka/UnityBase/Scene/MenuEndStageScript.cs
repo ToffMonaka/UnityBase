@@ -11,19 +11,20 @@ using TMPro;
 using DG.Tweening;
 
 
-namespace ToffMonaka.UnityBase.Scene {
+namespace ToffMonaka {
+namespace UnityBase.Scene {
 /**
  * @brief MenuEndStageScriptCreateDescクラス
  */
-public class MenuEndStageScriptCreateDesc : ToffMonaka.UnityBase.Scene.MenuStageScriptCreateDesc
+public class MenuEndStageScriptCreateDesc : UnityBase.Scene.MenuStageScriptCreateDesc
 {
-    public ToffMonaka.UnityBase.Scene.MenuScript menuScript = null;
+    public UnityBase.Scene.MenuScript menuScript = null;
 }
 
 /**
  * @brief MenuEndStageScriptクラス
  */
-public class MenuEndStageScript : ToffMonaka.UnityBase.Scene.MenuStageScript
+public class MenuEndStageScript : UnityBase.Scene.MenuStageScript
 {
     [SerializeField] private TMP_Text _nameText = null;
     [SerializeField] private ScrollRect _editScrollRect = null;
@@ -36,17 +37,17 @@ public class MenuEndStageScript : ToffMonaka.UnityBase.Scene.MenuStageScript
     [SerializeField] private TMP_Text _cancelButtonNameText = null;
     [SerializeField] private Image _cancelButtonCoverImage = null;
 
-    public new ToffMonaka.UnityBase.Scene.MenuEndStageScriptCreateDesc createDesc{get; private set;} = null;
+    public new UnityBase.Scene.MenuEndStageScriptCreateDesc createDesc{get; private set;} = null;
 
-    private ToffMonaka.UnityBase.Scene.MenuScript _menuScript = null;
+    private UnityBase.Scene.MenuScript _menuScript = null;
 
     /**
      * @brief コンストラクタ
      */
     public MenuEndStageScript()
     {
-        this._SetScriptIndex((int)ToffMonaka.UnityBase.Constant.Util.SCENE.SCRIPT_INDEX.MENU_END_STAGE);
-        this._SetStageType(ToffMonaka.UnityBase.Constant.Util.SCENE.MENU_STAGE_TYPE.END);
+        this._SetScriptIndex((int)UnityBase.Constant.Util.SCENE.SCRIPT_INDEX.MENU_END_STAGE);
+        this._SetStageType(UnityBase.Constant.Util.SCENE.MENU_STAGE_TYPE.END);
 
         return;
     }
@@ -76,13 +77,13 @@ public class MenuEndStageScript : ToffMonaka.UnityBase.Scene.MenuStageScript
     {
         this._menuScript = this.createDesc.menuScript;
 
-        this._nameText.SetText(ToffMonaka.UnityBase.Global.GetString(ToffMonaka.UnityBase.Constant.Util.SCENE.MENU_STAGE_NAME_MST_STRING_ID_ARRAY[(int)this.GetStageType()]));
+        this._nameText.SetText(UnityBase.Global.GetString(UnityBase.Constant.Util.SCENE.MENU_STAGE_NAME_MST_STRING_ID_ARRAY[(int)this.GetStageType()]));
 
-        this._restartToggleNameText.SetText(ToffMonaka.UnityBase.Global.GetString(ToffMonaka.UnityBase.Constant.Util.MST_STRING_ID.RESTART));
-        this._endToggleNameText.SetText(ToffMonaka.UnityBase.Global.GetString(ToffMonaka.UnityBase.Constant.Util.MST_STRING_ID.EXIT));
+        this._restartToggleNameText.SetText(UnityBase.Global.GetString(UnityBase.Constant.Util.MST_STRING_ID.RESTART));
+        this._endToggleNameText.SetText(UnityBase.Global.GetString(UnityBase.Constant.Util.MST_STRING_ID.EXIT));
 
-        this._okButtonNameText.SetText(ToffMonaka.UnityBase.Global.GetString(ToffMonaka.UnityBase.Constant.Util.MST_STRING_ID.OK));
-        this._cancelButtonNameText.SetText(ToffMonaka.UnityBase.Global.GetString(ToffMonaka.UnityBase.Constant.Util.MST_STRING_ID.CANCEL));
+        this._okButtonNameText.SetText(UnityBase.Global.GetString(UnityBase.Constant.Util.MST_STRING_ID.OK));
+        this._cancelButtonNameText.SetText(UnityBase.Global.GetString(UnityBase.Constant.Util.MST_STRING_ID.CANCEL));
 
         return (0);
     }
@@ -91,9 +92,9 @@ public class MenuEndStageScript : ToffMonaka.UnityBase.Scene.MenuStageScript
      * @brief SetCreateDesc関数
      * @param create_desc (create_desc)
      */
-    public override void SetCreateDesc(ToffMonaka.Lib.Scene.ScriptCreateDesc create_desc)
+    public override void SetCreateDesc(Lib.Scene.ScriptCreateDesc create_desc)
     {
-	    this.createDesc = create_desc as ToffMonaka.UnityBase.Scene.MenuEndStageScriptCreateDesc;
+	    this.createDesc = create_desc as UnityBase.Scene.MenuEndStageScriptCreateDesc;
 
         base.SetCreateDesc(this.createDesc);
 
@@ -225,11 +226,11 @@ public class MenuEndStageScript : ToffMonaka.UnityBase.Scene.MenuStageScript
         }
 
         if (this._restartToggle.isOn) {
-            ToffMonaka.Lib.Scene.Util.GetSoundManager().PlaySe((int)ToffMonaka.UnityBase.Constant.Util.SOUND.SE_INDEX.OK2);
+            Lib.Scene.Util.GetSoundManager().PlaySe((int)UnityBase.Constant.Util.SOUND.SE_INDEX.OK2);
 
             this._endToggle.SetIsOnWithoutNotify(false);
         } else {
-            ToffMonaka.Lib.Scene.Util.GetSoundManager().PlaySe((int)ToffMonaka.UnityBase.Constant.Util.SOUND.SE_INDEX.CANCEL);
+            Lib.Scene.Util.GetSoundManager().PlaySe((int)UnityBase.Constant.Util.SOUND.SE_INDEX.CANCEL);
         }
 
         return;
@@ -246,11 +247,11 @@ public class MenuEndStageScript : ToffMonaka.UnityBase.Scene.MenuStageScript
         }
 
         if (this._endToggle.isOn) {
-            ToffMonaka.Lib.Scene.Util.GetSoundManager().PlaySe((int)ToffMonaka.UnityBase.Constant.Util.SOUND.SE_INDEX.OK2);
+            Lib.Scene.Util.GetSoundManager().PlaySe((int)UnityBase.Constant.Util.SOUND.SE_INDEX.OK2);
 
             this._restartToggle.SetIsOnWithoutNotify(false);
         } else {
-            ToffMonaka.Lib.Scene.Util.GetSoundManager().PlaySe((int)ToffMonaka.UnityBase.Constant.Util.SOUND.SE_INDEX.CANCEL);
+            Lib.Scene.Util.GetSoundManager().PlaySe((int)UnityBase.Constant.Util.SOUND.SE_INDEX.CANCEL);
         }
 
         return;
@@ -266,10 +267,10 @@ public class MenuEndStageScript : ToffMonaka.UnityBase.Scene.MenuStageScript
             return;
         }
 
-        ToffMonaka.Lib.Scene.Util.GetSoundManager().PlaySe((int)ToffMonaka.UnityBase.Constant.Util.SOUND.SE_INDEX.OK2);
+        Lib.Scene.Util.GetSoundManager().PlaySe((int)UnityBase.Constant.Util.SOUND.SE_INDEX.OK2);
 
         if (this._restartToggle.isOn) {
-            ToffMonaka.Lib.Scene.Util.GetManager().ChangeMainScene(ToffMonaka.UnityBase.Constant.Util.SCENE.NAME.MAIN);
+            Lib.Scene.Util.GetManager().ChangeMainScene(UnityBase.Constant.Util.SCENE.NAME.MAIN);
         } else if (this._endToggle.isOn) {
 #if UNITY_EDITOR
             UnityEditor.EditorApplication.isPlaying = false;
@@ -323,7 +324,7 @@ public class MenuEndStageScript : ToffMonaka.UnityBase.Scene.MenuStageScript
             return;
         }
 
-        ToffMonaka.Lib.Scene.Util.GetSoundManager().PlaySe((int)ToffMonaka.UnityBase.Constant.Util.SOUND.SE_INDEX.CANCEL);
+        Lib.Scene.Util.GetSoundManager().PlaySe((int)UnityBase.Constant.Util.SOUND.SE_INDEX.CANCEL);
 
         this._menuScript.RunStageCancelButton();
 
@@ -359,5 +360,6 @@ public class MenuEndStageScript : ToffMonaka.UnityBase.Scene.MenuStageScript
 
         return;
     }
+}
 }
 }

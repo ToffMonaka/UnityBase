@@ -7,7 +7,8 @@
 using UnityEngine;
 
 
-namespace ToffMonaka.Lib.String {
+namespace ToffMonaka {
+namespace Lib.String {
 /**
  * @brief Utilクラス
  */
@@ -21,7 +22,7 @@ public static class Util
 		LF,
 		COUNT
     }
-    public const int NEWLINE_TYPE_COUNT = (int)ToffMonaka.Lib.String.Util.NEWLINE_TYPE.COUNT;
+    public const int NEWLINE_TYPE_COUNT = (int)Lib.String.Util.NEWLINE_TYPE.COUNT;
     public static readonly string[] NEWLINE_CODE_ARRAY = {
         "",
         "\r\n",
@@ -34,9 +35,9 @@ public static class Util
      * @param type (type)
      * @param newline_code (newline_code)
      */
-    public static string GetNewlineCode(ToffMonaka.Lib.String.Util.NEWLINE_TYPE type)
+    public static string GetNewlineCode(Lib.String.Util.NEWLINE_TYPE type)
     {
-        return (ToffMonaka.Lib.String.Util.NEWLINE_CODE_ARRAY[(int)type]);
+        return (Lib.String.Util.NEWLINE_CODE_ARRAY[(int)type]);
     }
 
     /**
@@ -81,5 +82,6 @@ public static class Util
 
         return;
     }
+}
 }
 }

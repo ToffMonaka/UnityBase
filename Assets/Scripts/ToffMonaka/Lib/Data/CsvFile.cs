@@ -7,7 +7,8 @@
 using UnityEngine;
 
 
-namespace ToffMonaka.Lib.Data {
+namespace ToffMonaka {
+namespace Lib.Data {
 /**
  * @brief CsvFileDataクラス
  */
@@ -94,7 +95,7 @@ public class CsvFileData
 /**
  * @brief CsvFileReadDescDataクラス
  */
-public class CsvFileReadDescData : ToffMonaka.Lib.Data.TextFileReadDescData
+public class CsvFileReadDescData : Lib.Data.TextFileReadDescData
 {
     /**
      * @brief コンストラクタ
@@ -138,7 +139,7 @@ public class CsvFileReadDescData : ToffMonaka.Lib.Data.TextFileReadDescData
 /**
  * @brief CsvFileWriteDescDataクラス
  */
-public class CsvFileWriteDescData : ToffMonaka.Lib.Data.TextFileWriteDescData
+public class CsvFileWriteDescData : Lib.Data.TextFileWriteDescData
 {
     /**
      * @brief コンストラクタ
@@ -182,11 +183,11 @@ public class CsvFileWriteDescData : ToffMonaka.Lib.Data.TextFileWriteDescData
 /**
  * @brief CsvFileクラス
  */
-public class CsvFile : ToffMonaka.Lib.Data.File
+public class CsvFile : Lib.Data.File
 {
-	public ToffMonaka.Lib.Data.CsvFileData data = new ToffMonaka.Lib.Data.CsvFileData();
-	public ToffMonaka.Lib.Data.FileReadDesc<ToffMonaka.Lib.Data.CsvFileReadDescData> readDesc = new ToffMonaka.Lib.Data.FileReadDesc<ToffMonaka.Lib.Data.CsvFileReadDescData>();
-	public ToffMonaka.Lib.Data.FileWriteDesc<ToffMonaka.Lib.Data.CsvFileWriteDescData> writeDesc = new ToffMonaka.Lib.Data.FileWriteDesc<ToffMonaka.Lib.Data.CsvFileWriteDescData>();
+	public Lib.Data.CsvFileData data = new Lib.Data.CsvFileData();
+	public Lib.Data.FileReadDesc<Lib.Data.CsvFileReadDescData> readDesc = new Lib.Data.FileReadDesc<Lib.Data.CsvFileReadDescData>();
+	public Lib.Data.FileWriteDesc<Lib.Data.CsvFileWriteDescData> writeDesc = new Lib.Data.FileWriteDesc<Lib.Data.CsvFileWriteDescData>();
 
     /**
      * @brief コンストラクタ
@@ -234,7 +235,7 @@ public class CsvFile : ToffMonaka.Lib.Data.File
 
 	    var desc_dat = this.readDesc.GetDataByParent();
 
-        var txt_file = new ToffMonaka.Lib.Data.TextFile();
+        var txt_file = new Lib.Data.TextFile();
         int txt_file_read_res;
 
         txt_file.readDesc.parentData = desc_dat;
@@ -256,7 +257,7 @@ public class CsvFile : ToffMonaka.Lib.Data.File
         int dq_str_cnt;
         int ddq_str_index;
         int comment_str_index;
-    	string newline_code = ToffMonaka.Lib.String.Util.GetNewlineCode(desc_dat.newlineType);
+    	string newline_code = Lib.String.Util.GetNewlineCode(desc_dat.newlineType);
 	    int val_cnt = 0;
         string val = "";
 
@@ -326,7 +327,7 @@ public class CsvFile : ToffMonaka.Lib.Data.File
 		            }
 
 		            if ((dq_str_cnt & 1U) == 0U) {
-                        ToffMonaka.Lib.String.Util.Replace(ref line_str, comma_str_index, comma_str.Length, newline_code);
+                        Lib.String.Util.Replace(ref line_str, comma_str_index, comma_str.Length, newline_code);
 
 			            dq_str_sub_index = comma_str_index + newline_code.Length;
 
@@ -348,7 +349,7 @@ public class CsvFile : ToffMonaka.Lib.Data.File
 		            ddq_str_index = val.IndexOf(ddq_str);
 
 		            while (ddq_str_index >= 0) {
-                        ToffMonaka.Lib.String.Util.Replace(ref val, ddq_str_index, ddq_str.Length, dq_str);
+                        Lib.String.Util.Replace(ref val, ddq_str_index, ddq_str.Length, dq_str);
 
 			            ddq_str_index = val.IndexOf(ddq_str, ddq_str_index + dq_str.Length);
 		            }
@@ -385,11 +386,11 @@ public class CsvFile : ToffMonaka.Lib.Data.File
 	            val_cnt = val_ary.Length;
 
 	            for (int val_i = 0; val_i < this.data.valueArray.Length; ++val_i) {
-                    ToffMonaka.Lib.Array.Util.Resize(ref this.data.valueArray[val_i], val_cnt, System.String.Empty);
+                    Lib.Array.Util.Resize(ref this.data.valueArray[val_i], val_cnt, System.String.Empty);
 	            }
             }
 
-            ToffMonaka.Lib.Array.Util.Resize(ref this.data.valueArray, this.data.valueArray.Length + 1, val_ary);
+            Lib.Array.Util.Resize(ref this.data.valueArray, this.data.valueArray.Length + 1, val_ary);
         }
 
         return (0);
@@ -410,7 +411,7 @@ public class CsvFile : ToffMonaka.Lib.Data.File
 		    return (-1);
 	    }
 
-        var txt_file = new ToffMonaka.Lib.Data.TextFile();
+        var txt_file = new Lib.Data.TextFile();
         int txt_file_write_res;
 
         if (this.data.valueArray.Length > 0) {
@@ -433,5 +434,6 @@ public class CsvFile : ToffMonaka.Lib.Data.File
 
         return (0);
     }
+}
 }
 }

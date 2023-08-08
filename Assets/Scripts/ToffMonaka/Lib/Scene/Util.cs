@@ -8,16 +8,17 @@ using UnityEngine;
 using UnityEngine.AddressableAssets;
 
 
-namespace ToffMonaka.Lib.Scene {
+namespace ToffMonaka {
+namespace Lib.Scene {
 /**
  * @brief Utilクラス
  */
 public static class Util
 {
-    private static ToffMonaka.Lib.Scene.Manager _manager = null;
-    private static ToffMonaka.Lib.Scene.InputManager _inputManager = null;
-    private static ToffMonaka.Lib.Scene.GraphicManager _graphicManager = null;
-    private static ToffMonaka.Lib.Scene.SoundManager _soundManager = null;
+    private static Lib.Scene.Manager _manager = null;
+    private static Lib.Scene.InputManager _inputManager = null;
+    private static Lib.Scene.GraphicManager _graphicManager = null;
+    private static Lib.Scene.SoundManager _soundManager = null;
 
     /**
      * @brief GetPrefabNode関数
@@ -27,7 +28,7 @@ public static class Util
      */
     public static GameObject GetPrefabNode(string prefab_file_path)
     {
-        return (ToffMonaka.Lib.Scene.Util.GetPrefabNode(prefab_file_path, null, false));
+        return (Lib.Scene.Util.GetPrefabNode(prefab_file_path, null, false));
     }
 
     /**
@@ -39,7 +40,7 @@ public static class Util
      */
     public static GameObject GetPrefabNode(string prefab_file_path, GameObject parent_node)
     {
-        return (ToffMonaka.Lib.Scene.Util.GetPrefabNode(prefab_file_path, parent_node, false));
+        return (Lib.Scene.Util.GetPrefabNode(prefab_file_path, parent_node, false));
     }
 
     /**
@@ -88,22 +89,22 @@ public static class Util
      * @brief GetManager関数
      * @return manager (manager)
      */
-    public static ToffMonaka.Lib.Scene.Manager GetManager()
+    public static Lib.Scene.Manager GetManager()
     {
-        return (ToffMonaka.Lib.Scene.Util._manager);
+        return (Lib.Scene.Util._manager);
     }
 
     /**
      * @brief SetManager関数
      * @param manager (manager)
      */
-    public static void SetManager(ToffMonaka.Lib.Scene.Manager manager)
+    public static void SetManager(Lib.Scene.Manager manager)
     {
-        if (ToffMonaka.Lib.Scene.Util._manager != null) {
-            ToffMonaka.Lib.Scene.Util._manager.Init();
+        if (Lib.Scene.Util._manager != null) {
+            Lib.Scene.Util._manager.Init();
         }
 
-        ToffMonaka.Lib.Scene.Util._manager = manager;
+        Lib.Scene.Util._manager = manager;
 
         return;
     }
@@ -112,22 +113,22 @@ public static class Util
      * @brief GetInputManager関数
      * @return input_manager (input_manager)
      */
-    public static ToffMonaka.Lib.Scene.InputManager GetInputManager()
+    public static Lib.Scene.InputManager GetInputManager()
     {
-        return (ToffMonaka.Lib.Scene.Util._inputManager);
+        return (Lib.Scene.Util._inputManager);
     }
 
     /**
      * @brief SetInputManager関数
      * @param input_manager (input_manager)
      */
-    public static void SetInputManager(ToffMonaka.Lib.Scene.InputManager input_manager)
+    public static void SetInputManager(Lib.Scene.InputManager input_manager)
     {
-        if (ToffMonaka.Lib.Scene.Util._inputManager != null) {
-            ToffMonaka.Lib.Scene.Util._inputManager.Init();
+        if (Lib.Scene.Util._inputManager != null) {
+            Lib.Scene.Util._inputManager.Init();
         }
 
-        ToffMonaka.Lib.Scene.Util._inputManager = input_manager;
+        Lib.Scene.Util._inputManager = input_manager;
 
         return;
     }
@@ -136,22 +137,22 @@ public static class Util
      * @brief GetGraphicManager関数
      * @return graphic_manager (graphic_manager)
      */
-    public static ToffMonaka.Lib.Scene.GraphicManager GetGraphicManager()
+    public static Lib.Scene.GraphicManager GetGraphicManager()
     {
-        return (ToffMonaka.Lib.Scene.Util._graphicManager);
+        return (Lib.Scene.Util._graphicManager);
     }
 
     /**
      * @brief SetGraphicManager関数
      * @param graphic_manager (graphic_manager)
      */
-    public static void SetGraphicManager(ToffMonaka.Lib.Scene.GraphicManager graphic_manager)
+    public static void SetGraphicManager(Lib.Scene.GraphicManager graphic_manager)
     {
-        if (ToffMonaka.Lib.Scene.Util._graphicManager != null) {
-            ToffMonaka.Lib.Scene.Util._graphicManager.Init();
+        if (Lib.Scene.Util._graphicManager != null) {
+            Lib.Scene.Util._graphicManager.Init();
         }
 
-        ToffMonaka.Lib.Scene.Util._graphicManager = graphic_manager;
+        Lib.Scene.Util._graphicManager = graphic_manager;
 
         return;
     }
@@ -160,24 +161,25 @@ public static class Util
      * @brief GetSoundManager関数
      * @return sound_manager (sound_manager)
      */
-    public static ToffMonaka.Lib.Scene.SoundManager GetSoundManager()
+    public static Lib.Scene.SoundManager GetSoundManager()
     {
-        return (ToffMonaka.Lib.Scene.Util._soundManager);
+        return (Lib.Scene.Util._soundManager);
     }
 
     /**
      * @brief SetSoundManager関数
      * @param sound_manager (sound_manager)
      */
-    public static void SetSoundManager(ToffMonaka.Lib.Scene.SoundManager sound_manager)
+    public static void SetSoundManager(Lib.Scene.SoundManager sound_manager)
     {
-        if (ToffMonaka.Lib.Scene.Util._soundManager != null) {
-            ToffMonaka.Lib.Scene.Util._soundManager.Init();
+        if (Lib.Scene.Util._soundManager != null) {
+            Lib.Scene.Util._soundManager.Init();
         }
 
-        ToffMonaka.Lib.Scene.Util._soundManager = sound_manager;
+        Lib.Scene.Util._soundManager = sound_manager;
 
         return;
     }
+}
 }
 }

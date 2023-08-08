@@ -11,19 +11,20 @@ using TMPro;
 using DG.Tweening;
 
 
-namespace ToffMonaka.UnityBase.Scene {
+namespace ToffMonaka {
+namespace UnityBase.Scene {
 /**
  * @brief MenuFaqStageScriptCreateDescクラス
  */
-public class MenuFaqStageScriptCreateDesc : ToffMonaka.UnityBase.Scene.MenuStageScriptCreateDesc
+public class MenuFaqStageScriptCreateDesc : UnityBase.Scene.MenuStageScriptCreateDesc
 {
-    public ToffMonaka.UnityBase.Scene.MenuScript menuScript = null;
+    public UnityBase.Scene.MenuScript menuScript = null;
 }
 
 /**
  * @brief MenuFaqStageScriptクラス
  */
-public class MenuFaqStageScript : ToffMonaka.UnityBase.Scene.MenuStageScript
+public class MenuFaqStageScript : UnityBase.Scene.MenuStageScript
 {
     [SerializeField] private TMP_Text _nameText = null;
     [SerializeField] private ScrollRect _messageScrollRect = null;
@@ -31,17 +32,17 @@ public class MenuFaqStageScript : ToffMonaka.UnityBase.Scene.MenuStageScript
     [SerializeField] private TMP_Text _cancelButtonNameText = null;
     [SerializeField] private Image _cancelButtonCoverImage = null;
 
-    public new ToffMonaka.UnityBase.Scene.MenuFaqStageScriptCreateDesc createDesc{get; private set;} = null;
+    public new UnityBase.Scene.MenuFaqStageScriptCreateDesc createDesc{get; private set;} = null;
 
-    private ToffMonaka.UnityBase.Scene.MenuScript _menuScript = null;
+    private UnityBase.Scene.MenuScript _menuScript = null;
 
     /**
      * @brief コンストラクタ
      */
     public MenuFaqStageScript()
     {
-        this._SetScriptIndex((int)ToffMonaka.UnityBase.Constant.Util.SCENE.SCRIPT_INDEX.MENU_FAQ_STAGE);
-        this._SetStageType(ToffMonaka.UnityBase.Constant.Util.SCENE.MENU_STAGE_TYPE.FAQ);
+        this._SetScriptIndex((int)UnityBase.Constant.Util.SCENE.SCRIPT_INDEX.MENU_FAQ_STAGE);
+        this._SetStageType(UnityBase.Constant.Util.SCENE.MENU_STAGE_TYPE.FAQ);
 
         return;
     }
@@ -71,7 +72,7 @@ public class MenuFaqStageScript : ToffMonaka.UnityBase.Scene.MenuStageScript
     {
         this._menuScript = this.createDesc.menuScript;
 
-        this._nameText.SetText(ToffMonaka.UnityBase.Global.GetString(ToffMonaka.UnityBase.Constant.Util.SCENE.MENU_STAGE_NAME_MST_STRING_ID_ARRAY[(int)this.GetStageType()]));
+        this._nameText.SetText(UnityBase.Global.GetString(UnityBase.Constant.Util.SCENE.MENU_STAGE_NAME_MST_STRING_ID_ARRAY[(int)this.GetStageType()]));
 
         this._messageNode.SetActive(false);
 
@@ -86,8 +87,8 @@ public class MenuFaqStageScript : ToffMonaka.UnityBase.Scene.MenuStageScript
             };
             string[] str_ary;
 
-		    switch (ToffMonaka.UnityBase.Global.systemConfigFile.data.systemLanguageType) {
-		    case ToffMonaka.UnityBase.Constant.Util.LANGUAGE_TYPE.JAPANESE: {
+		    switch (UnityBase.Global.systemConfigFile.data.systemLanguageType) {
+		    case UnityBase.Constant.Util.LANGUAGE_TYPE.JAPANESE: {
                 str_ary = jp_str_ary;
 
 			    break;
@@ -110,7 +111,7 @@ public class MenuFaqStageScript : ToffMonaka.UnityBase.Scene.MenuStageScript
             }
         }
 
-        this._cancelButtonNameText.SetText(ToffMonaka.UnityBase.Global.GetString(ToffMonaka.UnityBase.Constant.Util.MST_STRING_ID.CANCEL));
+        this._cancelButtonNameText.SetText(UnityBase.Global.GetString(UnityBase.Constant.Util.MST_STRING_ID.CANCEL));
 
         return (0);
     }
@@ -119,9 +120,9 @@ public class MenuFaqStageScript : ToffMonaka.UnityBase.Scene.MenuStageScript
      * @brief SetCreateDesc関数
      * @param create_desc (create_desc)
      */
-    public override void SetCreateDesc(ToffMonaka.Lib.Scene.ScriptCreateDesc create_desc)
+    public override void SetCreateDesc(Lib.Scene.ScriptCreateDesc create_desc)
     {
-	    this.createDesc = create_desc as ToffMonaka.UnityBase.Scene.MenuFaqStageScriptCreateDesc;
+	    this.createDesc = create_desc as UnityBase.Scene.MenuFaqStageScriptCreateDesc;
 
         base.SetCreateDesc(this.createDesc);
 
@@ -249,7 +250,7 @@ public class MenuFaqStageScript : ToffMonaka.UnityBase.Scene.MenuStageScript
             return;
         }
 
-        ToffMonaka.Lib.Scene.Util.GetSoundManager().PlaySe((int)ToffMonaka.UnityBase.Constant.Util.SOUND.SE_INDEX.CANCEL);
+        Lib.Scene.Util.GetSoundManager().PlaySe((int)UnityBase.Constant.Util.SOUND.SE_INDEX.CANCEL);
 
         this._menuScript.RunStageCancelButton();
 
@@ -285,5 +286,6 @@ public class MenuFaqStageScript : ToffMonaka.UnityBase.Scene.MenuStageScript
 
         return;
     }
+}
 }
 }

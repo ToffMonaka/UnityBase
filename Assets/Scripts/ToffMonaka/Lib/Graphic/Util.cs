@@ -7,36 +7,38 @@
 using UnityEngine;
 
 
-namespace ToffMonaka.Lib.Graphic {
+namespace ToffMonaka {
+namespace Lib.Graphic {
 /**
  * @brief Utilクラス
  */
 public static class Util
 {
-    private static ToffMonaka.Lib.Graphic.Manager _manager = null;
+    private static Lib.Graphic.Manager _manager = null;
 
     /**
      * @brief GetManager関数
      * @return manager (manager)
      */
-    public static ToffMonaka.Lib.Graphic.Manager GetManager()
+    public static Lib.Graphic.Manager GetManager()
     {
-        return (ToffMonaka.Lib.Graphic.Util._manager);
+        return (Lib.Graphic.Util._manager);
     }
 
     /**
      * @brief SetManager関数
      * @param manager (manager)
      */
-    public static void SetManager(ToffMonaka.Lib.Graphic.Manager manager)
+    public static void SetManager(Lib.Graphic.Manager manager)
     {
-        if (ToffMonaka.Lib.Graphic.Util._manager != null) {
-            ToffMonaka.Lib.Graphic.Util._manager.Init();
+        if (Lib.Graphic.Util._manager != null) {
+            Lib.Graphic.Util._manager.Init();
         }
 
-        ToffMonaka.Lib.Graphic.Util._manager = manager;
+        Lib.Graphic.Util._manager = manager;
 
         return;
     }
+}
 }
 }

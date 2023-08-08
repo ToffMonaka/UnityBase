@@ -10,35 +10,36 @@ using UnityEngine.EventSystems;
 using TMPro;
 
 
-namespace ToffMonaka.UnityBase.Scene {
+namespace ToffMonaka {
+namespace UnityBase.Scene {
 /**
  * @brief MenuStageSelectStageButtonScriptCreateDescクラス
  */
-public class MenuStageSelectStageButtonScriptCreateDesc : ToffMonaka.Lib.Scene.ObjectScriptCreateDesc
+public class MenuStageSelectStageButtonScriptCreateDesc : Lib.Scene.ObjectScriptCreateDesc
 {
-    public ToffMonaka.UnityBase.Scene.MenuStageSelectScript menuStageSelectScript = null;
-    public ToffMonaka.UnityBase.Constant.Util.SCENE.MENU_STAGE_TYPE stageType = ToffMonaka.UnityBase.Constant.Util.SCENE.MENU_STAGE_TYPE.NONE;
+    public UnityBase.Scene.MenuStageSelectScript menuStageSelectScript = null;
+    public UnityBase.Constant.Util.SCENE.MENU_STAGE_TYPE stageType = UnityBase.Constant.Util.SCENE.MENU_STAGE_TYPE.NONE;
 }
 
 /**
  * @brief MenuStageSelectStageButtonScriptクラス
  */
-public class MenuStageSelectStageButtonScript : ToffMonaka.Lib.Scene.ObjectScript, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
+public class MenuStageSelectStageButtonScript : Lib.Scene.ObjectScript, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
 {
     [SerializeField] private TMP_Text _nameText = null;
     [SerializeField] private Image _coverImage = null;
 
-    public new ToffMonaka.UnityBase.Scene.MenuStageSelectStageButtonScriptCreateDesc createDesc{get; private set;} = null;
+    public new UnityBase.Scene.MenuStageSelectStageButtonScriptCreateDesc createDesc{get; private set;} = null;
 
-    private ToffMonaka.UnityBase.Scene.MenuStageSelectScript _menuStageSelectScript = null;
-    private ToffMonaka.UnityBase.Constant.Util.SCENE.MENU_STAGE_TYPE _stageType = ToffMonaka.UnityBase.Constant.Util.SCENE.MENU_STAGE_TYPE.NONE;
+    private UnityBase.Scene.MenuStageSelectScript _menuStageSelectScript = null;
+    private UnityBase.Constant.Util.SCENE.MENU_STAGE_TYPE _stageType = UnityBase.Constant.Util.SCENE.MENU_STAGE_TYPE.NONE;
 
     /**
      * @brief コンストラクタ
      */
     public MenuStageSelectStageButtonScript()
     {
-        this._SetScriptIndex((int)ToffMonaka.UnityBase.Constant.Util.SCENE.SCRIPT_INDEX.MENU_STAGE_SELECT_STAGE_BUTTON);
+        this._SetScriptIndex((int)UnityBase.Constant.Util.SCENE.SCRIPT_INDEX.MENU_STAGE_SELECT_STAGE_BUTTON);
 
         return;
     }
@@ -69,7 +70,7 @@ public class MenuStageSelectStageButtonScript : ToffMonaka.Lib.Scene.ObjectScrip
         this._menuStageSelectScript = this.createDesc.menuStageSelectScript;
         this._stageType = this.createDesc.stageType;
 
-        this._nameText.SetText(ToffMonaka.UnityBase.Global.GetString(ToffMonaka.UnityBase.Constant.Util.SCENE.MENU_STAGE_NAME_MST_STRING_ID_ARRAY[(int)this._stageType]));
+        this._nameText.SetText(UnityBase.Global.GetString(UnityBase.Constant.Util.SCENE.MENU_STAGE_NAME_MST_STRING_ID_ARRAY[(int)this._stageType]));
 
         return (0);
     }
@@ -78,9 +79,9 @@ public class MenuStageSelectStageButtonScript : ToffMonaka.Lib.Scene.ObjectScrip
      * @brief SetCreateDesc関数
      * @param create_desc (create_desc)
      */
-    public override void SetCreateDesc(ToffMonaka.Lib.Scene.ScriptCreateDesc create_desc)
+    public override void SetCreateDesc(Lib.Scene.ScriptCreateDesc create_desc)
     {
-	    this.createDesc = create_desc as ToffMonaka.UnityBase.Scene.MenuStageSelectStageButtonScriptCreateDesc;
+	    this.createDesc = create_desc as UnityBase.Scene.MenuStageSelectStageButtonScriptCreateDesc;
 
         base.SetCreateDesc(this.createDesc);
 
@@ -163,7 +164,7 @@ public class MenuStageSelectStageButtonScript : ToffMonaka.Lib.Scene.ObjectScrip
             return;
         }
 
-        ToffMonaka.Lib.Scene.Util.GetSoundManager().PlaySe((int)ToffMonaka.UnityBase.Constant.Util.SOUND.SE_INDEX.OK2);
+        Lib.Scene.Util.GetSoundManager().PlaySe((int)UnityBase.Constant.Util.SOUND.SE_INDEX.OK2);
 
         this._menuStageSelectScript.RunStageButton(this._stageType);
 
@@ -199,5 +200,6 @@ public class MenuStageSelectStageButtonScript : ToffMonaka.Lib.Scene.ObjectScrip
 
         return;
     }
+}
 }
 }

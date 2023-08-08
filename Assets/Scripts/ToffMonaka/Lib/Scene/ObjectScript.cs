@@ -7,27 +7,28 @@
 using UnityEngine;
 
 
-namespace ToffMonaka.Lib.Scene {
+namespace ToffMonaka {
+namespace Lib.Scene {
 /**
  * @brief ObjectScriptCreateDescクラス
  */
-public class ObjectScriptCreateDesc : ToffMonaka.Lib.Scene.ScriptCreateDesc
+public class ObjectScriptCreateDesc : Lib.Scene.ScriptCreateDesc
 {
 }
 
 /**
  * @brief ObjectScriptクラス
  */
-public abstract class ObjectScript : ToffMonaka.Lib.Scene.Script
+public abstract class ObjectScript : Lib.Scene.Script
 {
-    public new ToffMonaka.Lib.Scene.ObjectScriptCreateDesc createDesc{get; private set;} = null;
+    public new Lib.Scene.ObjectScriptCreateDesc createDesc{get; private set;} = null;
 
     /**
      * @brief コンストラクタ
      */
     public ObjectScript()
     {
-        this._SetScriptType(ToffMonaka.Lib.Constant.Util.SCENE.SCRIPT_TYPE.OBJECT);
+        this._SetScriptType(Lib.Constant.Util.SCENE.SCRIPT_TYPE.OBJECT);
         this._SetActiveAutoFlag(true);
 
         return;
@@ -57,9 +58,9 @@ public abstract class ObjectScript : ToffMonaka.Lib.Scene.Script
      * @brief SetCreateDesc関数
      * @param create_desc (create_desc)
      */
-    public override void SetCreateDesc(ToffMonaka.Lib.Scene.ScriptCreateDesc create_desc)
+    public override void SetCreateDesc(Lib.Scene.ScriptCreateDesc create_desc)
     {
-	    this.createDesc = create_desc as ToffMonaka.Lib.Scene.ObjectScriptCreateDesc;
+	    this.createDesc = create_desc as Lib.Scene.ObjectScriptCreateDesc;
 
         base.SetCreateDesc(this.createDesc);
 
@@ -125,5 +126,6 @@ public abstract class ObjectScript : ToffMonaka.Lib.Scene.Script
 
         return;
     }
+}
 }
 }

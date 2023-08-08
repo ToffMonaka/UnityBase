@@ -9,7 +9,8 @@ using UnityEditor;
 using UnityEditor.SceneManagement;
 
 
-namespace ToffMonaka.Tool {
+namespace ToffMonaka {
+namespace Tool {
 /**
  * @brief PlaySettingクラス
  */
@@ -19,7 +20,7 @@ public class PlaySetting : EditorWindow
     private const string _REMOVE_STRING = "Assets/";
 
     private string[] _startSceneArray = System.Array.Empty<string>();
-    private int _startSceneIndex = ToffMonaka.Tool.PlaySetting._START_SCENE_INDEX;
+    private int _startSceneIndex = Tool.PlaySetting._START_SCENE_INDEX;
 
     /**
      * @brief ShowWindow関数
@@ -70,10 +71,10 @@ public class PlaySetting : EditorWindow
         int scene_path_str_index = 0;
 
         for (int scenes_i = 0; scenes_i < EditorBuildSettings.scenes.Length; ++scenes_i) {
-            scene_path_str_index = EditorBuildSettings.scenes[scenes_i].path.IndexOf(ToffMonaka.Tool.PlaySetting._REMOVE_STRING);
+            scene_path_str_index = EditorBuildSettings.scenes[scenes_i].path.IndexOf(Tool.PlaySetting._REMOVE_STRING);
 
             if (scene_path_str_index >= 0) {
-                scene_path = EditorBuildSettings.scenes[scenes_i].path.Substring(scene_path_str_index + ToffMonaka.Tool.PlaySetting._REMOVE_STRING.Length).Replace("/", "\u2215");
+                scene_path = EditorBuildSettings.scenes[scenes_i].path.Substring(scene_path_str_index + Tool.PlaySetting._REMOVE_STRING.Length).Replace("/", "\u2215");
             } else {
                 scene_path = EditorBuildSettings.scenes[scenes_i].path.Replace("/", "\u2215");
             }
@@ -87,5 +88,6 @@ public class PlaySetting : EditorWindow
 
         return;
     }
+}
 }
 }

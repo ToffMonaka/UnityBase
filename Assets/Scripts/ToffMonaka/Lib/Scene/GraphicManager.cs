@@ -7,7 +7,8 @@
 using UnityEngine;
 
 
-namespace ToffMonaka.Lib.Scene {
+namespace ToffMonaka {
+namespace Lib.Scene {
 /**
  * @brief GraphicManagerCreateDescクラス
  */
@@ -21,7 +22,7 @@ public class GraphicManagerCreateDesc
  */
 public class GraphicManager
 {
-    public ToffMonaka.Lib.Scene.GraphicManagerCreateDesc createDesc{get; private set;} = null;
+    public Lib.Scene.GraphicManagerCreateDesc createDesc{get; private set;} = null;
 
     private GameObject _graphicNode = null;
 
@@ -59,7 +60,7 @@ public class GraphicManager
      * @return result (result)<br>
      * 0未満=失敗
      */
-    public virtual int Create(ToffMonaka.Lib.Scene.GraphicManagerCreateDesc desc = null)
+    public virtual int Create(Lib.Scene.GraphicManagerCreateDesc desc = null)
     {
         this.Init();
 
@@ -96,7 +97,7 @@ public class GraphicManager
      * @brief SetCreateDesc関数
      * @param create_desc (create_desc)
      */
-    public virtual void SetCreateDesc(ToffMonaka.Lib.Scene.GraphicManagerCreateDesc create_desc)
+    public virtual void SetCreateDesc(Lib.Scene.GraphicManagerCreateDesc create_desc)
     {
         this.createDesc = create_desc;
 
@@ -111,5 +112,6 @@ public class GraphicManager
     {
         return (this._graphicNode);
     }
+}
 }
 }

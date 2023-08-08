@@ -10,35 +10,36 @@ using TMPro;
 using DG.Tweening;
 
 
-namespace ToffMonaka.UnityBase.Scene {
+namespace ToffMonaka {
+namespace UnityBase.Scene {
 /**
  * @brief Test2DStageSubSceneScriptCreateDescクラス
  */
-public class Test2DStageSubSceneScriptCreateDesc : ToffMonaka.UnityBase.Scene.StageSubSceneScriptCreateDesc
+public class Test2DStageSubSceneScriptCreateDesc : UnityBase.Scene.StageSubSceneScriptCreateDesc
 {
 }
 
 /**
  * @brief Test2DStageSubSceneScriptクラス
  */
-public class Test2DStageSubSceneScript : ToffMonaka.UnityBase.Scene.StageSubSceneScript
+public class Test2DStageSubSceneScript : UnityBase.Scene.StageSubSceneScript
 {
     [SerializeField] private TMP_Text _nameText = null;
     [SerializeField] private TMP_Text _messageText = null;
     [SerializeField] private GameObject _menuNode = null;
     [SerializeField] private Image _openCloseFadeImage = null;
 
-    public new ToffMonaka.UnityBase.Scene.Test2DStageSubSceneScriptCreateDesc createDesc{get; private set;} = null;
+    public new UnityBase.Scene.Test2DStageSubSceneScriptCreateDesc createDesc{get; private set;} = null;
 
-    private ToffMonaka.UnityBase.Scene.MenuScript _menuScript = null;
+    private UnityBase.Scene.MenuScript _menuScript = null;
 
     /**
      * @brief コンストラクタ
      */
     public Test2DStageSubSceneScript()
     {
-        this._SetScriptIndex((int)ToffMonaka.UnityBase.Constant.Util.SCENE.SCRIPT_INDEX.TEST_2D_STAGE_SUB_SCENE);
-        this._SetStageType(ToffMonaka.UnityBase.Constant.Util.SCENE.STAGE_TYPE.TEST_2D);
+        this._SetScriptIndex((int)UnityBase.Constant.Util.SCENE.SCRIPT_INDEX.TEST_2D_STAGE_SUB_SCENE);
+        this._SetStageType(UnityBase.Constant.Util.SCENE.STAGE_TYPE.TEST_2D);
 
         return;
     }
@@ -70,12 +71,12 @@ public class Test2DStageSubSceneScript : ToffMonaka.UnityBase.Scene.StageSubScen
 
         canvas_node.GetComponent<Canvas>().worldCamera = this.GetManager().GetMainSceneScript().GetMainCamera();
 
-        this._nameText.SetText(ToffMonaka.UnityBase.Global.GetString(ToffMonaka.UnityBase.Constant.Util.SCENE.STAGE_NAME_MST_STRING_ID_ARRAY[(int)this.GetStageType()]));
-        this._messageText.SetText(ToffMonaka.UnityBase.Global.GetString(ToffMonaka.UnityBase.Constant.Util.MST_STRING_ID.IN_PREPARATION));
+        this._nameText.SetText(UnityBase.Global.GetString(UnityBase.Constant.Util.SCENE.STAGE_NAME_MST_STRING_ID_ARRAY[(int)this.GetStageType()]));
+        this._messageText.SetText(UnityBase.Global.GetString(UnityBase.Constant.Util.MST_STRING_ID.IN_PREPARATION));
 
         {// MenuScript Create
-            var script = this._menuNode.GetComponent<ToffMonaka.UnityBase.Scene.MenuScript>();
-            var script_create_desc = new ToffMonaka.UnityBase.Scene.MenuScriptCreateDesc();
+            var script = this._menuNode.GetComponent<UnityBase.Scene.MenuScript>();
+            var script_create_desc = new UnityBase.Scene.MenuScriptCreateDesc();
 
             script.Create(script_create_desc);
             script.Open(0);
@@ -90,9 +91,9 @@ public class Test2DStageSubSceneScript : ToffMonaka.UnityBase.Scene.StageSubScen
      * @brief SetCreateDesc関数
      * @param create_desc (create_desc)
      */
-    public override void SetCreateDesc(ToffMonaka.Lib.Scene.ScriptCreateDesc create_desc)
+    public override void SetCreateDesc(Lib.Scene.ScriptCreateDesc create_desc)
     {
-	    this.createDesc = create_desc as ToffMonaka.UnityBase.Scene.Test2DStageSubSceneScriptCreateDesc;
+	    this.createDesc = create_desc as UnityBase.Scene.Test2DStageSubSceneScriptCreateDesc;
 
         base.SetCreateDesc(this.createDesc);
 
@@ -208,5 +209,6 @@ public class Test2DStageSubSceneScript : ToffMonaka.UnityBase.Scene.StageSubScen
 
         return;
     }
+}
 }
 }

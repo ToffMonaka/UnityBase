@@ -7,29 +7,30 @@
 using UnityEngine;
 
 
-namespace ToffMonaka.Lib.Scene {
+namespace ToffMonaka {
+namespace Lib.Scene {
 /**
  * @brief SoundBgmScriptCreateDescクラス
  */
-public class SoundBgmScriptCreateDesc : ToffMonaka.Lib.Scene.ObjectScriptCreateDesc
+public class SoundBgmScriptCreateDesc : Lib.Scene.ObjectScriptCreateDesc
 {
 }
 
 /**
  * @brief SoundBgmScriptクラス
  */
-public class SoundBgmScript : ToffMonaka.Lib.Scene.ObjectScript
+public class SoundBgmScript : Lib.Scene.ObjectScript
 {
     [SerializeField] private AudioSource _audioSource = null;
 
-    public new ToffMonaka.Lib.Scene.SoundBgmScriptCreateDesc createDesc{get; private set;} = null;
+    public new Lib.Scene.SoundBgmScriptCreateDesc createDesc{get; private set;} = null;
 
     /**
      * @brief コンストラクタ
      */
     public SoundBgmScript()
     {
-        this._SetScriptIndex((int)ToffMonaka.Lib.Constant.Util.SCENE.SCRIPT_INDEX.SOUND_BGM);
+        this._SetScriptIndex((int)Lib.Constant.Util.SCENE.SCRIPT_INDEX.SOUND_BGM);
 
         return;
     }
@@ -64,9 +65,9 @@ public class SoundBgmScript : ToffMonaka.Lib.Scene.ObjectScript
      * @brief SetCreateDesc関数
      * @param create_desc (create_desc)
      */
-    public override void SetCreateDesc(ToffMonaka.Lib.Scene.ScriptCreateDesc create_desc)
+    public override void SetCreateDesc(Lib.Scene.ScriptCreateDesc create_desc)
     {
-	    this.createDesc = create_desc as ToffMonaka.Lib.Scene.SoundBgmScriptCreateDesc;
+	    this.createDesc = create_desc as Lib.Scene.SoundBgmScriptCreateDesc;
 
         base.SetCreateDesc(this.createDesc);
 
@@ -109,5 +110,6 @@ public class SoundBgmScript : ToffMonaka.Lib.Scene.ObjectScript
     {
         return (this._audioSource);
     }
+}
 }
 }

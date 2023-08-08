@@ -9,7 +9,8 @@ using UnityEngine.AddressableAssets;
 using System.IO;
 
 
-namespace ToffMonaka.Lib.Data {
+namespace ToffMonaka {
+namespace Lib.Data {
 /**
  * @brief BinaryFileDataクラス
  */
@@ -49,7 +50,7 @@ public class BinaryFileData
 /**
  * @brief BinaryFileReadDescDataクラス
  */
-public class BinaryFileReadDescData : ToffMonaka.Lib.Data.FileReadDescData
+public class BinaryFileReadDescData : Lib.Data.FileReadDescData
 {
     public byte[] buffer = System.Array.Empty<byte>();
 
@@ -101,7 +102,7 @@ public class BinaryFileReadDescData : ToffMonaka.Lib.Data.FileReadDescData
 /**
  * @brief BinaryFileWriteDescDataクラス
  */
-public class BinaryFileWriteDescData : ToffMonaka.Lib.Data.FileWriteDescData
+public class BinaryFileWriteDescData : Lib.Data.FileWriteDescData
 {
     /**
      * @brief コンストラクタ
@@ -145,11 +146,11 @@ public class BinaryFileWriteDescData : ToffMonaka.Lib.Data.FileWriteDescData
 /**
  * @brief BinaryFileクラス
  */
-public class BinaryFile : ToffMonaka.Lib.Data.File
+public class BinaryFile : Lib.Data.File
 {
-	public ToffMonaka.Lib.Data.BinaryFileData data = new ToffMonaka.Lib.Data.BinaryFileData();
-	public ToffMonaka.Lib.Data.FileReadDesc<ToffMonaka.Lib.Data.BinaryFileReadDescData> readDesc = new ToffMonaka.Lib.Data.FileReadDesc<ToffMonaka.Lib.Data.BinaryFileReadDescData>();
-	public ToffMonaka.Lib.Data.FileWriteDesc<ToffMonaka.Lib.Data.BinaryFileWriteDescData> writeDesc = new ToffMonaka.Lib.Data.FileWriteDesc<ToffMonaka.Lib.Data.BinaryFileWriteDescData>();
+	public Lib.Data.BinaryFileData data = new Lib.Data.BinaryFileData();
+	public Lib.Data.FileReadDesc<Lib.Data.BinaryFileReadDescData> readDesc = new Lib.Data.FileReadDesc<Lib.Data.BinaryFileReadDescData>();
+	public Lib.Data.FileWriteDesc<Lib.Data.BinaryFileWriteDescData> writeDesc = new Lib.Data.FileWriteDesc<Lib.Data.BinaryFileWriteDescData>();
 
     /**
      * @brief コンストラクタ
@@ -315,5 +316,6 @@ public class BinaryFile : ToffMonaka.Lib.Data.File
 
         return (0);
     }
+}
 }
 }

@@ -7,22 +7,23 @@
 using UnityEngine;
 
 
-namespace ToffMonaka.UnityBase.Scene {
+namespace ToffMonaka {
+namespace UnityBase.Scene {
 /**
  * @brief MenuSelectScriptCreateDescクラス
  */
-public class MenuSelectScriptCreateDesc : ToffMonaka.Lib.Scene.SubSceneScriptCreateDesc
+public class MenuSelectScriptCreateDesc : Lib.Scene.SubSceneScriptCreateDesc
 {
 }
 
 /**
  * @brief MenuSelectScriptクラス
  */
-public class MenuSelectScript : ToffMonaka.Lib.Scene.SubSceneScript
+public class MenuSelectScript : Lib.Scene.SubSceneScript
 {
-    public new ToffMonaka.UnityBase.Scene.MenuSelectScriptCreateDesc createDesc{get; private set;} = null;
+    public new UnityBase.Scene.MenuSelectScriptCreateDesc createDesc{get; private set;} = null;
 
-    private ToffMonaka.UnityBase.Constant.Util.SCENE.MENU_SELECT_TYPE _selectType = ToffMonaka.UnityBase.Constant.Util.SCENE.MENU_SELECT_TYPE.NONE;
+    private UnityBase.Constant.Util.SCENE.MENU_SELECT_TYPE _selectType = UnityBase.Constant.Util.SCENE.MENU_SELECT_TYPE.NONE;
 
     /**
      * @brief コンストラクタ
@@ -62,9 +63,9 @@ public class MenuSelectScript : ToffMonaka.Lib.Scene.SubSceneScript
      * @brief SetCreateDesc関数
      * @param create_desc (create_desc)
      */
-    public override void SetCreateDesc(ToffMonaka.Lib.Scene.ScriptCreateDesc create_desc)
+    public override void SetCreateDesc(Lib.Scene.ScriptCreateDesc create_desc)
     {
-	    this.createDesc = create_desc as ToffMonaka.UnityBase.Scene.MenuSelectScriptCreateDesc;
+	    this.createDesc = create_desc as UnityBase.Scene.MenuSelectScriptCreateDesc;
 
         base.SetCreateDesc(this.createDesc);
 
@@ -139,7 +140,7 @@ public class MenuSelectScript : ToffMonaka.Lib.Scene.SubSceneScript
      * @brief GetSelectType関数
      * @return select_type (select_type)
      */
-    public ToffMonaka.UnityBase.Constant.Util.SCENE.MENU_SELECT_TYPE GetSelectType()
+    public UnityBase.Constant.Util.SCENE.MENU_SELECT_TYPE GetSelectType()
     {
         return (this._selectType);
     }
@@ -148,11 +149,12 @@ public class MenuSelectScript : ToffMonaka.Lib.Scene.SubSceneScript
      * @brief _SetSelectType関数
      * @param select_type (select_type)
      */
-    protected void _SetSelectType(ToffMonaka.UnityBase.Constant.Util.SCENE.MENU_SELECT_TYPE select_type)
+    protected void _SetSelectType(UnityBase.Constant.Util.SCENE.MENU_SELECT_TYPE select_type)
     {
         this._selectType = select_type;
 
         return;
     }
+}
 }
 }

@@ -7,36 +7,38 @@
 using UnityEngine;
 
 
-namespace ToffMonaka.Lib.Input {
+namespace ToffMonaka {
+namespace Lib.Input {
 /**
  * @brief Utilクラス
  */
 public static class Util
 {
-    private static ToffMonaka.Lib.Input.Manager _manager = null;
+    private static Lib.Input.Manager _manager = null;
 
     /**
      * @brief GetManager関数
      * @return manager (manager)
      */
-    public static ToffMonaka.Lib.Input.Manager GetManager()
+    public static Lib.Input.Manager GetManager()
     {
-        return (ToffMonaka.Lib.Input.Util._manager);
+        return (Lib.Input.Util._manager);
     }
 
     /**
      * @brief SetManager関数
      * @param manager (manager)
      */
-    public static void SetManager(ToffMonaka.Lib.Input.Manager manager)
+    public static void SetManager(Lib.Input.Manager manager)
     {
-        if (ToffMonaka.Lib.Input.Util._manager != null) {
-            ToffMonaka.Lib.Input.Util._manager.Init();
+        if (Lib.Input.Util._manager != null) {
+            Lib.Input.Util._manager.Init();
         }
 
-        ToffMonaka.Lib.Input.Util._manager = manager;
+        Lib.Input.Util._manager = manager;
 
         return;
     }
+}
 }
 }

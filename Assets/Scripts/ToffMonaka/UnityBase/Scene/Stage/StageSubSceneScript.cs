@@ -7,22 +7,23 @@
 using UnityEngine;
 
 
-namespace ToffMonaka.UnityBase.Scene {
+namespace ToffMonaka {
+namespace UnityBase.Scene {
 /**
  * @brief StageSubSceneScriptCreateDescクラス
  */
-public class StageSubSceneScriptCreateDesc : ToffMonaka.Lib.Scene.SubSceneScriptCreateDesc
+public class StageSubSceneScriptCreateDesc : Lib.Scene.SubSceneScriptCreateDesc
 {
 }
 
 /**
  * @brief StageSubSceneScriptクラス
  */
-public class StageSubSceneScript : ToffMonaka.Lib.Scene.SubSceneScript
+public class StageSubSceneScript : Lib.Scene.SubSceneScript
 {
-    public new ToffMonaka.UnityBase.Scene.StageSubSceneScriptCreateDesc createDesc{get; private set;} = null;
+    public new UnityBase.Scene.StageSubSceneScriptCreateDesc createDesc{get; private set;} = null;
 
-    private ToffMonaka.UnityBase.Constant.Util.SCENE.STAGE_TYPE _stageType = ToffMonaka.UnityBase.Constant.Util.SCENE.STAGE_TYPE.NONE;
+    private UnityBase.Constant.Util.SCENE.STAGE_TYPE _stageType = UnityBase.Constant.Util.SCENE.STAGE_TYPE.NONE;
 
     /**
      * @brief コンストラクタ
@@ -62,9 +63,9 @@ public class StageSubSceneScript : ToffMonaka.Lib.Scene.SubSceneScript
      * @brief SetCreateDesc関数
      * @param create_desc (create_desc)
      */
-    public override void SetCreateDesc(ToffMonaka.Lib.Scene.ScriptCreateDesc create_desc)
+    public override void SetCreateDesc(Lib.Scene.ScriptCreateDesc create_desc)
     {
-	    this.createDesc = create_desc as ToffMonaka.UnityBase.Scene.StageSubSceneScriptCreateDesc;
+	    this.createDesc = create_desc as UnityBase.Scene.StageSubSceneScriptCreateDesc;
 
         base.SetCreateDesc(this.createDesc);
 
@@ -139,7 +140,7 @@ public class StageSubSceneScript : ToffMonaka.Lib.Scene.SubSceneScript
      * @brief GetStageType関数
      * @return stage_type (stage_type)
      */
-    public ToffMonaka.UnityBase.Constant.Util.SCENE.STAGE_TYPE GetStageType()
+    public UnityBase.Constant.Util.SCENE.STAGE_TYPE GetStageType()
     {
         return (this._stageType);
     }
@@ -148,11 +149,12 @@ public class StageSubSceneScript : ToffMonaka.Lib.Scene.SubSceneScript
      * @brief _SetStageType関数
      * @param stage_type (stage_type)
      */
-    protected void _SetStageType(ToffMonaka.UnityBase.Constant.Util.SCENE.STAGE_TYPE stage_type)
+    protected void _SetStageType(UnityBase.Constant.Util.SCENE.STAGE_TYPE stage_type)
     {
         this._stageType = stage_type;
 
         return;
     }
+}
 }
 }

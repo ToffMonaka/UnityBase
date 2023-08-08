@@ -7,7 +7,8 @@
 using UnityEngine;
 
 
-namespace ToffMonaka.Lib.Array {
+namespace ToffMonaka {
+namespace Lib.Array {
 /**
  * @brief Utilクラス
  */
@@ -43,5 +44,6 @@ public static class Util
 
         return;
     }
+}
 }
 }

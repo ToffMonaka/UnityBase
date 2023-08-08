@@ -9,7 +9,8 @@ using System.Collections.Generic;
 using DG.Tweening;
 
 
-namespace ToffMonaka.Lib.Scene {
+namespace ToffMonaka {
+namespace Lib.Scene {
 /**
  * @brief ScriptCreateDescクラス
  */
@@ -22,10 +23,10 @@ public class ScriptCreateDesc
  */
 public abstract class Script : MonoBehaviour
 {
-    public ToffMonaka.Lib.Scene.ScriptCreateDesc createDesc{get; private set;} = null;
+    public Lib.Scene.ScriptCreateDesc createDesc{get; private set;} = null;
 
-    private ToffMonaka.Lib.Scene.Manager _manager = null;
-    private ToffMonaka.Lib.Constant.Util.SCENE.SCRIPT_TYPE _scriptType = ToffMonaka.Lib.Constant.Util.SCENE.SCRIPT_TYPE.NONE;
+    private Lib.Scene.Manager _manager = null;
+    private Lib.Constant.Util.SCENE.SCRIPT_TYPE _scriptType = Lib.Constant.Util.SCENE.SCRIPT_TYPE.NONE;
     private int _scriptIndex = 0;
     private bool _activeAutoFlag = true;
     private bool _activedFlag = false;
@@ -175,7 +176,7 @@ public abstract class Script : MonoBehaviour
      * @return result (result)<br>
      * 0未満=失敗
      */
-    public virtual int Create(ToffMonaka.Lib.Scene.ScriptCreateDesc desc = null)
+    public virtual int Create(Lib.Scene.ScriptCreateDesc desc = null)
     {
         if (this._manager == null) {
             if (this._activeAutoFlag) {
@@ -189,8 +190,8 @@ public abstract class Script : MonoBehaviour
                 this.SetCreateDesc(desc);
             }
 
-            if (ToffMonaka.Lib.Scene.Util.GetManager() != null) {
-                if (ToffMonaka.Lib.Scene.Util.GetManager().AddScript(this) < 0) {
+            if (Lib.Scene.Util.GetManager() != null) {
+                if (Lib.Scene.Util.GetManager().AddScript(this) < 0) {
                     return (-1);
                 }
             } else {
@@ -221,7 +222,7 @@ public abstract class Script : MonoBehaviour
      * @brief SetCreateDesc関数
      * @param create_desc (create_desc)
      */
-    public virtual void SetCreateDesc(ToffMonaka.Lib.Scene.ScriptCreateDesc create_desc)
+    public virtual void SetCreateDesc(Lib.Scene.ScriptCreateDesc create_desc)
     {
         this.createDesc = create_desc;
 
@@ -363,7 +364,7 @@ public abstract class Script : MonoBehaviour
      * @brief GetManager関数
      * @return manager (manager)
      */
-    public ToffMonaka.Lib.Scene.Manager GetManager()
+    public Lib.Scene.Manager GetManager()
     {
         return (this._manager);
     }
@@ -372,7 +373,7 @@ public abstract class Script : MonoBehaviour
      * @brief SetManager関数
      * @param manager (manager)
      */
-    public void SetManager(ToffMonaka.Lib.Scene.Manager manager)
+    public void SetManager(Lib.Scene.Manager manager)
     {
         this._manager = manager;
 
@@ -383,7 +384,7 @@ public abstract class Script : MonoBehaviour
      * @brief GetScriptType関数
      * @return script_type (script_type)
      */
-    public ToffMonaka.Lib.Constant.Util.SCENE.SCRIPT_TYPE GetScriptType()
+    public Lib.Constant.Util.SCENE.SCRIPT_TYPE GetScriptType()
     {
         return (this._scriptType);
     }
@@ -392,7 +393,7 @@ public abstract class Script : MonoBehaviour
      * @brief _SetScriptType関数
      * @param script_type (script_type)
      */
-    protected void _SetScriptType(ToffMonaka.Lib.Constant.Util.SCENE.SCRIPT_TYPE script_type)
+    protected void _SetScriptType(Lib.Constant.Util.SCENE.SCRIPT_TYPE script_type)
     {
         this._scriptType = script_type;
 
@@ -711,5 +712,6 @@ public abstract class Script : MonoBehaviour
 
         return (true);
     }
+}
 }
 }
