@@ -12,14 +12,14 @@ namespace UnityBase.Scene {
 /**
  * @brief MenuStageScriptCreateDescクラス
  */
-public class MenuStageScriptCreateDesc : Lib.Scene.SubSceneScriptCreateDesc
+public class MenuStageScriptCreateDesc : Lib.Scene.ObjectScriptCreateDesc
 {
 }
 
 /**
  * @brief MenuStageScriptクラス
  */
-public class MenuStageScript : Lib.Scene.SubSceneScript
+public class MenuStageScript : Lib.Scene.ObjectScript
 {
     public new UnityBase.Scene.MenuStageScriptCreateDesc createDesc{get; private set;} = null;
 

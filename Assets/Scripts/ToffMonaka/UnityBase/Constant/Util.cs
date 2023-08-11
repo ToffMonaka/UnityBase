@@ -35,7 +35,7 @@ public static class Util
         public const string MST_STRING_JAPANESE_TABLE = "Assets/Resources2/dat/mst_str_jp_tbl.csv";
         public const string INIT_SUB_SCENE_PREFAB = "Assets/Resources2/prefab/InitSubScene.prefab";
         public const string TITLE_SUB_SCENE_PREFAB = "Assets/Resources2/prefab/TitleSubScene.prefab";
-        public const string STAGE_SELECT_SUB_SCENE_PREFAB = "Assets/Resources2/prefab/StageSelectSubScene.prefab";
+        public const string SELECT_SUB_SCENE_PREFAB = "Assets/Resources2/prefab/SelectSubScene.prefab";
         public const string TEST_2D_STAGE_SUB_SCENE_PREFAB = "Assets/Resources2/prefab/Test2DStageSubScene.prefab";
         public const string TEST_3D_STAGE_SUB_SCENE_PREFAB = "Assets/Resources2/prefab/Test3DStageSubScene.prefab";
         public const string MENU_OPTION_STAGE_LANGUAGE_SELECT_DIALOG_PREFAB = "Assets/Resources2/prefab/MenuOptionStageLanguageSelectDialog.prefab";
@@ -78,14 +78,14 @@ public static class Util
             MAIN_SCENE = Lib.Constant.Util.SCENE.SCRIPT_INDEX.COUNT,
             INIT_SUB_SCENE,
             TITLE_SUB_SCENE,
-            STAGE_SELECT_SUB_SCENE,
-            STAGE_SELECT_STAGE_BUTTON,
+            SELECT_SUB_SCENE,
+            SELECT_STAGE_BUTTON,
             TEST_2D_STAGE_SUB_SCENE,
             TEST_3D_STAGE_SUB_SCENE,
             MENU,
             MENU_OPEN_CLOSE_BUTTON,
-            MENU_STAGE_SELECT,
-            MENU_STAGE_SELECT_STAGE_BUTTON,
+            MENU_SELECT,
+            MENU_SELECT_STAGE_BUTTON,
             MENU_OPTION_STAGE,
             MENU_OPTION_STAGE_LANGUAGE_SELECT_DIALOG,
             MENU_OPTION_STAGE_LANGUAGE_SELECT_LANGUAGE_BUTTON,
@@ -106,18 +106,6 @@ public static class Util
             public const string MAIN = "MainScene";
         }
 
-        public enum SELECT_TYPE : int
-        {
-            NONE = 0,
-            STAGE,
-		    COUNT
-        }
-        public const int SELECT_TYPE_COUNT = (int)UnityBase.Constant.Util.SCENE.SELECT_TYPE.COUNT;
-        public static readonly UnityBase.Constant.Util.MST_STRING_ID[] SELECT_NAME_MST_STRING_ID_ARRAY = {
-            UnityBase.Constant.Util.MST_STRING_ID.NONE,
-            UnityBase.Constant.Util.MST_STRING_ID.STAGE
-        };
-
         public enum STAGE_TYPE : int
         {
             NONE = 0,
@@ -130,18 +118,6 @@ public static class Util
             UnityBase.Constant.Util.MST_STRING_ID.NONE,
             UnityBase.Constant.Util.MST_STRING_ID.TEST_2D,
             UnityBase.Constant.Util.MST_STRING_ID.TEST_3D
-        };
-
-        public enum MENU_SELECT_TYPE : int
-        {
-            NONE = 0,
-            STAGE,
-		    COUNT
-        }
-        public const int MENU_SELECT_TYPE_COUNT = (int)UnityBase.Constant.Util.SCENE.MENU_SELECT_TYPE.COUNT;
-        public static readonly UnityBase.Constant.Util.MST_STRING_ID[] MENU_SELECT_NAME_MST_STRING_ID_ARRAY = {
-            UnityBase.Constant.Util.MST_STRING_ID.NONE,
-            UnityBase.Constant.Util.MST_STRING_ID.MENU
         };
 
         public enum MENU_STAGE_TYPE : int

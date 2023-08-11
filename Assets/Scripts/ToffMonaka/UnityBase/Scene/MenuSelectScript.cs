@@ -5,6 +5,9 @@
 
 
 using UnityEngine;
+using System.Collections.Generic;
+using TMPro;
+using DG.Tweening;
 
 
 namespace ToffMonaka {
@@ -12,24 +15,32 @@ namespace UnityBase.Scene {
 /**
  * @brief MenuSelectScriptCreateDescクラス
  */
-public class MenuSelectScriptCreateDesc : Lib.Scene.SubSceneScriptCreateDesc
+public class MenuSelectScriptCreateDesc : Lib.Scene.ObjectScriptCreateDesc
 {
+    public UnityBase.Scene.MenuScript menuScript = null;
 }
 
 /**
  * @brief MenuSelectScriptクラス
  */
-public class MenuSelectScript : Lib.Scene.SubSceneScript
+public class MenuSelectScript : Lib.Scene.ObjectScript
 {
+    [SerializeField] private TMP_Text _nameText = null;
+    [SerializeField] private GameObject _stageButtonNode = null;
+
     public new UnityBase.Scene.MenuSelectScriptCreateDesc createDesc{get; private set;} = null;
 
-    private UnityBase.Constant.Util.SCENE.MENU_SELECT_TYPE _selectType = UnityBase.Constant.Util.SCENE.MENU_SELECT_TYPE.NONE;
+    private UnityBase.Scene.MenuScript _menuScript = null;
+    private List<UnityBase.Scene.MenuSelectStageButtonScript> _stageButtonScriptContainer = new List<UnityBase.Scene.MenuSelectStageButtonScript>();
+    private UnityBase.Constant.Util.SCENE.MENU_STAGE_TYPE _stageType = UnityBase.Constant.Util.SCENE.MENU_STAGE_TYPE.NONE;
 
     /**
      * @brief コンストラクタ
      */
     public MenuSelectScript()
     {
+        this._SetScriptIndex((int)UnityBase.Constant.Util.SCENE.SCRIPT_INDEX.MENU_SELECT);
+
         return;
     }
 
@@ -56,6 +67,106 @@ public class MenuSelectScript : Lib.Scene.SubSceneScript
      */
     protected override int _OnCreate()
     {
+        this._menuScript = this.createDesc.menuScript;
+
+        this._nameText.SetText(UnityBase.Global.GetString(UnityBase.Constant.Util.MST_STRING_ID.MENU));
+
+        this._stageButtonNode.SetActive(false);
+
+        {// StageButtonScript Create
+            var script = GameObject.Instantiate(this._stageButtonNode, this._stageButtonNode.transform.parent).GetComponent<UnityBase.Scene.MenuSelectStageButtonScript>();
+            var script_create_desc = new UnityBase.Scene.MenuSelectStageButtonScriptCreateDesc();
+
+            script_create_desc.menuSelectScript = this;
+            script_create_desc.stageType = UnityBase.Constant.Util.SCENE.MENU_STAGE_TYPE.OPTION;
+
+            script.Create(script_create_desc);
+            script.Open(0);
+
+            this._stageButtonScriptContainer.Add(script);
+        }
+
+        {// StageButtonScript Create
+            var script = GameObject.Instantiate(this._stageButtonNode, this._stageButtonNode.transform.parent).GetComponent<UnityBase.Scene.MenuSelectStageButtonScript>();
+            var script_create_desc = new UnityBase.Scene.MenuSelectStageButtonScriptCreateDesc();
+
+            script_create_desc.menuSelectScript = this;
+            script_create_desc.stageType = UnityBase.Constant.Util.SCENE.MENU_STAGE_TYPE.FAQ;
+
+            script.Create(script_create_desc);
+            script.Open(0);
+
+            this._stageButtonScriptContainer.Add(script);
+        }
+
+        {// StageButtonScript Create
+            var script = GameObject.Instantiate(this._stageButtonNode, this._stageButtonNode.transform.parent).GetComponent<UnityBase.Scene.MenuSelectStageButtonScript>();
+            var script_create_desc = new UnityBase.Scene.MenuSelectStageButtonScriptCreateDesc();
+
+            script_create_desc.menuSelectScript = this;
+            script_create_desc.stageType = UnityBase.Constant.Util.SCENE.MENU_STAGE_TYPE.STAFF;
+
+            script.Create(script_create_desc);
+            script.Open(0);
+
+            this._stageButtonScriptContainer.Add(script);
+        }
+
+        {// StageButtonScript Create
+            var script = GameObject.Instantiate(this._stageButtonNode, this._stageButtonNode.transform.parent).GetComponent<UnityBase.Scene.MenuSelectStageButtonScript>();
+            var script_create_desc = new UnityBase.Scene.MenuSelectStageButtonScriptCreateDesc();
+
+            script_create_desc.menuSelectScript = this;
+            script_create_desc.stageType = UnityBase.Constant.Util.SCENE.MENU_STAGE_TYPE.LICENSE;
+
+            script.Create(script_create_desc);
+            script.Open(0);
+
+            this._stageButtonScriptContainer.Add(script);
+        }
+
+        {// StageButtonScript Create
+            var script = GameObject.Instantiate(this._stageButtonNode, this._stageButtonNode.transform.parent).GetComponent<UnityBase.Scene.MenuSelectStageButtonScript>();
+            var script_create_desc = new UnityBase.Scene.MenuSelectStageButtonScriptCreateDesc();
+
+            script_create_desc.menuSelectScript = this;
+            script_create_desc.stageType = UnityBase.Constant.Util.SCENE.MENU_STAGE_TYPE.PRIVACY_POLICY;
+
+            script.Create(script_create_desc);
+            script.Open(0);
+
+            this._stageButtonScriptContainer.Add(script);
+        }
+
+        {// StageButtonScript Create
+            var script = GameObject.Instantiate(this._stageButtonNode, this._stageButtonNode.transform.parent).GetComponent<UnityBase.Scene.MenuSelectStageButtonScript>();
+            var script_create_desc = new UnityBase.Scene.MenuSelectStageButtonScriptCreateDesc();
+
+            script_create_desc.menuSelectScript = this;
+            script_create_desc.stageType = UnityBase.Constant.Util.SCENE.MENU_STAGE_TYPE.END;
+
+            script.Create(script_create_desc);
+            script.Open(0);
+
+            this._stageButtonScriptContainer.Add(script);
+        }
+
+        // StageButtonScript Create
+        if (UnityBase.Constant.Util.DEBUG_FLAG) {
+#pragma warning disable CS0162
+            var script = GameObject.Instantiate(this._stageButtonNode, this._stageButtonNode.transform.parent).GetComponent<UnityBase.Scene.MenuSelectStageButtonScript>();
+            var script_create_desc = new UnityBase.Scene.MenuSelectStageButtonScriptCreateDesc();
+
+            script_create_desc.menuSelectScript = this;
+            script_create_desc.stageType = UnityBase.Constant.Util.SCENE.MENU_STAGE_TYPE.CHEAT;
+
+            script.Create(script_create_desc);
+            script.Open(0);
+
+            this._stageButtonScriptContainer.Add(script);
+#pragma warning restore CS0162
+        }
+
         return (0);
     }
 
@@ -77,6 +188,8 @@ public class MenuSelectScript : Lib.Scene.SubSceneScript
      */
     protected override void _OnActive()
     {
+        this.SetStageType(UnityBase.Constant.Util.SCENE.MENU_STAGE_TYPE.NONE);
+
         return;
     }
 
@@ -101,7 +214,27 @@ public class MenuSelectScript : Lib.Scene.SubSceneScript
      */
     protected override void _OnOpen()
     {
-        this.CompleteOpen();
+        var rect_transform = this.gameObject.GetComponent<RectTransform>();
+
+		switch (this.GetOpenType()) {
+		case 1: {
+            rect_transform.anchoredPosition = new Vector2(-rect_transform.sizeDelta.x - 8.0f, rect_transform.anchoredPosition.y);
+
+            var open_close_sequence = DOTween.Sequence();
+
+            open_close_sequence.Append(rect_transform.DOAnchorPosX(8.0f, 0.1f));
+            open_close_sequence.SetLink(this.gameObject);
+
+            this.AddOpenCloseSequence(open_close_sequence);
+
+			break;
+		}
+		default: {
+            rect_transform.anchoredPosition = new Vector2(8.0f, rect_transform.anchoredPosition.y);
+
+			break;
+		}
+		}
 
         return;
     }
@@ -111,7 +244,9 @@ public class MenuSelectScript : Lib.Scene.SubSceneScript
      */
     protected override void _OnUpdateOpen()
     {
-        this.CompleteOpen();
+        if (!this.IsActiveOpenCloseSequence()) {
+            this.CompleteOpen();
+        }
 
         return;
     }
@@ -121,7 +256,27 @@ public class MenuSelectScript : Lib.Scene.SubSceneScript
      */
     protected override void _OnClose()
     {
-        this.CompleteClose();
+        var rect_transform = this.gameObject.GetComponent<RectTransform>();
+
+		switch (this.GetCloseType()) {
+		case 1: {
+            rect_transform.anchoredPosition = new Vector2(8.0f, rect_transform.anchoredPosition.y);
+
+            var open_close_sequence = DOTween.Sequence();
+
+            open_close_sequence.Append(rect_transform.DOAnchorPosX(-rect_transform.sizeDelta.x - 8.0f, 0.1f));
+            open_close_sequence.SetLink(this.gameObject);
+
+            this.AddOpenCloseSequence(open_close_sequence);
+
+			break;
+		}
+		default: {
+            rect_transform.anchoredPosition = new Vector2(-rect_transform.sizeDelta.x - 8.0f, rect_transform.anchoredPosition.y);
+
+			break;
+		}
+		}
 
         return;
     }
@@ -131,27 +286,42 @@ public class MenuSelectScript : Lib.Scene.SubSceneScript
      */
     protected override void _OnUpdateClose()
     {
-        this.CompleteClose();
+        if (!this.IsActiveOpenCloseSequence()) {
+            this.CompleteClose();
+        }
 
         return;
     }
 
     /**
-     * @brief GetSelectType関数
-     * @return select_type (select_type)
+     * @brief GetStageType関数
+     * @return stage_type (stage_type)
      */
-    public UnityBase.Constant.Util.SCENE.MENU_SELECT_TYPE GetSelectType()
+    public UnityBase.Constant.Util.SCENE.MENU_STAGE_TYPE GetStageType()
     {
-        return (this._selectType);
+        return (this._stageType);
     }
 
     /**
-     * @brief _SetSelectType関数
-     * @param select_type (select_type)
+     * @brief SetStageType関数
+     * @param stage_type (stage_type)
      */
-    protected void _SetSelectType(UnityBase.Constant.Util.SCENE.MENU_SELECT_TYPE select_type)
+    public void SetStageType(UnityBase.Constant.Util.SCENE.MENU_STAGE_TYPE stage_type)
     {
-        this._selectType = select_type;
+        this._stageType = stage_type;
+
+        return;
+    }
+
+    /**
+     * @brief RunStageButton関数
+     * @param stage_type (stage_type)
+     */
+    public void RunStageButton(UnityBase.Constant.Util.SCENE.MENU_STAGE_TYPE stage_type)
+    {
+        this.SetStageType(stage_type);
+
+        this._menuScript.RunSelectStageButton(this._stageType);
 
         return;
     }

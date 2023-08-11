@@ -1,6 +1,6 @@
 ﻿/**
  * @file
- * @brief MenuStageSelectStageButtonScriptファイル
+ * @brief MenuSelectStageButtonScriptファイル
  */
 
 
@@ -13,33 +13,33 @@ using TMPro;
 namespace ToffMonaka {
 namespace UnityBase.Scene {
 /**
- * @brief MenuStageSelectStageButtonScriptCreateDescクラス
+ * @brief MenuSelectStageButtonScriptCreateDescクラス
  */
-public class MenuStageSelectStageButtonScriptCreateDesc : Lib.Scene.ObjectScriptCreateDesc
+public class MenuSelectStageButtonScriptCreateDesc : Lib.Scene.ObjectScriptCreateDesc
 {
-    public UnityBase.Scene.MenuStageSelectScript menuStageSelectScript = null;
+    public UnityBase.Scene.MenuSelectScript menuSelectScript = null;
     public UnityBase.Constant.Util.SCENE.MENU_STAGE_TYPE stageType = UnityBase.Constant.Util.SCENE.MENU_STAGE_TYPE.NONE;
 }
 
 /**
- * @brief MenuStageSelectStageButtonScriptクラス
+ * @brief MenuSelectStageButtonScriptクラス
  */
-public class MenuStageSelectStageButtonScript : Lib.Scene.ObjectScript, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
+public class MenuSelectStageButtonScript : Lib.Scene.ObjectScript, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
 {
     [SerializeField] private TMP_Text _nameText = null;
     [SerializeField] private Image _coverImage = null;
 
-    public new UnityBase.Scene.MenuStageSelectStageButtonScriptCreateDesc createDesc{get; private set;} = null;
+    public new UnityBase.Scene.MenuSelectStageButtonScriptCreateDesc createDesc{get; private set;} = null;
 
-    private UnityBase.Scene.MenuStageSelectScript _menuStageSelectScript = null;
+    private UnityBase.Scene.MenuSelectScript _menuSelectScript = null;
     private UnityBase.Constant.Util.SCENE.MENU_STAGE_TYPE _stageType = UnityBase.Constant.Util.SCENE.MENU_STAGE_TYPE.NONE;
 
     /**
      * @brief コンストラクタ
      */
-    public MenuStageSelectStageButtonScript()
+    public MenuSelectStageButtonScript()
     {
-        this._SetScriptIndex((int)UnityBase.Constant.Util.SCENE.SCRIPT_INDEX.MENU_STAGE_SELECT_STAGE_BUTTON);
+        this._SetScriptIndex((int)UnityBase.Constant.Util.SCENE.SCRIPT_INDEX.MENU_SELECT_STAGE_BUTTON);
 
         return;
     }
@@ -67,7 +67,7 @@ public class MenuStageSelectStageButtonScript : Lib.Scene.ObjectScript, IPointer
      */
     protected override int _OnCreate()
     {
-        this._menuStageSelectScript = this.createDesc.menuStageSelectScript;
+        this._menuSelectScript = this.createDesc.menuSelectScript;
         this._stageType = this.createDesc.stageType;
 
         this._nameText.SetText(UnityBase.Global.GetString(UnityBase.Constant.Util.SCENE.MENU_STAGE_NAME_MST_STRING_ID_ARRAY[(int)this._stageType]));
@@ -81,7 +81,7 @@ public class MenuStageSelectStageButtonScript : Lib.Scene.ObjectScript, IPointer
      */
     public override void SetCreateDesc(Lib.Scene.ScriptCreateDesc create_desc)
     {
-	    this.createDesc = create_desc as UnityBase.Scene.MenuStageSelectStageButtonScriptCreateDesc;
+	    this.createDesc = create_desc as UnityBase.Scene.MenuSelectStageButtonScriptCreateDesc;
 
         base.SetCreateDesc(this.createDesc);
 
@@ -166,7 +166,7 @@ public class MenuStageSelectStageButtonScript : Lib.Scene.ObjectScript, IPointer
 
         Lib.Scene.Util.GetSoundManager().PlaySe((int)UnityBase.Constant.Util.SOUND.SE_INDEX.OK2);
 
-        this._menuStageSelectScript.RunStageButton(this._stageType);
+        this._menuSelectScript.RunStageButton(this._stageType);
 
         return;
     }

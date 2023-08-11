@@ -24,7 +24,7 @@ public class MenuScript : Lib.Scene.ObjectScript
 {
     [SerializeField] private Image _backgroundImage = null;
     [SerializeField] private GameObject _openCloseButtonNode = null;
-    [SerializeField] private GameObject _stageSelectNode = null;
+    [SerializeField] private GameObject _selectNode = null;
     [SerializeField] private GameObject _optionStageNode = null;
     [SerializeField] private GameObject _faqStageNode = null;
     [SerializeField] private GameObject _staffStageNode = null;
@@ -36,7 +36,7 @@ public class MenuScript : Lib.Scene.ObjectScript
     public new UnityBase.Scene.MenuScriptCreateDesc createDesc{get; private set;} = null;
 
     private UnityBase.Scene.MenuOpenCloseButtonScript _openCloseButtonScript = null;
-    private UnityBase.Scene.MenuStageSelectScript _stageSelectScript = null;
+    private UnityBase.Scene.MenuSelectScript _selectScript = null;
     private UnityBase.Scene.MenuSelectScript _openSelectScript = null;
     private UnityBase.Scene.MenuOptionStageScript _optionStageScript = null;
     private UnityBase.Scene.MenuFaqStageScript _faqStageScript = null;
@@ -94,15 +94,15 @@ public class MenuScript : Lib.Scene.ObjectScript
             this._openCloseButtonScript = script;
         }
 
-        {// StageSelectScript Create
-            var script = this._stageSelectNode.GetComponent<UnityBase.Scene.MenuStageSelectScript>();
-            var script_create_desc = new UnityBase.Scene.MenuStageSelectScriptCreateDesc();
+        {// SelectScript Create
+            var script = this._selectNode.GetComponent<UnityBase.Scene.MenuSelectScript>();
+            var script_create_desc = new UnityBase.Scene.MenuSelectScriptCreateDesc();
 
             script_create_desc.menuScript = this;
 
             script.Create(script_create_desc);
 
-            this._stageSelectScript = script;
+            this._selectScript = script;
         }
 
         {// OptionStageScript Create
@@ -288,7 +288,7 @@ public class MenuScript : Lib.Scene.ObjectScript
         if (!this._backgroundImage.gameObject.activeSelf) {
             this._backgroundImage.gameObject.SetActive(true);
 
-            this._openSelectScript = this._stageSelectScript;
+            this._openSelectScript = this._selectScript;
 
             this._openSelectScript.Open(1);
         } else {
@@ -311,10 +311,10 @@ public class MenuScript : Lib.Scene.ObjectScript
     }
 
     /**
-     * @brief RunStageSelectStageButton関数
+     * @brief RunSelectStageButton関数
      * @param stage_type (stage_type)
      */
-    public void RunStageSelectStageButton(UnityBase.Constant.Util.SCENE.MENU_STAGE_TYPE stage_type)
+    public void RunSelectStageButton(UnityBase.Constant.Util.SCENE.MENU_STAGE_TYPE stage_type)
     {
         UnityBase.Scene.MenuStageScript open_stage_script = null;
 
@@ -382,7 +382,7 @@ public class MenuScript : Lib.Scene.ObjectScript
             this._openStageScript = null;
         }
 
-        this._openSelectScript = this._stageSelectScript;
+        this._openSelectScript = this._selectScript;
 
         this._openSelectScript.Open(1);
 
@@ -400,7 +400,7 @@ public class MenuScript : Lib.Scene.ObjectScript
             this._openStageScript = null;
         }
 
-        this._openSelectScript = this._stageSelectScript;
+        this._openSelectScript = this._selectScript;
 
         this._openSelectScript.Open(1);
 
