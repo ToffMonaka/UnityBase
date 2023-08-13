@@ -19,7 +19,7 @@ namespace UnityBase.Scene {
  */
 public class MenuOptionStageLanguageSelectDialogScriptCreateDesc : Lib.Scene.ObjectScriptCreateDesc
 {
-    public UnityBase.Scene.MenuOptionStageScript menuOptionStageScript = null;
+    public UnityBase.Scene.MenuOptionStageScript stageScript = null;
 }
 
 /**
@@ -34,9 +34,8 @@ public class MenuOptionStageLanguageSelectDialogScript : Lib.Scene.ObjectScript
 
     public new UnityBase.Scene.MenuOptionStageLanguageSelectDialogScriptCreateDesc createDesc{get; private set;} = null;
 
-    private UnityBase.Scene.MenuOptionStageScript _menuOptionStageScript = null;
+    private UnityBase.Scene.MenuOptionStageScript _stageScript = null;
     private List<UnityBase.Scene.MenuOptionStageLanguageSelectLanguageButtonScript> _languageButtonScriptContainer = new List<UnityBase.Scene.MenuOptionStageLanguageSelectLanguageButtonScript>();
-    private UnityBase.Constant.Util.LANGUAGE_TYPE _languageType = UnityBase.Constant.Util.LANGUAGE_TYPE.NONE;
 
     /**
      * @brief コンストラクタ
@@ -71,7 +70,7 @@ public class MenuOptionStageLanguageSelectDialogScript : Lib.Scene.ObjectScript
      */
     protected override int _OnCreate()
     {
-        this._menuOptionStageScript = this.createDesc.menuOptionStageScript;
+        this._stageScript = this.createDesc.stageScript;
 
         this._nameText.SetText(UnityBase.Global.GetString(UnityBase.Constant.Util.MST_STRING_ID.LANGUAGE));
 
@@ -81,7 +80,7 @@ public class MenuOptionStageLanguageSelectDialogScript : Lib.Scene.ObjectScript
             var script = GameObject.Instantiate(this._languageButtonNode, this._languageButtonNode.transform.parent).GetComponent<UnityBase.Scene.MenuOptionStageLanguageSelectLanguageButtonScript>();
             var script_create_desc = new UnityBase.Scene.MenuOptionStageLanguageSelectLanguageButtonScriptCreateDesc();
 
-            script_create_desc.menuOptionStageLanguageSelectScript = this;
+            script_create_desc.dialogScript = this;
             script_create_desc.languageType = UnityBase.Constant.Util.LANGUAGE_TYPE.ENGLISH;
 
             script.Create(script_create_desc);
@@ -94,7 +93,7 @@ public class MenuOptionStageLanguageSelectDialogScript : Lib.Scene.ObjectScript
             var script = GameObject.Instantiate(this._languageButtonNode, this._languageButtonNode.transform.parent).GetComponent<UnityBase.Scene.MenuOptionStageLanguageSelectLanguageButtonScript>();
             var script_create_desc = new UnityBase.Scene.MenuOptionStageLanguageSelectLanguageButtonScriptCreateDesc();
 
-            script_create_desc.menuOptionStageLanguageSelectScript = this;
+            script_create_desc.dialogScript = this;
             script_create_desc.languageType = UnityBase.Constant.Util.LANGUAGE_TYPE.JAPANESE;
 
             script.Create(script_create_desc);
@@ -124,7 +123,6 @@ public class MenuOptionStageLanguageSelectDialogScript : Lib.Scene.ObjectScript
      */
     protected override void _OnActive()
     {
-        this.SetLanguageType(UnityBase.Constant.Util.LANGUAGE_TYPE.NONE);
         this._closeButtonCoverImage.gameObject.SetActive(false);
 
         return;
@@ -238,7 +236,7 @@ public class MenuOptionStageLanguageSelectDialogScript : Lib.Scene.ObjectScript
 
         Lib.Scene.Util.GetSoundManager().PlaySe((int)UnityBase.Constant.Util.SOUND.SE_INDEX.CANCEL);
 
-        this._menuOptionStageScript.RunLanguageSelectCloseButton();
+        this._stageScript.RunLanguageSelectCloseButton();
 
         return;
     }
@@ -274,34 +272,12 @@ public class MenuOptionStageLanguageSelectDialogScript : Lib.Scene.ObjectScript
     }
 
     /**
-     * @brief GetLanguageType関数
-     * @return language_type (language_type)
-     */
-    public UnityBase.Constant.Util.LANGUAGE_TYPE GetLanguageType()
-    {
-        return (this._languageType);
-    }
-
-    /**
-     * @brief SetLanguageType関数
-     * @param language_type (language_type)
-     */
-    public void SetLanguageType(UnityBase.Constant.Util.LANGUAGE_TYPE language_type)
-    {
-        this._languageType = language_type;
-
-        return;
-    }
-
-    /**
      * @brief RunLanguageButton関数
      * @param language_type (language_type)
      */
     public void RunLanguageButton(UnityBase.Constant.Util.LANGUAGE_TYPE language_type)
     {
-        this.SetLanguageType(language_type);
-
-        this._menuOptionStageScript.RunLanguageSelectLanguageButton(this._languageType);
+        this._stageScript.RunLanguageSelectLanguageButton(language_type);
 
         return;
     }

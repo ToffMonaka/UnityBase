@@ -1,6 +1,6 @@
 ﻿/**
  * @file
- * @brief StageSubSceneScriptファイル
+ * @brief BoardScriptファイル
  */
 
 
@@ -8,27 +8,27 @@ using UnityEngine;
 
 
 namespace ToffMonaka {
-namespace UnityBase.Scene {
+namespace UnityBase.Scene.Select {
 /**
- * @brief StageSubSceneScriptCreateDescクラス
+ * @brief BoardScriptCreateDescクラス
  */
-public class StageSubSceneScriptCreateDesc : Lib.Scene.SubSceneScriptCreateDesc
+public class BoardScriptCreateDesc : Lib.Scene.ObjectScriptCreateDesc
 {
 }
 
 /**
- * @brief StageSubSceneScriptクラス
+ * @brief BoardScriptクラス
  */
-public class StageSubSceneScript : Lib.Scene.SubSceneScript
+public class BoardScript : Lib.Scene.ObjectScript
 {
-    public new UnityBase.Scene.StageSubSceneScriptCreateDesc createDesc{get; private set;} = null;
+    public new UnityBase.Scene.Select.BoardScriptCreateDesc createDesc{get; private set;} = null;
 
-    private UnityBase.Constant.Util.SCENE.STAGE_TYPE _stageType = UnityBase.Constant.Util.SCENE.STAGE_TYPE.NONE;
+    private UnityBase.Constant.Util.SCENE.SELECT_BOARD_TYPE _boardType = UnityBase.Constant.Util.SCENE.SELECT_BOARD_TYPE.NONE;
 
     /**
      * @brief コンストラクタ
      */
-    public StageSubSceneScript()
+    public BoardScript()
     {
         return;
     }
@@ -65,7 +65,7 @@ public class StageSubSceneScript : Lib.Scene.SubSceneScript
      */
     public override void SetCreateDesc(Lib.Scene.ScriptCreateDesc create_desc)
     {
-	    this.createDesc = create_desc as UnityBase.Scene.StageSubSceneScriptCreateDesc;
+	    this.createDesc = create_desc as UnityBase.Scene.Select.BoardScriptCreateDesc;
 
         base.SetCreateDesc(this.createDesc);
 
@@ -137,21 +137,21 @@ public class StageSubSceneScript : Lib.Scene.SubSceneScript
     }
 
     /**
-     * @brief GetStageType関数
-     * @return stage_type (stage_type)
+     * @brief GetBoardType関数
+     * @return board_type (board_type)
      */
-    public UnityBase.Constant.Util.SCENE.STAGE_TYPE GetStageType()
+    public UnityBase.Constant.Util.SCENE.SELECT_BOARD_TYPE GetBoardType()
     {
-        return (this._stageType);
+        return (this._boardType);
     }
 
     /**
-     * @brief _SetStageType関数
-     * @param stage_type (stage_type)
+     * @brief _SetBoardType関数
+     * @param board_type (board_type)
      */
-    protected void _SetStageType(UnityBase.Constant.Util.SCENE.STAGE_TYPE stage_type)
+    protected void _SetBoardType(UnityBase.Constant.Util.SCENE.SELECT_BOARD_TYPE board_type)
     {
-        this._stageType = stage_type;
+        this._boardType = board_type;
 
         return;
     }

@@ -212,8 +212,8 @@ public class TitleSubSceneScript : Lib.Scene.SubSceneScript
             this.CompleteClose();
 
             {// SelectSubSceneScript Create
-                var script = this.GetManager().ChangeSubScene(UnityBase.Constant.Util.FILE_PATH.SELECT_SUB_SCENE_PREFAB) as UnityBase.Scene.SelectSubSceneScript;
-                var script_create_desc = new UnityBase.Scene.SelectSubSceneScriptCreateDesc();
+                var script = this.GetManager().ChangeSubScene(UnityBase.Constant.Util.FILE_PATH.SELECT_SUB_SCENE_PREFAB) as UnityBase.Scene.Select.SubSceneScript;
+                var script_create_desc = new UnityBase.Scene.Select.SubSceneScriptCreateDesc();
 
                 script.Create(script_create_desc);
                 script.Open(1);

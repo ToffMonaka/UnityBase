@@ -88,7 +88,7 @@ public class MenuCheatStageScript : UnityBase.Scene.MenuStageScript
             var script = GameObject.Instantiate(this._commandButtonNode, this._commandButtonNode.transform.parent).GetComponent<UnityBase.Scene.MenuCheatStageCommandButtonScript>();
             var script_create_desc = new UnityBase.Scene.MenuCheatStageCommandButtonScriptCreateDesc();
 
-            script_create_desc.menuCheatStageScript = this;
+            script_create_desc.stageScript = this;
             script_create_desc.commandType = UnityBase.Constant.Util.SCENE.MENU_CHEAT_STAGE_COMMAND_TYPE.DATA_DELETE;
 
             script.Create(script_create_desc);

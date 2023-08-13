@@ -79,6 +79,7 @@ public static class Util
             INIT_SUB_SCENE,
             TITLE_SUB_SCENE,
             SELECT_SUB_SCENE,
+            SELECT_STAGE_BOARD,
             SELECT_STAGE_BUTTON,
             TEST_2D_STAGE_SUB_SCENE,
             TEST_3D_STAGE_SUB_SCENE,
@@ -105,6 +106,18 @@ public static class Util
             public const string NONE = "";
             public const string MAIN = "MainScene";
         }
+
+        public enum SELECT_BOARD_TYPE : int
+        {
+            NONE = 0,
+            STAGE,
+		    COUNT
+        }
+        public const int SELECT_BOARD_TYPE_COUNT = (int)UnityBase.Constant.Util.SCENE.SELECT_BOARD_TYPE.COUNT;
+        public static readonly UnityBase.Constant.Util.MST_STRING_ID[] SELECT_BOARD_NAME_MST_STRING_ID_ARRAY = {
+            UnityBase.Constant.Util.MST_STRING_ID.NONE,
+            UnityBase.Constant.Util.MST_STRING_ID.STAGE
+        };
 
         public enum STAGE_TYPE : int
         {

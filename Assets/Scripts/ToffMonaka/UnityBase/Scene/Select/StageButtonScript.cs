@@ -1,6 +1,6 @@
 ﻿/**
  * @file
- * @brief SelectStageButtonScriptファイル
+ * @brief StageButtonScriptファイル
  */
 
 
@@ -11,33 +11,33 @@ using TMPro;
 
 
 namespace ToffMonaka {
-namespace UnityBase.Scene {
+namespace UnityBase.Scene.Select {
 /**
- * @brief SelectStageButtonScriptCreateDescクラス
+ * @brief StageButtonScriptCreateDescクラス
  */
-public class SelectStageButtonScriptCreateDesc : Lib.Scene.ObjectScriptCreateDesc
+public class StageButtonScriptCreateDesc : Lib.Scene.ObjectScriptCreateDesc
 {
-    public UnityBase.Scene.SelectSubSceneScript subSceneScript = null;
+    public UnityBase.Scene.Select.StageBoardScript boardScript = null;
     public UnityBase.Constant.Util.SCENE.STAGE_TYPE stageType = UnityBase.Constant.Util.SCENE.STAGE_TYPE.NONE;
 }
 
 /**
- * @brief SelectStageButtonScriptクラス
+ * @brief StageButtonScriptクラス
  */
-public class SelectStageButtonScript : Lib.Scene.ObjectScript, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
+public class StageButtonScript : Lib.Scene.ObjectScript, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
 {
     [SerializeField] private TMP_Text _nameText = null;
     [SerializeField] private Image _coverImage = null;
 
-    public new UnityBase.Scene.SelectStageButtonScriptCreateDesc createDesc{get; private set;} = null;
+    public new UnityBase.Scene.Select.StageButtonScriptCreateDesc createDesc{get; private set;} = null;
 
-    private UnityBase.Scene.SelectSubSceneScript _subSceneScript = null;
+    private UnityBase.Scene.Select.StageBoardScript _boardScript = null;
     private UnityBase.Constant.Util.SCENE.STAGE_TYPE _stageType = UnityBase.Constant.Util.SCENE.STAGE_TYPE.NONE;
 
     /**
      * @brief コンストラクタ
      */
-    public SelectStageButtonScript()
+    public StageButtonScript()
     {
         this._SetScriptIndex((int)UnityBase.Constant.Util.SCENE.SCRIPT_INDEX.SELECT_STAGE_BUTTON);
 
@@ -67,7 +67,7 @@ public class SelectStageButtonScript : Lib.Scene.ObjectScript, IPointerClickHand
      */
     protected override int _OnCreate()
     {
-        this._subSceneScript = this.createDesc.subSceneScript;
+        this._boardScript = this.createDesc.boardScript;
         this._stageType = this.createDesc.stageType;
 
         this._nameText.SetText(UnityBase.Global.GetString(UnityBase.Constant.Util.SCENE.STAGE_NAME_MST_STRING_ID_ARRAY[(int)this._stageType]));
@@ -81,7 +81,7 @@ public class SelectStageButtonScript : Lib.Scene.ObjectScript, IPointerClickHand
      */
     public override void SetCreateDesc(Lib.Scene.ScriptCreateDesc create_desc)
     {
-	    this.createDesc = create_desc as UnityBase.Scene.SelectStageButtonScriptCreateDesc;
+	    this.createDesc = create_desc as UnityBase.Scene.Select.StageButtonScriptCreateDesc;
 
         base.SetCreateDesc(this.createDesc);
 
@@ -166,7 +166,7 @@ public class SelectStageButtonScript : Lib.Scene.ObjectScript, IPointerClickHand
 
         Lib.Scene.Util.GetSoundManager().PlaySe((int)UnityBase.Constant.Util.SOUND.SE_INDEX.OK2);
 
-        this._subSceneScript.RunStageButton(this._stageType);
+        this._boardScript.RunStageButton(this._stageType);
 
         return;
     }

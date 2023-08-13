@@ -262,7 +262,7 @@ public class MenuOptionStageScript : UnityBase.Scene.MenuStageScript
             var script = this._languageSelectDialogNode.GetComponent<UnityBase.Scene.MenuOptionStageLanguageSelectDialogScript>();
             var script_create_desc = new UnityBase.Scene.MenuOptionStageLanguageSelectDialogScriptCreateDesc();
 
-            script_create_desc.menuOptionStageScript = this;
+            script_create_desc.stageScript = this;
 
             script.Create(script_create_desc);
 

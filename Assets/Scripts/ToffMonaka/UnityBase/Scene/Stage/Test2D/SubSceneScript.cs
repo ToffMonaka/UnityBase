@@ -1,6 +1,6 @@
 ﻿/**
  * @file
- * @brief Test2DStageSubSceneScriptファイル
+ * @brief SubSceneScriptファイル
  */
 
 
@@ -11,32 +11,32 @@ using DG.Tweening;
 
 
 namespace ToffMonaka {
-namespace UnityBase.Scene {
+namespace UnityBase.Scene.Stage.Test2D {
 /**
- * @brief Test2DStageSubSceneScriptCreateDescクラス
+ * @brief SubSceneScriptCreateDescクラス
  */
-public class Test2DStageSubSceneScriptCreateDesc : UnityBase.Scene.StageSubSceneScriptCreateDesc
+public class SubSceneScriptCreateDesc : UnityBase.Scene.Stage.SubSceneScriptCreateDesc
 {
 }
 
 /**
- * @brief Test2DStageSubSceneScriptクラス
+ * @brief SubSceneScriptクラス
  */
-public class Test2DStageSubSceneScript : UnityBase.Scene.StageSubSceneScript
+public class SubSceneScript : UnityBase.Scene.Stage.SubSceneScript
 {
     [SerializeField] private TMP_Text _nameText = null;
     [SerializeField] private TMP_Text _messageText = null;
     [SerializeField] private GameObject _menuNode = null;
     [SerializeField] private Image _openCloseFadeImage = null;
 
-    public new UnityBase.Scene.Test2DStageSubSceneScriptCreateDesc createDesc{get; private set;} = null;
+    public new UnityBase.Scene.Stage.Test2D.SubSceneScriptCreateDesc createDesc{get; private set;} = null;
 
     private UnityBase.Scene.MenuScript _menuScript = null;
 
     /**
      * @brief コンストラクタ
      */
-    public Test2DStageSubSceneScript()
+    public SubSceneScript()
     {
         this._SetScriptIndex((int)UnityBase.Constant.Util.SCENE.SCRIPT_INDEX.TEST_2D_STAGE_SUB_SCENE);
         this._SetStageType(UnityBase.Constant.Util.SCENE.STAGE_TYPE.TEST_2D);
@@ -93,7 +93,7 @@ public class Test2DStageSubSceneScript : UnityBase.Scene.StageSubSceneScript
      */
     public override void SetCreateDesc(Lib.Scene.ScriptCreateDesc create_desc)
     {
-	    this.createDesc = create_desc as UnityBase.Scene.Test2DStageSubSceneScriptCreateDesc;
+	    this.createDesc = create_desc as UnityBase.Scene.Stage.Test2D.SubSceneScriptCreateDesc;
 
         base.SetCreateDesc(this.createDesc);
 

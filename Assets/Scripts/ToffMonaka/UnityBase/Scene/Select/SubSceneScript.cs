@@ -1,45 +1,43 @@
 ﻿/**
  * @file
- * @brief SelectSubSceneScriptファイル
+ * @brief SubSceneScriptファイル
  */
 
 
 using UnityEngine;
 using UnityEngine.UI;
-using System.Collections.Generic;
-using TMPro;
 using DG.Tweening;
 
 
 namespace ToffMonaka {
-namespace UnityBase.Scene {
+namespace UnityBase.Scene.Select {
 /**
- * @brief SelectSubSceneScriptCreateDescクラス
+ * @brief SubSceneScriptCreateDescクラス
  */
-public class SelectSubSceneScriptCreateDesc : Lib.Scene.SubSceneScriptCreateDesc
+public class SubSceneScriptCreateDesc : Lib.Scene.SubSceneScriptCreateDesc
 {
 }
 
 /**
- * @brief SelectSubSceneScriptクラス
+ * @brief SubSceneScriptクラス
  */
-public class SelectSubSceneScript : Lib.Scene.SubSceneScript
+public class SubSceneScript : Lib.Scene.SubSceneScript
 {
-    [SerializeField] private TMP_Text _nameText = null;
-    [SerializeField] private GameObject _stageButtonNode = null;
+    [SerializeField] private GameObject _stageBoardNode = null;
     [SerializeField] private GameObject _menuNode = null;
     [SerializeField] private Image _openCloseFadeImage = null;
 
-    public new UnityBase.Scene.SelectSubSceneScriptCreateDesc createDesc{get; private set;} = null;
+    public new UnityBase.Scene.Select.SubSceneScriptCreateDesc createDesc{get; private set;} = null;
 
-    private List<UnityBase.Scene.SelectStageButtonScript> _stageButtonScriptContainer = new List<UnityBase.Scene.SelectStageButtonScript>();
+    private UnityBase.Scene.Select.StageBoardScript _stageBoardScript = null;
+    private UnityBase.Scene.Select.BoardScript _openBoardScript = null;
     private UnityBase.Constant.Util.SCENE.STAGE_TYPE _stageType = UnityBase.Constant.Util.SCENE.STAGE_TYPE.NONE;
     private UnityBase.Scene.MenuScript _menuScript = null;
 
     /**
      * @brief コンストラクタ
      */
-    public SelectSubSceneScript()
+    public SubSceneScript()
     {
         this._SetScriptIndex((int)UnityBase.Constant.Util.SCENE.SCRIPT_INDEX.SELECT_SUB_SCENE);
 
@@ -73,34 +71,15 @@ public class SelectSubSceneScript : Lib.Scene.SubSceneScript
 
         canvas_node.GetComponent<Canvas>().worldCamera = this.GetManager().GetMainSceneScript().GetMainCamera();
 
-        this._nameText.SetText(UnityBase.Global.GetString(UnityBase.Constant.Util.MST_STRING_ID.STAGE));
-
-        this._stageButtonNode.SetActive(false);
-
-        {// StageButtonScript Create
-            var script = GameObject.Instantiate(this._stageButtonNode, this._stageButtonNode.transform.parent).GetComponent<UnityBase.Scene.SelectStageButtonScript>();
-            var script_create_desc = new UnityBase.Scene.SelectStageButtonScriptCreateDesc();
+        {// StageBoardScript Create
+            var script = this._stageBoardNode.GetComponent<UnityBase.Scene.Select.StageBoardScript>();
+            var script_create_desc = new UnityBase.Scene.Select.StageBoardScriptCreateDesc();
 
             script_create_desc.subSceneScript = this;
-            script_create_desc.stageType = UnityBase.Constant.Util.SCENE.STAGE_TYPE.TEST_2D;
 
             script.Create(script_create_desc);
-            script.Open(0);
 
-            this._stageButtonScriptContainer.Add(script);
-        }
-
-        {// StageButtonScript Create
-            var script = GameObject.Instantiate(this._stageButtonNode, this._stageButtonNode.transform.parent).GetComponent<UnityBase.Scene.SelectStageButtonScript>();
-            var script_create_desc = new UnityBase.Scene.SelectStageButtonScriptCreateDesc();
-
-            script_create_desc.subSceneScript = this;
-            script_create_desc.stageType = UnityBase.Constant.Util.SCENE.STAGE_TYPE.TEST_3D;
-
-            script.Create(script_create_desc);
-            script.Open(0);
-
-            this._stageButtonScriptContainer.Add(script);
+            this._stageBoardScript = script;
         }
 
         {// MenuScript Create
@@ -113,6 +92,10 @@ public class SelectSubSceneScript : Lib.Scene.SubSceneScript
             this._menuScript = script;
         }
 
+        this._openBoardScript = this._stageBoardScript;
+
+        this._openBoardScript.Open(1);
+
         return (0);
     }
 
@@ -122,7 +105,7 @@ public class SelectSubSceneScript : Lib.Scene.SubSceneScript
      */
     public override void SetCreateDesc(Lib.Scene.ScriptCreateDesc create_desc)
     {
-	    this.createDesc = create_desc as UnityBase.Scene.SelectSubSceneScriptCreateDesc;
+	    this.createDesc = create_desc as UnityBase.Scene.Select.SubSceneScriptCreateDesc;
 
         base.SetCreateDesc(this.createDesc);
 
@@ -242,8 +225,8 @@ public class SelectSubSceneScript : Lib.Scene.SubSceneScript
 		    switch (this._stageType) {
 		    case UnityBase.Constant.Util.SCENE.STAGE_TYPE.TEST_2D: {
                 {// Test2DStageSubSceneScript Create
-                    var script = this.GetManager().ChangeSubScene(UnityBase.Constant.Util.FILE_PATH.TEST_2D_STAGE_SUB_SCENE_PREFAB) as UnityBase.Scene.Test2DStageSubSceneScript;
-                    var script_create_desc = new UnityBase.Scene.Test2DStageSubSceneScriptCreateDesc();
+                    var script = this.GetManager().ChangeSubScene(UnityBase.Constant.Util.FILE_PATH.TEST_2D_STAGE_SUB_SCENE_PREFAB) as UnityBase.Scene.Stage.Test2D.SubSceneScript;
+                    var script_create_desc = new UnityBase.Scene.Stage.Test2D.SubSceneScriptCreateDesc();
 
                     script.Create(script_create_desc);
                     script.Open(1);
@@ -253,8 +236,8 @@ public class SelectSubSceneScript : Lib.Scene.SubSceneScript
 		    }
 		    case UnityBase.Constant.Util.SCENE.STAGE_TYPE.TEST_3D: {
                 {// Test3DStageSubSceneScript Create
-                    var script = this.GetManager().ChangeSubScene(UnityBase.Constant.Util.FILE_PATH.TEST_3D_STAGE_SUB_SCENE_PREFAB) as UnityBase.Scene.Test3DStageSubSceneScript;
-                    var script_create_desc = new UnityBase.Scene.Test3DStageSubSceneScriptCreateDesc();
+                    var script = this.GetManager().ChangeSubScene(UnityBase.Constant.Util.FILE_PATH.TEST_3D_STAGE_SUB_SCENE_PREFAB) as UnityBase.Scene.Stage.Test3D.SubSceneScript;
+                    var script_create_desc = new UnityBase.Scene.Stage.Test3D.SubSceneScriptCreateDesc();
 
                     script.Create(script_create_desc);
                     script.Open(1);

@@ -17,7 +17,7 @@ namespace UnityBase.Scene {
  */
 public class MenuOptionStageLanguageSelectLanguageButtonScriptCreateDesc : Lib.Scene.ObjectScriptCreateDesc
 {
-    public UnityBase.Scene.MenuOptionStageLanguageSelectDialogScript menuOptionStageLanguageSelectScript = null;
+    public UnityBase.Scene.MenuOptionStageLanguageSelectDialogScript dialogScript = null;
     public UnityBase.Constant.Util.LANGUAGE_TYPE languageType = UnityBase.Constant.Util.LANGUAGE_TYPE.NONE;
 }
 
@@ -31,7 +31,7 @@ public class MenuOptionStageLanguageSelectLanguageButtonScript : Lib.Scene.Objec
 
     public new UnityBase.Scene.MenuOptionStageLanguageSelectLanguageButtonScriptCreateDesc createDesc{get; private set;} = null;
 
-    private UnityBase.Scene.MenuOptionStageLanguageSelectDialogScript _menuOptionStageLanguageSelectScript = null;
+    private UnityBase.Scene.MenuOptionStageLanguageSelectDialogScript _dialogScript = null;
     private UnityBase.Constant.Util.LANGUAGE_TYPE _languageType = UnityBase.Constant.Util.LANGUAGE_TYPE.NONE;
 
     /**
@@ -67,7 +67,7 @@ public class MenuOptionStageLanguageSelectLanguageButtonScript : Lib.Scene.Objec
      */
     protected override int _OnCreate()
     {
-        this._menuOptionStageLanguageSelectScript = this.createDesc.menuOptionStageLanguageSelectScript;
+        this._dialogScript = this.createDesc.dialogScript;
         this._languageType = this.createDesc.languageType;
 
         this._nameText.SetText(UnityBase.Global.GetString(UnityBase.Constant.Util.LANGUAGE_NAME_MST_STRING_ID_ARRAY[(int)this._languageType]));
@@ -166,7 +166,7 @@ public class MenuOptionStageLanguageSelectLanguageButtonScript : Lib.Scene.Objec
 
         Lib.Scene.Util.GetSoundManager().PlaySe((int)UnityBase.Constant.Util.SOUND.SE_INDEX.OK2);
 
-        this._menuOptionStageLanguageSelectScript.RunLanguageButton(this._languageType);
+        this._dialogScript.RunLanguageButton(this._languageType);
 
         return;
     }
