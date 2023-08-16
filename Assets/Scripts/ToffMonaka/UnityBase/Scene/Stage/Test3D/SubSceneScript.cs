@@ -26,11 +26,13 @@ public class SubSceneScript : UnityBase.Scene.Stage.SubSceneScript
 {
     [SerializeField] private TMP_Text _nameText = null;
     [SerializeField] private TMP_Text _messageText = null;
+    [SerializeField] private GameObject _backButtonNode = null;
     [SerializeField] private GameObject _menuNode = null;
     [SerializeField] private Image _openCloseFadeImage = null;
 
     public new UnityBase.Scene.Stage.Test3D.SubSceneScriptCreateDesc createDesc{get; private set;} = null;
 
+    private UnityBase.Scene.Stage.Test3D.BackButtonScript _backButtonScript = null;
     private UnityBase.Scene.MenuScript _menuScript = null;
 
     /**
@@ -73,6 +75,18 @@ public class SubSceneScript : UnityBase.Scene.Stage.SubSceneScript
 
         this._nameText.SetText(UnityBase.Global.GetString(UnityBase.Constant.Util.SCENE.STAGE_NAME_MST_STRING_ID_ARRAY[(int)this.GetStageType()]));
         this._messageText.SetText(UnityBase.Global.GetString(UnityBase.Constant.Util.MST_STRING_ID.IN_PREPARATION));
+
+        {// BackButtonScript Create
+            var script = this._backButtonNode.GetComponent<UnityBase.Scene.Stage.Test3D.BackButtonScript>();
+            var script_create_desc = new UnityBase.Scene.Stage.Test3D.BackButtonScriptCreateDesc();
+
+            script_create_desc.subSceneScript = this;
+
+            script.Create(script_create_desc);
+            script.Open(1);
+
+            this._backButtonScript = script;
+        }
 
         {// MenuScript Create
             var script = this._menuNode.GetComponent<UnityBase.Scene.MenuScript>();
@@ -205,7 +219,25 @@ public class SubSceneScript : UnityBase.Scene.Stage.SubSceneScript
     {
         if (!this.IsActiveOpenCloseSequence()) {
             this.CompleteClose();
+
+            {// SelectSubSceneScript Create
+                var script = this.GetManager().ChangeSubScene(UnityBase.Constant.Util.FILE_PATH.SELECT_SUB_SCENE_PREFAB) as UnityBase.Scene.Select.SubSceneScript;
+                var script_create_desc = new UnityBase.Scene.Select.SubSceneScriptCreateDesc();
+
+                script.Create(script_create_desc);
+                script.Open(1);
+            }
         }
+
+        return;
+    }
+
+    /**
+     * @brief RunBackButton関数
+     */
+    public void RunBackButton()
+    {
+        this.Close(1);
 
         return;
     }

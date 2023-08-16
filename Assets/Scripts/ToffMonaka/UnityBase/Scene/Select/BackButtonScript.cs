@@ -1,46 +1,42 @@
 ﻿/**
  * @file
- * @brief StageBoardScriptファイル
+ * @brief BackButtonScriptファイル
  */
 
 
 using UnityEngine;
 using UnityEngine.UI;
-using System.Collections.Generic;
-using TMPro;
+using UnityEngine.EventSystems;
 using DG.Tweening;
 
 
 namespace ToffMonaka {
 namespace UnityBase.Scene.Select {
 /**
- * @brief StageBoardScriptCreateDescクラス
+ * @brief BackButtonScriptCreateDescクラス
  */
-public class StageBoardScriptCreateDesc : UnityBase.Scene.Select.BoardScriptCreateDesc
+public class BackButtonScriptCreateDesc : Lib.Scene.ObjectScriptCreateDesc
 {
     public UnityBase.Scene.Select.SubSceneScript subSceneScript = null;
 }
 
 /**
- * @brief StageBoardScriptクラス
+ * @brief BackButtonScriptクラス
  */
-public class StageBoardScript : UnityBase.Scene.Select.BoardScript
+public class BackButtonScript : Lib.Scene.ObjectScript, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
 {
-    [SerializeField] private TMP_Text _nameText = null;
-    [SerializeField] private GameObject _stageButtonNode = null;
+    [SerializeField] private Image _coverImage = null;
 
-    public new UnityBase.Scene.Select.StageBoardScriptCreateDesc createDesc{get; private set;} = null;
+    public new UnityBase.Scene.Select.BackButtonScriptCreateDesc createDesc{get; private set;} = null;
 
     private UnityBase.Scene.Select.SubSceneScript _subSceneScript = null;
-    private List<UnityBase.Scene.Select.StageButtonScript> _stageButtonScriptContainer = new List<UnityBase.Scene.Select.StageButtonScript>();
 
     /**
      * @brief コンストラクタ
      */
-    public StageBoardScript()
+    public BackButtonScript()
     {
-        this._SetScriptIndex((int)UnityBase.Constant.Util.SCENE.SCRIPT_INDEX.SELECT_STAGE_BOARD);
-        this._SetBoardType(UnityBase.Constant.Util.SCENE.SELECT_BOARD_TYPE.STAGE);
+        this._SetScriptIndex((int)UnityBase.Constant.Util.SCENE.SCRIPT_INDEX.SELECT_BACK_BUTTON);
 
         return;
     }
@@ -70,29 +66,6 @@ public class StageBoardScript : UnityBase.Scene.Select.BoardScript
     {
         this._subSceneScript = this.createDesc.subSceneScript;
 
-        this._nameText.SetText(UnityBase.Global.GetString(UnityBase.Constant.Util.SCENE.SELECT_BOARD_NAME_MST_STRING_ID_ARRAY[(int)this.GetBoardType()]));
-
-        this._stageButtonNode.SetActive(false);
-
-        UnityBase.Constant.Util.SCENE.STAGE_TYPE[] stage_type_ary = {
-            UnityBase.Constant.Util.SCENE.STAGE_TYPE.TEST_2D,
-            UnityBase.Constant.Util.SCENE.STAGE_TYPE.TEST_3D
-        };
-
-        // StageButtonScript Create
-        foreach (var stage_type in stage_type_ary) {
-            var script = GameObject.Instantiate(this._stageButtonNode, this._stageButtonNode.transform.parent).GetComponent<UnityBase.Scene.Select.StageButtonScript>();
-            var script_create_desc = new UnityBase.Scene.Select.StageButtonScriptCreateDesc();
-
-            script_create_desc.boardScript = this;
-            script_create_desc.stageType = stage_type;
-
-            script.Create(script_create_desc);
-            script.Open(0);
-
-            this._stageButtonScriptContainer.Add(script);
-        }
-
         return (0);
     }
 
@@ -102,7 +75,7 @@ public class StageBoardScript : UnityBase.Scene.Select.BoardScript
      */
     public override void SetCreateDesc(Lib.Scene.ScriptCreateDesc create_desc)
     {
-	    this.createDesc = create_desc as UnityBase.Scene.Select.StageBoardScriptCreateDesc;
+	    this.createDesc = create_desc as UnityBase.Scene.Select.BackButtonScriptCreateDesc;
 
         base.SetCreateDesc(this.createDesc);
 
@@ -114,6 +87,8 @@ public class StageBoardScript : UnityBase.Scene.Select.BoardScript
      */
     protected override void _OnActive()
     {
+        this._coverImage.gameObject.SetActive(false);
+
         return;
     }
 
@@ -218,12 +193,46 @@ public class StageBoardScript : UnityBase.Scene.Select.BoardScript
     }
 
     /**
-     * @brief RunStageButton関数
-     * @param stage_type (stage_type)
+     * @brief OnPointerClick関数
+     * @param event_dat (event_data)
      */
-    public void RunStageButton(UnityBase.Constant.Util.SCENE.STAGE_TYPE stage_type)
+    public void OnPointerClick(PointerEventData event_dat)
     {
-        this._subSceneScript.RunStageButton(stage_type);
+        if (!this.IsControllable()) {
+            return;
+        }
+
+        Lib.Scene.Util.GetSoundManager().PlaySe((int)UnityBase.Constant.Util.SOUND.SE_INDEX.CANCEL);
+
+        return;
+    }
+
+    /**
+     * @brief OnPointerEnter関数
+     * @param event_dat (event_data)
+     */
+    public void OnPointerEnter(PointerEventData event_dat)
+    {
+        if (!this.IsControllable()) {
+            return;
+        }
+
+        this._coverImage.gameObject.SetActive(true);
+
+        return;
+    }
+
+    /**
+     * @brief OnPointerExit関数
+     * @param event_dat (event_data)
+     */
+    public void OnPointerExit(PointerEventData event_dat)
+    {
+        if (!this.IsControllable()) {
+            return;
+        }
+
+        this._coverImage.gameObject.SetActive(false);
 
         return;
     }

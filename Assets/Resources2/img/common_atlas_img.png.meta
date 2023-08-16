@@ -121,7 +121,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 1
-        y: 125
+        y: 60
         width: 64
         height: 64
       alignment: 0
@@ -141,8 +141,8 @@ TextureImporter:
       name: sliced_bg_img
       rect:
         serializedVersion: 2
-        x: 1
-        y: 27
+        x: 50
+        y: 11
         width: 48
         height: 48
       alignment: 0
@@ -163,7 +163,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 1
-        y: 76
+        y: 11
         width: 48
         height: 48
       alignment: 0
@@ -204,8 +204,8 @@ TextureImporter:
       name: sliced_btn_cover_img
       rect:
         serializedVersion: 2
-        x: 50
-        y: 76
+        x: 66
+        y: 206
         width: 48
         height: 48
       alignment: 0
@@ -225,8 +225,8 @@ TextureImporter:
       name: sliced_btn_img
       rect:
         serializedVersion: 2
-        x: 50
-        y: 27
+        x: 66
+        y: 157
         width: 48
         height: 48
       alignment: 0
@@ -247,7 +247,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 1
-        y: 190
+        y: 125
         width: 64
         height: 64
       alignment: 0
@@ -263,6 +263,27 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: back_icon_img
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 190
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2c63e67b91ef144428d24009f3e73e36
+      internalID: 1902315550
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -274,6 +295,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
+      back_icon_img: 1902315550
       close_icon_img: -108880751
       menu_icon_img: -444311614
       sliced_bg2_img: 1020748398

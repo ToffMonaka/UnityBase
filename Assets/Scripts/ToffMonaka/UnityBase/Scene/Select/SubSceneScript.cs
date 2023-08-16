@@ -24,6 +24,7 @@ public class SubSceneScriptCreateDesc : Lib.Scene.SubSceneScriptCreateDesc
 public class SubSceneScript : Lib.Scene.SubSceneScript
 {
     [SerializeField] private GameObject _stageBoardNode = null;
+    [SerializeField] private GameObject _backButtonNode = null;
     [SerializeField] private GameObject _menuNode = null;
     [SerializeField] private Image _openCloseFadeImage = null;
 
@@ -32,6 +33,7 @@ public class SubSceneScript : Lib.Scene.SubSceneScript
     private UnityBase.Scene.Select.StageBoardScript _stageBoardScript = null;
     private UnityBase.Scene.Select.BoardScript _openBoardScript = null;
     private UnityBase.Constant.Util.SCENE.STAGE_TYPE _stageType = UnityBase.Constant.Util.SCENE.STAGE_TYPE.NONE;
+    private UnityBase.Scene.Select.BackButtonScript _backButtonScript = null;
     private UnityBase.Scene.MenuScript _menuScript = null;
 
     /**
@@ -82,6 +84,18 @@ public class SubSceneScript : Lib.Scene.SubSceneScript
             this._stageBoardScript = script;
         }
 
+        {// BackButtonScript Create
+            var script = this._backButtonNode.GetComponent<UnityBase.Scene.Select.BackButtonScript>();
+            var script_create_desc = new UnityBase.Scene.Select.BackButtonScriptCreateDesc();
+
+            script_create_desc.subSceneScript = this;
+
+            script.Create(script_create_desc);
+            script.Open(1);
+
+            this._backButtonScript = script;
+        }
+
         {// MenuScript Create
             var script = this._menuNode.GetComponent<UnityBase.Scene.MenuScript>();
             var script_create_desc = new UnityBase.Scene.MenuScriptCreateDesc();
@@ -91,10 +105,6 @@ public class SubSceneScript : Lib.Scene.SubSceneScript
 
             this._menuScript = script;
         }
-
-        this._openBoardScript = this._stageBoardScript;
-
-        this._openBoardScript.Open(1);
 
         return (0);
     }
@@ -119,7 +129,9 @@ public class SubSceneScript : Lib.Scene.SubSceneScript
     {
         Lib.Scene.Util.GetSoundManager().PlayBgm((int)UnityBase.Constant.Util.SOUND.BGM_INDEX.SELECT);
 
-        this.SetStageType(UnityBase.Constant.Util.SCENE.STAGE_TYPE.NONE);
+        this._stageType = UnityBase.Constant.Util.SCENE.STAGE_TYPE.NONE;
+
+        this._ChangeBoard(UnityBase.Constant.Util.SCENE.SELECT_BOARD_TYPE.STAGE, 0);
 
         return;
     }
@@ -261,25 +273,40 @@ public class SubSceneScript : Lib.Scene.SubSceneScript
     }
 
     /**
-     * @brief SetStageType関数
-     * @param stage_type (stage_type)
-     */
-    public void SetStageType(UnityBase.Constant.Util.SCENE.STAGE_TYPE stage_type)
-    {
-        this._stageType = stage_type;
-
-        return;
-    }
-
-    /**
      * @brief RunStageButton関数
      * @param stage_type (stage_type)
      */
     public void RunStageButton(UnityBase.Constant.Util.SCENE.STAGE_TYPE stage_type)
     {
-        this.SetStageType(stage_type);
+        this._stageType = stage_type;
 
         this.Close(1);
+
+        return;
+    }
+
+    /**
+     * @brief ChangeBoard関数
+     * @param board_type (board_type)
+     * @param open_type (open_type)
+     */
+    private void _ChangeBoard(UnityBase.Constant.Util.SCENE.SELECT_BOARD_TYPE board_type, int open_type)
+    {
+        if (this._openBoardScript != null) {
+            this._openBoardScript.Close(0);
+
+            this._openBoardScript = null;
+        }
+
+		switch (board_type) {
+		case UnityBase.Constant.Util.SCENE.SELECT_BOARD_TYPE.STAGE: {
+            this._openBoardScript = this._stageBoardScript;
+
+			break;
+		}
+		}
+
+        this._openBoardScript?.Open(open_type);
 
         return;
     }
