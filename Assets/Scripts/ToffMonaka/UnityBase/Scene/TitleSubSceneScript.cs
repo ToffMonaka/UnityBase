@@ -211,13 +211,19 @@ public class TitleSubSceneScript : Lib.Scene.SubSceneScript
         if (!this.IsActiveOpenCloseSequence()) {
             this.CompleteClose();
 
-            {// SelectSubSceneScript Create
-                var script = this.GetManager().ChangeSubScene(UnityBase.Constant.Util.FILE_PATH.SELECT_SUB_SCENE_PREFAB) as UnityBase.Scene.Select.SubSceneScript;
-                var script_create_desc = new UnityBase.Scene.Select.SubSceneScriptCreateDesc();
+		    switch (this.GetClosedType()) {
+            case 1: {
+                {// SelectSubSceneScript Create
+                    var script = this.GetManager().ChangeSubScene(UnityBase.Constant.Util.FILE_PATH.SELECT_SUB_SCENE_PREFAB) as UnityBase.Scene.Select.SubSceneScript;
+                    var script_create_desc = new UnityBase.Scene.Select.SubSceneScriptCreateDesc();
 
-                script.Create(script_create_desc);
-                script.Open(1);
-            }
+                    script.Create(script_create_desc);
+                    script.Open(1);
+                }
+
+			    break;
+		    }
+		    }
         }
 
         return;
@@ -235,7 +241,7 @@ public class TitleSubSceneScript : Lib.Scene.SubSceneScript
 
         Lib.Scene.Util.GetSoundManager().PlaySe((int)UnityBase.Constant.Util.SOUND.SE_INDEX.OK);
 
-        this.Close(1);
+        this.Close(1, 1);
 
         return;
     }

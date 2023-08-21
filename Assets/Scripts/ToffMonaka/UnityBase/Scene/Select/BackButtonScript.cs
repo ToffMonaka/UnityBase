@@ -204,6 +204,8 @@ public class BackButtonScript : Lib.Scene.ObjectScript, IPointerClickHandler, IP
 
         Lib.Scene.Util.GetSoundManager().PlaySe((int)UnityBase.Constant.Util.SOUND.SE_INDEX.CANCEL);
 
+        this._subSceneScript.RunBackButton();
+
         return;
     }
 

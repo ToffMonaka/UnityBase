@@ -128,8 +128,6 @@ public class MenuCheatStageCommandButtonScript : Lib.Scene.ObjectScript, IPointe
      */
     protected override void _OnOpen()
     {
-        this.CompleteOpen();
-
         return;
     }
 
@@ -148,8 +146,6 @@ public class MenuCheatStageCommandButtonScript : Lib.Scene.ObjectScript, IPointe
      */
     protected override void _OnClose()
     {
-        this.CompleteClose();
-
         return;
     }
 

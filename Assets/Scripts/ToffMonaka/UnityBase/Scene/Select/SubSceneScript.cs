@@ -234,22 +234,39 @@ public class SubSceneScript : Lib.Scene.SubSceneScript
         if (!this.IsActiveOpenCloseSequence()) {
             this.CompleteClose();
 
-		    switch (this._stageType) {
-		    case UnityBase.Constant.Util.SCENE.STAGE_TYPE.TEST_2D: {
-                {// Test2DStageSubSceneScript Create
-                    var script = this.GetManager().ChangeSubScene(UnityBase.Constant.Util.FILE_PATH.TEST_2D_STAGE_SUB_SCENE_PREFAB) as UnityBase.Scene.Stage.Test2D.SubSceneScript;
-                    var script_create_desc = new UnityBase.Scene.Stage.Test2D.SubSceneScriptCreateDesc();
+		    switch (this.GetClosedType()) {
+            case 1: {
+		        switch (this._stageType) {
+		        case UnityBase.Constant.Util.SCENE.STAGE_TYPE.TEST_2D: {
+                    {// Test2DStageSubSceneScript Create
+                        var script = this.GetManager().ChangeSubScene(UnityBase.Constant.Util.FILE_PATH.TEST_2D_STAGE_SUB_SCENE_PREFAB) as UnityBase.Scene.Stage.Test2D.SubSceneScript;
+                        var script_create_desc = new UnityBase.Scene.Stage.Test2D.SubSceneScriptCreateDesc();
 
-                    script.Create(script_create_desc);
-                    script.Open(1);
-                }
+                        script.Create(script_create_desc);
+                        script.Open(1);
+                    }
+
+			        break;
+		        }
+		        case UnityBase.Constant.Util.SCENE.STAGE_TYPE.TEST_3D: {
+                    {// Test3DStageSubSceneScript Create
+                        var script = this.GetManager().ChangeSubScene(UnityBase.Constant.Util.FILE_PATH.TEST_3D_STAGE_SUB_SCENE_PREFAB) as UnityBase.Scene.Stage.Test3D.SubSceneScript;
+                        var script_create_desc = new UnityBase.Scene.Stage.Test3D.SubSceneScriptCreateDesc();
+
+                        script.Create(script_create_desc);
+                        script.Open(1);
+                    }
+
+			        break;
+		        }
+		        }
 
 			    break;
 		    }
-		    case UnityBase.Constant.Util.SCENE.STAGE_TYPE.TEST_3D: {
-                {// Test3DStageSubSceneScript Create
-                    var script = this.GetManager().ChangeSubScene(UnityBase.Constant.Util.FILE_PATH.TEST_3D_STAGE_SUB_SCENE_PREFAB) as UnityBase.Scene.Stage.Test3D.SubSceneScript;
-                    var script_create_desc = new UnityBase.Scene.Stage.Test3D.SubSceneScriptCreateDesc();
+            case 2: {
+                {// TitleSubSceneScript Create
+                    var script = this.GetManager().ChangeSubScene(UnityBase.Constant.Util.FILE_PATH.TITLE_SUB_SCENE_PREFAB) as UnityBase.Scene.TitleSubSceneScript;
+                    var script_create_desc = new UnityBase.Scene.TitleSubSceneScriptCreateDesc();
 
                     script.Create(script_create_desc);
                     script.Open(1);
@@ -280,7 +297,23 @@ public class SubSceneScript : Lib.Scene.SubSceneScript
     {
         this._stageType = stage_type;
 
-        this.Close(1);
+        this.Close(1, 1);
+
+        return;
+    }
+
+    /**
+     * @brief RunBackButton関数
+     */
+    public void RunBackButton()
+    {
+		switch (this._openBoardScript.GetBoardType()) {
+		case UnityBase.Constant.Util.SCENE.SELECT_BOARD_TYPE.STAGE: {
+            this.Close(1, 2);
+
+			break;
+		}
+		}
 
         return;
     }
@@ -306,7 +339,7 @@ public class SubSceneScript : Lib.Scene.SubSceneScript
 		}
 		}
 
-        this._openBoardScript?.Open(open_type);
+        this._openBoardScript.Open(open_type);
 
         return;
     }

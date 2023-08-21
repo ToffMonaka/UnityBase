@@ -159,7 +159,7 @@ public class InitSubSceneScript : Lib.Scene.SubSceneScript
             this._progressElapsedTime += Time.deltaTime;
 
             if (this._progressElapsedTime >= 3.0f) {
-                this.Close(1);
+                this.Close(1, 1);
 
                 this.SetProgressType(4);
             }
@@ -256,13 +256,19 @@ public class InitSubSceneScript : Lib.Scene.SubSceneScript
         if (!this.IsActiveOpenCloseSequence()) {
             this.CompleteClose();
 
-            {// TitleSubSceneScript Create
-                var script = this.GetManager().ChangeSubScene(UnityBase.Constant.Util.FILE_PATH.TITLE_SUB_SCENE_PREFAB) as UnityBase.Scene.TitleSubSceneScript;
-                var script_create_desc = new UnityBase.Scene.TitleSubSceneScriptCreateDesc();
+		    switch (this.GetClosedType()) {
+            case 1: {
+                {// TitleSubSceneScript Create
+                    var script = this.GetManager().ChangeSubScene(UnityBase.Constant.Util.FILE_PATH.TITLE_SUB_SCENE_PREFAB) as UnityBase.Scene.TitleSubSceneScript;
+                    var script_create_desc = new UnityBase.Scene.TitleSubSceneScriptCreateDesc();
 
-                script.Create(script_create_desc);
-                script.Open(1);
-            }
+                    script.Create(script_create_desc);
+                    script.Open(1);
+                }
+
+			    break;
+		    }
+		    }
         }
 
         return;

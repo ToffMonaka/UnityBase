@@ -31,9 +31,11 @@ public abstract class Script : MonoBehaviour
     private bool _activeAutoFlag = true;
     private bool _activedFlag = false;
     private int _openType = 0;
+    private int _openedType = 0;
     private bool _openFlag = false;
     private bool _openedFlag = false;
     private int _closeType = 0;
+    private int _closedType = 0;
     private bool _closeFlag = false;
     private bool _closedFlag = true;
     private List<Sequence> _openCloseSequenceContainer = new List<Sequence>();
@@ -310,7 +312,6 @@ public abstract class Script : MonoBehaviour
             this._OnUpdateClose();
         }
 
-
         this._OnUpdate();
 
         return;
@@ -452,8 +453,9 @@ public abstract class Script : MonoBehaviour
     /**
      * @brief Open関数
      * @param open_type (open_type)
+     * @param opened_type (opened_type)
      */
-    public void Open(int open_type)
+    public void Open(int open_type = 0, int opened_type = 0)
     {
         if (this._activeAutoFlag) {
             this.gameObject.SetActive(true);
@@ -464,6 +466,7 @@ public abstract class Script : MonoBehaviour
         }
 
         this._openType = open_type;
+        this._openedType = opened_type;
         this._openFlag = true;
         this._openedFlag = false;
         this._closeFlag = false;
@@ -471,6 +474,10 @@ public abstract class Script : MonoBehaviour
         this.RemoveOpenCloseSequence();
 
         this._OnOpen();
+
+        if (this._openFlag) {
+            this._OnUpdateOpen();
+        }
 
         return;
     }
@@ -495,8 +502,6 @@ public abstract class Script : MonoBehaviour
      */
     protected virtual void _OnOpen()
     {
-        this.CompleteOpen();
-
         return;
     }
 
@@ -513,14 +518,16 @@ public abstract class Script : MonoBehaviour
     /**
      * @brief Close関数
      * @param close_type (close_type)
+     * @param closed_type (closed_type)
      */
-    public void Close(int close_type)
+    public void Close(int close_type = 0, int closed_type = 0)
     {
         if (!this.gameObject.activeSelf) {
             return;
         }
 
         this._closeType = close_type;
+        this._closedType = closed_type;
         this._openFlag = false;
         this._openedFlag = false;
         this._closeFlag = true;
@@ -528,6 +535,10 @@ public abstract class Script : MonoBehaviour
         this.RemoveOpenCloseSequence();
 
         this._OnClose();
+
+        if (this._closeFlag) {
+            this._OnUpdateClose();
+        }
 
         return;
     }
@@ -556,8 +567,6 @@ public abstract class Script : MonoBehaviour
      */
     protected virtual void _OnClose()
     {
-        this.CompleteClose();
-
         return;
     }
 
@@ -578,6 +587,15 @@ public abstract class Script : MonoBehaviour
     public int GetOpenType()
     {
         return (this._openType);
+    }
+
+    /**
+     * @brief GetOpenedType関数
+     * @return opened_type (opened_type)
+     */
+    public int GetOpenedType()
+    {
+        return (this._openedType);
     }
 
     /**
@@ -605,6 +623,15 @@ public abstract class Script : MonoBehaviour
     public int GetCloseType()
     {
         return (this._closeType);
+    }
+
+    /**
+     * @brief GetClosedType関数
+     * @return closed_type (closed_type)
+     */
+    public int GetClosedType()
+    {
+        return (this._closedType);
     }
 
     /**

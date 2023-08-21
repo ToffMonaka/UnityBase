@@ -101,8 +101,6 @@ public class MenuStageScript : Lib.Scene.ObjectScript
      */
     protected override void _OnOpen()
     {
-        this.CompleteOpen();
-
         return;
     }
 
@@ -121,8 +119,6 @@ public class MenuStageScript : Lib.Scene.ObjectScript
      */
     protected override void _OnClose()
     {
-        this.CompleteClose();
-
         return;
     }
 

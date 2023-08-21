@@ -119,8 +119,6 @@ public class MenuOptionStageLanguageSelectLanguageButtonScript : Lib.Scene.Objec
      */
     protected override void _OnOpen()
     {
-        this.CompleteOpen();
-
         return;
     }
 
@@ -139,8 +137,6 @@ public class MenuOptionStageLanguageSelectLanguageButtonScript : Lib.Scene.Objec
      */
     protected override void _OnClose()
     {
-        this.CompleteClose();
-
         return;
     }
 

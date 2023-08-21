@@ -119,8 +119,6 @@ public class MenuSelectStageButtonScript : Lib.Scene.ObjectScript, IPointerClick
      */
     protected override void _OnOpen()
     {
-        this.CompleteOpen();
-
         return;
     }
 
@@ -139,8 +137,6 @@ public class MenuSelectStageButtonScript : Lib.Scene.ObjectScript, IPointerClick
      */
     protected override void _OnClose()
     {
-        this.CompleteClose();
-
         return;
     }
 
