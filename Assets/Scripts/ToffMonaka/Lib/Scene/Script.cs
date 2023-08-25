@@ -39,6 +39,7 @@ public abstract class Script : MonoBehaviour
     private bool _closeFlag = false;
     private bool _closedFlag = true;
     private List<Sequence> _openCloseSequenceContainer = new List<Sequence>();
+    private bool _controlFlag = false;
 
     /**
      * @brief Awake関数
@@ -206,6 +207,8 @@ public abstract class Script : MonoBehaviour
         if (create_res < 0) {
             return (create_res);
         }
+
+        this._controlFlag = true;
 
         return (0);
     }
@@ -724,11 +727,35 @@ public abstract class Script : MonoBehaviour
     }
 
     /**
+     * @brief GetControlFlag関数
+     * @return ctrl_flg (control_flg)
+     */
+    public bool GetControlFlag()
+    {
+        return (this._controlFlag);
+    }
+
+    /**
+     * @brief SetControlFlag関数
+     * @param ctrl_flg (control_flg)
+     */
+    public void SetControlFlag(bool ctrl_flg)
+    {
+        this._controlFlag = ctrl_flg;
+
+        return;
+    }
+
+    /**
      * @brief IsControllable関数
      * @return controllable_flg (controllable_flag)
      */
     public virtual bool IsControllable()
     {
+        if (!this._controlFlag) {
+            return (false);
+        }
+
         if (this.GetClosedFlag()) {
             return (false);
         }

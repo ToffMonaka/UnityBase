@@ -28,8 +28,8 @@ public class MenuCheatStageScriptCreateDesc : UnityBase.Scene.MenuStageScriptCre
 public class MenuCheatStageScript : UnityBase.Scene.MenuStageScript
 {
     [SerializeField] private TMP_Text _nameText = null;
+    [SerializeField] private TMP_Text _commandNameText = null;
     [SerializeField] private TMP_InputField _commandInputField = null;
-    [SerializeField] private TMP_Text _commandInputFieldNameText = null;
     [SerializeField] private ScrollRect _commandScrollRect = null;
     [SerializeField] private GameObject _commandButtonNode = null;
     [SerializeField] private TMP_Text _okButtonNameText = null;
@@ -80,7 +80,7 @@ public class MenuCheatStageScript : UnityBase.Scene.MenuStageScript
 
         this._nameText.SetText(UnityBase.Global.GetString(UnityBase.Constant.Util.SCENE.MENU_STAGE_NAME_MST_STRING_ID_ARRAY[(int)this.GetStageType()]));
 
-        this._commandInputFieldNameText.SetText(UnityBase.Global.GetString(UnityBase.Constant.Util.MST_STRING_ID.COMMAND));
+        this._commandNameText.SetText(UnityBase.Global.GetString(UnityBase.Constant.Util.MST_STRING_ID.COMMAND));
 
         this._commandButtonNode.SetActive(false);
 

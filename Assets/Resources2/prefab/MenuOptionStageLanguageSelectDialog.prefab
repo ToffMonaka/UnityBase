@@ -537,7 +537,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _canvasGroup: {fileID: 235642908086819049}
   _nameText: {fileID: 1376860343387281358}
-  _languageButtonNode: {fileID: 6663689481145752493}
+  _buttonNode: {fileID: 6663689481145752493}
   _closeButtonCoverImage: {fileID: 703094253950779021}
 --- !u!225 &235642908086819049
 CanvasGroup:
@@ -1066,7 +1066,7 @@ GameObject:
   - component: {fileID: 7670459373465437456}
   - component: {fileID: 5695961125945111604}
   m_Layer: 5
-  m_Name: LanguageButton
+  m_Name: Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1157,7 +1157,7 @@ GameObject:
   - component: {fileID: 9086753867999363807}
   - component: {fileID: 2220525757927027609}
   m_Layer: 5
-  m_Name: LanguageButtonLayout
+  m_Name: Layout
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

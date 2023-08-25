@@ -933,7 +933,7 @@ GameObject:
   - component: {fileID: 2189178515536944866}
   - component: {fileID: 7428998414436083915}
   m_Layer: 5
-  m_Name: LanguageButton
+  m_Name: Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1683,7 +1683,7 @@ GameObject:
   - component: {fileID: 547314802502056496}
   - component: {fileID: 6154969917481595408}
   m_Layer: 5
-  m_Name: BgmVolumeSliderLayout
+  m_Name: BgmVolumeLayout
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3639,7 +3639,7 @@ GameObject:
   - component: {fileID: 379675474955750633}
   - component: {fileID: 7273892669095453279}
   m_Layer: 5
-  m_Name: CommandInputFieldLayout
+  m_Name: CommandLayout
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3975,7 +3975,7 @@ GameObject:
   - component: {fileID: 4337711543218450381}
   - component: {fileID: 8225557621205029598}
   m_Layer: 5
-  m_Name: EndToggleLayout
+  m_Name: EndLayout
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6152,7 +6152,7 @@ GameObject:
   - component: {fileID: 3501240114083619086}
   - component: {fileID: 8149527409188714232}
   m_Layer: 5
-  m_Name: BgmMuteToggleLayout
+  m_Name: BgmMuteLayout
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6764,14 +6764,14 @@ MonoBehaviour:
   _languageButtonNameText: {fileID: 4416823753698106363}
   _languageButtonCoverImage: {fileID: 6644201281435823109}
   _soundNameText: {fileID: 7537647176947370572}
+  _soundBgmVolumeNameText: {fileID: 6812081930864962882}
   _soundBgmVolumeSlider: {fileID: 2853714830138759243}
-  _soundBgmVolumeSliderNameText: {fileID: 6812081930864962882}
+  _soundBgmMuteNameText: {fileID: 6124532756224742874}
   _soundBgmMuteToggle: {fileID: 2344768496384260752}
-  _soundBgmMuteToggleNameText: {fileID: 6124532756224742874}
+  _soundSeVolumeNameText: {fileID: 2701786037457938624}
   _soundSeVolumeSlider: {fileID: 6155802443445465187}
-  _soundSeVolumeSliderNameText: {fileID: 2701786037457938624}
+  _soundSeMuteNameText: {fileID: 8050528759836626802}
   _soundSeMuteToggle: {fileID: 3885805575810566515}
-  _soundSeMuteToggleNameText: {fileID: 8050528759836626802}
   _okButtonNameText: {fileID: 972485925887992582}
   _okButtonCoverImage: {fileID: 4564848291684762882}
   _cancelButtonNameText: {fileID: 6326037241225433055}
@@ -7561,7 +7561,7 @@ GameObject:
   - component: {fileID: 2692200468386531153}
   - component: {fileID: 8126778103486498836}
   m_Layer: 5
-  m_Name: StageButtonLayout
+  m_Name: StageLayout
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13152,8 +13152,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _nameText: {fileID: 5243167844452456029}
+  _commandNameText: {fileID: 6581799221794815227}
   _commandInputField: {fileID: 3722826157310089117}
-  _commandInputFieldNameText: {fileID: 6581799221794815227}
   _commandScrollRect: {fileID: 4210570946933997043}
   _commandButtonNode: {fileID: 1252633328980816030}
   _okButtonNameText: {fileID: 3399895282076372730}
@@ -15114,7 +15114,7 @@ GameObject:
   - component: {fileID: 4322057128073959344}
   - component: {fileID: 6963524082269761974}
   m_Layer: 5
-  m_Name: RestartToggleLayout
+  m_Name: RestartLayout
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -16514,10 +16514,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _nameText: {fileID: 2417303838254999737}
   _editScrollRect: {fileID: 1573139690985760018}
+  _restartNameText: {fileID: 2446018587330376513}
   _restartToggle: {fileID: 7560361477618082668}
-  _restartToggleNameText: {fileID: 2446018587330376513}
+  _endNameText: {fileID: 596620376510152751}
   _endToggle: {fileID: 901140914828172243}
-  _endToggleNameText: {fileID: 596620376510152751}
   _okButtonNameText: {fileID: 3695007330560443361}
   _okButtonCoverImage: {fileID: 7494522325347934800}
   _cancelButtonNameText: {fileID: 7905924420446043799}
@@ -16669,7 +16669,7 @@ GameObject:
   - component: {fileID: 1983829959039893110}
   - component: {fileID: 8165453883870889443}
   m_Layer: 5
-  m_Name: StageButton
+  m_Name: Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -18697,7 +18697,7 @@ GameObject:
   - component: {fileID: 6864081489461405240}
   - component: {fileID: 363847121613878226}
   m_Layer: 5
-  m_Name: SeVolumeSliderLayout
+  m_Name: SeVolumeLayout
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -19322,7 +19322,7 @@ GameObject:
   - component: {fileID: 1518975169796635820}
   - component: {fileID: 1207533311088442089}
   m_Layer: 5
-  m_Name: SeMuteToggleLayout
+  m_Name: SeMuteLayout
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

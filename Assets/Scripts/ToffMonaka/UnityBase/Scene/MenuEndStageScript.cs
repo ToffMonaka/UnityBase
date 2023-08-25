@@ -28,10 +28,10 @@ public class MenuEndStageScript : UnityBase.Scene.MenuStageScript
 {
     [SerializeField] private TMP_Text _nameText = null;
     [SerializeField] private ScrollRect _editScrollRect = null;
+    [SerializeField] private TMP_Text _restartNameText = null;
     [SerializeField] private Toggle _restartToggle = null;
-    [SerializeField] private TMP_Text _restartToggleNameText = null;
+    [SerializeField] private TMP_Text _endNameText = null;
     [SerializeField] private Toggle _endToggle = null;
-    [SerializeField] private TMP_Text _endToggleNameText = null;
     [SerializeField] private TMP_Text _okButtonNameText = null;
     [SerializeField] private Image _okButtonCoverImage = null;
     [SerializeField] private TMP_Text _cancelButtonNameText = null;
@@ -79,8 +79,8 @@ public class MenuEndStageScript : UnityBase.Scene.MenuStageScript
 
         this._nameText.SetText(UnityBase.Global.GetString(UnityBase.Constant.Util.SCENE.MENU_STAGE_NAME_MST_STRING_ID_ARRAY[(int)this.GetStageType()]));
 
-        this._restartToggleNameText.SetText(UnityBase.Global.GetString(UnityBase.Constant.Util.MST_STRING_ID.RESTART));
-        this._endToggleNameText.SetText(UnityBase.Global.GetString(UnityBase.Constant.Util.MST_STRING_ID.EXIT));
+        this._restartNameText.SetText(UnityBase.Global.GetString(UnityBase.Constant.Util.MST_STRING_ID.RESTART));
+        this._endNameText.SetText(UnityBase.Global.GetString(UnityBase.Constant.Util.MST_STRING_ID.EXIT));
 
         this._okButtonNameText.SetText(UnityBase.Global.GetString(UnityBase.Constant.Util.MST_STRING_ID.OK));
         this._cancelButtonNameText.SetText(UnityBase.Global.GetString(UnityBase.Constant.Util.MST_STRING_ID.CANCEL));

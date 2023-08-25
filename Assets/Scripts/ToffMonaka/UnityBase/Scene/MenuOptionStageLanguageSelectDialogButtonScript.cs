@@ -1,6 +1,6 @@
 ﻿/**
  * @file
- * @brief MenuOptionStageLanguageSelectLanguageButtonScriptファイル
+ * @brief MenuOptionStageLanguageSelectDialogButtonScriptファイル
  */
 
 
@@ -13,23 +13,23 @@ using TMPro;
 namespace ToffMonaka {
 namespace UnityBase.Scene {
 /**
- * @brief MenuOptionStageLanguageSelectLanguageButtonScriptCreateDescクラス
+ * @brief MenuOptionStageLanguageSelectDialogButtonScriptCreateDescクラス
  */
-public class MenuOptionStageLanguageSelectLanguageButtonScriptCreateDesc : Lib.Scene.ObjectScriptCreateDesc
+public class MenuOptionStageLanguageSelectDialogButtonScriptCreateDesc : Lib.Scene.ObjectScriptCreateDesc
 {
     public UnityBase.Scene.MenuOptionStageLanguageSelectDialogScript dialogScript = null;
     public UnityBase.Constant.Util.LANGUAGE_TYPE languageType = UnityBase.Constant.Util.LANGUAGE_TYPE.NONE;
 }
 
 /**
- * @brief MenuOptionStageLanguageSelectLanguageButtonScriptクラス
+ * @brief MenuOptionStageLanguageSelectDialogButtonScriptクラス
  */
-public class MenuOptionStageLanguageSelectLanguageButtonScript : Lib.Scene.ObjectScript, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
+public class MenuOptionStageLanguageSelectDialogButtonScript : Lib.Scene.ObjectScript, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
 {
     [SerializeField] private TMP_Text _nameText = null;
     [SerializeField] private Image _coverImage = null;
 
-    public new UnityBase.Scene.MenuOptionStageLanguageSelectLanguageButtonScriptCreateDesc createDesc{get; private set;} = null;
+    public new UnityBase.Scene.MenuOptionStageLanguageSelectDialogButtonScriptCreateDesc createDesc{get; private set;} = null;
 
     private UnityBase.Scene.MenuOptionStageLanguageSelectDialogScript _dialogScript = null;
     private UnityBase.Constant.Util.LANGUAGE_TYPE _languageType = UnityBase.Constant.Util.LANGUAGE_TYPE.NONE;
@@ -37,9 +37,9 @@ public class MenuOptionStageLanguageSelectLanguageButtonScript : Lib.Scene.Objec
     /**
      * @brief コンストラクタ
      */
-    public MenuOptionStageLanguageSelectLanguageButtonScript()
+    public MenuOptionStageLanguageSelectDialogButtonScript()
     {
-        this._SetScriptIndex((int)UnityBase.Constant.Util.SCENE.SCRIPT_INDEX.MENU_OPTION_STAGE_LANGUAGE_SELECT_LANGUAGE_BUTTON);
+        this._SetScriptIndex((int)UnityBase.Constant.Util.SCENE.SCRIPT_INDEX.MENU_OPTION_STAGE_LANGUAGE_SELECT_DIALOG_BUTTON);
 
         return;
     }
@@ -81,7 +81,7 @@ public class MenuOptionStageLanguageSelectLanguageButtonScript : Lib.Scene.Objec
      */
     public override void SetCreateDesc(Lib.Scene.ScriptCreateDesc create_desc)
     {
-	    this.createDesc = create_desc as UnityBase.Scene.MenuOptionStageLanguageSelectLanguageButtonScriptCreateDesc;
+	    this.createDesc = create_desc as UnityBase.Scene.MenuOptionStageLanguageSelectDialogButtonScriptCreateDesc;
 
         base.SetCreateDesc(this.createDesc);
 
@@ -162,7 +162,7 @@ public class MenuOptionStageLanguageSelectLanguageButtonScript : Lib.Scene.Objec
 
         Lib.Scene.Util.GetSoundManager().PlaySe((int)UnityBase.Constant.Util.SOUND.SE_INDEX.OK2);
 
-        this._dialogScript.RunLanguageButton(this._languageType);
+        this._dialogScript.RunButton(this._languageType);
 
         return;
     }
