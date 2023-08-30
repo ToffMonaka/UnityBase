@@ -255,9 +255,9 @@ public class MenuOptionStageScript : UnityBase.Scene.MenuStageScript
 
         Lib.Scene.Util.GetSoundManager().PlaySe((int)UnityBase.Constant.Util.SOUND.SE_INDEX.OK2);
 
-        // languageSelectDialogScript Create
+        // LanguageSelectDialogScript Create
         if (this._languageSelectDialogScript == null) {
-            this._languageSelectDialogNode = Lib.Scene.Util.GetPrefabNode(UnityBase.Constant.Util.FILE_PATH.MENU_OPTION_STAGE_LANGUAGE_SELECT_DIALOG_PREFAB, this._menuScript.gameObject);
+            this._languageSelectDialogNode = Lib.Scene.Util.GetPrefabNode(UnityBase.Constant.Util.FILE_PATH.MENU_OPTION_STAGE_LANGUAGE_SELECT_DIALOG_PREFAB, this._menuScript.GetSubSceneScript().GetDialogNode());
 
             var script = this._languageSelectDialogNode.GetComponent<UnityBase.Scene.MenuOptionStageLanguageSelectDialogScript>();
             var script_create_desc = new UnityBase.Scene.MenuOptionStageLanguageSelectDialogScriptCreateDesc();
@@ -672,29 +672,6 @@ public class MenuOptionStageScript : UnityBase.Scene.MenuStageScript
             this._okButtonNameText.SetText(UnityBase.Global.GetString(UnityBase.Constant.Util.MST_STRING_ID.OK));
             this._okButtonNameText.fontSize = 32.0f;
         }
-
-        return;
-    }
-
-    /**
-     * @brief RunLanguageSelectCloseButton関数
-     */
-    public void RunLanguageSelectCloseButton()
-    {
-        this._languageSelectDialogScript?.Close(1);
-
-        return;
-    }
-
-    /**
-     * @brief RunLanguageSelectLanguageButton関数
-     * @param language_type (language_type)
-     */
-    public void RunLanguageSelectLanguageButton(UnityBase.Constant.Util.LANGUAGE_TYPE language_type)
-    {
-        this.SetLanguageType(language_type);
-
-        this._languageSelectDialogScript?.Close(1);
 
         return;
     }

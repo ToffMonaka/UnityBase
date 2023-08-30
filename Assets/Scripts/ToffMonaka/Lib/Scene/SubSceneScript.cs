@@ -23,6 +23,9 @@ public abstract class SubSceneScript : Lib.Scene.Script
 {
     public new Lib.Scene.SubSceneScriptCreateDesc createDesc{get; private set;} = null;
 
+    private GameObject _canvasNode = null;
+    private GameObject _dialogNode = null;
+
     /**
      * @brief コンストラクタ
      */
@@ -125,6 +128,46 @@ public abstract class SubSceneScript : Lib.Scene.Script
         base._LateUpdate();
 
         return;
+    }
+
+    /**
+     * @brief GetCanvasNode関数
+     * @return canvas_node (canvas_node)
+     */
+    public GameObject GetCanvasNode()
+    {
+        return (this._canvasNode);
+    }
+
+    /**
+     * @brief _SetCanvasNode関数
+     */
+    protected override void _SetCanvasNode()
+    {
+        var canvas_transform = this.transform.Find("Canvas");
+
+        if (canvas_transform != null) {
+            this._canvasNode = canvas_transform.gameObject;
+
+            this._canvasNode.GetComponent<Canvas>().worldCamera = this.GetManager().GetMainSceneScript().GetMainCamera();
+
+            var dialog_transform = canvas_transform.Find("Dialog");
+
+            if (dialog_transform != null) {
+                this._dialogNode = dialog_transform.gameObject;
+            }
+        }
+
+        return;
+    }
+
+    /**
+     * @brief GetDialogNode関数
+     * @return dialog_node (dialog_node)
+     */
+    public GameObject GetDialogNode()
+    {
+        return (this._dialogNode);
     }
 }
 }

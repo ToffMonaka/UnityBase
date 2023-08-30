@@ -50,6 +50,8 @@ public class StageBoardScript : UnityBase.Scene.Select.BoardScript
      */
     protected override void _OnAwake()
     {
+        base._OnAwake();
+
         return;
     }
 
@@ -58,6 +60,8 @@ public class StageBoardScript : UnityBase.Scene.Select.BoardScript
      */
     protected override void _OnDestroy()
     {
+        base._OnDestroy();
+
         return;
     }
 
@@ -68,6 +72,10 @@ public class StageBoardScript : UnityBase.Scene.Select.BoardScript
      */
     protected override int _OnCreate()
     {
+        if (base._OnCreate() < 0) {
+            return (-1);
+        }
+
         this._subSceneScript = this.createDesc.subSceneScript;
 
         this._nameText.SetText(UnityBase.Global.GetString(UnityBase.Constant.Util.SCENE.SELECT_BOARD_NAME_MST_STRING_ID_ARRAY[(int)this.GetBoardType()]));
@@ -114,6 +122,8 @@ public class StageBoardScript : UnityBase.Scene.Select.BoardScript
      */
     protected override void _OnActive()
     {
+        base._OnActive();
+
         return;
     }
 
@@ -122,6 +132,8 @@ public class StageBoardScript : UnityBase.Scene.Select.BoardScript
      */
     protected override void _OnDeactive()
     {
+        base._OnDeactive();
+
         return;
     }
 
@@ -130,6 +142,8 @@ public class StageBoardScript : UnityBase.Scene.Select.BoardScript
      */
     protected override void _OnUpdate()
     {
+        base._OnUpdate();
+
         return;
     }
 
@@ -138,6 +152,8 @@ public class StageBoardScript : UnityBase.Scene.Select.BoardScript
      */
     protected override void _OnOpen()
     {
+        base._OnOpen();
+
         var rect_transform = this.gameObject.GetComponent<RectTransform>();
 
 		switch (this.GetOpenType()) {
@@ -168,6 +184,8 @@ public class StageBoardScript : UnityBase.Scene.Select.BoardScript
      */
     protected override void _OnUpdateOpen()
     {
+        base._OnUpdateOpen();
+
         if (!this.IsActiveOpenCloseSequence()) {
             this.CompleteOpen();
         }
@@ -180,6 +198,8 @@ public class StageBoardScript : UnityBase.Scene.Select.BoardScript
      */
     protected override void _OnClose()
     {
+        base._OnClose();
+
         var rect_transform = this.gameObject.GetComponent<RectTransform>();
 
 		switch (this.GetCloseType()) {
@@ -210,6 +230,8 @@ public class StageBoardScript : UnityBase.Scene.Select.BoardScript
      */
     protected override void _OnUpdateClose()
     {
+        base._OnUpdateClose();
+
         if (!this.IsActiveOpenCloseSequence()) {
             this.CompleteClose();
         }

@@ -26,14 +26,9 @@ public class SubSceneScript : UnityBase.Scene.Stage.SubSceneScript
 {
     [SerializeField] private TMP_Text _nameText = null;
     [SerializeField] private TMP_Text _messageText = null;
-    [SerializeField] private GameObject _backButtonNode = null;
-    [SerializeField] private GameObject _menuNode = null;
     [SerializeField] private Image _openCloseFadeImage = null;
 
     public new UnityBase.Scene.Stage.Test3D.SubSceneScriptCreateDesc createDesc{get; private set;} = null;
-
-    private UnityBase.Scene.Stage.Test3D.BackButtonScript _backButtonScript = null;
-    private UnityBase.Scene.MenuScript _menuScript = null;
 
     /**
      * @brief コンストラクタ
@@ -51,6 +46,8 @@ public class SubSceneScript : UnityBase.Scene.Stage.SubSceneScript
      */
     protected override void _OnAwake()
     {
+        base._OnAwake();
+
         return;
     }
 
@@ -59,6 +56,8 @@ public class SubSceneScript : UnityBase.Scene.Stage.SubSceneScript
      */
     protected override void _OnDestroy()
     {
+        base._OnDestroy();
+
         return;
     }
 
@@ -69,34 +68,12 @@ public class SubSceneScript : UnityBase.Scene.Stage.SubSceneScript
      */
     protected override int _OnCreate()
     {
-        var canvas_node = this.transform.Find("Canvas").gameObject;
-
-        canvas_node.GetComponent<Canvas>().worldCamera = this.GetManager().GetMainSceneScript().GetMainCamera();
+        if (base._OnCreate() < 0) {
+            return (-1);
+        }
 
         this._nameText.SetText(UnityBase.Global.GetString(UnityBase.Constant.Util.SCENE.STAGE_NAME_MST_STRING_ID_ARRAY[(int)this.GetStageType()]));
         this._messageText.SetText(UnityBase.Global.GetString(UnityBase.Constant.Util.MST_STRING_ID.IN_PREPARATION));
-
-        {// BackButtonScript Create
-            var script = this._backButtonNode.GetComponent<UnityBase.Scene.Stage.Test3D.BackButtonScript>();
-            var script_create_desc = new UnityBase.Scene.Stage.Test3D.BackButtonScriptCreateDesc();
-
-            script_create_desc.subSceneScript = this;
-
-            script.Create(script_create_desc);
-            script.Open(1);
-
-            this._backButtonScript = script;
-        }
-
-        {// MenuScript Create
-            var script = this._menuNode.GetComponent<UnityBase.Scene.MenuScript>();
-            var script_create_desc = new UnityBase.Scene.MenuScriptCreateDesc();
-
-            script.Create(script_create_desc);
-            script.Open(0);
-
-            this._menuScript = script;
-        }
 
         return (0);
     }
@@ -119,6 +96,8 @@ public class SubSceneScript : UnityBase.Scene.Stage.SubSceneScript
      */
     protected override void _OnActive()
     {
+        base._OnActive();
+
         return;
     }
 
@@ -127,6 +106,8 @@ public class SubSceneScript : UnityBase.Scene.Stage.SubSceneScript
      */
     protected override void _OnDeactive()
     {
+        base._OnDeactive();
+
         return;
     }
 
@@ -135,6 +116,8 @@ public class SubSceneScript : UnityBase.Scene.Stage.SubSceneScript
      */
     protected override void _OnUpdate()
     {
+        base._OnUpdate();
+
         return;
     }
 
@@ -143,6 +126,8 @@ public class SubSceneScript : UnityBase.Scene.Stage.SubSceneScript
      */
     protected override void _OnOpen()
     {
+        base._OnOpen();
+
 		switch (this.GetOpenType()) {
 		case 1: {
             this._openCloseFadeImage.gameObject.SetActive(true);
@@ -173,6 +158,8 @@ public class SubSceneScript : UnityBase.Scene.Stage.SubSceneScript
      */
     protected override void _OnUpdateOpen()
     {
+        base._OnUpdateOpen();
+
         if (!this.IsActiveOpenCloseSequence()) {
             this.CompleteOpen();
 
@@ -187,6 +174,8 @@ public class SubSceneScript : UnityBase.Scene.Stage.SubSceneScript
      */
     protected override void _OnClose()
     {
+        base._OnClose();
+
 		switch (this.GetCloseType()) {
 		case 1: {
             this._openCloseFadeImage.gameObject.SetActive(true);
@@ -217,6 +206,8 @@ public class SubSceneScript : UnityBase.Scene.Stage.SubSceneScript
      */
     protected override void _OnUpdateClose()
     {
+        base._OnUpdateClose();
+
         if (!this.IsActiveOpenCloseSequence()) {
             this.CompleteClose();
 
@@ -241,7 +232,7 @@ public class SubSceneScript : UnityBase.Scene.Stage.SubSceneScript
     /**
      * @brief RunBackButton関数
      */
-    public void RunBackButton()
+    public override void RunBackButton()
     {
         this.Close(1, 1);
 

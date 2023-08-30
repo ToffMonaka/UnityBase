@@ -65,10 +65,6 @@ public class InitSubSceneScript : Lib.Scene.SubSceneScript
      */
     protected override int _OnCreate()
     {
-        var canvas_node = this.transform.Find("Canvas").gameObject;
-
-        canvas_node.GetComponent<Canvas>().worldCamera = this.GetManager().GetMainSceneScript().GetMainCamera();
-
 		switch (UnityBase.Global.systemConfigFile.data.systemLanguageType) {
 		case UnityBase.Constant.Util.LANGUAGE_TYPE.JAPANESE: {
             this._messageText.SetText("ちょっと待ってね。");

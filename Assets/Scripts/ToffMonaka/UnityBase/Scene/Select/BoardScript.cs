@@ -109,8 +109,6 @@ public class BoardScript : Lib.Scene.ObjectScript
      */
     protected override void _OnUpdateOpen()
     {
-        this.CompleteOpen();
-
         return;
     }
 
@@ -127,8 +125,6 @@ public class BoardScript : Lib.Scene.ObjectScript
      */
     protected override void _OnUpdateClose()
     {
-        this.CompleteClose();
-
         return;
     }
 

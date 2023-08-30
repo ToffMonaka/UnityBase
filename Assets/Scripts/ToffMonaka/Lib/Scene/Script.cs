@@ -200,6 +200,8 @@ public abstract class Script : MonoBehaviour
             } else {
                 return (-1);
             }
+
+            this._SetCanvasNode();
         }
 
         int create_res = this._OnCreate();
@@ -765,6 +767,14 @@ public abstract class Script : MonoBehaviour
         }
 
         return (true);
+    }
+
+    /**
+     * @brief _SetCanvasNode関数
+     */
+    protected virtual void _SetCanvasNode()
+    {
+        return;
     }
 }
 }

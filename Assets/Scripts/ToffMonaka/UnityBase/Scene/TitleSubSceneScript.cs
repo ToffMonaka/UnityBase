@@ -68,16 +68,14 @@ public class TitleSubSceneScript : Lib.Scene.SubSceneScript
      */
     protected override int _OnCreate()
     {
-        var canvas_node = this.transform.Find("Canvas").gameObject;
-
-        canvas_node.GetComponent<Canvas>().worldCamera = this.GetManager().GetMainSceneScript().GetMainCamera();
-
         this._companyNameText.SetText(UnityBase.Constant.Util.PROJECT.COMPANY_NAME);
         this._versionNameText.SetText("Version " + UnityBase.Constant.Util.PROJECT.VERSION_NAME);
 
         {// MenuScript Create
             var script = this._menuNode.GetComponent<UnityBase.Scene.MenuScript>();
             var script_create_desc = new UnityBase.Scene.MenuScriptCreateDesc();
+
+            script_create_desc.subSceneScript = this;
 
             script.Create(script_create_desc);
             script.Open(0);

@@ -69,10 +69,6 @@ public class SubSceneScript : Lib.Scene.SubSceneScript
      */
     protected override int _OnCreate()
     {
-        var canvas_node = this.transform.Find("Canvas").gameObject;
-
-        canvas_node.GetComponent<Canvas>().worldCamera = this.GetManager().GetMainSceneScript().GetMainCamera();
-
         {// StageBoardScript Create
             var script = this._stageBoardNode.GetComponent<UnityBase.Scene.Select.StageBoardScript>();
             var script_create_desc = new UnityBase.Scene.Select.StageBoardScriptCreateDesc();
@@ -99,6 +95,8 @@ public class SubSceneScript : Lib.Scene.SubSceneScript
         {// MenuScript Create
             var script = this._menuNode.GetComponent<UnityBase.Scene.MenuScript>();
             var script_create_desc = new UnityBase.Scene.MenuScriptCreateDesc();
+
+            script_create_desc.subSceneScript = this;
 
             script.Create(script_create_desc);
             script.Open(0);

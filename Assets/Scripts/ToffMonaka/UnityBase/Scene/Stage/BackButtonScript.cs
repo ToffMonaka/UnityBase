@@ -11,13 +11,13 @@ using DG.Tweening;
 
 
 namespace ToffMonaka {
-namespace UnityBase.Scene.Stage.Test3D {
+namespace UnityBase.Scene.Stage {
 /**
  * @brief BackButtonScriptCreateDescクラス
  */
 public class BackButtonScriptCreateDesc : Lib.Scene.ObjectScriptCreateDesc
 {
-    public UnityBase.Scene.Stage.Test3D.SubSceneScript subSceneScript = null;
+    public UnityBase.Scene.Stage.SubSceneScript subSceneScript = null;
 }
 
 /**
@@ -27,16 +27,16 @@ public class BackButtonScript : Lib.Scene.ObjectScript, IPointerClickHandler, IP
 {
     [SerializeField] private Image _coverImage = null;
 
-    public new UnityBase.Scene.Stage.Test3D.BackButtonScriptCreateDesc createDesc{get; private set;} = null;
+    public new UnityBase.Scene.Stage.BackButtonScriptCreateDesc createDesc{get; private set;} = null;
 
-    private UnityBase.Scene.Stage.Test3D.SubSceneScript _subSceneScript = null;
+    private UnityBase.Scene.Stage.SubSceneScript _subSceneScript = null;
 
     /**
      * @brief コンストラクタ
      */
     public BackButtonScript()
     {
-        this._SetScriptIndex((int)UnityBase.Constant.Util.SCENE.SCRIPT_INDEX.TEST_3D_STAGE_BACK_BUTTON);
+        this._SetScriptIndex((int)UnityBase.Constant.Util.SCENE.SCRIPT_INDEX.STAGE_BACK_BUTTON);
 
         return;
     }
@@ -75,7 +75,7 @@ public class BackButtonScript : Lib.Scene.ObjectScript, IPointerClickHandler, IP
      */
     public override void SetCreateDesc(Lib.Scene.ScriptCreateDesc create_desc)
     {
-	    this.createDesc = create_desc as UnityBase.Scene.Stage.Test3D.BackButtonScriptCreateDesc;
+	    this.createDesc = create_desc as UnityBase.Scene.Stage.BackButtonScriptCreateDesc;
 
         base.SetCreateDesc(this.createDesc);
 

@@ -15,6 +15,7 @@ namespace UnityBase.Scene {
  */
 public class MenuScriptCreateDesc : Lib.Scene.ObjectScriptCreateDesc
 {
+    public Lib.Scene.SubSceneScript subSceneScript = null;
 }
 
 /**
@@ -35,6 +36,7 @@ public class MenuScript : Lib.Scene.ObjectScript
 
     public new UnityBase.Scene.MenuScriptCreateDesc createDesc{get; private set;} = null;
 
+    private Lib.Scene.SubSceneScript _subSceneScript = null;
     private UnityBase.Scene.MenuOpenCloseButtonScript _openCloseButtonScript = null;
     private UnityBase.Scene.MenuSelectScript _selectScript = null;
     private UnityBase.Scene.MenuSelectScript _openSelectScript = null;
@@ -80,6 +82,8 @@ public class MenuScript : Lib.Scene.ObjectScript
      */
     protected override int _OnCreate()
     {
+        this._subSceneScript = this.createDesc.subSceneScript;
+
         this._backgroundImage.gameObject.SetActive(false);
 
         {// OpenCloseButtonScript Create
@@ -256,6 +260,15 @@ public class MenuScript : Lib.Scene.ObjectScript
         this.CompleteClose();
 
         return;
+    }
+
+    /**
+     * @brief GetSubSceneScript関数
+     * @return sub_scene_script (sub_scene_script)
+     */
+    public Lib.Scene.SubSceneScript GetSubSceneScript()
+    {
+        return (this._subSceneScript);
     }
 
     /**

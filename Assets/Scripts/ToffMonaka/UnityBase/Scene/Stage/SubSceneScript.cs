@@ -21,9 +21,14 @@ public class SubSceneScriptCreateDesc : Lib.Scene.SubSceneScriptCreateDesc
  */
 public class SubSceneScript : Lib.Scene.SubSceneScript
 {
+    [SerializeField] private GameObject _backButtonNode = null;
+    [SerializeField] private GameObject _menuNode = null;
+
     public new UnityBase.Scene.Stage.SubSceneScriptCreateDesc createDesc{get; private set;} = null;
 
     private UnityBase.Constant.Util.SCENE.STAGE_TYPE _stageType = UnityBase.Constant.Util.SCENE.STAGE_TYPE.NONE;
+    private UnityBase.Scene.Stage.BackButtonScript _backButtonScript = null;
+    private UnityBase.Scene.MenuScript _menuScript = null;
 
     /**
      * @brief コンストラクタ
@@ -56,6 +61,30 @@ public class SubSceneScript : Lib.Scene.SubSceneScript
      */
     protected override int _OnCreate()
     {
+        {// BackButtonScript Create
+            var script = this._backButtonNode.GetComponent<UnityBase.Scene.Stage.BackButtonScript>();
+            var script_create_desc = new UnityBase.Scene.Stage.BackButtonScriptCreateDesc();
+
+            script_create_desc.subSceneScript = this;
+
+            script.Create(script_create_desc);
+            script.Open(1);
+
+            this._backButtonScript = script;
+        }
+
+        {// MenuScript Create
+            var script = this._menuNode.GetComponent<UnityBase.Scene.MenuScript>();
+            var script_create_desc = new UnityBase.Scene.MenuScriptCreateDesc();
+
+            script_create_desc.subSceneScript = this;
+
+            script.Create(script_create_desc);
+            script.Open(0);
+
+            this._menuScript = script;
+        }
+
         return (0);
     }
 
@@ -109,8 +138,6 @@ public class SubSceneScript : Lib.Scene.SubSceneScript
      */
     protected override void _OnUpdateOpen()
     {
-        this.CompleteOpen();
-
         return;
     }
 
@@ -127,8 +154,6 @@ public class SubSceneScript : Lib.Scene.SubSceneScript
      */
     protected override void _OnUpdateClose()
     {
-        this.CompleteClose();
-
         return;
     }
 
@@ -149,6 +174,14 @@ public class SubSceneScript : Lib.Scene.SubSceneScript
     {
         this._stageType = stage_type;
 
+        return;
+    }
+
+    /**
+     * @brief RunBackButton関数
+     */
+    public virtual void RunBackButton()
+    {
         return;
     }
 }
