@@ -82,23 +82,24 @@ public class StageBoardScript : UnityBase.Scene.Select.BoardScript
 
         this._stageButtonNode.SetActive(false);
 
-        UnityBase.Constant.Util.SCENE.STAGE_TYPE[] stage_type_ary = {
-            UnityBase.Constant.Util.SCENE.STAGE_TYPE.TEST_2D,
-            UnityBase.Constant.Util.SCENE.STAGE_TYPE.TEST_3D
-        };
+        {// StageButtonScript Create
+            UnityBase.Constant.Util.SCENE.STAGE_TYPE[] stage_type_ary = {
+                UnityBase.Constant.Util.SCENE.STAGE_TYPE.TEST_2D,
+                UnityBase.Constant.Util.SCENE.STAGE_TYPE.TEST_3D
+            };
 
-        // StageButtonScript Create
-        foreach (var stage_type in stage_type_ary) {
-            var script = GameObject.Instantiate(this._stageButtonNode, this._stageButtonNode.transform.parent).GetComponent<UnityBase.Scene.Select.StageButtonScript>();
-            var script_create_desc = new UnityBase.Scene.Select.StageButtonScriptCreateDesc();
+            foreach (var stage_type in stage_type_ary) {
+                var script = GameObject.Instantiate(this._stageButtonNode, this._stageButtonNode.transform.parent).GetComponent<UnityBase.Scene.Select.StageButtonScript>();
+                var script_create_desc = new UnityBase.Scene.Select.StageButtonScriptCreateDesc();
 
-            script_create_desc.boardScript = this;
-            script_create_desc.stageType = stage_type;
+                script_create_desc.boardScript = this;
+                script_create_desc.stageType = stage_type;
 
-            script.Create(script_create_desc);
-            script.Open(0);
+                script.Create(script_create_desc);
+                script.Open(0);
 
-            this._stageButtonScriptContainer.Add(script);
+                this._stageButtonScriptContainer.Add(script);
+            }
         }
 
         return (0);
