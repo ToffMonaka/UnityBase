@@ -5,6 +5,8 @@
 
 
 using UnityEngine;
+using TMPro;
+using DG.Tweening;
 
 
 namespace ToffMonaka {
@@ -14,6 +16,7 @@ namespace UnityBase.Scene.Select {
  */
 public class BoardScriptCreateDesc : Lib.Scene.ObjectScriptCreateDesc
 {
+    public UnityBase.Scene.Select.SubSceneScript subSceneScript = null;
 }
 
 /**
@@ -21,8 +24,11 @@ public class BoardScriptCreateDesc : Lib.Scene.ObjectScriptCreateDesc
  */
 public class BoardScript : Lib.Scene.ObjectScript
 {
+    [SerializeField] private TMP_Text _nameText = null;
+
     public new UnityBase.Scene.Select.BoardScriptCreateDesc createDesc{get; private set;} = null;
 
+    private UnityBase.Scene.Select.SubSceneScript _subSceneScript = null;
     private UnityBase.Constant.Util.SCENE.SELECT_BOARD_TYPE _boardType = UnityBase.Constant.Util.SCENE.SELECT_BOARD_TYPE.NONE;
 
     /**
@@ -56,6 +62,10 @@ public class BoardScript : Lib.Scene.ObjectScript
      */
     protected override int _OnCreate()
     {
+        this._subSceneScript = this.createDesc.subSceneScript;
+
+        this._nameText.SetText(UnityBase.Global.GetString(UnityBase.Constant.Util.SCENE.SELECT_BOARD_NAME_MST_STRING_ID_ARRAY[(int)this._boardType]));
+
         return (0);
     }
 
@@ -101,6 +111,28 @@ public class BoardScript : Lib.Scene.ObjectScript
      */
     protected override void _OnOpen()
     {
+        var rect_transform = this.gameObject.GetComponent<RectTransform>();
+
+		switch (this.GetOpenType()) {
+		case 1: {
+            rect_transform.anchoredPosition = new Vector2(rect_transform.sizeDelta.x + 8.0f, rect_transform.anchoredPosition.y);
+
+            var open_close_sequence = DOTween.Sequence();
+
+            open_close_sequence.Append(rect_transform.DOAnchorPosX(-8.0f, 0.1f));
+            open_close_sequence.SetLink(this.gameObject);
+
+            this.AddOpenCloseSequence(open_close_sequence);
+
+			break;
+		}
+		default: {
+            rect_transform.anchoredPosition = new Vector2(-8.0f, rect_transform.anchoredPosition.y);
+
+			break;
+		}
+		}
+
         return;
     }
 
@@ -109,6 +141,10 @@ public class BoardScript : Lib.Scene.ObjectScript
      */
     protected override void _OnUpdateOpen()
     {
+        if (!this.IsActiveOpenCloseSequence()) {
+            this.CompleteOpen();
+        }
+
         return;
     }
 
@@ -117,6 +153,28 @@ public class BoardScript : Lib.Scene.ObjectScript
      */
     protected override void _OnClose()
     {
+        var rect_transform = this.gameObject.GetComponent<RectTransform>();
+
+		switch (this.GetCloseType()) {
+		case 1: {
+            rect_transform.anchoredPosition = new Vector2(-8.0f, rect_transform.anchoredPosition.y);
+
+            var open_close_sequence = DOTween.Sequence();
+
+            open_close_sequence.Append(rect_transform.DOAnchorPosX(rect_transform.sizeDelta.x + 8.0f, 0.1f));
+            open_close_sequence.SetLink(this.gameObject);
+
+            this.AddOpenCloseSequence(open_close_sequence);
+
+			break;
+		}
+		default: {
+            rect_transform.anchoredPosition = new Vector2(rect_transform.sizeDelta.x + 8.0f, rect_transform.anchoredPosition.y);
+
+			break;
+		}
+		}
+
         return;
     }
 
@@ -125,7 +183,20 @@ public class BoardScript : Lib.Scene.ObjectScript
      */
     protected override void _OnUpdateClose()
     {
+        if (!this.IsActiveOpenCloseSequence()) {
+            this.CompleteClose();
+        }
+
         return;
+    }
+
+    /**
+     * @brief GetSubSceneScript関数
+     * @return sub_scene_script (sub_scene_script)
+     */
+    public UnityBase.Scene.Select.SubSceneScript GetSubSceneScript()
+    {
+        return (this._subSceneScript);
     }
 
     /**

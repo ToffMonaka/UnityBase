@@ -5,10 +5,7 @@
 
 
 using UnityEngine;
-using UnityEngine.UI;
 using System.Collections.Generic;
-using TMPro;
-using DG.Tweening;
 
 
 namespace ToffMonaka {
@@ -18,7 +15,6 @@ namespace UnityBase.Scene.Select {
  */
 public class StageBoardScriptCreateDesc : UnityBase.Scene.Select.BoardScriptCreateDesc
 {
-    public UnityBase.Scene.Select.SubSceneScript subSceneScript = null;
 }
 
 /**
@@ -26,12 +22,10 @@ public class StageBoardScriptCreateDesc : UnityBase.Scene.Select.BoardScriptCrea
  */
 public class StageBoardScript : UnityBase.Scene.Select.BoardScript
 {
-    [SerializeField] private TMP_Text _nameText = null;
     [SerializeField] private GameObject _stageButtonNode = null;
 
     public new UnityBase.Scene.Select.StageBoardScriptCreateDesc createDesc{get; private set;} = null;
 
-    private UnityBase.Scene.Select.SubSceneScript _subSceneScript = null;
     private List<UnityBase.Scene.Select.StageButtonScript> _stageButtonScriptContainer = new List<UnityBase.Scene.Select.StageButtonScript>();
 
     /**
@@ -75,10 +69,6 @@ public class StageBoardScript : UnityBase.Scene.Select.BoardScript
         if (base._OnCreate() < 0) {
             return (-1);
         }
-
-        this._subSceneScript = this.createDesc.subSceneScript;
-
-        this._nameText.SetText(UnityBase.Global.GetString(UnityBase.Constant.Util.SCENE.SELECT_BOARD_NAME_MST_STRING_ID_ARRAY[(int)this.GetBoardType()]));
 
         this._stageButtonNode.SetActive(false);
 
@@ -155,28 +145,6 @@ public class StageBoardScript : UnityBase.Scene.Select.BoardScript
     {
         base._OnOpen();
 
-        var rect_transform = this.gameObject.GetComponent<RectTransform>();
-
-		switch (this.GetOpenType()) {
-		case 1: {
-            rect_transform.anchoredPosition = new Vector2(rect_transform.sizeDelta.x + 8.0f, rect_transform.anchoredPosition.y);
-
-            var open_close_sequence = DOTween.Sequence();
-
-            open_close_sequence.Append(rect_transform.DOAnchorPosX(-8.0f, 0.1f));
-            open_close_sequence.SetLink(this.gameObject);
-
-            this.AddOpenCloseSequence(open_close_sequence);
-
-			break;
-		}
-		default: {
-            rect_transform.anchoredPosition = new Vector2(-8.0f, rect_transform.anchoredPosition.y);
-
-			break;
-		}
-		}
-
         return;
     }
 
@@ -186,10 +154,6 @@ public class StageBoardScript : UnityBase.Scene.Select.BoardScript
     protected override void _OnUpdateOpen()
     {
         base._OnUpdateOpen();
-
-        if (!this.IsActiveOpenCloseSequence()) {
-            this.CompleteOpen();
-        }
 
         return;
     }
@@ -201,28 +165,6 @@ public class StageBoardScript : UnityBase.Scene.Select.BoardScript
     {
         base._OnClose();
 
-        var rect_transform = this.gameObject.GetComponent<RectTransform>();
-
-		switch (this.GetCloseType()) {
-		case 1: {
-            rect_transform.anchoredPosition = new Vector2(-8.0f, rect_transform.anchoredPosition.y);
-
-            var open_close_sequence = DOTween.Sequence();
-
-            open_close_sequence.Append(rect_transform.DOAnchorPosX(rect_transform.sizeDelta.x + 8.0f, 0.1f));
-            open_close_sequence.SetLink(this.gameObject);
-
-            this.AddOpenCloseSequence(open_close_sequence);
-
-			break;
-		}
-		default: {
-            rect_transform.anchoredPosition = new Vector2(rect_transform.sizeDelta.x + 8.0f, rect_transform.anchoredPosition.y);
-
-			break;
-		}
-		}
-
         return;
     }
 
@@ -233,10 +175,6 @@ public class StageBoardScript : UnityBase.Scene.Select.BoardScript
     {
         base._OnUpdateClose();
 
-        if (!this.IsActiveOpenCloseSequence()) {
-            this.CompleteClose();
-        }
-
         return;
     }
 
@@ -246,7 +184,7 @@ public class StageBoardScript : UnityBase.Scene.Select.BoardScript
      */
     public void RunStageButton(UnityBase.Constant.Util.SCENE.STAGE_TYPE stage_type)
     {
-        this._subSceneScript.RunStageButton(stage_type);
+        this.GetSubSceneScript().RunStageButton(stage_type);
 
         return;
     }

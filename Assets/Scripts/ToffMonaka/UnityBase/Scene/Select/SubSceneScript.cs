@@ -129,7 +129,7 @@ public class SubSceneScript : Lib.Scene.SubSceneScript
 
         this._stageType = UnityBase.Constant.Util.SCENE.STAGE_TYPE.NONE;
 
-        this._ChangeBoard(UnityBase.Constant.Util.SCENE.SELECT_BOARD_TYPE.STAGE, 0);
+        this.ChangeBoard(UnityBase.Constant.Util.SCENE.SELECT_BOARD_TYPE.STAGE, 0);
 
         return;
     }
@@ -288,6 +288,32 @@ public class SubSceneScript : Lib.Scene.SubSceneScript
     }
 
     /**
+     * @brief ChangeBoard関数
+     * @param board_type (board_type)
+     * @param open_type (open_type)
+     */
+    public void ChangeBoard(UnityBase.Constant.Util.SCENE.SELECT_BOARD_TYPE board_type, int open_type)
+    {
+        if (this._openBoardScript != null) {
+            this._openBoardScript.Close(0);
+
+            this._openBoardScript = null;
+        }
+
+		switch (board_type) {
+		case UnityBase.Constant.Util.SCENE.SELECT_BOARD_TYPE.STAGE: {
+            this._openBoardScript = this._stageBoardScript;
+
+			break;
+		}
+		}
+
+        this._openBoardScript.Open(open_type);
+
+        return;
+    }
+
+    /**
      * @brief RunStageButton関数
      * @param stage_type (stage_type)
      */
@@ -312,32 +338,6 @@ public class SubSceneScript : Lib.Scene.SubSceneScript
 			break;
 		}
 		}
-
-        return;
-    }
-
-    /**
-     * @brief ChangeBoard関数
-     * @param board_type (board_type)
-     * @param open_type (open_type)
-     */
-    private void _ChangeBoard(UnityBase.Constant.Util.SCENE.SELECT_BOARD_TYPE board_type, int open_type)
-    {
-        if (this._openBoardScript != null) {
-            this._openBoardScript.Close(0);
-
-            this._openBoardScript = null;
-        }
-
-		switch (board_type) {
-		case UnityBase.Constant.Util.SCENE.SELECT_BOARD_TYPE.STAGE: {
-            this._openBoardScript = this._stageBoardScript;
-
-			break;
-		}
-		}
-
-        this._openBoardScript.Open(open_type);
 
         return;
     }
