@@ -5,6 +5,8 @@
 
 
 using UnityEngine;
+using TMPro;
+using DG.Tweening;
 
 
 namespace ToffMonaka {
@@ -14,6 +16,7 @@ namespace UnityBase.Scene {
  */
 public class MenuStageScriptCreateDesc : Lib.Scene.ObjectScriptCreateDesc
 {
+    public UnityBase.Scene.MenuScript menuScript = null;
 }
 
 /**
@@ -21,8 +24,11 @@ public class MenuStageScriptCreateDesc : Lib.Scene.ObjectScriptCreateDesc
  */
 public class MenuStageScript : Lib.Scene.ObjectScript
 {
+    [SerializeField] private TMP_Text _nameText = null;
+
     public new UnityBase.Scene.MenuStageScriptCreateDesc createDesc{get; private set;} = null;
 
+    private UnityBase.Scene.MenuScript _menuScript = null;
     private UnityBase.Constant.Util.SCENE.MENU_STAGE_TYPE _stageType = UnityBase.Constant.Util.SCENE.MENU_STAGE_TYPE.NONE;
 
     /**
@@ -56,6 +62,10 @@ public class MenuStageScript : Lib.Scene.ObjectScript
      */
     protected override int _OnCreate()
     {
+        this._menuScript = this.createDesc.menuScript;
+
+        this._nameText.SetText(UnityBase.Global.GetString(UnityBase.Constant.Util.SCENE.MENU_STAGE_NAME_MST_STRING_ID_ARRAY[(int)this._stageType]));
+
         return (0);
     }
 
@@ -101,6 +111,28 @@ public class MenuStageScript : Lib.Scene.ObjectScript
      */
     protected override void _OnOpen()
     {
+        var rect_transform = this.gameObject.GetComponent<RectTransform>();
+
+		switch (this.GetOpenType()) {
+		case 1: {
+            rect_transform.anchoredPosition = new Vector2(-rect_transform.sizeDelta.x - 8.0f, rect_transform.anchoredPosition.y);
+
+            var open_close_sequence = DOTween.Sequence();
+
+            open_close_sequence.Append(rect_transform.DOAnchorPosX(8.0f, 0.1f));
+            open_close_sequence.SetLink(this.gameObject);
+
+            this.AddOpenCloseSequence(open_close_sequence);
+
+			break;
+		}
+		default: {
+            rect_transform.anchoredPosition = new Vector2(8.0f, rect_transform.anchoredPosition.y);
+
+			break;
+		}
+		}
+
         return;
     }
 
@@ -109,7 +141,9 @@ public class MenuStageScript : Lib.Scene.ObjectScript
      */
     protected override void _OnUpdateOpen()
     {
-        this.CompleteOpen();
+        if (!this.IsActiveOpenCloseSequence()) {
+            this.CompleteOpen();
+        }
 
         return;
     }
@@ -119,6 +153,28 @@ public class MenuStageScript : Lib.Scene.ObjectScript
      */
     protected override void _OnClose()
     {
+        var rect_transform = this.gameObject.GetComponent<RectTransform>();
+
+		switch (this.GetCloseType()) {
+		case 1: {
+            rect_transform.anchoredPosition = new Vector2(8.0f, rect_transform.anchoredPosition.y);
+
+            var open_close_sequence = DOTween.Sequence();
+
+            open_close_sequence.Append(rect_transform.DOAnchorPosX(-rect_transform.sizeDelta.x - 8.0f, 0.1f));
+            open_close_sequence.SetLink(this.gameObject);
+
+            this.AddOpenCloseSequence(open_close_sequence);
+
+			break;
+		}
+		default: {
+            rect_transform.anchoredPosition = new Vector2(-rect_transform.sizeDelta.x - 8.0f, rect_transform.anchoredPosition.y);
+
+			break;
+		}
+		}
+
         return;
     }
 
@@ -127,9 +183,20 @@ public class MenuStageScript : Lib.Scene.ObjectScript
      */
     protected override void _OnUpdateClose()
     {
-        this.CompleteClose();
+        if (!this.IsActiveOpenCloseSequence()) {
+            this.CompleteClose();
+        }
 
         return;
+    }
+
+    /**
+     * @brief GetMenuScript関数
+     * @return menu_script (menu_script)
+     */
+    public UnityBase.Scene.MenuScript GetMenuScript()
+    {
+        return (this._menuScript);
     }
 
     /**

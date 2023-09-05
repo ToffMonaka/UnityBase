@@ -8,7 +8,6 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using TMPro;
-using DG.Tweening;
 
 
 namespace ToffMonaka {
@@ -18,7 +17,6 @@ namespace UnityBase.Scene {
  */
 public class MenuOptionStageScriptCreateDesc : UnityBase.Scene.MenuStageScriptCreateDesc
 {
-    public UnityBase.Scene.MenuScript menuScript = null;
 }
 
 /**
@@ -26,7 +24,6 @@ public class MenuOptionStageScriptCreateDesc : UnityBase.Scene.MenuStageScriptCr
  */
 public class MenuOptionStageScript : UnityBase.Scene.MenuStageScript
 {
-    [SerializeField] private TMP_Text _nameText = null;
     [SerializeField] private ScrollRect _editScrollRect = null;
     [SerializeField] private TMP_Text _languageNameText = null;
     [SerializeField] private TMP_Text _languageButtonNameText = null;
@@ -47,7 +44,6 @@ public class MenuOptionStageScript : UnityBase.Scene.MenuStageScript
 
     public new UnityBase.Scene.MenuOptionStageScriptCreateDesc createDesc{get; private set;} = null;
 
-    private UnityBase.Scene.MenuScript _menuScript = null;
     private UnityBase.Constant.Util.LANGUAGE_TYPE _languageType = UnityBase.Constant.Util.LANGUAGE_TYPE.NONE;
     private float _soundBgmVolume = 1.0f;
     private bool _soundBgmMuteFlag = false;
@@ -73,6 +69,8 @@ public class MenuOptionStageScript : UnityBase.Scene.MenuStageScript
      */
     protected override void _OnAwake()
     {
+        base._OnAwake();
+
         return;
     }
 
@@ -87,6 +85,8 @@ public class MenuOptionStageScript : UnityBase.Scene.MenuStageScript
             this._languageSelectDialogScript = null;
         }
 
+        base._OnDestroy();
+
         return;
     }
 
@@ -97,9 +97,9 @@ public class MenuOptionStageScript : UnityBase.Scene.MenuStageScript
      */
     protected override int _OnCreate()
     {
-        this._menuScript = this.createDesc.menuScript;
-
-        this._nameText.SetText(UnityBase.Global.GetString(UnityBase.Constant.Util.SCENE.MENU_STAGE_NAME_MST_STRING_ID_ARRAY[(int)this.GetStageType()]));
+        if (base._OnCreate() < 0) {
+            return (-1);
+        }
 
         this._languageNameText.SetText(UnityBase.Global.GetString(UnityBase.Constant.Util.MST_STRING_ID.LANGUAGE));
         this._soundNameText.SetText(UnityBase.Global.GetString(UnityBase.Constant.Util.MST_STRING_ID.SOUND));
@@ -130,6 +130,8 @@ public class MenuOptionStageScript : UnityBase.Scene.MenuStageScript
      */
     protected override void _OnActive()
     {
+        base._OnActive();
+
         this._editScrollRect.verticalNormalizedPosition = 1.0f;
         this.SetLanguageType(UnityBase.Global.systemConfigFile.data.systemLanguageType);
         this.SetSoundBgmVolume(UnityBase.Global.systemConfigFile.data.soundBgmVolume);
@@ -148,6 +150,8 @@ public class MenuOptionStageScript : UnityBase.Scene.MenuStageScript
      */
     protected override void _OnDeactive()
     {
+        base._OnDeactive();
+
         return;
     }
 
@@ -156,6 +160,8 @@ public class MenuOptionStageScript : UnityBase.Scene.MenuStageScript
      */
     protected override void _OnUpdate()
     {
+        base._OnUpdate();
+
         return;
     }
 
@@ -164,27 +170,7 @@ public class MenuOptionStageScript : UnityBase.Scene.MenuStageScript
      */
     protected override void _OnOpen()
     {
-        var rect_transform = this.gameObject.GetComponent<RectTransform>();
-
-		switch (this.GetOpenType()) {
-		case 1: {
-            rect_transform.anchoredPosition = new Vector2(-rect_transform.sizeDelta.x - 8.0f, rect_transform.anchoredPosition.y);
-
-            var open_close_sequence = DOTween.Sequence();
-
-            open_close_sequence.Append(rect_transform.DOAnchorPosX(8.0f, 0.1f));
-            open_close_sequence.SetLink(this.gameObject);
-
-            this.AddOpenCloseSequence(open_close_sequence);
-
-			break;
-		}
-		default: {
-            rect_transform.anchoredPosition = new Vector2(8.0f, rect_transform.anchoredPosition.y);
-
-			break;
-		}
-		}
+        base._OnOpen();
 
         return;
     }
@@ -194,9 +180,7 @@ public class MenuOptionStageScript : UnityBase.Scene.MenuStageScript
      */
     protected override void _OnUpdateOpen()
     {
-        if (!this.IsActiveOpenCloseSequence()) {
-            this.CompleteOpen();
-        }
+        base._OnUpdateOpen();
 
         return;
     }
@@ -206,27 +190,7 @@ public class MenuOptionStageScript : UnityBase.Scene.MenuStageScript
      */
     protected override void _OnClose()
     {
-        var rect_transform = this.gameObject.GetComponent<RectTransform>();
-
-		switch (this.GetCloseType()) {
-		case 1: {
-            rect_transform.anchoredPosition = new Vector2(8.0f, rect_transform.anchoredPosition.y);
-
-            var open_close_sequence = DOTween.Sequence();
-
-            open_close_sequence.Append(rect_transform.DOAnchorPosX(-rect_transform.sizeDelta.x - 8.0f, 0.1f));
-            open_close_sequence.SetLink(this.gameObject);
-
-            this.AddOpenCloseSequence(open_close_sequence);
-
-			break;
-		}
-		default: {
-            rect_transform.anchoredPosition = new Vector2(-rect_transform.sizeDelta.x - 8.0f, rect_transform.anchoredPosition.y);
-
-			break;
-		}
-		}
+        base._OnClose();
 
         return;
     }
@@ -236,9 +200,7 @@ public class MenuOptionStageScript : UnityBase.Scene.MenuStageScript
      */
     protected override void _OnUpdateClose()
     {
-        if (!this.IsActiveOpenCloseSequence()) {
-            this.CompleteClose();
-        }
+        base._OnUpdateClose();
 
         return;
     }
@@ -257,7 +219,7 @@ public class MenuOptionStageScript : UnityBase.Scene.MenuStageScript
 
         // LanguageSelectDialogScript Create
         if (this._languageSelectDialogScript == null) {
-            this._languageSelectDialogNode = Lib.Scene.Util.GetPrefabNode(UnityBase.Constant.Util.FILE_PATH.MENU_OPTION_STAGE_LANGUAGE_SELECT_DIALOG_PREFAB, this._menuScript.GetSubSceneScript().GetDialogNode());
+            this._languageSelectDialogNode = Lib.Scene.Util.GetPrefabNode(UnityBase.Constant.Util.FILE_PATH.MENU_OPTION_STAGE_LANGUAGE_SELECT_DIALOG_PREFAB, this.GetMenuScript().GetSubSceneScript().GetDialogNode());
 
             var script = this._languageSelectDialogNode.GetComponent<UnityBase.Scene.MenuOptionStageLanguageSelectDialogScript>();
             var script_create_desc = new UnityBase.Scene.MenuOptionStageLanguageSelectDialogScriptCreateDesc();
@@ -456,7 +418,7 @@ public class MenuOptionStageScript : UnityBase.Scene.MenuStageScript
             Lib.Scene.Util.GetManager().ChangeMainScene(UnityBase.Constant.Util.SCENE.NAME.MAIN);
         }
 
-        this._menuScript.RunStageOkButton();
+        this.GetMenuScript().RunStageOkButton();
 
         return;
     }
@@ -508,7 +470,7 @@ public class MenuOptionStageScript : UnityBase.Scene.MenuStageScript
         Lib.Scene.Util.GetSoundManager().SetSeVolume(UnityBase.Global.systemConfigFile.data.soundSeVolume);
         Lib.Scene.Util.GetSoundManager().SetSeMuteFlag(UnityBase.Global.systemConfigFile.data.soundSeMuteFlag);
 
-        this._menuScript.RunStageCancelButton();
+        this.GetMenuScript().RunStageCancelButton();
 
         return;
     }

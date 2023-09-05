@@ -8,7 +8,6 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using TMPro;
-using DG.Tweening;
 
 
 namespace ToffMonaka {
@@ -18,7 +17,6 @@ namespace UnityBase.Scene {
  */
 public class MenuEndStageScriptCreateDesc : UnityBase.Scene.MenuStageScriptCreateDesc
 {
-    public UnityBase.Scene.MenuScript menuScript = null;
 }
 
 /**
@@ -26,7 +24,6 @@ public class MenuEndStageScriptCreateDesc : UnityBase.Scene.MenuStageScriptCreat
  */
 public class MenuEndStageScript : UnityBase.Scene.MenuStageScript
 {
-    [SerializeField] private TMP_Text _nameText = null;
     [SerializeField] private ScrollRect _editScrollRect = null;
     [SerializeField] private TMP_Text _restartNameText = null;
     [SerializeField] private Toggle _restartToggle = null;
@@ -38,8 +35,6 @@ public class MenuEndStageScript : UnityBase.Scene.MenuStageScript
     [SerializeField] private Image _cancelButtonCoverImage = null;
 
     public new UnityBase.Scene.MenuEndStageScriptCreateDesc createDesc{get; private set;} = null;
-
-    private UnityBase.Scene.MenuScript _menuScript = null;
 
     /**
      * @brief コンストラクタ
@@ -57,6 +52,8 @@ public class MenuEndStageScript : UnityBase.Scene.MenuStageScript
      */
     protected override void _OnAwake()
     {
+        base._OnAwake();
+
         return;
     }
 
@@ -65,6 +62,8 @@ public class MenuEndStageScript : UnityBase.Scene.MenuStageScript
      */
     protected override void _OnDestroy()
     {
+        base._OnDestroy();
+
         return;
     }
 
@@ -75,9 +74,9 @@ public class MenuEndStageScript : UnityBase.Scene.MenuStageScript
      */
     protected override int _OnCreate()
     {
-        this._menuScript = this.createDesc.menuScript;
-
-        this._nameText.SetText(UnityBase.Global.GetString(UnityBase.Constant.Util.SCENE.MENU_STAGE_NAME_MST_STRING_ID_ARRAY[(int)this.GetStageType()]));
+        if (base._OnCreate() < 0) {
+            return (-1);
+        }
 
         this._restartNameText.SetText(UnityBase.Global.GetString(UnityBase.Constant.Util.MST_STRING_ID.RESTART));
         this._endNameText.SetText(UnityBase.Global.GetString(UnityBase.Constant.Util.MST_STRING_ID.EXIT));
@@ -106,6 +105,8 @@ public class MenuEndStageScript : UnityBase.Scene.MenuStageScript
      */
     protected override void _OnActive()
     {
+        base._OnActive();
+
         this._editScrollRect.verticalNormalizedPosition = 1.0f;
         this._restartToggle.SetIsOnWithoutNotify(false);
         this._endToggle.SetIsOnWithoutNotify(false);
@@ -120,6 +121,8 @@ public class MenuEndStageScript : UnityBase.Scene.MenuStageScript
      */
     protected override void _OnDeactive()
     {
+        base._OnDeactive();
+
         return;
     }
 
@@ -128,6 +131,8 @@ public class MenuEndStageScript : UnityBase.Scene.MenuStageScript
      */
     protected override void _OnUpdate()
     {
+        base._OnUpdate();
+
         return;
     }
 
@@ -136,27 +141,7 @@ public class MenuEndStageScript : UnityBase.Scene.MenuStageScript
      */
     protected override void _OnOpen()
     {
-        var rect_transform = this.gameObject.GetComponent<RectTransform>();
-
-		switch (this.GetOpenType()) {
-		case 1: {
-            rect_transform.anchoredPosition = new Vector2(-rect_transform.sizeDelta.x - 8.0f, rect_transform.anchoredPosition.y);
-
-            var open_close_sequence = DOTween.Sequence();
-
-            open_close_sequence.Append(rect_transform.DOAnchorPosX(8.0f, 0.1f));
-            open_close_sequence.SetLink(this.gameObject);
-
-            this.AddOpenCloseSequence(open_close_sequence);
-
-			break;
-		}
-		default: {
-            rect_transform.anchoredPosition = new Vector2(8.0f, rect_transform.anchoredPosition.y);
-
-			break;
-		}
-		}
+        base._OnOpen();
 
         return;
     }
@@ -166,9 +151,7 @@ public class MenuEndStageScript : UnityBase.Scene.MenuStageScript
      */
     protected override void _OnUpdateOpen()
     {
-        if (!this.IsActiveOpenCloseSequence()) {
-            this.CompleteOpen();
-        }
+        base._OnUpdateOpen();
 
         return;
     }
@@ -178,27 +161,7 @@ public class MenuEndStageScript : UnityBase.Scene.MenuStageScript
      */
     protected override void _OnClose()
     {
-        var rect_transform = this.gameObject.GetComponent<RectTransform>();
-
-		switch (this.GetCloseType()) {
-		case 1: {
-            rect_transform.anchoredPosition = new Vector2(8.0f, rect_transform.anchoredPosition.y);
-
-            var open_close_sequence = DOTween.Sequence();
-
-            open_close_sequence.Append(rect_transform.DOAnchorPosX(-rect_transform.sizeDelta.x - 8.0f, 0.1f));
-            open_close_sequence.SetLink(this.gameObject);
-
-            this.AddOpenCloseSequence(open_close_sequence);
-
-			break;
-		}
-		default: {
-            rect_transform.anchoredPosition = new Vector2(-rect_transform.sizeDelta.x - 8.0f, rect_transform.anchoredPosition.y);
-
-			break;
-		}
-		}
+        base._OnClose();
 
         return;
     }
@@ -208,9 +171,7 @@ public class MenuEndStageScript : UnityBase.Scene.MenuStageScript
      */
     protected override void _OnUpdateClose()
     {
-        if (!this.IsActiveOpenCloseSequence()) {
-            this.CompleteClose();
-        }
+        base._OnUpdateClose();
 
         return;
     }
@@ -279,7 +240,7 @@ public class MenuEndStageScript : UnityBase.Scene.MenuStageScript
 #endif
         }
 
-        this._menuScript.RunStageOkButton();
+        this.GetMenuScript().RunStageOkButton();
 
         return;
     }
@@ -326,7 +287,7 @@ public class MenuEndStageScript : UnityBase.Scene.MenuStageScript
 
         Lib.Scene.Util.GetSoundManager().PlaySe((int)UnityBase.Constant.Util.SOUND.SE_INDEX.CANCEL);
 
-        this._menuScript.RunStageCancelButton();
+        this.GetMenuScript().RunStageCancelButton();
 
         return;
     }
