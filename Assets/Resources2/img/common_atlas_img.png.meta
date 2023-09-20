@@ -121,7 +121,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 1
-        y: 60
+        y: 57
         width: 64
         height: 64
       alignment: 0
@@ -142,7 +142,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 50
-        y: 11
+        y: 8
         width: 48
         height: 48
       alignment: 0
@@ -163,7 +163,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 1
-        y: 11
+        y: 8
         width: 48
         height: 48
       alignment: 0
@@ -205,7 +205,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 66
-        y: 206
+        y: 203
         width: 48
         height: 48
       alignment: 0
@@ -226,7 +226,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 66
-        y: 157
+        y: 154
         width: 48
         height: 48
       alignment: 0
@@ -247,7 +247,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 1
-        y: 125
+        y: 122
         width: 64
         height: 64
       alignment: 0
@@ -268,7 +268,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 1
-        y: 190
+        y: 187
         width: 64
         height: 64
       alignment: 0
@@ -280,6 +280,111 @@ TextureImporter:
       bones: []
       spriteID: 2c63e67b91ef144428d24009f3e73e36
       internalID: 1902315550
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: left_btn_cover_img
+      rect:
+        serializedVersion: 2
+        x: 482
+        y: 447
+        width: 24
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e15d167c06545db46916a6f9b2b08e17
+      internalID: -304043277
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: left_btn_img
+      rect:
+        serializedVersion: 2
+        x: 482
+        y: 382
+        width: 24
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 99a669e912afa804d941b48a7b7d9002
+      internalID: -977036350
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: right_btn_cover_img
+      rect:
+        serializedVersion: 2
+        x: 482
+        y: 317
+        width: 24
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2b5a2a67dc896c64fa767c0758917a0c
+      internalID: 1521482529
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: right_btn_img
+      rect:
+        serializedVersion: 2
+        x: 482
+        y: 252
+        width: 24
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4140a9b36b81ca64f9c9a5a7f649b324
+      internalID: -1995911554
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sliced_bg3_img
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 121
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 5, y: 5, z: 5, w: 5}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 83788e7e4affe69438a297fb04e19bc6
+      internalID: -1544211645
       vertices: []
       indices: 
       edges: []
@@ -297,8 +402,13 @@ TextureImporter:
     nameFileIdTable:
       back_icon_img: 1902315550
       close_icon_img: -108880751
+      left_btn_cover_img: -304043277
+      left_btn_img: -977036350
       menu_icon_img: -444311614
+      right_btn_cover_img: 1521482529
+      right_btn_img: -1995911554
       sliced_bg2_img: 1020748398
+      sliced_bg3_img: -1544211645
       sliced_bg_img: 2045713713
       sliced_btn_cover_img: 779608807
       sliced_btn_img: -549913937

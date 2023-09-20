@@ -90,8 +90,6 @@ public static class Util
             MENU_SELECT,
             MENU_SELECT_STAGE_BUTTON,
             MENU_OPTION_STAGE,
-            MENU_OPTION_STAGE_LANGUAGE_SELECT_DIALOG,
-            MENU_OPTION_STAGE_LANGUAGE_SELECT_DIALOG_BUTTON,
             MENU_FAQ_STAGE,
             MENU_STAFF_STAGE,
             MENU_LICENSE_STAGE,
@@ -99,6 +97,8 @@ public static class Util
             MENU_END_STAGE,
             MENU_CHEAT_STAGE,
             MENU_CHEAT_STAGE_COMMAND_BUTTON,
+            MENU_OPTION_STAGE_LANGUAGE_SELECT_DIALOG,
+            MENU_OPTION_STAGE_LANGUAGE_SELECT_DIALOG_BUTTON,
 		    COUNT
         }
         public const int SCRIPT_INDEX_COUNT = (int)UnityBase.Constant.Util.SCENE.SCRIPT_INDEX.COUNT;
