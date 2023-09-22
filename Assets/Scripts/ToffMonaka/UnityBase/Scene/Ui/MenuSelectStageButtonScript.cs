@@ -1,6 +1,6 @@
 ﻿/**
  * @file
- * @brief MenuOptionStageLanguageSelectDialogButtonScriptファイル
+ * @brief MenuSelectStageButtonScriptファイル
  */
 
 
@@ -11,35 +11,35 @@ using TMPro;
 
 
 namespace ToffMonaka {
-namespace UnityBase.Scene {
+namespace UnityBase.Scene.Ui {
 /**
- * @brief MenuOptionStageLanguageSelectDialogButtonScriptCreateDescクラス
+ * @brief MenuSelectStageButtonScriptCreateDescクラス
  */
-public class MenuOptionStageLanguageSelectDialogButtonScriptCreateDesc : Lib.Scene.ObjectScriptCreateDesc
+public class MenuSelectStageButtonScriptCreateDesc : Lib.Scene.ObjectScriptCreateDesc
 {
-    public UnityBase.Scene.MenuOptionStageLanguageSelectDialogScript dialogScript = null;
-    public UnityBase.Constant.Util.LANGUAGE_TYPE languageType = UnityBase.Constant.Util.LANGUAGE_TYPE.NONE;
+    public UnityBase.Scene.Ui.MenuSelectScript selectScript = null;
+    public UnityBase.Constant.Util.SCENE.MENU_STAGE_TYPE stageType = UnityBase.Constant.Util.SCENE.MENU_STAGE_TYPE.NONE;
 }
 
 /**
- * @brief MenuOptionStageLanguageSelectDialogButtonScriptクラス
+ * @brief MenuSelectStageButtonScriptクラス
  */
-public class MenuOptionStageLanguageSelectDialogButtonScript : Lib.Scene.ObjectScript, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
+public class MenuSelectStageButtonScript : Lib.Scene.ObjectScript, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
 {
     [SerializeField] private TMP_Text _nameText = null;
     [SerializeField] private Image _coverImage = null;
 
-    public new UnityBase.Scene.MenuOptionStageLanguageSelectDialogButtonScriptCreateDesc createDesc{get; private set;} = null;
+    public new UnityBase.Scene.Ui.MenuSelectStageButtonScriptCreateDesc createDesc{get; private set;} = null;
 
-    private UnityBase.Scene.MenuOptionStageLanguageSelectDialogScript _dialogScript = null;
-    private UnityBase.Constant.Util.LANGUAGE_TYPE _languageType = UnityBase.Constant.Util.LANGUAGE_TYPE.NONE;
+    private UnityBase.Scene.Ui.MenuSelectScript _selectScript = null;
+    private UnityBase.Constant.Util.SCENE.MENU_STAGE_TYPE _stageType = UnityBase.Constant.Util.SCENE.MENU_STAGE_TYPE.NONE;
 
     /**
      * @brief コンストラクタ
      */
-    public MenuOptionStageLanguageSelectDialogButtonScript()
+    public MenuSelectStageButtonScript()
     {
-        this._SetScriptIndex((int)UnityBase.Constant.Util.SCENE.SCRIPT_INDEX.MENU_OPTION_STAGE_LANGUAGE_SELECT_DIALOG_BUTTON);
+        this._SetScriptIndex((int)UnityBase.Constant.Util.SCENE.SCRIPT_INDEX.MENU_SELECT_STAGE_BUTTON);
 
         return;
     }
@@ -67,10 +67,10 @@ public class MenuOptionStageLanguageSelectDialogButtonScript : Lib.Scene.ObjectS
      */
     protected override int _OnCreate()
     {
-        this._dialogScript = this.createDesc.dialogScript;
-        this._languageType = this.createDesc.languageType;
+        this._selectScript = this.createDesc.selectScript;
+        this._stageType = this.createDesc.stageType;
 
-        this._nameText.SetText(UnityBase.Global.GetString(UnityBase.Constant.Util.LANGUAGE_NAME_MST_STRING_ID_ARRAY[(int)this._languageType]));
+        this._nameText.SetText(UnityBase.Global.GetString(UnityBase.Constant.Util.SCENE.MENU_STAGE_NAME_MST_STRING_ID_ARRAY[(int)this._stageType]));
 
         return (0);
     }
@@ -81,7 +81,7 @@ public class MenuOptionStageLanguageSelectDialogButtonScript : Lib.Scene.ObjectS
      */
     public override void SetCreateDesc(Lib.Scene.ScriptCreateDesc create_desc)
     {
-	    this.createDesc = create_desc as UnityBase.Scene.MenuOptionStageLanguageSelectDialogButtonScriptCreateDesc;
+	    this.createDesc = create_desc as UnityBase.Scene.Ui.MenuSelectStageButtonScriptCreateDesc;
 
         base.SetCreateDesc(this.createDesc);
 
@@ -162,7 +162,7 @@ public class MenuOptionStageLanguageSelectDialogButtonScript : Lib.Scene.ObjectS
 
         Lib.Scene.Util.GetSoundManager().PlaySe((int)UnityBase.Constant.Util.SOUND.SE_INDEX.OK2);
 
-        this._dialogScript.RunButton(this._languageType);
+        this._selectScript.RunStageButton(this._stageType);
 
         return;
     }

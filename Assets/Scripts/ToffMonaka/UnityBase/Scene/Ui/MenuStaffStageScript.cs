@@ -1,6 +1,6 @@
 ﻿/**
  * @file
- * @brief MenuFaqStageScriptファイル
+ * @brief MenuStaffStageScriptファイル
  */
 
 
@@ -11,33 +11,33 @@ using TMPro;
 
 
 namespace ToffMonaka {
-namespace UnityBase.Scene {
+namespace UnityBase.Scene.Ui {
 /**
- * @brief MenuFaqStageScriptCreateDescクラス
+ * @brief MenuStaffStageScriptCreateDescクラス
  */
-public class MenuFaqStageScriptCreateDesc : UnityBase.Scene.MenuStageScriptCreateDesc
+public class MenuStaffStageScriptCreateDesc : UnityBase.Scene.Ui.MenuStageScriptCreateDesc
 {
 }
 
 /**
- * @brief MenuFaqStageScriptクラス
+ * @brief MenuStaffStageScriptクラス
  */
-public class MenuFaqStageScript : UnityBase.Scene.MenuStageScript
+public class MenuStaffStageScript : UnityBase.Scene.Ui.MenuStageScript
 {
     [SerializeField] private ScrollRect _messageScrollRect = null;
     [SerializeField] private GameObject _messageNode = null;
     [SerializeField] private TMP_Text _cancelButtonNameText = null;
     [SerializeField] private Image _cancelButtonCoverImage = null;
 
-    public new UnityBase.Scene.MenuFaqStageScriptCreateDesc createDesc{get; private set;} = null;
+    public new UnityBase.Scene.Ui.MenuStaffStageScriptCreateDesc createDesc{get; private set;} = null;
 
     /**
      * @brief コンストラクタ
      */
-    public MenuFaqStageScript()
+    public MenuStaffStageScript()
     {
-        this._SetScriptIndex((int)UnityBase.Constant.Util.SCENE.SCRIPT_INDEX.MENU_FAQ_STAGE);
-        this._SetStageType(UnityBase.Constant.Util.SCENE.MENU_STAGE_TYPE.FAQ);
+        this._SetScriptIndex((int)UnityBase.Constant.Util.SCENE.SCRIPT_INDEX.MENU_STAFF_STAGE);
+        this._SetStageType(UnityBase.Constant.Util.SCENE.MENU_STAGE_TYPE.STAFF);
 
         return;
     }
@@ -77,12 +77,46 @@ public class MenuFaqStageScript : UnityBase.Scene.MenuStageScript
 
         {// MessageNode Create
             var en_str_ary = new string[]{
-                "Q, What is the application to do?\n" +
-                "A, It is a Unity base application."
+                "-SCENARIO-\n" +
+                "Toff Monaka",
+    
+                "-PROGRAM-\n" +
+                "Toff Monaka",
+    
+                "-GRAPHIC-\n" +
+                "Toff Monaka",
+    
+                "-SOUND-\n" +
+                "Toff Monaka\n" +
+                "無料効果音で遊ぼう！/無料効果音素材\n" +
+                "http://taira-komori.jpn.org/freesound.html\n" +
+                "©効果音ラボ\n" +
+                "https://soundeffect-lab.info/\n" +
+                "On-Jin ～音人～\n" +
+                "https://on-jin.com/\n" +
+                "甘茶の音楽工房\n" +
+                "http://amachamusic.chagasi.com/"
             };
             var jp_str_ary = new string[]{
-                "Q, 何をするアプリなんですか？\n" +
-                "A, Unityのベースアプリです。"
+                "-シナリオ-\n" +
+                "Toff Monaka",
+    
+                "-プログラム-\n" +
+                "Toff Monaka",
+    
+                "-グラフィック-\n" +
+                "Toff Monaka",
+    
+                "-サウンド-\n" +
+                "Toff Monaka\n" +
+                "無料効果音で遊ぼう！/無料効果音素材\n" +
+                "http://taira-komori.jpn.org/freesound.html\n" +
+                "©効果音ラボ\n" +
+                "https://soundeffect-lab.info/\n" +
+                "On-Jin ～音人～\n" +
+                "https://on-jin.com/\n" +
+                "甘茶の音楽工房\n" +
+                "http://amachamusic.chagasi.com/"
             };
             string[] str_ary;
 
@@ -121,7 +155,7 @@ public class MenuFaqStageScript : UnityBase.Scene.MenuStageScript
      */
     public override void SetCreateDesc(Lib.Scene.ScriptCreateDesc create_desc)
     {
-	    this.createDesc = create_desc as UnityBase.Scene.MenuFaqStageScriptCreateDesc;
+	    this.createDesc = create_desc as UnityBase.Scene.Ui.MenuStaffStageScriptCreateDesc;
 
         base.SetCreateDesc(this.createDesc);
 

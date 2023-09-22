@@ -1,43 +1,41 @@
 ﻿/**
  * @file
- * @brief MenuOpenCloseButtonScriptファイル
+ * @brief MenuStageScriptファイル
  */
 
 
 using UnityEngine;
-using UnityEngine.UI;
-using UnityEngine.EventSystems;
+using TMPro;
 using DG.Tweening;
 
 
 namespace ToffMonaka {
-namespace UnityBase.Scene {
+namespace UnityBase.Scene.Ui {
 /**
- * @brief MenuOpenCloseButtonScriptCreateDescクラス
+ * @brief MenuStageScriptCreateDescクラス
  */
-public class MenuOpenCloseButtonScriptCreateDesc : Lib.Scene.ObjectScriptCreateDesc
+public class MenuStageScriptCreateDesc : Lib.Scene.ObjectScriptCreateDesc
 {
-    public UnityBase.Scene.MenuScript menuScript = null;
+    public UnityBase.Scene.Ui.MenuScript menuScript = null;
 }
 
 /**
- * @brief MenuOpenCloseButtonScriptクラス
+ * @brief MenuStageScriptクラス
  */
-public class MenuOpenCloseButtonScript : Lib.Scene.ObjectScript, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
+public class MenuStageScript : Lib.Scene.ObjectScript
 {
-    [SerializeField] private Image _coverImage = null;
+    [SerializeField] private TMP_Text _nameText = null;
 
-    public new UnityBase.Scene.MenuOpenCloseButtonScriptCreateDesc createDesc{get; private set;} = null;
+    public new UnityBase.Scene.Ui.MenuStageScriptCreateDesc createDesc{get; private set;} = null;
 
-    private UnityBase.Scene.MenuScript _menuScript = null;
+    private UnityBase.Scene.Ui.MenuScript _menuScript = null;
+    private UnityBase.Constant.Util.SCENE.MENU_STAGE_TYPE _stageType = UnityBase.Constant.Util.SCENE.MENU_STAGE_TYPE.NONE;
 
     /**
      * @brief コンストラクタ
      */
-    public MenuOpenCloseButtonScript()
+    public MenuStageScript()
     {
-        this._SetScriptIndex((int)UnityBase.Constant.Util.SCENE.SCRIPT_INDEX.MENU_OPEN_CLOSE_BUTTON);
-
         return;
     }
 
@@ -66,6 +64,8 @@ public class MenuOpenCloseButtonScript : Lib.Scene.ObjectScript, IPointerClickHa
     {
         this._menuScript = this.createDesc.menuScript;
 
+        this._nameText.SetText(UnityBase.Global.GetString(UnityBase.Constant.Util.SCENE.MENU_STAGE_NAME_MST_STRING_ID_ARRAY[(int)this._stageType]));
+
         return (0);
     }
 
@@ -75,7 +75,7 @@ public class MenuOpenCloseButtonScript : Lib.Scene.ObjectScript, IPointerClickHa
      */
     public override void SetCreateDesc(Lib.Scene.ScriptCreateDesc create_desc)
     {
-	    this.createDesc = create_desc as UnityBase.Scene.MenuOpenCloseButtonScriptCreateDesc;
+	    this.createDesc = create_desc as UnityBase.Scene.Ui.MenuStageScriptCreateDesc;
 
         base.SetCreateDesc(this.createDesc);
 
@@ -87,8 +87,6 @@ public class MenuOpenCloseButtonScript : Lib.Scene.ObjectScript, IPointerClickHa
      */
     protected override void _OnActive()
     {
-        this._coverImage.gameObject.SetActive(false);
-
         return;
     }
 
@@ -193,52 +191,30 @@ public class MenuOpenCloseButtonScript : Lib.Scene.ObjectScript, IPointerClickHa
     }
 
     /**
-     * @brief OnPointerClick関数
-     * @param event_dat (event_data)
+     * @brief GetMenuScript関数
+     * @return menu_script (menu_script)
      */
-    public void OnPointerClick(PointerEventData event_dat)
+    public UnityBase.Scene.Ui.MenuScript GetMenuScript()
     {
-        if (!this.IsControllable()) {
-            return;
-        }
-
-        this._menuScript.RunOpenCloseButton();
-
-        if (this._menuScript.GetOpenSelectScript() != null) {
-            Lib.Scene.Util.GetSoundManager().PlaySe((int)UnityBase.Constant.Util.SOUND.SE_INDEX.OK2);
-        } else {
-            Lib.Scene.Util.GetSoundManager().PlaySe((int)UnityBase.Constant.Util.SOUND.SE_INDEX.CANCEL);
-        }
-
-        return;
+        return (this._menuScript);
     }
 
     /**
-     * @brief OnPointerEnter関数
-     * @param event_dat (event_data)
+     * @brief GetStageType関数
+     * @return stage_type (stage_type)
      */
-    public void OnPointerEnter(PointerEventData event_dat)
+    public UnityBase.Constant.Util.SCENE.MENU_STAGE_TYPE GetStageType()
     {
-        if (!this.IsControllable()) {
-            return;
-        }
-
-        this._coverImage.gameObject.SetActive(true);
-
-        return;
+        return (this._stageType);
     }
 
     /**
-     * @brief OnPointerExit関数
-     * @param event_dat (event_data)
+     * @brief _SetStageType関数
+     * @param stage_type (stage_type)
      */
-    public void OnPointerExit(PointerEventData event_dat)
+    protected void _SetStageType(UnityBase.Constant.Util.SCENE.MENU_STAGE_TYPE stage_type)
     {
-        if (!this.IsControllable()) {
-            return;
-        }
-
-        this._coverImage.gameObject.SetActive(false);
+        this._stageType = stage_type;
 
         return;
     }

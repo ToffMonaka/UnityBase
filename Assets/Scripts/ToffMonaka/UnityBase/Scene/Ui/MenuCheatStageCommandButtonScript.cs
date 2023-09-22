@@ -11,13 +11,13 @@ using TMPro;
 
 
 namespace ToffMonaka {
-namespace UnityBase.Scene {
+namespace UnityBase.Scene.Ui {
 /**
  * @brief MenuCheatStageCommandButtonScriptCreateDescクラス
  */
 public class MenuCheatStageCommandButtonScriptCreateDesc : Lib.Scene.ObjectScriptCreateDesc
 {
-    public UnityBase.Scene.MenuCheatStageScript stageScript = null;
+    public UnityBase.Scene.Ui.MenuCheatStageScript stageScript = null;
     public UnityBase.Constant.Util.SCENE.MENU_CHEAT_STAGE_COMMAND_TYPE commandType = UnityBase.Constant.Util.SCENE.MENU_CHEAT_STAGE_COMMAND_TYPE.NONE;
 }
 
@@ -30,9 +30,9 @@ public class MenuCheatStageCommandButtonScript : Lib.Scene.ObjectScript, IPointe
     [SerializeField] private TMP_Text _detailText = null;
     [SerializeField] private Image _coverImage = null;
 
-    public new UnityBase.Scene.MenuCheatStageCommandButtonScriptCreateDesc createDesc{get; private set;} = null;
+    public new UnityBase.Scene.Ui.MenuCheatStageCommandButtonScriptCreateDesc createDesc{get; private set;} = null;
 
-    private UnityBase.Scene.MenuCheatStageScript _stageScript = null;
+    private UnityBase.Scene.Ui.MenuCheatStageScript _stageScript = null;
     private UnityBase.Constant.Util.SCENE.MENU_CHEAT_STAGE_COMMAND_TYPE _commandType = UnityBase.Constant.Util.SCENE.MENU_CHEAT_STAGE_COMMAND_TYPE.NONE;
 
     /**
@@ -90,7 +90,7 @@ public class MenuCheatStageCommandButtonScript : Lib.Scene.ObjectScript, IPointe
      */
     public override void SetCreateDesc(Lib.Scene.ScriptCreateDesc create_desc)
     {
-	    this.createDesc = create_desc as UnityBase.Scene.MenuCheatStageCommandButtonScriptCreateDesc;
+	    this.createDesc = create_desc as UnityBase.Scene.Ui.MenuCheatStageCommandButtonScriptCreateDesc;
 
         base.SetCreateDesc(this.createDesc);
 

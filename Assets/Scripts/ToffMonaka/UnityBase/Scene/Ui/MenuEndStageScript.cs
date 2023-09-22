@@ -11,18 +11,18 @@ using TMPro;
 
 
 namespace ToffMonaka {
-namespace UnityBase.Scene {
+namespace UnityBase.Scene.Ui {
 /**
  * @brief MenuEndStageScriptCreateDescクラス
  */
-public class MenuEndStageScriptCreateDesc : UnityBase.Scene.MenuStageScriptCreateDesc
+public class MenuEndStageScriptCreateDesc : UnityBase.Scene.Ui.MenuStageScriptCreateDesc
 {
 }
 
 /**
  * @brief MenuEndStageScriptクラス
  */
-public class MenuEndStageScript : UnityBase.Scene.MenuStageScript
+public class MenuEndStageScript : UnityBase.Scene.Ui.MenuStageScript
 {
     [SerializeField] private ScrollRect _editScrollRect = null;
     [SerializeField] private TMP_Text _restartNameText = null;
@@ -34,7 +34,7 @@ public class MenuEndStageScript : UnityBase.Scene.MenuStageScript
     [SerializeField] private TMP_Text _cancelButtonNameText = null;
     [SerializeField] private Image _cancelButtonCoverImage = null;
 
-    public new UnityBase.Scene.MenuEndStageScriptCreateDesc createDesc{get; private set;} = null;
+    public new UnityBase.Scene.Ui.MenuEndStageScriptCreateDesc createDesc{get; private set;} = null;
 
     /**
      * @brief コンストラクタ
@@ -93,7 +93,7 @@ public class MenuEndStageScript : UnityBase.Scene.MenuStageScript
      */
     public override void SetCreateDesc(Lib.Scene.ScriptCreateDesc create_desc)
     {
-	    this.createDesc = create_desc as UnityBase.Scene.MenuEndStageScriptCreateDesc;
+	    this.createDesc = create_desc as UnityBase.Scene.Ui.MenuEndStageScriptCreateDesc;
 
         base.SetCreateDesc(this.createDesc);
 

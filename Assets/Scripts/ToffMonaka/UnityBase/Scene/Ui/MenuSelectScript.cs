@@ -11,13 +11,13 @@ using DG.Tweening;
 
 
 namespace ToffMonaka {
-namespace UnityBase.Scene {
+namespace UnityBase.Scene.Ui {
 /**
  * @brief MenuSelectScriptCreateDescクラス
  */
 public class MenuSelectScriptCreateDesc : Lib.Scene.ObjectScriptCreateDesc
 {
-    public UnityBase.Scene.MenuScript menuScript = null;
+    public UnityBase.Scene.Ui.MenuScript menuScript = null;
 }
 
 /**
@@ -28,10 +28,10 @@ public class MenuSelectScript : Lib.Scene.ObjectScript
     [SerializeField] private TMP_Text _nameText = null;
     [SerializeField] private GameObject _stageButtonNode = null;
 
-    public new UnityBase.Scene.MenuSelectScriptCreateDesc createDesc{get; private set;} = null;
+    public new UnityBase.Scene.Ui.MenuSelectScriptCreateDesc createDesc{get; private set;} = null;
 
-    private UnityBase.Scene.MenuScript _menuScript = null;
-    private List<UnityBase.Scene.MenuSelectStageButtonScript> _stageButtonScriptContainer = new List<UnityBase.Scene.MenuSelectStageButtonScript>();
+    private UnityBase.Scene.Ui.MenuScript _menuScript = null;
+    private List<UnityBase.Scene.Ui.MenuSelectStageButtonScript> _stageButtonScriptContainer = new List<UnityBase.Scene.Ui.MenuSelectStageButtonScript>();
 
     /**
      * @brief コンストラクタ
@@ -73,8 +73,8 @@ public class MenuSelectScript : Lib.Scene.ObjectScript
         this._stageButtonNode.SetActive(false);
 
         {// StageButtonScript Create
-            var script = GameObject.Instantiate(this._stageButtonNode, this._stageButtonNode.transform.parent).GetComponent<UnityBase.Scene.MenuSelectStageButtonScript>();
-            var script_create_desc = new UnityBase.Scene.MenuSelectStageButtonScriptCreateDesc();
+            var script = GameObject.Instantiate(this._stageButtonNode, this._stageButtonNode.transform.parent).GetComponent<UnityBase.Scene.Ui.MenuSelectStageButtonScript>();
+            var script_create_desc = new UnityBase.Scene.Ui.MenuSelectStageButtonScriptCreateDesc();
 
             script_create_desc.selectScript = this;
             script_create_desc.stageType = UnityBase.Constant.Util.SCENE.MENU_STAGE_TYPE.OPTION;
@@ -86,8 +86,8 @@ public class MenuSelectScript : Lib.Scene.ObjectScript
         }
 
         {// StageButtonScript Create
-            var script = GameObject.Instantiate(this._stageButtonNode, this._stageButtonNode.transform.parent).GetComponent<UnityBase.Scene.MenuSelectStageButtonScript>();
-            var script_create_desc = new UnityBase.Scene.MenuSelectStageButtonScriptCreateDesc();
+            var script = GameObject.Instantiate(this._stageButtonNode, this._stageButtonNode.transform.parent).GetComponent<UnityBase.Scene.Ui.MenuSelectStageButtonScript>();
+            var script_create_desc = new UnityBase.Scene.Ui.MenuSelectStageButtonScriptCreateDesc();
 
             script_create_desc.selectScript = this;
             script_create_desc.stageType = UnityBase.Constant.Util.SCENE.MENU_STAGE_TYPE.FAQ;
@@ -99,8 +99,8 @@ public class MenuSelectScript : Lib.Scene.ObjectScript
         }
 
         {// StageButtonScript Create
-            var script = GameObject.Instantiate(this._stageButtonNode, this._stageButtonNode.transform.parent).GetComponent<UnityBase.Scene.MenuSelectStageButtonScript>();
-            var script_create_desc = new UnityBase.Scene.MenuSelectStageButtonScriptCreateDesc();
+            var script = GameObject.Instantiate(this._stageButtonNode, this._stageButtonNode.transform.parent).GetComponent<UnityBase.Scene.Ui.MenuSelectStageButtonScript>();
+            var script_create_desc = new UnityBase.Scene.Ui.MenuSelectStageButtonScriptCreateDesc();
 
             script_create_desc.selectScript = this;
             script_create_desc.stageType = UnityBase.Constant.Util.SCENE.MENU_STAGE_TYPE.STAFF;
@@ -112,8 +112,8 @@ public class MenuSelectScript : Lib.Scene.ObjectScript
         }
 
         {// StageButtonScript Create
-            var script = GameObject.Instantiate(this._stageButtonNode, this._stageButtonNode.transform.parent).GetComponent<UnityBase.Scene.MenuSelectStageButtonScript>();
-            var script_create_desc = new UnityBase.Scene.MenuSelectStageButtonScriptCreateDesc();
+            var script = GameObject.Instantiate(this._stageButtonNode, this._stageButtonNode.transform.parent).GetComponent<UnityBase.Scene.Ui.MenuSelectStageButtonScript>();
+            var script_create_desc = new UnityBase.Scene.Ui.MenuSelectStageButtonScriptCreateDesc();
 
             script_create_desc.selectScript = this;
             script_create_desc.stageType = UnityBase.Constant.Util.SCENE.MENU_STAGE_TYPE.LICENSE;
@@ -125,8 +125,8 @@ public class MenuSelectScript : Lib.Scene.ObjectScript
         }
 
         {// StageButtonScript Create
-            var script = GameObject.Instantiate(this._stageButtonNode, this._stageButtonNode.transform.parent).GetComponent<UnityBase.Scene.MenuSelectStageButtonScript>();
-            var script_create_desc = new UnityBase.Scene.MenuSelectStageButtonScriptCreateDesc();
+            var script = GameObject.Instantiate(this._stageButtonNode, this._stageButtonNode.transform.parent).GetComponent<UnityBase.Scene.Ui.MenuSelectStageButtonScript>();
+            var script_create_desc = new UnityBase.Scene.Ui.MenuSelectStageButtonScriptCreateDesc();
 
             script_create_desc.selectScript = this;
             script_create_desc.stageType = UnityBase.Constant.Util.SCENE.MENU_STAGE_TYPE.PRIVACY_POLICY;
@@ -138,8 +138,8 @@ public class MenuSelectScript : Lib.Scene.ObjectScript
         }
 
         {// StageButtonScript Create
-            var script = GameObject.Instantiate(this._stageButtonNode, this._stageButtonNode.transform.parent).GetComponent<UnityBase.Scene.MenuSelectStageButtonScript>();
-            var script_create_desc = new UnityBase.Scene.MenuSelectStageButtonScriptCreateDesc();
+            var script = GameObject.Instantiate(this._stageButtonNode, this._stageButtonNode.transform.parent).GetComponent<UnityBase.Scene.Ui.MenuSelectStageButtonScript>();
+            var script_create_desc = new UnityBase.Scene.Ui.MenuSelectStageButtonScriptCreateDesc();
 
             script_create_desc.selectScript = this;
             script_create_desc.stageType = UnityBase.Constant.Util.SCENE.MENU_STAGE_TYPE.END;
@@ -153,8 +153,8 @@ public class MenuSelectScript : Lib.Scene.ObjectScript
         // StageButtonScript Create
         if (UnityBase.Constant.Util.DEBUG_FLAG) {
 #pragma warning disable CS0162
-            var script = GameObject.Instantiate(this._stageButtonNode, this._stageButtonNode.transform.parent).GetComponent<UnityBase.Scene.MenuSelectStageButtonScript>();
-            var script_create_desc = new UnityBase.Scene.MenuSelectStageButtonScriptCreateDesc();
+            var script = GameObject.Instantiate(this._stageButtonNode, this._stageButtonNode.transform.parent).GetComponent<UnityBase.Scene.Ui.MenuSelectStageButtonScript>();
+            var script_create_desc = new UnityBase.Scene.Ui.MenuSelectStageButtonScriptCreateDesc();
 
             script_create_desc.selectScript = this;
             script_create_desc.stageType = UnityBase.Constant.Util.SCENE.MENU_STAGE_TYPE.CHEAT;
@@ -175,7 +175,7 @@ public class MenuSelectScript : Lib.Scene.ObjectScript
      */
     public override void SetCreateDesc(Lib.Scene.ScriptCreateDesc create_desc)
     {
-	    this.createDesc = create_desc as UnityBase.Scene.MenuSelectScriptCreateDesc;
+	    this.createDesc = create_desc as UnityBase.Scene.Ui.MenuSelectScriptCreateDesc;
 
         base.SetCreateDesc(this.createDesc);
 

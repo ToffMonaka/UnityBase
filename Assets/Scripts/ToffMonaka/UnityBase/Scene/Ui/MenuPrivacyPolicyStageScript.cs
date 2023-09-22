@@ -11,25 +11,25 @@ using TMPro;
 
 
 namespace ToffMonaka {
-namespace UnityBase.Scene {
+namespace UnityBase.Scene.Ui {
 /**
  * @brief MenuPrivacyPolicyStageScriptCreateDescクラス
  */
-public class MenuPrivacyPolicyStageScriptCreateDesc : UnityBase.Scene.MenuStageScriptCreateDesc
+public class MenuPrivacyPolicyStageScriptCreateDesc : UnityBase.Scene.Ui.MenuStageScriptCreateDesc
 {
 }
 
 /**
  * @brief MenuPrivacyPolicyStageScriptクラス
  */
-public class MenuPrivacyPolicyStageScript : UnityBase.Scene.MenuStageScript
+public class MenuPrivacyPolicyStageScript : UnityBase.Scene.Ui.MenuStageScript
 {
     [SerializeField] private ScrollRect _messageScrollRect = null;
     [SerializeField] private GameObject _messageNode = null;
     [SerializeField] private TMP_Text _cancelButtonNameText = null;
     [SerializeField] private Image _cancelButtonCoverImage = null;
 
-    public new UnityBase.Scene.MenuPrivacyPolicyStageScriptCreateDesc createDesc{get; private set;} = null;
+    public new UnityBase.Scene.Ui.MenuPrivacyPolicyStageScriptCreateDesc createDesc{get; private set;} = null;
 
     /**
      * @brief コンストラクタ
@@ -243,7 +243,7 @@ public class MenuPrivacyPolicyStageScript : UnityBase.Scene.MenuStageScript
      */
     public override void SetCreateDesc(Lib.Scene.ScriptCreateDesc create_desc)
     {
-	    this.createDesc = create_desc as UnityBase.Scene.MenuPrivacyPolicyStageScriptCreateDesc;
+	    this.createDesc = create_desc as UnityBase.Scene.Ui.MenuPrivacyPolicyStageScriptCreateDesc;
 
         base.SetCreateDesc(this.createDesc);
 

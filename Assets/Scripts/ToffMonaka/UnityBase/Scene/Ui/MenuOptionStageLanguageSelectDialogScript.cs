@@ -13,13 +13,13 @@ using DG.Tweening;
 
 
 namespace ToffMonaka {
-namespace UnityBase.Scene {
+namespace UnityBase.Scene.Ui {
 /**
  * @brief MenuOptionStageLanguageSelectDialogScriptCreateDescクラス
  */
 public class MenuOptionStageLanguageSelectDialogScriptCreateDesc : Lib.Scene.ObjectScriptCreateDesc
 {
-    public UnityBase.Scene.MenuOptionStageScript stageScript = null;
+    public UnityBase.Scene.Ui.MenuOptionStageScript stageScript = null;
 }
 
 /**
@@ -32,10 +32,10 @@ public class MenuOptionStageLanguageSelectDialogScript : Lib.Scene.ObjectScript
     [SerializeField] private GameObject _buttonNode = null;
     [SerializeField] private Image _closeButtonCoverImage = null;
 
-    public new UnityBase.Scene.MenuOptionStageLanguageSelectDialogScriptCreateDesc createDesc{get; private set;} = null;
+    public new UnityBase.Scene.Ui.MenuOptionStageLanguageSelectDialogScriptCreateDesc createDesc{get; private set;} = null;
 
-    private UnityBase.Scene.MenuOptionStageScript _stageScript = null;
-    private List<UnityBase.Scene.MenuOptionStageLanguageSelectDialogButtonScript> _buttonScriptContainer = new List<UnityBase.Scene.MenuOptionStageLanguageSelectDialogButtonScript>();
+    private UnityBase.Scene.Ui.MenuOptionStageScript _stageScript = null;
+    private List<UnityBase.Scene.Ui.MenuOptionStageLanguageSelectDialogButtonScript> _buttonScriptContainer = new List<UnityBase.Scene.Ui.MenuOptionStageLanguageSelectDialogButtonScript>();
 
     /**
      * @brief コンストラクタ
@@ -83,8 +83,8 @@ public class MenuOptionStageLanguageSelectDialogScript : Lib.Scene.ObjectScript
             };
 
             foreach (var language_type in language_type_ary) {
-                var script = GameObject.Instantiate(this._buttonNode, this._buttonNode.transform.parent).GetComponent<UnityBase.Scene.MenuOptionStageLanguageSelectDialogButtonScript>();
-                var script_create_desc = new UnityBase.Scene.MenuOptionStageLanguageSelectDialogButtonScriptCreateDesc();
+                var script = GameObject.Instantiate(this._buttonNode, this._buttonNode.transform.parent).GetComponent<UnityBase.Scene.Ui.MenuOptionStageLanguageSelectDialogButtonScript>();
+                var script_create_desc = new UnityBase.Scene.Ui.MenuOptionStageLanguageSelectDialogButtonScriptCreateDesc();
 
                 script_create_desc.dialogScript = this;
                 script_create_desc.languageType = language_type;
@@ -105,7 +105,7 @@ public class MenuOptionStageLanguageSelectDialogScript : Lib.Scene.ObjectScript
      */
     public override void SetCreateDesc(Lib.Scene.ScriptCreateDesc create_desc)
     {
-	    this.createDesc = create_desc as UnityBase.Scene.MenuOptionStageLanguageSelectDialogScriptCreateDesc;
+	    this.createDesc = create_desc as UnityBase.Scene.Ui.MenuOptionStageLanguageSelectDialogScriptCreateDesc;
 
         base.SetCreateDesc(this.createDesc);
 

@@ -1,6 +1,6 @@
 ﻿/**
  * @file
- * @brief MenuStaffStageScriptファイル
+ * @brief MenuLicenseStageScriptファイル
  */
 
 
@@ -11,33 +11,33 @@ using TMPro;
 
 
 namespace ToffMonaka {
-namespace UnityBase.Scene {
+namespace UnityBase.Scene.Ui {
 /**
- * @brief MenuStaffStageScriptCreateDescクラス
+ * @brief MenuLicenseStageScriptCreateDescクラス
  */
-public class MenuStaffStageScriptCreateDesc : UnityBase.Scene.MenuStageScriptCreateDesc
+public class MenuLicenseStageScriptCreateDesc : UnityBase.Scene.Ui.MenuStageScriptCreateDesc
 {
 }
 
 /**
- * @brief MenuStaffStageScriptクラス
+ * @brief MenuLicenseStageScriptクラス
  */
-public class MenuStaffStageScript : UnityBase.Scene.MenuStageScript
+public class MenuLicenseStageScript : UnityBase.Scene.Ui.MenuStageScript
 {
     [SerializeField] private ScrollRect _messageScrollRect = null;
     [SerializeField] private GameObject _messageNode = null;
     [SerializeField] private TMP_Text _cancelButtonNameText = null;
     [SerializeField] private Image _cancelButtonCoverImage = null;
 
-    public new UnityBase.Scene.MenuStaffStageScriptCreateDesc createDesc{get; private set;} = null;
+    public new UnityBase.Scene.Ui.MenuLicenseStageScriptCreateDesc createDesc{get; private set;} = null;
 
     /**
      * @brief コンストラクタ
      */
-    public MenuStaffStageScript()
+    public MenuLicenseStageScript()
     {
-        this._SetScriptIndex((int)UnityBase.Constant.Util.SCENE.SCRIPT_INDEX.MENU_STAFF_STAGE);
-        this._SetStageType(UnityBase.Constant.Util.SCENE.MENU_STAGE_TYPE.STAFF);
+        this._SetScriptIndex((int)UnityBase.Constant.Util.SCENE.SCRIPT_INDEX.MENU_LICENSE_STAGE);
+        this._SetStageType(UnityBase.Constant.Util.SCENE.MENU_STAGE_TYPE.LICENSE);
 
         return;
     }
@@ -76,62 +76,20 @@ public class MenuStaffStageScript : UnityBase.Scene.MenuStageScript
         this._messageNode.SetActive(false);
 
         {// MessageNode Create
-            var en_str_ary = new string[]{
-                "-SCENARIO-\n" +
-                "Toff Monaka",
-    
-                "-PROGRAM-\n" +
-                "Toff Monaka",
-    
-                "-GRAPHIC-\n" +
-                "Toff Monaka",
-    
-                "-SOUND-\n" +
-                "Toff Monaka\n" +
-                "無料効果音で遊ぼう！/無料効果音素材\n" +
-                "http://taira-komori.jpn.org/freesound.html\n" +
-                "©効果音ラボ\n" +
-                "https://soundeffect-lab.info/\n" +
-                "On-Jin ～音人～\n" +
-                "https://on-jin.com/\n" +
-                "甘茶の音楽工房\n" +
-                "http://amachamusic.chagasi.com/"
+            var str_ary = new string[]{
+                "-----------------------------------\n" +
+                "Unity TextMeshPro\n" +
+                "-----------------------------------\n" +
+                "https://docs.unity3d.com/Packages/com.unity.textmeshpro@3.0/license/LICENSE.html\n" +
+                "\n" +
+                "TextMesh Pro copyright © 2021 Unity Technologies ApS\n" +
+                "\n" +
+                "Licensed under the Unity Companion License for Unity-dependent projects--see Unity\n" +
+                "Companion License.\n" +
+                "\n" +
+                "Unless expressly provided otherwise, the Software under this license is made available strictly on an “AS IS” BASIS WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED.\n" +
+                "Please review the license for details on these and other terms and conditions."
             };
-            var jp_str_ary = new string[]{
-                "-シナリオ-\n" +
-                "Toff Monaka",
-    
-                "-プログラム-\n" +
-                "Toff Monaka",
-    
-                "-グラフィック-\n" +
-                "Toff Monaka",
-    
-                "-サウンド-\n" +
-                "Toff Monaka\n" +
-                "無料効果音で遊ぼう！/無料効果音素材\n" +
-                "http://taira-komori.jpn.org/freesound.html\n" +
-                "©効果音ラボ\n" +
-                "https://soundeffect-lab.info/\n" +
-                "On-Jin ～音人～\n" +
-                "https://on-jin.com/\n" +
-                "甘茶の音楽工房\n" +
-                "http://amachamusic.chagasi.com/"
-            };
-            string[] str_ary;
-
-		    switch (UnityBase.Global.systemConfigFile.data.systemLanguageType) {
-		    case UnityBase.Constant.Util.LANGUAGE_TYPE.JAPANESE: {
-                str_ary = jp_str_ary;
-
-			    break;
-		    }
-		    default: {
-                str_ary = en_str_ary;
-
-			    break;
-		    }
-		    }
 
             for (int str_i = 0; str_i < str_ary.Length; ++str_i) {
                 var str = (str_i <= 0) ? str_ary[str_i] : "\n" + str_ary[str_i];
@@ -155,7 +113,7 @@ public class MenuStaffStageScript : UnityBase.Scene.MenuStageScript
      */
     public override void SetCreateDesc(Lib.Scene.ScriptCreateDesc create_desc)
     {
-	    this.createDesc = create_desc as UnityBase.Scene.MenuStaffStageScriptCreateDesc;
+	    this.createDesc = create_desc as UnityBase.Scene.Ui.MenuLicenseStageScriptCreateDesc;
 
         base.SetCreateDesc(this.createDesc);
 
