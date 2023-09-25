@@ -51,7 +51,7 @@ public class MenuOptionStageScript : UnityBase.Scene.Ui.MenuStageScript
     private bool _soundSeMuteFlag = false;
     private uint _restartFlag = 0U;
     private GameObject _languageSelectDialogNode = null;
-    private UnityBase.Scene.Ui.MenuOptionStageLanguageSelectDialogScript _languageSelectDialogScript = null;
+    private UnityBase.Scene.Ui.LanguageSelectDialogScript _languageSelectDialogScript = null;
 
     /**
      * @brief コンストラクタ
@@ -219,10 +219,10 @@ public class MenuOptionStageScript : UnityBase.Scene.Ui.MenuStageScript
 
         // LanguageSelectDialogScript Create
         if (this._languageSelectDialogScript == null) {
-            this._languageSelectDialogNode = Lib.Scene.Util.GetPrefabNode(UnityBase.Constant.Util.FILE_PATH.MENU_OPTION_STAGE_LANGUAGE_SELECT_DIALOG_PREFAB, this.GetMenuScript().GetSubSceneScript().GetDialogNode());
+            this._languageSelectDialogNode = Lib.Scene.Util.GetPrefabNode(UnityBase.Constant.Util.FILE_PATH.LANGUAGE_SELECT_DIALOG_PREFAB, this.GetMenuScript().GetSubSceneScript().GetDialogNode());
 
-            var script = this._languageSelectDialogNode.GetComponent<UnityBase.Scene.Ui.MenuOptionStageLanguageSelectDialogScript>();
-            var script_create_desc = new UnityBase.Scene.Ui.MenuOptionStageLanguageSelectDialogScriptCreateDesc();
+            var script = this._languageSelectDialogNode.GetComponent<UnityBase.Scene.Ui.LanguageSelectDialogScript>();
+            var script_create_desc = new UnityBase.Scene.Ui.LanguageSelectDialogScriptCreateDesc();
 
             script_create_desc.stageScript = this;
 

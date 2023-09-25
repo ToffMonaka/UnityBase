@@ -1,6 +1,6 @@
 ﻿/**
  * @file
- * @brief MenuOptionStageLanguageSelectDialogScriptファイル
+ * @brief LanguageSelectDialogScriptファイル
  */
 
 
@@ -9,40 +9,38 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using System.Collections.Generic;
 using TMPro;
-using DG.Tweening;
 
 
 namespace ToffMonaka {
 namespace UnityBase.Scene.Ui {
 /**
- * @brief MenuOptionStageLanguageSelectDialogScriptCreateDescクラス
+ * @brief LanguageSelectDialogScriptCreateDescクラス
  */
-public class MenuOptionStageLanguageSelectDialogScriptCreateDesc : Lib.Scene.ObjectScriptCreateDesc
+public class LanguageSelectDialogScriptCreateDesc : UnityBase.Scene.Ui.DialogScriptCreateDesc
 {
     public UnityBase.Scene.Ui.MenuOptionStageScript stageScript = null;
 }
 
 /**
- * @brief MenuOptionStageLanguageSelectDialogScriptクラス
+ * @brief LanguageSelectDialogScriptクラス
  */
-public class MenuOptionStageLanguageSelectDialogScript : Lib.Scene.ObjectScript
+public class LanguageSelectDialogScript : UnityBase.Scene.Ui.DialogScript
 {
-    [SerializeField] private CanvasGroup _canvasGroup = null;
     [SerializeField] private TMP_Text _nameText = null;
     [SerializeField] private GameObject _buttonNode = null;
     [SerializeField] private Image _closeButtonCoverImage = null;
 
-    public new UnityBase.Scene.Ui.MenuOptionStageLanguageSelectDialogScriptCreateDesc createDesc{get; private set;} = null;
+    public new UnityBase.Scene.Ui.LanguageSelectDialogScriptCreateDesc createDesc{get; private set;} = null;
 
     private UnityBase.Scene.Ui.MenuOptionStageScript _stageScript = null;
-    private List<UnityBase.Scene.Ui.MenuOptionStageLanguageSelectDialogButtonScript> _buttonScriptContainer = new List<UnityBase.Scene.Ui.MenuOptionStageLanguageSelectDialogButtonScript>();
+    private List<UnityBase.Scene.Ui.LanguageSelectDialogButtonScript> _buttonScriptContainer = new List<UnityBase.Scene.Ui.LanguageSelectDialogButtonScript>();
 
     /**
      * @brief コンストラクタ
      */
-    public MenuOptionStageLanguageSelectDialogScript()
+    public LanguageSelectDialogScript()
     {
-        this._SetScriptIndex((int)UnityBase.Constant.Util.SCENE.SCRIPT_INDEX.MENU_OPTION_STAGE_LANGUAGE_SELECT_DIALOG);
+        this._SetScriptIndex((int)UnityBase.Constant.Util.SCENE.SCRIPT_INDEX.LANGUAGE_SELECT_DIALOG);
 
         return;
     }
@@ -52,6 +50,8 @@ public class MenuOptionStageLanguageSelectDialogScript : Lib.Scene.ObjectScript
      */
     protected override void _OnAwake()
     {
+        base._OnAwake();
+
         return;
     }
 
@@ -60,6 +60,8 @@ public class MenuOptionStageLanguageSelectDialogScript : Lib.Scene.ObjectScript
      */
     protected override void _OnDestroy()
     {
+        base._OnDestroy();
+
         return;
     }
 
@@ -70,6 +72,10 @@ public class MenuOptionStageLanguageSelectDialogScript : Lib.Scene.ObjectScript
      */
     protected override int _OnCreate()
     {
+        if (base._OnCreate() < 0) {
+            return (-1);
+        }
+
         this._stageScript = this.createDesc.stageScript;
 
         this._nameText.SetText(UnityBase.Global.GetString(UnityBase.Constant.Util.MST_STRING_ID.LANGUAGE));
@@ -83,8 +89,8 @@ public class MenuOptionStageLanguageSelectDialogScript : Lib.Scene.ObjectScript
             };
 
             foreach (var language_type in language_type_ary) {
-                var script = GameObject.Instantiate(this._buttonNode, this._buttonNode.transform.parent).GetComponent<UnityBase.Scene.Ui.MenuOptionStageLanguageSelectDialogButtonScript>();
-                var script_create_desc = new UnityBase.Scene.Ui.MenuOptionStageLanguageSelectDialogButtonScriptCreateDesc();
+                var script = GameObject.Instantiate(this._buttonNode, this._buttonNode.transform.parent).GetComponent<UnityBase.Scene.Ui.LanguageSelectDialogButtonScript>();
+                var script_create_desc = new UnityBase.Scene.Ui.LanguageSelectDialogButtonScriptCreateDesc();
 
                 script_create_desc.dialogScript = this;
                 script_create_desc.languageType = language_type;
@@ -105,7 +111,7 @@ public class MenuOptionStageLanguageSelectDialogScript : Lib.Scene.ObjectScript
      */
     public override void SetCreateDesc(Lib.Scene.ScriptCreateDesc create_desc)
     {
-	    this.createDesc = create_desc as UnityBase.Scene.Ui.MenuOptionStageLanguageSelectDialogScriptCreateDesc;
+	    this.createDesc = create_desc as UnityBase.Scene.Ui.LanguageSelectDialogScriptCreateDesc;
 
         base.SetCreateDesc(this.createDesc);
 
@@ -117,6 +123,8 @@ public class MenuOptionStageLanguageSelectDialogScript : Lib.Scene.ObjectScript
      */
     protected override void _OnActive()
     {
+        base._OnActive();
+
         this._closeButtonCoverImage.gameObject.SetActive(false);
 
         return;
@@ -127,6 +135,8 @@ public class MenuOptionStageLanguageSelectDialogScript : Lib.Scene.ObjectScript
      */
     protected override void _OnDeactive()
     {
+        base._OnDeactive();
+
         return;
     }
 
@@ -135,6 +145,8 @@ public class MenuOptionStageLanguageSelectDialogScript : Lib.Scene.ObjectScript
      */
     protected override void _OnUpdate()
     {
+        base._OnUpdate();
+
         return;
     }
 
@@ -143,25 +155,7 @@ public class MenuOptionStageLanguageSelectDialogScript : Lib.Scene.ObjectScript
      */
     protected override void _OnOpen()
     {
-		switch (this.GetOpenType()) {
-		case 1: {
-            this._canvasGroup.alpha = 0.0f;
-
-            var open_close_sequence = DOTween.Sequence();
-
-            open_close_sequence.Append(this._canvasGroup.DOFade(1.0f, 0.1f));
-            open_close_sequence.SetLink(this.gameObject);
-
-            this.AddOpenCloseSequence(open_close_sequence);
-
-			break;
-		}
-		default: {
-            this._canvasGroup.alpha = 1.0f;
-
-			break;
-		}
-		}
+        base._OnOpen();
 
         return;
     }
@@ -171,9 +165,7 @@ public class MenuOptionStageLanguageSelectDialogScript : Lib.Scene.ObjectScript
      */
     protected override void _OnUpdateOpen()
     {
-        if (!this.IsActiveOpenCloseSequence()) {
-            this.CompleteOpen();
-        }
+        base._OnUpdateOpen();
 
         return;
     }
@@ -183,25 +175,7 @@ public class MenuOptionStageLanguageSelectDialogScript : Lib.Scene.ObjectScript
      */
     protected override void _OnClose()
     {
-		switch (this.GetCloseType()) {
-		case 1: {
-            this._canvasGroup.alpha = 1.0f;
-
-            var open_close_sequence = DOTween.Sequence();
-
-            open_close_sequence.Append(this._canvasGroup.DOFade(0.0f, 0.1f));
-            open_close_sequence.SetLink(this.gameObject);
-
-            this.AddOpenCloseSequence(open_close_sequence);
-
-			break;
-		}
-		default: {
-            this._canvasGroup.alpha = 0.0f;
-
-			break;
-		}
-		}
+        base._OnClose();
 
         return;
     }
@@ -211,9 +185,7 @@ public class MenuOptionStageLanguageSelectDialogScript : Lib.Scene.ObjectScript
      */
     protected override void _OnUpdateClose()
     {
-        if (!this.IsActiveOpenCloseSequence()) {
-            this.CompleteClose();
-        }
+        base._OnUpdateClose();
 
         return;
     }
