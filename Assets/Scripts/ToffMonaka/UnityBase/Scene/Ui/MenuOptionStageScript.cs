@@ -31,10 +31,14 @@ public class MenuOptionStageScript : UnityBase.Scene.Ui.MenuStageScript
     [SerializeField] private TMP_Text _soundNameText = null;
     [SerializeField] private TMP_Text _soundBgmVolumeNameText = null;
     [SerializeField] private Slider _soundBgmVolumeSlider = null;
+    [SerializeField] private Image _soundBgmVolumeSliderLeftButtonCoverImage = null;
+    [SerializeField] private Image _soundBgmVolumeSliderRightButtonCoverImage = null;
     [SerializeField] private TMP_Text _soundBgmMuteNameText = null;
     [SerializeField] private Toggle _soundBgmMuteToggle = null;
     [SerializeField] private TMP_Text _soundSeVolumeNameText = null;
     [SerializeField] private Slider _soundSeVolumeSlider = null;
+    [SerializeField] private Image _soundSeVolumeSliderLeftButtonCoverImage = null;
+    [SerializeField] private Image _soundSeVolumeSliderRightButtonCoverImage = null;
     [SerializeField] private TMP_Text _soundSeMuteNameText = null;
     [SerializeField] private Toggle _soundSeMuteToggle = null;
     [SerializeField] private TMP_Text _okButtonNameText = null;
@@ -105,7 +109,6 @@ public class MenuOptionStageScript : UnityBase.Scene.Ui.MenuStageScript
         this._soundNameText.SetText(UnityBase.Global.GetString(UnityBase.Constant.Util.MST_STRING_ID.SOUND));
         this._soundBgmMuteNameText.SetText(UnityBase.Global.GetString(UnityBase.Constant.Util.MST_STRING_ID.BGM_MUTE));
         this._soundSeMuteNameText.SetText(UnityBase.Global.GetString(UnityBase.Constant.Util.MST_STRING_ID.SE_MUTE));
-
         this._okButtonNameText.SetText(UnityBase.Global.GetString(UnityBase.Constant.Util.MST_STRING_ID.OK));
         this._cancelButtonNameText.SetText(UnityBase.Global.GetString(UnityBase.Constant.Util.MST_STRING_ID.CANCEL));
 
@@ -139,6 +142,10 @@ public class MenuOptionStageScript : UnityBase.Scene.Ui.MenuStageScript
         this.SetSoundSeVolume(UnityBase.Global.systemConfigFile.data.soundSeVolume);
         this.SetSoundSeMuteFlag(UnityBase.Global.systemConfigFile.data.soundSeMuteFlag);
         this._languageButtonCoverImage.gameObject.SetActive(false);
+        this._soundBgmVolumeSliderLeftButtonCoverImage.gameObject.SetActive(false);
+        this._soundBgmVolumeSliderRightButtonCoverImage.gameObject.SetActive(false);
+        this._soundSeVolumeSliderLeftButtonCoverImage.gameObject.SetActive(false);
+        this._soundSeVolumeSliderRightButtonCoverImage.gameObject.SetActive(false);
         this._okButtonCoverImage.gameObject.SetActive(false);
         this._cancelButtonCoverImage.gameObject.SetActive(false);
 
@@ -278,15 +285,113 @@ public class MenuOptionStageScript : UnityBase.Scene.Ui.MenuStageScript
             return;
         }
 
-        var old_sound_bgm_volume = this._soundBgmVolume;
+        var old_val = this._soundBgmVolume;
 
         this.SetSoundBgmVolume(this._soundBgmVolumeSlider.value / 10.0f);
 
         Lib.Scene.Util.GetSoundManager().SetBgmVolume(this._soundBgmVolume);
 
-        if (this._soundBgmVolume != old_sound_bgm_volume) {
+        if (this._soundBgmVolume != old_val) {
             Lib.Scene.Util.GetSoundManager().PlaySe((int)UnityBase.Constant.Util.SOUND.SE_INDEX.OK2);
         }
+
+        return;
+    }
+
+    /**
+     * @brief OnSoundBgmVolumeSliderLeftButtonPointerClick関数
+     * @param event_dat (event_data)
+     */
+    public void OnSoundBgmVolumeSliderLeftButtonPointerClick(PointerEventData event_dat)
+    {
+        if (!this.IsControllable()) {
+            return;
+        }
+
+        Lib.Scene.Util.GetSoundManager().PlaySe((int)UnityBase.Constant.Util.SOUND.SE_INDEX.OK2);
+
+        this.SetSoundBgmVolume(System.Math.Max(this._soundBgmVolume - 0.1f, 0.0f));
+
+        Lib.Scene.Util.GetSoundManager().SetBgmVolume(this._soundBgmVolume);
+
+        return;
+    }
+
+    /**
+     * @brief OnSoundBgmVolumeSliderLeftButtonPointerEnter関数
+     * @param event_dat (event_data)
+     */
+    public void OnSoundBgmVolumeSliderLeftButtonPointerEnter(PointerEventData event_dat)
+    {
+        if (!this.IsControllable()) {
+            return;
+        }
+
+        this._soundBgmVolumeSliderLeftButtonCoverImage.gameObject.SetActive(true);
+
+        return;
+    }
+
+    /**
+     * @brief OnSoundBgmVolumeSliderLeftButtonPointerExit関数
+     * @param event_dat (event_data)
+     */
+    public void OnSoundBgmVolumeSliderLeftButtonPointerExit(PointerEventData event_dat)
+    {
+        if (!this.IsControllable()) {
+            return;
+        }
+
+        this._soundBgmVolumeSliderLeftButtonCoverImage.gameObject.SetActive(false);
+
+        return;
+    }
+
+    /**
+     * @brief OnSoundBgmVolumeSliderRightButtonPointerClick関数
+     * @param event_dat (event_data)
+     */
+    public void OnSoundBgmVolumeSliderRightButtonPointerClick(PointerEventData event_dat)
+    {
+        if (!this.IsControllable()) {
+            return;
+        }
+
+        Lib.Scene.Util.GetSoundManager().PlaySe((int)UnityBase.Constant.Util.SOUND.SE_INDEX.OK2);
+
+        this.SetSoundBgmVolume(System.Math.Min(this._soundBgmVolume + 0.1f, 1.0f));
+
+        Lib.Scene.Util.GetSoundManager().SetBgmVolume(this._soundBgmVolume);
+
+        return;
+    }
+
+    /**
+     * @brief OnSoundBgmVolumeSliderRightButtonPointerEnter関数
+     * @param event_dat (event_data)
+     */
+    public void OnSoundBgmVolumeSliderRightButtonPointerEnter(PointerEventData event_dat)
+    {
+        if (!this.IsControllable()) {
+            return;
+        }
+
+        this._soundBgmVolumeSliderRightButtonCoverImage.gameObject.SetActive(true);
+
+        return;
+    }
+
+    /**
+     * @brief OnSoundBgmVolumeSliderRightButtonPointerExit関数
+     * @param event_dat (event_data)
+     */
+    public void OnSoundBgmVolumeSliderRightButtonPointerExit(PointerEventData event_dat)
+    {
+        if (!this.IsControllable()) {
+            return;
+        }
+
+        this._soundBgmVolumeSliderRightButtonCoverImage.gameObject.SetActive(false);
 
         return;
     }
@@ -301,13 +406,13 @@ public class MenuOptionStageScript : UnityBase.Scene.Ui.MenuStageScript
             return;
         }
 
-        var old_sound_bgm_mute_flg = this._soundBgmMuteFlag;
+        var old_val = this._soundBgmMuteFlag;
 
         this.SetSoundBgmMuteFlag(this._soundBgmMuteToggle.isOn);
 
         Lib.Scene.Util.GetSoundManager().SetBgmMuteFlag(this._soundBgmMuteFlag);
 
-        if (this._soundBgmMuteFlag != old_sound_bgm_mute_flg) {
+        if (this._soundBgmMuteFlag != old_val) {
             if (this._soundBgmMuteFlag) {
                 Lib.Scene.Util.GetSoundManager().PlaySe((int)UnityBase.Constant.Util.SOUND.SE_INDEX.OK2);
             } else {
@@ -328,15 +433,113 @@ public class MenuOptionStageScript : UnityBase.Scene.Ui.MenuStageScript
             return;
         }
 
-        var old_sound_se_volume = this._soundSeVolume;
+        var old_val = this._soundSeVolume;
 
         this.SetSoundSeVolume(this._soundSeVolumeSlider.value / 10.0f);
      
         Lib.Scene.Util.GetSoundManager().SetSeVolume(this._soundSeVolume);
 
-        if (this._soundSeVolume != old_sound_se_volume) {
+        if (this._soundSeVolume != old_val) {
             Lib.Scene.Util.GetSoundManager().PlaySe((int)UnityBase.Constant.Util.SOUND.SE_INDEX.OK2);
         }
+
+        return;
+    }
+
+    /**
+     * @brief OnSoundSeVolumeSliderLeftButtonPointerClick関数
+     * @param event_dat (event_data)
+     */
+    public void OnSoundSeVolumeSliderLeftButtonPointerClick(PointerEventData event_dat)
+    {
+        if (!this.IsControllable()) {
+            return;
+        }
+
+        Lib.Scene.Util.GetSoundManager().PlaySe((int)UnityBase.Constant.Util.SOUND.SE_INDEX.OK2);
+
+        this.SetSoundSeVolume(System.Math.Max(this._soundSeVolume - 0.1f, 0.0f));
+
+        Lib.Scene.Util.GetSoundManager().SetSeVolume(this._soundSeVolume);
+
+        return;
+    }
+
+    /**
+     * @brief OnSoundSeVolumeSliderLeftButtonPointerEnter関数
+     * @param event_dat (event_data)
+     */
+    public void OnSoundSeVolumeSliderLeftButtonPointerEnter(PointerEventData event_dat)
+    {
+        if (!this.IsControllable()) {
+            return;
+        }
+
+        this._soundSeVolumeSliderLeftButtonCoverImage.gameObject.SetActive(true);
+
+        return;
+    }
+
+    /**
+     * @brief OnSoundSeVolumeSliderLeftButtonPointerExit関数
+     * @param event_dat (event_data)
+     */
+    public void OnSoundSeVolumeSliderLeftButtonPointerExit(PointerEventData event_dat)
+    {
+        if (!this.IsControllable()) {
+            return;
+        }
+
+        this._soundSeVolumeSliderLeftButtonCoverImage.gameObject.SetActive(false);
+
+        return;
+    }
+
+    /**
+     * @brief OnSoundSeVolumeSliderRightButtonPointerClick関数
+     * @param event_dat (event_data)
+     */
+    public void OnSoundSeVolumeSliderRightButtonPointerClick(PointerEventData event_dat)
+    {
+        if (!this.IsControllable()) {
+            return;
+        }
+
+        Lib.Scene.Util.GetSoundManager().PlaySe((int)UnityBase.Constant.Util.SOUND.SE_INDEX.OK2);
+
+        this.SetSoundSeVolume(System.Math.Min(this._soundSeVolume + 0.1f, 1.0f));
+
+        Lib.Scene.Util.GetSoundManager().SetSeVolume(this._soundSeVolume);
+
+        return;
+    }
+
+    /**
+     * @brief OnSoundSeVolumeSliderRightButtonPointerEnter関数
+     * @param event_dat (event_data)
+     */
+    public void OnSoundSeVolumeSliderRightButtonPointerEnter(PointerEventData event_dat)
+    {
+        if (!this.IsControllable()) {
+            return;
+        }
+
+        this._soundSeVolumeSliderRightButtonCoverImage.gameObject.SetActive(true);
+
+        return;
+    }
+
+    /**
+     * @brief OnSoundSeVolumeSliderRightButtonPointerExit関数
+     * @param event_dat (event_data)
+     */
+    public void OnSoundSeVolumeSliderRightButtonPointerExit(PointerEventData event_dat)
+    {
+        if (!this.IsControllable()) {
+            return;
+        }
+
+        this._soundSeVolumeSliderRightButtonCoverImage.gameObject.SetActive(false);
 
         return;
     }
@@ -351,13 +554,13 @@ public class MenuOptionStageScript : UnityBase.Scene.Ui.MenuStageScript
             return;
         }
 
-        var old_sound_se_mute_flg = this._soundSeMuteFlag;
+        var old_val = this._soundSeMuteFlag;
 
         this.SetSoundSeMuteFlag(this._soundSeMuteToggle.isOn);
 
         Lib.Scene.Util.GetSoundManager().SetSeMuteFlag(this._soundSeMuteFlag);
 
-        if (this._soundSeMuteFlag != old_sound_se_mute_flg) {
+        if (this._soundSeMuteFlag != old_val) {
             if (this._soundSeMuteFlag) {
                 Lib.Scene.Util.GetSoundManager().PlaySe((int)UnityBase.Constant.Util.SOUND.SE_INDEX.OK2);
             } else {
