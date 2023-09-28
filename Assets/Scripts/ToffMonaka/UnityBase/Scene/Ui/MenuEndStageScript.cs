@@ -80,7 +80,6 @@ public class MenuEndStageScript : UnityBase.Scene.Ui.MenuStageScript
 
         this._restartNameText.SetText(UnityBase.Global.GetString(UnityBase.Constant.Util.MST_STRING_ID.RESTART));
         this._endNameText.SetText(UnityBase.Global.GetString(UnityBase.Constant.Util.MST_STRING_ID.EXIT));
-
         this._okButtonNameText.SetText(UnityBase.Global.GetString(UnityBase.Constant.Util.MST_STRING_ID.OK));
         this._cancelButtonNameText.SetText(UnityBase.Global.GetString(UnityBase.Constant.Util.MST_STRING_ID.CANCEL));
 
