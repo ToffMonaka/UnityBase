@@ -185,7 +185,8 @@ public static class Util
     /**
      * @brief IsFocusNode関数
      * @param node (node)
-     * @return focus_flg (focus_flg)
+     * @return focus_flg (focus_flg)<br>
+     * false=フォーカス無し,true=フォーカス有り
      */
     public static bool IsFocusNode(GameObject node)
     {

@@ -11,9 +11,9 @@ namespace Lib {
  */
 public class RgbColor
 {
-    public byte r = 0;
-    public byte g = 0;
-    public byte b = 0;
+    public byte r;
+    public byte g;
+    public byte b;
 
     /**
      * @brief コンストラクタ
@@ -55,9 +55,20 @@ public class RgbColor
      * @brief コンストラクタ
      * @param code (code)
      */
-    public RgbColor(int code)
+    public RgbColor(string code)
     {
         this.Set(code);
+
+        return;
+    }
+
+    /**
+     * @brief コンストラクタ
+     * @param code_val (code_value)
+     */
+    public RgbColor(int code_val)
+    {
+        this.Set(code_val);
 
         return;
     }
@@ -94,9 +105,20 @@ public class RgbColor
      * @brief Set関数
      * @param code (code)
      */
-    public void Set(int code)
+    public void Set(string code)
     {
         this.SetCode(code);
+
+        return;
+    }
+
+    /**
+     * @brief Set関数
+     * @param code_val (code_value)
+     */
+    public void Set(int code_val)
+    {
+        this.SetCodeValue(code_val);
 
         return;
     }
@@ -114,20 +136,40 @@ public class RgbColor
      * @brief GetCode関数
      * @return code (code)
      */
-    public int GetCode()
+    public string GetCode()
     {
-        return ((this.r << 16) | (this.g << 8) | this.b);
+        return (this.GetCodeValue().ToString("X6"));
     }
 
     /**
      * @brief SetCode関数
      * @param code (code)
      */
-    public void SetCode(int code)
+    public void SetCode(string code)
     {
-        this.r = (byte)((code >> 16) & 0xFF);
-        this.g = (byte)((code >> 8) & 0xFF);
-        this.b = (byte)(code & 0xFF);
+        this.SetCodeValue(System.Convert.ToInt32(code, 16));
+
+        return;
+    }
+
+    /**
+     * @brief GetCodeValue関数
+     * @return code_val (code_value)
+     */
+    public int GetCodeValue()
+    {
+        return ((this.r << 16) | (this.g << 8) | this.b);
+    }
+
+    /**
+     * @brief SetCodeValue関数
+     * @param code_val (code_value)
+     */
+    public void SetCodeValue(int code_val)
+    {
+        this.r = (byte)((code_val >> 16) & 0xFF);
+        this.g = (byte)((code_val >> 8) & 0xFF);
+        this.b = (byte)(code_val & 0xFF);
 
         return;
     }
@@ -172,8 +214,8 @@ public class RgbColor
         v = max / 255.0f * 100.0f;
             
         hsv_col.h = (ushort)System.Math.Round(h, System.MidpointRounding.AwayFromZero);
-        hsv_col.s = (ushort)System.Math.Round(s, System.MidpointRounding.AwayFromZero);
-        hsv_col.v = (ushort)System.Math.Round(v, System.MidpointRounding.AwayFromZero);
+        hsv_col.s = (byte)System.Math.Round(s, System.MidpointRounding.AwayFromZero);
+        hsv_col.v = (byte)System.Math.Round(v, System.MidpointRounding.AwayFromZero);
 
         return (hsv_col);
     }

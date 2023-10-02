@@ -152,7 +152,7 @@ public class MstStringTableFile : Lib.Data.File
 
     /**
      * @brief _OnRead関数
-     * @return result (result)<br>
+     * @return result_val (result_value)<br>
      * 0未満=失敗,-2=ファイル存在無し
      */
     protected override int _OnRead()
@@ -160,12 +160,12 @@ public class MstStringTableFile : Lib.Data.File
 	    var desc_dat = this.readDesc.GetDataByParent();
 
         var csv_file = new Lib.Data.CsvFile();
-        int csv_file_read_res;
+        int csv_file_read_result_val;
 
         csv_file.readDesc.parentData = desc_dat;
 
-        if ((csv_file_read_res = csv_file.Read()) < 0) {
-	        return (csv_file_read_res);
+        if ((csv_file_read_result_val = csv_file.Read()) < 0) {
+	        return (csv_file_read_result_val);
         }
 
         this.data.Init();
@@ -194,7 +194,7 @@ public class MstStringTableFile : Lib.Data.File
 
     /**
      * @brief _OnWrite関数
-     * @return result (result)<br>
+     * @return result_val (result_value)<br>
      * 0未満=失敗
      */
     protected override int _OnWrite()

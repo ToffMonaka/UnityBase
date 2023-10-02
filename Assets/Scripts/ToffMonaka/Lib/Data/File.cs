@@ -284,7 +284,7 @@ public abstract class File
 
     /**
      * @brief Read関数
-     * @return result (result)<br>
+     * @return result_val (result_value)<br>
      * 0未満=失敗
      */
     public int Read()
@@ -294,7 +294,7 @@ public abstract class File
 
     /**
      * @brief _OnRead関数
-     * @return result (result)<br>
+     * @return result_val (result_value)<br>
      * 0未満=失敗
      */
     protected virtual int _OnRead()
@@ -304,7 +304,7 @@ public abstract class File
 
     /**
      * @brief Write関数
-     * @return result (result)<br>
+     * @return result_val (result_value)<br>
      * 0未満=失敗
      */
     public int Write()
@@ -314,7 +314,7 @@ public abstract class File
 
     /**
      * @brief _OnWrite関数
-     * @return result (result)<br>
+     * @return result_val (result_value)<br>
      * 0未満=失敗
      */
     protected virtual int _OnWrite()

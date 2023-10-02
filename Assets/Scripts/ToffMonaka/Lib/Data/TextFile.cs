@@ -198,7 +198,7 @@ public class TextFile : Lib.Data.File
 
     /**
      * @brief _OnRead関数
-     * @return result (result)<br>
+     * @return result_val (result_value)<br>
      * 0未満=失敗,-2=ファイル存在無し
      */
     protected override int _OnRead()
@@ -218,12 +218,12 @@ public class TextFile : Lib.Data.File
 	    }
 
         var bin_file = new Lib.Data.BinaryFile();
-        int bin_file_read_res;
+        int bin_file_read_result_val;
 
         bin_file.readDesc.parentData = desc_dat;
 
-        if ((bin_file_read_res = bin_file.Read()) < 0) {
-	        return (bin_file_read_res);
+        if ((bin_file_read_result_val = bin_file.Read()) < 0) {
+	        return (bin_file_read_result_val);
         }
 
         this.data.Init();
@@ -241,7 +241,7 @@ public class TextFile : Lib.Data.File
 
     /**
      * @brief _OnWrite関数
-     * @return result (result)<br>
+     * @return result_val (result_value)<br>
      * 0未満=失敗
      */
     protected override int _OnWrite()
@@ -268,14 +268,14 @@ public class TextFile : Lib.Data.File
         }
 
         var bin_file = new Lib.Data.BinaryFile();
-        int bin_file_write_res;
+        int bin_file_write_result_val;
 
         bin_file.data.buffer = Encoding.GetEncoding(desc_dat.charset).GetBytes(buf_str);
 
         bin_file.writeDesc.parentData = desc_dat;
 
-        if ((bin_file_write_res = bin_file.Write()) < 0) {
-	        return (bin_file_write_res);
+        if ((bin_file_write_result_val = bin_file.Write()) < 0) {
+	        return (bin_file_write_result_val);
         }
 
         return (0);

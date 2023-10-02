@@ -97,7 +97,7 @@ public class SystemConfigFile : Lib.Data.File
 
     /**
      * @brief _OnRead関数
-     * @return result (result)<br>
+     * @return result_val (result_value)<br>
      * 0未満=失敗,-2=ファイル存在無し
      */
     protected override int _OnRead()
@@ -105,12 +105,12 @@ public class SystemConfigFile : Lib.Data.File
 	    var desc_dat = this.readDesc.GetDataByParent();
 
         var ini_file = new Lib.Data.IniFile();
-        int ini_file_read_res;
+        int ini_file_read_result_val;
 
         ini_file.readDesc.parentData = desc_dat;
 
-        if ((ini_file_read_res = ini_file.Read()) < 0) {
-	        return (ini_file_read_res);
+        if ((ini_file_read_result_val = ini_file.Read()) < 0) {
+	        return (ini_file_read_result_val);
         }
 
         this.data.Init();
@@ -176,7 +176,7 @@ public class SystemConfigFile : Lib.Data.File
 
     /**
      * @brief _OnWrite関数
-     * @return result (result)<br>
+     * @return result_val (result_value)<br>
      * 0未満=失敗
      */
     protected override int _OnWrite()
@@ -192,7 +192,7 @@ public class SystemConfigFile : Lib.Data.File
 	    }
 
         var txt_file = new Lib.Data.TextFile();
-        int txt_file_write_res;
+        int txt_file_write_result_val;
 
         {// System Section Write
 	        txt_file.data.lineStringContainer.Add(section_start_str + "SYSTEM" + section_end_str);
@@ -216,8 +216,8 @@ public class SystemConfigFile : Lib.Data.File
 
         txt_file.writeDesc.parentData = desc_dat;
 
-        if ((txt_file_write_res = txt_file.Write()) < 0) {
-	        return (txt_file_write_res);
+        if ((txt_file_write_result_val = txt_file.Write()) < 0) {
+	        return (txt_file_write_result_val);
         }
 
         return (0);

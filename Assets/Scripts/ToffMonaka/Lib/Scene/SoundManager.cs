@@ -86,7 +86,7 @@ public class SoundManager
     /**
      * @brief Create関数
      * @param desc (desc)
-     * @return result (result)<br>
+     * @return result_val (result_value)<br>
      * 0未満=失敗
      */
     public virtual int Create(Lib.Scene.SoundManagerCreateDesc desc = null)
@@ -132,12 +132,12 @@ public class SoundManager
 	        this._seMuteFlag = this.createDesc.seMuteFlag;
         }
 
-        int create_res = this._OnCreate();
+        int create_result_val = this._OnCreate();
 
-        if (create_res < 0) {
+        if (create_result_val < 0) {
             this.Init();
 
-            return (create_res);
+            return (create_result_val);
         }
 
         return (0);
@@ -145,7 +145,7 @@ public class SoundManager
 
     /**
      * @brief _OnCreate関数
-     * @return result (result)<br>
+     * @return result_val (result_value)<br>
      * 0未満=失敗
      */
     protected virtual int _OnCreate()

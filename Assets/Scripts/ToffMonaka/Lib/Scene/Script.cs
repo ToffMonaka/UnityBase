@@ -176,7 +176,7 @@ public abstract class Script : MonoBehaviour
     /**
      * @brief Create関数
      * @param desc (desc)
-     * @return result (result)<br>
+     * @return result_val (result_value)<br>
      * 0未満=失敗
      */
     public virtual int Create(Lib.Scene.ScriptCreateDesc desc = null)
@@ -204,10 +204,10 @@ public abstract class Script : MonoBehaviour
             this._SetCanvasNode();
         }
 
-        int create_res = this._OnCreate();
+        int create_result_val = this._OnCreate();
 
-        if (create_res < 0) {
-            return (create_res);
+        if (create_result_val < 0) {
+            return (create_result_val);
         }
 
         this._controlFlag = true;
@@ -217,7 +217,7 @@ public abstract class Script : MonoBehaviour
 
     /**
      * @brief _OnCreate関数
-     * @return result (result)<br>
+     * @return result_val (result_value)<br>
      * 0未満=失敗
      */
     protected virtual int _OnCreate()
@@ -660,7 +660,7 @@ public abstract class Script : MonoBehaviour
     /**
      * @brief AddOpenCloseSequence関数
      * @param open_close_sequence (open_close_sequence)
-     * @return result (result)<br>
+     * @return result_val (result_value)<br>
      * 0未満=失敗
      */
     public int AddOpenCloseSequence(Sequence open_close_sequence)
@@ -711,7 +711,8 @@ public abstract class Script : MonoBehaviour
 
     /**
      * @brief IsActiveOpenCloseSequence関数
-     * @return active_flg (active_flag)
+     * @return active_flg (active_flag)<br>
+     * false=非アクティブ,true=アクティブ
      */
     public bool IsActiveOpenCloseSequence()
     {
@@ -750,7 +751,8 @@ public abstract class Script : MonoBehaviour
 
     /**
      * @brief IsControllable関数
-     * @return controllable_flg (controllable_flag)
+     * @return controllable_flg (controllable_flag)<br>
+     * false=コントロール不可,true=コントロール可
      */
     public virtual bool IsControllable()
     {

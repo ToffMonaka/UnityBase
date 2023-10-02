@@ -223,7 +223,7 @@ public class CsvFile : Lib.Data.File
 
     /**
      * @brief _OnRead関数
-     * @return result (result)<br>
+     * @return result_val (result_value)<br>
      * 0未満=失敗,-2=ファイル存在無し
      */
     protected override int _OnRead()
@@ -236,12 +236,12 @@ public class CsvFile : Lib.Data.File
 	    var desc_dat = this.readDesc.GetDataByParent();
 
         var txt_file = new Lib.Data.TextFile();
-        int txt_file_read_res;
+        int txt_file_read_result_val;
 
         txt_file.readDesc.parentData = desc_dat;
 
-        if ((txt_file_read_res = txt_file.Read()) < 0) {
-	        return (txt_file_read_res);
+        if ((txt_file_read_result_val = txt_file.Read()) < 0) {
+	        return (txt_file_read_result_val);
         }
 
         this.data.Init();
@@ -398,7 +398,7 @@ public class CsvFile : Lib.Data.File
 
     /**
      * @brief _OnWrite関数
-     * @return result (result)<br>
+     * @return result_val (result_value)<br>
      * 0未満=失敗
      */
     protected override int _OnWrite()
@@ -412,7 +412,7 @@ public class CsvFile : Lib.Data.File
 	    }
 
         var txt_file = new Lib.Data.TextFile();
-        int txt_file_write_res;
+        int txt_file_write_result_val;
 
         if (this.data.valueArray.Length > 0) {
 	        string line_str;
@@ -428,8 +428,8 @@ public class CsvFile : Lib.Data.File
 
         txt_file.writeDesc.parentData = desc_dat;
 
-        if ((txt_file_write_res = txt_file.Write()) < 0) {
-	        return (txt_file_write_res);
+        if ((txt_file_write_result_val = txt_file.Write()) < 0) {
+	        return (txt_file_write_result_val);
         }
 
         return (0);

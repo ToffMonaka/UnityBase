@@ -63,7 +63,7 @@ public class TitleSubSceneScript : Lib.Scene.SubSceneScript
 
     /**
      * @brief _OnCreate関数
-     * @return result (result)<br>
+     * @return result_val (result_value)<br>
      * 0未満=失敗
      */
     protected override int _OnCreate()

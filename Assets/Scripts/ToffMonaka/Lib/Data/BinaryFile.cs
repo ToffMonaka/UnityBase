@@ -186,7 +186,7 @@ public class BinaryFile : Lib.Data.File
 
     /**
      * @brief _OnRead関数
-     * @return result (result)<br>
+     * @return result_val (result_value)<br>
      * 0未満=失敗,-2=ファイル存在無し
      */
     protected override int _OnRead()
@@ -216,9 +216,9 @@ public class BinaryFile : Lib.Data.File
 
             Addressables.Release(asset);
         } else {
-            int fs_res = 0;
 	        var read_buf = new byte[2048];
 	        int read_size;
+            int read_result_val = 0;
 
             try {
                 using (var fs = new FileStream(desc_dat.filePath, FileMode.Open, FileAccess.Read)) {
@@ -240,15 +240,15 @@ public class BinaryFile : Lib.Data.File
             } catch (FileNotFoundException e) {
                 Debug.Log(e);
 
-                fs_res = -2;
+                read_result_val = -2;
             } catch (IOException e) {
                 Debug.Log(e);
 
-                fs_res = -1;
+                read_result_val = -1;
             }
 
-            if (fs_res < 0) {
-                return (fs_res);
+            if (read_result_val < 0) {
+                return (read_result_val);
             }
         }
 
@@ -263,7 +263,7 @@ public class BinaryFile : Lib.Data.File
 
     /**
      * @brief _OnWrite関数
-     * @return result (result)<br>
+     * @return result_val (result_value)<br>
      * 0未満=失敗
      */
     protected override int _OnWrite()
@@ -284,9 +284,9 @@ public class BinaryFile : Lib.Data.File
 
 	    int buf_index = 0;
 
-        int fs_res = 0;
 	    var write_buf = new byte[2048];
 	    int write_size;
+        int write_result_val = 0;
 
         try {
             using (var fs = new FileStream(desc_dat.filePath, (desc_dat.appendFlag) ? FileMode.Append : FileMode.Create, FileAccess.Write)) {
@@ -307,11 +307,11 @@ public class BinaryFile : Lib.Data.File
         } catch (IOException e) {
             Debug.Log(e);
 
-            fs_res = -1;
+            write_result_val = -1;
         }
 
-        if (fs_res < 0) {
-            return (fs_res);
+        if (write_result_val < 0) {
+            return (write_result_val);
         }
 
         return (0);
