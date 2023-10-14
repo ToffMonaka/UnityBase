@@ -30,7 +30,7 @@ public class SoundSeScript : Lib.Scene.ObjectScript
      */
     public SoundSeScript()
     {
-        this._SetScriptIndex((int)Lib.Constant.Util.SCENE.SCRIPT_INDEX.SOUND_SE);
+        this._SetScriptIndex((int)Lib.Util.SCENE.SCRIPT_INDEX.SOUND_SE);
 
         return;
     }

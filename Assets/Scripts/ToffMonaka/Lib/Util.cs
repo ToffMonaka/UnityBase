@@ -8,7 +8,7 @@ using UnityEngine;
 
 
 namespace ToffMonaka {
-namespace Lib.Constant {
+namespace Lib {
 /**
  * @brief Utilクラス
  */
@@ -54,7 +54,7 @@ public static class Util
             OBJECT,
 		    COUNT
         }
-        public const int SCRIPT_TYPE_COUNT = (int)Lib.Constant.Util.SCENE.SCRIPT_TYPE.COUNT;
+        public const int SCRIPT_TYPE_COUNT = (int)Lib.Util.SCENE.SCRIPT_TYPE.COUNT;
 
         public enum SCRIPT_INDEX : int
         {
@@ -63,7 +63,7 @@ public static class Util
             SOUND_SE,
 		    COUNT
         }
-        public const int SCRIPT_INDEX_COUNT = (int)Lib.Constant.Util.SCENE.SCRIPT_INDEX.COUNT;
+        public const int SCRIPT_INDEX_COUNT = (int)Lib.Util.SCENE.SCRIPT_INDEX.COUNT;
     }
 }
 }

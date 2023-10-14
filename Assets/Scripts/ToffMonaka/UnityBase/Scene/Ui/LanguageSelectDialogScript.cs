@@ -40,7 +40,7 @@ public class LanguageSelectDialogScript : UnityBase.Scene.Ui.DialogScript
      */
     public LanguageSelectDialogScript()
     {
-        this._SetScriptIndex((int)UnityBase.Constant.Util.SCENE.SCRIPT_INDEX.LANGUAGE_SELECT_DIALOG);
+        this._SetScriptIndex((int)UnityBase.Util.SCENE.SCRIPT_INDEX.LANGUAGE_SELECT_DIALOG);
 
         return;
     }
@@ -78,14 +78,14 @@ public class LanguageSelectDialogScript : UnityBase.Scene.Ui.DialogScript
 
         this._stageScript = this.createDesc.stageScript;
 
-        this._nameText.SetText(UnityBase.Global.GetString(UnityBase.Constant.Util.MST_STRING_ID.LANGUAGE));
+        this._nameText.SetText(UnityBase.Global.GetString(UnityBase.Util.MST_STRING_ID.LANGUAGE));
 
         this._buttonNode.SetActive(false);
 
         {// ButtonScript Create
-            UnityBase.Constant.Util.LANGUAGE_TYPE[] language_type_ary = {
-                UnityBase.Constant.Util.LANGUAGE_TYPE.ENGLISH,
-                UnityBase.Constant.Util.LANGUAGE_TYPE.JAPANESE
+            UnityBase.Util.LANGUAGE_TYPE[] language_type_ary = {
+                UnityBase.Util.LANGUAGE_TYPE.ENGLISH,
+                UnityBase.Util.LANGUAGE_TYPE.JAPANESE
             };
 
             foreach (var language_type in language_type_ary) {
@@ -200,7 +200,7 @@ public class LanguageSelectDialogScript : UnityBase.Scene.Ui.DialogScript
             return;
         }
 
-        Lib.Scene.Util.GetSoundManager().PlaySe((int)UnityBase.Constant.Util.SOUND.SE_INDEX.CANCEL);
+        Lib.Scene.Util.GetSoundManager().PlaySe((int)UnityBase.Util.SOUND.SE_INDEX.CANCEL);
 
         this.Close(1);
 
@@ -241,7 +241,7 @@ public class LanguageSelectDialogScript : UnityBase.Scene.Ui.DialogScript
      * @brief RunButton関数
      * @param language_type (language_type)
      */
-    public void RunButton(UnityBase.Constant.Util.LANGUAGE_TYPE language_type)
+    public void RunButton(UnityBase.Util.LANGUAGE_TYPE language_type)
     {
         this._stageScript.SetLanguageType(language_type);
 

@@ -43,8 +43,8 @@ public class MenuCheatStageScript : UnityBase.Scene.Ui.MenuStageScript
      */
     public MenuCheatStageScript()
     {
-        this._SetScriptIndex((int)UnityBase.Constant.Util.SCENE.SCRIPT_INDEX.MENU_CHEAT_STAGE);
-        this._SetStageType(UnityBase.Constant.Util.SCENE.MENU_STAGE_TYPE.CHEAT);
+        this._SetScriptIndex((int)UnityBase.Util.SCENE.SCRIPT_INDEX.MENU_CHEAT_STAGE);
+        this._SetStageType(UnityBase.Util.SCENE.MENU_STAGE_TYPE.CHEAT);
 
         return;
     }
@@ -80,7 +80,7 @@ public class MenuCheatStageScript : UnityBase.Scene.Ui.MenuStageScript
             return (-1);
         }
 
-        this._commandNameText.SetText(UnityBase.Global.GetString(UnityBase.Constant.Util.MST_STRING_ID.COMMAND));
+        this._commandNameText.SetText(UnityBase.Global.GetString(UnityBase.Util.MST_STRING_ID.COMMAND));
 
         this._commandButtonNode.SetActive(false);
 
@@ -89,7 +89,7 @@ public class MenuCheatStageScript : UnityBase.Scene.Ui.MenuStageScript
             var script_create_desc = new UnityBase.Scene.Ui.MenuCheatStageCommandButtonScriptCreateDesc();
 
             script_create_desc.stageScript = this;
-            script_create_desc.commandType = UnityBase.Constant.Util.SCENE.MENU_CHEAT_STAGE_COMMAND_TYPE.DATA_DELETE;
+            script_create_desc.commandType = UnityBase.Util.SCENE.MENU_CHEAT_STAGE_COMMAND_TYPE.DATA_DELETE;
 
             script.Create(script_create_desc);
             script.Open(0);
@@ -97,8 +97,8 @@ public class MenuCheatStageScript : UnityBase.Scene.Ui.MenuStageScript
             this._commandButtonScriptContainer.Add(script);
         }
 
-        this._okButtonNameText.SetText(UnityBase.Global.GetString(UnityBase.Constant.Util.MST_STRING_ID.OK));
-        this._cancelButtonNameText.SetText(UnityBase.Global.GetString(UnityBase.Constant.Util.MST_STRING_ID.CANCEL));
+        this._okButtonNameText.SetText(UnityBase.Global.GetString(UnityBase.Util.MST_STRING_ID.OK));
+        this._cancelButtonNameText.SetText(UnityBase.Global.GetString(UnityBase.Util.MST_STRING_ID.CANCEL));
 
         return (0);
     }
@@ -201,17 +201,17 @@ public class MenuCheatStageScript : UnityBase.Scene.Ui.MenuStageScript
             return;
         }
 
-        Lib.Scene.Util.GetSoundManager().PlaySe((int)UnityBase.Constant.Util.SOUND.SE_INDEX.OK2);
+        Lib.Scene.Util.GetSoundManager().PlaySe((int)UnityBase.Util.SOUND.SE_INDEX.OK2);
 
-        var cmd_type = UnityBase.Constant.Util.SCENE.MENU_CHEAT_STAGE_COMMAND_TYPE.NONE;
+        var cmd_type = UnityBase.Util.SCENE.MENU_CHEAT_STAGE_COMMAND_TYPE.NONE;
         var cmd_param_ary = System.Array.Empty<string>();
 
-        for (int command_type_i = 1; command_type_i < UnityBase.Constant.Util.SCENE.MENU_CHEAT_STAGE_COMMAND_TYPE_COUNT; ++command_type_i) {
-            int cmd_func_str_index = this._commandInputField.text.IndexOf(UnityBase.Constant.Util.SCENE.MENU_CHEAT_STAGE_COMMAND_FUNCTION_ARRAY[command_type_i]);
+        for (int command_type_i = 1; command_type_i < UnityBase.Util.SCENE.MENU_CHEAT_STAGE_COMMAND_TYPE_COUNT; ++command_type_i) {
+            int cmd_func_str_index = this._commandInputField.text.IndexOf(UnityBase.Util.SCENE.MENU_CHEAT_STAGE_COMMAND_FUNCTION_ARRAY[command_type_i]);
 
             if (cmd_func_str_index >= 0) {
-                cmd_type = (UnityBase.Constant.Util.SCENE.MENU_CHEAT_STAGE_COMMAND_TYPE)command_type_i;
-                cmd_param_ary = this._commandInputField.text.Substring(cmd_func_str_index + UnityBase.Constant.Util.SCENE.MENU_CHEAT_STAGE_COMMAND_FUNCTION_ARRAY[command_type_i].Length).Split(',');
+                cmd_type = (UnityBase.Util.SCENE.MENU_CHEAT_STAGE_COMMAND_TYPE)command_type_i;
+                cmd_param_ary = this._commandInputField.text.Substring(cmd_func_str_index + UnityBase.Util.SCENE.MENU_CHEAT_STAGE_COMMAND_FUNCTION_ARRAY[command_type_i].Length).Split(',');
 
                 for (int cmd_param_i = 0; cmd_param_i < cmd_param_ary.Length; ++cmd_param_i) {
                     cmd_param_ary[cmd_param_i] = cmd_param_ary[cmd_param_i].Trim();
@@ -222,7 +222,7 @@ public class MenuCheatStageScript : UnityBase.Scene.Ui.MenuStageScript
         }
 
 		switch (cmd_type) {
-		case UnityBase.Constant.Util.SCENE.MENU_CHEAT_STAGE_COMMAND_TYPE.DATA_DELETE: {
+		case UnityBase.Util.SCENE.MENU_CHEAT_STAGE_COMMAND_TYPE.DATA_DELETE: {
 			break;
 		}
 		}
@@ -272,7 +272,7 @@ public class MenuCheatStageScript : UnityBase.Scene.Ui.MenuStageScript
             return;
         }
 
-        Lib.Scene.Util.GetSoundManager().PlaySe((int)UnityBase.Constant.Util.SOUND.SE_INDEX.CANCEL);
+        Lib.Scene.Util.GetSoundManager().PlaySe((int)UnityBase.Util.SOUND.SE_INDEX.CANCEL);
 
         this.GetMenuScript().RunStageCancelButton();
 
@@ -312,14 +312,14 @@ public class MenuCheatStageScript : UnityBase.Scene.Ui.MenuStageScript
     /**
      * @brief RunCommandButton関数
      */
-    public void RunCommandButton(UnityBase.Constant.Util.SCENE.MENU_CHEAT_STAGE_COMMAND_TYPE cmd_type)
+    public void RunCommandButton(UnityBase.Util.SCENE.MENU_CHEAT_STAGE_COMMAND_TYPE cmd_type)
     {
-        var param = UnityBase.Constant.Util.SCENE.MENU_CHEAT_STAGE_COMMAND_PARAMETER_ARRAY[(int)cmd_type];
+        var param = UnityBase.Util.SCENE.MENU_CHEAT_STAGE_COMMAND_PARAMETER_ARRAY[(int)cmd_type];
 
         if (param.Length > 0) {
-            this._commandInputField.SetTextWithoutNotify(UnityBase.Constant.Util.SCENE.MENU_CHEAT_STAGE_COMMAND_FUNCTION_ARRAY[(int)cmd_type] + " " + param);
+            this._commandInputField.SetTextWithoutNotify(UnityBase.Util.SCENE.MENU_CHEAT_STAGE_COMMAND_FUNCTION_ARRAY[(int)cmd_type] + " " + param);
         } else {
-            this._commandInputField.SetTextWithoutNotify(UnityBase.Constant.Util.SCENE.MENU_CHEAT_STAGE_COMMAND_FUNCTION_ARRAY[(int)cmd_type]);
+            this._commandInputField.SetTextWithoutNotify(UnityBase.Util.SCENE.MENU_CHEAT_STAGE_COMMAND_FUNCTION_ARRAY[(int)cmd_type]);
         }
 
         return;

@@ -37,7 +37,7 @@ public abstract class MainSceneScript : Lib.Scene.Script
      */
     public MainSceneScript()
     {
-        this._SetScriptType(Lib.Constant.Util.SCENE.SCRIPT_TYPE.MAIN_SCENE);
+        this._SetScriptType(Lib.Util.SCENE.SCRIPT_TYPE.MAIN_SCENE);
         this._SetActiveAutoFlag(false);
 
         return;

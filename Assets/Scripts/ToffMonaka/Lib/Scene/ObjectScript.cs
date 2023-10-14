@@ -28,7 +28,7 @@ public abstract class ObjectScript : Lib.Scene.Script
      */
     public ObjectScript()
     {
-        this._SetScriptType(Lib.Constant.Util.SCENE.SCRIPT_TYPE.OBJECT);
+        this._SetScriptType(Lib.Util.SCENE.SCRIPT_TYPE.OBJECT);
         this._SetActiveAutoFlag(true);
 
         return;

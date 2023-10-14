@@ -36,7 +36,7 @@ public class BackButtonScript : Lib.Scene.ObjectScript, IPointerClickHandler, IP
      */
     public BackButtonScript()
     {
-        this._SetScriptIndex((int)UnityBase.Constant.Util.SCENE.SCRIPT_INDEX.STAGE_BACK_BUTTON);
+        this._SetScriptIndex((int)UnityBase.Util.SCENE.SCRIPT_INDEX.STAGE_BACK_BUTTON);
 
         return;
     }
@@ -202,7 +202,7 @@ public class BackButtonScript : Lib.Scene.ObjectScript, IPointerClickHandler, IP
             return;
         }
 
-        Lib.Scene.Util.GetSoundManager().PlaySe((int)UnityBase.Constant.Util.SOUND.SE_INDEX.CANCEL);
+        Lib.Scene.Util.GetSoundManager().PlaySe((int)UnityBase.Util.SOUND.SE_INDEX.CANCEL);
 
         this._subSceneScript.RunBackButton();
 

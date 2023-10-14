@@ -26,7 +26,7 @@ public class SubSceneScript : Lib.Scene.SubSceneScript
 
     public new UnityBase.Scene.Stage.SubSceneScriptCreateDesc createDesc{get; private set;} = null;
 
-    private UnityBase.Constant.Util.SCENE.STAGE_TYPE _stageType = UnityBase.Constant.Util.SCENE.STAGE_TYPE.NONE;
+    private UnityBase.Util.SCENE.STAGE_TYPE _stageType = UnityBase.Util.SCENE.STAGE_TYPE.NONE;
     private UnityBase.Scene.Stage.BackButtonScript _backButtonScript = null;
     private UnityBase.Scene.Ui.MenuScript _menuScript = null;
 
@@ -161,7 +161,7 @@ public class SubSceneScript : Lib.Scene.SubSceneScript
      * @brief GetStageType関数
      * @return stage_type (stage_type)
      */
-    public UnityBase.Constant.Util.SCENE.STAGE_TYPE GetStageType()
+    public UnityBase.Util.SCENE.STAGE_TYPE GetStageType()
     {
         return (this._stageType);
     }
@@ -170,7 +170,7 @@ public class SubSceneScript : Lib.Scene.SubSceneScript
      * @brief _SetStageType関数
      * @param stage_type (stage_type)
      */
-    protected void _SetStageType(UnityBase.Constant.Util.SCENE.STAGE_TYPE stage_type)
+    protected void _SetStageType(UnityBase.Util.SCENE.STAGE_TYPE stage_type)
     {
         this._stageType = stage_type;
 

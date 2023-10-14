@@ -18,7 +18,7 @@ namespace UnityBase.Scene.Ui {
 public class LanguageSelectDialogButtonScriptCreateDesc : Lib.Scene.ObjectScriptCreateDesc
 {
     public UnityBase.Scene.Ui.LanguageSelectDialogScript dialogScript = null;
-    public UnityBase.Constant.Util.LANGUAGE_TYPE languageType = UnityBase.Constant.Util.LANGUAGE_TYPE.NONE;
+    public UnityBase.Util.LANGUAGE_TYPE languageType = UnityBase.Util.LANGUAGE_TYPE.NONE;
 }
 
 /**
@@ -32,14 +32,14 @@ public class LanguageSelectDialogButtonScript : Lib.Scene.ObjectScript, IPointer
     public new UnityBase.Scene.Ui.LanguageSelectDialogButtonScriptCreateDesc createDesc{get; private set;} = null;
 
     private UnityBase.Scene.Ui.LanguageSelectDialogScript _dialogScript = null;
-    private UnityBase.Constant.Util.LANGUAGE_TYPE _languageType = UnityBase.Constant.Util.LANGUAGE_TYPE.NONE;
+    private UnityBase.Util.LANGUAGE_TYPE _languageType = UnityBase.Util.LANGUAGE_TYPE.NONE;
 
     /**
      * @brief コンストラクタ
      */
     public LanguageSelectDialogButtonScript()
     {
-        this._SetScriptIndex((int)UnityBase.Constant.Util.SCENE.SCRIPT_INDEX.LANGUAGE_SELECT_DIALOG_BUTTON);
+        this._SetScriptIndex((int)UnityBase.Util.SCENE.SCRIPT_INDEX.LANGUAGE_SELECT_DIALOG_BUTTON);
 
         return;
     }
@@ -70,7 +70,7 @@ public class LanguageSelectDialogButtonScript : Lib.Scene.ObjectScript, IPointer
         this._dialogScript = this.createDesc.dialogScript;
         this._languageType = this.createDesc.languageType;
 
-        this._nameText.SetText(UnityBase.Global.GetString(UnityBase.Constant.Util.LANGUAGE_NAME_MST_STRING_ID_ARRAY[(int)this._languageType]));
+        this._nameText.SetText(UnityBase.Global.GetString(UnityBase.Util.LANGUAGE_NAME_MST_STRING_ID_ARRAY[(int)this._languageType]));
 
         return (0);
     }
@@ -160,7 +160,7 @@ public class LanguageSelectDialogButtonScript : Lib.Scene.ObjectScript, IPointer
             return;
         }
 
-        Lib.Scene.Util.GetSoundManager().PlaySe((int)UnityBase.Constant.Util.SOUND.SE_INDEX.OK2);
+        Lib.Scene.Util.GetSoundManager().PlaySe((int)UnityBase.Util.SOUND.SE_INDEX.OK2);
 
         this._dialogScript.RunButton(this._languageType);
 

@@ -36,8 +36,8 @@ public class MenuPrivacyPolicyStageScript : UnityBase.Scene.Ui.MenuStageScript
      */
     public MenuPrivacyPolicyStageScript()
     {
-        this._SetScriptIndex((int)UnityBase.Constant.Util.SCENE.SCRIPT_INDEX.MENU_PRIVACY_POLICY_STAGE);
-        this._SetStageType(UnityBase.Constant.Util.SCENE.MENU_STAGE_TYPE.PRIVACY_POLICY);
+        this._SetScriptIndex((int)UnityBase.Util.SCENE.SCRIPT_INDEX.MENU_PRIVACY_POLICY_STAGE);
+        this._SetStageType(UnityBase.Util.SCENE.MENU_STAGE_TYPE.PRIVACY_POLICY);
 
         return;
     }
@@ -209,7 +209,7 @@ public class MenuPrivacyPolicyStageScript : UnityBase.Scene.Ui.MenuStageScript
             string[] str_ary;
 
 		    switch (UnityBase.Global.systemConfigFile.data.systemLanguageType) {
-		    case UnityBase.Constant.Util.LANGUAGE_TYPE.JAPANESE: {
+		    case UnityBase.Util.LANGUAGE_TYPE.JAPANESE: {
                 str_ary = jp_str_ary;
 
 			    break;
@@ -232,7 +232,7 @@ public class MenuPrivacyPolicyStageScript : UnityBase.Scene.Ui.MenuStageScript
             }
         }
 
-        this._cancelButtonNameText.SetText(UnityBase.Global.GetString(UnityBase.Constant.Util.MST_STRING_ID.CANCEL));
+        this._cancelButtonNameText.SetText(UnityBase.Global.GetString(UnityBase.Util.MST_STRING_ID.CANCEL));
 
         return (0);
     }
@@ -333,7 +333,7 @@ public class MenuPrivacyPolicyStageScript : UnityBase.Scene.Ui.MenuStageScript
             return;
         }
 
-        Lib.Scene.Util.GetSoundManager().PlaySe((int)UnityBase.Constant.Util.SOUND.SE_INDEX.CANCEL);
+        Lib.Scene.Util.GetSoundManager().PlaySe((int)UnityBase.Util.SOUND.SE_INDEX.CANCEL);
 
         this.GetMenuScript().RunStageCancelButton();
 

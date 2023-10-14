@@ -29,7 +29,7 @@ public class BoardScript : Lib.Scene.ObjectScript
     public new UnityBase.Scene.Select.BoardScriptCreateDesc createDesc{get; private set;} = null;
 
     private UnityBase.Scene.Select.SubSceneScript _subSceneScript = null;
-    private UnityBase.Constant.Util.SCENE.SELECT_BOARD_TYPE _boardType = UnityBase.Constant.Util.SCENE.SELECT_BOARD_TYPE.NONE;
+    private UnityBase.Util.SCENE.SELECT_BOARD_TYPE _boardType = UnityBase.Util.SCENE.SELECT_BOARD_TYPE.NONE;
 
     /**
      * @brief コンストラクタ
@@ -64,7 +64,7 @@ public class BoardScript : Lib.Scene.ObjectScript
     {
         this._subSceneScript = this.createDesc.subSceneScript;
 
-        this._nameText.SetText(UnityBase.Global.GetString(UnityBase.Constant.Util.SCENE.SELECT_BOARD_NAME_MST_STRING_ID_ARRAY[(int)this._boardType]));
+        this._nameText.SetText(UnityBase.Global.GetString(UnityBase.Util.SCENE.SELECT_BOARD_NAME_MST_STRING_ID_ARRAY[(int)this._boardType]));
 
         return (0);
     }
@@ -203,7 +203,7 @@ public class BoardScript : Lib.Scene.ObjectScript
      * @brief GetBoardType関数
      * @return board_type (board_type)
      */
-    public UnityBase.Constant.Util.SCENE.SELECT_BOARD_TYPE GetBoardType()
+    public UnityBase.Util.SCENE.SELECT_BOARD_TYPE GetBoardType()
     {
         return (this._boardType);
     }
@@ -212,7 +212,7 @@ public class BoardScript : Lib.Scene.ObjectScript
      * @brief _SetBoardType関数
      * @param board_type (board_type)
      */
-    protected void _SetBoardType(UnityBase.Constant.Util.SCENE.SELECT_BOARD_TYPE board_type)
+    protected void _SetBoardType(UnityBase.Util.SCENE.SELECT_BOARD_TYPE board_type)
     {
         this._boardType = board_type;
 

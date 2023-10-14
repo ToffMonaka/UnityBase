@@ -30,7 +30,7 @@ public class SoundBgmScript : Lib.Scene.ObjectScript
      */
     public SoundBgmScript()
     {
-        this._SetScriptIndex((int)Lib.Constant.Util.SCENE.SCRIPT_INDEX.SOUND_BGM);
+        this._SetScriptIndex((int)Lib.Util.SCENE.SCRIPT_INDEX.SOUND_BGM);
 
         return;
     }

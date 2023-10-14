@@ -40,7 +40,7 @@ public class TitleSubSceneScript : Lib.Scene.SubSceneScript
      */
     public TitleSubSceneScript()
     {
-        this._SetScriptIndex((int)UnityBase.Constant.Util.SCENE.SCRIPT_INDEX.TITLE_SUB_SCENE);
+        this._SetScriptIndex((int)UnityBase.Util.SCENE.SCRIPT_INDEX.TITLE_SUB_SCENE);
 
         return;
     }
@@ -68,8 +68,8 @@ public class TitleSubSceneScript : Lib.Scene.SubSceneScript
      */
     protected override int _OnCreate()
     {
-        this._companyNameText.SetText(UnityBase.Constant.Util.PROJECT.COMPANY_NAME);
-        this._versionNameText.SetText("Version " + UnityBase.Constant.Util.PROJECT.VERSION_NAME);
+        this._companyNameText.SetText(UnityBase.Util.PROJECT.COMPANY_NAME);
+        this._versionNameText.SetText("Version " + UnityBase.Util.PROJECT.VERSION_NAME);
 
         {// MenuScript Create
             var script = this._menuNode.GetComponent<UnityBase.Scene.Ui.MenuScript>();
@@ -104,7 +104,7 @@ public class TitleSubSceneScript : Lib.Scene.SubSceneScript
      */
     protected override void _OnActive()
     {
-        Lib.Scene.Util.GetSoundManager().PlayBgm((int)UnityBase.Constant.Util.SOUND.BGM_INDEX.TITLE);
+        Lib.Scene.Util.GetSoundManager().PlayBgm((int)UnityBase.Util.SOUND.BGM_INDEX.TITLE);
 
         this._startButtonNameText.DOFade(0.0f, 1.0f).SetLoops(-1, LoopType.Yoyo).SetEase(Ease.InQuart).SetDelay(1.0f).SetLink(this._startButtonNameText.gameObject);
 
@@ -212,7 +212,7 @@ public class TitleSubSceneScript : Lib.Scene.SubSceneScript
 		    switch (this.GetClosedType()) {
             case 1: {
                 {// SelectSubSceneScript Create
-                    var script = this.GetManager().ChangeSubScene(UnityBase.Constant.Util.FILE_PATH.SELECT_SUB_SCENE_PREFAB) as UnityBase.Scene.Select.SubSceneScript;
+                    var script = this.GetManager().ChangeSubScene(UnityBase.Util.FILE_PATH.SELECT_SUB_SCENE_PREFAB) as UnityBase.Scene.Select.SubSceneScript;
                     var script_create_desc = new UnityBase.Scene.Select.SubSceneScriptCreateDesc();
 
                     script.Create(script_create_desc);
@@ -237,7 +237,7 @@ public class TitleSubSceneScript : Lib.Scene.SubSceneScript
             return;
         }
 
-        Lib.Scene.Util.GetSoundManager().PlaySe((int)UnityBase.Constant.Util.SOUND.SE_INDEX.OK);
+        Lib.Scene.Util.GetSoundManager().PlaySe((int)UnityBase.Util.SOUND.SE_INDEX.OK);
 
         this.Close(1, 1);
 

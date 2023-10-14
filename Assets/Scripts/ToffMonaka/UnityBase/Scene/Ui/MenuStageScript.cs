@@ -29,7 +29,7 @@ public class MenuStageScript : Lib.Scene.ObjectScript
     public new UnityBase.Scene.Ui.MenuStageScriptCreateDesc createDesc{get; private set;} = null;
 
     private UnityBase.Scene.Ui.MenuScript _menuScript = null;
-    private UnityBase.Constant.Util.SCENE.MENU_STAGE_TYPE _stageType = UnityBase.Constant.Util.SCENE.MENU_STAGE_TYPE.NONE;
+    private UnityBase.Util.SCENE.MENU_STAGE_TYPE _stageType = UnityBase.Util.SCENE.MENU_STAGE_TYPE.NONE;
 
     /**
      * @brief コンストラクタ
@@ -64,7 +64,7 @@ public class MenuStageScript : Lib.Scene.ObjectScript
     {
         this._menuScript = this.createDesc.menuScript;
 
-        this._nameText.SetText(UnityBase.Global.GetString(UnityBase.Constant.Util.SCENE.MENU_STAGE_NAME_MST_STRING_ID_ARRAY[(int)this._stageType]));
+        this._nameText.SetText(UnityBase.Global.GetString(UnityBase.Util.SCENE.MENU_STAGE_NAME_MST_STRING_ID_ARRAY[(int)this._stageType]));
 
         return (0);
     }
@@ -203,7 +203,7 @@ public class MenuStageScript : Lib.Scene.ObjectScript
      * @brief GetStageType関数
      * @return stage_type (stage_type)
      */
-    public UnityBase.Constant.Util.SCENE.MENU_STAGE_TYPE GetStageType()
+    public UnityBase.Util.SCENE.MENU_STAGE_TYPE GetStageType()
     {
         return (this._stageType);
     }
@@ -212,7 +212,7 @@ public class MenuStageScript : Lib.Scene.ObjectScript
      * @brief _SetStageType関数
      * @param stage_type (stage_type)
      */
-    protected void _SetStageType(UnityBase.Constant.Util.SCENE.MENU_STAGE_TYPE stage_type)
+    protected void _SetStageType(UnityBase.Util.SCENE.MENU_STAGE_TYPE stage_type)
     {
         this._stageType = stage_type;
 

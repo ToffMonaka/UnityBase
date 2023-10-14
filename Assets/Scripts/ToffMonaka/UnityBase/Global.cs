@@ -34,7 +34,7 @@ public static class Global
      * @param mst_str_id (mst_string_id)
      * @return str (string)
      */
-    public static string GetString(UnityBase.Constant.Util.MST_STRING_ID mst_str_id)
+    public static string GetString(UnityBase.Util.MST_STRING_ID mst_str_id)
     {
         return (UnityBase.Global.mstStringTableFile.data.GetEntityFast((int)mst_str_id).string_);
     }

@@ -35,8 +35,8 @@ public class SubSceneScript : UnityBase.Scene.Stage.SubSceneScript
      */
     public SubSceneScript()
     {
-        this._SetScriptIndex((int)UnityBase.Constant.Util.SCENE.SCRIPT_INDEX.TEST_3D_STAGE_SUB_SCENE);
-        this._SetStageType(UnityBase.Constant.Util.SCENE.STAGE_TYPE.TEST_3D);
+        this._SetScriptIndex((int)UnityBase.Util.SCENE.SCRIPT_INDEX.TEST_3D_STAGE_SUB_SCENE);
+        this._SetStageType(UnityBase.Util.SCENE.STAGE_TYPE.TEST_3D);
 
         return;
     }
@@ -72,8 +72,8 @@ public class SubSceneScript : UnityBase.Scene.Stage.SubSceneScript
             return (-1);
         }
 
-        this._nameText.SetText(UnityBase.Global.GetString(UnityBase.Constant.Util.SCENE.STAGE_NAME_MST_STRING_ID_ARRAY[(int)this.GetStageType()]));
-        this._messageText.SetText(UnityBase.Global.GetString(UnityBase.Constant.Util.MST_STRING_ID.IN_PREPARATION));
+        this._nameText.SetText(UnityBase.Global.GetString(UnityBase.Util.SCENE.STAGE_NAME_MST_STRING_ID_ARRAY[(int)this.GetStageType()]));
+        this._messageText.SetText(UnityBase.Global.GetString(UnityBase.Util.MST_STRING_ID.IN_PREPARATION));
 
         return (0);
     }
@@ -214,7 +214,7 @@ public class SubSceneScript : UnityBase.Scene.Stage.SubSceneScript
 		    switch (this.GetClosedType()) {
             case 1: {
                 {// SelectSubSceneScript Create
-                    var script = this.GetManager().ChangeSubScene(UnityBase.Constant.Util.FILE_PATH.SELECT_SUB_SCENE_PREFAB) as UnityBase.Scene.Select.SubSceneScript;
+                    var script = this.GetManager().ChangeSubScene(UnityBase.Util.FILE_PATH.SELECT_SUB_SCENE_PREFAB) as UnityBase.Scene.Select.SubSceneScript;
                     var script_create_desc = new UnityBase.Scene.Select.SubSceneScriptCreateDesc();
 
                     script.Create(script_create_desc);

@@ -26,7 +26,7 @@ public abstract class Script : MonoBehaviour
     public Lib.Scene.ScriptCreateDesc createDesc{get; private set;} = null;
 
     private Lib.Scene.Manager _manager = null;
-    private Lib.Constant.Util.SCENE.SCRIPT_TYPE _scriptType = Lib.Constant.Util.SCENE.SCRIPT_TYPE.NONE;
+    private Lib.Util.SCENE.SCRIPT_TYPE _scriptType = Lib.Util.SCENE.SCRIPT_TYPE.NONE;
     private int _scriptIndex = 0;
     private bool _activeAutoFlag = true;
     private bool _activedFlag = false;
@@ -390,7 +390,7 @@ public abstract class Script : MonoBehaviour
      * @brief GetScriptType関数
      * @return script_type (script_type)
      */
-    public Lib.Constant.Util.SCENE.SCRIPT_TYPE GetScriptType()
+    public Lib.Util.SCENE.SCRIPT_TYPE GetScriptType()
     {
         return (this._scriptType);
     }
@@ -399,7 +399,7 @@ public abstract class Script : MonoBehaviour
      * @brief _SetScriptType関数
      * @param script_type (script_type)
      */
-    protected void _SetScriptType(Lib.Constant.Util.SCENE.SCRIPT_TYPE script_type)
+    protected void _SetScriptType(Lib.Util.SCENE.SCRIPT_TYPE script_type)
     {
         this._scriptType = script_type;
 

@@ -18,7 +18,7 @@ namespace UnityBase.Scene.Select {
 public class StageButtonScriptCreateDesc : Lib.Scene.ObjectScriptCreateDesc
 {
     public UnityBase.Scene.Select.StageBoardScript boardScript = null;
-    public UnityBase.Constant.Util.SCENE.STAGE_TYPE stageType = UnityBase.Constant.Util.SCENE.STAGE_TYPE.NONE;
+    public UnityBase.Util.SCENE.STAGE_TYPE stageType = UnityBase.Util.SCENE.STAGE_TYPE.NONE;
 }
 
 /**
@@ -32,14 +32,14 @@ public class StageButtonScript : Lib.Scene.ObjectScript, IPointerClickHandler, I
     public new UnityBase.Scene.Select.StageButtonScriptCreateDesc createDesc{get; private set;} = null;
 
     private UnityBase.Scene.Select.StageBoardScript _boardScript = null;
-    private UnityBase.Constant.Util.SCENE.STAGE_TYPE _stageType = UnityBase.Constant.Util.SCENE.STAGE_TYPE.NONE;
+    private UnityBase.Util.SCENE.STAGE_TYPE _stageType = UnityBase.Util.SCENE.STAGE_TYPE.NONE;
 
     /**
      * @brief コンストラクタ
      */
     public StageButtonScript()
     {
-        this._SetScriptIndex((int)UnityBase.Constant.Util.SCENE.SCRIPT_INDEX.SELECT_STAGE_BUTTON);
+        this._SetScriptIndex((int)UnityBase.Util.SCENE.SCRIPT_INDEX.SELECT_STAGE_BUTTON);
 
         return;
     }
@@ -70,7 +70,7 @@ public class StageButtonScript : Lib.Scene.ObjectScript, IPointerClickHandler, I
         this._boardScript = this.createDesc.boardScript;
         this._stageType = this.createDesc.stageType;
 
-        this._nameText.SetText(UnityBase.Global.GetString(UnityBase.Constant.Util.SCENE.STAGE_NAME_MST_STRING_ID_ARRAY[(int)this._stageType]));
+        this._nameText.SetText(UnityBase.Global.GetString(UnityBase.Util.SCENE.STAGE_NAME_MST_STRING_ID_ARRAY[(int)this._stageType]));
 
         return (0);
     }
@@ -160,7 +160,7 @@ public class StageButtonScript : Lib.Scene.ObjectScript, IPointerClickHandler, I
             return;
         }
 
-        Lib.Scene.Util.GetSoundManager().PlaySe((int)UnityBase.Constant.Util.SOUND.SE_INDEX.OK2);
+        Lib.Scene.Util.GetSoundManager().PlaySe((int)UnityBase.Util.SOUND.SE_INDEX.OK2);
 
         this._boardScript.RunStageButton(this._stageType);
 

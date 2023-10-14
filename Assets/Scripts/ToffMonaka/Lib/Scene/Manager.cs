@@ -244,17 +244,17 @@ public class Manager
             this._scriptArray[script.GetScriptIndex()].Add(script);
 
 		    switch (script.GetScriptType()) {
-		    case Lib.Constant.Util.SCENE.SCRIPT_TYPE.MAIN_SCENE: {
+		    case Lib.Util.SCENE.SCRIPT_TYPE.MAIN_SCENE: {
                 this._mainSceneScript = (Lib.Scene.MainSceneScript)script;
 
 			    break;
 		    }
-		    case Lib.Constant.Util.SCENE.SCRIPT_TYPE.SUB_SCENE: {
+		    case Lib.Util.SCENE.SCRIPT_TYPE.SUB_SCENE: {
                 this._subSceneScript = (Lib.Scene.SubSceneScript)script;
 
 			    break;
 		    }
-		    case Lib.Constant.Util.SCENE.SCRIPT_TYPE.OBJECT: {
+		    case Lib.Util.SCENE.SCRIPT_TYPE.OBJECT: {
                 this._objectScriptArray[script.GetScriptIndex()].Add((Lib.Scene.ObjectScript)script);
 
 			    break;
@@ -283,21 +283,21 @@ public class Manager
             this._scriptArray[script.GetScriptIndex()].Remove(script);
 
 		    switch (script.GetScriptType()) {
-		    case Lib.Constant.Util.SCENE.SCRIPT_TYPE.MAIN_SCENE: {
+		    case Lib.Util.SCENE.SCRIPT_TYPE.MAIN_SCENE: {
                 if (this._mainSceneScript == (Lib.Scene.MainSceneScript)script) {
                     this._mainSceneScript = null;
                 }
 
 			    break;
 		    }
-		    case Lib.Constant.Util.SCENE.SCRIPT_TYPE.SUB_SCENE: {
+		    case Lib.Util.SCENE.SCRIPT_TYPE.SUB_SCENE: {
                 if (this._subSceneScript == (Lib.Scene.SubSceneScript)script) {
                     this._subSceneScript = null;
                 }
 
 			    break;
 		    }
-		    case Lib.Constant.Util.SCENE.SCRIPT_TYPE.OBJECT: {
+		    case Lib.Util.SCENE.SCRIPT_TYPE.OBJECT: {
                 this._objectScriptArray[script.GetScriptIndex()].Remove((Lib.Scene.ObjectScript)script);
 
 			    break;

@@ -54,7 +54,7 @@ public class MenuScript : Lib.Scene.ObjectScript
      */
     public MenuScript()
     {
-        this._SetScriptIndex((int)UnityBase.Constant.Util.SCENE.SCRIPT_INDEX.MENU);
+        this._SetScriptIndex((int)UnityBase.Util.SCENE.SCRIPT_INDEX.MENU);
 
         return;
     }
@@ -323,42 +323,42 @@ public class MenuScript : Lib.Scene.ObjectScript
      * @brief RunSelectStageButton関数
      * @param stage_type (stage_type)
      */
-    public void RunSelectStageButton(UnityBase.Constant.Util.SCENE.MENU_STAGE_TYPE stage_type)
+    public void RunSelectStageButton(UnityBase.Util.SCENE.MENU_STAGE_TYPE stage_type)
     {
         UnityBase.Scene.Ui.MenuStageScript open_stage_script = null;
 
 		switch (stage_type) {
-		case UnityBase.Constant.Util.SCENE.MENU_STAGE_TYPE.OPTION: {
+		case UnityBase.Util.SCENE.MENU_STAGE_TYPE.OPTION: {
             open_stage_script = this._optionStageScript;
 
 			break;
 		}
-		case UnityBase.Constant.Util.SCENE.MENU_STAGE_TYPE.FAQ: {
+		case UnityBase.Util.SCENE.MENU_STAGE_TYPE.FAQ: {
             open_stage_script = this._faqStageScript;
 
 			break;
 		}
-		case UnityBase.Constant.Util.SCENE.MENU_STAGE_TYPE.STAFF: {
+		case UnityBase.Util.SCENE.MENU_STAGE_TYPE.STAFF: {
             open_stage_script = this._staffStageScript;
 
 			break;
 		}
-		case UnityBase.Constant.Util.SCENE.MENU_STAGE_TYPE.LICENSE: {
+		case UnityBase.Util.SCENE.MENU_STAGE_TYPE.LICENSE: {
             open_stage_script = this._licenseStageScript;
 
 			break;
 		}
-		case UnityBase.Constant.Util.SCENE.MENU_STAGE_TYPE.PRIVACY_POLICY: {
+		case UnityBase.Util.SCENE.MENU_STAGE_TYPE.PRIVACY_POLICY: {
             open_stage_script = this._privacyPolicyStageScript;
 
 			break;
 		}
-		case UnityBase.Constant.Util.SCENE.MENU_STAGE_TYPE.END: {
+		case UnityBase.Util.SCENE.MENU_STAGE_TYPE.END: {
             open_stage_script = this._endStageScript;
 
 			break;
 		}
-		case UnityBase.Constant.Util.SCENE.MENU_STAGE_TYPE.CHEAT: {
+		case UnityBase.Util.SCENE.MENU_STAGE_TYPE.CHEAT: {
             open_stage_script = this._cheatStageScript;
 
 			break;

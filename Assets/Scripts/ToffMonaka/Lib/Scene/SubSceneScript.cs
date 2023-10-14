@@ -31,7 +31,7 @@ public abstract class SubSceneScript : Lib.Scene.Script
      */
     public SubSceneScript()
     {
-        this._SetScriptType(Lib.Constant.Util.SCENE.SCRIPT_TYPE.SUB_SCENE);
+        this._SetScriptType(Lib.Util.SCENE.SCRIPT_TYPE.SUB_SCENE);
         this._SetActiveAutoFlag(true);
 
         return;

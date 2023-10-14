@@ -18,7 +18,7 @@ namespace UnityBase.Scene.Ui {
 public class MenuCheatStageCommandButtonScriptCreateDesc : Lib.Scene.ObjectScriptCreateDesc
 {
     public UnityBase.Scene.Ui.MenuCheatStageScript stageScript = null;
-    public UnityBase.Constant.Util.SCENE.MENU_CHEAT_STAGE_COMMAND_TYPE commandType = UnityBase.Constant.Util.SCENE.MENU_CHEAT_STAGE_COMMAND_TYPE.NONE;
+    public UnityBase.Util.SCENE.MENU_CHEAT_STAGE_COMMAND_TYPE commandType = UnityBase.Util.SCENE.MENU_CHEAT_STAGE_COMMAND_TYPE.NONE;
 }
 
 /**
@@ -33,14 +33,14 @@ public class MenuCheatStageCommandButtonScript : Lib.Scene.ObjectScript, IPointe
     public new UnityBase.Scene.Ui.MenuCheatStageCommandButtonScriptCreateDesc createDesc{get; private set;} = null;
 
     private UnityBase.Scene.Ui.MenuCheatStageScript _stageScript = null;
-    private UnityBase.Constant.Util.SCENE.MENU_CHEAT_STAGE_COMMAND_TYPE _commandType = UnityBase.Constant.Util.SCENE.MENU_CHEAT_STAGE_COMMAND_TYPE.NONE;
+    private UnityBase.Util.SCENE.MENU_CHEAT_STAGE_COMMAND_TYPE _commandType = UnityBase.Util.SCENE.MENU_CHEAT_STAGE_COMMAND_TYPE.NONE;
 
     /**
      * @brief コンストラクタ
      */
     public MenuCheatStageCommandButtonScript()
     {
-        this._SetScriptIndex((int)UnityBase.Constant.Util.SCENE.SCRIPT_INDEX.MENU_CHEAT_STAGE_COMMAND_BUTTON);
+        this._SetScriptIndex((int)UnityBase.Util.SCENE.SCRIPT_INDEX.MENU_CHEAT_STAGE_COMMAND_BUTTON);
 
         return;
     }
@@ -71,14 +71,14 @@ public class MenuCheatStageCommandButtonScript : Lib.Scene.ObjectScript, IPointe
         this._stageScript = this.createDesc.stageScript;
         this._commandType = this.createDesc.commandType;
 
-        this._nameText.SetText(UnityBase.Global.GetString(UnityBase.Constant.Util.SCENE.MENU_CHEAT_STAGE_COMMAND_NAME_MST_STRING_ID_ARRAY[(int)this._commandType]));
+        this._nameText.SetText(UnityBase.Global.GetString(UnityBase.Util.SCENE.MENU_CHEAT_STAGE_COMMAND_NAME_MST_STRING_ID_ARRAY[(int)this._commandType]));
 
-        var param = UnityBase.Constant.Util.SCENE.MENU_CHEAT_STAGE_COMMAND_PARAMETER_ARRAY[(int)this._commandType];
+        var param = UnityBase.Util.SCENE.MENU_CHEAT_STAGE_COMMAND_PARAMETER_ARRAY[(int)this._commandType];
 
         if (param.Length > 0) {
-            this._detailText.SetText(UnityBase.Constant.Util.SCENE.MENU_CHEAT_STAGE_COMMAND_FUNCTION_ARRAY[(int)this._commandType] + " " + param);
+            this._detailText.SetText(UnityBase.Util.SCENE.MENU_CHEAT_STAGE_COMMAND_FUNCTION_ARRAY[(int)this._commandType] + " " + param);
         } else {
-            this._detailText.SetText(UnityBase.Constant.Util.SCENE.MENU_CHEAT_STAGE_COMMAND_FUNCTION_ARRAY[(int)this._commandType]);
+            this._detailText.SetText(UnityBase.Util.SCENE.MENU_CHEAT_STAGE_COMMAND_FUNCTION_ARRAY[(int)this._commandType]);
         }
 
         return (0);
@@ -169,7 +169,7 @@ public class MenuCheatStageCommandButtonScript : Lib.Scene.ObjectScript, IPointe
             return;
         }
 
-        Lib.Scene.Util.GetSoundManager().PlaySe((int)UnityBase.Constant.Util.SOUND.SE_INDEX.OK2);
+        Lib.Scene.Util.GetSoundManager().PlaySe((int)UnityBase.Util.SOUND.SE_INDEX.OK2);
 
         this._stageScript.RunCommandButton(this._commandType);
 

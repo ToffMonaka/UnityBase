@@ -28,7 +28,7 @@ public class MainSceneScript : Lib.Scene.MainSceneScript
      */
     public MainSceneScript()
     {
-        this._SetScriptIndex((int)UnityBase.Constant.Util.SCENE.SCRIPT_INDEX.MAIN_SCENE);
+        this._SetScriptIndex((int)UnityBase.Util.SCENE.SCRIPT_INDEX.MAIN_SCENE);
 
         return;
     }
@@ -86,7 +86,7 @@ public class MainSceneScript : Lib.Scene.MainSceneScript
     protected override void _OnActive()
     {
         {// InitSubSceneScript Create
-            var script = this.GetManager().ChangeSubScene(UnityBase.Constant.Util.FILE_PATH.INIT_SUB_SCENE_PREFAB) as UnityBase.Scene.InitSubSceneScript;
+            var script = this.GetManager().ChangeSubScene(UnityBase.Util.FILE_PATH.INIT_SUB_SCENE_PREFAB) as UnityBase.Scene.InitSubSceneScript;
             var script_create_desc = new UnityBase.Scene.InitSubSceneScriptCreateDesc();
 
             script.Create(script_create_desc);
@@ -118,8 +118,8 @@ public class MainSceneScript : Lib.Scene.MainSceneScript
     protected override void _OnStartApplication()
     {
         {// SystemConfigFile Create
-            UnityBase.Global.systemConfigFile.readDesc.data.filePath = Application.persistentDataPath + "/" + UnityBase.Constant.Util.FILE_PATH.SYSTEM_CONFIG;
-            UnityBase.Global.systemConfigFile.writeDesc.data.filePath = Application.persistentDataPath + "/" + UnityBase.Constant.Util.FILE_PATH.SYSTEM_CONFIG;
+            UnityBase.Global.systemConfigFile.readDesc.data.filePath = Application.persistentDataPath + "/" + UnityBase.Util.FILE_PATH.SYSTEM_CONFIG;
+            UnityBase.Global.systemConfigFile.writeDesc.data.filePath = Application.persistentDataPath + "/" + UnityBase.Util.FILE_PATH.SYSTEM_CONFIG;
 
             if (Lib.Data.Util.IsExistFile(UnityBase.Global.systemConfigFile.readDesc.data.filePath)) {
                 UnityBase.Global.systemConfigFile.Read();
@@ -199,7 +199,7 @@ public class MainSceneScript : Lib.Scene.MainSceneScript
             var manager_create_desc = new Lib.Scene.ManagerCreateDesc();
 
             manager_create_desc.mainSceneNode = this.gameObject;
-            manager_create_desc.scriptCount = (int)UnityBase.Constant.Util.SCENE.SCRIPT_INDEX_COUNT;
+            manager_create_desc.scriptCount = (int)UnityBase.Util.SCENE.SCRIPT_INDEX_COUNT;
 
             if (manager.Create(manager_create_desc) < 0) {
                 this._ReleaseManager();

@@ -33,8 +33,8 @@ public class StageBoardScript : UnityBase.Scene.Select.BoardScript
      */
     public StageBoardScript()
     {
-        this._SetScriptIndex((int)UnityBase.Constant.Util.SCENE.SCRIPT_INDEX.SELECT_STAGE_BOARD);
-        this._SetBoardType(UnityBase.Constant.Util.SCENE.SELECT_BOARD_TYPE.STAGE);
+        this._SetScriptIndex((int)UnityBase.Util.SCENE.SCRIPT_INDEX.SELECT_STAGE_BOARD);
+        this._SetBoardType(UnityBase.Util.SCENE.SELECT_BOARD_TYPE.STAGE);
 
         return;
     }
@@ -73,9 +73,9 @@ public class StageBoardScript : UnityBase.Scene.Select.BoardScript
         this._stageButtonNode.SetActive(false);
 
         {// StageButtonScript Create
-            UnityBase.Constant.Util.SCENE.STAGE_TYPE[] stage_type_ary = {
-                UnityBase.Constant.Util.SCENE.STAGE_TYPE.TEST_2D,
-                UnityBase.Constant.Util.SCENE.STAGE_TYPE.TEST_3D
+            UnityBase.Util.SCENE.STAGE_TYPE[] stage_type_ary = {
+                UnityBase.Util.SCENE.STAGE_TYPE.TEST_2D,
+                UnityBase.Util.SCENE.STAGE_TYPE.TEST_3D
             };
 
             foreach (var stage_type in stage_type_ary) {
@@ -182,7 +182,7 @@ public class StageBoardScript : UnityBase.Scene.Select.BoardScript
      * @brief RunStageButton関数
      * @param stage_type (stage_type)
      */
-    public void RunStageButton(UnityBase.Constant.Util.SCENE.STAGE_TYPE stage_type)
+    public void RunStageButton(UnityBase.Util.SCENE.STAGE_TYPE stage_type)
     {
         this.GetSubSceneScript().RunStageButton(stage_type);
 

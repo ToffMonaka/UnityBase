@@ -37,7 +37,7 @@ public class InitSubSceneScript : Lib.Scene.SubSceneScript
      */
     public InitSubSceneScript()
     {
-        this._SetScriptIndex((int)UnityBase.Constant.Util.SCENE.SCRIPT_INDEX.INIT_SUB_SCENE);
+        this._SetScriptIndex((int)UnityBase.Util.SCENE.SCRIPT_INDEX.INIT_SUB_SCENE);
 
         return;
     }
@@ -66,7 +66,7 @@ public class InitSubSceneScript : Lib.Scene.SubSceneScript
     protected override int _OnCreate()
     {
 		switch (UnityBase.Global.systemConfigFile.data.systemLanguageType) {
-		case UnityBase.Constant.Util.LANGUAGE_TYPE.JAPANESE: {
+		case UnityBase.Util.LANGUAGE_TYPE.JAPANESE: {
             this._messageText.SetText("ちょっと待ってね。");
 
 			break;
@@ -130,13 +130,13 @@ public class InitSubSceneScript : Lib.Scene.SubSceneScript
 
             {// MstStringTableFile Create
 		        switch (UnityBase.Global.systemConfigFile.data.systemLanguageType) {
-		        case UnityBase.Constant.Util.LANGUAGE_TYPE.JAPANESE: {
-                    UnityBase.Global.mstStringTableFile.readDesc.data.filePath = UnityBase.Constant.Util.FILE_PATH.MST_STRING_JAPANESE_TABLE;
+		        case UnityBase.Util.LANGUAGE_TYPE.JAPANESE: {
+                    UnityBase.Global.mstStringTableFile.readDesc.data.filePath = UnityBase.Util.FILE_PATH.MST_STRING_JAPANESE_TABLE;
 
 			        break;
 		        }
 		        default: {
-                    UnityBase.Global.mstStringTableFile.readDesc.data.filePath = UnityBase.Constant.Util.FILE_PATH.MST_STRING_ENGLISH_TABLE;
+                    UnityBase.Global.mstStringTableFile.readDesc.data.filePath = UnityBase.Util.FILE_PATH.MST_STRING_ENGLISH_TABLE;
 
 			        break;
 		        }
@@ -255,7 +255,7 @@ public class InitSubSceneScript : Lib.Scene.SubSceneScript
 		    switch (this.GetClosedType()) {
             case 1: {
                 {// TitleSubSceneScript Create
-                    var script = this.GetManager().ChangeSubScene(UnityBase.Constant.Util.FILE_PATH.TITLE_SUB_SCENE_PREFAB) as UnityBase.Scene.TitleSubSceneScript;
+                    var script = this.GetManager().ChangeSubScene(UnityBase.Util.FILE_PATH.TITLE_SUB_SCENE_PREFAB) as UnityBase.Scene.TitleSubSceneScript;
                     var script_create_desc = new UnityBase.Scene.TitleSubSceneScriptCreateDesc();
 
                     script.Create(script_create_desc);

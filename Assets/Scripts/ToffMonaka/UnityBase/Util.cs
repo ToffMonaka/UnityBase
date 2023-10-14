@@ -8,7 +8,7 @@ using UnityEngine;
 
 
 namespace ToffMonaka {
-namespace UnityBase.Constant {
+namespace UnityBase {
 /**
  * @brief Utilクラス
  */
@@ -58,7 +58,7 @@ public static class Util
             SELECT,
 		    COUNT
         }
-        public const int BGM_INDEX_COUNT = (int)UnityBase.Constant.Util.SOUND.BGM_INDEX.COUNT;
+        public const int BGM_INDEX_COUNT = (int)UnityBase.Util.SOUND.BGM_INDEX.COUNT;
 
         public enum SE_INDEX : int
         {
@@ -68,14 +68,14 @@ public static class Util
             CANCEL,
 		    COUNT
         }
-        public const int SE_INDEX_COUNT = (int)UnityBase.Constant.Util.SOUND.SE_INDEX.COUNT;
+        public const int SE_INDEX_COUNT = (int)UnityBase.Util.SOUND.SE_INDEX.COUNT;
     }
 
     public static class SCENE
     {
         public enum SCRIPT_INDEX : int
         {
-            MAIN_SCENE = Lib.Constant.Util.SCENE.SCRIPT_INDEX.COUNT,
+            MAIN_SCENE = Lib.Util.SCENE.SCRIPT_INDEX.COUNT,
             INIT_SUB_SCENE,
             TITLE_SUB_SCENE,
             SELECT_SUB_SCENE,
@@ -101,7 +101,7 @@ public static class Util
             LANGUAGE_SELECT_DIALOG_BUTTON,
 		    COUNT
         }
-        public const int SCRIPT_INDEX_COUNT = (int)UnityBase.Constant.Util.SCENE.SCRIPT_INDEX.COUNT;
+        public const int SCRIPT_INDEX_COUNT = (int)UnityBase.Util.SCENE.SCRIPT_INDEX.COUNT;
 
         public static class NAME
         {
@@ -115,10 +115,10 @@ public static class Util
             STAGE,
 		    COUNT
         }
-        public const int SELECT_BOARD_TYPE_COUNT = (int)UnityBase.Constant.Util.SCENE.SELECT_BOARD_TYPE.COUNT;
-        public static readonly UnityBase.Constant.Util.MST_STRING_ID[] SELECT_BOARD_NAME_MST_STRING_ID_ARRAY = {
-            UnityBase.Constant.Util.MST_STRING_ID.NONE,
-            UnityBase.Constant.Util.MST_STRING_ID.STAGE
+        public const int SELECT_BOARD_TYPE_COUNT = (int)UnityBase.Util.SCENE.SELECT_BOARD_TYPE.COUNT;
+        public static readonly UnityBase.Util.MST_STRING_ID[] SELECT_BOARD_NAME_MST_STRING_ID_ARRAY = {
+            UnityBase.Util.MST_STRING_ID.NONE,
+            UnityBase.Util.MST_STRING_ID.STAGE
         };
 
         public enum STAGE_TYPE : int
@@ -128,11 +128,11 @@ public static class Util
             TEST_3D,
 		    COUNT
         }
-        public const int STAGE_TYPE_COUNT = (int)UnityBase.Constant.Util.SCENE.STAGE_TYPE.COUNT;
-        public static readonly UnityBase.Constant.Util.MST_STRING_ID[] STAGE_NAME_MST_STRING_ID_ARRAY = {
-            UnityBase.Constant.Util.MST_STRING_ID.NONE,
-            UnityBase.Constant.Util.MST_STRING_ID.TEST_2D,
-            UnityBase.Constant.Util.MST_STRING_ID.TEST_3D
+        public const int STAGE_TYPE_COUNT = (int)UnityBase.Util.SCENE.STAGE_TYPE.COUNT;
+        public static readonly UnityBase.Util.MST_STRING_ID[] STAGE_NAME_MST_STRING_ID_ARRAY = {
+            UnityBase.Util.MST_STRING_ID.NONE,
+            UnityBase.Util.MST_STRING_ID.TEST_2D,
+            UnityBase.Util.MST_STRING_ID.TEST_3D
         };
 
         public enum MENU_STAGE_TYPE : int
@@ -147,16 +147,16 @@ public static class Util
             CHEAT,
 		    COUNT
         }
-        public const int MENU_STAGE_TYPE_COUNT = (int)UnityBase.Constant.Util.SCENE.MENU_STAGE_TYPE.COUNT;
-        public static readonly UnityBase.Constant.Util.MST_STRING_ID[] MENU_STAGE_NAME_MST_STRING_ID_ARRAY = {
-            UnityBase.Constant.Util.MST_STRING_ID.NONE,
-            UnityBase.Constant.Util.MST_STRING_ID.OPTION,
-            UnityBase.Constant.Util.MST_STRING_ID.FAQ,
-            UnityBase.Constant.Util.MST_STRING_ID.STAFF,
-            UnityBase.Constant.Util.MST_STRING_ID.LICENSE,
-            UnityBase.Constant.Util.MST_STRING_ID.PRIVACY_POLICY,
-            UnityBase.Constant.Util.MST_STRING_ID.EXIT,
-            UnityBase.Constant.Util.MST_STRING_ID.CHEAT
+        public const int MENU_STAGE_TYPE_COUNT = (int)UnityBase.Util.SCENE.MENU_STAGE_TYPE.COUNT;
+        public static readonly UnityBase.Util.MST_STRING_ID[] MENU_STAGE_NAME_MST_STRING_ID_ARRAY = {
+            UnityBase.Util.MST_STRING_ID.NONE,
+            UnityBase.Util.MST_STRING_ID.OPTION,
+            UnityBase.Util.MST_STRING_ID.FAQ,
+            UnityBase.Util.MST_STRING_ID.STAFF,
+            UnityBase.Util.MST_STRING_ID.LICENSE,
+            UnityBase.Util.MST_STRING_ID.PRIVACY_POLICY,
+            UnityBase.Util.MST_STRING_ID.EXIT,
+            UnityBase.Util.MST_STRING_ID.CHEAT
         };
 
         public enum MENU_CHEAT_STAGE_COMMAND_TYPE : int
@@ -165,10 +165,10 @@ public static class Util
             DATA_DELETE,
 		    COUNT
         }
-        public const int MENU_CHEAT_STAGE_COMMAND_TYPE_COUNT = (int)UnityBase.Constant.Util.SCENE.MENU_CHEAT_STAGE_COMMAND_TYPE.COUNT;
-        public static readonly UnityBase.Constant.Util.MST_STRING_ID[] MENU_CHEAT_STAGE_COMMAND_NAME_MST_STRING_ID_ARRAY = {
-            UnityBase.Constant.Util.MST_STRING_ID.NONE,
-            UnityBase.Constant.Util.MST_STRING_ID.DELETE_DATA
+        public const int MENU_CHEAT_STAGE_COMMAND_TYPE_COUNT = (int)UnityBase.Util.SCENE.MENU_CHEAT_STAGE_COMMAND_TYPE.COUNT;
+        public static readonly UnityBase.Util.MST_STRING_ID[] MENU_CHEAT_STAGE_COMMAND_NAME_MST_STRING_ID_ARRAY = {
+            UnityBase.Util.MST_STRING_ID.NONE,
+            UnityBase.Util.MST_STRING_ID.DELETE_DATA
         };
         public static readonly string[] MENU_CHEAT_STAGE_COMMAND_FUNCTION_ARRAY = {
             "",
@@ -218,11 +218,11 @@ public static class Util
         JAPANESE,
 		COUNT
     }
-    public const int LANGUAGE_TYPE_COUNT = (int)UnityBase.Constant.Util.LANGUAGE_TYPE.COUNT;
-    public static readonly UnityBase.Constant.Util.MST_STRING_ID[] LANGUAGE_NAME_MST_STRING_ID_ARRAY = {
-        UnityBase.Constant.Util.MST_STRING_ID.NONE,
-        UnityBase.Constant.Util.MST_STRING_ID.ENGLISH,
-        UnityBase.Constant.Util.MST_STRING_ID.JAPANESE
+    public const int LANGUAGE_TYPE_COUNT = (int)UnityBase.Util.LANGUAGE_TYPE.COUNT;
+    public static readonly UnityBase.Util.MST_STRING_ID[] LANGUAGE_NAME_MST_STRING_ID_ARRAY = {
+        UnityBase.Util.MST_STRING_ID.NONE,
+        UnityBase.Util.MST_STRING_ID.ENGLISH,
+        UnityBase.Util.MST_STRING_ID.JAPANESE
     };
 }
 }

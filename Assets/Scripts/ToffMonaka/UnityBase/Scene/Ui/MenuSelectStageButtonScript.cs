@@ -18,7 +18,7 @@ namespace UnityBase.Scene.Ui {
 public class MenuSelectStageButtonScriptCreateDesc : Lib.Scene.ObjectScriptCreateDesc
 {
     public UnityBase.Scene.Ui.MenuSelectScript selectScript = null;
-    public UnityBase.Constant.Util.SCENE.MENU_STAGE_TYPE stageType = UnityBase.Constant.Util.SCENE.MENU_STAGE_TYPE.NONE;
+    public UnityBase.Util.SCENE.MENU_STAGE_TYPE stageType = UnityBase.Util.SCENE.MENU_STAGE_TYPE.NONE;
 }
 
 /**
@@ -32,14 +32,14 @@ public class MenuSelectStageButtonScript : Lib.Scene.ObjectScript, IPointerClick
     public new UnityBase.Scene.Ui.MenuSelectStageButtonScriptCreateDesc createDesc{get; private set;} = null;
 
     private UnityBase.Scene.Ui.MenuSelectScript _selectScript = null;
-    private UnityBase.Constant.Util.SCENE.MENU_STAGE_TYPE _stageType = UnityBase.Constant.Util.SCENE.MENU_STAGE_TYPE.NONE;
+    private UnityBase.Util.SCENE.MENU_STAGE_TYPE _stageType = UnityBase.Util.SCENE.MENU_STAGE_TYPE.NONE;
 
     /**
      * @brief コンストラクタ
      */
     public MenuSelectStageButtonScript()
     {
-        this._SetScriptIndex((int)UnityBase.Constant.Util.SCENE.SCRIPT_INDEX.MENU_SELECT_STAGE_BUTTON);
+        this._SetScriptIndex((int)UnityBase.Util.SCENE.SCRIPT_INDEX.MENU_SELECT_STAGE_BUTTON);
 
         return;
     }
@@ -70,7 +70,7 @@ public class MenuSelectStageButtonScript : Lib.Scene.ObjectScript, IPointerClick
         this._selectScript = this.createDesc.selectScript;
         this._stageType = this.createDesc.stageType;
 
-        this._nameText.SetText(UnityBase.Global.GetString(UnityBase.Constant.Util.SCENE.MENU_STAGE_NAME_MST_STRING_ID_ARRAY[(int)this._stageType]));
+        this._nameText.SetText(UnityBase.Global.GetString(UnityBase.Util.SCENE.MENU_STAGE_NAME_MST_STRING_ID_ARRAY[(int)this._stageType]));
 
         return (0);
     }
@@ -160,7 +160,7 @@ public class MenuSelectStageButtonScript : Lib.Scene.ObjectScript, IPointerClick
             return;
         }
 
-        Lib.Scene.Util.GetSoundManager().PlaySe((int)UnityBase.Constant.Util.SOUND.SE_INDEX.OK2);
+        Lib.Scene.Util.GetSoundManager().PlaySe((int)UnityBase.Util.SOUND.SE_INDEX.OK2);
 
         this._selectScript.RunStageButton(this._stageType);
 

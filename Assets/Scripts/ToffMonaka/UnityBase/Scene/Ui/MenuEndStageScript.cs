@@ -41,8 +41,8 @@ public class MenuEndStageScript : UnityBase.Scene.Ui.MenuStageScript
      */
     public MenuEndStageScript()
     {
-        this._SetScriptIndex((int)UnityBase.Constant.Util.SCENE.SCRIPT_INDEX.MENU_END_STAGE);
-        this._SetStageType(UnityBase.Constant.Util.SCENE.MENU_STAGE_TYPE.END);
+        this._SetScriptIndex((int)UnityBase.Util.SCENE.SCRIPT_INDEX.MENU_END_STAGE);
+        this._SetStageType(UnityBase.Util.SCENE.MENU_STAGE_TYPE.END);
 
         return;
     }
@@ -78,10 +78,10 @@ public class MenuEndStageScript : UnityBase.Scene.Ui.MenuStageScript
             return (-1);
         }
 
-        this._restartNameText.SetText(UnityBase.Global.GetString(UnityBase.Constant.Util.MST_STRING_ID.RESTART));
-        this._endNameText.SetText(UnityBase.Global.GetString(UnityBase.Constant.Util.MST_STRING_ID.EXIT));
-        this._okButtonNameText.SetText(UnityBase.Global.GetString(UnityBase.Constant.Util.MST_STRING_ID.OK));
-        this._cancelButtonNameText.SetText(UnityBase.Global.GetString(UnityBase.Constant.Util.MST_STRING_ID.CANCEL));
+        this._restartNameText.SetText(UnityBase.Global.GetString(UnityBase.Util.MST_STRING_ID.RESTART));
+        this._endNameText.SetText(UnityBase.Global.GetString(UnityBase.Util.MST_STRING_ID.EXIT));
+        this._okButtonNameText.SetText(UnityBase.Global.GetString(UnityBase.Util.MST_STRING_ID.OK));
+        this._cancelButtonNameText.SetText(UnityBase.Global.GetString(UnityBase.Util.MST_STRING_ID.CANCEL));
 
         return (0);
     }
@@ -186,11 +186,11 @@ public class MenuEndStageScript : UnityBase.Scene.Ui.MenuStageScript
         }
 
         if (this._restartToggle.isOn) {
-            Lib.Scene.Util.GetSoundManager().PlaySe((int)UnityBase.Constant.Util.SOUND.SE_INDEX.OK2);
+            Lib.Scene.Util.GetSoundManager().PlaySe((int)UnityBase.Util.SOUND.SE_INDEX.OK2);
 
             this._endToggle.SetIsOnWithoutNotify(false);
         } else {
-            Lib.Scene.Util.GetSoundManager().PlaySe((int)UnityBase.Constant.Util.SOUND.SE_INDEX.CANCEL);
+            Lib.Scene.Util.GetSoundManager().PlaySe((int)UnityBase.Util.SOUND.SE_INDEX.CANCEL);
         }
 
         return;
@@ -207,11 +207,11 @@ public class MenuEndStageScript : UnityBase.Scene.Ui.MenuStageScript
         }
 
         if (this._endToggle.isOn) {
-            Lib.Scene.Util.GetSoundManager().PlaySe((int)UnityBase.Constant.Util.SOUND.SE_INDEX.OK2);
+            Lib.Scene.Util.GetSoundManager().PlaySe((int)UnityBase.Util.SOUND.SE_INDEX.OK2);
 
             this._restartToggle.SetIsOnWithoutNotify(false);
         } else {
-            Lib.Scene.Util.GetSoundManager().PlaySe((int)UnityBase.Constant.Util.SOUND.SE_INDEX.CANCEL);
+            Lib.Scene.Util.GetSoundManager().PlaySe((int)UnityBase.Util.SOUND.SE_INDEX.CANCEL);
         }
 
         return;
@@ -227,10 +227,10 @@ public class MenuEndStageScript : UnityBase.Scene.Ui.MenuStageScript
             return;
         }
 
-        Lib.Scene.Util.GetSoundManager().PlaySe((int)UnityBase.Constant.Util.SOUND.SE_INDEX.OK2);
+        Lib.Scene.Util.GetSoundManager().PlaySe((int)UnityBase.Util.SOUND.SE_INDEX.OK2);
 
         if (this._restartToggle.isOn) {
-            Lib.Scene.Util.GetManager().ChangeMainScene(UnityBase.Constant.Util.SCENE.NAME.MAIN);
+            Lib.Scene.Util.GetManager().ChangeMainScene(UnityBase.Util.SCENE.NAME.MAIN);
         } else if (this._endToggle.isOn) {
 #if UNITY_EDITOR
             UnityEditor.EditorApplication.isPlaying = false;
@@ -284,7 +284,7 @@ public class MenuEndStageScript : UnityBase.Scene.Ui.MenuStageScript
             return;
         }
 
-        Lib.Scene.Util.GetSoundManager().PlaySe((int)UnityBase.Constant.Util.SOUND.SE_INDEX.CANCEL);
+        Lib.Scene.Util.GetSoundManager().PlaySe((int)UnityBase.Util.SOUND.SE_INDEX.CANCEL);
 
         this.GetMenuScript().RunStageCancelButton();
 

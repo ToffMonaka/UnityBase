@@ -36,7 +36,7 @@ public class MenuOpenCloseButtonScript : Lib.Scene.ObjectScript, IPointerClickHa
      */
     public MenuOpenCloseButtonScript()
     {
-        this._SetScriptIndex((int)UnityBase.Constant.Util.SCENE.SCRIPT_INDEX.MENU_OPEN_CLOSE_BUTTON);
+        this._SetScriptIndex((int)UnityBase.Util.SCENE.SCRIPT_INDEX.MENU_OPEN_CLOSE_BUTTON);
 
         return;
     }
@@ -205,9 +205,9 @@ public class MenuOpenCloseButtonScript : Lib.Scene.ObjectScript, IPointerClickHa
         this._menuScript.RunOpenCloseButton();
 
         if (this._menuScript.GetOpenSelectScript() != null) {
-            Lib.Scene.Util.GetSoundManager().PlaySe((int)UnityBase.Constant.Util.SOUND.SE_INDEX.OK2);
+            Lib.Scene.Util.GetSoundManager().PlaySe((int)UnityBase.Util.SOUND.SE_INDEX.OK2);
         } else {
-            Lib.Scene.Util.GetSoundManager().PlaySe((int)UnityBase.Constant.Util.SOUND.SE_INDEX.CANCEL);
+            Lib.Scene.Util.GetSoundManager().PlaySe((int)UnityBase.Util.SOUND.SE_INDEX.CANCEL);
         }
 
         return;

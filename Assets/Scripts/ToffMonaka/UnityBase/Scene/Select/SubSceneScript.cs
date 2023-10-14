@@ -32,7 +32,7 @@ public class SubSceneScript : Lib.Scene.SubSceneScript
 
     private UnityBase.Scene.Select.StageBoardScript _stageBoardScript = null;
     private UnityBase.Scene.Select.BoardScript _openBoardScript = null;
-    private UnityBase.Constant.Util.SCENE.STAGE_TYPE _stageType = UnityBase.Constant.Util.SCENE.STAGE_TYPE.NONE;
+    private UnityBase.Util.SCENE.STAGE_TYPE _stageType = UnityBase.Util.SCENE.STAGE_TYPE.NONE;
     private UnityBase.Scene.Select.BackButtonScript _backButtonScript = null;
     private UnityBase.Scene.Ui.MenuScript _menuScript = null;
 
@@ -41,7 +41,7 @@ public class SubSceneScript : Lib.Scene.SubSceneScript
      */
     public SubSceneScript()
     {
-        this._SetScriptIndex((int)UnityBase.Constant.Util.SCENE.SCRIPT_INDEX.SELECT_SUB_SCENE);
+        this._SetScriptIndex((int)UnityBase.Util.SCENE.SCRIPT_INDEX.SELECT_SUB_SCENE);
 
         return;
     }
@@ -125,11 +125,11 @@ public class SubSceneScript : Lib.Scene.SubSceneScript
      */
     protected override void _OnActive()
     {
-        Lib.Scene.Util.GetSoundManager().PlayBgm((int)UnityBase.Constant.Util.SOUND.BGM_INDEX.SELECT);
+        Lib.Scene.Util.GetSoundManager().PlayBgm((int)UnityBase.Util.SOUND.BGM_INDEX.SELECT);
 
-        this._stageType = UnityBase.Constant.Util.SCENE.STAGE_TYPE.NONE;
+        this._stageType = UnityBase.Util.SCENE.STAGE_TYPE.NONE;
 
-        this.ChangeBoard(UnityBase.Constant.Util.SCENE.SELECT_BOARD_TYPE.STAGE, 0);
+        this.ChangeBoard(UnityBase.Util.SCENE.SELECT_BOARD_TYPE.STAGE, 0);
 
         return;
     }
@@ -235,9 +235,9 @@ public class SubSceneScript : Lib.Scene.SubSceneScript
 		    switch (this.GetClosedType()) {
             case 1: {
 		        switch (this._stageType) {
-		        case UnityBase.Constant.Util.SCENE.STAGE_TYPE.TEST_2D: {
+		        case UnityBase.Util.SCENE.STAGE_TYPE.TEST_2D: {
                     {// Test2DStageSubSceneScript Create
-                        var script = this.GetManager().ChangeSubScene(UnityBase.Constant.Util.FILE_PATH.TEST_2D_STAGE_SUB_SCENE_PREFAB) as UnityBase.Scene.Stage.Test2D.SubSceneScript;
+                        var script = this.GetManager().ChangeSubScene(UnityBase.Util.FILE_PATH.TEST_2D_STAGE_SUB_SCENE_PREFAB) as UnityBase.Scene.Stage.Test2D.SubSceneScript;
                         var script_create_desc = new UnityBase.Scene.Stage.Test2D.SubSceneScriptCreateDesc();
 
                         script.Create(script_create_desc);
@@ -246,9 +246,9 @@ public class SubSceneScript : Lib.Scene.SubSceneScript
 
 			        break;
 		        }
-		        case UnityBase.Constant.Util.SCENE.STAGE_TYPE.TEST_3D: {
+		        case UnityBase.Util.SCENE.STAGE_TYPE.TEST_3D: {
                     {// Test3DStageSubSceneScript Create
-                        var script = this.GetManager().ChangeSubScene(UnityBase.Constant.Util.FILE_PATH.TEST_3D_STAGE_SUB_SCENE_PREFAB) as UnityBase.Scene.Stage.Test3D.SubSceneScript;
+                        var script = this.GetManager().ChangeSubScene(UnityBase.Util.FILE_PATH.TEST_3D_STAGE_SUB_SCENE_PREFAB) as UnityBase.Scene.Stage.Test3D.SubSceneScript;
                         var script_create_desc = new UnityBase.Scene.Stage.Test3D.SubSceneScriptCreateDesc();
 
                         script.Create(script_create_desc);
@@ -263,7 +263,7 @@ public class SubSceneScript : Lib.Scene.SubSceneScript
 		    }
             case 2: {
                 {// TitleSubSceneScript Create
-                    var script = this.GetManager().ChangeSubScene(UnityBase.Constant.Util.FILE_PATH.TITLE_SUB_SCENE_PREFAB) as UnityBase.Scene.TitleSubSceneScript;
+                    var script = this.GetManager().ChangeSubScene(UnityBase.Util.FILE_PATH.TITLE_SUB_SCENE_PREFAB) as UnityBase.Scene.TitleSubSceneScript;
                     var script_create_desc = new UnityBase.Scene.TitleSubSceneScriptCreateDesc();
 
                     script.Create(script_create_desc);
@@ -282,7 +282,7 @@ public class SubSceneScript : Lib.Scene.SubSceneScript
      * @brief GetStageType関数
      * @return stage_type (stage_type)
      */
-    public UnityBase.Constant.Util.SCENE.STAGE_TYPE GetStageType()
+    public UnityBase.Util.SCENE.STAGE_TYPE GetStageType()
     {
         return (this._stageType);
     }
@@ -292,7 +292,7 @@ public class SubSceneScript : Lib.Scene.SubSceneScript
      * @param board_type (board_type)
      * @param open_type (open_type)
      */
-    public void ChangeBoard(UnityBase.Constant.Util.SCENE.SELECT_BOARD_TYPE board_type, int open_type)
+    public void ChangeBoard(UnityBase.Util.SCENE.SELECT_BOARD_TYPE board_type, int open_type)
     {
         if (this._openBoardScript != null) {
             this._openBoardScript.Close(0);
@@ -301,7 +301,7 @@ public class SubSceneScript : Lib.Scene.SubSceneScript
         }
 
 		switch (board_type) {
-		case UnityBase.Constant.Util.SCENE.SELECT_BOARD_TYPE.STAGE: {
+		case UnityBase.Util.SCENE.SELECT_BOARD_TYPE.STAGE: {
             this._openBoardScript = this._stageBoardScript;
 
 			break;
@@ -317,7 +317,7 @@ public class SubSceneScript : Lib.Scene.SubSceneScript
      * @brief RunStageButton関数
      * @param stage_type (stage_type)
      */
-    public void RunStageButton(UnityBase.Constant.Util.SCENE.STAGE_TYPE stage_type)
+    public void RunStageButton(UnityBase.Util.SCENE.STAGE_TYPE stage_type)
     {
         this._stageType = stage_type;
 
@@ -332,7 +332,7 @@ public class SubSceneScript : Lib.Scene.SubSceneScript
     public void RunBackButton()
     {
 		switch (this._openBoardScript.GetBoardType()) {
-		case UnityBase.Constant.Util.SCENE.SELECT_BOARD_TYPE.STAGE: {
+		case UnityBase.Util.SCENE.SELECT_BOARD_TYPE.STAGE: {
             this.Close(1, 2);
 
 			break;
