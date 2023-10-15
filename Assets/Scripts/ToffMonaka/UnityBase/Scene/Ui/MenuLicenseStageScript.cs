@@ -76,7 +76,7 @@ public class MenuLicenseStageScript : UnityBase.Scene.Ui.MenuStageScript
         this._messageNode.SetActive(false);
 
         {// MessageNode Create
-            var str_ary = new string[]{
+            var txt_ary = new string[]{
                 "-----------------------------------\n" +
                 "Unity TextMeshPro\n" +
                 "-----------------------------------\n" +
@@ -91,12 +91,12 @@ public class MenuLicenseStageScript : UnityBase.Scene.Ui.MenuStageScript
                 "Please review the license for details on these and other terms and conditions."
             };
 
-            for (int str_i = 0; str_i < str_ary.Length; ++str_i) {
-                var str = (str_i <= 0) ? str_ary[str_i] : "\n" + str_ary[str_i];
+            for (int txt_i = 0; txt_i < txt_ary.Length; ++txt_i) {
+                var txt = (txt_i <= 0) ? txt_ary[txt_i] : "\n" + txt_ary[txt_i];
 
                 var node = GameObject.Instantiate(this._messageNode, this._messageNode.transform.parent);
 
-                node.GetComponent<TMP_Text>().SetText(str);
+                node.GetComponent<TMP_Text>().SetText(txt);
 
                 node.SetActive(true);
             }

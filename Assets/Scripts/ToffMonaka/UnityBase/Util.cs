@@ -15,30 +15,30 @@ namespace UnityBase {
 public static class Util
 {
 #if DEBUG
-    public const bool DEBUG_FLAG = true;
+    public static readonly bool DEBUG_FLAG = true;
 #else
-    public const bool DEBUG_FLAG = false;
+    public static readonly bool DEBUG_FLAG = false;
 #endif
 
     public static class PROJECT
     {
-        public const string NAME = "Unity Base";
-        public const string COMPANY_NAME = "Toff Monaka Project";
-        public const string VERSION_NAME = "1.0.0";
+        public static readonly string NAME = "Unity Base";
+        public static readonly string COMPANY_NAME = "Toff Monaka Project";
+        public static readonly string VERSION_NAME = "1.0.0";
     }
 
     public static class FILE_PATH
     {
-        public const string NONE = "";
-        public const string SYSTEM_CONFIG = "dat/sys_conf.ini";
-        public const string MST_STRING_ENGLISH_TABLE = "Assets/Resources2/dat/mst_str_en_tbl.csv";
-        public const string MST_STRING_JAPANESE_TABLE = "Assets/Resources2/dat/mst_str_jp_tbl.csv";
-        public const string INIT_SUB_SCENE_PREFAB = "Assets/Resources2/prefab/InitSubScene.prefab";
-        public const string TITLE_SUB_SCENE_PREFAB = "Assets/Resources2/prefab/TitleSubScene.prefab";
-        public const string SELECT_SUB_SCENE_PREFAB = "Assets/Resources2/prefab/SelectSubScene.prefab";
-        public const string TEST_2D_STAGE_SUB_SCENE_PREFAB = "Assets/Resources2/prefab/Test2DStageSubScene.prefab";
-        public const string TEST_3D_STAGE_SUB_SCENE_PREFAB = "Assets/Resources2/prefab/Test3DStageSubScene.prefab";
-        public const string LANGUAGE_SELECT_DIALOG_PREFAB = "Assets/Resources2/prefab/LanguageSelectDialog.prefab";
+        public static readonly string NONE = "";
+        public static readonly string SYSTEM_CONFIG = "dat/sys_conf.ini";
+        public static readonly string MST_STRING_ENGLISH_TABLE = "Assets/Resources2/dat/mst_str_en_tbl.csv";
+        public static readonly string MST_STRING_JAPANESE_TABLE = "Assets/Resources2/dat/mst_str_jp_tbl.csv";
+        public static readonly string INIT_SUB_SCENE_PREFAB = "Assets/Resources2/prefab/InitSubScene.prefab";
+        public static readonly string TITLE_SUB_SCENE_PREFAB = "Assets/Resources2/prefab/TitleSubScene.prefab";
+        public static readonly string SELECT_SUB_SCENE_PREFAB = "Assets/Resources2/prefab/SelectSubScene.prefab";
+        public static readonly string TEST_2D_STAGE_SUB_SCENE_PREFAB = "Assets/Resources2/prefab/Test2DStageSubScene.prefab";
+        public static readonly string TEST_3D_STAGE_SUB_SCENE_PREFAB = "Assets/Resources2/prefab/Test3DStageSubScene.prefab";
+        public static readonly string LANGUAGE_SELECT_DIALOG_PREFAB = "Assets/Resources2/prefab/LanguageSelectDialog.prefab";
     }
 
     public static class INPUT
@@ -58,7 +58,7 @@ public static class Util
             SELECT,
 		    COUNT
         }
-        public const int BGM_INDEX_COUNT = (int)UnityBase.Util.SOUND.BGM_INDEX.COUNT;
+        public static readonly int BGM_INDEX_COUNT = (int)UnityBase.Util.SOUND.BGM_INDEX.COUNT;
 
         public enum SE_INDEX : int
         {
@@ -68,7 +68,7 @@ public static class Util
             CANCEL,
 		    COUNT
         }
-        public const int SE_INDEX_COUNT = (int)UnityBase.Util.SOUND.SE_INDEX.COUNT;
+        public static readonly int SE_INDEX_COUNT = (int)UnityBase.Util.SOUND.SE_INDEX.COUNT;
     }
 
     public static class SCENE
@@ -101,12 +101,12 @@ public static class Util
             LANGUAGE_SELECT_DIALOG_BUTTON,
 		    COUNT
         }
-        public const int SCRIPT_INDEX_COUNT = (int)UnityBase.Util.SCENE.SCRIPT_INDEX.COUNT;
+        public static readonly int SCRIPT_INDEX_COUNT = (int)UnityBase.Util.SCENE.SCRIPT_INDEX.COUNT;
 
         public static class NAME
         {
-            public const string NONE = "";
-            public const string MAIN = "MainScene";
+            public static readonly string NONE = "";
+            public static readonly string MAIN = "MainScene";
         }
 
         public enum SELECT_BOARD_TYPE : int
@@ -115,7 +115,7 @@ public static class Util
             STAGE,
 		    COUNT
         }
-        public const int SELECT_BOARD_TYPE_COUNT = (int)UnityBase.Util.SCENE.SELECT_BOARD_TYPE.COUNT;
+        public static readonly int SELECT_BOARD_TYPE_COUNT = (int)UnityBase.Util.SCENE.SELECT_BOARD_TYPE.COUNT;
         public static readonly UnityBase.Util.MST_STRING_ID[] SELECT_BOARD_NAME_MST_STRING_ID_ARRAY = {
             UnityBase.Util.MST_STRING_ID.NONE,
             UnityBase.Util.MST_STRING_ID.STAGE
@@ -128,7 +128,7 @@ public static class Util
             TEST_3D,
 		    COUNT
         }
-        public const int STAGE_TYPE_COUNT = (int)UnityBase.Util.SCENE.STAGE_TYPE.COUNT;
+        public static readonly int STAGE_TYPE_COUNT = (int)UnityBase.Util.SCENE.STAGE_TYPE.COUNT;
         public static readonly UnityBase.Util.MST_STRING_ID[] STAGE_NAME_MST_STRING_ID_ARRAY = {
             UnityBase.Util.MST_STRING_ID.NONE,
             UnityBase.Util.MST_STRING_ID.TEST_2D,
@@ -147,7 +147,7 @@ public static class Util
             CHEAT,
 		    COUNT
         }
-        public const int MENU_STAGE_TYPE_COUNT = (int)UnityBase.Util.SCENE.MENU_STAGE_TYPE.COUNT;
+        public static readonly int MENU_STAGE_TYPE_COUNT = (int)UnityBase.Util.SCENE.MENU_STAGE_TYPE.COUNT;
         public static readonly UnityBase.Util.MST_STRING_ID[] MENU_STAGE_NAME_MST_STRING_ID_ARRAY = {
             UnityBase.Util.MST_STRING_ID.NONE,
             UnityBase.Util.MST_STRING_ID.OPTION,
@@ -165,7 +165,7 @@ public static class Util
             DATA_DELETE,
 		    COUNT
         }
-        public const int MENU_CHEAT_STAGE_COMMAND_TYPE_COUNT = (int)UnityBase.Util.SCENE.MENU_CHEAT_STAGE_COMMAND_TYPE.COUNT;
+        public static readonly int MENU_CHEAT_STAGE_COMMAND_TYPE_COUNT = (int)UnityBase.Util.SCENE.MENU_CHEAT_STAGE_COMMAND_TYPE.COUNT;
         public static readonly UnityBase.Util.MST_STRING_ID[] MENU_CHEAT_STAGE_COMMAND_NAME_MST_STRING_ID_ARRAY = {
             UnityBase.Util.MST_STRING_ID.NONE,
             UnityBase.Util.MST_STRING_ID.DELETE_DATA
@@ -218,7 +218,7 @@ public static class Util
         JAPANESE,
 		COUNT
     }
-    public const int LANGUAGE_TYPE_COUNT = (int)UnityBase.Util.LANGUAGE_TYPE.COUNT;
+    public static readonly int LANGUAGE_TYPE_COUNT = (int)UnityBase.Util.LANGUAGE_TYPE.COUNT;
     public static readonly UnityBase.Util.MST_STRING_ID[] LANGUAGE_NAME_MST_STRING_ID_ARRAY = {
         UnityBase.Util.MST_STRING_ID.NONE,
         UnityBase.Util.MST_STRING_ID.ENGLISH,

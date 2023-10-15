@@ -15,21 +15,21 @@ namespace Lib {
 public static class Util
 {
 #if DEBUG
-    public const bool DEBUG_FLAG = true;
+    public static readonly bool DEBUG_FLAG = true;
 #else
-    public const bool DEBUG_FLAG = false;
+    public static readonly bool DEBUG_FLAG = false;
 #endif
 
     public static class PROJECT
     {
-        public const string NAME = "Toff Monaka Library";
-        public const string COMPANY_NAME = "Toff Monaka Project";
-        public const string VERSION_NAME = "1.0.0";
+        public static readonly string NAME = "Toff Monaka Library";
+        public static readonly string COMPANY_NAME = "Toff Monaka Project";
+        public static readonly string VERSION_NAME = "1.0.0";
     }
 
     public static class FILE_PATH
     {
-        public const string NONE = "";
+        public static readonly string NONE = "";
     }
 
     public static class INPUT
@@ -54,7 +54,7 @@ public static class Util
             OBJECT,
 		    COUNT
         }
-        public const int SCRIPT_TYPE_COUNT = (int)Lib.Util.SCENE.SCRIPT_TYPE.COUNT;
+        public static readonly int SCRIPT_TYPE_COUNT = (int)Lib.Util.SCENE.SCRIPT_TYPE.COUNT;
 
         public enum SCRIPT_INDEX : int
         {
@@ -63,7 +63,7 @@ public static class Util
             SOUND_SE,
 		    COUNT
         }
-        public const int SCRIPT_INDEX_COUNT = (int)Lib.Util.SCENE.SCRIPT_INDEX.COUNT;
+        public static readonly int SCRIPT_INDEX_COUNT = (int)Lib.Util.SCENE.SCRIPT_INDEX.COUNT;
     }
 }
 }

@@ -76,7 +76,7 @@ public class MenuStaffStageScript : UnityBase.Scene.Ui.MenuStageScript
         this._messageNode.SetActive(false);
 
         {// MessageNode Create
-            var en_str_ary = new string[]{
+            var en_txt_ary = new string[]{
                 "-SCENARIO-\n" +
                 "Toff Monaka",
     
@@ -97,7 +97,7 @@ public class MenuStaffStageScript : UnityBase.Scene.Ui.MenuStageScript
                 "甘茶の音楽工房\n" +
                 "http://amachamusic.chagasi.com/"
             };
-            var jp_str_ary = new string[]{
+            var jp_txt_ary = new string[]{
                 "-シナリオ-\n" +
                 "Toff Monaka",
     
@@ -118,27 +118,27 @@ public class MenuStaffStageScript : UnityBase.Scene.Ui.MenuStageScript
                 "甘茶の音楽工房\n" +
                 "http://amachamusic.chagasi.com/"
             };
-            string[] str_ary;
+            string[] txt_ary;
 
 		    switch (UnityBase.Global.systemConfigFile.data.systemLanguageType) {
 		    case UnityBase.Util.LANGUAGE_TYPE.JAPANESE: {
-                str_ary = jp_str_ary;
+                txt_ary = jp_txt_ary;
 
 			    break;
 		    }
 		    default: {
-                str_ary = en_str_ary;
+                txt_ary = en_txt_ary;
 
 			    break;
 		    }
 		    }
 
-            for (int str_i = 0; str_i < str_ary.Length; ++str_i) {
-                var str = (str_i <= 0) ? str_ary[str_i] : "\n" + str_ary[str_i];
+            for (int txt_i = 0; txt_i < txt_ary.Length; ++txt_i) {
+                var txt = (txt_i <= 0) ? txt_ary[txt_i] : "\n" + txt_ary[txt_i];
 
                 var node = GameObject.Instantiate(this._messageNode, this._messageNode.transform.parent);
 
-                node.GetComponent<TMP_Text>().SetText(str);
+                node.GetComponent<TMP_Text>().SetText(txt);
 
                 node.SetActive(true);
             }

@@ -76,7 +76,7 @@ public class MenuPrivacyPolicyStageScript : UnityBase.Scene.Ui.MenuStageScript
         this._messageNode.SetActive(false);
 
         {// MessageNode Create
-            var en_str_ary = new string[]{
+            var en_txt_ary = new string[]{
                 "Application\n" +
                 "\n" +
                 "Toff Monaka built the Unity Base app as a Free app. This Service is provided by Toff Monaka at no cost and is intended for use as is.\n" +
@@ -141,7 +141,7 @@ public class MenuPrivacyPolicyStageScript : UnityBase.Scene.Ui.MenuStageScript
                 "\n" +
                 "If you have any questions about my Privacy Policy, do not hesitate to contact me at toff.monaka@gmail.com."
             };
-            var jp_str_ary = new string[]{
+            var jp_txt_ary = new string[]{
                 "アプリケーション\n" +
                 "\n" +
                 "Toff Monakaは、Unity Baseアプリを無料アプリとして構築しました。本サービスはToff Monakaによって無料で提供され、現状のまま使用することを目的としています。\n" +
@@ -206,27 +206,27 @@ public class MenuPrivacyPolicyStageScript : UnityBase.Scene.Ui.MenuStageScript
                 "\n" +
                 "私のプライバシーポリシーについてご質問がございましたら、お気軽にtoff.monaka@gmail.comまでご連絡ください。"
             };
-            string[] str_ary;
+            string[] txt_ary;
 
 		    switch (UnityBase.Global.systemConfigFile.data.systemLanguageType) {
 		    case UnityBase.Util.LANGUAGE_TYPE.JAPANESE: {
-                str_ary = jp_str_ary;
+                txt_ary = jp_txt_ary;
 
 			    break;
 		    }
 		    default: {
-                str_ary = en_str_ary;
+                txt_ary = en_txt_ary;
 
 			    break;
 		    }
 		    }
 
-            for (int str_i = 0; str_i < str_ary.Length; ++str_i) {
-                var str = (str_i <= 0) ? str_ary[str_i] : "\n" + str_ary[str_i];
+            for (int txt_i = 0; txt_i < txt_ary.Length; ++txt_i) {
+                var txt = (txt_i <= 0) ? txt_ary[txt_i] : "\n" + txt_ary[txt_i];
 
                 var node = GameObject.Instantiate(this._messageNode, this._messageNode.transform.parent);
 
-                node.GetComponent<TMP_Text>().SetText(str);
+                node.GetComponent<TMP_Text>().SetText(txt);
 
                 node.SetActive(true);
             }
