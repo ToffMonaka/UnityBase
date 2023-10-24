@@ -23,6 +23,7 @@ public static class Util
 		COUNT
     }
     public static readonly int NEWLINE_TYPE_COUNT = (int)Lib.String.Util.NEWLINE_TYPE.COUNT;
+
     public static readonly string[] NEWLINE_CODE_ARRAY = {
         "",
         "\r\n",

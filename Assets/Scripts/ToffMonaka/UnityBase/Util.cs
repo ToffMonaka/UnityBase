@@ -116,6 +116,7 @@ public static class Util
 		    COUNT
         }
         public static readonly int SELECT_BOARD_TYPE_COUNT = (int)UnityBase.Util.SCENE.SELECT_BOARD_TYPE.COUNT;
+
         public static readonly UnityBase.Util.MST_STRING_ID[] SELECT_BOARD_NAME_MST_STRING_ID_ARRAY = {
             UnityBase.Util.MST_STRING_ID.NONE,
             UnityBase.Util.MST_STRING_ID.STAGE
@@ -129,6 +130,7 @@ public static class Util
 		    COUNT
         }
         public static readonly int STAGE_TYPE_COUNT = (int)UnityBase.Util.SCENE.STAGE_TYPE.COUNT;
+
         public static readonly UnityBase.Util.MST_STRING_ID[] STAGE_NAME_MST_STRING_ID_ARRAY = {
             UnityBase.Util.MST_STRING_ID.NONE,
             UnityBase.Util.MST_STRING_ID.TEST_2D,
@@ -148,6 +150,7 @@ public static class Util
 		    COUNT
         }
         public static readonly int MENU_STAGE_TYPE_COUNT = (int)UnityBase.Util.SCENE.MENU_STAGE_TYPE.COUNT;
+
         public static readonly UnityBase.Util.MST_STRING_ID[] MENU_STAGE_NAME_MST_STRING_ID_ARRAY = {
             UnityBase.Util.MST_STRING_ID.NONE,
             UnityBase.Util.MST_STRING_ID.OPTION,
@@ -166,14 +169,17 @@ public static class Util
 		    COUNT
         }
         public static readonly int MENU_CHEAT_STAGE_COMMAND_TYPE_COUNT = (int)UnityBase.Util.SCENE.MENU_CHEAT_STAGE_COMMAND_TYPE.COUNT;
+
         public static readonly UnityBase.Util.MST_STRING_ID[] MENU_CHEAT_STAGE_COMMAND_NAME_MST_STRING_ID_ARRAY = {
             UnityBase.Util.MST_STRING_ID.NONE,
             UnityBase.Util.MST_STRING_ID.DELETE_DATA
         };
+
         public static readonly string[] MENU_CHEAT_STAGE_COMMAND_FUNCTION_ARRAY = {
             "",
             "/DeleteData"
         };
+
         public static readonly string[] MENU_CHEAT_STAGE_COMMAND_PARAMETER_ARRAY = {
             "",
             ""
@@ -219,6 +225,7 @@ public static class Util
 		COUNT
     }
     public static readonly int LANGUAGE_TYPE_COUNT = (int)UnityBase.Util.LANGUAGE_TYPE.COUNT;
+
     public static readonly UnityBase.Util.MST_STRING_ID[] LANGUAGE_NAME_MST_STRING_ID_ARRAY = {
         UnityBase.Util.MST_STRING_ID.NONE,
         UnityBase.Util.MST_STRING_ID.ENGLISH,
