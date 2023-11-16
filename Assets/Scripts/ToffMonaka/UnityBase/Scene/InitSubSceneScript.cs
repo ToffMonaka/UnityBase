@@ -128,23 +128,23 @@ public class InitSubSceneScript : Lib.Scene.SubSceneScript
 		case 2: {
             this._progressElapsedTime += Time.deltaTime;
 
-            {// MstStringTableFile Create
+            {// MstTextTableFile Create
 		        switch (UnityBase.Global.systemConfigFile.data.systemLanguageType) {
 		        case UnityBase.Util.LANGUAGE_TYPE.JAPANESE: {
-                    UnityBase.Global.mstStringTableFile.readDesc.data.filePath = UnityBase.Util.FILE_PATH.MST_STRING_JAPANESE_TABLE;
+                    UnityBase.Global.mstTextTableFile.readDesc.data.filePath = UnityBase.Util.FILE_PATH.MST_TEXT_JAPANESE_TABLE;
 
 			        break;
 		        }
 		        default: {
-                    UnityBase.Global.mstStringTableFile.readDesc.data.filePath = UnityBase.Util.FILE_PATH.MST_STRING_ENGLISH_TABLE;
+                    UnityBase.Global.mstTextTableFile.readDesc.data.filePath = UnityBase.Util.FILE_PATH.MST_TEXT_ENGLISH_TABLE;
 
 			        break;
 		        }
 		        }
 
-                UnityBase.Global.mstStringTableFile.readDesc.data.addressablesFlag = true;
+                UnityBase.Global.mstTextTableFile.readDesc.data.addressablesFlag = true;
 
-                UnityBase.Global.mstStringTableFile.Read();
+                UnityBase.Global.mstTextTableFile.Read();
             }
 
             this.SetProgressType(3);

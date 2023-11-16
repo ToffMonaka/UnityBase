@@ -78,7 +78,7 @@ public class LanguageSelectDialogScript : UnityBase.Scene.Ui.DialogScript
 
         this._stageScript = this.createDesc.stageScript;
 
-        this._nameText.SetText(UnityBase.Global.GetString(UnityBase.Util.MST_STRING_ID.LANGUAGE));
+        this._nameText.SetText(UnityBase.Global.GetText(UnityBase.Util.MST_TEXT_ID.LANGUAGE));
 
         this._buttonNode.SetActive(false);
 

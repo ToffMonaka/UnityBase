@@ -80,7 +80,7 @@ public class MenuCheatStageScript : UnityBase.Scene.Ui.MenuStageScript
             return (-1);
         }
 
-        this._commandNameText.SetText(UnityBase.Global.GetString(UnityBase.Util.MST_STRING_ID.COMMAND));
+        this._commandNameText.SetText(UnityBase.Global.GetText(UnityBase.Util.MST_TEXT_ID.COMMAND));
 
         this._commandButtonNode.SetActive(false);
 
@@ -97,8 +97,8 @@ public class MenuCheatStageScript : UnityBase.Scene.Ui.MenuStageScript
             this._commandButtonScriptContainer.Add(script);
         }
 
-        this._okButtonNameText.SetText(UnityBase.Global.GetString(UnityBase.Util.MST_STRING_ID.OK));
-        this._cancelButtonNameText.SetText(UnityBase.Global.GetString(UnityBase.Util.MST_STRING_ID.CANCEL));
+        this._okButtonNameText.SetText(UnityBase.Global.GetText(UnityBase.Util.MST_TEXT_ID.OK));
+        this._cancelButtonNameText.SetText(UnityBase.Global.GetText(UnityBase.Util.MST_TEXT_ID.CANCEL));
 
         return (0);
     }

@@ -72,8 +72,8 @@ public class SubSceneScript : UnityBase.Scene.Stage.SubSceneScript
             return (-1);
         }
 
-        this._nameText.SetText(UnityBase.Global.GetString(UnityBase.Util.SCENE.STAGE_NAME_MST_STRING_ID_ARRAY[(int)this.GetStageType()]));
-        this._messageText.SetText(UnityBase.Global.GetString(UnityBase.Util.MST_STRING_ID.IN_PREPARATION));
+        this._nameText.SetText(UnityBase.Global.GetText(UnityBase.Util.SCENE.STAGE_NAME_MST_TEXT_ID_ARRAY[(int)this.GetStageType()]));
+        this._messageText.SetText(UnityBase.Global.GetText(UnityBase.Util.MST_TEXT_ID.IN_PREPARATION));
 
         return (0);
     }

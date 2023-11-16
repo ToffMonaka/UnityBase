@@ -70,7 +70,7 @@ public class StageButtonScript : Lib.Scene.ObjectScript, IPointerClickHandler, I
         this._boardScript = this.createDesc.boardScript;
         this._stageType = this.createDesc.stageType;
 
-        this._nameText.SetText(UnityBase.Global.GetString(UnityBase.Util.SCENE.STAGE_NAME_MST_STRING_ID_ARRAY[(int)this._stageType]));
+        this._nameText.SetText(UnityBase.Global.GetText(UnityBase.Util.SCENE.STAGE_NAME_MST_TEXT_ID_ARRAY[(int)this._stageType]));
 
         return (0);
     }

@@ -15,28 +15,28 @@ namespace UnityBase {
 public static class Global
 {
     public static UnityBase.Data.SystemConfigFile systemConfigFile = new UnityBase.Data.SystemConfigFile();
-    public static UnityBase.Data.MstStringTableFile mstStringTableFile = new UnityBase.Data.MstStringTableFile();
+    public static UnityBase.Data.MstTextTableFile mstTextTableFile = new UnityBase.Data.MstTextTableFile();
 
     /**
-     * @brief GetString関数
-     * @param mst_str_id (mst_string_id)
-     * @return str (string)
+     * @brief GetText関数
+     * @param mst_txt_id (mst_text_id)
+     * @return txt (text)
      */
-    public static string GetString(int mst_str_id)
+    public static string GetText(int mst_txt_id)
     {
-        var entity = UnityBase.Global.mstStringTableFile.data.GetEntity(mst_str_id);
+        var entity = UnityBase.Global.mstTextTableFile.data.GetEntity(mst_txt_id);
 
-        return ((entity != null) ? entity.string_ : System.String.Empty);
+        return ((entity != null) ? entity.text : System.String.Empty);
     }
 
     /**
-     * @brief GetString関数
-     * @param mst_str_id (mst_string_id)
-     * @return str (string)
+     * @brief GetText関数
+     * @param mst_txt_id (mst_text_id)
+     * @return txt (text)
      */
-    public static string GetString(UnityBase.Util.MST_STRING_ID mst_str_id)
+    public static string GetText(UnityBase.Util.MST_TEXT_ID mst_txt_id)
     {
-        return (UnityBase.Global.mstStringTableFile.data.GetEntityFast((int)mst_str_id).string_);
+        return (UnityBase.Global.mstTextTableFile.data.GetEntityFast((int)mst_txt_id).text);
     }
 }
 }

@@ -64,7 +64,7 @@ public class BoardScript : Lib.Scene.ObjectScript
     {
         this._subSceneScript = this.createDesc.subSceneScript;
 
-        this._nameText.SetText(UnityBase.Global.GetString(UnityBase.Util.SCENE.SELECT_BOARD_NAME_MST_STRING_ID_ARRAY[(int)this._boardType]));
+        this._nameText.SetText(UnityBase.Global.GetText(UnityBase.Util.SCENE.SELECT_BOARD_NAME_MST_TEXT_ID_ARRAY[(int)this._boardType]));
 
         return (0);
     }

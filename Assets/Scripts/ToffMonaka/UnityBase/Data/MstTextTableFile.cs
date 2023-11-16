@@ -1,6 +1,6 @@
 ﻿/**
  * @file
- * @brief MstStringTableFileファイル
+ * @brief MstTextTableFileファイル
  */
 
 
@@ -10,17 +10,17 @@ using UnityEngine;
 namespace ToffMonaka {
 namespace UnityBase.Data {
 /**
- * @brief MstStringEntityクラス
+ * @brief MstTextEntityクラス
  */
-public class MstStringEntity
+public class MstTextEntity
 {
-	public int mstStringId = 0;
-	public string string_ = "";
+	public int mstTextId = 0;
+	public string text = "";
 
     /**
      * @brief コンストラクタ
      */
-    public MstStringEntity()
+    public MstTextEntity()
     {
         return;
     }
@@ -40,24 +40,24 @@ public class MstStringEntity
     {
         this._Release();
 
-        this.mstStringId = 0;
-        this.string_ = "";
+        this.mstTextId = 0;
+        this.text = "";
 
         return;
     }
 }
 
 /**
- * @brief MstStringTableFileDataクラス
+ * @brief MstTextTableFileDataクラス
  */
-public class MstStringTableFileData
+public class MstTextTableFileData
 {
-	public UnityBase.Data.MstStringEntity[] entityArray = System.Array.Empty<UnityBase.Data.MstStringEntity>();
+	public UnityBase.Data.MstTextEntity[] entityArray = System.Array.Empty<UnityBase.Data.MstTextEntity>();
 
     /**
      * @brief コンストラクタ
      */
-    public MstStringTableFileData()
+    public MstTextTableFileData()
     {
         return;
     }
@@ -77,51 +77,51 @@ public class MstStringTableFileData
     {
         this._Release();
 
-    	this.entityArray = System.Array.Empty<UnityBase.Data.MstStringEntity>();
+    	this.entityArray = System.Array.Empty<UnityBase.Data.MstTextEntity>();
 
         return;
     }
 
     /**
      * @brief GetEntity関数
-     * @param mst_str_id (mst_string_id)
+     * @param mst_txt_id (mst_text_id)
      * @return entity (entity)<br>
      * null=失敗
      */
-    public UnityBase.Data.MstStringEntity GetEntity(int mst_str_id)
+    public UnityBase.Data.MstTextEntity GetEntity(int mst_txt_id)
     {
-	    if (mst_str_id >= this.entityArray.Length) {
+	    if (mst_txt_id >= this.entityArray.Length) {
 		    return (null);
 	    }
 
-	    return (this.entityArray[mst_str_id]);
+	    return (this.entityArray[mst_txt_id]);
     }
 
     /**
      * @brief GetEntityFast関数
-     * @param mst_str_id (mst_string_id)
+     * @param mst_txt_id (mst_text_id)
      * @return entity (entity)<br>
      * null=失敗
      */
-    public UnityBase.Data.MstStringEntity GetEntityFast(int mst_str_id)
+    public UnityBase.Data.MstTextEntity GetEntityFast(int mst_txt_id)
     {
-	    return (this.entityArray[mst_str_id]);
+	    return (this.entityArray[mst_txt_id]);
     }
 }
 
 /**
- * @brief MstStringTableFileクラス
+ * @brief MstTextTableFileクラス
  */
-public class MstStringTableFile : Lib.Data.File
+public class MstTextTableFile : Lib.Data.File
 {
-	public UnityBase.Data.MstStringTableFileData data = new UnityBase.Data.MstStringTableFileData();
+	public UnityBase.Data.MstTextTableFileData data = new UnityBase.Data.MstTextTableFileData();
 	public Lib.Data.FileReadDesc<Lib.Data.CsvFileReadDescData> readDesc = new Lib.Data.FileReadDesc<Lib.Data.CsvFileReadDescData>();
 	public Lib.Data.FileWriteDesc<Lib.Data.CsvFileWriteDescData> writeDesc = new Lib.Data.FileWriteDesc<Lib.Data.CsvFileWriteDescData>();
 
     /**
      * @brief コンストラクタ
      */
-    public MstStringTableFile()
+    public MstTextTableFile()
     {
         return;
     }
@@ -178,13 +178,13 @@ public class MstStringTableFile : Lib.Data.File
 	        return (-1);
         }
 
-        this.data.entityArray = new UnityBase.Data.MstStringEntity[csv_file.data.GetRowCount()];
+        this.data.entityArray = new UnityBase.Data.MstTextEntity[csv_file.data.GetRowCount()];
 
         for (int val_i = 0; val_i < csv_file.data.GetRowCount(); ++val_i) {
-            var entity = new UnityBase.Data.MstStringEntity();
+            var entity = new UnityBase.Data.MstTextEntity();
 
-            entity.mstStringId = int.Parse(csv_file.data.GetValueFast(val_i, 0));
-            entity.string_ = csv_file.data.GetValueFast(val_i, 1);
+            entity.mstTextId = int.Parse(csv_file.data.GetValueFast(val_i, 0));
+            entity.text = csv_file.data.GetValueFast(val_i, 1);
 
             this.data.entityArray[val_i] = entity;
         }

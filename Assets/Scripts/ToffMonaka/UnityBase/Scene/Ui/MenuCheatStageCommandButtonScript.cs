@@ -71,7 +71,7 @@ public class MenuCheatStageCommandButtonScript : Lib.Scene.ObjectScript, IPointe
         this._stageScript = this.createDesc.stageScript;
         this._commandType = this.createDesc.commandType;
 
-        this._nameText.SetText(UnityBase.Global.GetString(UnityBase.Util.SCENE.MENU_CHEAT_STAGE_COMMAND_NAME_MST_STRING_ID_ARRAY[(int)this._commandType]));
+        this._nameText.SetText(UnityBase.Global.GetText(UnityBase.Util.SCENE.MENU_CHEAT_STAGE_COMMAND_NAME_MST_TEXT_ID_ARRAY[(int)this._commandType]));
 
         var param = UnityBase.Util.SCENE.MENU_CHEAT_STAGE_COMMAND_PARAMETER_ARRAY[(int)this._commandType];
 

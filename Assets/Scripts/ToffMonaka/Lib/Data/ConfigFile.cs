@@ -53,9 +53,7 @@ public class ConfigFileData
      */
     public string GetValue(string key)
     {
-        string val;
-
-        if (!this.valueContainer.TryGetValue(key, out val)) {
+        if (!this.valueContainer.TryGetValue(key, out string val)) {
     	    return (null);
         }
 
@@ -215,51 +213,51 @@ public class ConfigFile : Lib.Data.File
 
         this.data.Init();
 
-        if (txt_file.data.lineStringContainer.Count <= 0) {
+        if (txt_file.data.lineTextContainer.Count <= 0) {
 	        return (0);
         }
 
-        string line_str;
+        string line_txt;
         int equal_str_index;
         int comment_str_index;
         string key = "";
         string val = "";
 
-	    foreach (var txt_file_line_str in txt_file.data.lineStringContainer) {
-	        if (txt_file_line_str.Length <= 0) {
+	    foreach (var txt_file_line_txt in txt_file.data.lineTextContainer) {
+	        if (txt_file_line_txt.Length <= 0) {
 		        continue;
 	        }
 
-	        line_str = txt_file_line_str;
+	        line_txt = txt_file_line_txt;
 
 	        {// コメントを削除
-		        comment_str_index = line_str.IndexOf(comment_str);
+		        comment_str_index = line_txt.IndexOf(comment_str);
 
 		        if (comment_str_index >= 0) {
-			        line_str = line_str.Remove(comment_str_index);
+			        line_txt = line_txt.Remove(comment_str_index);
 		        }
 	        }
 
-	        if (line_str.Length <= 0) {
+	        if (line_txt.Length <= 0) {
 		        continue;
 	        }
 
 	        {// ｢=｣を確認
-		        equal_str_index = line_str.IndexOf(equal_str);
+		        equal_str_index = line_txt.IndexOf(equal_str);
 
 		        if (equal_str_index < 0) {
 			        continue;
 		        }
 	        }
 
-	        key = line_str.Substring(0, equal_str_index);
+	        key = line_txt.Substring(0, equal_str_index);
 	        key = key.Trim();
 
 	        if (key.Length <= 0) {
 		        continue;
 	        }
 
-	        val = line_str.Substring(equal_str_index + equal_str.Length);
+	        val = line_txt.Substring(equal_str_index + equal_str.Length);
 	        val = val.Trim();
 
 	        this.data.valueContainer.Add(key, val);
@@ -287,17 +285,17 @@ public class ConfigFile : Lib.Data.File
         int txt_file_write_result_val;
 
         if (this.data.valueContainer.Count > 0) {
-	        string line_str;
+	        string line_txt;
 
 	        foreach (var val in this.data.valueContainer) {
-		        line_str = val.Key;
-		        line_str += equal_str;
-		        line_str += val.Value;
+		        line_txt = val.Key;
+		        line_txt += equal_str;
+		        line_txt += val.Value;
 
-		        txt_file.data.lineStringContainer.Add(line_str);
+		        txt_file.data.lineTextContainer.Add(line_txt);
 	        }
 
-	        txt_file.data.lineStringContainer.Add(System.String.Empty);
+	        txt_file.data.lineTextContainer.Add(System.String.Empty);
         }
 
         txt_file.writeDesc.parentData = desc_dat;

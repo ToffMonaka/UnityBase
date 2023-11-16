@@ -68,7 +68,7 @@ public class MenuSelectScript : Lib.Scene.ObjectScript
     {
         this._menuScript = this.createDesc.menuScript;
 
-        this._nameText.SetText(UnityBase.Global.GetString(UnityBase.Util.MST_STRING_ID.MENU));
+        this._nameText.SetText(UnityBase.Global.GetText(UnityBase.Util.MST_TEXT_ID.MENU));
 
         this._stageButtonNode.SetActive(false);
 

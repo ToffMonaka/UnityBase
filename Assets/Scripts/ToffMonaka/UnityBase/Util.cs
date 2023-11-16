@@ -31,8 +31,8 @@ public static class Util
     {
         public static readonly string NONE = "";
         public static readonly string SYSTEM_CONFIG = "dat/sys_conf.ini";
-        public static readonly string MST_STRING_ENGLISH_TABLE = "Assets/Resources2/dat/mst_str_en_tbl.csv";
-        public static readonly string MST_STRING_JAPANESE_TABLE = "Assets/Resources2/dat/mst_str_jp_tbl.csv";
+        public static readonly string MST_TEXT_ENGLISH_TABLE = "Assets/Resources2/dat/mst_txt_en_tbl.csv";
+        public static readonly string MST_TEXT_JAPANESE_TABLE = "Assets/Resources2/dat/mst_txt_jp_tbl.csv";
         public static readonly string INIT_SUB_SCENE_PREFAB = "Assets/Resources2/prefab/InitSubScene.prefab";
         public static readonly string TITLE_SUB_SCENE_PREFAB = "Assets/Resources2/prefab/TitleSubScene.prefab";
         public static readonly string SELECT_SUB_SCENE_PREFAB = "Assets/Resources2/prefab/SelectSubScene.prefab";
@@ -117,9 +117,9 @@ public static class Util
         }
         public static readonly int SELECT_BOARD_TYPE_COUNT = (int)UnityBase.Util.SCENE.SELECT_BOARD_TYPE.COUNT;
 
-        public static readonly UnityBase.Util.MST_STRING_ID[] SELECT_BOARD_NAME_MST_STRING_ID_ARRAY = {
-            UnityBase.Util.MST_STRING_ID.NONE,
-            UnityBase.Util.MST_STRING_ID.STAGE
+        public static readonly UnityBase.Util.MST_TEXT_ID[] SELECT_BOARD_NAME_MST_TEXT_ID_ARRAY = {
+            UnityBase.Util.MST_TEXT_ID.NONE,
+            UnityBase.Util.MST_TEXT_ID.STAGE
         };
 
         public enum STAGE_TYPE : int
@@ -131,10 +131,10 @@ public static class Util
         }
         public static readonly int STAGE_TYPE_COUNT = (int)UnityBase.Util.SCENE.STAGE_TYPE.COUNT;
 
-        public static readonly UnityBase.Util.MST_STRING_ID[] STAGE_NAME_MST_STRING_ID_ARRAY = {
-            UnityBase.Util.MST_STRING_ID.NONE,
-            UnityBase.Util.MST_STRING_ID.TEST_2D,
-            UnityBase.Util.MST_STRING_ID.TEST_3D
+        public static readonly UnityBase.Util.MST_TEXT_ID[] STAGE_NAME_MST_TEXT_ID_ARRAY = {
+            UnityBase.Util.MST_TEXT_ID.NONE,
+            UnityBase.Util.MST_TEXT_ID.TEST_2D,
+            UnityBase.Util.MST_TEXT_ID.TEST_3D
         };
 
         public enum MENU_STAGE_TYPE : int
@@ -151,15 +151,15 @@ public static class Util
         }
         public static readonly int MENU_STAGE_TYPE_COUNT = (int)UnityBase.Util.SCENE.MENU_STAGE_TYPE.COUNT;
 
-        public static readonly UnityBase.Util.MST_STRING_ID[] MENU_STAGE_NAME_MST_STRING_ID_ARRAY = {
-            UnityBase.Util.MST_STRING_ID.NONE,
-            UnityBase.Util.MST_STRING_ID.OPTION,
-            UnityBase.Util.MST_STRING_ID.FAQ,
-            UnityBase.Util.MST_STRING_ID.STAFF,
-            UnityBase.Util.MST_STRING_ID.LICENSE,
-            UnityBase.Util.MST_STRING_ID.PRIVACY_POLICY,
-            UnityBase.Util.MST_STRING_ID.EXIT,
-            UnityBase.Util.MST_STRING_ID.CHEAT
+        public static readonly UnityBase.Util.MST_TEXT_ID[] MENU_STAGE_NAME_MST_TEXT_ID_ARRAY = {
+            UnityBase.Util.MST_TEXT_ID.NONE,
+            UnityBase.Util.MST_TEXT_ID.OPTION,
+            UnityBase.Util.MST_TEXT_ID.FAQ,
+            UnityBase.Util.MST_TEXT_ID.STAFF,
+            UnityBase.Util.MST_TEXT_ID.LICENSE,
+            UnityBase.Util.MST_TEXT_ID.PRIVACY_POLICY,
+            UnityBase.Util.MST_TEXT_ID.EXIT,
+            UnityBase.Util.MST_TEXT_ID.CHEAT
         };
 
         public enum MENU_CHEAT_STAGE_COMMAND_TYPE : int
@@ -170,9 +170,9 @@ public static class Util
         }
         public static readonly int MENU_CHEAT_STAGE_COMMAND_TYPE_COUNT = (int)UnityBase.Util.SCENE.MENU_CHEAT_STAGE_COMMAND_TYPE.COUNT;
 
-        public static readonly UnityBase.Util.MST_STRING_ID[] MENU_CHEAT_STAGE_COMMAND_NAME_MST_STRING_ID_ARRAY = {
-            UnityBase.Util.MST_STRING_ID.NONE,
-            UnityBase.Util.MST_STRING_ID.DELETE_DATA
+        public static readonly UnityBase.Util.MST_TEXT_ID[] MENU_CHEAT_STAGE_COMMAND_NAME_MST_TEXT_ID_ARRAY = {
+            UnityBase.Util.MST_TEXT_ID.NONE,
+            UnityBase.Util.MST_TEXT_ID.DELETE_DATA
         };
 
         public static readonly string[] MENU_CHEAT_STAGE_COMMAND_FUNCTION_ARRAY = {
@@ -186,7 +186,7 @@ public static class Util
         };
     }
 
-    public enum MST_STRING_ID : int
+    public enum MST_TEXT_ID : int
     {
         NONE = 0,
         OK,
@@ -226,10 +226,10 @@ public static class Util
     }
     public static readonly int LANGUAGE_TYPE_COUNT = (int)UnityBase.Util.LANGUAGE_TYPE.COUNT;
 
-    public static readonly UnityBase.Util.MST_STRING_ID[] LANGUAGE_NAME_MST_STRING_ID_ARRAY = {
-        UnityBase.Util.MST_STRING_ID.NONE,
-        UnityBase.Util.MST_STRING_ID.ENGLISH,
-        UnityBase.Util.MST_STRING_ID.JAPANESE
+    public static readonly UnityBase.Util.MST_TEXT_ID[] LANGUAGE_NAME_MST_TEXT_ID_ARRAY = {
+        UnityBase.Util.MST_TEXT_ID.NONE,
+        UnityBase.Util.MST_TEXT_ID.ENGLISH,
+        UnityBase.Util.MST_TEXT_ID.JAPANESE
     };
 }
 }

@@ -195,23 +195,23 @@ public class SystemConfigFile : Lib.Data.File
         int txt_file_write_result_val;
 
         {// System Section Write
-	        txt_file.data.lineStringContainer.Add(section_start_str + "SYSTEM" + section_end_str);
-	        txt_file.data.lineStringContainer.Add("LANGUAGE_TYPE" + equal_str + ((int)this.data.systemLanguageType).ToString());
-	        txt_file.data.lineStringContainer.Add(System.String.Empty);
+	        txt_file.data.lineTextContainer.Add(section_start_str + "SYSTEM" + section_end_str);
+	        txt_file.data.lineTextContainer.Add("LANGUAGE_TYPE" + equal_str + ((int)this.data.systemLanguageType).ToString());
+	        txt_file.data.lineTextContainer.Add(System.String.Empty);
         }
 
         {// Graphic Section Write
-	        txt_file.data.lineStringContainer.Add(section_start_str + "GRAPHIC" + section_end_str);
-	        txt_file.data.lineStringContainer.Add(System.String.Empty);
+	        txt_file.data.lineTextContainer.Add(section_start_str + "GRAPHIC" + section_end_str);
+	        txt_file.data.lineTextContainer.Add(System.String.Empty);
         }
 
         {// Sound Section Write
-	        txt_file.data.lineStringContainer.Add(section_start_str + "SOUND" + section_end_str);
-	        txt_file.data.lineStringContainer.Add("BGM_VOLUME" + equal_str + this.data.soundBgmVolume.ToString());
-	        txt_file.data.lineStringContainer.Add("BGM_MUTE_FLG" + equal_str + System.Convert.ToInt32(this.data.soundBgmMuteFlag).ToString());
-	        txt_file.data.lineStringContainer.Add("SE_VOLUME" + equal_str + this.data.soundSeVolume.ToString());
-	        txt_file.data.lineStringContainer.Add("SE_MUTE_FLG" + equal_str + System.Convert.ToInt32(this.data.soundSeMuteFlag).ToString());
-	        txt_file.data.lineStringContainer.Add(System.String.Empty);
+	        txt_file.data.lineTextContainer.Add(section_start_str + "SOUND" + section_end_str);
+	        txt_file.data.lineTextContainer.Add("BGM_VOLUME" + equal_str + this.data.soundBgmVolume.ToString());
+	        txt_file.data.lineTextContainer.Add("BGM_MUTE_FLG" + equal_str + System.Convert.ToInt32(this.data.soundBgmMuteFlag).ToString());
+	        txt_file.data.lineTextContainer.Add("SE_VOLUME" + equal_str + this.data.soundSeVolume.ToString());
+	        txt_file.data.lineTextContainer.Add("SE_MUTE_FLG" + equal_str + System.Convert.ToInt32(this.data.soundSeMuteFlag).ToString());
+	        txt_file.data.lineTextContainer.Add(System.String.Empty);
         }
 
         txt_file.writeDesc.parentData = desc_dat;

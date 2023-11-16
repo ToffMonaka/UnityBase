@@ -70,7 +70,7 @@ public class LanguageSelectDialogButtonScript : Lib.Scene.ObjectScript, IPointer
         this._dialogScript = this.createDesc.dialogScript;
         this._languageType = this.createDesc.languageType;
 
-        this._nameText.SetText(UnityBase.Global.GetString(UnityBase.Util.LANGUAGE_NAME_MST_STRING_ID_ARRAY[(int)this._languageType]));
+        this._nameText.SetText(UnityBase.Global.GetText(UnityBase.Util.LANGUAGE_NAME_MST_TEXT_ID_ARRAY[(int)this._languageType]));
 
         return (0);
     }

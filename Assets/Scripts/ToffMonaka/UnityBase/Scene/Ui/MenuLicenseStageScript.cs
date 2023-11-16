@@ -102,7 +102,7 @@ public class MenuLicenseStageScript : UnityBase.Scene.Ui.MenuStageScript
             }
         }
 
-        this._cancelButtonNameText.SetText(UnityBase.Global.GetString(UnityBase.Util.MST_STRING_ID.CANCEL));
+        this._cancelButtonNameText.SetText(UnityBase.Global.GetText(UnityBase.Util.MST_TEXT_ID.CANCEL));
 
         return (0);
     }

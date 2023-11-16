@@ -16,7 +16,7 @@ namespace Lib.Data {
  */
 public class TextFileData
 {
-    public List<string> lineStringContainer = new List<string>();
+    public List<string> lineTextContainer = new List<string>();
 
     /**
      * @brief コンストラクタ
@@ -41,7 +41,7 @@ public class TextFileData
     {
         this._Release();
 
-        this.lineStringContainer.Clear();
+        this.lineTextContainer.Clear();
 
         return;
     }
@@ -52,7 +52,7 @@ public class TextFileData
  */
 public class TextFileReadDescData : Lib.Data.BinaryFileReadDescData
 {
-    public string string_ = "";
+    public string text = "";
     public string charset = "utf-8";
     public Lib.String.Util.NEWLINE_TYPE newlineType = Lib.String.Util.NEWLINE_TYPE.CRLF;
 
@@ -79,7 +79,7 @@ public class TextFileReadDescData : Lib.Data.BinaryFileReadDescData
     {
         this._Release();
 
-        this.string_ = "";
+        this.text = "";
         this.charset = "utf-8";
         this.newlineType = Lib.String.Util.NEWLINE_TYPE.CRLF;
 
@@ -95,7 +95,7 @@ public class TextFileReadDescData : Lib.Data.BinaryFileReadDescData
      */
     public override bool IsEmpty()
     {
-	    if (this.string_.Length > 0) {
+	    if (this.text.Length > 0) {
 		    return (false);
 	    }
 
@@ -209,8 +209,8 @@ public class TextFile : Lib.Data.File
 		    if (desc_dat.buffer.Length <= 0) {
 		        this.data.Init();
 
-		        if (desc_dat.string_.Length > 0) {
-                    this.data.lineStringContainer = new List<string>(desc_dat.string_.Split(Lib.String.Util.GetNewlineCode(desc_dat.newlineType)));
+		        if (desc_dat.text.Length > 0) {
+                    this.data.lineTextContainer = new List<string>(desc_dat.text.Split(Lib.String.Util.GetNewlineCode(desc_dat.newlineType)));
 		        }
 
 		        return (0);
@@ -234,7 +234,7 @@ public class TextFile : Lib.Data.File
 
         string buf_str = Encoding.GetEncoding(desc_dat.charset).GetString(bin_file.data.buffer);
 
-        this.data.lineStringContainer = new List<string>(buf_str.Split(Lib.String.Util.GetNewlineCode(desc_dat.newlineType)));
+        this.data.lineTextContainer = new List<string>(buf_str.Split(Lib.String.Util.GetNewlineCode(desc_dat.newlineType)));
 
         return (0);
     }
@@ -252,7 +252,7 @@ public class TextFile : Lib.Data.File
 		    return (-1);
 	    }
 
-        string buf_str = System.String.Join(Lib.String.Util.GetNewlineCode(desc_dat.newlineType), this.data.lineStringContainer);
+        string buf_str = System.String.Join(Lib.String.Util.GetNewlineCode(desc_dat.newlineType), this.data.lineTextContainer);
 
         if (buf_str.Length > 0) {
 	        if ((desc_dat.appendFlag)

@@ -105,12 +105,12 @@ public class MenuOptionStageScript : UnityBase.Scene.Ui.MenuStageScript
             return (-1);
         }
 
-        this._languageNameText.SetText(UnityBase.Global.GetString(UnityBase.Util.MST_STRING_ID.LANGUAGE));
-        this._soundNameText.SetText(UnityBase.Global.GetString(UnityBase.Util.MST_STRING_ID.SOUND));
-        this._soundBgmMuteNameText.SetText(UnityBase.Global.GetString(UnityBase.Util.MST_STRING_ID.BGM_MUTE));
-        this._soundSeMuteNameText.SetText(UnityBase.Global.GetString(UnityBase.Util.MST_STRING_ID.SE_MUTE));
-        this._okButtonNameText.SetText(UnityBase.Global.GetString(UnityBase.Util.MST_STRING_ID.OK));
-        this._cancelButtonNameText.SetText(UnityBase.Global.GetString(UnityBase.Util.MST_STRING_ID.CANCEL));
+        this._languageNameText.SetText(UnityBase.Global.GetText(UnityBase.Util.MST_TEXT_ID.LANGUAGE));
+        this._soundNameText.SetText(UnityBase.Global.GetText(UnityBase.Util.MST_TEXT_ID.SOUND));
+        this._soundBgmMuteNameText.SetText(UnityBase.Global.GetText(UnityBase.Util.MST_TEXT_ID.BGM_MUTE));
+        this._soundSeMuteNameText.SetText(UnityBase.Global.GetText(UnityBase.Util.MST_TEXT_ID.SE_MUTE));
+        this._okButtonNameText.SetText(UnityBase.Global.GetText(UnityBase.Util.MST_TEXT_ID.OK));
+        this._cancelButtonNameText.SetText(UnityBase.Global.GetText(UnityBase.Util.MST_TEXT_ID.CANCEL));
 
         return (0);
     }
@@ -727,7 +727,7 @@ public class MenuOptionStageScript : UnityBase.Scene.Ui.MenuStageScript
     {
         this._languageType = language_type;
 
-        this._languageButtonNameText.SetText(UnityBase.Global.GetString(UnityBase.Util.LANGUAGE_NAME_MST_STRING_ID_ARRAY[(int)this._languageType]));
+        this._languageButtonNameText.SetText(UnityBase.Global.GetText(UnityBase.Util.LANGUAGE_NAME_MST_TEXT_ID_ARRAY[(int)this._languageType]));
 
         this._SetRestartFlag((this._languageType != UnityBase.Global.systemConfigFile.data.systemLanguageType) ? (this._restartFlag | 0x0001U) : (this._restartFlag & ~0x0001U));
 
@@ -751,7 +751,7 @@ public class MenuOptionStageScript : UnityBase.Scene.Ui.MenuStageScript
     {
         this._soundBgmVolume = (float)System.Math.Clamp(System.Math.Round(sound_bgm_volume, 1, System.MidpointRounding.AwayFromZero), 0.0, 1.0);
 
-        this._soundBgmVolumeNameText.SetText(UnityBase.Global.GetString(UnityBase.Util.MST_STRING_ID.BGM_VOLUME) + " " + (this._soundBgmVolume * 10.0f));
+        this._soundBgmVolumeNameText.SetText(UnityBase.Global.GetText(UnityBase.Util.MST_TEXT_ID.BGM_VOLUME) + " " + (this._soundBgmVolume * 10.0f));
         this._soundBgmVolumeSlider.SetValueWithoutNotify(this._soundBgmVolume * 10.0f);
 
         return;
@@ -796,7 +796,7 @@ public class MenuOptionStageScript : UnityBase.Scene.Ui.MenuStageScript
     {
         this._soundSeVolume = (float)System.Math.Clamp(System.Math.Round(sound_se_volume, 1, System.MidpointRounding.AwayFromZero), 0.0, 1.0);
 
-        this._soundSeVolumeNameText.SetText(UnityBase.Global.GetString(UnityBase.Util.MST_STRING_ID.SE_VOLUME) + " " + (this._soundSeVolume * 10.0f));
+        this._soundSeVolumeNameText.SetText(UnityBase.Global.GetText(UnityBase.Util.MST_TEXT_ID.SE_VOLUME) + " " + (this._soundSeVolume * 10.0f));
         this._soundSeVolumeSlider.SetValueWithoutNotify(this._soundSeVolume * 10.0f);
 
         return;
@@ -833,10 +833,10 @@ public class MenuOptionStageScript : UnityBase.Scene.Ui.MenuStageScript
         this._restartFlag = restart_flg;
 
         if (this._restartFlag != 0U) {
-            this._okButtonNameText.SetText(UnityBase.Global.GetString(UnityBase.Util.MST_STRING_ID.OK_RESTART));
+            this._okButtonNameText.SetText(UnityBase.Global.GetText(UnityBase.Util.MST_TEXT_ID.OK_RESTART));
             this._okButtonNameText.fontSize = 20.0f;
         } else {
-            this._okButtonNameText.SetText(UnityBase.Global.GetString(UnityBase.Util.MST_STRING_ID.OK));
+            this._okButtonNameText.SetText(UnityBase.Global.GetText(UnityBase.Util.MST_TEXT_ID.OK));
             this._okButtonNameText.fontSize = 32.0f;
         }
 
