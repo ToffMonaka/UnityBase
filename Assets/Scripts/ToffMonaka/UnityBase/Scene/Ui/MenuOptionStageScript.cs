@@ -266,10 +266,6 @@ public class MenuOptionStageScript : UnityBase.Scene.Ui.MenuStageScript
      */
     public void OnLanguageButtonPointerExit(PointerEventData event_dat)
     {
-        if (!this.IsControllable()) {
-            return;
-        }
-
         this._languageButtonCoverImage.gameObject.SetActive(false);
 
         return;
@@ -338,10 +334,6 @@ public class MenuOptionStageScript : UnityBase.Scene.Ui.MenuStageScript
      */
     public void OnSoundBgmVolumeSliderLeftButtonPointerExit(PointerEventData event_dat)
     {
-        if (!this.IsControllable()) {
-            return;
-        }
-
         this._soundBgmVolumeSliderLeftButtonCoverImage.gameObject.SetActive(false);
 
         return;
@@ -387,10 +379,6 @@ public class MenuOptionStageScript : UnityBase.Scene.Ui.MenuStageScript
      */
     public void OnSoundBgmVolumeSliderRightButtonPointerExit(PointerEventData event_dat)
     {
-        if (!this.IsControllable()) {
-            return;
-        }
-
         this._soundBgmVolumeSliderRightButtonCoverImage.gameObject.SetActive(false);
 
         return;
@@ -486,10 +474,6 @@ public class MenuOptionStageScript : UnityBase.Scene.Ui.MenuStageScript
      */
     public void OnSoundSeVolumeSliderLeftButtonPointerExit(PointerEventData event_dat)
     {
-        if (!this.IsControllable()) {
-            return;
-        }
-
         this._soundSeVolumeSliderLeftButtonCoverImage.gameObject.SetActive(false);
 
         return;
@@ -535,10 +519,6 @@ public class MenuOptionStageScript : UnityBase.Scene.Ui.MenuStageScript
      */
     public void OnSoundSeVolumeSliderRightButtonPointerExit(PointerEventData event_dat)
     {
-        if (!this.IsControllable()) {
-            return;
-        }
-
         this._soundSeVolumeSliderRightButtonCoverImage.gameObject.SetActive(false);
 
         return;
@@ -649,10 +629,6 @@ public class MenuOptionStageScript : UnityBase.Scene.Ui.MenuStageScript
      */
     public void OnOkButtonPointerExit(PointerEventData event_dat)
     {
-        if (!this.IsControllable()) {
-            return;
-        }
-
         this._okButtonCoverImage.gameObject.SetActive(false);
 
         return;
@@ -701,10 +677,6 @@ public class MenuOptionStageScript : UnityBase.Scene.Ui.MenuStageScript
      */
     public void OnCancelButtonPointerExit(PointerEventData event_dat)
     {
-        if (!this.IsControllable()) {
-            return;
-        }
-
         this._cancelButtonCoverImage.gameObject.SetActive(false);
 
         return;

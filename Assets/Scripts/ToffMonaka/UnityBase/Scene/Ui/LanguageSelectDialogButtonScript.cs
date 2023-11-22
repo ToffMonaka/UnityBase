@@ -188,10 +188,6 @@ public class LanguageSelectDialogButtonScript : Lib.Scene.ObjectScript, IPointer
      */
     public void OnPointerExit(PointerEventData event_dat)
     {
-        if (!this.IsControllable()) {
-            return;
-        }
-
         this._coverImage.gameObject.SetActive(false);
 
         return;

@@ -228,10 +228,6 @@ public class LanguageSelectDialogScript : UnityBase.Scene.Ui.DialogScript
      */
     public void OnCloseButtonPointerExit(PointerEventData event_dat)
     {
-        if (!this.IsControllable()) {
-            return;
-        }
-
         this._closeButtonCoverImage.gameObject.SetActive(false);
 
         return;

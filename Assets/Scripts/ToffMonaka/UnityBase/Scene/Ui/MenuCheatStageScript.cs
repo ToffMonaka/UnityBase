@@ -253,10 +253,6 @@ public class MenuCheatStageScript : UnityBase.Scene.Ui.MenuStageScript
      */
     public void OnOkButtonPointerExit(PointerEventData event_dat)
     {
-        if (!this.IsControllable()) {
-            return;
-        }
-
         this._okButtonCoverImage.gameObject.SetActive(false);
 
         return;
@@ -300,10 +296,6 @@ public class MenuCheatStageScript : UnityBase.Scene.Ui.MenuStageScript
      */
     public void OnCancelButtonPointerExit(PointerEventData event_dat)
     {
-        if (!this.IsControllable()) {
-            return;
-        }
-
         this._cancelButtonCoverImage.gameObject.SetActive(false);
 
         return;

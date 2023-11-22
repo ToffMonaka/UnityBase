@@ -273,10 +273,6 @@ public class MenuStaffStageScript : UnityBase.Scene.Ui.MenuStageScript
      */
     public void OnCancelButtonPointerExit(PointerEventData event_dat)
     {
-        if (!this.IsControllable()) {
-            return;
-        }
-
         this._cancelButtonCoverImage.gameObject.SetActive(false);
 
         return;

@@ -14,13 +14,25 @@ namespace Lib.Scene {
 /**
  * @brief ButtonEventTriggerクラス
  */
-public class ButtonEventTrigger : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
+public class ButtonEventTrigger : MonoBehaviour, IPointerDownHandler, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
 {
     [System.Serializable] public class PointerEvent : UnityEvent<PointerEventData> {}
 
+    [SerializeField] private PointerEvent _pointerDownEvent = new PointerEvent();
     [SerializeField] private PointerEvent _pointerClickEvent = new PointerEvent();
     [SerializeField] private PointerEvent _pointerEnterEvent = new PointerEvent();
     [SerializeField] private PointerEvent _pointerExitEvent = new PointerEvent();
+
+    /**
+     * @brief OnPointerDown関数
+     * @param event_dat (event_data)
+     */
+    public void OnPointerDown(PointerEventData event_dat)
+    {
+        this._pointerDownEvent.Invoke(event_dat);
+
+        return;
+    }
 
     /**
      * @brief OnPointerClick関数
