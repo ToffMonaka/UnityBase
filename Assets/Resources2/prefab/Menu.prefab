@@ -897,11 +897,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c6ceceaf89183940a5db50e6a5f4e2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _pointerDownEvent:
+    m_PersistentCalls:
+      m_Calls: []
   _pointerClickEvent:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5157123649545789300}
-        m_TargetAssemblyTypeName: ToffMonaka.UnityBase.Scene.MenuOptionStageScript,
+      - m_Target: {fileID: 513894541509404529}
+        m_TargetAssemblyTypeName: ToffMonaka.UnityBase.Scene.Ui.MenuOptionStageScript,
           Assembly-CSharp
         m_MethodName: OnLanguageButtonPointerClick
         m_Mode: 0
@@ -916,8 +919,8 @@ MonoBehaviour:
   _pointerEnterEvent:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5157123649545789300}
-        m_TargetAssemblyTypeName: ToffMonaka.UnityBase.Scene.MenuOptionStageScript,
+      - m_Target: {fileID: 513894541509404529}
+        m_TargetAssemblyTypeName: ToffMonaka.UnityBase.Scene.Ui.MenuOptionStageScript,
           Assembly-CSharp
         m_MethodName: OnLanguageButtonPointerEnter
         m_Mode: 0
@@ -932,8 +935,8 @@ MonoBehaviour:
   _pointerExitEvent:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5157123649545789300}
-        m_TargetAssemblyTypeName: ToffMonaka.UnityBase.Scene.MenuOptionStageScript,
+      - m_Target: {fileID: 513894541509404529}
+        m_TargetAssemblyTypeName: ToffMonaka.UnityBase.Scene.Ui.MenuOptionStageScript,
           Assembly-CSharp
         m_MethodName: OnLanguageButtonPointerExit
         m_Mode: 0
@@ -2818,11 +2821,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c6ceceaf89183940a5db50e6a5f4e2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _pointerDownEvent:
+    m_PersistentCalls:
+      m_Calls: []
   _pointerClickEvent:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5157123649545789300}
-        m_TargetAssemblyTypeName: ToffMonaka.UnityBase.Scene.MenuOptionStageScript,
+      - m_Target: {fileID: 513894541509404529}
+        m_TargetAssemblyTypeName: ToffMonaka.UnityBase.Scene.Ui.MenuOptionStageScript,
           Assembly-CSharp
         m_MethodName: OnOkButtonPointerClick
         m_Mode: 0
@@ -2837,8 +2843,8 @@ MonoBehaviour:
   _pointerEnterEvent:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5157123649545789300}
-        m_TargetAssemblyTypeName: ToffMonaka.UnityBase.Scene.MenuOptionStageScript,
+      - m_Target: {fileID: 513894541509404529}
+        m_TargetAssemblyTypeName: ToffMonaka.UnityBase.Scene.Ui.MenuOptionStageScript,
           Assembly-CSharp
         m_MethodName: OnOkButtonPointerEnter
         m_Mode: 0
@@ -2853,8 +2859,8 @@ MonoBehaviour:
   _pointerExitEvent:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5157123649545789300}
-        m_TargetAssemblyTypeName: ToffMonaka.UnityBase.Scene.MenuOptionStageScript,
+      - m_Target: {fileID: 513894541509404529}
+        m_TargetAssemblyTypeName: ToffMonaka.UnityBase.Scene.Ui.MenuOptionStageScript,
           Assembly-CSharp
         m_MethodName: OnOkButtonPointerExit
         m_Mode: 0
@@ -3566,7 +3572,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5157123649545789300}
+      - m_Target: {fileID: 513894541509404529}
         m_TargetAssemblyTypeName: ToffMonaka.UnityBase.Scene.Ui.MenuOptionStageScript,
           Assembly-CSharp
         m_MethodName: OnSoundSeVolumeSliderValueChanged
@@ -4117,11 +4123,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c6ceceaf89183940a5db50e6a5f4e2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _pointerDownEvent:
+    m_PersistentCalls:
+      m_Calls: []
   _pointerClickEvent:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5157123649545789300}
-        m_TargetAssemblyTypeName: ToffMonaka.UnityBase.Scene.MenuOptionStageScript,
+      - m_Target: {fileID: 513894541509404529}
+        m_TargetAssemblyTypeName: ToffMonaka.UnityBase.Scene.Ui.MenuOptionStageScript,
           Assembly-CSharp
         m_MethodName: OnCancelButtonPointerClick
         m_Mode: 0
@@ -4136,8 +4145,8 @@ MonoBehaviour:
   _pointerEnterEvent:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5157123649545789300}
-        m_TargetAssemblyTypeName: ToffMonaka.UnityBase.Scene.MenuOptionStageScript,
+      - m_Target: {fileID: 513894541509404529}
+        m_TargetAssemblyTypeName: ToffMonaka.UnityBase.Scene.Ui.MenuOptionStageScript,
           Assembly-CSharp
         m_MethodName: OnCancelButtonPointerEnter
         m_Mode: 0
@@ -4152,8 +4161,8 @@ MonoBehaviour:
   _pointerExitEvent:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5157123649545789300}
-        m_TargetAssemblyTypeName: ToffMonaka.UnityBase.Scene.MenuOptionStageScript,
+      - m_Target: {fileID: 513894541509404529}
+        m_TargetAssemblyTypeName: ToffMonaka.UnityBase.Scene.Ui.MenuOptionStageScript,
           Assembly-CSharp
         m_MethodName: OnCancelButtonPointerExit
         m_Mode: 0
@@ -6679,7 +6688,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9116004412340136202}
-  - component: {fileID: 5157123649545789300}
+  - component: {fileID: 513894541509404529}
   m_Layer: 5
   m_Name: OptionStage
   m_TagString: Untagged
@@ -6709,7 +6718,7 @@ RectTransform:
   m_AnchoredPosition: {x: 8, y: -88}
   m_SizeDelta: {x: 524, y: 864}
   m_Pivot: {x: 0, y: 1}
---- !u!114 &5157123649545789300
+--- !u!114 &513894541509404529
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -6718,7 +6727,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3201332753679253305}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 847d5eba5071a9b458fe670e6d93726a, type: 3}
+  m_Script: {fileID: 11500000, guid: 4a6e8153ff3be314788befeb549acdb9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _nameText: {fileID: 1898566971483310765}
@@ -7369,8 +7378,8 @@ MonoBehaviour:
   onValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5157123649545789300}
-        m_TargetAssemblyTypeName: ToffMonaka.UnityBase.Scene.MenuOptionStageScript,
+      - m_Target: {fileID: 513894541509404529}
+        m_TargetAssemblyTypeName: ToffMonaka.UnityBase.Scene.Ui.MenuOptionStageScript,
           Assembly-CSharp
         m_MethodName: OnSoundSeMuteToggleValueChanged
         m_Mode: 0
@@ -11192,6 +11201,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c6ceceaf89183940a5db50e6a5f4e2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _pointerDownEvent:
+    m_PersistentCalls:
+      m_Calls: []
   _pointerClickEvent:
     m_PersistentCalls:
       m_Calls:
@@ -11563,10 +11575,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c6ceceaf89183940a5db50e6a5f4e2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _pointerDownEvent:
+    m_PersistentCalls:
+      m_Calls: []
   _pointerClickEvent:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5157123649545789300}
+      - m_Target: {fileID: 513894541509404529}
         m_TargetAssemblyTypeName: ToffMonaka.UnityBase.Scene.Ui.MenuOptionStageScript,
           Assembly-CSharp
         m_MethodName: OnSoundSeVolumeSliderLeftButtonPointerClick
@@ -11582,7 +11597,7 @@ MonoBehaviour:
   _pointerEnterEvent:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5157123649545789300}
+      - m_Target: {fileID: 513894541509404529}
         m_TargetAssemblyTypeName: ToffMonaka.UnityBase.Scene.Ui.MenuOptionStageScript,
           Assembly-CSharp
         m_MethodName: OnSoundSeVolumeSliderLeftButtonPointerEnter
@@ -11598,7 +11613,7 @@ MonoBehaviour:
   _pointerExitEvent:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5157123649545789300}
+      - m_Target: {fileID: 513894541509404529}
         m_TargetAssemblyTypeName: ToffMonaka.UnityBase.Scene.Ui.MenuOptionStageScript,
           Assembly-CSharp
         m_MethodName: OnSoundSeVolumeSliderLeftButtonPointerExit
@@ -12023,6 +12038,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c6ceceaf89183940a5db50e6a5f4e2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _pointerDownEvent:
+    m_PersistentCalls:
+      m_Calls: []
   _pointerClickEvent:
     m_PersistentCalls:
       m_Calls:
@@ -12540,6 +12558,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c6ceceaf89183940a5db50e6a5f4e2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _pointerDownEvent:
+    m_PersistentCalls:
+      m_Calls: []
   _pointerClickEvent:
     m_PersistentCalls:
       m_Calls:
@@ -13910,6 +13931,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c6ceceaf89183940a5db50e6a5f4e2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _pointerDownEvent:
+    m_PersistentCalls:
+      m_Calls: []
   _pointerClickEvent:
     m_PersistentCalls:
       m_Calls:
@@ -14169,8 +14193,8 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5157123649545789300}
-        m_TargetAssemblyTypeName: ToffMonaka.UnityBase.Scene.MenuOptionStageScript,
+      - m_Target: {fileID: 513894541509404529}
+        m_TargetAssemblyTypeName: ToffMonaka.UnityBase.Scene.Ui.MenuOptionStageScript,
           Assembly-CSharp
         m_MethodName: OnSoundBgmVolumeSliderValueChanged
         m_Mode: 0
@@ -15400,6 +15424,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c6ceceaf89183940a5db50e6a5f4e2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _pointerDownEvent:
+    m_PersistentCalls:
+      m_Calls: []
   _pointerClickEvent:
     m_PersistentCalls:
       m_Calls:
@@ -15862,10 +15889,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c6ceceaf89183940a5db50e6a5f4e2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _pointerDownEvent:
+    m_PersistentCalls:
+      m_Calls: []
   _pointerClickEvent:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5157123649545789300}
+      - m_Target: {fileID: 513894541509404529}
         m_TargetAssemblyTypeName: ToffMonaka.UnityBase.Scene.Ui.MenuOptionStageScript,
           Assembly-CSharp
         m_MethodName: OnSoundSeVolumeSliderRightButtonPointerClick
@@ -15881,7 +15911,7 @@ MonoBehaviour:
   _pointerEnterEvent:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5157123649545789300}
+      - m_Target: {fileID: 513894541509404529}
         m_TargetAssemblyTypeName: ToffMonaka.UnityBase.Scene.Ui.MenuOptionStageScript,
           Assembly-CSharp
         m_MethodName: OnSoundSeVolumeSliderRightButtonPointerEnter
@@ -15897,7 +15927,7 @@ MonoBehaviour:
   _pointerExitEvent:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5157123649545789300}
+      - m_Target: {fileID: 513894541509404529}
         m_TargetAssemblyTypeName: ToffMonaka.UnityBase.Scene.Ui.MenuOptionStageScript,
           Assembly-CSharp
         m_MethodName: OnSoundSeVolumeSliderRightButtonPointerExit
@@ -17062,6 +17092,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c6ceceaf89183940a5db50e6a5f4e2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _pointerDownEvent:
+    m_PersistentCalls:
+      m_Calls: []
   _pointerClickEvent:
     m_PersistentCalls:
       m_Calls:
@@ -17584,10 +17617,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c6ceceaf89183940a5db50e6a5f4e2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _pointerDownEvent:
+    m_PersistentCalls:
+      m_Calls: []
   _pointerClickEvent:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5157123649545789300}
+      - m_Target: {fileID: 513894541509404529}
         m_TargetAssemblyTypeName: ToffMonaka.UnityBase.Scene.Ui.MenuOptionStageScript,
           Assembly-CSharp
         m_MethodName: OnSoundBgmVolumeSliderRightButtonPointerClick
@@ -17603,7 +17639,7 @@ MonoBehaviour:
   _pointerEnterEvent:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5157123649545789300}
+      - m_Target: {fileID: 513894541509404529}
         m_TargetAssemblyTypeName: ToffMonaka.UnityBase.Scene.Ui.MenuOptionStageScript,
           Assembly-CSharp
         m_MethodName: OnSoundBgmVolumeSliderRightButtonPointerEnter
@@ -17619,7 +17655,7 @@ MonoBehaviour:
   _pointerExitEvent:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5157123649545789300}
+      - m_Target: {fileID: 513894541509404529}
         m_TargetAssemblyTypeName: ToffMonaka.UnityBase.Scene.Ui.MenuOptionStageScript,
           Assembly-CSharp
         m_MethodName: OnSoundBgmVolumeSliderRightButtonPointerExit
@@ -18543,6 +18579,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c6ceceaf89183940a5db50e6a5f4e2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _pointerDownEvent:
+    m_PersistentCalls:
+      m_Calls: []
   _pointerClickEvent:
     m_PersistentCalls:
       m_Calls:
@@ -19109,8 +19148,8 @@ MonoBehaviour:
   onValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5157123649545789300}
-        m_TargetAssemblyTypeName: ToffMonaka.UnityBase.Scene.MenuOptionStageScript,
+      - m_Target: {fileID: 513894541509404529}
+        m_TargetAssemblyTypeName: ToffMonaka.UnityBase.Scene.Ui.MenuOptionStageScript,
           Assembly-CSharp
         m_MethodName: OnSoundBgmMuteToggleValueChanged
         m_Mode: 0
@@ -19649,6 +19688,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c6ceceaf89183940a5db50e6a5f4e2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _pointerDownEvent:
+    m_PersistentCalls:
+      m_Calls: []
   _pointerClickEvent:
     m_PersistentCalls:
       m_Calls:
@@ -19960,10 +20002,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c6ceceaf89183940a5db50e6a5f4e2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _pointerDownEvent:
+    m_PersistentCalls:
+      m_Calls: []
   _pointerClickEvent:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5157123649545789300}
+      - m_Target: {fileID: 513894541509404529}
         m_TargetAssemblyTypeName: ToffMonaka.UnityBase.Scene.Ui.MenuOptionStageScript,
           Assembly-CSharp
         m_MethodName: OnSoundBgmVolumeSliderLeftButtonPointerClick
@@ -19979,7 +20024,7 @@ MonoBehaviour:
   _pointerEnterEvent:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5157123649545789300}
+      - m_Target: {fileID: 513894541509404529}
         m_TargetAssemblyTypeName: ToffMonaka.UnityBase.Scene.Ui.MenuOptionStageScript,
           Assembly-CSharp
         m_MethodName: OnSoundBgmVolumeSliderLeftButtonPointerEnter
@@ -19995,7 +20040,7 @@ MonoBehaviour:
   _pointerExitEvent:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5157123649545789300}
+      - m_Target: {fileID: 513894541509404529}
         m_TargetAssemblyTypeName: ToffMonaka.UnityBase.Scene.Ui.MenuOptionStageScript,
           Assembly-CSharp
         m_MethodName: OnSoundBgmVolumeSliderLeftButtonPointerExit

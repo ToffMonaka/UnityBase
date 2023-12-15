@@ -833,6 +833,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c6ceceaf89183940a5db50e6a5f4e2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _pointerDownEvent:
+    m_PersistentCalls:
+      m_Calls: []
   _pointerClickEvent:
     m_PersistentCalls:
       m_Calls:

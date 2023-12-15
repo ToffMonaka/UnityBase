@@ -1,6 +1,6 @@
 ﻿/**
  * @file
- * @brief LanguageSelectDialogButtonScriptファイル
+ * @brief SelectDialogItemButtonScriptファイル
  */
 
 
@@ -13,33 +13,33 @@ using TMPro;
 namespace ToffMonaka {
 namespace UnityBase.Scene.Ui {
 /**
- * @brief LanguageSelectDialogButtonScriptCreateDescクラス
+ * @brief SelectDialogItemButtonScriptCreateDescクラス
  */
-public class LanguageSelectDialogButtonScriptCreateDesc : Lib.Scene.ObjectScriptCreateDesc
+public class SelectDialogItemButtonScriptCreateDesc : Lib.Scene.ObjectScriptCreateDesc
 {
-    public UnityBase.Scene.Ui.LanguageSelectDialogScript dialogScript = null;
-    public UnityBase.Util.LANGUAGE_TYPE languageType = UnityBase.Util.LANGUAGE_TYPE.NONE;
+    public UnityBase.Scene.Ui.SelectDialogItemButtonEngine engine = null;
+    public System.Action<UnityBase.Scene.Ui.SelectDialogItemButtonScript> onClick = null;
 }
 
 /**
- * @brief LanguageSelectDialogButtonScriptクラス
+ * @brief SelectDialogItemButtonScriptクラス
  */
-public class LanguageSelectDialogButtonScript : Lib.Scene.ObjectScript, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
+public class SelectDialogItemButtonScript : Lib.Scene.ObjectScript, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
 {
     [SerializeField] private TMP_Text _nameText = null;
     [SerializeField] private Image _coverImage = null;
 
-    public new UnityBase.Scene.Ui.LanguageSelectDialogButtonScriptCreateDesc createDesc{get; private set;} = null;
+    public new UnityBase.Scene.Ui.SelectDialogItemButtonScriptCreateDesc createDesc{get; private set;} = null;
 
-    private UnityBase.Scene.Ui.LanguageSelectDialogScript _dialogScript = null;
-    private UnityBase.Util.LANGUAGE_TYPE _languageType = UnityBase.Util.LANGUAGE_TYPE.NONE;
+    private UnityBase.Scene.Ui.SelectDialogItemButtonEngine _engine = null;
+    private System.Action<UnityBase.Scene.Ui.SelectDialogItemButtonScript> _onClick = null;
 
     /**
      * @brief コンストラクタ
      */
-    public LanguageSelectDialogButtonScript()
+    public SelectDialogItemButtonScript()
     {
-        this._SetScriptIndex((int)UnityBase.Util.SCENE.SCRIPT_INDEX.LANGUAGE_SELECT_DIALOG_BUTTON);
+        this._SetScriptIndex((int)UnityBase.Util.SCENE.SCRIPT_INDEX.SELECT_DIALOG_ITEM_BUTTON);
 
         return;
     }
@@ -67,10 +67,15 @@ public class LanguageSelectDialogButtonScript : Lib.Scene.ObjectScript, IPointer
      */
     protected override int _OnCreate()
     {
-        this._dialogScript = this.createDesc.dialogScript;
-        this._languageType = this.createDesc.languageType;
+        if (this.createDesc.engine == null) {
+            return (-1);
+        }
 
-        this._nameText.SetText(UnityBase.Global.GetText(UnityBase.Util.LANGUAGE_NAME_MST_TEXT_ID_ARRAY[(int)this._languageType]));
+        this._engine = this.createDesc.engine;
+
+        this._onClick = this.createDesc.onClick;
+
+        this._nameText.SetText(this._engine.OnGetName());
 
         return (0);
     }
@@ -81,7 +86,7 @@ public class LanguageSelectDialogButtonScript : Lib.Scene.ObjectScript, IPointer
      */
     public override void SetCreateDesc(Lib.Scene.ScriptCreateDesc create_desc)
     {
-	    this.createDesc = create_desc as UnityBase.Scene.Ui.LanguageSelectDialogButtonScriptCreateDesc;
+	    this.createDesc = create_desc as UnityBase.Scene.Ui.SelectDialogItemButtonScriptCreateDesc;
 
         base.SetCreateDesc(this.createDesc);
 
@@ -162,7 +167,7 @@ public class LanguageSelectDialogButtonScript : Lib.Scene.ObjectScript, IPointer
 
         Lib.Scene.Util.GetSoundManager().PlaySe((int)UnityBase.Util.SOUND.SE_INDEX.OK2);
 
-        this._dialogScript.RunButton(this._languageType);
+        this._onClick(this);
 
         return;
     }
@@ -191,6 +196,15 @@ public class LanguageSelectDialogButtonScript : Lib.Scene.ObjectScript, IPointer
         this._coverImage.gameObject.SetActive(false);
 
         return;
+    }
+
+    /**
+     * @brief GetEngine関数
+     * @return engine (engine)
+     */
+    public UnityBase.Scene.Ui.SelectDialogItemButtonEngine GetEngine()
+    {
+        return (this._engine);
     }
 }
 }

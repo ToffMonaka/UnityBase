@@ -38,7 +38,8 @@ public static class Util
         public static readonly string SELECT_SUB_SCENE_PREFAB = "Assets/Resources2/prefab/SelectSubScene.prefab";
         public static readonly string TEST_2D_STAGE_SUB_SCENE_PREFAB = "Assets/Resources2/prefab/Test2DStageSubScene.prefab";
         public static readonly string TEST_3D_STAGE_SUB_SCENE_PREFAB = "Assets/Resources2/prefab/Test3DStageSubScene.prefab";
-        public static readonly string LANGUAGE_SELECT_DIALOG_PREFAB = "Assets/Resources2/prefab/LanguageSelectDialog.prefab";
+        public static readonly string SELECT_DIALOG_PREFAB = "Assets/Resources2/prefab/SelectDialog.prefab";
+        public static readonly string INPUT_DIALOG_PREFAB = "Assets/Resources2/prefab/InputDialog.prefab";
     }
 
     public static class INPUT
@@ -97,8 +98,9 @@ public static class Util
             MENU_END_STAGE,
             MENU_CHEAT_STAGE,
             MENU_CHEAT_STAGE_COMMAND_BUTTON,
-            LANGUAGE_SELECT_DIALOG,
-            LANGUAGE_SELECT_DIALOG_BUTTON,
+            SELECT_DIALOG,
+            SELECT_DIALOG_ITEM_BUTTON,
+            INPUT_DIALOG,
 		    COUNT
         }
         public static readonly int SCRIPT_INDEX_COUNT = (int)UnityBase.Util.SCENE.SCRIPT_INDEX.COUNT;

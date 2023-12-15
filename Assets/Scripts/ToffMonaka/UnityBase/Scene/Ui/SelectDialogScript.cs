@@ -1,6 +1,6 @@
 ﻿/**
  * @file
- * @brief LanguageSelectDialogScriptファイル
+ * @brief SelectDialogScriptファイル
  */
 
 
@@ -14,33 +14,34 @@ using TMPro;
 namespace ToffMonaka {
 namespace UnityBase.Scene.Ui {
 /**
- * @brief LanguageSelectDialogScriptCreateDescクラス
+ * @brief SelectDialogScriptCreateDescクラス
  */
-public class LanguageSelectDialogScriptCreateDesc : UnityBase.Scene.Ui.DialogScriptCreateDesc
+public class SelectDialogScriptCreateDesc : UnityBase.Scene.Ui.DialogScriptCreateDesc
 {
-    public UnityBase.Scene.Ui.MenuOptionStageScript stageScript = null;
+    public UnityBase.Scene.Ui.SelectDialogEngine engine = null;
 }
 
 /**
- * @brief LanguageSelectDialogScriptクラス
+ * @brief SelectDialogScriptクラス
  */
-public class LanguageSelectDialogScript : UnityBase.Scene.Ui.DialogScript
+public class SelectDialogScript : UnityBase.Scene.Ui.DialogScript
 {
     [SerializeField] private TMP_Text _nameText = null;
-    [SerializeField] private GameObject _buttonNode = null;
+    [SerializeField] private ScrollRect _itemScrollRect = null;
+    [SerializeField] private GameObject _itemButtonNode = null;
     [SerializeField] private Image _closeButtonCoverImage = null;
 
-    public new UnityBase.Scene.Ui.LanguageSelectDialogScriptCreateDesc createDesc{get; private set;} = null;
+    public new UnityBase.Scene.Ui.SelectDialogScriptCreateDesc createDesc{get; private set;} = null;
 
-    private UnityBase.Scene.Ui.MenuOptionStageScript _stageScript = null;
-    private List<UnityBase.Scene.Ui.LanguageSelectDialogButtonScript> _buttonScriptContainer = new List<UnityBase.Scene.Ui.LanguageSelectDialogButtonScript>();
+    private UnityBase.Scene.Ui.SelectDialogEngine _engine = null;
+    private List<UnityBase.Scene.Ui.SelectDialogItemButtonScript> _itemButtonScriptContainer = new List<UnityBase.Scene.Ui.SelectDialogItemButtonScript>();
 
     /**
      * @brief コンストラクタ
      */
-    public LanguageSelectDialogScript()
+    public SelectDialogScript()
     {
-        this._SetScriptIndex((int)UnityBase.Util.SCENE.SCRIPT_INDEX.LANGUAGE_SELECT_DIALOG);
+        this._SetScriptIndex((int)UnityBase.Util.SCENE.SCRIPT_INDEX.SELECT_DIALOG);
 
         return;
     }
@@ -76,31 +77,15 @@ public class LanguageSelectDialogScript : UnityBase.Scene.Ui.DialogScript
             return (-1);
         }
 
-        this._stageScript = this.createDesc.stageScript;
-
-        this._nameText.SetText(UnityBase.Global.GetText(UnityBase.Util.MST_TEXT_ID.LANGUAGE));
-
-        this._buttonNode.SetActive(false);
-
-        {// ButtonScript Create
-            UnityBase.Util.LANGUAGE_TYPE[] language_type_ary = {
-                UnityBase.Util.LANGUAGE_TYPE.ENGLISH,
-                UnityBase.Util.LANGUAGE_TYPE.JAPANESE
-            };
-
-            foreach (var language_type in language_type_ary) {
-                var script = GameObject.Instantiate(this._buttonNode, this._buttonNode.transform.parent).GetComponent<UnityBase.Scene.Ui.LanguageSelectDialogButtonScript>();
-                var script_create_desc = new UnityBase.Scene.Ui.LanguageSelectDialogButtonScriptCreateDesc();
-
-                script_create_desc.dialogScript = this;
-                script_create_desc.languageType = language_type;
-
-                script.Create(script_create_desc);
-                script.Open(0);
-
-                this._buttonScriptContainer.Add(script);
-            }
+        if (this.createDesc.engine == null) {
+            return (-1);
         }
+
+        this._engine = this.createDesc.engine;
+
+        this._nameText.SetText(this._engine.OnGetName());
+
+        this._itemButtonNode.SetActive(false);
 
         return (0);
     }
@@ -111,7 +96,7 @@ public class LanguageSelectDialogScript : UnityBase.Scene.Ui.DialogScript
      */
     public override void SetCreateDesc(Lib.Scene.ScriptCreateDesc create_desc)
     {
-	    this.createDesc = create_desc as UnityBase.Scene.Ui.LanguageSelectDialogScriptCreateDesc;
+	    this.createDesc = create_desc as UnityBase.Scene.Ui.SelectDialogScriptCreateDesc;
 
         base.SetCreateDesc(this.createDesc);
 
@@ -125,6 +110,7 @@ public class LanguageSelectDialogScript : UnityBase.Scene.Ui.DialogScript
     {
         base._OnActive();
 
+        this._itemScrollRect.verticalNormalizedPosition = 1.0f;
         this._closeButtonCoverImage.gameObject.SetActive(false);
 
         return;
@@ -234,14 +220,60 @@ public class LanguageSelectDialogScript : UnityBase.Scene.Ui.DialogScript
     }
 
     /**
-     * @brief RunButton関数
-     * @param language_type (language_type)
+     * @brief GetEngine関数
+     * @return engine (engine)
      */
-    public void RunButton(UnityBase.Util.LANGUAGE_TYPE language_type)
+    public UnityBase.Scene.Ui.SelectDialogEngine GetEngine()
     {
-        this._stageScript.SetLanguageType(language_type);
+        return (this._engine);
+    }
 
-        this.Close(1);
+    /**
+     * @brief AddItemButton関数
+     * @param item_btn_engine (item_button_engine)
+     * @return result_val (result_value)<br>
+     * 0未満=失敗
+     */
+    public int AddItemButton(UnityBase.Scene.Ui.SelectDialogItemButtonEngine item_btn_engine)
+    {
+        if (item_btn_engine == null) {
+            return (-1);
+        }
+
+        {// ItemButtonScript Create
+            var script = GameObject.Instantiate(this._itemButtonNode, this._itemButtonNode.transform.parent).GetComponent<UnityBase.Scene.Ui.SelectDialogItemButtonScript>();
+            var script_create_desc = new UnityBase.Scene.Ui.SelectDialogItemButtonScriptCreateDesc();
+
+            script_create_desc.engine = item_btn_engine;
+            script_create_desc.onClick = (UnityBase.Scene.Ui.SelectDialogItemButtonScript item_btn_script) => {
+                this._engine.OnClickItemButton(this, item_btn_script);
+
+                this.Close(1);
+
+                return;
+            };
+
+            script.Create(script_create_desc);
+            script.Open(0);
+
+            this._itemButtonScriptContainer.Add(script);
+        }
+
+        return (0);
+    }
+
+    /**
+     * @brief RemoveItemButton関数
+     */
+    public void RemoveItemButton()
+    {
+        foreach (var item_btn_script in this._itemButtonScriptContainer) {
+            item_btn_script.Close(0);
+
+            GameObject.Destroy(item_btn_script.gameObject);
+        }
+
+        this._itemButtonScriptContainer.Clear();
 
         return;
     }

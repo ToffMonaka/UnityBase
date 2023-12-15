@@ -55,7 +55,7 @@ public class MenuOptionStageScript : UnityBase.Scene.Ui.MenuStageScript
     private bool _soundSeMuteFlag = false;
     private uint _restartFlag = 0U;
     private GameObject _languageSelectDialogNode = null;
-    private UnityBase.Scene.Ui.LanguageSelectDialogScript _languageSelectDialogScript = null;
+    private UnityBase.Scene.Ui.SelectDialogScript _languageSelectDialogScript = null;
 
     /**
      * @brief コンストラクタ
@@ -226,16 +226,28 @@ public class MenuOptionStageScript : UnityBase.Scene.Ui.MenuStageScript
 
         // LanguageSelectDialogScript Create
         if (this._languageSelectDialogScript == null) {
-            this._languageSelectDialogNode = Lib.Scene.Util.GetPrefabNode(UnityBase.Util.FILE_PATH.LANGUAGE_SELECT_DIALOG_PREFAB, this.GetMenuScript().GetSubSceneScript().GetDialogNode());
+            this._languageSelectDialogNode = Lib.Scene.Util.GetPrefabNode(UnityBase.Util.FILE_PATH.SELECT_DIALOG_PREFAB, this.GetMenuScript().GetSubSceneScript().GetDialogNode());
 
-            var script = this._languageSelectDialogNode.GetComponent<UnityBase.Scene.Ui.LanguageSelectDialogScript>();
-            var script_create_desc = new UnityBase.Scene.Ui.LanguageSelectDialogScriptCreateDesc();
+            var script = this._languageSelectDialogNode.GetComponent<UnityBase.Scene.Ui.SelectDialogScript>();
+            var script_create_desc = new UnityBase.Scene.Ui.SelectDialogScriptCreateDesc();
 
-            script_create_desc.stageScript = this;
+            void on_click_item_btn(UnityBase.Scene.Ui.SelectDialogScript dialog_script, UnityBase.Scene.Ui.SelectDialogItemButtonScript item_btn_script)
+            {
+                var item_btn_script_engine = item_btn_script.GetEngine() as UnityBase.Scene.Ui.LanguageSelectDialogItemButtonEngine;
+
+                this.SetLanguageType(item_btn_script_engine.GetLanguageType());
+
+                return;
+            }
+
+            script_create_desc.engine = new UnityBase.Scene.Ui.LanguageSelectDialogEngine(on_click_item_btn);
 
             script.Create(script_create_desc);
 
             this._languageSelectDialogScript = script;
+
+            this._languageSelectDialogScript.AddItemButton(new UnityBase.Scene.Ui.LanguageSelectDialogItemButtonEngine(UnityBase.Util.LANGUAGE_TYPE.ENGLISH));
+            this._languageSelectDialogScript.AddItemButton(new UnityBase.Scene.Ui.LanguageSelectDialogItemButtonEngine(UnityBase.Util.LANGUAGE_TYPE.JAPANESE));
         }
 
         if (this._languageSelectDialogScript != null) {
