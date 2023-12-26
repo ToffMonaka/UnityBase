@@ -375,13 +375,7 @@ public class CsvFile : Lib.Data.File
             }
 
             if (val_ary.Length < val_cnt) {
-                int old_val_cnt = val_ary.Length;
-
-                System.Array.Resize(ref val_ary, val_cnt);
-
-	            for (int empty_val_i = old_val_cnt; empty_val_i < val_ary.Length; ++empty_val_i) {
-                    val_ary[empty_val_i] = System.String.Empty;
-	            }
+                Lib.Array.Util.Resize(ref val_ary, val_cnt, System.String.Empty);
             } else if (val_ary.Length > val_cnt) {
 	            val_cnt = val_ary.Length;
 

@@ -53,6 +53,7 @@ public class MstTextEntity
 public class MstTextTableFileData
 {
 	public UnityBase.Data.MstTextEntity[] entityArray = System.Array.Empty<UnityBase.Data.MstTextEntity>();
+	public UnityBase.Data.MstTextEntity[] entityArrayByMstTextId = System.Array.Empty<UnityBase.Data.MstTextEntity>();
 
     /**
      * @brief コンストラクタ
@@ -78,34 +79,9 @@ public class MstTextTableFileData
         this._Release();
 
     	this.entityArray = System.Array.Empty<UnityBase.Data.MstTextEntity>();
+    	this.entityArrayByMstTextId = System.Array.Empty<UnityBase.Data.MstTextEntity>();
 
         return;
-    }
-
-    /**
-     * @brief GetEntity関数
-     * @param mst_txt_id (mst_text_id)
-     * @return entity (entity)<br>
-     * null=失敗
-     */
-    public UnityBase.Data.MstTextEntity GetEntity(int mst_txt_id)
-    {
-	    if (mst_txt_id >= this.entityArray.Length) {
-		    return (null);
-	    }
-
-	    return (this.entityArray[mst_txt_id]);
-    }
-
-    /**
-     * @brief GetEntityFast関数
-     * @param mst_txt_id (mst_text_id)
-     * @return entity (entity)<br>
-     * null=失敗
-     */
-    public UnityBase.Data.MstTextEntity GetEntityFast(int mst_txt_id)
-    {
-	    return (this.entityArray[mst_txt_id]);
     }
 }
 
@@ -179,6 +155,7 @@ public class MstTextTableFile : Lib.Data.File
         }
 
         this.data.entityArray = new UnityBase.Data.MstTextEntity[csv_file.data.GetRowCount()];
+        this.data.entityArrayByMstTextId = new UnityBase.Data.MstTextEntity[csv_file.data.GetRowCount()];
 
         for (int val_i = 0; val_i < csv_file.data.GetRowCount(); ++val_i) {
             var entity = new UnityBase.Data.MstTextEntity();
@@ -187,6 +164,12 @@ public class MstTextTableFile : Lib.Data.File
             entity.text = csv_file.data.GetValueFast(val_i, 1);
 
             this.data.entityArray[val_i] = entity;
+
+            if (this.data.entityArrayByMstTextId.Length <= entity.mstTextId) {
+                Lib.Array.Util.Resize(ref this.data.entityArrayByMstTextId, entity.mstTextId + 128);
+            }
+
+            this.data.entityArrayByMstTextId[entity.mstTextId] = entity;
         }
 
         return (0);

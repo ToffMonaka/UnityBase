@@ -30,6 +30,7 @@ public class InitSubSceneScript : Lib.Scene.SubSceneScript
     public new UnityBase.Scene.InitSubSceneScriptCreateDesc createDesc{get; private set;} = null;
 
     private int _progressType = 0;
+    private int _progressCount = 0;
     private float _progressElapsedTime = 0.0f;
 
     /**
@@ -128,26 +129,37 @@ public class InitSubSceneScript : Lib.Scene.SubSceneScript
 		case 2: {
             this._progressElapsedTime += Time.deltaTime;
 
-            {// MstTextTableFile Create
-		        switch (UnityBase.Global.systemConfigFile.data.systemLanguageType) {
-		        case UnityBase.Util.LANGUAGE_TYPE.JAPANESE: {
-                    UnityBase.Global.mstTextTableFile.readDesc.data.filePath = UnityBase.Util.FILE_PATH.MST_TEXT_JAPANESE_TABLE;
+		    switch (this._progressCount) {
+		    case 0: {
+                {// MstTextTableFile Create
+		            switch (UnityBase.Global.systemConfigFile.data.systemLanguageType) {
+		            case UnityBase.Util.LANGUAGE_TYPE.JAPANESE: {
+                        UnityBase.Global.mstTextTableFile.readDesc.data.filePath = UnityBase.Util.FILE_PATH.JAPANESE_MST_TEXT_TABLE;
 
-			        break;
-		        }
-		        default: {
-                    UnityBase.Global.mstTextTableFile.readDesc.data.filePath = UnityBase.Util.FILE_PATH.MST_TEXT_ENGLISH_TABLE;
+			            break;
+		            }
+		            default: {
+                        UnityBase.Global.mstTextTableFile.readDesc.data.filePath = UnityBase.Util.FILE_PATH.ENGLISH_MST_TEXT_TABLE;
 
-			        break;
-		        }
-		        }
+			            break;
+		            }
+		            }
 
-                UnityBase.Global.mstTextTableFile.readDesc.data.addressablesFlag = true;
+                    UnityBase.Global.mstTextTableFile.readDesc.data.addressablesFlag = true;
 
-                UnityBase.Global.mstTextTableFile.Read();
-            }
+                    UnityBase.Global.mstTextTableFile.Read();
+                }
 
-            this.SetProgressType(3);
+                ++this._progressCount;
+
+			    break;
+		    }
+		    default: {
+                this.SetProgressType(3);
+
+			    break;
+		    }
+		    }
 
 			break;
 		}
@@ -162,7 +174,7 @@ public class InitSubSceneScript : Lib.Scene.SubSceneScript
 
 			break;
 		}
-		case 4: {
+		default: {
 			break;
 		}
 		}
@@ -286,6 +298,7 @@ public class InitSubSceneScript : Lib.Scene.SubSceneScript
     public void SetProgressType(int progress_type)
     {
         this._progressType = progress_type;
+        this._progressCount = 0;
         this._progressElapsedTime = 0.0f;
 
         return;
