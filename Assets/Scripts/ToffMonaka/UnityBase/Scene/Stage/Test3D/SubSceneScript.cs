@@ -82,7 +82,7 @@ public class SubSceneScript : UnityBase.Scene.Stage.SubSceneScript
      * @brief SetCreateDesc関数
      * @param create_desc (create_desc)
      */
-    public override void SetCreateDesc(Lib.Scene.ScriptCreateDesc create_desc)
+    public override void SetCreateDesc(Lib.Scene.NodeScriptCreateDesc create_desc)
     {
 	    this.createDesc = create_desc as UnityBase.Scene.Stage.Test3D.SubSceneScriptCreateDesc;
 

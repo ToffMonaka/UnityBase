@@ -17,6 +17,9 @@ public static class Global
     public static UnityBase.Data.SystemConfigFile systemConfigFile = new UnityBase.Data.SystemConfigFile();
     public static UnityBase.Data.MstTextTableFile mstTextTableFile = new UnityBase.Data.MstTextTableFile();
 
+    // Change Property Name
+    // [UnityEngine.Serialization.FormerlySerializedAs("_propertyName")]
+
     /**
      * @brief GetText関数
      * @param mst_txt_id (mst_text_id)

@@ -29,7 +29,7 @@ public class Manager
 
     private GameObject _mainSceneNode = null;
     private GameObject _subSceneNode = null;
-    private List<Lib.Scene.Script>[] _scriptArray = null;
+    private List<Lib.Scene.NodeScript>[] _scriptArray = null;
     private Lib.Scene.MainSceneScript _mainSceneScript = null;
     private Lib.Scene.SubSceneScript _subSceneScript = null;
     private List<Lib.Scene.ObjectScript>[]  _objectScriptArray = null;
@@ -51,7 +51,7 @@ public class Manager
 
         if (this._scriptArray != null) {
             foreach (var script_cont in this._scriptArray) {
-                var tmp_script_cont = new List<Lib.Scene.Script>(script_cont);
+                var tmp_script_cont = new List<Lib.Scene.NodeScript>(script_cont);
 
                 foreach (var tmp_script in tmp_script_cont) {
                     tmp_script.DestroyByManager();
@@ -99,10 +99,10 @@ public class Manager
 
             this._mainSceneNode = desc.mainSceneNode;
 
-            this._scriptArray = new List<Lib.Scene.Script>[this.createDesc.scriptCount];
+            this._scriptArray = new List<Lib.Scene.NodeScript>[this.createDesc.scriptCount];
 
             for (int script_i = 0; script_i < this._scriptArray.Length; ++script_i) {
-                this._scriptArray[script_i] = new List<Lib.Scene.Script>();
+                this._scriptArray[script_i] = new List<Lib.Scene.NodeScript>();
             }
 
             this._objectScriptArray = new List<Lib.Scene.ObjectScript>[this.createDesc.scriptCount];
@@ -168,7 +168,7 @@ public class Manager
      * @return script (script)<br>
      * null=失敗
      */
-    public Lib.Scene.Script GetScript(int script_inex)
+    public Lib.Scene.NodeScript GetScript(int script_inex)
     {
         if ((script_inex < 0)
         || (script_inex >= this._scriptArray.Length)) {
@@ -188,7 +188,7 @@ public class Manager
      * @return script_cont (script_container)<br>
      * null=失敗
      */
-    public List<Lib.Scene.Script> GetScriptContainer(int script_inex)
+    public List<Lib.Scene.NodeScript> GetScriptContainer(int script_inex)
     {
         if ((script_inex < 0)
         || (script_inex >= this._scriptArray.Length)) {
@@ -232,7 +232,7 @@ public class Manager
      * @return result_val (result_value)<br>
      * 0未満=失敗
      */
-    public int AddScript(Lib.Scene.Script script)
+    public int AddScript(Lib.Scene.NodeScript script)
     {
         if ((script == null)
         || (script.GetManager() != null)
@@ -271,7 +271,7 @@ public class Manager
      * @brief RemoveScript関数
      * @param script (script)
      */
-    public void RemoveScript(Lib.Scene.Script script)
+    public void RemoveScript(Lib.Scene.NodeScript script)
     {
         if ((script == null)
         || (script.GetManager() == null)

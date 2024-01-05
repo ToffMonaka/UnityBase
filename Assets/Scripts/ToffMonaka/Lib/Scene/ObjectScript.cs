@@ -12,14 +12,14 @@ namespace Lib.Scene {
 /**
  * @brief ObjectScriptCreateDescクラス
  */
-public class ObjectScriptCreateDesc : Lib.Scene.ScriptCreateDesc
+public class ObjectScriptCreateDesc : Lib.Scene.NodeScriptCreateDesc
 {
 }
 
 /**
  * @brief ObjectScriptクラス
  */
-public abstract class ObjectScript : Lib.Scene.Script
+public abstract class ObjectScript : Lib.Scene.NodeScript
 {
     public new Lib.Scene.ObjectScriptCreateDesc createDesc{get; private set;} = null;
 
@@ -58,7 +58,7 @@ public abstract class ObjectScript : Lib.Scene.Script
      * @brief SetCreateDesc関数
      * @param create_desc (create_desc)
      */
-    public override void SetCreateDesc(Lib.Scene.ScriptCreateDesc create_desc)
+    public override void SetCreateDesc(Lib.Scene.NodeScriptCreateDesc create_desc)
     {
 	    this.createDesc = create_desc as Lib.Scene.ObjectScriptCreateDesc;
 

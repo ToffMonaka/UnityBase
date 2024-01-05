@@ -12,14 +12,14 @@ namespace Lib.Scene {
 /**
  * @brief MainSceneScriptCreateDescクラス
  */
-public class MainSceneScriptCreateDesc : Lib.Scene.ScriptCreateDesc
+public class MainSceneScriptCreateDesc : Lib.Scene.NodeScriptCreateDesc
 {
 }
 
 /**
  * @brief MainSceneScriptクラス
  */
-public abstract class MainSceneScript : Lib.Scene.Script
+public abstract class MainSceneScript : Lib.Scene.NodeScript
 {
     [SerializeField] private Camera _mainCamera = null;
     [SerializeField] private GameObject _inputNode = null;
@@ -71,7 +71,7 @@ public abstract class MainSceneScript : Lib.Scene.Script
      * @brief SetCreateDesc関数
      * @param create_desc (create_desc)
      */
-    public override void SetCreateDesc(Lib.Scene.ScriptCreateDesc create_desc)
+    public override void SetCreateDesc(Lib.Scene.NodeScriptCreateDesc create_desc)
     {
 	    this.createDesc = create_desc as Lib.Scene.MainSceneScriptCreateDesc;
 

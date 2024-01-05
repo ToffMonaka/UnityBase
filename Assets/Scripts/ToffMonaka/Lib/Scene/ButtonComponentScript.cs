@@ -1,6 +1,6 @@
 ﻿/**
  * @file
- * @brief ButtonEventTriggerファイル
+ * @brief ButtonComponentScriptファイル
  */
 
 
@@ -12,9 +12,9 @@ using UnityEngine.Events;
 namespace ToffMonaka {
 namespace Lib.Scene {
 /**
- * @brief ButtonEventTriggerクラス
+ * @brief ButtonComponentScriptクラス
  */
-public class ButtonEventTrigger : MonoBehaviour, IPointerDownHandler, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
+public class ButtonComponentScript : Lib.Scene.ComponentScript, IPointerDownHandler, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
 {
     [System.Serializable] public class PointerEvent : UnityEvent<PointerEventData> {}
 
