@@ -12,14 +12,14 @@ namespace UnityBase.Scene {
 /**
  * @brief MainSceneScriptCreateDescクラス
  */
-public class MainSceneScriptCreateDesc : Lib.Scene.MainSceneScriptCreateDesc
+public class MainSceneScriptCreateDesc : Lib.Scene.MainSceneNodeScriptCreateDesc
 {
 }
 
 /**
  * @brief MainSceneScriptクラス
  */
-public class MainSceneScript : Lib.Scene.MainSceneScript
+public class MainSceneScript : Lib.Scene.MainSceneNodeScript
 {
     public new UnityBase.Scene.MainSceneScriptCreateDesc createDesc{get; private set;} = null;
 

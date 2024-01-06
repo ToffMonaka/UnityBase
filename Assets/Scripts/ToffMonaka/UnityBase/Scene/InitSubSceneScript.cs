@@ -15,14 +15,14 @@ namespace UnityBase.Scene {
 /**
  * @brief InitSubSceneScriptCreateDescクラス
  */
-public class InitSubSceneScriptCreateDesc : Lib.Scene.SubSceneScriptCreateDesc
+public class InitSubSceneScriptCreateDesc : Lib.Scene.SubSceneNodeScriptCreateDesc
 {
 }
 
 /**
  * @brief InitSubSceneScriptクラス
  */
-public class InitSubSceneScript : Lib.Scene.SubSceneScript
+public class InitSubSceneScript : Lib.Scene.SubSceneNodeScript
 {
     [SerializeField] private TMP_Text _messageText = null;
     [SerializeField] private Image _openCloseFadeImage = null;

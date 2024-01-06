@@ -14,7 +14,7 @@ namespace UnityBase.Scene.Ui {
 /**
  * @brief MenuStageScriptCreateDescクラス
  */
-public class MenuStageScriptCreateDesc : Lib.Scene.ObjectScriptCreateDesc
+public class MenuStageScriptCreateDesc : Lib.Scene.ObjectNodeScriptCreateDesc
 {
     public UnityBase.Scene.Ui.MenuScript menuScript = null;
 }
@@ -22,7 +22,7 @@ public class MenuStageScriptCreateDesc : Lib.Scene.ObjectScriptCreateDesc
 /**
  * @brief MenuStageScriptクラス
  */
-public class MenuStageScript : Lib.Scene.ObjectScript
+public class MenuStageScript : Lib.Scene.ObjectNodeScript
 {
     [SerializeField] private TMP_Text _nameText = null;
 

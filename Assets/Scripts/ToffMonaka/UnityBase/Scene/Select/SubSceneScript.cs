@@ -14,14 +14,14 @@ namespace UnityBase.Scene.Select {
 /**
  * @brief SubSceneScriptCreateDescクラス
  */
-public class SubSceneScriptCreateDesc : Lib.Scene.SubSceneScriptCreateDesc
+public class SubSceneScriptCreateDesc : Lib.Scene.SubSceneNodeScriptCreateDesc
 {
 }
 
 /**
  * @brief SubSceneScriptクラス
  */
-public class SubSceneScript : Lib.Scene.SubSceneScript
+public class SubSceneScript : Lib.Scene.SubSceneNodeScript
 {
     [SerializeField] private GameObject _stageBoardNode = null;
     [SerializeField] private GameObject _backButtonNode = null;

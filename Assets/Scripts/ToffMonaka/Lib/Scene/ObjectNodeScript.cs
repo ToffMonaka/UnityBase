@@ -1,6 +1,6 @@
 ﻿/**
  * @file
- * @brief ObjectScriptファイル
+ * @brief ObjectNodeScriptファイル
  */
 
 
@@ -10,23 +10,23 @@ using UnityEngine;
 namespace ToffMonaka {
 namespace Lib.Scene {
 /**
- * @brief ObjectScriptCreateDescクラス
+ * @brief ObjectNodeScriptCreateDescクラス
  */
-public class ObjectScriptCreateDesc : Lib.Scene.NodeScriptCreateDesc
+public class ObjectNodeScriptCreateDesc : Lib.Scene.NodeScriptCreateDesc
 {
 }
 
 /**
- * @brief ObjectScriptクラス
+ * @brief ObjectNodeScriptクラス
  */
-public abstract class ObjectScript : Lib.Scene.NodeScript
+public abstract class ObjectNodeScript : Lib.Scene.NodeScript
 {
-    public new Lib.Scene.ObjectScriptCreateDesc createDesc{get; private set;} = null;
+    public new Lib.Scene.ObjectNodeScriptCreateDesc createDesc{get; private set;} = null;
 
     /**
      * @brief コンストラクタ
      */
-    public ObjectScript()
+    public ObjectNodeScript()
     {
         this._SetScriptType(Lib.Util.SCENE.SCRIPT_TYPE.OBJECT);
         this._SetActiveAutoFlag(true);
@@ -60,7 +60,7 @@ public abstract class ObjectScript : Lib.Scene.NodeScript
      */
     public override void SetCreateDesc(Lib.Scene.NodeScriptCreateDesc create_desc)
     {
-	    this.createDesc = create_desc as Lib.Scene.ObjectScriptCreateDesc;
+	    this.createDesc = create_desc as Lib.Scene.ObjectNodeScriptCreateDesc;
 
         base.SetCreateDesc(this.createDesc);
 

@@ -15,7 +15,7 @@ namespace UnityBase.Scene.Ui {
 /**
  * @brief MenuCheatStageCommandButtonScriptCreateDescクラス
  */
-public class MenuCheatStageCommandButtonScriptCreateDesc : Lib.Scene.ObjectScriptCreateDesc
+public class MenuCheatStageCommandButtonScriptCreateDesc : Lib.Scene.ObjectNodeScriptCreateDesc
 {
     public UnityBase.Scene.Ui.MenuCheatStageScript stageScript = null;
     public UnityBase.Util.SCENE.MENU_CHEAT_STAGE_COMMAND_TYPE commandType = UnityBase.Util.SCENE.MENU_CHEAT_STAGE_COMMAND_TYPE.NONE;
@@ -24,7 +24,7 @@ public class MenuCheatStageCommandButtonScriptCreateDesc : Lib.Scene.ObjectScrip
 /**
  * @brief MenuCheatStageCommandButtonScriptクラス
  */
-public class MenuCheatStageCommandButtonScript : Lib.Scene.ObjectScript, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
+public class MenuCheatStageCommandButtonScript : Lib.Scene.ObjectNodeScript, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
 {
     [SerializeField] private TMP_Text _nameText = null;
     [SerializeField] private TMP_Text _detailText = null;

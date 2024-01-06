@@ -15,7 +15,7 @@ namespace UnityBase.Scene.Select {
 /**
  * @brief BackButtonScriptCreateDescクラス
  */
-public class BackButtonScriptCreateDesc : Lib.Scene.ObjectScriptCreateDesc
+public class BackButtonScriptCreateDesc : Lib.Scene.ObjectNodeScriptCreateDesc
 {
     public UnityBase.Scene.Select.SubSceneScript subSceneScript = null;
 }
@@ -23,7 +23,7 @@ public class BackButtonScriptCreateDesc : Lib.Scene.ObjectScriptCreateDesc
 /**
  * @brief BackButtonScriptクラス
  */
-public class BackButtonScript : Lib.Scene.ObjectScript, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
+public class BackButtonScript : Lib.Scene.ObjectNodeScript, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
 {
     [SerializeField] private Image _coverImage = null;
 

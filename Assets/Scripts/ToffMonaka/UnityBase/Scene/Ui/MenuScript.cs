@@ -13,15 +13,15 @@ namespace UnityBase.Scene.Ui {
 /**
  * @brief MenuScriptCreateDescクラス
  */
-public class MenuScriptCreateDesc : Lib.Scene.ObjectScriptCreateDesc
+public class MenuScriptCreateDesc : Lib.Scene.ObjectNodeScriptCreateDesc
 {
-    public Lib.Scene.SubSceneScript subSceneScript = null;
+    public Lib.Scene.SubSceneNodeScript subSceneScript = null;
 }
 
 /**
  * @brief MenuScriptクラス
  */
-public class MenuScript : Lib.Scene.ObjectScript
+public class MenuScript : Lib.Scene.ObjectNodeScript
 {
     [SerializeField] private Image _backgroundImage = null;
     [SerializeField] private GameObject _openCloseButtonNode = null;
@@ -36,7 +36,7 @@ public class MenuScript : Lib.Scene.ObjectScript
 
     public new UnityBase.Scene.Ui.MenuScriptCreateDesc createDesc{get; private set;} = null;
 
-    private Lib.Scene.SubSceneScript _subSceneScript = null;
+    private Lib.Scene.SubSceneNodeScript _subSceneScript = null;
     private UnityBase.Scene.Ui.MenuOpenCloseButtonScript _openCloseButtonScript = null;
     private UnityBase.Scene.Ui.MenuSelectScript _selectScript = null;
     private UnityBase.Scene.Ui.MenuSelectScript _openSelectScript = null;
@@ -266,7 +266,7 @@ public class MenuScript : Lib.Scene.ObjectScript
      * @brief GetSubSceneScript関数
      * @return sub_scene_script (sub_scene_script)
      */
-    public Lib.Scene.SubSceneScript GetSubSceneScript()
+    public Lib.Scene.SubSceneNodeScript GetSubSceneScript()
     {
         return (this._subSceneScript);
     }

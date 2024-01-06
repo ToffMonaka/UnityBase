@@ -1,6 +1,6 @@
 ﻿/**
  * @file
- * @brief MainSceneScriptファイル
+ * @brief MainSceneNodeScriptファイル
  */
 
 
@@ -10,16 +10,16 @@ using UnityEngine;
 namespace ToffMonaka {
 namespace Lib.Scene {
 /**
- * @brief MainSceneScriptCreateDescクラス
+ * @brief MainSceneNodeScriptCreateDescクラス
  */
-public class MainSceneScriptCreateDesc : Lib.Scene.NodeScriptCreateDesc
+public class MainSceneNodeScriptCreateDesc : Lib.Scene.NodeScriptCreateDesc
 {
 }
 
 /**
- * @brief MainSceneScriptクラス
+ * @brief MainSceneNodeScriptクラス
  */
-public abstract class MainSceneScript : Lib.Scene.NodeScript
+public abstract class MainSceneNodeScript : Lib.Scene.NodeScript
 {
     [SerializeField] private Camera _mainCamera = null;
     [SerializeField] private GameObject _inputNode = null;
@@ -30,12 +30,12 @@ public abstract class MainSceneScript : Lib.Scene.NodeScript
     [SerializeField] private GameObject _soundSeNode = null;
     [SerializeField] private AudioClip[] _soundSeAudioClipArray = null;
 
-    public new Lib.Scene.MainSceneScriptCreateDesc createDesc{get; private set;} = null;
+    public new Lib.Scene.MainSceneNodeScriptCreateDesc createDesc{get; private set;} = null;
 
     /**
      * @brief コンストラクタ
      */
-    public MainSceneScript()
+    public MainSceneNodeScript()
     {
         this._SetScriptType(Lib.Util.SCENE.SCRIPT_TYPE.MAIN_SCENE);
         this._SetActiveAutoFlag(false);
@@ -73,7 +73,7 @@ public abstract class MainSceneScript : Lib.Scene.NodeScript
      */
     public override void SetCreateDesc(Lib.Scene.NodeScriptCreateDesc create_desc)
     {
-	    this.createDesc = create_desc as Lib.Scene.MainSceneScriptCreateDesc;
+	    this.createDesc = create_desc as Lib.Scene.MainSceneNodeScriptCreateDesc;
 
         base.SetCreateDesc(this.createDesc);
 

@@ -1,6 +1,6 @@
 ﻿/**
  * @file
- * @brief SoundSeScriptファイル
+ * @brief SoundSeNodeScriptファイル
  */
 
 
@@ -10,25 +10,25 @@ using UnityEngine;
 namespace ToffMonaka {
 namespace Lib.Scene {
 /**
- * @brief SoundSeScriptCreateDescクラス
+ * @brief SoundSeNodeScriptCreateDescクラス
  */
-public class SoundSeScriptCreateDesc : Lib.Scene.ObjectScriptCreateDesc
+public class SoundSeNodeScriptCreateDesc : Lib.Scene.ObjectNodeScriptCreateDesc
 {
 }
 
 /**
- * @brief SoundSeScriptクラス
+ * @brief SoundSeNodeScriptクラス
  */
-public class SoundSeScript : Lib.Scene.ObjectScript
+public class SoundSeNodeScript : Lib.Scene.ObjectNodeScript
 {
     [SerializeField] private AudioSource _audioSource = null;
 
-    public new Lib.Scene.SoundSeScriptCreateDesc createDesc{get; private set;} = null;
+    public new Lib.Scene.SoundSeNodeScriptCreateDesc createDesc{get; private set;} = null;
 
     /**
      * @brief コンストラクタ
      */
-    public SoundSeScript()
+    public SoundSeNodeScript()
     {
         this._SetScriptIndex((int)Lib.Util.SCENE.SCRIPT_INDEX.SOUND_SE);
 
@@ -67,7 +67,7 @@ public class SoundSeScript : Lib.Scene.ObjectScript
      */
     public override void SetCreateDesc(Lib.Scene.NodeScriptCreateDesc create_desc)
     {
-	    this.createDesc = create_desc as Lib.Scene.SoundSeScriptCreateDesc;
+	    this.createDesc = create_desc as Lib.Scene.SoundSeNodeScriptCreateDesc;
 
         base.SetCreateDesc(this.createDesc);
 

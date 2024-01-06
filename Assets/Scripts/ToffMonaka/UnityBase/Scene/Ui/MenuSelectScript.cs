@@ -15,7 +15,7 @@ namespace UnityBase.Scene.Ui {
 /**
  * @brief MenuSelectScriptCreateDescクラス
  */
-public class MenuSelectScriptCreateDesc : Lib.Scene.ObjectScriptCreateDesc
+public class MenuSelectScriptCreateDesc : Lib.Scene.ObjectNodeScriptCreateDesc
 {
     public UnityBase.Scene.Ui.MenuScript menuScript = null;
 }
@@ -23,7 +23,7 @@ public class MenuSelectScriptCreateDesc : Lib.Scene.ObjectScriptCreateDesc
 /**
  * @brief MenuSelectScriptクラス
  */
-public class MenuSelectScript : Lib.Scene.ObjectScript
+public class MenuSelectScript : Lib.Scene.ObjectNodeScript
 {
     [SerializeField] private TMP_Text _nameText = null;
     [SerializeField] private GameObject _stageButtonNode = null;

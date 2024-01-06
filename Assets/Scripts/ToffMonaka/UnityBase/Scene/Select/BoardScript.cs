@@ -14,7 +14,7 @@ namespace UnityBase.Scene.Select {
 /**
  * @brief BoardScriptCreateDescクラス
  */
-public class BoardScriptCreateDesc : Lib.Scene.ObjectScriptCreateDesc
+public class BoardScriptCreateDesc : Lib.Scene.ObjectNodeScriptCreateDesc
 {
     public UnityBase.Scene.Select.SubSceneScript subSceneScript = null;
 }
@@ -22,7 +22,7 @@ public class BoardScriptCreateDesc : Lib.Scene.ObjectScriptCreateDesc
 /**
  * @brief BoardScriptクラス
  */
-public class BoardScript : Lib.Scene.ObjectScript
+public class BoardScript : Lib.Scene.ObjectNodeScript
 {
     [SerializeField] private TMP_Text _nameText = null;
 

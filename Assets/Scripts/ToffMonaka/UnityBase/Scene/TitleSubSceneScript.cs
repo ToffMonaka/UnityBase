@@ -16,14 +16,14 @@ namespace UnityBase.Scene {
 /**
  * @brief TitleSubSceneScriptCreateDescクラス
  */
-public class TitleSubSceneScriptCreateDesc : Lib.Scene.SubSceneScriptCreateDesc
+public class TitleSubSceneScriptCreateDesc : Lib.Scene.SubSceneNodeScriptCreateDesc
 {
 }
 
 /**
  * @brief TitleSubSceneScriptクラス
  */
-public class TitleSubSceneScript : Lib.Scene.SubSceneScript
+public class TitleSubSceneScript : Lib.Scene.SubSceneNodeScript
 {
     [SerializeField] private TMP_Text _startButtonNameText = null;
     [SerializeField] private TMP_Text _companyNameText = null;

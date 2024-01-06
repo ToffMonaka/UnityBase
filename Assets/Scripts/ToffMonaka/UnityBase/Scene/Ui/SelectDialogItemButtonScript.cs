@@ -15,7 +15,7 @@ namespace UnityBase.Scene.Ui {
 /**
  * @brief SelectDialogItemButtonScriptCreateDescクラス
  */
-public class SelectDialogItemButtonScriptCreateDesc : Lib.Scene.ObjectScriptCreateDesc
+public class SelectDialogItemButtonScriptCreateDesc : Lib.Scene.ObjectNodeScriptCreateDesc
 {
     public UnityBase.Scene.Ui.SelectDialogItemButtonEngine engine = null;
     public System.Action<UnityBase.Scene.Ui.SelectDialogItemButtonScript> onClick = null;
@@ -24,7 +24,7 @@ public class SelectDialogItemButtonScriptCreateDesc : Lib.Scene.ObjectScriptCrea
 /**
  * @brief SelectDialogItemButtonScriptクラス
  */
-public class SelectDialogItemButtonScript : Lib.Scene.ObjectScript, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
+public class SelectDialogItemButtonScript : Lib.Scene.ObjectNodeScript, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
 {
     [SerializeField] private TMP_Text _nameText = null;
     [SerializeField] private Image _coverImage = null;

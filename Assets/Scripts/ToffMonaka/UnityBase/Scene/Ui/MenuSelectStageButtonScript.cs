@@ -15,7 +15,7 @@ namespace UnityBase.Scene.Ui {
 /**
  * @brief MenuSelectStageButtonScriptCreateDescクラス
  */
-public class MenuSelectStageButtonScriptCreateDesc : Lib.Scene.ObjectScriptCreateDesc
+public class MenuSelectStageButtonScriptCreateDesc : Lib.Scene.ObjectNodeScriptCreateDesc
 {
     public UnityBase.Scene.Ui.MenuSelectScript selectScript = null;
     public UnityBase.Util.SCENE.MENU_STAGE_TYPE stageType = UnityBase.Util.SCENE.MENU_STAGE_TYPE.NONE;
@@ -24,7 +24,7 @@ public class MenuSelectStageButtonScriptCreateDesc : Lib.Scene.ObjectScriptCreat
 /**
  * @brief MenuSelectStageButtonScriptクラス
  */
-public class MenuSelectStageButtonScript : Lib.Scene.ObjectScript, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
+public class MenuSelectStageButtonScript : Lib.Scene.ObjectNodeScript, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
 {
     [SerializeField] private TMP_Text _nameText = null;
     [SerializeField] private Image _coverImage = null;

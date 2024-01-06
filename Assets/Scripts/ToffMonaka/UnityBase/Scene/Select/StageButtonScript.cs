@@ -15,7 +15,7 @@ namespace UnityBase.Scene.Select {
 /**
  * @brief StageButtonScriptCreateDescクラス
  */
-public class StageButtonScriptCreateDesc : Lib.Scene.ObjectScriptCreateDesc
+public class StageButtonScriptCreateDesc : Lib.Scene.ObjectNodeScriptCreateDesc
 {
     public UnityBase.Scene.Select.StageBoardScript boardScript = null;
     public UnityBase.Util.SCENE.STAGE_TYPE stageType = UnityBase.Util.SCENE.STAGE_TYPE.NONE;
@@ -24,7 +24,7 @@ public class StageButtonScriptCreateDesc : Lib.Scene.ObjectScriptCreateDesc
 /**
  * @brief StageButtonScriptクラス
  */
-public class StageButtonScript : Lib.Scene.ObjectScript, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
+public class StageButtonScript : Lib.Scene.ObjectNodeScript, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
 {
     [SerializeField] private TMP_Text _nameText = null;
     [SerializeField] private Image _coverImage = null;

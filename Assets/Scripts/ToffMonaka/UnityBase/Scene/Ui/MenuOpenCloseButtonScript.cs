@@ -15,7 +15,7 @@ namespace UnityBase.Scene.Ui {
 /**
  * @brief MenuOpenCloseButtonScriptCreateDescクラス
  */
-public class MenuOpenCloseButtonScriptCreateDesc : Lib.Scene.ObjectScriptCreateDesc
+public class MenuOpenCloseButtonScriptCreateDesc : Lib.Scene.ObjectNodeScriptCreateDesc
 {
     public UnityBase.Scene.Ui.MenuScript menuScript = null;
 }
@@ -23,7 +23,7 @@ public class MenuOpenCloseButtonScriptCreateDesc : Lib.Scene.ObjectScriptCreateD
 /**
  * @brief MenuOpenCloseButtonScriptクラス
  */
-public class MenuOpenCloseButtonScript : Lib.Scene.ObjectScript, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
+public class MenuOpenCloseButtonScript : Lib.Scene.ObjectNodeScript, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
 {
     [SerializeField] private Image _coverImage = null;
 

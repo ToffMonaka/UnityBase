@@ -13,14 +13,14 @@ namespace UnityBase.Scene.Ui {
 /**
  * @brief DialogScriptCreateDescクラス
  */
-public class DialogScriptCreateDesc : Lib.Scene.ObjectScriptCreateDesc
+public class DialogScriptCreateDesc : Lib.Scene.ObjectNodeScriptCreateDesc
 {
 }
 
 /**
  * @brief DialogScriptクラス
  */
-public class DialogScript : Lib.Scene.ObjectScript
+public class DialogScript : Lib.Scene.ObjectNodeScript
 {
     [SerializeField] private CanvasGroup _canvasGroup = null;
 

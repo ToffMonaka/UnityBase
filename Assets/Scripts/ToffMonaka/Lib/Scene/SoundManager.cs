@@ -35,12 +35,12 @@ public class SoundManager
 
     private GameObject _soundNode = null;
     private GameObject _bgmNode = null;
-    private Lib.Scene.SoundBgmScript _bgmScript = null;
+    private Lib.Scene.SoundBgmNodeScript _bgmScript = null;
     private AudioClip[] _bgmAudioClipArray = null;
 	private float _bgmVolume = 1.0f;
 	private bool _bgmMuteFlag = false;
     private GameObject _seNode = null;
-    private List<Lib.Scene.SoundSeScript> _seScriptContainer = new List<Lib.Scene.SoundSeScript>();
+    private List<Lib.Scene.SoundSeNodeScript> _seScriptContainer = new List<Lib.Scene.SoundSeNodeScript>();
     private AudioClip[] _seAudioClipArray = null;
 	private float _seVolume = 1.0f;
 	private bool _seMuteFlag = false;
@@ -105,8 +105,8 @@ public class SoundManager
             this._bgmNode.SetActive(false);
             this._seNode.SetActive(false);
 
-            var bgm_script = GameObject.Instantiate(this._bgmNode, this._bgmNode.transform.parent).GetComponent<Lib.Scene.SoundBgmScript>();
-            var bgm_script_create_desc = new Lib.Scene.SoundBgmScriptCreateDesc();
+            var bgm_script = GameObject.Instantiate(this._bgmNode, this._bgmNode.transform.parent).GetComponent<Lib.Scene.SoundBgmNodeScript>();
+            var bgm_script_create_desc = new Lib.Scene.SoundBgmNodeScriptCreateDesc();
 
             bgm_script.Create(bgm_script_create_desc);
             bgm_script.Open(0);
@@ -118,8 +118,8 @@ public class SoundManager
 	        this._bgmMuteFlag = this.createDesc.bgmMuteFlag;
 
             for (int se_script_i = 0; se_script_i < 8; ++se_script_i) {
-                var se_script = GameObject.Instantiate(this._seNode, this._seNode.transform.parent).GetComponent<Lib.Scene.SoundSeScript>();
-                var se_script_create_desc = new Lib.Scene.SoundSeScriptCreateDesc();
+                var se_script = GameObject.Instantiate(this._seNode, this._seNode.transform.parent).GetComponent<Lib.Scene.SoundSeNodeScript>();
+                var se_script_create_desc = new Lib.Scene.SoundSeNodeScriptCreateDesc();
 
                 se_script.Create(se_script_create_desc);
                 se_script.Open(0);
@@ -287,7 +287,7 @@ public class SoundManager
      */
     public void PlaySe(int se_index)
     {
-        Lib.Scene.SoundSeScript se_script = null;
+        Lib.Scene.SoundSeNodeScript se_script = null;
 
         foreach (var se_script2 in this._seScriptContainer) {
             if (se_script2.GetAudioSource().isPlaying) {
@@ -300,8 +300,8 @@ public class SoundManager
         }
 
         if (se_script == null) {
-            var se_script2 = GameObject.Instantiate(this._seNode, this._seNode.transform.parent).GetComponent<Lib.Scene.SoundSeScript>();
-            var se_script_create_desc2 = new Lib.Scene.SoundSeScriptCreateDesc();
+            var se_script2 = GameObject.Instantiate(this._seNode, this._seNode.transform.parent).GetComponent<Lib.Scene.SoundSeNodeScript>();
+            var se_script_create_desc2 = new Lib.Scene.SoundSeNodeScriptCreateDesc();
 
             se_script2.Create(se_script_create_desc2);
 

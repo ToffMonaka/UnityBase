@@ -12,14 +12,14 @@ namespace UnityBase.Scene.Stage {
 /**
  * @brief SubSceneScriptCreateDescクラス
  */
-public class SubSceneScriptCreateDesc : Lib.Scene.SubSceneScriptCreateDesc
+public class SubSceneScriptCreateDesc : Lib.Scene.SubSceneNodeScriptCreateDesc
 {
 }
 
 /**
  * @brief SubSceneScriptクラス
  */
-public class SubSceneScript : Lib.Scene.SubSceneScript
+public class SubSceneScript : Lib.Scene.SubSceneNodeScript
 {
     [SerializeField] private GameObject _backButtonNode = null;
     [SerializeField] private GameObject _menuNode = null;
