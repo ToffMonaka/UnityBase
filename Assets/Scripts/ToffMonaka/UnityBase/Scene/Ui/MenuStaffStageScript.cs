@@ -34,9 +34,8 @@ public class MenuStaffStageScript : UnityBase.Scene.Ui.MenuStageScript
     /**
      * @brief コンストラクタ
      */
-    public MenuStaffStageScript()
+    public MenuStaffStageScript() : base((int)UnityBase.Util.SCENE.SCRIPT_INDEX.MENU_STAFF_STAGE)
     {
-        this._SetScriptIndex((int)UnityBase.Util.SCENE.SCRIPT_INDEX.MENU_STAFF_STAGE);
         this._SetStageType(UnityBase.Util.SCENE.MENU_STAGE_TYPE.STAFF);
 
         return;

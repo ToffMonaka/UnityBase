@@ -36,10 +36,8 @@ public class MenuSelectScript : Lib.Scene.ObjectNodeScript
     /**
      * @brief コンストラクタ
      */
-    public MenuSelectScript()
+    public MenuSelectScript() : base((int)UnityBase.Util.SCENE.SCRIPT_INDEX.MENU_SELECT)
     {
-        this._SetScriptIndex((int)UnityBase.Util.SCENE.SCRIPT_INDEX.MENU_SELECT);
-
         return;
     }
 

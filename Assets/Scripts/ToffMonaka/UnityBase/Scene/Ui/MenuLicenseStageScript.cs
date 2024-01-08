@@ -34,9 +34,8 @@ public class MenuLicenseStageScript : UnityBase.Scene.Ui.MenuStageScript
     /**
      * @brief コンストラクタ
      */
-    public MenuLicenseStageScript()
+    public MenuLicenseStageScript() : base((int)UnityBase.Util.SCENE.SCRIPT_INDEX.MENU_LICENSE_STAGE)
     {
-        this._SetScriptIndex((int)UnityBase.Util.SCENE.SCRIPT_INDEX.MENU_LICENSE_STAGE);
         this._SetStageType(UnityBase.Util.SCENE.MENU_STAGE_TYPE.LICENSE);
 
         return;

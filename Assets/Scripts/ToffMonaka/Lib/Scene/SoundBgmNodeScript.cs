@@ -28,10 +28,8 @@ public class SoundBgmNodeScript : Lib.Scene.ObjectNodeScript
     /**
      * @brief コンストラクタ
      */
-    public SoundBgmNodeScript()
+    public SoundBgmNodeScript() : base((int)Lib.Util.SCENE.SCRIPT_INDEX.SOUND_BGM)
     {
-        this._SetScriptIndex((int)Lib.Util.SCENE.SCRIPT_INDEX.SOUND_BGM);
-
         return;
     }
 

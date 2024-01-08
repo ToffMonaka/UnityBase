@@ -33,8 +33,9 @@ public class MenuStageScript : Lib.Scene.ObjectNodeScript
 
     /**
      * @brief コンストラクタ
+     * @param script_index (script_index)
      */
-    public MenuStageScript()
+    public MenuStageScript(int script_index) : base(script_index)
     {
         return;
     }

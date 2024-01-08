@@ -31,9 +31,8 @@ public class StageBoardScript : UnityBase.Scene.Select.BoardScript
     /**
      * @brief コンストラクタ
      */
-    public StageBoardScript()
+    public StageBoardScript() : base((int)UnityBase.Util.SCENE.SCRIPT_INDEX.SELECT_STAGE_BOARD)
     {
-        this._SetScriptIndex((int)UnityBase.Util.SCENE.SCRIPT_INDEX.SELECT_STAGE_BOARD);
         this._SetBoardType(UnityBase.Util.SCENE.SELECT_BOARD_TYPE.STAGE);
 
         return;

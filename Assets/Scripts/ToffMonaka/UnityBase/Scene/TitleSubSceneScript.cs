@@ -38,10 +38,8 @@ public class TitleSubSceneScript : Lib.Scene.SubSceneNodeScript
     /**
      * @brief コンストラクタ
      */
-    public TitleSubSceneScript()
+    public TitleSubSceneScript() : base((int)UnityBase.Util.SCENE.SCRIPT_INDEX.TITLE_SUB_SCENE)
     {
-        this._SetScriptIndex((int)UnityBase.Util.SCENE.SCRIPT_INDEX.TITLE_SUB_SCENE);
-
         return;
     }
 

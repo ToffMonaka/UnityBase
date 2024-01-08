@@ -34,12 +34,10 @@ public abstract class MainSceneNodeScript : Lib.Scene.NodeScript
 
     /**
      * @brief コンストラクタ
+     * @param script_index (script_index)
      */
-    public MainSceneNodeScript()
+    public MainSceneNodeScript(int script_index) : base(Lib.Util.SCENE.SCRIPT_TYPE.MAIN_SCENE, script_index, false)
     {
-        this._SetScriptType(Lib.Util.SCENE.SCRIPT_TYPE.MAIN_SCENE);
-        this._SetActiveAutoFlag(false);
-
         return;
     }
 

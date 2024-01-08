@@ -37,10 +37,8 @@ public class StageButtonScript : Lib.Scene.ObjectNodeScript, IPointerClickHandle
     /**
      * @brief コンストラクタ
      */
-    public StageButtonScript()
+    public StageButtonScript() : base((int)UnityBase.Util.SCENE.SCRIPT_INDEX.SELECT_STAGE_BUTTON)
     {
-        this._SetScriptIndex((int)UnityBase.Util.SCENE.SCRIPT_INDEX.SELECT_STAGE_BUTTON);
-
         return;
     }
 

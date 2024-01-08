@@ -34,9 +34,8 @@ public class MenuFaqStageScript : UnityBase.Scene.Ui.MenuStageScript
     /**
      * @brief コンストラクタ
      */
-    public MenuFaqStageScript()
+    public MenuFaqStageScript() : base((int)UnityBase.Util.SCENE.SCRIPT_INDEX.MENU_FAQ_STAGE)
     {
-        this._SetScriptIndex((int)UnityBase.Util.SCENE.SCRIPT_INDEX.MENU_FAQ_STAGE);
         this._SetStageType(UnityBase.Util.SCENE.MENU_STAGE_TYPE.FAQ);
 
         return;

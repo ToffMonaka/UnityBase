@@ -28,10 +28,8 @@ public class SoundSeNodeScript : Lib.Scene.ObjectNodeScript
     /**
      * @brief コンストラクタ
      */
-    public SoundSeNodeScript()
+    public SoundSeNodeScript() : base((int)Lib.Util.SCENE.SCRIPT_INDEX.SOUND_SE)
     {
-        this._SetScriptIndex((int)Lib.Util.SCENE.SCRIPT_INDEX.SOUND_SE);
-
         return;
     }
 

@@ -37,10 +37,8 @@ public class SelectDialogItemButtonScript : Lib.Scene.ObjectNodeScript, IPointer
     /**
      * @brief コンストラクタ
      */
-    public SelectDialogItemButtonScript()
+    public SelectDialogItemButtonScript() : base((int)UnityBase.Util.SCENE.SCRIPT_INDEX.SELECT_DIALOG_ITEM_BUTTON)
     {
-        this._SetScriptIndex((int)UnityBase.Util.SCENE.SCRIPT_INDEX.SELECT_DIALOG_ITEM_BUTTON);
-
         return;
     }
 

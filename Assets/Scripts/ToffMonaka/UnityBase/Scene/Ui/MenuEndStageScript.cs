@@ -39,9 +39,8 @@ public class MenuEndStageScript : UnityBase.Scene.Ui.MenuStageScript
     /**
      * @brief コンストラクタ
      */
-    public MenuEndStageScript()
+    public MenuEndStageScript() : base((int)UnityBase.Util.SCENE.SCRIPT_INDEX.MENU_END_STAGE)
     {
-        this._SetScriptIndex((int)UnityBase.Util.SCENE.SCRIPT_INDEX.MENU_END_STAGE);
         this._SetStageType(UnityBase.Util.SCENE.MENU_STAGE_TYPE.END);
 
         return;

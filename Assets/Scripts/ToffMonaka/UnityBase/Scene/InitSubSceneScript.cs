@@ -36,10 +36,8 @@ public class InitSubSceneScript : Lib.Scene.SubSceneNodeScript
     /**
      * @brief コンストラクタ
      */
-    public InitSubSceneScript()
+    public InitSubSceneScript() : base((int)UnityBase.Util.SCENE.SCRIPT_INDEX.INIT_SUB_SCENE)
     {
-        this._SetScriptIndex((int)UnityBase.Util.SCENE.SCRIPT_INDEX.INIT_SUB_SCENE);
-
         return;
     }
 

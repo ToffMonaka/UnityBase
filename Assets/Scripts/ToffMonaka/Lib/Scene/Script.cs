@@ -15,6 +15,14 @@ namespace Lib.Scene {
 public abstract class Script : MonoBehaviour
 {
     /**
+     * @brief コンストラクタ
+     */
+    public Script()
+    {
+        return;
+    }
+
+    /**
      * @brief Awake関数
      */
     private void Awake()

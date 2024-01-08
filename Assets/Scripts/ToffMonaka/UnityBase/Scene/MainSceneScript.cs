@@ -26,10 +26,8 @@ public class MainSceneScript : Lib.Scene.MainSceneNodeScript
     /**
      * @brief コンストラクタ
      */
-    public MainSceneScript()
+    public MainSceneScript() : base((int)UnityBase.Util.SCENE.SCRIPT_INDEX.MAIN_SCENE)
     {
-        this._SetScriptIndex((int)UnityBase.Util.SCENE.SCRIPT_INDEX.MAIN_SCENE);
-
         return;
     }
 

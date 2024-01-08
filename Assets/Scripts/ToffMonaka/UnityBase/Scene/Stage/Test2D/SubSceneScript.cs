@@ -33,9 +33,8 @@ public class SubSceneScript : UnityBase.Scene.Stage.SubSceneScript
     /**
      * @brief コンストラクタ
      */
-    public SubSceneScript()
+    public SubSceneScript() : base((int)UnityBase.Util.SCENE.SCRIPT_INDEX.TEST_2D_STAGE_SUB_SCENE)
     {
-        this._SetScriptIndex((int)UnityBase.Util.SCENE.SCRIPT_INDEX.TEST_2D_STAGE_SUB_SCENE);
         this._SetStageType(UnityBase.Util.SCENE.STAGE_TYPE.TEST_2D);
 
         return;

@@ -15,6 +15,14 @@ namespace Lib.Scene {
 public abstract class ComponentScript : Lib.Scene.Script
 {
     /**
+     * @brief コンストラクタ
+     */
+    public ComponentScript()
+    {
+        return;
+    }
+
+    /**
      * @brief _Awake関数
      */
     protected override void _Awake()

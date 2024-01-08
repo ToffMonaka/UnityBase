@@ -28,12 +28,10 @@ public abstract class SubSceneNodeScript : Lib.Scene.NodeScript
 
     /**
      * @brief コンストラクタ
+     * @param script_index (script_index)
      */
-    public SubSceneNodeScript()
+    public SubSceneNodeScript(int script_index) : base(Lib.Util.SCENE.SCRIPT_TYPE.SUB_SCENE, script_index, true)
     {
-        this._SetScriptType(Lib.Util.SCENE.SCRIPT_TYPE.SUB_SCENE);
-        this._SetActiveAutoFlag(true);
-
         return;
     }
 

@@ -25,12 +25,10 @@ public abstract class ObjectNodeScript : Lib.Scene.NodeScript
 
     /**
      * @brief コンストラクタ
+     * @param script_index (script_index)
      */
-    public ObjectNodeScript()
+    public ObjectNodeScript(int script_index) : base(Lib.Util.SCENE.SCRIPT_TYPE.OBJECT, script_index, true)
     {
-        this._SetScriptType(Lib.Util.SCENE.SCRIPT_TYPE.OBJECT);
-        this._SetActiveAutoFlag(true);
-
         return;
     }
 

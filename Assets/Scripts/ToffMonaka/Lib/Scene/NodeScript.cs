@@ -42,6 +42,21 @@ public abstract class NodeScript : Lib.Scene.Script
     private bool _controlFlag = false;
 
     /**
+     * @brief コンストラクタ
+     * @param script_type (script_type)
+     * @param script_index (script_index)
+     * @param active_auto_flg (active_auto_flag)
+     */
+    public NodeScript(Lib.Util.SCENE.SCRIPT_TYPE script_type, int script_index, bool active_auto_flg)
+    {
+        this._scriptType = script_type;
+        this._scriptIndex = script_index;
+        this._activeAutoFlag = active_auto_flg;
+
+        return;
+    }
+
+    /**
      * @brief _Awake関数
      */
     protected override void _Awake()
@@ -252,17 +267,6 @@ public abstract class NodeScript : Lib.Scene.Script
     }
 
     /**
-     * @brief _SetScriptType関数
-     * @param script_type (script_type)
-     */
-    protected void _SetScriptType(Lib.Util.SCENE.SCRIPT_TYPE script_type)
-    {
-        this._scriptType = script_type;
-
-        return;
-    }
-
-    /**
      * @brief GetScriptIndex関数
      * @return script_index (script_index)
      */
@@ -272,34 +276,12 @@ public abstract class NodeScript : Lib.Scene.Script
     }
 
     /**
-     * @brief _SetScriptIndex関数
-     * @param script_index (script_index)
-     */
-    protected void _SetScriptIndex(int script_index)
-    {
-        this._scriptIndex = script_index;
-
-        return;
-    }
-
-    /**
      * @brief GetActiveAutoFlag関数
      * @return active_auto_flg (active_auto_flag)
      */
     public bool GetActiveAutoFlag()
     {
         return (this._activeAutoFlag);
-    }
-
-    /**
-     * @brief _SetActiveAutoFlag関数
-     * @param active_auto_flg (active_auto_flag)
-     */
-    protected void _SetActiveAutoFlag(bool active_auto_flg)
-    {
-        this._activeAutoFlag = active_auto_flg;
-
-        return;
     }
 
     /**
@@ -542,25 +524,6 @@ public abstract class NodeScript : Lib.Scene.Script
         }
 
         this._openCloseSequenceContainer.Clear();
-
-        return;
-    }
-
-    /**
-     * @brief RemoveOpenCloseSequence関数
-     * @param open_close_sequence (open_close_sequence)
-     */
-    public void RemoveOpenCloseSequence(Sequence open_close_sequence)
-    {
-        if (open_close_sequence == null) {
-            return;
-        }
-
-        if (open_close_sequence.IsActive()) {
-            open_close_sequence.Kill();
-        }
-
-        this._openCloseSequenceContainer.Remove(open_close_sequence);
 
         return;
     }

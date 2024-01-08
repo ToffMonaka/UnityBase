@@ -32,8 +32,9 @@ public class SubSceneScript : Lib.Scene.SubSceneNodeScript
 
     /**
      * @brief コンストラクタ
+     * @param script_index (script_index)
      */
-    public SubSceneScript()
+    public SubSceneScript(int script_index) : base(script_index)
     {
         return;
     }

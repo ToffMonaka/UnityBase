@@ -24,6 +24,14 @@ public class ButtonComponentScript : Lib.Scene.ComponentScript, IPointerDownHand
     [SerializeField] private PointerEvent _pointerExitEvent = new PointerEvent();
 
     /**
+     * @brief コンストラクタ
+     */
+    public ButtonComponentScript()
+    {
+        return;
+    }
+
+    /**
      * @brief OnPointerDown関数
      * @param event_dat (event_data)
      */

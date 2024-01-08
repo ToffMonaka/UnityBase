@@ -41,10 +41,8 @@ public class InputDialogScript : UnityBase.Scene.Ui.DialogScript
     /**
      * @brief コンストラクタ
      */
-    public InputDialogScript()
+    public InputDialogScript() : base((int)UnityBase.Util.SCENE.SCRIPT_INDEX.INPUT_DIALOG)
     {
-        this._SetScriptIndex((int)UnityBase.Util.SCENE.SCRIPT_INDEX.INPUT_DIALOG);
-
         return;
     }
 

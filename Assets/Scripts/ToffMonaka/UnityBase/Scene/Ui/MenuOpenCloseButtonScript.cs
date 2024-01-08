@@ -34,10 +34,8 @@ public class MenuOpenCloseButtonScript : Lib.Scene.ObjectNodeScript, IPointerCli
     /**
      * @brief コンストラクタ
      */
-    public MenuOpenCloseButtonScript()
+    public MenuOpenCloseButtonScript() : base((int)UnityBase.Util.SCENE.SCRIPT_INDEX.MENU_OPEN_CLOSE_BUTTON)
     {
-        this._SetScriptIndex((int)UnityBase.Util.SCENE.SCRIPT_INDEX.MENU_OPEN_CLOSE_BUTTON);
-
         return;
     }
 

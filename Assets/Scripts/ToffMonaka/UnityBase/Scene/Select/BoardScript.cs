@@ -33,8 +33,9 @@ public class BoardScript : Lib.Scene.ObjectNodeScript
 
     /**
      * @brief コンストラクタ
+     * @param script_index (script_index)
      */
-    public BoardScript()
+    public BoardScript(int script_index) : base(script_index)
     {
         return;
     }
