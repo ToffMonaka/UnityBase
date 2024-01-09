@@ -74,9 +74,9 @@ public static class Util
 
     public static class SCENE
     {
-        public enum SCRIPT_INDEX : int
+        public enum NODE_SCRIPT_INDEX : int
         {
-            MAIN_SCENE = Lib.Util.SCENE.SCRIPT_INDEX.COUNT,
+            MAIN_SCENE = Lib.Util.SCENE.NODE_SCRIPT_INDEX.COUNT,
             INIT_SUB_SCENE,
             TITLE_SUB_SCENE,
             SELECT_SUB_SCENE,
@@ -103,7 +103,7 @@ public static class Util
             INPUT_DIALOG,
 		    COUNT
         }
-        public static readonly int SCRIPT_INDEX_COUNT = (int)UnityBase.Util.SCENE.SCRIPT_INDEX.COUNT;
+        public static readonly int NODE_SCRIPT_INDEX_COUNT = (int)UnityBase.Util.SCENE.NODE_SCRIPT_INDEX.COUNT;
 
         public static class NAME
         {

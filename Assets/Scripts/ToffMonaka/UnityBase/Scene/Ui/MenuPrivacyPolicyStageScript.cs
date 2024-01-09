@@ -34,7 +34,7 @@ public class MenuPrivacyPolicyStageScript : UnityBase.Scene.Ui.MenuStageScript
     /**
      * @brief コンストラクタ
      */
-    public MenuPrivacyPolicyStageScript() : base((int)UnityBase.Util.SCENE.SCRIPT_INDEX.MENU_PRIVACY_POLICY_STAGE)
+    public MenuPrivacyPolicyStageScript() : base((int)UnityBase.Util.SCENE.NODE_SCRIPT_INDEX.MENU_PRIVACY_POLICY_STAGE)
     {
         this._SetStageType(UnityBase.Util.SCENE.MENU_STAGE_TYPE.PRIVACY_POLICY);
 

@@ -34,7 +34,7 @@ public class BackButtonScript : Lib.Scene.ObjectNodeScript, IPointerClickHandler
     /**
      * @brief コンストラクタ
      */
-    public BackButtonScript() : base((int)UnityBase.Util.SCENE.SCRIPT_INDEX.SELECT_BACK_BUTTON)
+    public BackButtonScript() : base((int)UnityBase.Util.SCENE.NODE_SCRIPT_INDEX.SELECT_BACK_BUTTON)
     {
         return;
     }

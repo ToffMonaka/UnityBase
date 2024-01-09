@@ -39,7 +39,7 @@ public class SelectDialogScript : UnityBase.Scene.Ui.DialogScript
     /**
      * @brief コンストラクタ
      */
-    public SelectDialogScript() : base((int)UnityBase.Util.SCENE.SCRIPT_INDEX.SELECT_DIALOG)
+    public SelectDialogScript() : base((int)UnityBase.Util.SCENE.NODE_SCRIPT_INDEX.SELECT_DIALOG)
     {
         return;
     }

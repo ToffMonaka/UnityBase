@@ -236,26 +236,26 @@ public class Manager
     {
         if ((script == null)
         || (script.GetManager() != null)
-        || (script.GetScriptIndex() >= this._scriptArray.Length)) {
+        || (script.GetNodeScriptIndex() >= this._scriptArray.Length)) {
             return (-1);
         }
 
-        if (script.GetScriptIndex() >= 0) {
-            this._scriptArray[script.GetScriptIndex()].Add(script);
+        if (script.GetNodeScriptIndex() >= 0) {
+            this._scriptArray[script.GetNodeScriptIndex()].Add(script);
 
-		    switch (script.GetScriptType()) {
-		    case Lib.Util.SCENE.SCRIPT_TYPE.MAIN_SCENE: {
+		    switch (script.GetNodeScriptType()) {
+		    case Lib.Util.SCENE.NODE_SCRIPT_TYPE.MAIN_SCENE: {
                 this._mainSceneScript = (Lib.Scene.MainSceneNodeScript)script;
 
 			    break;
 		    }
-		    case Lib.Util.SCENE.SCRIPT_TYPE.SUB_SCENE: {
+		    case Lib.Util.SCENE.NODE_SCRIPT_TYPE.SUB_SCENE: {
                 this._subSceneScript = (Lib.Scene.SubSceneNodeScript)script;
 
 			    break;
 		    }
-		    case Lib.Util.SCENE.SCRIPT_TYPE.OBJECT: {
-                this._objectScriptArray[script.GetScriptIndex()].Add((Lib.Scene.ObjectNodeScript)script);
+		    case Lib.Util.SCENE.NODE_SCRIPT_TYPE.OBJECT: {
+                this._objectScriptArray[script.GetNodeScriptIndex()].Add((Lib.Scene.ObjectNodeScript)script);
 
 			    break;
 		    }
@@ -275,30 +275,30 @@ public class Manager
     {
         if ((script == null)
         || (script.GetManager() == null)
-        || (script.GetScriptIndex() >= this._scriptArray.Length)) {
+        || (script.GetNodeScriptIndex() >= this._scriptArray.Length)) {
             return;
         }
 
-        if (script.GetScriptIndex() >= 0) {
-            this._scriptArray[script.GetScriptIndex()].Remove(script);
+        if (script.GetNodeScriptIndex() >= 0) {
+            this._scriptArray[script.GetNodeScriptIndex()].Remove(script);
 
-		    switch (script.GetScriptType()) {
-		    case Lib.Util.SCENE.SCRIPT_TYPE.MAIN_SCENE: {
+		    switch (script.GetNodeScriptType()) {
+		    case Lib.Util.SCENE.NODE_SCRIPT_TYPE.MAIN_SCENE: {
                 if (this._mainSceneScript == (Lib.Scene.MainSceneNodeScript)script) {
                     this._mainSceneScript = null;
                 }
 
 			    break;
 		    }
-		    case Lib.Util.SCENE.SCRIPT_TYPE.SUB_SCENE: {
+		    case Lib.Util.SCENE.NODE_SCRIPT_TYPE.SUB_SCENE: {
                 if (this._subSceneScript == (Lib.Scene.SubSceneNodeScript)script) {
                     this._subSceneScript = null;
                 }
 
 			    break;
 		    }
-		    case Lib.Util.SCENE.SCRIPT_TYPE.OBJECT: {
-                this._objectScriptArray[script.GetScriptIndex()].Remove((Lib.Scene.ObjectNodeScript)script);
+		    case Lib.Util.SCENE.NODE_SCRIPT_TYPE.OBJECT: {
+                this._objectScriptArray[script.GetNodeScriptIndex()].Remove((Lib.Scene.ObjectNodeScript)script);
 
 			    break;
 		    }

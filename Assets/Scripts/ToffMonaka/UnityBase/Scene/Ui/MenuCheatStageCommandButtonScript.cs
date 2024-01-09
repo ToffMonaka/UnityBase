@@ -38,7 +38,7 @@ public class MenuCheatStageCommandButtonScript : Lib.Scene.ObjectNodeScript, IPo
     /**
      * @brief コンストラクタ
      */
-    public MenuCheatStageCommandButtonScript() : base((int)UnityBase.Util.SCENE.SCRIPT_INDEX.MENU_CHEAT_STAGE_COMMAND_BUTTON)
+    public MenuCheatStageCommandButtonScript() : base((int)UnityBase.Util.SCENE.NODE_SCRIPT_INDEX.MENU_CHEAT_STAGE_COMMAND_BUTTON)
     {
         return;
     }

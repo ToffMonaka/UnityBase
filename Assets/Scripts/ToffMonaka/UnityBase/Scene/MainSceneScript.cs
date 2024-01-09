@@ -26,7 +26,7 @@ public class MainSceneScript : Lib.Scene.MainSceneNodeScript
     /**
      * @brief コンストラクタ
      */
-    public MainSceneScript() : base((int)UnityBase.Util.SCENE.SCRIPT_INDEX.MAIN_SCENE)
+    public MainSceneScript() : base((int)UnityBase.Util.SCENE.NODE_SCRIPT_INDEX.MAIN_SCENE)
     {
         return;
     }
@@ -197,7 +197,7 @@ public class MainSceneScript : Lib.Scene.MainSceneNodeScript
             var manager_create_desc = new Lib.Scene.ManagerCreateDesc();
 
             manager_create_desc.mainSceneNode = this.gameObject;
-            manager_create_desc.scriptCount = (int)UnityBase.Util.SCENE.SCRIPT_INDEX_COUNT;
+            manager_create_desc.scriptCount = (int)UnityBase.Util.SCENE.NODE_SCRIPT_INDEX_COUNT;
 
             if (manager.Create(manager_create_desc) < 0) {
                 this._ReleaseManager();

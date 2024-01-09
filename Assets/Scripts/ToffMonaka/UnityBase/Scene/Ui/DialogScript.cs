@@ -28,9 +28,9 @@ public class DialogScript : Lib.Scene.ObjectNodeScript
 
     /**
      * @brief コンストラクタ
-     * @param script_index (script_index)
+     * @param node_script_index (node_script_index)
      */
-    public DialogScript(int script_index) : base(script_index)
+    public DialogScript(int node_script_index) : base(node_script_index)
     {
         return;
     }

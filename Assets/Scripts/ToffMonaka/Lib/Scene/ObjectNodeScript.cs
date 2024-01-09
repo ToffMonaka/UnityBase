@@ -25,9 +25,9 @@ public abstract class ObjectNodeScript : Lib.Scene.NodeScript
 
     /**
      * @brief コンストラクタ
-     * @param script_index (script_index)
+     * @param node_script_index (node_script_index)
      */
-    public ObjectNodeScript(int script_index) : base(Lib.Util.SCENE.SCRIPT_TYPE.OBJECT, script_index, true)
+    public ObjectNodeScript(int node_script_index) : base(Lib.Util.SCENE.NODE_SCRIPT_TYPE.OBJECT, node_script_index, true)
     {
         return;
     }

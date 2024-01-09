@@ -52,7 +52,7 @@ public class MenuScript : Lib.Scene.ObjectNodeScript
     /**
      * @brief コンストラクタ
      */
-    public MenuScript() : base((int)UnityBase.Util.SCENE.SCRIPT_INDEX.MENU)
+    public MenuScript() : base((int)UnityBase.Util.SCENE.NODE_SCRIPT_INDEX.MENU)
     {
         return;
     }

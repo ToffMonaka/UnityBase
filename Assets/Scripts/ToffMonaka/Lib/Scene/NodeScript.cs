@@ -26,8 +26,8 @@ public abstract class NodeScript : Lib.Scene.Script
     public Lib.Scene.NodeScriptCreateDesc createDesc{get; private set;} = null;
 
     private Lib.Scene.Manager _manager = null;
-    private Lib.Util.SCENE.SCRIPT_TYPE _scriptType = Lib.Util.SCENE.SCRIPT_TYPE.NONE;
-    private int _scriptIndex = 0;
+    private Lib.Util.SCENE.NODE_SCRIPT_TYPE _nodeScriptType = Lib.Util.SCENE.NODE_SCRIPT_TYPE.NONE;
+    private int _nodeScriptIndex = (int)Lib.Util.SCENE.NODE_SCRIPT_INDEX.NONE;
     private bool _activeAutoFlag = true;
     private bool _activedFlag = false;
     private int _openType = 0;
@@ -43,14 +43,14 @@ public abstract class NodeScript : Lib.Scene.Script
 
     /**
      * @brief コンストラクタ
-     * @param script_type (script_type)
-     * @param script_index (script_index)
+     * @param node_script_type (node_script_type)
+     * @param node_script_index (node_script_index)
      * @param active_auto_flg (active_auto_flag)
      */
-    public NodeScript(Lib.Util.SCENE.SCRIPT_TYPE script_type, int script_index, bool active_auto_flg)
+    public NodeScript(Lib.Util.SCENE.NODE_SCRIPT_TYPE node_script_type, int node_script_index, bool active_auto_flg)
     {
-        this._scriptType = script_type;
-        this._scriptIndex = script_index;
+        this._nodeScriptType = node_script_type;
+        this._nodeScriptIndex = node_script_index;
         this._activeAutoFlag = active_auto_flg;
 
         return;
@@ -258,21 +258,21 @@ public abstract class NodeScript : Lib.Scene.Script
     }
 
     /**
-     * @brief GetScriptType関数
-     * @return script_type (script_type)
+     * @brief GetNodeScriptType関数
+     * @return node_script_type (node_script_type)
      */
-    public Lib.Util.SCENE.SCRIPT_TYPE GetScriptType()
+    public Lib.Util.SCENE.NODE_SCRIPT_TYPE GetNodeScriptType()
     {
-        return (this._scriptType);
+        return (this._nodeScriptType);
     }
 
     /**
-     * @brief GetScriptIndex関数
-     * @return script_index (script_index)
+     * @brief GetNodeScriptIndex関数
+     * @return node_script_index (node_script_index)
      */
-    public int GetScriptIndex()
+    public int GetNodeScriptIndex()
     {
-        return (this._scriptIndex);
+        return (this._nodeScriptIndex);
     }
 
     /**

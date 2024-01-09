@@ -60,7 +60,7 @@ public class MenuOptionStageScript : UnityBase.Scene.Ui.MenuStageScript
     /**
      * @brief コンストラクタ
      */
-    public MenuOptionStageScript() : base((int)UnityBase.Util.SCENE.SCRIPT_INDEX.MENU_OPTION_STAGE)
+    public MenuOptionStageScript() : base((int)UnityBase.Util.SCENE.NODE_SCRIPT_INDEX.MENU_OPTION_STAGE)
     {
         this._SetStageType(UnityBase.Util.SCENE.MENU_STAGE_TYPE.OPTION);
 

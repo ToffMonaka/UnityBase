@@ -37,7 +37,7 @@ public class MenuSelectStageButtonScript : Lib.Scene.ObjectNodeScript, IPointerC
     /**
      * @brief コンストラクタ
      */
-    public MenuSelectStageButtonScript() : base((int)UnityBase.Util.SCENE.SCRIPT_INDEX.MENU_SELECT_STAGE_BUTTON)
+    public MenuSelectStageButtonScript() : base((int)UnityBase.Util.SCENE.NODE_SCRIPT_INDEX.MENU_SELECT_STAGE_BUTTON)
     {
         return;
     }

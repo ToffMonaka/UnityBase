@@ -38,7 +38,7 @@ public class TitleSubSceneScript : Lib.Scene.SubSceneNodeScript
     /**
      * @brief コンストラクタ
      */
-    public TitleSubSceneScript() : base((int)UnityBase.Util.SCENE.SCRIPT_INDEX.TITLE_SUB_SCENE)
+    public TitleSubSceneScript() : base((int)UnityBase.Util.SCENE.NODE_SCRIPT_INDEX.TITLE_SUB_SCENE)
     {
         return;
     }

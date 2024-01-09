@@ -34,9 +34,9 @@ public abstract class MainSceneNodeScript : Lib.Scene.NodeScript
 
     /**
      * @brief コンストラクタ
-     * @param script_index (script_index)
+     * @param node_script_index (node_script_index)
      */
-    public MainSceneNodeScript(int script_index) : base(Lib.Util.SCENE.SCRIPT_TYPE.MAIN_SCENE, script_index, false)
+    public MainSceneNodeScript(int node_script_index) : base(Lib.Util.SCENE.NODE_SCRIPT_TYPE.MAIN_SCENE, node_script_index, false)
     {
         return;
     }

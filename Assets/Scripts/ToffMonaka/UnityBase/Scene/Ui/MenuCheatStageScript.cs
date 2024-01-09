@@ -41,7 +41,7 @@ public class MenuCheatStageScript : UnityBase.Scene.Ui.MenuStageScript
     /**
      * @brief コンストラクタ
      */
-    public MenuCheatStageScript() : base((int)UnityBase.Util.SCENE.SCRIPT_INDEX.MENU_CHEAT_STAGE)
+    public MenuCheatStageScript() : base((int)UnityBase.Util.SCENE.NODE_SCRIPT_INDEX.MENU_CHEAT_STAGE)
     {
         this._SetStageType(UnityBase.Util.SCENE.MENU_STAGE_TYPE.CHEAT);
 

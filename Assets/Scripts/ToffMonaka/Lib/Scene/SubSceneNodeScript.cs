@@ -28,9 +28,9 @@ public abstract class SubSceneNodeScript : Lib.Scene.NodeScript
 
     /**
      * @brief コンストラクタ
-     * @param script_index (script_index)
+     * @param node_script_index (node_script_index)
      */
-    public SubSceneNodeScript(int script_index) : base(Lib.Util.SCENE.SCRIPT_TYPE.SUB_SCENE, script_index, true)
+    public SubSceneNodeScript(int node_script_index) : base(Lib.Util.SCENE.NODE_SCRIPT_TYPE.SUB_SCENE, node_script_index, true)
     {
         return;
     }
