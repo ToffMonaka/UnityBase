@@ -197,7 +197,7 @@ public class MainSceneScript : Lib.Scene.MainSceneNodeScript
             var manager_create_desc = new Lib.Scene.ManagerCreateDesc();
 
             manager_create_desc.mainSceneNode = this.gameObject;
-            manager_create_desc.scriptCount = (int)UnityBase.Util.SCENE.NODE_SCRIPT_INDEX_COUNT;
+            manager_create_desc.nodeScriptCount = (int)UnityBase.Util.SCENE.NODE_SCRIPT_INDEX_COUNT;
 
             if (manager.Create(manager_create_desc) < 0) {
                 this._ReleaseManager();

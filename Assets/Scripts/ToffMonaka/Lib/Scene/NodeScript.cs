@@ -74,7 +74,7 @@ public abstract class NodeScript : Lib.Scene.Script
         this._OnDestroy();
 
         if (this._manager != null) {
-            this._manager.RemoveScript(this);
+            this._manager.RemoveNodeScript(this);
 
             this._manager = null;
         }
@@ -89,6 +89,14 @@ public abstract class NodeScript : Lib.Scene.Script
     {
         this._Destroy();
 
+        return;
+    }
+
+    /**
+     * @brief _OnSetNode関数
+     */
+    protected virtual void _OnSetNode()
+    {
         return;
     }
 
@@ -113,14 +121,14 @@ public abstract class NodeScript : Lib.Scene.Script
             }
 
             if (Lib.Scene.Util.GetManager() != null) {
-                if (Lib.Scene.Util.GetManager().AddScript(this) < 0) {
+                if (Lib.Scene.Util.GetManager().AddNodeScript(this) < 0) {
                     return (-1);
                 }
             } else {
                 return (-1);
             }
 
-            this._SetCanvasNode();
+            this._OnSetNode();
         }
 
         int create_result_val = this._OnCreate();
@@ -588,14 +596,6 @@ public abstract class NodeScript : Lib.Scene.Script
         }
 
         return (true);
-    }
-
-    /**
-     * @brief _SetCanvasNode関数
-     */
-    protected virtual void _SetCanvasNode()
-    {
-        return;
     }
 }
 }

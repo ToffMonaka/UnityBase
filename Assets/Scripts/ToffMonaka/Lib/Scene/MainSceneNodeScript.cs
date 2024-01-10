@@ -66,6 +66,14 @@ public abstract class MainSceneNodeScript : Lib.Scene.NodeScript
     }
 
     /**
+     * @brief _OnSetNode関数
+     */
+    protected override void _OnSetNode()
+    {
+        return;
+    }
+
+    /**
      * @brief SetCreateDesc関数
      * @param create_desc (create_desc)
      */

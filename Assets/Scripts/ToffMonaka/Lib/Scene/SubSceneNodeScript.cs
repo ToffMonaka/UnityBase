@@ -56,6 +56,28 @@ public abstract class SubSceneNodeScript : Lib.Scene.NodeScript
     }
 
     /**
+     * @brief _OnSetNode関数
+     */
+    protected override void _OnSetNode()
+    {
+        var canvas_transform = this.transform.Find("Canvas");
+
+        if (canvas_transform != null) {
+            this._canvasNode = canvas_transform.gameObject;
+
+            this._canvasNode.GetComponent<Canvas>().worldCamera = this.GetManager().GetMainSceneNodeScript().GetMainCamera();
+
+            var dialog_transform = canvas_transform.Find("Dialog");
+
+            if (dialog_transform != null) {
+                this._dialogNode = dialog_transform.gameObject;
+            }
+        }
+
+        return;
+    }
+
+    /**
      * @brief SetCreateDesc関数
      * @param create_desc (create_desc)
      */
@@ -135,28 +157,6 @@ public abstract class SubSceneNodeScript : Lib.Scene.NodeScript
     public GameObject GetCanvasNode()
     {
         return (this._canvasNode);
-    }
-
-    /**
-     * @brief _SetCanvasNode関数
-     */
-    protected override void _SetCanvasNode()
-    {
-        var canvas_transform = this.transform.Find("Canvas");
-
-        if (canvas_transform != null) {
-            this._canvasNode = canvas_transform.gameObject;
-
-            this._canvasNode.GetComponent<Canvas>().worldCamera = this.GetManager().GetMainSceneScript().GetMainCamera();
-
-            var dialog_transform = canvas_transform.Find("Dialog");
-
-            if (dialog_transform != null) {
-                this._dialogNode = dialog_transform.gameObject;
-            }
-        }
-
-        return;
     }
 
     /**
