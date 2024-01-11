@@ -1,6 +1,6 @@
 ﻿/**
  * @file
- * @brief MainSceneScriptファイル
+ * @brief MainSceneNodeScriptファイル
  */
 
 
@@ -10,23 +10,23 @@ using UnityEngine;
 namespace ToffMonaka {
 namespace UnityBase.Scene {
 /**
- * @brief MainSceneScriptCreateDescクラス
+ * @brief MainSceneNodeScriptCreateDescクラス
  */
-public class MainSceneScriptCreateDesc : Lib.Scene.MainSceneNodeScriptCreateDesc
+public class MainSceneNodeScriptCreateDesc : Lib.Scene.MainSceneNodeScriptCreateDesc
 {
 }
 
 /**
- * @brief MainSceneScriptクラス
+ * @brief MainSceneNodeScriptクラス
  */
-public class MainSceneScript : Lib.Scene.MainSceneNodeScript
+public class MainSceneNodeScript : Lib.Scene.MainSceneNodeScript
 {
-    public new UnityBase.Scene.MainSceneScriptCreateDesc createDesc{get; private set;} = null;
+    public new UnityBase.Scene.MainSceneNodeScriptCreateDesc createDesc{get; private set;} = null;
 
     /**
      * @brief コンストラクタ
      */
-    public MainSceneScript() : base((int)UnityBase.Util.SCENE.NODE_SCRIPT_INDEX.MAIN_SCENE)
+    public MainSceneNodeScript() : base((int)UnityBase.Util.SCENE.NODE_SCRIPT_INDEX.MAIN_SCENE)
     {
         return;
     }
@@ -36,9 +36,9 @@ public class MainSceneScript : Lib.Scene.MainSceneNodeScript
      */
     protected override void _OnAwake()
     {
-        {// MainSceneScript Create
+        {// MainSceneNodeScript Create
             var script = this;
-            var script_create_desc = new UnityBase.Scene.MainSceneScriptCreateDesc();
+            var script_create_desc = new UnityBase.Scene.MainSceneNodeScriptCreateDesc();
 
             script.Create(script_create_desc);
             script.Open(0);
@@ -71,7 +71,7 @@ public class MainSceneScript : Lib.Scene.MainSceneNodeScript
      */
     public override void SetCreateDesc(Lib.Scene.NodeScriptCreateDesc create_desc)
     {
-	    this.createDesc = create_desc as UnityBase.Scene.MainSceneScriptCreateDesc;
+	    this.createDesc = create_desc as UnityBase.Scene.MainSceneNodeScriptCreateDesc;
 
         base.SetCreateDesc(this.createDesc);
 
@@ -83,9 +83,9 @@ public class MainSceneScript : Lib.Scene.MainSceneNodeScript
      */
     protected override void _OnActive()
     {
-        {// InitSubSceneScript Create
-            var script = this.GetManager().ChangeSubScene(UnityBase.Util.FILE_PATH.INIT_SUB_SCENE_PREFAB) as UnityBase.Scene.InitSubSceneScript;
-            var script_create_desc = new UnityBase.Scene.InitSubSceneScriptCreateDesc();
+        {// InitSubSceneNodeScript Create
+            var script = this.GetManager().ChangeSubScene(UnityBase.Util.FILE_PATH.INIT_SUB_SCENE_PREFAB) as UnityBase.Scene.InitSubSceneNodeScript;
+            var script_create_desc = new UnityBase.Scene.InitSubSceneNodeScriptCreateDesc();
 
             script.Create(script_create_desc);
             script.Open(0);

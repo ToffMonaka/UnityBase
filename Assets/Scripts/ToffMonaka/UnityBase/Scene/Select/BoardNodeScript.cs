@@ -1,40 +1,41 @@
 ﻿/**
  * @file
- * @brief MenuOpenCloseButtonScriptファイル
+ * @brief BoardNodeScriptファイル
  */
 
 
 using UnityEngine;
-using UnityEngine.UI;
-using UnityEngine.EventSystems;
+using TMPro;
 using DG.Tweening;
 
 
 namespace ToffMonaka {
-namespace UnityBase.Scene.Ui {
+namespace UnityBase.Scene.Select {
 /**
- * @brief MenuOpenCloseButtonScriptCreateDescクラス
+ * @brief BoardNodeScriptCreateDescクラス
  */
-public class MenuOpenCloseButtonScriptCreateDesc : Lib.Scene.ObjectNodeScriptCreateDesc
+public class BoardNodeScriptCreateDesc : Lib.Scene.ObjectNodeScriptCreateDesc
 {
-    public UnityBase.Scene.Ui.MenuScript menuScript = null;
+    public UnityBase.Scene.Select.SubSceneNodeScript subSceneNodeScript = null;
 }
 
 /**
- * @brief MenuOpenCloseButtonScriptクラス
+ * @brief BoardNodeScriptクラス
  */
-public class MenuOpenCloseButtonScript : Lib.Scene.ObjectNodeScript, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
+public class BoardNodeScript : Lib.Scene.ObjectNodeScript
 {
-    [SerializeField] private Image _coverImage = null;
+    [SerializeField] private TMP_Text _nameText = null;
 
-    public new UnityBase.Scene.Ui.MenuOpenCloseButtonScriptCreateDesc createDesc{get; private set;} = null;
+    public new UnityBase.Scene.Select.BoardNodeScriptCreateDesc createDesc{get; private set;} = null;
 
-    private UnityBase.Scene.Ui.MenuScript _menuScript = null;
+    private UnityBase.Scene.Select.SubSceneNodeScript _subSceneNodeScript = null;
+    private UnityBase.Util.SCENE.SELECT_BOARD_TYPE _boardType = UnityBase.Util.SCENE.SELECT_BOARD_TYPE.NONE;
 
     /**
      * @brief コンストラクタ
+     * @param node_script_index (node_script_index)
      */
-    public MenuOpenCloseButtonScript() : base((int)UnityBase.Util.SCENE.NODE_SCRIPT_INDEX.MENU_OPEN_CLOSE_BUTTON)
+    public BoardNodeScript(int node_script_index) : base(node_script_index)
     {
         return;
     }
@@ -62,7 +63,9 @@ public class MenuOpenCloseButtonScript : Lib.Scene.ObjectNodeScript, IPointerCli
      */
     protected override int _OnCreate()
     {
-        this._menuScript = this.createDesc.menuScript;
+        this._subSceneNodeScript = this.createDesc.subSceneNodeScript;
+
+        this._nameText.SetText(UnityBase.Global.GetText(UnityBase.Util.SCENE.SELECT_BOARD_NAME_MST_TEXT_ID_ARRAY[(int)this._boardType]));
 
         return (0);
     }
@@ -73,7 +76,7 @@ public class MenuOpenCloseButtonScript : Lib.Scene.ObjectNodeScript, IPointerCli
      */
     public override void SetCreateDesc(Lib.Scene.NodeScriptCreateDesc create_desc)
     {
-	    this.createDesc = create_desc as UnityBase.Scene.Ui.MenuOpenCloseButtonScriptCreateDesc;
+	    this.createDesc = create_desc as UnityBase.Scene.Select.BoardNodeScriptCreateDesc;
 
         base.SetCreateDesc(this.createDesc);
 
@@ -85,8 +88,6 @@ public class MenuOpenCloseButtonScript : Lib.Scene.ObjectNodeScript, IPointerCli
      */
     protected override void _OnActive()
     {
-        this._coverImage.gameObject.SetActive(false);
-
         return;
     }
 
@@ -115,11 +116,11 @@ public class MenuOpenCloseButtonScript : Lib.Scene.ObjectNodeScript, IPointerCli
 
 		switch (this.GetOpenType()) {
 		case 1: {
-            rect_transform.anchoredPosition = new Vector2(-rect_transform.sizeDelta.x - 8.0f, rect_transform.anchoredPosition.y);
+            rect_transform.anchoredPosition = new Vector2(rect_transform.sizeDelta.x + 8.0f, rect_transform.anchoredPosition.y);
 
             var open_close_sequence = DOTween.Sequence();
 
-            open_close_sequence.Append(rect_transform.DOAnchorPosX(8.0f, 0.1f));
+            open_close_sequence.Append(rect_transform.DOAnchorPosX(-8.0f, 0.1f));
             open_close_sequence.SetLink(this.gameObject);
 
             this.AddOpenCloseSequence(open_close_sequence);
@@ -127,7 +128,7 @@ public class MenuOpenCloseButtonScript : Lib.Scene.ObjectNodeScript, IPointerCli
 			break;
 		}
 		default: {
-            rect_transform.anchoredPosition = new Vector2(8.0f, rect_transform.anchoredPosition.y);
+            rect_transform.anchoredPosition = new Vector2(-8.0f, rect_transform.anchoredPosition.y);
 
 			break;
 		}
@@ -157,11 +158,11 @@ public class MenuOpenCloseButtonScript : Lib.Scene.ObjectNodeScript, IPointerCli
 
 		switch (this.GetCloseType()) {
 		case 1: {
-            rect_transform.anchoredPosition = new Vector2(8.0f, rect_transform.anchoredPosition.y);
+            rect_transform.anchoredPosition = new Vector2(-8.0f, rect_transform.anchoredPosition.y);
 
             var open_close_sequence = DOTween.Sequence();
 
-            open_close_sequence.Append(rect_transform.DOAnchorPosX(-rect_transform.sizeDelta.x - 8.0f, 0.1f));
+            open_close_sequence.Append(rect_transform.DOAnchorPosX(rect_transform.sizeDelta.x + 8.0f, 0.1f));
             open_close_sequence.SetLink(this.gameObject);
 
             this.AddOpenCloseSequence(open_close_sequence);
@@ -169,7 +170,7 @@ public class MenuOpenCloseButtonScript : Lib.Scene.ObjectNodeScript, IPointerCli
 			break;
 		}
 		default: {
-            rect_transform.anchoredPosition = new Vector2(-rect_transform.sizeDelta.x - 8.0f, rect_transform.anchoredPosition.y);
+            rect_transform.anchoredPosition = new Vector2(rect_transform.sizeDelta.x + 8.0f, rect_transform.anchoredPosition.y);
 
 			break;
 		}
@@ -191,48 +192,30 @@ public class MenuOpenCloseButtonScript : Lib.Scene.ObjectNodeScript, IPointerCli
     }
 
     /**
-     * @brief OnPointerClick関数
-     * @param event_dat (event_data)
+     * @brief GetSubSceneNodeScript関数
+     * @return sub_scene_node_script (sub_scene_node_script)
      */
-    public void OnPointerClick(PointerEventData event_dat)
+    public UnityBase.Scene.Select.SubSceneNodeScript GetSubSceneNodeScript()
     {
-        if (!this.IsControllable()) {
-            return;
-        }
-
-        this._menuScript.RunOpenCloseButton();
-
-        if (this._menuScript.GetOpenSelectScript() != null) {
-            Lib.Scene.Util.GetSoundManager().PlaySe((int)UnityBase.Util.SOUND.SE_INDEX.OK2);
-        } else {
-            Lib.Scene.Util.GetSoundManager().PlaySe((int)UnityBase.Util.SOUND.SE_INDEX.CANCEL);
-        }
-
-        return;
+        return (this._subSceneNodeScript);
     }
 
     /**
-     * @brief OnPointerEnter関数
-     * @param event_dat (event_data)
+     * @brief GetBoardType関数
+     * @return board_type (board_type)
      */
-    public void OnPointerEnter(PointerEventData event_dat)
+    public UnityBase.Util.SCENE.SELECT_BOARD_TYPE GetBoardType()
     {
-        if (!this.IsControllable()) {
-            return;
-        }
-
-        this._coverImage.gameObject.SetActive(true);
-
-        return;
+        return (this._boardType);
     }
 
     /**
-     * @brief OnPointerExit関数
-     * @param event_dat (event_data)
+     * @brief _SetBoardType関数
+     * @param board_type (board_type)
      */
-    public void OnPointerExit(PointerEventData event_dat)
+    protected void _SetBoardType(UnityBase.Util.SCENE.SELECT_BOARD_TYPE board_type)
     {
-        this._coverImage.gameObject.SetActive(false);
+        this._boardType = board_type;
 
         return;
     }

@@ -1,6 +1,6 @@
 ﻿/**
  * @file
- * @brief SelectDialogScriptファイル
+ * @brief SelectDialogNodeScriptファイル
  */
 
 
@@ -14,32 +14,32 @@ using TMPro;
 namespace ToffMonaka {
 namespace UnityBase.Scene.Ui {
 /**
- * @brief SelectDialogScriptCreateDescクラス
+ * @brief SelectDialogNodeScriptCreateDescクラス
  */
-public class SelectDialogScriptCreateDesc : UnityBase.Scene.Ui.DialogScriptCreateDesc
+public class SelectDialogNodeScriptCreateDesc : UnityBase.Scene.Ui.DialogNodeScriptCreateDesc
 {
     public UnityBase.Scene.Ui.SelectDialogEngine engine = null;
 }
 
 /**
- * @brief SelectDialogScriptクラス
+ * @brief SelectDialogNodeScriptクラス
  */
-public class SelectDialogScript : UnityBase.Scene.Ui.DialogScript
+public class SelectDialogNodeScript : UnityBase.Scene.Ui.DialogNodeScript
 {
     [SerializeField] private TMP_Text _nameText = null;
     [SerializeField] private ScrollRect _itemScrollRect = null;
     [SerializeField] private GameObject _itemButtonNode = null;
     [SerializeField] private Image _closeButtonCoverImage = null;
 
-    public new UnityBase.Scene.Ui.SelectDialogScriptCreateDesc createDesc{get; private set;} = null;
+    public new UnityBase.Scene.Ui.SelectDialogNodeScriptCreateDesc createDesc{get; private set;} = null;
 
     private UnityBase.Scene.Ui.SelectDialogEngine _engine = null;
-    private List<UnityBase.Scene.Ui.SelectDialogItemButtonScript> _itemButtonScriptContainer = new List<UnityBase.Scene.Ui.SelectDialogItemButtonScript>();
+    private List<UnityBase.Scene.Ui.SelectDialogItemButtonNodeScript> _itemButtonNodeScriptContainer = new List<UnityBase.Scene.Ui.SelectDialogItemButtonNodeScript>();
 
     /**
      * @brief コンストラクタ
      */
-    public SelectDialogScript() : base((int)UnityBase.Util.SCENE.NODE_SCRIPT_INDEX.SELECT_DIALOG)
+    public SelectDialogNodeScript() : base((int)UnityBase.Util.SCENE.NODE_SCRIPT_INDEX.SELECT_DIALOG)
     {
         return;
     }
@@ -94,7 +94,7 @@ public class SelectDialogScript : UnityBase.Scene.Ui.DialogScript
      */
     public override void SetCreateDesc(Lib.Scene.NodeScriptCreateDesc create_desc)
     {
-	    this.createDesc = create_desc as UnityBase.Scene.Ui.SelectDialogScriptCreateDesc;
+	    this.createDesc = create_desc as UnityBase.Scene.Ui.SelectDialogNodeScriptCreateDesc;
 
         base.SetCreateDesc(this.createDesc);
 
@@ -238,13 +238,13 @@ public class SelectDialogScript : UnityBase.Scene.Ui.DialogScript
             return (-1);
         }
 
-        {// ItemButtonScript Create
-            var script = GameObject.Instantiate(this._itemButtonNode, this._itemButtonNode.transform.parent).GetComponent<UnityBase.Scene.Ui.SelectDialogItemButtonScript>();
-            var script_create_desc = new UnityBase.Scene.Ui.SelectDialogItemButtonScriptCreateDesc();
+        {// ItemButtonNodeScript Create
+            var script = GameObject.Instantiate(this._itemButtonNode, this._itemButtonNode.transform.parent).GetComponent<UnityBase.Scene.Ui.SelectDialogItemButtonNodeScript>();
+            var script_create_desc = new UnityBase.Scene.Ui.SelectDialogItemButtonNodeScriptCreateDesc();
 
             script_create_desc.engine = item_btn_engine;
-            script_create_desc.onClick = (UnityBase.Scene.Ui.SelectDialogItemButtonScript item_btn_script) => {
-                this._engine.OnClickItemButton(this, item_btn_script);
+            script_create_desc.onClick = (UnityBase.Scene.Ui.SelectDialogItemButtonNodeScript item_btn_node_script) => {
+                this._engine.OnClickItemButton(this, item_btn_node_script);
 
                 this.Close(1);
 
@@ -254,7 +254,7 @@ public class SelectDialogScript : UnityBase.Scene.Ui.DialogScript
             script.Create(script_create_desc);
             script.Open(0);
 
-            this._itemButtonScriptContainer.Add(script);
+            this._itemButtonNodeScriptContainer.Add(script);
         }
 
         return (0);
@@ -265,13 +265,13 @@ public class SelectDialogScript : UnityBase.Scene.Ui.DialogScript
      */
     public void RemoveItemButton()
     {
-        foreach (var item_btn_script in this._itemButtonScriptContainer) {
-            item_btn_script.Close(0);
+        foreach (var item_btn_node_script in this._itemButtonNodeScriptContainer) {
+            item_btn_node_script.Close(0);
 
-            GameObject.Destroy(item_btn_script.gameObject);
+            GameObject.Destroy(item_btn_node_script.gameObject);
         }
 
-        this._itemButtonScriptContainer.Clear();
+        this._itemButtonNodeScriptContainer.Clear();
 
         return;
     }

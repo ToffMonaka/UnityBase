@@ -1,6 +1,6 @@
 ﻿/**
  * @file
- * @brief BackButtonScriptファイル
+ * @brief BackButtonNodeScriptファイル
  */
 
 
@@ -11,30 +11,30 @@ using DG.Tweening;
 
 
 namespace ToffMonaka {
-namespace UnityBase.Scene.Select {
+namespace UnityBase.Scene.Stage {
 /**
- * @brief BackButtonScriptCreateDescクラス
+ * @brief BackButtonNodeScriptCreateDescクラス
  */
-public class BackButtonScriptCreateDesc : Lib.Scene.ObjectNodeScriptCreateDesc
+public class BackButtonNodeScriptCreateDesc : Lib.Scene.ObjectNodeScriptCreateDesc
 {
-    public UnityBase.Scene.Select.SubSceneScript subSceneScript = null;
+    public UnityBase.Scene.Stage.SubSceneNodeScript subSceneNodeScript = null;
 }
 
 /**
- * @brief BackButtonScriptクラス
+ * @brief BackButtonNodeScriptクラス
  */
-public class BackButtonScript : Lib.Scene.ObjectNodeScript, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
+public class BackButtonNodeScript : Lib.Scene.ObjectNodeScript, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
 {
     [SerializeField] private Image _coverImage = null;
 
-    public new UnityBase.Scene.Select.BackButtonScriptCreateDesc createDesc{get; private set;} = null;
+    public new UnityBase.Scene.Stage.BackButtonNodeScriptCreateDesc createDesc{get; private set;} = null;
 
-    private UnityBase.Scene.Select.SubSceneScript _subSceneScript = null;
+    private UnityBase.Scene.Stage.SubSceneNodeScript _subSceneNodeScript = null;
 
     /**
      * @brief コンストラクタ
      */
-    public BackButtonScript() : base((int)UnityBase.Util.SCENE.NODE_SCRIPT_INDEX.SELECT_BACK_BUTTON)
+    public BackButtonNodeScript() : base((int)UnityBase.Util.SCENE.NODE_SCRIPT_INDEX.STAGE_BACK_BUTTON)
     {
         return;
     }
@@ -62,7 +62,7 @@ public class BackButtonScript : Lib.Scene.ObjectNodeScript, IPointerClickHandler
      */
     protected override int _OnCreate()
     {
-        this._subSceneScript = this.createDesc.subSceneScript;
+        this._subSceneNodeScript = this.createDesc.subSceneNodeScript;
 
         return (0);
     }
@@ -73,7 +73,7 @@ public class BackButtonScript : Lib.Scene.ObjectNodeScript, IPointerClickHandler
      */
     public override void SetCreateDesc(Lib.Scene.NodeScriptCreateDesc create_desc)
     {
-	    this.createDesc = create_desc as UnityBase.Scene.Select.BackButtonScriptCreateDesc;
+	    this.createDesc = create_desc as UnityBase.Scene.Stage.BackButtonNodeScriptCreateDesc;
 
         base.SetCreateDesc(this.createDesc);
 
@@ -202,7 +202,7 @@ public class BackButtonScript : Lib.Scene.ObjectNodeScript, IPointerClickHandler
 
         Lib.Scene.Util.GetSoundManager().PlaySe((int)UnityBase.Util.SOUND.SE_INDEX.CANCEL);
 
-        this._subSceneScript.RunBackButton();
+        this._subSceneNodeScript.RunBackButton();
 
         return;
     }

@@ -1,6 +1,6 @@
 ﻿/**
  * @file
- * @brief DialogScriptファイル
+ * @brief DialogNodeScriptファイル
  */
 
 
@@ -11,26 +11,26 @@ using DG.Tweening;
 namespace ToffMonaka {
 namespace UnityBase.Scene.Ui {
 /**
- * @brief DialogScriptCreateDescクラス
+ * @brief DialogNodeScriptCreateDescクラス
  */
-public class DialogScriptCreateDesc : Lib.Scene.ObjectNodeScriptCreateDesc
+public class DialogNodeScriptCreateDesc : Lib.Scene.ObjectNodeScriptCreateDesc
 {
 }
 
 /**
- * @brief DialogScriptクラス
+ * @brief DialogNodeScriptクラス
  */
-public class DialogScript : Lib.Scene.ObjectNodeScript
+public class DialogNodeScript : Lib.Scene.ObjectNodeScript
 {
     [SerializeField] private CanvasGroup _canvasGroup = null;
 
-    public new UnityBase.Scene.Ui.DialogScriptCreateDesc createDesc{get; private set;} = null;
+    public new UnityBase.Scene.Ui.DialogNodeScriptCreateDesc createDesc{get; private set;} = null;
 
     /**
      * @brief コンストラクタ
      * @param node_script_index (node_script_index)
      */
-    public DialogScript(int node_script_index) : base(node_script_index)
+    public DialogNodeScript(int node_script_index) : base(node_script_index)
     {
         return;
     }
@@ -67,7 +67,7 @@ public class DialogScript : Lib.Scene.ObjectNodeScript
      */
     public override void SetCreateDesc(Lib.Scene.NodeScriptCreateDesc create_desc)
     {
-	    this.createDesc = create_desc as UnityBase.Scene.Ui.DialogScriptCreateDesc;
+	    this.createDesc = create_desc as UnityBase.Scene.Ui.DialogNodeScriptCreateDesc;
 
         base.SetCreateDesc(this.createDesc);
 

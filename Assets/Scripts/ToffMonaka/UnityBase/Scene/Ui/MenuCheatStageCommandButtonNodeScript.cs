@@ -1,6 +1,6 @@
 ﻿/**
  * @file
- * @brief SelectDialogItemButtonScriptファイル
+ * @brief MenuCheatStageCommandButtonNodeScriptファイル
  */
 
 
@@ -13,31 +13,32 @@ using TMPro;
 namespace ToffMonaka {
 namespace UnityBase.Scene.Ui {
 /**
- * @brief SelectDialogItemButtonScriptCreateDescクラス
+ * @brief MenuCheatStageCommandButtonNodeScriptCreateDescクラス
  */
-public class SelectDialogItemButtonScriptCreateDesc : Lib.Scene.ObjectNodeScriptCreateDesc
+public class MenuCheatStageCommandButtonNodeScriptCreateDesc : Lib.Scene.ObjectNodeScriptCreateDesc
 {
-    public UnityBase.Scene.Ui.SelectDialogItemButtonEngine engine = null;
-    public System.Action<UnityBase.Scene.Ui.SelectDialogItemButtonScript> onClick = null;
+    public UnityBase.Scene.Ui.MenuCheatStageScript stageScript = null;
+    public UnityBase.Util.SCENE.MENU_CHEAT_STAGE_COMMAND_TYPE commandType = UnityBase.Util.SCENE.MENU_CHEAT_STAGE_COMMAND_TYPE.NONE;
 }
 
 /**
- * @brief SelectDialogItemButtonScriptクラス
+ * @brief MenuCheatStageCommandButtonNodeScriptクラス
  */
-public class SelectDialogItemButtonScript : Lib.Scene.ObjectNodeScript, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
+public class MenuCheatStageCommandButtonNodeScript : Lib.Scene.ObjectNodeScript, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
 {
     [SerializeField] private TMP_Text _nameText = null;
+    [SerializeField] private TMP_Text _detailText = null;
     [SerializeField] private Image _coverImage = null;
 
-    public new UnityBase.Scene.Ui.SelectDialogItemButtonScriptCreateDesc createDesc{get; private set;} = null;
+    public new UnityBase.Scene.Ui.MenuCheatStageCommandButtonNodeScriptCreateDesc createDesc{get; private set;} = null;
 
-    private UnityBase.Scene.Ui.SelectDialogItemButtonEngine _engine = null;
-    private System.Action<UnityBase.Scene.Ui.SelectDialogItemButtonScript> _onClick = null;
+    private UnityBase.Scene.Ui.MenuCheatStageScript _stageScript = null;
+    private UnityBase.Util.SCENE.MENU_CHEAT_STAGE_COMMAND_TYPE _commandType = UnityBase.Util.SCENE.MENU_CHEAT_STAGE_COMMAND_TYPE.NONE;
 
     /**
      * @brief コンストラクタ
      */
-    public SelectDialogItemButtonScript() : base((int)UnityBase.Util.SCENE.NODE_SCRIPT_INDEX.SELECT_DIALOG_ITEM_BUTTON)
+    public MenuCheatStageCommandButtonNodeScript() : base((int)UnityBase.Util.SCENE.NODE_SCRIPT_INDEX.MENU_CHEAT_STAGE_COMMAND_BUTTON)
     {
         return;
     }
@@ -65,15 +66,18 @@ public class SelectDialogItemButtonScript : Lib.Scene.ObjectNodeScript, IPointer
      */
     protected override int _OnCreate()
     {
-        if (this.createDesc.engine == null) {
-            return (-1);
+        this._stageScript = this.createDesc.stageScript;
+        this._commandType = this.createDesc.commandType;
+
+        this._nameText.SetText(UnityBase.Global.GetText(UnityBase.Util.SCENE.MENU_CHEAT_STAGE_COMMAND_NAME_MST_TEXT_ID_ARRAY[(int)this._commandType]));
+
+        var param = UnityBase.Util.SCENE.MENU_CHEAT_STAGE_COMMAND_PARAMETER_ARRAY[(int)this._commandType];
+
+        if (param.Length > 0) {
+            this._detailText.SetText(UnityBase.Util.SCENE.MENU_CHEAT_STAGE_COMMAND_FUNCTION_ARRAY[(int)this._commandType] + " " + param);
+        } else {
+            this._detailText.SetText(UnityBase.Util.SCENE.MENU_CHEAT_STAGE_COMMAND_FUNCTION_ARRAY[(int)this._commandType]);
         }
-
-        this._engine = this.createDesc.engine;
-
-        this._onClick = this.createDesc.onClick;
-
-        this._nameText.SetText(this._engine.OnGetName());
 
         return (0);
     }
@@ -84,7 +88,7 @@ public class SelectDialogItemButtonScript : Lib.Scene.ObjectNodeScript, IPointer
      */
     public override void SetCreateDesc(Lib.Scene.NodeScriptCreateDesc create_desc)
     {
-	    this.createDesc = create_desc as UnityBase.Scene.Ui.SelectDialogItemButtonScriptCreateDesc;
+	    this.createDesc = create_desc as UnityBase.Scene.Ui.MenuCheatStageCommandButtonNodeScriptCreateDesc;
 
         base.SetCreateDesc(this.createDesc);
 
@@ -165,7 +169,7 @@ public class SelectDialogItemButtonScript : Lib.Scene.ObjectNodeScript, IPointer
 
         Lib.Scene.Util.GetSoundManager().PlaySe((int)UnityBase.Util.SOUND.SE_INDEX.OK2);
 
-        this._onClick(this);
+        this._stageScript.RunCommandButton(this._commandType);
 
         return;
     }
@@ -194,15 +198,6 @@ public class SelectDialogItemButtonScript : Lib.Scene.ObjectNodeScript, IPointer
         this._coverImage.gameObject.SetActive(false);
 
         return;
-    }
-
-    /**
-     * @brief GetEngine関数
-     * @return engine (engine)
-     */
-    public UnityBase.Scene.Ui.SelectDialogItemButtonEngine GetEngine()
-    {
-        return (this._engine);
     }
 }
 }

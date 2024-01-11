@@ -1,6 +1,6 @@
 ﻿/**
  * @file
- * @brief SubSceneScriptファイル
+ * @brief SubSceneNodeScriptファイル
  */
 
 
@@ -12,34 +12,34 @@ using DG.Tweening;
 namespace ToffMonaka {
 namespace UnityBase.Scene.Select {
 /**
- * @brief SubSceneScriptCreateDescクラス
+ * @brief SubSceneNodeScriptCreateDescクラス
  */
-public class SubSceneScriptCreateDesc : Lib.Scene.SubSceneNodeScriptCreateDesc
+public class SubSceneNodeScriptCreateDesc : Lib.Scene.SubSceneNodeScriptCreateDesc
 {
 }
 
 /**
- * @brief SubSceneScriptクラス
+ * @brief SubSceneNodeScriptクラス
  */
-public class SubSceneScript : Lib.Scene.SubSceneNodeScript
+public class SubSceneNodeScript : Lib.Scene.SubSceneNodeScript
 {
     [SerializeField] private GameObject _stageBoardNode = null;
     [SerializeField] private GameObject _backButtonNode = null;
     [SerializeField] private GameObject _menuNode = null;
     [SerializeField] private Image _openCloseFadeImage = null;
 
-    public new UnityBase.Scene.Select.SubSceneScriptCreateDesc createDesc{get; private set;} = null;
+    public new UnityBase.Scene.Select.SubSceneNodeScriptCreateDesc createDesc{get; private set;} = null;
 
-    private UnityBase.Scene.Select.StageBoardScript _stageBoardScript = null;
-    private UnityBase.Scene.Select.BoardScript _openBoardScript = null;
+    private UnityBase.Scene.Select.StageBoardNodeScript _stageBoardNodeScript = null;
+    private UnityBase.Scene.Select.BoardNodeScript _openBoardNodeScript = null;
     private UnityBase.Util.SCENE.STAGE_TYPE _stageType = UnityBase.Util.SCENE.STAGE_TYPE.NONE;
-    private UnityBase.Scene.Select.BackButtonScript _backButtonScript = null;
+    private UnityBase.Scene.Select.BackButtonNodeScript _backButtonNodeScript = null;
     private UnityBase.Scene.Ui.MenuScript _menuScript = null;
 
     /**
      * @brief コンストラクタ
      */
-    public SubSceneScript() : base((int)UnityBase.Util.SCENE.NODE_SCRIPT_INDEX.SELECT_SUB_SCENE)
+    public SubSceneNodeScript() : base((int)UnityBase.Util.SCENE.NODE_SCRIPT_INDEX.SELECT_SUB_SCENE)
     {
         return;
     }
@@ -67,34 +67,34 @@ public class SubSceneScript : Lib.Scene.SubSceneNodeScript
      */
     protected override int _OnCreate()
     {
-        {// StageBoardScript Create
-            var script = this._stageBoardNode.GetComponent<UnityBase.Scene.Select.StageBoardScript>();
-            var script_create_desc = new UnityBase.Scene.Select.StageBoardScriptCreateDesc();
+        {// StageBoardNodeScript Create
+            var script = this._stageBoardNode.GetComponent<UnityBase.Scene.Select.StageBoardNodeScript>();
+            var script_create_desc = new UnityBase.Scene.Select.StageBoardNodeScriptCreateDesc();
 
-            script_create_desc.subSceneScript = this;
+            script_create_desc.subSceneNodeScript = this;
 
             script.Create(script_create_desc);
 
-            this._stageBoardScript = script;
+            this._stageBoardNodeScript = script;
         }
 
-        {// BackButtonScript Create
-            var script = this._backButtonNode.GetComponent<UnityBase.Scene.Select.BackButtonScript>();
-            var script_create_desc = new UnityBase.Scene.Select.BackButtonScriptCreateDesc();
+        {// BackButtonNodeScript Create
+            var script = this._backButtonNode.GetComponent<UnityBase.Scene.Select.BackButtonNodeScript>();
+            var script_create_desc = new UnityBase.Scene.Select.BackButtonNodeScriptCreateDesc();
 
-            script_create_desc.subSceneScript = this;
+            script_create_desc.subSceneNodeScript = this;
 
             script.Create(script_create_desc);
             script.Open(1);
 
-            this._backButtonScript = script;
+            this._backButtonNodeScript = script;
         }
 
         {// MenuScript Create
             var script = this._menuNode.GetComponent<UnityBase.Scene.Ui.MenuScript>();
             var script_create_desc = new UnityBase.Scene.Ui.MenuScriptCreateDesc();
 
-            script_create_desc.subSceneScript = this;
+            script_create_desc.subSceneNodeScript = this;
 
             script.Create(script_create_desc);
             script.Open(0);
@@ -111,7 +111,7 @@ public class SubSceneScript : Lib.Scene.SubSceneNodeScript
      */
     public override void SetCreateDesc(Lib.Scene.NodeScriptCreateDesc create_desc)
     {
-	    this.createDesc = create_desc as UnityBase.Scene.Select.SubSceneScriptCreateDesc;
+	    this.createDesc = create_desc as UnityBase.Scene.Select.SubSceneNodeScriptCreateDesc;
 
         base.SetCreateDesc(this.createDesc);
 
@@ -234,9 +234,9 @@ public class SubSceneScript : Lib.Scene.SubSceneNodeScript
             case 1: {
 		        switch (this._stageType) {
 		        case UnityBase.Util.SCENE.STAGE_TYPE.TEST_2D: {
-                    {// Test2DStageSubSceneScript Create
-                        var script = this.GetManager().ChangeSubScene(UnityBase.Util.FILE_PATH.TEST_2D_STAGE_SUB_SCENE_PREFAB) as UnityBase.Scene.Stage.Test2D.SubSceneScript;
-                        var script_create_desc = new UnityBase.Scene.Stage.Test2D.SubSceneScriptCreateDesc();
+                    {// Test2DStageSubSceneNodeScript Create
+                        var script = this.GetManager().ChangeSubScene(UnityBase.Util.FILE_PATH.TEST_2D_STAGE_SUB_SCENE_PREFAB) as UnityBase.Scene.Stage.Test2D.SubSceneNodeScript;
+                        var script_create_desc = new UnityBase.Scene.Stage.Test2D.SubSceneNodeScriptCreateDesc();
 
                         script.Create(script_create_desc);
                         script.Open(1);
@@ -245,9 +245,9 @@ public class SubSceneScript : Lib.Scene.SubSceneNodeScript
 			        break;
 		        }
 		        case UnityBase.Util.SCENE.STAGE_TYPE.TEST_3D: {
-                    {// Test3DStageSubSceneScript Create
-                        var script = this.GetManager().ChangeSubScene(UnityBase.Util.FILE_PATH.TEST_3D_STAGE_SUB_SCENE_PREFAB) as UnityBase.Scene.Stage.Test3D.SubSceneScript;
-                        var script_create_desc = new UnityBase.Scene.Stage.Test3D.SubSceneScriptCreateDesc();
+                    {// Test3DStageSubSceneNodeScript Create
+                        var script = this.GetManager().ChangeSubScene(UnityBase.Util.FILE_PATH.TEST_3D_STAGE_SUB_SCENE_PREFAB) as UnityBase.Scene.Stage.Test3D.SubSceneNodeScript;
+                        var script_create_desc = new UnityBase.Scene.Stage.Test3D.SubSceneNodeScriptCreateDesc();
 
                         script.Create(script_create_desc);
                         script.Open(1);
@@ -260,9 +260,9 @@ public class SubSceneScript : Lib.Scene.SubSceneNodeScript
 			    break;
 		    }
             case 2: {
-                {// TitleSubSceneScript Create
-                    var script = this.GetManager().ChangeSubScene(UnityBase.Util.FILE_PATH.TITLE_SUB_SCENE_PREFAB) as UnityBase.Scene.TitleSubSceneScript;
-                    var script_create_desc = new UnityBase.Scene.TitleSubSceneScriptCreateDesc();
+                {// TitleSubSceneNodeScript Create
+                    var script = this.GetManager().ChangeSubScene(UnityBase.Util.FILE_PATH.TITLE_SUB_SCENE_PREFAB) as UnityBase.Scene.TitleSubSceneNodeScript;
+                    var script_create_desc = new UnityBase.Scene.TitleSubSceneNodeScriptCreateDesc();
 
                     script.Create(script_create_desc);
                     script.Open(1);
@@ -292,21 +292,21 @@ public class SubSceneScript : Lib.Scene.SubSceneNodeScript
      */
     public void ChangeBoard(UnityBase.Util.SCENE.SELECT_BOARD_TYPE board_type, int open_type)
     {
-        if (this._openBoardScript != null) {
-            this._openBoardScript.Close(0);
+        if (this._openBoardNodeScript != null) {
+            this._openBoardNodeScript.Close(0);
 
-            this._openBoardScript = null;
+            this._openBoardNodeScript = null;
         }
 
 		switch (board_type) {
 		case UnityBase.Util.SCENE.SELECT_BOARD_TYPE.STAGE: {
-            this._openBoardScript = this._stageBoardScript;
+            this._openBoardNodeScript = this._stageBoardNodeScript;
 
 			break;
 		}
 		}
 
-        this._openBoardScript.Open(open_type);
+        this._openBoardNodeScript.Open(open_type);
 
         return;
     }
@@ -329,7 +329,7 @@ public class SubSceneScript : Lib.Scene.SubSceneNodeScript
      */
     public void RunBackButton()
     {
-		switch (this._openBoardScript.GetBoardType()) {
+		switch (this._openBoardNodeScript.GetBoardType()) {
 		case UnityBase.Util.SCENE.SELECT_BOARD_TYPE.STAGE: {
             this.Close(1, 2);
 

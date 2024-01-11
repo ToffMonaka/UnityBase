@@ -1,41 +1,40 @@
 ﻿/**
  * @file
- * @brief BoardScriptファイル
+ * @brief BackButtonNodeScriptファイル
  */
 
 
 using UnityEngine;
-using TMPro;
+using UnityEngine.UI;
+using UnityEngine.EventSystems;
 using DG.Tweening;
 
 
 namespace ToffMonaka {
 namespace UnityBase.Scene.Select {
 /**
- * @brief BoardScriptCreateDescクラス
+ * @brief BackButtonNodeScriptCreateDescクラス
  */
-public class BoardScriptCreateDesc : Lib.Scene.ObjectNodeScriptCreateDesc
+public class BackButtonNodeScriptCreateDesc : Lib.Scene.ObjectNodeScriptCreateDesc
 {
-    public UnityBase.Scene.Select.SubSceneScript subSceneScript = null;
+    public UnityBase.Scene.Select.SubSceneNodeScript subSceneNodeScript = null;
 }
 
 /**
- * @brief BoardScriptクラス
+ * @brief BackButtonNodeScriptクラス
  */
-public class BoardScript : Lib.Scene.ObjectNodeScript
+public class BackButtonNodeScript : Lib.Scene.ObjectNodeScript, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
 {
-    [SerializeField] private TMP_Text _nameText = null;
+    [SerializeField] private Image _coverImage = null;
 
-    public new UnityBase.Scene.Select.BoardScriptCreateDesc createDesc{get; private set;} = null;
+    public new UnityBase.Scene.Select.BackButtonNodeScriptCreateDesc createDesc{get; private set;} = null;
 
-    private UnityBase.Scene.Select.SubSceneScript _subSceneScript = null;
-    private UnityBase.Util.SCENE.SELECT_BOARD_TYPE _boardType = UnityBase.Util.SCENE.SELECT_BOARD_TYPE.NONE;
+    private UnityBase.Scene.Select.SubSceneNodeScript _subSceneNodeScript = null;
 
     /**
      * @brief コンストラクタ
-     * @param node_script_index (node_script_index)
      */
-    public BoardScript(int node_script_index) : base(node_script_index)
+    public BackButtonNodeScript() : base((int)UnityBase.Util.SCENE.NODE_SCRIPT_INDEX.SELECT_BACK_BUTTON)
     {
         return;
     }
@@ -63,9 +62,7 @@ public class BoardScript : Lib.Scene.ObjectNodeScript
      */
     protected override int _OnCreate()
     {
-        this._subSceneScript = this.createDesc.subSceneScript;
-
-        this._nameText.SetText(UnityBase.Global.GetText(UnityBase.Util.SCENE.SELECT_BOARD_NAME_MST_TEXT_ID_ARRAY[(int)this._boardType]));
+        this._subSceneNodeScript = this.createDesc.subSceneNodeScript;
 
         return (0);
     }
@@ -76,7 +73,7 @@ public class BoardScript : Lib.Scene.ObjectNodeScript
      */
     public override void SetCreateDesc(Lib.Scene.NodeScriptCreateDesc create_desc)
     {
-	    this.createDesc = create_desc as UnityBase.Scene.Select.BoardScriptCreateDesc;
+	    this.createDesc = create_desc as UnityBase.Scene.Select.BackButtonNodeScriptCreateDesc;
 
         base.SetCreateDesc(this.createDesc);
 
@@ -88,6 +85,8 @@ public class BoardScript : Lib.Scene.ObjectNodeScript
      */
     protected override void _OnActive()
     {
+        this._coverImage.gameObject.SetActive(false);
+
         return;
     }
 
@@ -192,30 +191,44 @@ public class BoardScript : Lib.Scene.ObjectNodeScript
     }
 
     /**
-     * @brief GetSubSceneScript関数
-     * @return sub_scene_script (sub_scene_script)
+     * @brief OnPointerClick関数
+     * @param event_dat (event_data)
      */
-    public UnityBase.Scene.Select.SubSceneScript GetSubSceneScript()
+    public void OnPointerClick(PointerEventData event_dat)
     {
-        return (this._subSceneScript);
+        if (!this.IsControllable()) {
+            return;
+        }
+
+        Lib.Scene.Util.GetSoundManager().PlaySe((int)UnityBase.Util.SOUND.SE_INDEX.CANCEL);
+
+        this._subSceneNodeScript.RunBackButton();
+
+        return;
     }
 
     /**
-     * @brief GetBoardType関数
-     * @return board_type (board_type)
+     * @brief OnPointerEnter関数
+     * @param event_dat (event_data)
      */
-    public UnityBase.Util.SCENE.SELECT_BOARD_TYPE GetBoardType()
+    public void OnPointerEnter(PointerEventData event_dat)
     {
-        return (this._boardType);
+        if (!this.IsControllable()) {
+            return;
+        }
+
+        this._coverImage.gameObject.SetActive(true);
+
+        return;
     }
 
     /**
-     * @brief _SetBoardType関数
-     * @param board_type (board_type)
+     * @brief OnPointerExit関数
+     * @param event_dat (event_data)
      */
-    protected void _SetBoardType(UnityBase.Util.SCENE.SELECT_BOARD_TYPE board_type)
+    public void OnPointerExit(PointerEventData event_dat)
     {
-        this._boardType = board_type;
+        this._coverImage.gameObject.SetActive(false);
 
         return;
     }

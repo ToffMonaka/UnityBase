@@ -1,6 +1,6 @@
 ﻿/**
  * @file
- * @brief SubSceneScriptファイル
+ * @brief InitSubSceneNodeScriptファイル
  */
 
 
@@ -11,32 +11,33 @@ using DG.Tweening;
 
 
 namespace ToffMonaka {
-namespace UnityBase.Scene.Stage.Test2D {
+namespace UnityBase.Scene {
 /**
- * @brief SubSceneScriptCreateDescクラス
+ * @brief InitSubSceneNodeScriptCreateDescクラス
  */
-public class SubSceneScriptCreateDesc : UnityBase.Scene.Stage.SubSceneScriptCreateDesc
+public class InitSubSceneNodeScriptCreateDesc : Lib.Scene.SubSceneNodeScriptCreateDesc
 {
 }
 
 /**
- * @brief SubSceneScriptクラス
+ * @brief InitSubSceneNodeScriptクラス
  */
-public class SubSceneScript : UnityBase.Scene.Stage.SubSceneScript
+public class InitSubSceneNodeScript : Lib.Scene.SubSceneNodeScript
 {
-    [SerializeField] private TMP_Text _nameText = null;
     [SerializeField] private TMP_Text _messageText = null;
     [SerializeField] private Image _openCloseFadeImage = null;
 
-    public new UnityBase.Scene.Stage.Test2D.SubSceneScriptCreateDesc createDesc{get; private set;} = null;
+    public new UnityBase.Scene.InitSubSceneNodeScriptCreateDesc createDesc{get; private set;} = null;
+
+    private int _progressType = 0;
+    private int _progressCount = 0;
+    private float _progressElapsedTime = 0.0f;
 
     /**
      * @brief コンストラクタ
      */
-    public SubSceneScript() : base((int)UnityBase.Util.SCENE.NODE_SCRIPT_INDEX.TEST_2D_STAGE_SUB_SCENE)
+    public InitSubSceneNodeScript() : base((int)UnityBase.Util.SCENE.NODE_SCRIPT_INDEX.INIT_SUB_SCENE)
     {
-        this._SetStageType(UnityBase.Util.SCENE.STAGE_TYPE.TEST_2D);
-
         return;
     }
 
@@ -45,8 +46,6 @@ public class SubSceneScript : UnityBase.Scene.Stage.SubSceneScript
      */
     protected override void _OnAwake()
     {
-        base._OnAwake();
-
         return;
     }
 
@@ -55,8 +54,6 @@ public class SubSceneScript : UnityBase.Scene.Stage.SubSceneScript
      */
     protected override void _OnDestroy()
     {
-        base._OnDestroy();
-
         return;
     }
 
@@ -67,12 +64,18 @@ public class SubSceneScript : UnityBase.Scene.Stage.SubSceneScript
      */
     protected override int _OnCreate()
     {
-        if (base._OnCreate() < 0) {
-            return (-1);
-        }
+		switch (UnityBase.Global.systemConfigFile.data.systemLanguageType) {
+		case UnityBase.Util.LANGUAGE_TYPE.JAPANESE: {
+            this._messageText.SetText("ちょっと待ってね。");
 
-        this._nameText.SetText(UnityBase.Global.GetText(UnityBase.Util.SCENE.STAGE_NAME_MST_TEXT_ID_ARRAY[(int)this.GetStageType()]));
-        this._messageText.SetText(UnityBase.Global.GetText(UnityBase.Util.MST_TEXT_ID.IN_PREPARATION));
+			break;
+		}
+		default: {
+            this._messageText.SetText("Please wait a second.");
+
+			break;
+		}
+		}
 
         return (0);
     }
@@ -83,7 +86,7 @@ public class SubSceneScript : UnityBase.Scene.Stage.SubSceneScript
      */
     public override void SetCreateDesc(Lib.Scene.NodeScriptCreateDesc create_desc)
     {
-	    this.createDesc = create_desc as UnityBase.Scene.Stage.Test2D.SubSceneScriptCreateDesc;
+	    this.createDesc = create_desc as UnityBase.Scene.InitSubSceneNodeScriptCreateDesc;
 
         base.SetCreateDesc(this.createDesc);
 
@@ -95,7 +98,7 @@ public class SubSceneScript : UnityBase.Scene.Stage.SubSceneScript
      */
     protected override void _OnActive()
     {
-        base._OnActive();
+        this.SetProgressType(1);
 
         return;
     }
@@ -105,8 +108,6 @@ public class SubSceneScript : UnityBase.Scene.Stage.SubSceneScript
      */
     protected override void _OnDeactive()
     {
-        base._OnDeactive();
-
         return;
     }
 
@@ -115,7 +116,66 @@ public class SubSceneScript : UnityBase.Scene.Stage.SubSceneScript
      */
     protected override void _OnUpdate()
     {
-        base._OnUpdate();
+		switch (this._progressType) {
+		case 1: {
+            this._progressElapsedTime += Time.deltaTime;
+
+            this.SetProgressType(2);
+
+			break;
+		}
+		case 2: {
+            this._progressElapsedTime += Time.deltaTime;
+
+		    switch (this._progressCount) {
+		    case 0: {
+                {// MstTextTableFile Create
+		            switch (UnityBase.Global.systemConfigFile.data.systemLanguageType) {
+		            case UnityBase.Util.LANGUAGE_TYPE.JAPANESE: {
+                        UnityBase.Global.mstTextTableFile.readDesc.data.filePath = UnityBase.Util.FILE_PATH.JAPANESE_MST_TEXT_TABLE;
+
+			            break;
+		            }
+		            default: {
+                        UnityBase.Global.mstTextTableFile.readDesc.data.filePath = UnityBase.Util.FILE_PATH.ENGLISH_MST_TEXT_TABLE;
+
+			            break;
+		            }
+		            }
+
+                    UnityBase.Global.mstTextTableFile.readDesc.data.addressablesFlag = true;
+
+                    UnityBase.Global.mstTextTableFile.Read();
+                }
+
+                ++this._progressCount;
+
+			    break;
+		    }
+		    default: {
+                this.SetProgressType(3);
+
+			    break;
+		    }
+		    }
+
+			break;
+		}
+		case 3: {
+            this._progressElapsedTime += Time.deltaTime;
+
+            if (this._progressElapsedTime >= 3.0f) {
+                this.Close(1, 1);
+
+                this.SetProgressType(4);
+            }
+
+			break;
+		}
+		default: {
+			break;
+		}
+		}
 
         return;
     }
@@ -125,8 +185,6 @@ public class SubSceneScript : UnityBase.Scene.Stage.SubSceneScript
      */
     protected override void _OnOpen()
     {
-        base._OnOpen();
-
 		switch (this.GetOpenType()) {
 		case 1: {
             this._openCloseFadeImage.gameObject.SetActive(true);
@@ -157,8 +215,6 @@ public class SubSceneScript : UnityBase.Scene.Stage.SubSceneScript
      */
     protected override void _OnUpdateOpen()
     {
-        base._OnUpdateOpen();
-
         if (!this.IsActiveOpenCloseSequence()) {
             this.CompleteOpen();
 
@@ -173,8 +229,6 @@ public class SubSceneScript : UnityBase.Scene.Stage.SubSceneScript
      */
     protected override void _OnClose()
     {
-        base._OnClose();
-
 		switch (this.GetCloseType()) {
 		case 1: {
             this._openCloseFadeImage.gameObject.SetActive(true);
@@ -205,16 +259,14 @@ public class SubSceneScript : UnityBase.Scene.Stage.SubSceneScript
      */
     protected override void _OnUpdateClose()
     {
-        base._OnUpdateClose();
-
         if (!this.IsActiveOpenCloseSequence()) {
             this.CompleteClose();
 
 		    switch (this.GetClosedType()) {
             case 1: {
-                {// SelectSubSceneScript Create
-                    var script = this.GetManager().ChangeSubScene(UnityBase.Util.FILE_PATH.SELECT_SUB_SCENE_PREFAB) as UnityBase.Scene.Select.SubSceneScript;
-                    var script_create_desc = new UnityBase.Scene.Select.SubSceneScriptCreateDesc();
+                {// TitleSubSceneNodeScript Create
+                    var script = this.GetManager().ChangeSubScene(UnityBase.Util.FILE_PATH.TITLE_SUB_SCENE_PREFAB) as UnityBase.Scene.TitleSubSceneNodeScript;
+                    var script_create_desc = new UnityBase.Scene.TitleSubSceneNodeScriptCreateDesc();
 
                     script.Create(script_create_desc);
                     script.Open(1);
@@ -229,11 +281,23 @@ public class SubSceneScript : UnityBase.Scene.Stage.SubSceneScript
     }
 
     /**
-     * @brief RunBackButton関数
+     * @brief GetProgressType関数
+     * @return progress_type (progress_type)
      */
-    public override void RunBackButton()
+    public int GetProgressType()
     {
-        this.Close(1, 1);
+        return (this._progressType);
+    }
+
+    /**
+     * @brief SetProgressType関数
+     * @param progress_type (progress_type)
+     */
+    public void SetProgressType(int progress_type)
+    {
+        this._progressType = progress_type;
+        this._progressCount = 0;
+        this._progressElapsedTime = 0.0f;
 
         return;
     }

@@ -1,11 +1,12 @@
 ﻿/**
  * @file
- * @brief InitSubSceneScriptファイル
+ * @brief TitleSubSceneNodeScriptファイル
  */
 
 
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 using TMPro;
 using DG.Tweening;
 
@@ -13,30 +14,31 @@ using DG.Tweening;
 namespace ToffMonaka {
 namespace UnityBase.Scene {
 /**
- * @brief InitSubSceneScriptCreateDescクラス
+ * @brief TitleSubSceneNodeScriptCreateDescクラス
  */
-public class InitSubSceneScriptCreateDesc : Lib.Scene.SubSceneNodeScriptCreateDesc
+public class TitleSubSceneNodeScriptCreateDesc : Lib.Scene.SubSceneNodeScriptCreateDesc
 {
 }
 
 /**
- * @brief InitSubSceneScriptクラス
+ * @brief TitleSubSceneNodeScriptクラス
  */
-public class InitSubSceneScript : Lib.Scene.SubSceneNodeScript
+public class TitleSubSceneNodeScript : Lib.Scene.SubSceneNodeScript
 {
-    [SerializeField] private TMP_Text _messageText = null;
+    [SerializeField] private TMP_Text _startButtonNameText = null;
+    [SerializeField] private TMP_Text _companyNameText = null;
+    [SerializeField] private TMP_Text _versionNameText = null;
+    [SerializeField] private GameObject _menuNode = null;
     [SerializeField] private Image _openCloseFadeImage = null;
 
-    public new UnityBase.Scene.InitSubSceneScriptCreateDesc createDesc{get; private set;} = null;
+    public new UnityBase.Scene.TitleSubSceneNodeScriptCreateDesc createDesc{get; private set;} = null;
 
-    private int _progressType = 0;
-    private int _progressCount = 0;
-    private float _progressElapsedTime = 0.0f;
+    private UnityBase.Scene.Ui.MenuScript _menuScript = null;
 
     /**
      * @brief コンストラクタ
      */
-    public InitSubSceneScript() : base((int)UnityBase.Util.SCENE.NODE_SCRIPT_INDEX.INIT_SUB_SCENE)
+    public TitleSubSceneNodeScript() : base((int)UnityBase.Util.SCENE.NODE_SCRIPT_INDEX.TITLE_SUB_SCENE)
     {
         return;
     }
@@ -64,18 +66,20 @@ public class InitSubSceneScript : Lib.Scene.SubSceneNodeScript
      */
     protected override int _OnCreate()
     {
-		switch (UnityBase.Global.systemConfigFile.data.systemLanguageType) {
-		case UnityBase.Util.LANGUAGE_TYPE.JAPANESE: {
-            this._messageText.SetText("ちょっと待ってね。");
+        this._companyNameText.SetText(UnityBase.Util.PROJECT.COMPANY_NAME);
+        this._versionNameText.SetText("Version " + UnityBase.Util.PROJECT.VERSION_NAME);
 
-			break;
-		}
-		default: {
-            this._messageText.SetText("Please wait a second.");
+        {// MenuScript Create
+            var script = this._menuNode.GetComponent<UnityBase.Scene.Ui.MenuScript>();
+            var script_create_desc = new UnityBase.Scene.Ui.MenuScriptCreateDesc();
 
-			break;
-		}
-		}
+            script_create_desc.subSceneNodeScript = this;
+
+            script.Create(script_create_desc);
+            script.Open(0);
+
+            this._menuScript = script;
+        }
 
         return (0);
     }
@@ -86,7 +90,7 @@ public class InitSubSceneScript : Lib.Scene.SubSceneNodeScript
      */
     public override void SetCreateDesc(Lib.Scene.NodeScriptCreateDesc create_desc)
     {
-	    this.createDesc = create_desc as UnityBase.Scene.InitSubSceneScriptCreateDesc;
+	    this.createDesc = create_desc as UnityBase.Scene.TitleSubSceneNodeScriptCreateDesc;
 
         base.SetCreateDesc(this.createDesc);
 
@@ -98,7 +102,9 @@ public class InitSubSceneScript : Lib.Scene.SubSceneNodeScript
      */
     protected override void _OnActive()
     {
-        this.SetProgressType(1);
+        Lib.Scene.Util.GetSoundManager().PlayBgm((int)UnityBase.Util.SOUND.BGM_INDEX.TITLE);
+
+        this._startButtonNameText.DOFade(0.0f, 1.0f).SetLoops(-1, LoopType.Yoyo).SetEase(Ease.InQuart).SetDelay(1.0f).SetLink(this._startButtonNameText.gameObject);
 
         return;
     }
@@ -116,67 +122,6 @@ public class InitSubSceneScript : Lib.Scene.SubSceneNodeScript
      */
     protected override void _OnUpdate()
     {
-		switch (this._progressType) {
-		case 1: {
-            this._progressElapsedTime += Time.deltaTime;
-
-            this.SetProgressType(2);
-
-			break;
-		}
-		case 2: {
-            this._progressElapsedTime += Time.deltaTime;
-
-		    switch (this._progressCount) {
-		    case 0: {
-                {// MstTextTableFile Create
-		            switch (UnityBase.Global.systemConfigFile.data.systemLanguageType) {
-		            case UnityBase.Util.LANGUAGE_TYPE.JAPANESE: {
-                        UnityBase.Global.mstTextTableFile.readDesc.data.filePath = UnityBase.Util.FILE_PATH.JAPANESE_MST_TEXT_TABLE;
-
-			            break;
-		            }
-		            default: {
-                        UnityBase.Global.mstTextTableFile.readDesc.data.filePath = UnityBase.Util.FILE_PATH.ENGLISH_MST_TEXT_TABLE;
-
-			            break;
-		            }
-		            }
-
-                    UnityBase.Global.mstTextTableFile.readDesc.data.addressablesFlag = true;
-
-                    UnityBase.Global.mstTextTableFile.Read();
-                }
-
-                ++this._progressCount;
-
-			    break;
-		    }
-		    default: {
-                this.SetProgressType(3);
-
-			    break;
-		    }
-		    }
-
-			break;
-		}
-		case 3: {
-            this._progressElapsedTime += Time.deltaTime;
-
-            if (this._progressElapsedTime >= 3.0f) {
-                this.Close(1, 1);
-
-                this.SetProgressType(4);
-            }
-
-			break;
-		}
-		default: {
-			break;
-		}
-		}
-
         return;
     }
 
@@ -264,9 +209,9 @@ public class InitSubSceneScript : Lib.Scene.SubSceneNodeScript
 
 		    switch (this.GetClosedType()) {
             case 1: {
-                {// TitleSubSceneScript Create
-                    var script = this.GetManager().ChangeSubScene(UnityBase.Util.FILE_PATH.TITLE_SUB_SCENE_PREFAB) as UnityBase.Scene.TitleSubSceneScript;
-                    var script_create_desc = new UnityBase.Scene.TitleSubSceneScriptCreateDesc();
+                {// SelectSubSceneNodeScript Create
+                    var script = this.GetManager().ChangeSubScene(UnityBase.Util.FILE_PATH.SELECT_SUB_SCENE_PREFAB) as UnityBase.Scene.Select.SubSceneNodeScript;
+                    var script_create_desc = new UnityBase.Scene.Select.SubSceneNodeScriptCreateDesc();
 
                     script.Create(script_create_desc);
                     script.Open(1);
@@ -281,23 +226,18 @@ public class InitSubSceneScript : Lib.Scene.SubSceneNodeScript
     }
 
     /**
-     * @brief GetProgressType関数
-     * @return progress_type (progress_type)
+     * @brief OnStartButtonPointerClick関数
+     * @param event_dat (event_data)
      */
-    public int GetProgressType()
+    public void OnStartButtonPointerClick(PointerEventData event_dat)
     {
-        return (this._progressType);
-    }
+        if (!this.IsControllable()) {
+            return;
+        }
 
-    /**
-     * @brief SetProgressType関数
-     * @param progress_type (progress_type)
-     */
-    public void SetProgressType(int progress_type)
-    {
-        this._progressType = progress_type;
-        this._progressCount = 0;
-        this._progressElapsedTime = 0.0f;
+        Lib.Scene.Util.GetSoundManager().PlaySe((int)UnityBase.Util.SOUND.SE_INDEX.OK);
+
+        this.Close(1, 1);
 
         return;
     }

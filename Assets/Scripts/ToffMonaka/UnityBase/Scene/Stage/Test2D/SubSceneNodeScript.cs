@@ -1,45 +1,42 @@
 ﻿/**
  * @file
- * @brief TitleSubSceneScriptファイル
+ * @brief SubSceneNodeScriptファイル
  */
 
 
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.EventSystems;
 using TMPro;
 using DG.Tweening;
 
 
 namespace ToffMonaka {
-namespace UnityBase.Scene {
+namespace UnityBase.Scene.Stage.Test2D {
 /**
- * @brief TitleSubSceneScriptCreateDescクラス
+ * @brief SubSceneNodeScriptCreateDescクラス
  */
-public class TitleSubSceneScriptCreateDesc : Lib.Scene.SubSceneNodeScriptCreateDesc
+public class SubSceneNodeScriptCreateDesc : UnityBase.Scene.Stage.SubSceneNodeScriptCreateDesc
 {
 }
 
 /**
- * @brief TitleSubSceneScriptクラス
+ * @brief SubSceneNodeScriptクラス
  */
-public class TitleSubSceneScript : Lib.Scene.SubSceneNodeScript
+public class SubSceneNodeScript : UnityBase.Scene.Stage.SubSceneNodeScript
 {
-    [SerializeField] private TMP_Text _startButtonNameText = null;
-    [SerializeField] private TMP_Text _companyNameText = null;
-    [SerializeField] private TMP_Text _versionNameText = null;
-    [SerializeField] private GameObject _menuNode = null;
+    [SerializeField] private TMP_Text _nameText = null;
+    [SerializeField] private TMP_Text _messageText = null;
     [SerializeField] private Image _openCloseFadeImage = null;
 
-    public new UnityBase.Scene.TitleSubSceneScriptCreateDesc createDesc{get; private set;} = null;
-
-    private UnityBase.Scene.Ui.MenuScript _menuScript = null;
+    public new UnityBase.Scene.Stage.Test2D.SubSceneNodeScriptCreateDesc createDesc{get; private set;} = null;
 
     /**
      * @brief コンストラクタ
      */
-    public TitleSubSceneScript() : base((int)UnityBase.Util.SCENE.NODE_SCRIPT_INDEX.TITLE_SUB_SCENE)
+    public SubSceneNodeScript() : base((int)UnityBase.Util.SCENE.NODE_SCRIPT_INDEX.TEST_2D_STAGE_SUB_SCENE)
     {
+        this._SetStageType(UnityBase.Util.SCENE.STAGE_TYPE.TEST_2D);
+
         return;
     }
 
@@ -48,6 +45,8 @@ public class TitleSubSceneScript : Lib.Scene.SubSceneNodeScript
      */
     protected override void _OnAwake()
     {
+        base._OnAwake();
+
         return;
     }
 
@@ -56,6 +55,8 @@ public class TitleSubSceneScript : Lib.Scene.SubSceneNodeScript
      */
     protected override void _OnDestroy()
     {
+        base._OnDestroy();
+
         return;
     }
 
@@ -66,20 +67,12 @@ public class TitleSubSceneScript : Lib.Scene.SubSceneNodeScript
      */
     protected override int _OnCreate()
     {
-        this._companyNameText.SetText(UnityBase.Util.PROJECT.COMPANY_NAME);
-        this._versionNameText.SetText("Version " + UnityBase.Util.PROJECT.VERSION_NAME);
-
-        {// MenuScript Create
-            var script = this._menuNode.GetComponent<UnityBase.Scene.Ui.MenuScript>();
-            var script_create_desc = new UnityBase.Scene.Ui.MenuScriptCreateDesc();
-
-            script_create_desc.subSceneScript = this;
-
-            script.Create(script_create_desc);
-            script.Open(0);
-
-            this._menuScript = script;
+        if (base._OnCreate() < 0) {
+            return (-1);
         }
+
+        this._nameText.SetText(UnityBase.Global.GetText(UnityBase.Util.SCENE.STAGE_NAME_MST_TEXT_ID_ARRAY[(int)this.GetStageType()]));
+        this._messageText.SetText(UnityBase.Global.GetText(UnityBase.Util.MST_TEXT_ID.IN_PREPARATION));
 
         return (0);
     }
@@ -90,7 +83,7 @@ public class TitleSubSceneScript : Lib.Scene.SubSceneNodeScript
      */
     public override void SetCreateDesc(Lib.Scene.NodeScriptCreateDesc create_desc)
     {
-	    this.createDesc = create_desc as UnityBase.Scene.TitleSubSceneScriptCreateDesc;
+	    this.createDesc = create_desc as UnityBase.Scene.Stage.Test2D.SubSceneNodeScriptCreateDesc;
 
         base.SetCreateDesc(this.createDesc);
 
@@ -102,9 +95,7 @@ public class TitleSubSceneScript : Lib.Scene.SubSceneNodeScript
      */
     protected override void _OnActive()
     {
-        Lib.Scene.Util.GetSoundManager().PlayBgm((int)UnityBase.Util.SOUND.BGM_INDEX.TITLE);
-
-        this._startButtonNameText.DOFade(0.0f, 1.0f).SetLoops(-1, LoopType.Yoyo).SetEase(Ease.InQuart).SetDelay(1.0f).SetLink(this._startButtonNameText.gameObject);
+        base._OnActive();
 
         return;
     }
@@ -114,6 +105,8 @@ public class TitleSubSceneScript : Lib.Scene.SubSceneNodeScript
      */
     protected override void _OnDeactive()
     {
+        base._OnDeactive();
+
         return;
     }
 
@@ -122,6 +115,8 @@ public class TitleSubSceneScript : Lib.Scene.SubSceneNodeScript
      */
     protected override void _OnUpdate()
     {
+        base._OnUpdate();
+
         return;
     }
 
@@ -130,6 +125,8 @@ public class TitleSubSceneScript : Lib.Scene.SubSceneNodeScript
      */
     protected override void _OnOpen()
     {
+        base._OnOpen();
+
 		switch (this.GetOpenType()) {
 		case 1: {
             this._openCloseFadeImage.gameObject.SetActive(true);
@@ -160,6 +157,8 @@ public class TitleSubSceneScript : Lib.Scene.SubSceneNodeScript
      */
     protected override void _OnUpdateOpen()
     {
+        base._OnUpdateOpen();
+
         if (!this.IsActiveOpenCloseSequence()) {
             this.CompleteOpen();
 
@@ -174,6 +173,8 @@ public class TitleSubSceneScript : Lib.Scene.SubSceneNodeScript
      */
     protected override void _OnClose()
     {
+        base._OnClose();
+
 		switch (this.GetCloseType()) {
 		case 1: {
             this._openCloseFadeImage.gameObject.SetActive(true);
@@ -204,14 +205,16 @@ public class TitleSubSceneScript : Lib.Scene.SubSceneNodeScript
      */
     protected override void _OnUpdateClose()
     {
+        base._OnUpdateClose();
+
         if (!this.IsActiveOpenCloseSequence()) {
             this.CompleteClose();
 
 		    switch (this.GetClosedType()) {
             case 1: {
-                {// SelectSubSceneScript Create
-                    var script = this.GetManager().ChangeSubScene(UnityBase.Util.FILE_PATH.SELECT_SUB_SCENE_PREFAB) as UnityBase.Scene.Select.SubSceneScript;
-                    var script_create_desc = new UnityBase.Scene.Select.SubSceneScriptCreateDesc();
+                {// SelectSubSceneNodeScript Create
+                    var script = this.GetManager().ChangeSubScene(UnityBase.Util.FILE_PATH.SELECT_SUB_SCENE_PREFAB) as UnityBase.Scene.Select.SubSceneNodeScript;
+                    var script_create_desc = new UnityBase.Scene.Select.SubSceneNodeScriptCreateDesc();
 
                     script.Create(script_create_desc);
                     script.Open(1);
@@ -226,17 +229,10 @@ public class TitleSubSceneScript : Lib.Scene.SubSceneNodeScript
     }
 
     /**
-     * @brief OnStartButtonPointerClick関数
-     * @param event_dat (event_data)
+     * @brief RunBackButton関数
      */
-    public void OnStartButtonPointerClick(PointerEventData event_dat)
+    public override void RunBackButton()
     {
-        if (!this.IsControllable()) {
-            return;
-        }
-
-        Lib.Scene.Util.GetSoundManager().PlaySe((int)UnityBase.Util.SOUND.SE_INDEX.OK);
-
         this.Close(1, 1);
 
         return;

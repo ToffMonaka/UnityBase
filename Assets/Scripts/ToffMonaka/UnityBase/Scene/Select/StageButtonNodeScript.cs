@@ -1,40 +1,43 @@
 ﻿/**
  * @file
- * @brief BackButtonScriptファイル
+ * @brief StageButtonNodeScriptファイル
  */
 
 
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
-using DG.Tweening;
+using TMPro;
 
 
 namespace ToffMonaka {
-namespace UnityBase.Scene.Stage {
+namespace UnityBase.Scene.Select {
 /**
- * @brief BackButtonScriptCreateDescクラス
+ * @brief StageButtonNodeScriptCreateDescクラス
  */
-public class BackButtonScriptCreateDesc : Lib.Scene.ObjectNodeScriptCreateDesc
+public class StageButtonNodeScriptCreateDesc : Lib.Scene.ObjectNodeScriptCreateDesc
 {
-    public UnityBase.Scene.Stage.SubSceneScript subSceneScript = null;
+    public UnityBase.Scene.Select.StageBoardNodeScript boardNodeScript = null;
+    public UnityBase.Util.SCENE.STAGE_TYPE stageType = UnityBase.Util.SCENE.STAGE_TYPE.NONE;
 }
 
 /**
- * @brief BackButtonScriptクラス
+ * @brief StageButtonNodeScriptクラス
  */
-public class BackButtonScript : Lib.Scene.ObjectNodeScript, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
+public class StageButtonNodeScript : Lib.Scene.ObjectNodeScript, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
 {
+    [SerializeField] private TMP_Text _nameText = null;
     [SerializeField] private Image _coverImage = null;
 
-    public new UnityBase.Scene.Stage.BackButtonScriptCreateDesc createDesc{get; private set;} = null;
+    public new UnityBase.Scene.Select.StageButtonNodeScriptCreateDesc createDesc{get; private set;} = null;
 
-    private UnityBase.Scene.Stage.SubSceneScript _subSceneScript = null;
+    private UnityBase.Scene.Select.StageBoardNodeScript _boardNodeScript = null;
+    private UnityBase.Util.SCENE.STAGE_TYPE _stageType = UnityBase.Util.SCENE.STAGE_TYPE.NONE;
 
     /**
      * @brief コンストラクタ
      */
-    public BackButtonScript() : base((int)UnityBase.Util.SCENE.NODE_SCRIPT_INDEX.STAGE_BACK_BUTTON)
+    public StageButtonNodeScript() : base((int)UnityBase.Util.SCENE.NODE_SCRIPT_INDEX.SELECT_STAGE_BUTTON)
     {
         return;
     }
@@ -62,7 +65,10 @@ public class BackButtonScript : Lib.Scene.ObjectNodeScript, IPointerClickHandler
      */
     protected override int _OnCreate()
     {
-        this._subSceneScript = this.createDesc.subSceneScript;
+        this._boardNodeScript = this.createDesc.boardNodeScript;
+        this._stageType = this.createDesc.stageType;
+
+        this._nameText.SetText(UnityBase.Global.GetText(UnityBase.Util.SCENE.STAGE_NAME_MST_TEXT_ID_ARRAY[(int)this._stageType]));
 
         return (0);
     }
@@ -73,7 +79,7 @@ public class BackButtonScript : Lib.Scene.ObjectNodeScript, IPointerClickHandler
      */
     public override void SetCreateDesc(Lib.Scene.NodeScriptCreateDesc create_desc)
     {
-	    this.createDesc = create_desc as UnityBase.Scene.Stage.BackButtonScriptCreateDesc;
+	    this.createDesc = create_desc as UnityBase.Scene.Select.StageButtonNodeScriptCreateDesc;
 
         base.SetCreateDesc(this.createDesc);
 
@@ -111,28 +117,6 @@ public class BackButtonScript : Lib.Scene.ObjectNodeScript, IPointerClickHandler
      */
     protected override void _OnOpen()
     {
-        var rect_transform = this.gameObject.GetComponent<RectTransform>();
-
-		switch (this.GetOpenType()) {
-		case 1: {
-            rect_transform.anchoredPosition = new Vector2(rect_transform.sizeDelta.x + 8.0f, rect_transform.anchoredPosition.y);
-
-            var open_close_sequence = DOTween.Sequence();
-
-            open_close_sequence.Append(rect_transform.DOAnchorPosX(-8.0f, 0.1f));
-            open_close_sequence.SetLink(this.gameObject);
-
-            this.AddOpenCloseSequence(open_close_sequence);
-
-			break;
-		}
-		default: {
-            rect_transform.anchoredPosition = new Vector2(-8.0f, rect_transform.anchoredPosition.y);
-
-			break;
-		}
-		}
-
         return;
     }
 
@@ -141,9 +125,7 @@ public class BackButtonScript : Lib.Scene.ObjectNodeScript, IPointerClickHandler
      */
     protected override void _OnUpdateOpen()
     {
-        if (!this.IsActiveOpenCloseSequence()) {
-            this.CompleteOpen();
-        }
+        this.CompleteOpen();
 
         return;
     }
@@ -153,28 +135,6 @@ public class BackButtonScript : Lib.Scene.ObjectNodeScript, IPointerClickHandler
      */
     protected override void _OnClose()
     {
-        var rect_transform = this.gameObject.GetComponent<RectTransform>();
-
-		switch (this.GetCloseType()) {
-		case 1: {
-            rect_transform.anchoredPosition = new Vector2(-8.0f, rect_transform.anchoredPosition.y);
-
-            var open_close_sequence = DOTween.Sequence();
-
-            open_close_sequence.Append(rect_transform.DOAnchorPosX(rect_transform.sizeDelta.x + 8.0f, 0.1f));
-            open_close_sequence.SetLink(this.gameObject);
-
-            this.AddOpenCloseSequence(open_close_sequence);
-
-			break;
-		}
-		default: {
-            rect_transform.anchoredPosition = new Vector2(rect_transform.sizeDelta.x + 8.0f, rect_transform.anchoredPosition.y);
-
-			break;
-		}
-		}
-
         return;
     }
 
@@ -183,9 +143,7 @@ public class BackButtonScript : Lib.Scene.ObjectNodeScript, IPointerClickHandler
      */
     protected override void _OnUpdateClose()
     {
-        if (!this.IsActiveOpenCloseSequence()) {
-            this.CompleteClose();
-        }
+        this.CompleteClose();
 
         return;
     }
@@ -200,9 +158,9 @@ public class BackButtonScript : Lib.Scene.ObjectNodeScript, IPointerClickHandler
             return;
         }
 
-        Lib.Scene.Util.GetSoundManager().PlaySe((int)UnityBase.Util.SOUND.SE_INDEX.CANCEL);
+        Lib.Scene.Util.GetSoundManager().PlaySe((int)UnityBase.Util.SOUND.SE_INDEX.OK2);
 
-        this._subSceneScript.RunBackButton();
+        this._boardNodeScript.RunStageButton(this._stageType);
 
         return;
     }

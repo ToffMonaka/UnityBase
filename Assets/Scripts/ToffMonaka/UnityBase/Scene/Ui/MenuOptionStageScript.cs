@@ -55,7 +55,7 @@ public class MenuOptionStageScript : UnityBase.Scene.Ui.MenuStageScript
     private bool _soundSeMuteFlag = false;
     private uint _restartFlag = 0U;
     private GameObject _languageSelectDialogNode = null;
-    private UnityBase.Scene.Ui.SelectDialogScript _languageSelectDialogScript = null;
+    private UnityBase.Scene.Ui.SelectDialogNodeScript _languageSelectDialogNodeScript = null;
 
     /**
      * @brief コンストラクタ
@@ -82,10 +82,10 @@ public class MenuOptionStageScript : UnityBase.Scene.Ui.MenuStageScript
      */
     protected override void _OnDestroy()
     {
-        if (this._languageSelectDialogScript != null) {
+        if (this._languageSelectDialogNodeScript != null) {
             Lib.Scene.Util.ReleasePrefabNode(ref this._languageSelectDialogNode);
 
-            this._languageSelectDialogScript = null;
+            this._languageSelectDialogNodeScript = null;
         }
 
         base._OnDestroy();
@@ -223,18 +223,18 @@ public class MenuOptionStageScript : UnityBase.Scene.Ui.MenuStageScript
 
         Lib.Scene.Util.GetSoundManager().PlaySe((int)UnityBase.Util.SOUND.SE_INDEX.OK2);
 
-        // LanguageSelectDialogScript Create
-        if (this._languageSelectDialogScript == null) {
-            this._languageSelectDialogNode = Lib.Scene.Util.GetPrefabNode(UnityBase.Util.FILE_PATH.SELECT_DIALOG_PREFAB, this.GetMenuScript().GetSubSceneScript().GetDialogNode());
+        // LanguageSelectDialogNodeScript Create
+        if (this._languageSelectDialogNodeScript == null) {
+            this._languageSelectDialogNode = Lib.Scene.Util.GetPrefabNode(UnityBase.Util.FILE_PATH.SELECT_DIALOG_PREFAB, this.GetMenuScript().GetSubSceneNodeScript().GetDialogNode());
 
-            var script = this._languageSelectDialogNode.GetComponent<UnityBase.Scene.Ui.SelectDialogScript>();
-            var script_create_desc = new UnityBase.Scene.Ui.SelectDialogScriptCreateDesc();
+            var script = this._languageSelectDialogNode.GetComponent<UnityBase.Scene.Ui.SelectDialogNodeScript>();
+            var script_create_desc = new UnityBase.Scene.Ui.SelectDialogNodeScriptCreateDesc();
 
-            void on_click_item_btn(UnityBase.Scene.Ui.SelectDialogScript dialog_script, UnityBase.Scene.Ui.SelectDialogItemButtonScript item_btn_script)
+            void on_click_item_btn(UnityBase.Scene.Ui.SelectDialogNodeScript dialog_node_script, UnityBase.Scene.Ui.SelectDialogItemButtonNodeScript item_btn_node_script)
             {
-                var item_btn_script_engine = item_btn_script.GetEngine() as UnityBase.Scene.Ui.LanguageSelectDialogItemButtonEngine;
+                var item_btn_node_script_engine = item_btn_node_script.GetEngine() as UnityBase.Scene.Ui.LanguageSelectDialogItemButtonEngine;
 
-                this.SetLanguageType(item_btn_script_engine.GetLanguageType());
+                this.SetLanguageType(item_btn_node_script_engine.GetLanguageType());
 
                 return;
             }
@@ -243,14 +243,14 @@ public class MenuOptionStageScript : UnityBase.Scene.Ui.MenuStageScript
 
             script.Create(script_create_desc);
 
-            this._languageSelectDialogScript = script;
+            this._languageSelectDialogNodeScript = script;
 
-            this._languageSelectDialogScript.AddItemButton(new UnityBase.Scene.Ui.LanguageSelectDialogItemButtonEngine(UnityBase.Util.LANGUAGE_TYPE.ENGLISH));
-            this._languageSelectDialogScript.AddItemButton(new UnityBase.Scene.Ui.LanguageSelectDialogItemButtonEngine(UnityBase.Util.LANGUAGE_TYPE.JAPANESE));
+            this._languageSelectDialogNodeScript.AddItemButton(new UnityBase.Scene.Ui.LanguageSelectDialogItemButtonEngine(UnityBase.Util.LANGUAGE_TYPE.ENGLISH));
+            this._languageSelectDialogNodeScript.AddItemButton(new UnityBase.Scene.Ui.LanguageSelectDialogItemButtonEngine(UnityBase.Util.LANGUAGE_TYPE.JAPANESE));
         }
 
-        if (this._languageSelectDialogScript != null) {
-            this._languageSelectDialogScript.Open(1);
+        if (this._languageSelectDialogNodeScript != null) {
+            this._languageSelectDialogNodeScript.Open(1);
         }
 
         return;

@@ -15,7 +15,7 @@ namespace UnityBase.Scene.Ui {
  */
 public class MenuScriptCreateDesc : Lib.Scene.ObjectNodeScriptCreateDesc
 {
-    public Lib.Scene.SubSceneNodeScript subSceneScript = null;
+    public Lib.Scene.SubSceneNodeScript subSceneNodeScript = null;
 }
 
 /**
@@ -36,8 +36,8 @@ public class MenuScript : Lib.Scene.ObjectNodeScript
 
     public new UnityBase.Scene.Ui.MenuScriptCreateDesc createDesc{get; private set;} = null;
 
-    private Lib.Scene.SubSceneNodeScript _subSceneScript = null;
-    private UnityBase.Scene.Ui.MenuOpenCloseButtonScript _openCloseButtonScript = null;
+    private Lib.Scene.SubSceneNodeScript _subSceneNodeScript = null;
+    private UnityBase.Scene.Ui.MenuOpenCloseButtonNodeScript _openCloseButtonNodeScript = null;
     private UnityBase.Scene.Ui.MenuSelectScript _selectScript = null;
     private UnityBase.Scene.Ui.MenuSelectScript _openSelectScript = null;
     private UnityBase.Scene.Ui.MenuOptionStageScript _optionStageScript = null;
@@ -80,20 +80,20 @@ public class MenuScript : Lib.Scene.ObjectNodeScript
      */
     protected override int _OnCreate()
     {
-        this._subSceneScript = this.createDesc.subSceneScript;
+        this._subSceneNodeScript = this.createDesc.subSceneNodeScript;
 
         this._backgroundImage.gameObject.SetActive(false);
 
-        {// OpenCloseButtonScript Create
-            var script = this._openCloseButtonNode.GetComponent<UnityBase.Scene.Ui.MenuOpenCloseButtonScript>();
-            var script_create_desc = new UnityBase.Scene.Ui.MenuOpenCloseButtonScriptCreateDesc();
+        {// OpenCloseButtonNodeScript Create
+            var script = this._openCloseButtonNode.GetComponent<UnityBase.Scene.Ui.MenuOpenCloseButtonNodeScript>();
+            var script_create_desc = new UnityBase.Scene.Ui.MenuOpenCloseButtonNodeScriptCreateDesc();
 
             script_create_desc.menuScript = this;
 
             script.Create(script_create_desc);
             script.Open(1);
 
-            this._openCloseButtonScript = script;
+            this._openCloseButtonNodeScript = script;
         }
 
         {// SelectScript Create
@@ -261,12 +261,12 @@ public class MenuScript : Lib.Scene.ObjectNodeScript
     }
 
     /**
-     * @brief GetSubSceneScript関数
-     * @return sub_scene_script (sub_scene_script)
+     * @brief GetSubSceneNodeScript関数
+     * @return sub_scene_node_script (sub_scene_node_script)
      */
-    public Lib.Scene.SubSceneNodeScript GetSubSceneScript()
+    public Lib.Scene.SubSceneNodeScript GetSubSceneNodeScript()
     {
-        return (this._subSceneScript);
+        return (this._subSceneNodeScript);
     }
 
     /**

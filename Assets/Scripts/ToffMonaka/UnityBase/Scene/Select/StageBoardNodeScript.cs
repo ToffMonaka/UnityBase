@@ -1,6 +1,6 @@
 ﻿/**
  * @file
- * @brief StageBoardScriptファイル
+ * @brief StageBoardNodeScriptファイル
  */
 
 
@@ -11,27 +11,27 @@ using System.Collections.Generic;
 namespace ToffMonaka {
 namespace UnityBase.Scene.Select {
 /**
- * @brief StageBoardScriptCreateDescクラス
+ * @brief StageBoardNodeScriptCreateDescクラス
  */
-public class StageBoardScriptCreateDesc : UnityBase.Scene.Select.BoardScriptCreateDesc
+public class StageBoardNodeScriptCreateDesc : UnityBase.Scene.Select.BoardNodeScriptCreateDesc
 {
 }
 
 /**
- * @brief StageBoardScriptクラス
+ * @brief StageBoardNodeScriptクラス
  */
-public class StageBoardScript : UnityBase.Scene.Select.BoardScript
+public class StageBoardNodeScript : UnityBase.Scene.Select.BoardNodeScript
 {
     [SerializeField] private GameObject _stageButtonNode = null;
 
-    public new UnityBase.Scene.Select.StageBoardScriptCreateDesc createDesc{get; private set;} = null;
+    public new UnityBase.Scene.Select.StageBoardNodeScriptCreateDesc createDesc{get; private set;} = null;
 
-    private List<UnityBase.Scene.Select.StageButtonScript> _stageButtonScriptContainer = new List<UnityBase.Scene.Select.StageButtonScript>();
+    private List<UnityBase.Scene.Select.StageButtonNodeScript> _stageButtonNodeScriptContainer = new List<UnityBase.Scene.Select.StageButtonNodeScript>();
 
     /**
      * @brief コンストラクタ
      */
-    public StageBoardScript() : base((int)UnityBase.Util.SCENE.NODE_SCRIPT_INDEX.SELECT_STAGE_BOARD)
+    public StageBoardNodeScript() : base((int)UnityBase.Util.SCENE.NODE_SCRIPT_INDEX.SELECT_STAGE_BOARD)
     {
         this._SetBoardType(UnityBase.Util.SCENE.SELECT_BOARD_TYPE.STAGE);
 
@@ -71,23 +71,23 @@ public class StageBoardScript : UnityBase.Scene.Select.BoardScript
 
         this._stageButtonNode.SetActive(false);
 
-        {// StageButtonScript Create
+        {// StageButtonNodeScript Create
             UnityBase.Util.SCENE.STAGE_TYPE[] stage_type_ary = {
                 UnityBase.Util.SCENE.STAGE_TYPE.TEST_2D,
                 UnityBase.Util.SCENE.STAGE_TYPE.TEST_3D
             };
 
             foreach (var stage_type in stage_type_ary) {
-                var script = GameObject.Instantiate(this._stageButtonNode, this._stageButtonNode.transform.parent).GetComponent<UnityBase.Scene.Select.StageButtonScript>();
-                var script_create_desc = new UnityBase.Scene.Select.StageButtonScriptCreateDesc();
+                var script = GameObject.Instantiate(this._stageButtonNode, this._stageButtonNode.transform.parent).GetComponent<UnityBase.Scene.Select.StageButtonNodeScript>();
+                var script_create_desc = new UnityBase.Scene.Select.StageButtonNodeScriptCreateDesc();
 
-                script_create_desc.boardScript = this;
+                script_create_desc.boardNodeScript = this;
                 script_create_desc.stageType = stage_type;
 
                 script.Create(script_create_desc);
                 script.Open(0);
 
-                this._stageButtonScriptContainer.Add(script);
+                this._stageButtonNodeScriptContainer.Add(script);
             }
         }
 
@@ -100,7 +100,7 @@ public class StageBoardScript : UnityBase.Scene.Select.BoardScript
      */
     public override void SetCreateDesc(Lib.Scene.NodeScriptCreateDesc create_desc)
     {
-	    this.createDesc = create_desc as UnityBase.Scene.Select.StageBoardScriptCreateDesc;
+	    this.createDesc = create_desc as UnityBase.Scene.Select.StageBoardNodeScriptCreateDesc;
 
         base.SetCreateDesc(this.createDesc);
 
@@ -183,7 +183,7 @@ public class StageBoardScript : UnityBase.Scene.Select.BoardScript
      */
     public void RunStageButton(UnityBase.Util.SCENE.STAGE_TYPE stage_type)
     {
-        this.GetSubSceneScript().RunStageButton(stage_type);
+        this.GetSubSceneNodeScript().RunStageButton(stage_type);
 
         return;
     }

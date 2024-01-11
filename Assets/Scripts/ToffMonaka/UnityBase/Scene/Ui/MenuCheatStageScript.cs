@@ -36,7 +36,7 @@ public class MenuCheatStageScript : UnityBase.Scene.Ui.MenuStageScript
 
     public new UnityBase.Scene.Ui.MenuCheatStageScriptCreateDesc createDesc{get; private set;} = null;
 
-    private List<UnityBase.Scene.Ui.MenuCheatStageCommandButtonScript> _commandButtonScriptContainer = new List<UnityBase.Scene.Ui.MenuCheatStageCommandButtonScript>();
+    private List<UnityBase.Scene.Ui.MenuCheatStageCommandButtonNodeScript> _commandButtonNodeScriptContainer = new List<UnityBase.Scene.Ui.MenuCheatStageCommandButtonNodeScript>();
 
     /**
      * @brief コンストラクタ
@@ -83,9 +83,9 @@ public class MenuCheatStageScript : UnityBase.Scene.Ui.MenuStageScript
 
         this._commandButtonNode.SetActive(false);
 
-        {// CommandButtonScript Create
-            var script = GameObject.Instantiate(this._commandButtonNode, this._commandButtonNode.transform.parent).GetComponent<UnityBase.Scene.Ui.MenuCheatStageCommandButtonScript>();
-            var script_create_desc = new UnityBase.Scene.Ui.MenuCheatStageCommandButtonScriptCreateDesc();
+        {// CommandButtonNodeScript Create
+            var script = GameObject.Instantiate(this._commandButtonNode, this._commandButtonNode.transform.parent).GetComponent<UnityBase.Scene.Ui.MenuCheatStageCommandButtonNodeScript>();
+            var script_create_desc = new UnityBase.Scene.Ui.MenuCheatStageCommandButtonNodeScriptCreateDesc();
 
             script_create_desc.stageScript = this;
             script_create_desc.commandType = UnityBase.Util.SCENE.MENU_CHEAT_STAGE_COMMAND_TYPE.DATA_DELETE;
@@ -93,7 +93,7 @@ public class MenuCheatStageScript : UnityBase.Scene.Ui.MenuStageScript
             script.Create(script_create_desc);
             script.Open(0);
 
-            this._commandButtonScriptContainer.Add(script);
+            this._commandButtonNodeScriptContainer.Add(script);
         }
 
         this._okButtonNameText.SetText(UnityBase.Global.GetText(UnityBase.Util.MST_TEXT_ID.OK));

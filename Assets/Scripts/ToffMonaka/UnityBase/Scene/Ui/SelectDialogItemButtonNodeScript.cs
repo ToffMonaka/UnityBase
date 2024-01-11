@@ -1,6 +1,6 @@
 ﻿/**
  * @file
- * @brief MenuSelectStageButtonScriptファイル
+ * @brief SelectDialogItemButtonNodeScriptファイル
  */
 
 
@@ -13,31 +13,31 @@ using TMPro;
 namespace ToffMonaka {
 namespace UnityBase.Scene.Ui {
 /**
- * @brief MenuSelectStageButtonScriptCreateDescクラス
+ * @brief SelectDialogItemButtonNodeScriptCreateDescクラス
  */
-public class MenuSelectStageButtonScriptCreateDesc : Lib.Scene.ObjectNodeScriptCreateDesc
+public class SelectDialogItemButtonNodeScriptCreateDesc : Lib.Scene.ObjectNodeScriptCreateDesc
 {
-    public UnityBase.Scene.Ui.MenuSelectScript selectScript = null;
-    public UnityBase.Util.SCENE.MENU_STAGE_TYPE stageType = UnityBase.Util.SCENE.MENU_STAGE_TYPE.NONE;
+    public UnityBase.Scene.Ui.SelectDialogItemButtonEngine engine = null;
+    public System.Action<UnityBase.Scene.Ui.SelectDialogItemButtonNodeScript> onClick = null;
 }
 
 /**
- * @brief MenuSelectStageButtonScriptクラス
+ * @brief SelectDialogItemButtonNodeScriptクラス
  */
-public class MenuSelectStageButtonScript : Lib.Scene.ObjectNodeScript, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
+public class SelectDialogItemButtonNodeScript : Lib.Scene.ObjectNodeScript, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
 {
     [SerializeField] private TMP_Text _nameText = null;
     [SerializeField] private Image _coverImage = null;
 
-    public new UnityBase.Scene.Ui.MenuSelectStageButtonScriptCreateDesc createDesc{get; private set;} = null;
+    public new UnityBase.Scene.Ui.SelectDialogItemButtonNodeScriptCreateDesc createDesc{get; private set;} = null;
 
-    private UnityBase.Scene.Ui.MenuSelectScript _selectScript = null;
-    private UnityBase.Util.SCENE.MENU_STAGE_TYPE _stageType = UnityBase.Util.SCENE.MENU_STAGE_TYPE.NONE;
+    private UnityBase.Scene.Ui.SelectDialogItemButtonEngine _engine = null;
+    private System.Action<UnityBase.Scene.Ui.SelectDialogItemButtonNodeScript> _onClick = null;
 
     /**
      * @brief コンストラクタ
      */
-    public MenuSelectStageButtonScript() : base((int)UnityBase.Util.SCENE.NODE_SCRIPT_INDEX.MENU_SELECT_STAGE_BUTTON)
+    public SelectDialogItemButtonNodeScript() : base((int)UnityBase.Util.SCENE.NODE_SCRIPT_INDEX.SELECT_DIALOG_ITEM_BUTTON)
     {
         return;
     }
@@ -65,10 +65,15 @@ public class MenuSelectStageButtonScript : Lib.Scene.ObjectNodeScript, IPointerC
      */
     protected override int _OnCreate()
     {
-        this._selectScript = this.createDesc.selectScript;
-        this._stageType = this.createDesc.stageType;
+        if (this.createDesc.engine == null) {
+            return (-1);
+        }
 
-        this._nameText.SetText(UnityBase.Global.GetText(UnityBase.Util.SCENE.MENU_STAGE_NAME_MST_TEXT_ID_ARRAY[(int)this._stageType]));
+        this._engine = this.createDesc.engine;
+
+        this._onClick = this.createDesc.onClick;
+
+        this._nameText.SetText(this._engine.OnGetName());
 
         return (0);
     }
@@ -79,7 +84,7 @@ public class MenuSelectStageButtonScript : Lib.Scene.ObjectNodeScript, IPointerC
      */
     public override void SetCreateDesc(Lib.Scene.NodeScriptCreateDesc create_desc)
     {
-	    this.createDesc = create_desc as UnityBase.Scene.Ui.MenuSelectStageButtonScriptCreateDesc;
+	    this.createDesc = create_desc as UnityBase.Scene.Ui.SelectDialogItemButtonNodeScriptCreateDesc;
 
         base.SetCreateDesc(this.createDesc);
 
@@ -160,7 +165,7 @@ public class MenuSelectStageButtonScript : Lib.Scene.ObjectNodeScript, IPointerC
 
         Lib.Scene.Util.GetSoundManager().PlaySe((int)UnityBase.Util.SOUND.SE_INDEX.OK2);
 
-        this._selectScript.RunStageButton(this._stageType);
+        this._onClick(this);
 
         return;
     }
@@ -189,6 +194,15 @@ public class MenuSelectStageButtonScript : Lib.Scene.ObjectNodeScript, IPointerC
         this._coverImage.gameObject.SetActive(false);
 
         return;
+    }
+
+    /**
+     * @brief GetEngine関数
+     * @return engine (engine)
+     */
+    public UnityBase.Scene.Ui.SelectDialogItemButtonEngine GetEngine()
+    {
+        return (this._engine);
     }
 }
 }

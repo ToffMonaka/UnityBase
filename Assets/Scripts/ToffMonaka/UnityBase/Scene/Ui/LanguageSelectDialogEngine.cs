@@ -14,13 +14,13 @@ namespace UnityBase.Scene.Ui {
  */
 public class LanguageSelectDialogEngine : UnityBase.Scene.Ui.SelectDialogEngine
 {
-    private System.Action<UnityBase.Scene.Ui.SelectDialogScript, UnityBase.Scene.Ui.SelectDialogItemButtonScript> _onClickItemButton;
+    private System.Action<UnityBase.Scene.Ui.SelectDialogNodeScript, UnityBase.Scene.Ui.SelectDialogItemButtonNodeScript> _onClickItemButton;
 
     /**
      * @brief コンストラクタ
      * @param on_click_item_btn (on_click_item_button)
      */
-    public LanguageSelectDialogEngine(System.Action<UnityBase.Scene.Ui.SelectDialogScript, UnityBase.Scene.Ui.SelectDialogItemButtonScript> on_click_item_btn)
+    public LanguageSelectDialogEngine(System.Action<UnityBase.Scene.Ui.SelectDialogNodeScript, UnityBase.Scene.Ui.SelectDialogItemButtonNodeScript> on_click_item_btn)
     {
         this._onClickItemButton = on_click_item_btn;
 
@@ -38,12 +38,12 @@ public class LanguageSelectDialogEngine : UnityBase.Scene.Ui.SelectDialogEngine
 
     /**
      * @brief OnClickItemButton関数
-     * @param dialog_script (dialog_script)
-     * @param item_btn_script (item_button_script)
+     * @param dialog_node_script (dialog_node_script)
+     * @param item_btn_node_script (item_button_node_script)
      */
-    public override void OnClickItemButton(UnityBase.Scene.Ui.SelectDialogScript dialog_script, UnityBase.Scene.Ui.SelectDialogItemButtonScript item_btn_script)
+    public override void OnClickItemButton(UnityBase.Scene.Ui.SelectDialogNodeScript dialog_node_script, UnityBase.Scene.Ui.SelectDialogItemButtonNodeScript item_btn_node_script)
     {
-        this._onClickItemButton?.Invoke(dialog_script, item_btn_script);
+        this._onClickItemButton?.Invoke(dialog_node_script, item_btn_node_script);
 
         return;
     }

@@ -33,10 +33,10 @@ public abstract class SelectDialogEngine
 
     /**
      * @brief OnClickItemButton関数
-     * @param dialog_script (dialog_script)
-     * @param item_btn_script (item_button_script)
+     * @param dialog_node_script (dialog_node_script)
+     * @param item_btn_node_script (item_button_node_script)
      */
-    public virtual void OnClickItemButton(UnityBase.Scene.Ui.SelectDialogScript dialog_script, UnityBase.Scene.Ui.SelectDialogItemButtonScript item_btn_script)
+    public virtual void OnClickItemButton(UnityBase.Scene.Ui.SelectDialogNodeScript dialog_node_script, UnityBase.Scene.Ui.SelectDialogItemButtonNodeScript item_btn_node_script)
     {
         return;
     }

@@ -42,9 +42,9 @@ public abstract class InputDialogEngine
 
     /**
      * @brief OnClickOkButton関数
-     * @param dialog_script (dialog_script)
+     * @param dialog_node_script (dialog_node_script)
      */
-    public virtual void OnClickOkButton(UnityBase.Scene.Ui.InputDialogScript dialog_script)
+    public virtual void OnClickOkButton(UnityBase.Scene.Ui.InputDialogNodeScript dialog_node_script)
     {
         return;
     }

@@ -1,6 +1,6 @@
 ﻿/**
  * @file
- * @brief InputDialogScriptファイル
+ * @brief InputDialogNodeScriptファイル
  */
 
 
@@ -13,17 +13,17 @@ using TMPro;
 namespace ToffMonaka {
 namespace UnityBase.Scene.Ui {
 /**
- * @brief InputDialogScriptCreateDescクラス
+ * @brief InputDialogNodeScriptCreateDescクラス
  */
-public class InputDialogScriptCreateDesc : UnityBase.Scene.Ui.DialogScriptCreateDesc
+public class InputDialogNodeScriptCreateDesc : UnityBase.Scene.Ui.DialogNodeScriptCreateDesc
 {
     public UnityBase.Scene.Ui.InputDialogEngine engine = null;
 }
 
 /**
- * @brief InputDialogScriptクラス
+ * @brief InputDialogNodeScriptクラス
  */
-public class InputDialogScript : UnityBase.Scene.Ui.DialogScript
+public class InputDialogNodeScript : UnityBase.Scene.Ui.DialogNodeScript
 {
     [SerializeField] private TMP_Text _nameText = null;
     [SerializeField] private Image _closeButtonCoverImage = null;
@@ -34,14 +34,14 @@ public class InputDialogScript : UnityBase.Scene.Ui.DialogScript
     [SerializeField] private TMP_Text _cancelButtonNameText = null;
     [SerializeField] private Image _cancelButtonCoverImage = null;
 
-    public new UnityBase.Scene.Ui.InputDialogScriptCreateDesc createDesc{get; private set;} = null;
+    public new UnityBase.Scene.Ui.InputDialogNodeScriptCreateDesc createDesc{get; private set;} = null;
 
     private UnityBase.Scene.Ui.InputDialogEngine _engine = null;
 
     /**
      * @brief コンストラクタ
      */
-    public InputDialogScript() : base((int)UnityBase.Util.SCENE.NODE_SCRIPT_INDEX.INPUT_DIALOG)
+    public InputDialogNodeScript() : base((int)UnityBase.Util.SCENE.NODE_SCRIPT_INDEX.INPUT_DIALOG)
     {
         return;
     }
@@ -102,7 +102,7 @@ public class InputDialogScript : UnityBase.Scene.Ui.DialogScript
      */
     public override void SetCreateDesc(Lib.Scene.NodeScriptCreateDesc create_desc)
     {
-	    this.createDesc = create_desc as UnityBase.Scene.Ui.InputDialogScriptCreateDesc;
+	    this.createDesc = create_desc as UnityBase.Scene.Ui.InputDialogNodeScriptCreateDesc;
 
         base.SetCreateDesc(this.createDesc);
 

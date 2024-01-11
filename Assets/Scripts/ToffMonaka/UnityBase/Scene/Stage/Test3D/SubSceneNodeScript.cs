@@ -1,6 +1,6 @@
 ﻿/**
  * @file
- * @brief SubSceneScriptファイル
+ * @brief SubSceneNodeScriptファイル
  */
 
 
@@ -13,27 +13,27 @@ using DG.Tweening;
 namespace ToffMonaka {
 namespace UnityBase.Scene.Stage.Test3D {
 /**
- * @brief SubSceneScriptCreateDescクラス
+ * @brief SubSceneNodeScriptCreateDescクラス
  */
-public class SubSceneScriptCreateDesc : UnityBase.Scene.Stage.SubSceneScriptCreateDesc
+public class SubSceneNodeScriptCreateDesc : UnityBase.Scene.Stage.SubSceneNodeScriptCreateDesc
 {
 }
 
 /**
- * @brief SubSceneScriptクラス
+ * @brief SubSceneNodeScriptクラス
  */
-public class SubSceneScript : UnityBase.Scene.Stage.SubSceneScript
+public class SubSceneNodeScript : UnityBase.Scene.Stage.SubSceneNodeScript
 {
     [SerializeField] private TMP_Text _nameText = null;
     [SerializeField] private TMP_Text _messageText = null;
     [SerializeField] private Image _openCloseFadeImage = null;
 
-    public new UnityBase.Scene.Stage.Test3D.SubSceneScriptCreateDesc createDesc{get; private set;} = null;
+    public new UnityBase.Scene.Stage.Test3D.SubSceneNodeScriptCreateDesc createDesc{get; private set;} = null;
 
     /**
      * @brief コンストラクタ
      */
-    public SubSceneScript() : base((int)UnityBase.Util.SCENE.NODE_SCRIPT_INDEX.TEST_3D_STAGE_SUB_SCENE)
+    public SubSceneNodeScript() : base((int)UnityBase.Util.SCENE.NODE_SCRIPT_INDEX.TEST_3D_STAGE_SUB_SCENE)
     {
         this._SetStageType(UnityBase.Util.SCENE.STAGE_TYPE.TEST_3D);
 
@@ -83,7 +83,7 @@ public class SubSceneScript : UnityBase.Scene.Stage.SubSceneScript
      */
     public override void SetCreateDesc(Lib.Scene.NodeScriptCreateDesc create_desc)
     {
-	    this.createDesc = create_desc as UnityBase.Scene.Stage.Test3D.SubSceneScriptCreateDesc;
+	    this.createDesc = create_desc as UnityBase.Scene.Stage.Test3D.SubSceneNodeScriptCreateDesc;
 
         base.SetCreateDesc(this.createDesc);
 
@@ -212,9 +212,9 @@ public class SubSceneScript : UnityBase.Scene.Stage.SubSceneScript
 
 		    switch (this.GetClosedType()) {
             case 1: {
-                {// SelectSubSceneScript Create
-                    var script = this.GetManager().ChangeSubScene(UnityBase.Util.FILE_PATH.SELECT_SUB_SCENE_PREFAB) as UnityBase.Scene.Select.SubSceneScript;
-                    var script_create_desc = new UnityBase.Scene.Select.SubSceneScriptCreateDesc();
+                {// SelectSubSceneNodeScript Create
+                    var script = this.GetManager().ChangeSubScene(UnityBase.Util.FILE_PATH.SELECT_SUB_SCENE_PREFAB) as UnityBase.Scene.Select.SubSceneNodeScript;
+                    var script_create_desc = new UnityBase.Scene.Select.SubSceneNodeScriptCreateDesc();
 
                     script.Create(script_create_desc);
                     script.Open(1);
