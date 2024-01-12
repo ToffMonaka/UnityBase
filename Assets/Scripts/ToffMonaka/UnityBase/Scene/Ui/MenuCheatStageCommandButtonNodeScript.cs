@@ -17,7 +17,7 @@ namespace UnityBase.Scene.Ui {
  */
 public class MenuCheatStageCommandButtonNodeScriptCreateDesc : Lib.Scene.ObjectNodeScriptCreateDesc
 {
-    public UnityBase.Scene.Ui.MenuCheatStageScript stageScript = null;
+    public UnityBase.Scene.Ui.MenuCheatStageNodeScript stageNodeScript = null;
     public UnityBase.Util.SCENE.MENU_CHEAT_STAGE_COMMAND_TYPE commandType = UnityBase.Util.SCENE.MENU_CHEAT_STAGE_COMMAND_TYPE.NONE;
 }
 
@@ -32,7 +32,7 @@ public class MenuCheatStageCommandButtonNodeScript : Lib.Scene.ObjectNodeScript,
 
     public new UnityBase.Scene.Ui.MenuCheatStageCommandButtonNodeScriptCreateDesc createDesc{get; private set;} = null;
 
-    private UnityBase.Scene.Ui.MenuCheatStageScript _stageScript = null;
+    private UnityBase.Scene.Ui.MenuCheatStageNodeScript _stageNodeScript = null;
     private UnityBase.Util.SCENE.MENU_CHEAT_STAGE_COMMAND_TYPE _commandType = UnityBase.Util.SCENE.MENU_CHEAT_STAGE_COMMAND_TYPE.NONE;
 
     /**
@@ -66,7 +66,7 @@ public class MenuCheatStageCommandButtonNodeScript : Lib.Scene.ObjectNodeScript,
      */
     protected override int _OnCreate()
     {
-        this._stageScript = this.createDesc.stageScript;
+        this._stageNodeScript = this.createDesc.stageNodeScript;
         this._commandType = this.createDesc.commandType;
 
         this._nameText.SetText(UnityBase.Global.GetText(UnityBase.Util.SCENE.MENU_CHEAT_STAGE_COMMAND_NAME_MST_TEXT_ID_ARRAY[(int)this._commandType]));
@@ -169,7 +169,7 @@ public class MenuCheatStageCommandButtonNodeScript : Lib.Scene.ObjectNodeScript,
 
         Lib.Scene.Util.GetSoundManager().PlaySe((int)UnityBase.Util.SOUND.SE_INDEX.OK2);
 
-        this._stageScript.RunCommandButton(this._commandType);
+        this._stageNodeScript.RunCommandButton(this._commandType);
 
         return;
     }

@@ -1,6 +1,6 @@
 ﻿/**
  * @file
- * @brief MenuLicenseStageScriptファイル
+ * @brief MenuStaffStageNodeScriptファイル
  */
 
 
@@ -13,30 +13,30 @@ using TMPro;
 namespace ToffMonaka {
 namespace UnityBase.Scene.Ui {
 /**
- * @brief MenuLicenseStageScriptCreateDescクラス
+ * @brief MenuStaffStageNodeScriptCreateDescクラス
  */
-public class MenuLicenseStageScriptCreateDesc : UnityBase.Scene.Ui.MenuStageScriptCreateDesc
+public class MenuStaffStageNodeScriptCreateDesc : UnityBase.Scene.Ui.MenuStageNodeScriptCreateDesc
 {
 }
 
 /**
- * @brief MenuLicenseStageScriptクラス
+ * @brief MenuStaffStageNodeScriptクラス
  */
-public class MenuLicenseStageScript : UnityBase.Scene.Ui.MenuStageScript
+public class MenuStaffStageNodeScript : UnityBase.Scene.Ui.MenuStageNodeScript
 {
     [SerializeField] private ScrollRect _messageScrollRect = null;
     [SerializeField] private GameObject _messageNode = null;
     [SerializeField] private TMP_Text _cancelButtonNameText = null;
     [SerializeField] private Image _cancelButtonCoverImage = null;
 
-    public new UnityBase.Scene.Ui.MenuLicenseStageScriptCreateDesc createDesc{get; private set;} = null;
+    public new UnityBase.Scene.Ui.MenuStaffStageNodeScriptCreateDesc createDesc{get; private set;} = null;
 
     /**
      * @brief コンストラクタ
      */
-    public MenuLicenseStageScript() : base((int)UnityBase.Util.SCENE.NODE_SCRIPT_INDEX.MENU_LICENSE_STAGE)
+    public MenuStaffStageNodeScript() : base((int)UnityBase.Util.SCENE.NODE_SCRIPT_INDEX.MENU_STAFF_STAGE)
     {
-        this._SetStageType(UnityBase.Util.SCENE.MENU_STAGE_TYPE.LICENSE);
+        this._SetStageType(UnityBase.Util.SCENE.MENU_STAGE_TYPE.STAFF);
 
         return;
     }
@@ -75,20 +75,62 @@ public class MenuLicenseStageScript : UnityBase.Scene.Ui.MenuStageScript
         this._messageNode.SetActive(false);
 
         {// MessageNode Create
-            var txt_ary = new string[]{
-                "-----------------------------------\n" +
-                "Unity TextMeshPro\n" +
-                "-----------------------------------\n" +
-                "https://docs.unity3d.com/Packages/com.unity.textmeshpro@3.0/license/LICENSE.html\n" +
-                "\n" +
-                "TextMesh Pro copyright © 2021 Unity Technologies ApS\n" +
-                "\n" +
-                "Licensed under the Unity Companion License for Unity-dependent projects--see Unity\n" +
-                "Companion License.\n" +
-                "\n" +
-                "Unless expressly provided otherwise, the Software under this license is made available strictly on an “AS IS” BASIS WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED.\n" +
-                "Please review the license for details on these and other terms and conditions."
+            var en_txt_ary = new string[]{
+                "-SCENARIO-\n" +
+                "Toff Monaka",
+    
+                "-PROGRAM-\n" +
+                "Toff Monaka",
+    
+                "-GRAPHIC-\n" +
+                "Toff Monaka",
+    
+                "-SOUND-\n" +
+                "Toff Monaka\n" +
+                "無料効果音で遊ぼう！/無料効果音素材\n" +
+                "http://taira-komori.jpn.org/freesound.html\n" +
+                "©効果音ラボ\n" +
+                "https://soundeffect-lab.info/\n" +
+                "On-Jin ～音人～\n" +
+                "https://on-jin.com/\n" +
+                "甘茶の音楽工房\n" +
+                "http://amachamusic.chagasi.com/"
             };
+            var jp_txt_ary = new string[]{
+                "-シナリオ-\n" +
+                "Toff Monaka",
+    
+                "-プログラム-\n" +
+                "Toff Monaka",
+    
+                "-グラフィック-\n" +
+                "Toff Monaka",
+    
+                "-サウンド-\n" +
+                "Toff Monaka\n" +
+                "無料効果音で遊ぼう！/無料効果音素材\n" +
+                "http://taira-komori.jpn.org/freesound.html\n" +
+                "©効果音ラボ\n" +
+                "https://soundeffect-lab.info/\n" +
+                "On-Jin ～音人～\n" +
+                "https://on-jin.com/\n" +
+                "甘茶の音楽工房\n" +
+                "http://amachamusic.chagasi.com/"
+            };
+            string[] txt_ary;
+
+		    switch (UnityBase.Global.systemConfigFile.data.systemLanguageType) {
+		    case UnityBase.Util.LANGUAGE_TYPE.JAPANESE: {
+                txt_ary = jp_txt_ary;
+
+			    break;
+		    }
+		    default: {
+                txt_ary = en_txt_ary;
+
+			    break;
+		    }
+		    }
 
             for (int txt_i = 0; txt_i < txt_ary.Length; ++txt_i) {
                 var txt = (txt_i <= 0) ? txt_ary[txt_i] : "\n" + txt_ary[txt_i];
@@ -112,7 +154,7 @@ public class MenuLicenseStageScript : UnityBase.Scene.Ui.MenuStageScript
      */
     public override void SetCreateDesc(Lib.Scene.NodeScriptCreateDesc create_desc)
     {
-	    this.createDesc = create_desc as UnityBase.Scene.Ui.MenuLicenseStageScriptCreateDesc;
+	    this.createDesc = create_desc as UnityBase.Scene.Ui.MenuStaffStageNodeScriptCreateDesc;
 
         base.SetCreateDesc(this.createDesc);
 
@@ -204,7 +246,7 @@ public class MenuLicenseStageScript : UnityBase.Scene.Ui.MenuStageScript
 
         Lib.Scene.Util.GetSoundManager().PlaySe((int)UnityBase.Util.SOUND.SE_INDEX.CANCEL);
 
-        this.GetMenuScript().RunStageCancelButton();
+        this.GetMenuNodeScript().RunStageCancelButton();
 
         return;
     }

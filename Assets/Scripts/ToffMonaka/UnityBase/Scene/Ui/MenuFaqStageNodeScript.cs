@@ -1,6 +1,6 @@
 ﻿/**
  * @file
- * @brief MenuStaffStageScriptファイル
+ * @brief MenuFaqStageNodeScriptファイル
  */
 
 
@@ -13,30 +13,30 @@ using TMPro;
 namespace ToffMonaka {
 namespace UnityBase.Scene.Ui {
 /**
- * @brief MenuStaffStageScriptCreateDescクラス
+ * @brief MenuFaqStageNodeScriptCreateDescクラス
  */
-public class MenuStaffStageScriptCreateDesc : UnityBase.Scene.Ui.MenuStageScriptCreateDesc
+public class MenuFaqStageNodeScriptCreateDesc : UnityBase.Scene.Ui.MenuStageNodeScriptCreateDesc
 {
 }
 
 /**
- * @brief MenuStaffStageScriptクラス
+ * @brief MenuFaqStageNodeScriptクラス
  */
-public class MenuStaffStageScript : UnityBase.Scene.Ui.MenuStageScript
+public class MenuFaqStageNodeScript : UnityBase.Scene.Ui.MenuStageNodeScript
 {
     [SerializeField] private ScrollRect _messageScrollRect = null;
     [SerializeField] private GameObject _messageNode = null;
     [SerializeField] private TMP_Text _cancelButtonNameText = null;
     [SerializeField] private Image _cancelButtonCoverImage = null;
 
-    public new UnityBase.Scene.Ui.MenuStaffStageScriptCreateDesc createDesc{get; private set;} = null;
+    public new UnityBase.Scene.Ui.MenuFaqStageNodeScriptCreateDesc createDesc{get; private set;} = null;
 
     /**
      * @brief コンストラクタ
      */
-    public MenuStaffStageScript() : base((int)UnityBase.Util.SCENE.NODE_SCRIPT_INDEX.MENU_STAFF_STAGE)
+    public MenuFaqStageNodeScript() : base((int)UnityBase.Util.SCENE.NODE_SCRIPT_INDEX.MENU_FAQ_STAGE)
     {
-        this._SetStageType(UnityBase.Util.SCENE.MENU_STAGE_TYPE.STAFF);
+        this._SetStageType(UnityBase.Util.SCENE.MENU_STAGE_TYPE.FAQ);
 
         return;
     }
@@ -76,46 +76,12 @@ public class MenuStaffStageScript : UnityBase.Scene.Ui.MenuStageScript
 
         {// MessageNode Create
             var en_txt_ary = new string[]{
-                "-SCENARIO-\n" +
-                "Toff Monaka",
-    
-                "-PROGRAM-\n" +
-                "Toff Monaka",
-    
-                "-GRAPHIC-\n" +
-                "Toff Monaka",
-    
-                "-SOUND-\n" +
-                "Toff Monaka\n" +
-                "無料効果音で遊ぼう！/無料効果音素材\n" +
-                "http://taira-komori.jpn.org/freesound.html\n" +
-                "©効果音ラボ\n" +
-                "https://soundeffect-lab.info/\n" +
-                "On-Jin ～音人～\n" +
-                "https://on-jin.com/\n" +
-                "甘茶の音楽工房\n" +
-                "http://amachamusic.chagasi.com/"
+                "Q, What is the application to do?\n" +
+                "A, It is a Unity base application."
             };
             var jp_txt_ary = new string[]{
-                "-シナリオ-\n" +
-                "Toff Monaka",
-    
-                "-プログラム-\n" +
-                "Toff Monaka",
-    
-                "-グラフィック-\n" +
-                "Toff Monaka",
-    
-                "-サウンド-\n" +
-                "Toff Monaka\n" +
-                "無料効果音で遊ぼう！/無料効果音素材\n" +
-                "http://taira-komori.jpn.org/freesound.html\n" +
-                "©効果音ラボ\n" +
-                "https://soundeffect-lab.info/\n" +
-                "On-Jin ～音人～\n" +
-                "https://on-jin.com/\n" +
-                "甘茶の音楽工房\n" +
-                "http://amachamusic.chagasi.com/"
+                "Q, 何をするアプリなんですか？\n" +
+                "A, Unityのベースアプリです。"
             };
             string[] txt_ary;
 
@@ -154,7 +120,7 @@ public class MenuStaffStageScript : UnityBase.Scene.Ui.MenuStageScript
      */
     public override void SetCreateDesc(Lib.Scene.NodeScriptCreateDesc create_desc)
     {
-	    this.createDesc = create_desc as UnityBase.Scene.Ui.MenuStaffStageScriptCreateDesc;
+	    this.createDesc = create_desc as UnityBase.Scene.Ui.MenuFaqStageNodeScriptCreateDesc;
 
         base.SetCreateDesc(this.createDesc);
 
@@ -246,7 +212,7 @@ public class MenuStaffStageScript : UnityBase.Scene.Ui.MenuStageScript
 
         Lib.Scene.Util.GetSoundManager().PlaySe((int)UnityBase.Util.SOUND.SE_INDEX.CANCEL);
 
-        this.GetMenuScript().RunStageCancelButton();
+        this.GetMenuNodeScript().RunStageCancelButton();
 
         return;
     }

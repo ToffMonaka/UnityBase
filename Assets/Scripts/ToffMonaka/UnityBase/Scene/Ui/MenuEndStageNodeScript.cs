@@ -1,6 +1,6 @@
 ﻿/**
  * @file
- * @brief MenuEndStageScriptファイル
+ * @brief MenuEndStageNodeScriptファイル
  */
 
 
@@ -13,16 +13,16 @@ using TMPro;
 namespace ToffMonaka {
 namespace UnityBase.Scene.Ui {
 /**
- * @brief MenuEndStageScriptCreateDescクラス
+ * @brief MenuEndStageNodeScriptCreateDescクラス
  */
-public class MenuEndStageScriptCreateDesc : UnityBase.Scene.Ui.MenuStageScriptCreateDesc
+public class MenuEndStageNodeScriptCreateDesc : UnityBase.Scene.Ui.MenuStageNodeScriptCreateDesc
 {
 }
 
 /**
- * @brief MenuEndStageScriptクラス
+ * @brief MenuEndStageNodeScriptクラス
  */
-public class MenuEndStageScript : UnityBase.Scene.Ui.MenuStageScript
+public class MenuEndStageNodeScript : UnityBase.Scene.Ui.MenuStageNodeScript
 {
     [SerializeField] private ScrollRect _editScrollRect = null;
     [SerializeField] private TMP_Text _restartNameText = null;
@@ -34,12 +34,12 @@ public class MenuEndStageScript : UnityBase.Scene.Ui.MenuStageScript
     [SerializeField] private TMP_Text _cancelButtonNameText = null;
     [SerializeField] private Image _cancelButtonCoverImage = null;
 
-    public new UnityBase.Scene.Ui.MenuEndStageScriptCreateDesc createDesc{get; private set;} = null;
+    public new UnityBase.Scene.Ui.MenuEndStageNodeScriptCreateDesc createDesc{get; private set;} = null;
 
     /**
      * @brief コンストラクタ
      */
-    public MenuEndStageScript() : base((int)UnityBase.Util.SCENE.NODE_SCRIPT_INDEX.MENU_END_STAGE)
+    public MenuEndStageNodeScript() : base((int)UnityBase.Util.SCENE.NODE_SCRIPT_INDEX.MENU_END_STAGE)
     {
         this._SetStageType(UnityBase.Util.SCENE.MENU_STAGE_TYPE.END);
 
@@ -91,7 +91,7 @@ public class MenuEndStageScript : UnityBase.Scene.Ui.MenuStageScript
      */
     public override void SetCreateDesc(Lib.Scene.NodeScriptCreateDesc create_desc)
     {
-	    this.createDesc = create_desc as UnityBase.Scene.Ui.MenuEndStageScriptCreateDesc;
+	    this.createDesc = create_desc as UnityBase.Scene.Ui.MenuEndStageNodeScriptCreateDesc;
 
         base.SetCreateDesc(this.createDesc);
 
@@ -238,7 +238,7 @@ public class MenuEndStageScript : UnityBase.Scene.Ui.MenuStageScript
 #endif
         }
 
-        this.GetMenuScript().RunStageOkButton();
+        this.GetMenuNodeScript().RunStageOkButton();
 
         return;
     }
@@ -281,7 +281,7 @@ public class MenuEndStageScript : UnityBase.Scene.Ui.MenuStageScript
 
         Lib.Scene.Util.GetSoundManager().PlaySe((int)UnityBase.Util.SOUND.SE_INDEX.CANCEL);
 
-        this.GetMenuScript().RunStageCancelButton();
+        this.GetMenuNodeScript().RunStageCancelButton();
 
         return;
     }

@@ -33,7 +33,7 @@ public class TitleSubSceneNodeScript : Lib.Scene.SubSceneNodeScript
 
     public new UnityBase.Scene.TitleSubSceneNodeScriptCreateDesc createDesc{get; private set;} = null;
 
-    private UnityBase.Scene.Ui.MenuScript _menuScript = null;
+    private UnityBase.Scene.Ui.MenuNodeScript _menuNodeScript = null;
 
     /**
      * @brief コンストラクタ
@@ -69,16 +69,16 @@ public class TitleSubSceneNodeScript : Lib.Scene.SubSceneNodeScript
         this._companyNameText.SetText(UnityBase.Util.PROJECT.COMPANY_NAME);
         this._versionNameText.SetText("Version " + UnityBase.Util.PROJECT.VERSION_NAME);
 
-        {// MenuScript Create
-            var script = this._menuNode.GetComponent<UnityBase.Scene.Ui.MenuScript>();
-            var script_create_desc = new UnityBase.Scene.Ui.MenuScriptCreateDesc();
+        {// MenuNodeScript Create
+            var script = this._menuNode.GetComponent<UnityBase.Scene.Ui.MenuNodeScript>();
+            var script_create_desc = new UnityBase.Scene.Ui.MenuNodeScriptCreateDesc();
 
             script_create_desc.subSceneNodeScript = this;
 
             script.Create(script_create_desc);
             script.Open(0);
 
-            this._menuScript = script;
+            this._menuNodeScript = script;
         }
 
         return (0);

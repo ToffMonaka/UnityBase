@@ -1,6 +1,6 @@
 ﻿/**
  * @file
- * @brief MenuCheatStageScriptファイル
+ * @brief MenuCheatStageNodeScriptファイル
  */
 
 
@@ -14,16 +14,16 @@ using TMPro;
 namespace ToffMonaka {
 namespace UnityBase.Scene.Ui {
 /**
- * @brief MenuCheatStageScriptCreateDescクラス
+ * @brief MenuCheatStageNodeScriptCreateDescクラス
  */
-public class MenuCheatStageScriptCreateDesc : UnityBase.Scene.Ui.MenuStageScriptCreateDesc
+public class MenuCheatStageNodeScriptCreateDesc : UnityBase.Scene.Ui.MenuStageNodeScriptCreateDesc
 {
 }
 
 /**
- * @brief MenuCheatStageScriptクラス
+ * @brief MenuCheatStageNodeScriptクラス
  */
-public class MenuCheatStageScript : UnityBase.Scene.Ui.MenuStageScript
+public class MenuCheatStageNodeScript : UnityBase.Scene.Ui.MenuStageNodeScript
 {
     [SerializeField] private TMP_Text _commandNameText = null;
     [SerializeField] private TMP_InputField _commandInputField = null;
@@ -34,14 +34,14 @@ public class MenuCheatStageScript : UnityBase.Scene.Ui.MenuStageScript
     [SerializeField] private TMP_Text _cancelButtonNameText = null;
     [SerializeField] private Image _cancelButtonCoverImage = null;
 
-    public new UnityBase.Scene.Ui.MenuCheatStageScriptCreateDesc createDesc{get; private set;} = null;
+    public new UnityBase.Scene.Ui.MenuCheatStageNodeScriptCreateDesc createDesc{get; private set;} = null;
 
     private List<UnityBase.Scene.Ui.MenuCheatStageCommandButtonNodeScript> _commandButtonNodeScriptContainer = new List<UnityBase.Scene.Ui.MenuCheatStageCommandButtonNodeScript>();
 
     /**
      * @brief コンストラクタ
      */
-    public MenuCheatStageScript() : base((int)UnityBase.Util.SCENE.NODE_SCRIPT_INDEX.MENU_CHEAT_STAGE)
+    public MenuCheatStageNodeScript() : base((int)UnityBase.Util.SCENE.NODE_SCRIPT_INDEX.MENU_CHEAT_STAGE)
     {
         this._SetStageType(UnityBase.Util.SCENE.MENU_STAGE_TYPE.CHEAT);
 
@@ -87,7 +87,7 @@ public class MenuCheatStageScript : UnityBase.Scene.Ui.MenuStageScript
             var script = GameObject.Instantiate(this._commandButtonNode, this._commandButtonNode.transform.parent).GetComponent<UnityBase.Scene.Ui.MenuCheatStageCommandButtonNodeScript>();
             var script_create_desc = new UnityBase.Scene.Ui.MenuCheatStageCommandButtonNodeScriptCreateDesc();
 
-            script_create_desc.stageScript = this;
+            script_create_desc.stageNodeScript = this;
             script_create_desc.commandType = UnityBase.Util.SCENE.MENU_CHEAT_STAGE_COMMAND_TYPE.DATA_DELETE;
 
             script.Create(script_create_desc);
@@ -108,7 +108,7 @@ public class MenuCheatStageScript : UnityBase.Scene.Ui.MenuStageScript
      */
     public override void SetCreateDesc(Lib.Scene.NodeScriptCreateDesc create_desc)
     {
-	    this.createDesc = create_desc as UnityBase.Scene.Ui.MenuCheatStageScriptCreateDesc;
+	    this.createDesc = create_desc as UnityBase.Scene.Ui.MenuCheatStageNodeScriptCreateDesc;
 
         base.SetCreateDesc(this.createDesc);
 
@@ -226,7 +226,7 @@ public class MenuCheatStageScript : UnityBase.Scene.Ui.MenuStageScript
 		}
 		}
 
-        this.GetMenuScript().RunStageOkButton();
+        this.GetMenuNodeScript().RunStageOkButton();
 
         return;
     }
@@ -269,7 +269,7 @@ public class MenuCheatStageScript : UnityBase.Scene.Ui.MenuStageScript
 
         Lib.Scene.Util.GetSoundManager().PlaySe((int)UnityBase.Util.SOUND.SE_INDEX.CANCEL);
 
-        this.GetMenuScript().RunStageCancelButton();
+        this.GetMenuNodeScript().RunStageCancelButton();
 
         return;
     }

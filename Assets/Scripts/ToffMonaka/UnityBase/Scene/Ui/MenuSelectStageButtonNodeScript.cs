@@ -17,7 +17,7 @@ namespace UnityBase.Scene.Ui {
  */
 public class MenuSelectStageButtonNodeScriptCreateDesc : Lib.Scene.ObjectNodeScriptCreateDesc
 {
-    public UnityBase.Scene.Ui.MenuSelectScript selectScript = null;
+    public UnityBase.Scene.Ui.MenuSelectNodeScript selectNodeScript = null;
     public UnityBase.Util.SCENE.MENU_STAGE_TYPE stageType = UnityBase.Util.SCENE.MENU_STAGE_TYPE.NONE;
 }
 
@@ -31,7 +31,7 @@ public class MenuSelectStageButtonNodeScript : Lib.Scene.ObjectNodeScript, IPoin
 
     public new UnityBase.Scene.Ui.MenuSelectStageButtonNodeScriptCreateDesc createDesc{get; private set;} = null;
 
-    private UnityBase.Scene.Ui.MenuSelectScript _selectScript = null;
+    private UnityBase.Scene.Ui.MenuSelectNodeScript _selectNodeScript = null;
     private UnityBase.Util.SCENE.MENU_STAGE_TYPE _stageType = UnityBase.Util.SCENE.MENU_STAGE_TYPE.NONE;
 
     /**
@@ -65,7 +65,7 @@ public class MenuSelectStageButtonNodeScript : Lib.Scene.ObjectNodeScript, IPoin
      */
     protected override int _OnCreate()
     {
-        this._selectScript = this.createDesc.selectScript;
+        this._selectNodeScript = this.createDesc.selectNodeScript;
         this._stageType = this.createDesc.stageType;
 
         this._nameText.SetText(UnityBase.Global.GetText(UnityBase.Util.SCENE.MENU_STAGE_NAME_MST_TEXT_ID_ARRAY[(int)this._stageType]));
@@ -160,7 +160,7 @@ public class MenuSelectStageButtonNodeScript : Lib.Scene.ObjectNodeScript, IPoin
 
         Lib.Scene.Util.GetSoundManager().PlaySe((int)UnityBase.Util.SOUND.SE_INDEX.OK2);
 
-        this._selectScript.RunStageButton(this._stageType);
+        this._selectNodeScript.RunStageButton(this._stageType);
 
         return;
     }

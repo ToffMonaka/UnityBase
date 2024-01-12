@@ -1,6 +1,6 @@
 ﻿/**
  * @file
- * @brief MenuStageScriptファイル
+ * @brief MenuStageNodeScriptファイル
  */
 
 
@@ -12,30 +12,30 @@ using DG.Tweening;
 namespace ToffMonaka {
 namespace UnityBase.Scene.Ui {
 /**
- * @brief MenuStageScriptCreateDescクラス
+ * @brief MenuStageNodeScriptCreateDescクラス
  */
-public class MenuStageScriptCreateDesc : Lib.Scene.ObjectNodeScriptCreateDesc
+public class MenuStageNodeScriptCreateDesc : Lib.Scene.ObjectNodeScriptCreateDesc
 {
-    public UnityBase.Scene.Ui.MenuScript menuScript = null;
+    public UnityBase.Scene.Ui.MenuNodeScript menuNodeScript = null;
 }
 
 /**
- * @brief MenuStageScriptクラス
+ * @brief MenuStageNodeScriptクラス
  */
-public class MenuStageScript : Lib.Scene.ObjectNodeScript
+public class MenuStageNodeScript : Lib.Scene.ObjectNodeScript
 {
     [SerializeField] private TMP_Text _nameText = null;
 
-    public new UnityBase.Scene.Ui.MenuStageScriptCreateDesc createDesc{get; private set;} = null;
+    public new UnityBase.Scene.Ui.MenuStageNodeScriptCreateDesc createDesc{get; private set;} = null;
 
-    private UnityBase.Scene.Ui.MenuScript _menuScript = null;
+    private UnityBase.Scene.Ui.MenuNodeScript _menuNodeScript = null;
     private UnityBase.Util.SCENE.MENU_STAGE_TYPE _stageType = UnityBase.Util.SCENE.MENU_STAGE_TYPE.NONE;
 
     /**
      * @brief コンストラクタ
      * @param node_script_index (node_script_index)
      */
-    public MenuStageScript(int node_script_index) : base(node_script_index)
+    public MenuStageNodeScript(int node_script_index) : base(node_script_index)
     {
         return;
     }
@@ -63,7 +63,7 @@ public class MenuStageScript : Lib.Scene.ObjectNodeScript
      */
     protected override int _OnCreate()
     {
-        this._menuScript = this.createDesc.menuScript;
+        this._menuNodeScript = this.createDesc.menuNodeScript;
 
         this._nameText.SetText(UnityBase.Global.GetText(UnityBase.Util.SCENE.MENU_STAGE_NAME_MST_TEXT_ID_ARRAY[(int)this._stageType]));
 
@@ -76,7 +76,7 @@ public class MenuStageScript : Lib.Scene.ObjectNodeScript
      */
     public override void SetCreateDesc(Lib.Scene.NodeScriptCreateDesc create_desc)
     {
-	    this.createDesc = create_desc as UnityBase.Scene.Ui.MenuStageScriptCreateDesc;
+	    this.createDesc = create_desc as UnityBase.Scene.Ui.MenuStageNodeScriptCreateDesc;
 
         base.SetCreateDesc(this.createDesc);
 
@@ -192,12 +192,12 @@ public class MenuStageScript : Lib.Scene.ObjectNodeScript
     }
 
     /**
-     * @brief GetMenuScript関数
-     * @return menu_script (menu_script)
+     * @brief GetMenuNodeScript関数
+     * @return menu_node_script (menu_node_script)
      */
-    public UnityBase.Scene.Ui.MenuScript GetMenuScript()
+    public UnityBase.Scene.Ui.MenuNodeScript GetMenuNodeScript()
     {
-        return (this._menuScript);
+        return (this._menuNodeScript);
     }
 
     /**

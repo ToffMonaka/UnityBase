@@ -17,7 +17,7 @@ namespace UnityBase.Scene.Ui {
  */
 public class MenuOpenCloseButtonNodeScriptCreateDesc : Lib.Scene.ObjectNodeScriptCreateDesc
 {
-    public UnityBase.Scene.Ui.MenuScript menuScript = null;
+    public UnityBase.Scene.Ui.MenuNodeScript menuNodeScript = null;
 }
 
 /**
@@ -29,7 +29,7 @@ public class MenuOpenCloseButtonNodeScript : Lib.Scene.ObjectNodeScript, IPointe
 
     public new UnityBase.Scene.Ui.MenuOpenCloseButtonNodeScriptCreateDesc createDesc{get; private set;} = null;
 
-    private UnityBase.Scene.Ui.MenuScript _menuScript = null;
+    private UnityBase.Scene.Ui.MenuNodeScript _menuNodeScript = null;
 
     /**
      * @brief コンストラクタ
@@ -62,7 +62,7 @@ public class MenuOpenCloseButtonNodeScript : Lib.Scene.ObjectNodeScript, IPointe
      */
     protected override int _OnCreate()
     {
-        this._menuScript = this.createDesc.menuScript;
+        this._menuNodeScript = this.createDesc.menuNodeScript;
 
         return (0);
     }
@@ -200,9 +200,9 @@ public class MenuOpenCloseButtonNodeScript : Lib.Scene.ObjectNodeScript, IPointe
             return;
         }
 
-        this._menuScript.RunOpenCloseButton();
+        this._menuNodeScript.RunOpenCloseButton();
 
-        if (this._menuScript.GetOpenSelectScript() != null) {
+        if (this._menuNodeScript.GetOpenSelectNodeScript() != null) {
             Lib.Scene.Util.GetSoundManager().PlaySe((int)UnityBase.Util.SOUND.SE_INDEX.OK2);
         } else {
             Lib.Scene.Util.GetSoundManager().PlaySe((int)UnityBase.Util.SOUND.SE_INDEX.CANCEL);

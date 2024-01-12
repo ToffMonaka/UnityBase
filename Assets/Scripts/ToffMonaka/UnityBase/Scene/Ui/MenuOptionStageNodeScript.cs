@@ -1,6 +1,6 @@
 ﻿/**
  * @file
- * @brief MenuOptionStageScriptファイル
+ * @brief MenuOptionStageNodeScriptファイル
  */
 
 
@@ -13,16 +13,16 @@ using TMPro;
 namespace ToffMonaka {
 namespace UnityBase.Scene.Ui {
 /**
- * @brief MenuOptionStageScriptCreateDescクラス
+ * @brief MenuOptionStageNodeScriptCreateDescクラス
  */
-public class MenuOptionStageScriptCreateDesc : UnityBase.Scene.Ui.MenuStageScriptCreateDesc
+public class MenuOptionStageNodeScriptCreateDesc : UnityBase.Scene.Ui.MenuStageNodeScriptCreateDesc
 {
 }
 
 /**
- * @brief MenuOptionStageScriptクラス
+ * @brief MenuOptionStageNodeScriptクラス
  */
-public class MenuOptionStageScript : UnityBase.Scene.Ui.MenuStageScript
+public class MenuOptionStageNodeScript : UnityBase.Scene.Ui.MenuStageNodeScript
 {
     [SerializeField] private ScrollRect _editScrollRect = null;
     [SerializeField] private TMP_Text _languageNameText = null;
@@ -46,7 +46,7 @@ public class MenuOptionStageScript : UnityBase.Scene.Ui.MenuStageScript
     [SerializeField] private TMP_Text _cancelButtonNameText = null;
     [SerializeField] private Image _cancelButtonCoverImage = null;
 
-    public new UnityBase.Scene.Ui.MenuOptionStageScriptCreateDesc createDesc{get; private set;} = null;
+    public new UnityBase.Scene.Ui.MenuOptionStageNodeScriptCreateDesc createDesc{get; private set;} = null;
 
     private UnityBase.Util.LANGUAGE_TYPE _languageType = UnityBase.Util.LANGUAGE_TYPE.NONE;
     private float _soundBgmVolume = 1.0f;
@@ -60,7 +60,7 @@ public class MenuOptionStageScript : UnityBase.Scene.Ui.MenuStageScript
     /**
      * @brief コンストラクタ
      */
-    public MenuOptionStageScript() : base((int)UnityBase.Util.SCENE.NODE_SCRIPT_INDEX.MENU_OPTION_STAGE)
+    public MenuOptionStageNodeScript() : base((int)UnityBase.Util.SCENE.NODE_SCRIPT_INDEX.MENU_OPTION_STAGE)
     {
         this._SetStageType(UnityBase.Util.SCENE.MENU_STAGE_TYPE.OPTION);
 
@@ -120,7 +120,7 @@ public class MenuOptionStageScript : UnityBase.Scene.Ui.MenuStageScript
      */
     public override void SetCreateDesc(Lib.Scene.NodeScriptCreateDesc create_desc)
     {
-	    this.createDesc = create_desc as UnityBase.Scene.Ui.MenuOptionStageScriptCreateDesc;
+	    this.createDesc = create_desc as UnityBase.Scene.Ui.MenuOptionStageNodeScriptCreateDesc;
 
         base.SetCreateDesc(this.createDesc);
 
@@ -225,7 +225,7 @@ public class MenuOptionStageScript : UnityBase.Scene.Ui.MenuStageScript
 
         // LanguageSelectDialogNodeScript Create
         if (this._languageSelectDialogNodeScript == null) {
-            this._languageSelectDialogNode = Lib.Scene.Util.GetPrefabNode(UnityBase.Util.FILE_PATH.SELECT_DIALOG_PREFAB, this.GetMenuScript().GetSubSceneNodeScript().GetDialogNode());
+            this._languageSelectDialogNode = Lib.Scene.Util.GetPrefabNode(UnityBase.Util.FILE_PATH.SELECT_DIALOG_PREFAB, this.GetMenuNodeScript().GetSubSceneNodeScript().GetDialogNode());
 
             var script = this._languageSelectDialogNode.GetComponent<UnityBase.Scene.Ui.SelectDialogNodeScript>();
             var script_create_desc = new UnityBase.Scene.Ui.SelectDialogNodeScriptCreateDesc();
@@ -614,7 +614,7 @@ public class MenuOptionStageScript : UnityBase.Scene.Ui.MenuStageScript
             Lib.Scene.Util.GetManager().ChangeMainScene(UnityBase.Util.SCENE.NAME.MAIN);
         }
 
-        this.GetMenuScript().RunStageOkButton();
+        this.GetMenuNodeScript().RunStageOkButton();
 
         return;
     }
@@ -662,7 +662,7 @@ public class MenuOptionStageScript : UnityBase.Scene.Ui.MenuStageScript
         Lib.Scene.Util.GetSoundManager().SetSeVolume(UnityBase.Global.systemConfigFile.data.soundSeVolume);
         Lib.Scene.Util.GetSoundManager().SetSeMuteFlag(UnityBase.Global.systemConfigFile.data.soundSeMuteFlag);
 
-        this.GetMenuScript().RunStageCancelButton();
+        this.GetMenuNodeScript().RunStageCancelButton();
 
         return;
     }

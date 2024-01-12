@@ -1,6 +1,6 @@
 ﻿/**
  * @file
- * @brief MenuPrivacyPolicyStageScriptファイル
+ * @brief MenuPrivacyPolicyStageNodeScriptファイル
  */
 
 
@@ -13,28 +13,28 @@ using TMPro;
 namespace ToffMonaka {
 namespace UnityBase.Scene.Ui {
 /**
- * @brief MenuPrivacyPolicyStageScriptCreateDescクラス
+ * @brief MenuPrivacyPolicyStageNodeScriptCreateDescクラス
  */
-public class MenuPrivacyPolicyStageScriptCreateDesc : UnityBase.Scene.Ui.MenuStageScriptCreateDesc
+public class MenuPrivacyPolicyStageNodeScriptCreateDesc : UnityBase.Scene.Ui.MenuStageNodeScriptCreateDesc
 {
 }
 
 /**
- * @brief MenuPrivacyPolicyStageScriptクラス
+ * @brief MenuPrivacyPolicyStageNodeScriptクラス
  */
-public class MenuPrivacyPolicyStageScript : UnityBase.Scene.Ui.MenuStageScript
+public class MenuPrivacyPolicyStageNodeScript : UnityBase.Scene.Ui.MenuStageNodeScript
 {
     [SerializeField] private ScrollRect _messageScrollRect = null;
     [SerializeField] private GameObject _messageNode = null;
     [SerializeField] private TMP_Text _cancelButtonNameText = null;
     [SerializeField] private Image _cancelButtonCoverImage = null;
 
-    public new UnityBase.Scene.Ui.MenuPrivacyPolicyStageScriptCreateDesc createDesc{get; private set;} = null;
+    public new UnityBase.Scene.Ui.MenuPrivacyPolicyStageNodeScriptCreateDesc createDesc{get; private set;} = null;
 
     /**
      * @brief コンストラクタ
      */
-    public MenuPrivacyPolicyStageScript() : base((int)UnityBase.Util.SCENE.NODE_SCRIPT_INDEX.MENU_PRIVACY_POLICY_STAGE)
+    public MenuPrivacyPolicyStageNodeScript() : base((int)UnityBase.Util.SCENE.NODE_SCRIPT_INDEX.MENU_PRIVACY_POLICY_STAGE)
     {
         this._SetStageType(UnityBase.Util.SCENE.MENU_STAGE_TYPE.PRIVACY_POLICY);
 
@@ -242,7 +242,7 @@ public class MenuPrivacyPolicyStageScript : UnityBase.Scene.Ui.MenuStageScript
      */
     public override void SetCreateDesc(Lib.Scene.NodeScriptCreateDesc create_desc)
     {
-	    this.createDesc = create_desc as UnityBase.Scene.Ui.MenuPrivacyPolicyStageScriptCreateDesc;
+	    this.createDesc = create_desc as UnityBase.Scene.Ui.MenuPrivacyPolicyStageNodeScriptCreateDesc;
 
         base.SetCreateDesc(this.createDesc);
 
@@ -334,7 +334,7 @@ public class MenuPrivacyPolicyStageScript : UnityBase.Scene.Ui.MenuStageScript
 
         Lib.Scene.Util.GetSoundManager().PlaySe((int)UnityBase.Util.SOUND.SE_INDEX.CANCEL);
 
-        this.GetMenuScript().RunStageCancelButton();
+        this.GetMenuNodeScript().RunStageCancelButton();
 
         return;
     }
