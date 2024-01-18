@@ -28,11 +28,19 @@ public abstract class SubSceneNodeScript : Lib.Scene.NodeScript
 
     /**
      * @brief コンストラクタ
-     * @param node_script_index (node_script_index)
      */
-    public SubSceneNodeScript(int node_script_index) : base(Lib.Util.SCENE.NODE_SCRIPT_TYPE.SUB_SCENE, node_script_index, true)
+    public SubSceneNodeScript() : base(Lib.Util.SCENE.SCRIPT_TYPE.SUB_SCENE_NODE, true)
     {
         return;
+    }
+
+    /**
+     * @brief _OnGetScriptIndex関数
+     * @return script_index (script_index)
+     */
+    protected override int _OnGetScriptIndex()
+    {
+        return ((int)Lib.Util.SCENE.SCRIPT_INDEX.SUB_SCENE_NODE);
     }
 
     /**
@@ -81,7 +89,7 @@ public abstract class SubSceneNodeScript : Lib.Scene.NodeScript
      * @brief SetCreateDesc関数
      * @param create_desc (create_desc)
      */
-    public override void SetCreateDesc(Lib.Scene.NodeScriptCreateDesc create_desc)
+    public override void SetCreateDesc(Lib.Scene.ScriptCreateDesc create_desc)
     {
 	    this.createDesc = create_desc as Lib.Scene.SubSceneNodeScriptCreateDesc;
 

@@ -26,25 +26,18 @@ public class MainSceneNodeScript : Lib.Scene.MainSceneNodeScript
     /**
      * @brief コンストラクタ
      */
-    public MainSceneNodeScript() : base((int)UnityBase.Util.SCENE.NODE_SCRIPT_INDEX.MAIN_SCENE)
+    public MainSceneNodeScript()
     {
         return;
     }
 
     /**
-     * @brief _OnAwake関数
+     * @brief _OnGetScriptIndex関数
+     * @return script_index (script_index)
      */
-    protected override void _OnAwake()
+    protected override int _OnGetScriptIndex()
     {
-        {// MainSceneNodeScript Create
-            var script = this;
-            var script_create_desc = new UnityBase.Scene.MainSceneNodeScriptCreateDesc();
-
-            script.Create(script_create_desc);
-            script.Open(0);
-        }
-
-        return;
+        return ((int)UnityBase.Util.SCENE.SCRIPT_INDEX.MAIN_SCENE_NODE);
     }
 
     /**
@@ -69,7 +62,7 @@ public class MainSceneNodeScript : Lib.Scene.MainSceneNodeScript
      * @brief SetCreateDesc関数
      * @param create_desc (create_desc)
      */
-    public override void SetCreateDesc(Lib.Scene.NodeScriptCreateDesc create_desc)
+    public override void SetCreateDesc(Lib.Scene.ScriptCreateDesc create_desc)
     {
 	    this.createDesc = create_desc as UnityBase.Scene.MainSceneNodeScriptCreateDesc;
 
@@ -83,14 +76,6 @@ public class MainSceneNodeScript : Lib.Scene.MainSceneNodeScript
      */
     protected override void _OnActive()
     {
-        {// InitSubSceneNodeScript Create
-            var script = this.GetManager().ChangeSubScene(UnityBase.Util.FILE_PATH.INIT_SUB_SCENE_PREFAB) as UnityBase.Scene.InitSubSceneNodeScript;
-            var script_create_desc = new UnityBase.Scene.InitSubSceneNodeScriptCreateDesc();
-
-            script.Create(script_create_desc);
-            script.Open(0);
-        }
-
         return;
     }
 
@@ -127,6 +112,22 @@ public class MainSceneNodeScript : Lib.Scene.MainSceneNodeScript
         }
 
         this._CreateManager();
+
+        {// MainSceneNodeScript Create
+            var script = this;
+            var script_create_desc = new UnityBase.Scene.MainSceneNodeScriptCreateDesc();
+
+            script.Create(script_create_desc);
+            script.Open(0);
+        }
+
+        {// InitSubSceneNodeScript Create
+            var script = this.GetManager().ChangeSubScene(UnityBase.Util.FILE_PATH.INIT_SUB_SCENE_PREFAB) as UnityBase.Scene.InitSubSceneNodeScript;
+            var script_create_desc = new UnityBase.Scene.InitSubSceneNodeScriptCreateDesc();
+
+            script.Create(script_create_desc);
+            script.Open(0);
+        }
 
         {// Test
         }
@@ -197,7 +198,7 @@ public class MainSceneNodeScript : Lib.Scene.MainSceneNodeScript
             var manager_create_desc = new Lib.Scene.ManagerCreateDesc();
 
             manager_create_desc.mainSceneNode = this.gameObject;
-            manager_create_desc.nodeScriptCount = (int)UnityBase.Util.SCENE.NODE_SCRIPT_INDEX_COUNT;
+            manager_create_desc.scriptCount = (int)UnityBase.Util.SCENE.SCRIPT_INDEX_COUNT;
 
             if (manager.Create(manager_create_desc) < 0) {
                 this._ReleaseManager();

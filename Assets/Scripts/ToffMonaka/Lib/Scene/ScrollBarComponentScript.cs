@@ -1,45 +1,49 @@
 ﻿/**
  * @file
- * @brief SoundBgmNodeScriptファイル
+ * @brief ScrollBarComponentScriptファイル
  */
 
 
 using UnityEngine;
+using UnityEngine.UI;
 
 
 namespace ToffMonaka {
 namespace Lib.Scene {
 /**
- * @brief SoundBgmNodeScriptCreateDescクラス
+ * @brief ScrollBarComponentScriptCreateDescクラス
  */
-public class SoundBgmNodeScriptCreateDesc : Lib.Scene.ObjectNodeScriptCreateDesc
+public class ScrollBarComponentScriptCreateDesc : Lib.Scene.ComponentScriptCreateDesc
 {
 }
 
 /**
- * @brief SoundBgmNodeScriptクラス
+ * @brief ScrollBarComponentScriptクラス
  */
-public class SoundBgmNodeScript : Lib.Scene.ObjectNodeScript
+public class ScrollBarComponentScript : Lib.Scene.ComponentScript
 {
-    [SerializeField] private AudioSource _audioSource = null;
+    [SerializeField] private GameObject _scrollViewNode = null;
 
-    public new Lib.Scene.SoundBgmNodeScriptCreateDesc createDesc{get; private set;} = null;
+    public new Lib.Scene.ScrollBarComponentScriptCreateDesc createDesc{get; private set;} = null;
+
+    private Scrollbar _scrollBar = null;
+    private Lib.Scene.ScrollViewComponentScript _scrollViewComponentScript = null;
 
     /**
      * @brief コンストラクタ
      */
-    public SoundBgmNodeScript()
+    public ScrollBarComponentScript()
     {
         return;
     }
-    
+
     /**
      * @brief _OnGetScriptIndex関数
      * @return script_index (script_index)
      */
     protected override int _OnGetScriptIndex()
     {
-        return ((int)Lib.Util.SCENE.SCRIPT_INDEX.SOUND_BGM_NODE);
+        return ((int)Lib.Util.SCENE.SCRIPT_INDEX.SCROLL_BAR_COMPONENT);
     }
 
     /**
@@ -57,6 +61,9 @@ public class SoundBgmNodeScript : Lib.Scene.ObjectNodeScript
      */
     protected override int _OnCreate()
     {
+        this._scrollBar = this.gameObject.GetComponent<Scrollbar>();
+        this._scrollViewComponentScript = this._scrollViewNode.GetComponent<Lib.Scene.ScrollViewComponentScript>();
+
         return (0);
     }
 
@@ -66,7 +73,7 @@ public class SoundBgmNodeScript : Lib.Scene.ObjectNodeScript
      */
     public override void SetCreateDesc(Lib.Scene.ScriptCreateDesc create_desc)
     {
-	    this.createDesc = create_desc as Lib.Scene.SoundBgmNodeScriptCreateDesc;
+	    this.createDesc = create_desc as Lib.Scene.ScrollBarComponentScriptCreateDesc;
 
         base.SetCreateDesc(this.createDesc);
 
@@ -94,20 +101,16 @@ public class SoundBgmNodeScript : Lib.Scene.ObjectNodeScript
      */
     protected override void _OnUpdate()
     {
-        if (this._audioSource.isPlaying == false) {
-            this.Close(0);
-        }
-
         return;
     }
 
     /**
-     * @brief GetAudioSource関数
-     * @return audio_src (audio_source)
+     * @brief OnValueChanged関数
+     * @param event_pos (event_position)
      */
-    public AudioSource GetAudioSource()
+    public void OnValueChanged(float event_pos)
     {
-        return (this._audioSource);
+        return;
     }
 }
 }

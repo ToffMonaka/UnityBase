@@ -38,17 +38,18 @@ public class MenuCheatStageCommandButtonNodeScript : Lib.Scene.ObjectNodeScript,
     /**
      * @brief コンストラクタ
      */
-    public MenuCheatStageCommandButtonNodeScript() : base((int)UnityBase.Util.SCENE.NODE_SCRIPT_INDEX.MENU_CHEAT_STAGE_COMMAND_BUTTON)
+    public MenuCheatStageCommandButtonNodeScript()
     {
         return;
     }
 
     /**
-     * @brief _OnAwake関数
+     * @brief _OnGetScriptIndex関数
+     * @return script_index (script_index)
      */
-    protected override void _OnAwake()
+    protected override int _OnGetScriptIndex()
     {
-        return;
+        return ((int)UnityBase.Util.SCENE.SCRIPT_INDEX.MENU_CHEAT_STAGE_COMMAND_BUTTON_NODE);
     }
 
     /**
@@ -86,7 +87,7 @@ public class MenuCheatStageCommandButtonNodeScript : Lib.Scene.ObjectNodeScript,
      * @brief SetCreateDesc関数
      * @param create_desc (create_desc)
      */
-    public override void SetCreateDesc(Lib.Scene.NodeScriptCreateDesc create_desc)
+    public override void SetCreateDesc(Lib.Scene.ScriptCreateDesc create_desc)
     {
 	    this.createDesc = create_desc as UnityBase.Scene.Ui.MenuCheatStageCommandButtonNodeScriptCreateDesc;
 

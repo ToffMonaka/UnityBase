@@ -34,7 +34,7 @@ public class MenuFaqStageNodeScript : UnityBase.Scene.Ui.MenuStageNodeScript
     /**
      * @brief コンストラクタ
      */
-    public MenuFaqStageNodeScript() : base((int)UnityBase.Util.SCENE.NODE_SCRIPT_INDEX.MENU_FAQ_STAGE)
+    public MenuFaqStageNodeScript()
     {
         this._SetStageType(UnityBase.Util.SCENE.MENU_STAGE_TYPE.FAQ);
 
@@ -42,13 +42,12 @@ public class MenuFaqStageNodeScript : UnityBase.Scene.Ui.MenuStageNodeScript
     }
 
     /**
-     * @brief _OnAwake関数
+     * @brief _OnGetScriptIndex関数
+     * @return script_index (script_index)
      */
-    protected override void _OnAwake()
+    protected override int _OnGetScriptIndex()
     {
-        base._OnAwake();
-
-        return;
+        return ((int)UnityBase.Util.SCENE.SCRIPT_INDEX.MENU_FAQ_STAGE_NODE);
     }
 
     /**
@@ -118,7 +117,7 @@ public class MenuFaqStageNodeScript : UnityBase.Scene.Ui.MenuStageNodeScript
      * @brief SetCreateDesc関数
      * @param create_desc (create_desc)
      */
-    public override void SetCreateDesc(Lib.Scene.NodeScriptCreateDesc create_desc)
+    public override void SetCreateDesc(Lib.Scene.ScriptCreateDesc create_desc)
     {
 	    this.createDesc = create_desc as UnityBase.Scene.Ui.MenuFaqStageNodeScriptCreateDesc;
 

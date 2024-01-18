@@ -17,7 +17,7 @@ namespace Lib.Scene {
 public class ManagerCreateDesc
 {
     public GameObject mainSceneNode = null;
-    public int nodeScriptCount = 0;
+    public int scriptCount = 0;
 }
 
 /**
@@ -29,10 +29,11 @@ public class Manager
 
     private GameObject _mainSceneNode = null;
     private GameObject _subSceneNode = null;
-    private List<Lib.Scene.NodeScript>[] _nodeScriptArray = null;
+    private List<Lib.Scene.Script>[] _scriptArray = null;
     private Lib.Scene.MainSceneNodeScript _mainSceneNodeScript = null;
     private Lib.Scene.SubSceneNodeScript _subSceneNodeScript = null;
     private List<Lib.Scene.ObjectNodeScript>[]  _objectNodeScriptArray = null;
+    private List<Lib.Scene.ComponentScript>[]  _componentScriptArray = null;
 
     /**
      * @brief コンストラクタ
@@ -49,23 +50,24 @@ public class Manager
     {
         Lib.Scene.Util.ReleasePrefabNode(ref this._subSceneNode);
 
-        if (this._nodeScriptArray != null) {
-            foreach (var node_script_cont in this._nodeScriptArray) {
-                var tmp_node_script_cont = new List<Lib.Scene.NodeScript>(node_script_cont);
+        if (this._scriptArray != null) {
+            foreach (var script_cont in this._scriptArray) {
+                var tmp_script_cont = new List<Lib.Scene.Script>(script_cont);
 
-                foreach (var tmp_node_script in tmp_node_script_cont) {
-                    tmp_node_script.DestroyByManager();
+                foreach (var tmp_script in tmp_script_cont) {
+                    tmp_script.DestroyByManager();
                 }
 
-                node_script_cont.Clear();
+                script_cont.Clear();
             }
 
-            this._nodeScriptArray = null;
+            this._scriptArray = null;
         }
 
         this._mainSceneNodeScript = null;
         this._subSceneNodeScript = null;
         this._objectNodeScriptArray = null;
+        this._componentScriptArray = null;
 
         return;
     }
@@ -99,16 +101,22 @@ public class Manager
 
             this._mainSceneNode = desc.mainSceneNode;
 
-            this._nodeScriptArray = new List<Lib.Scene.NodeScript>[this.createDesc.nodeScriptCount];
+            this._scriptArray = new List<Lib.Scene.Script>[this.createDesc.scriptCount];
 
-            for (int node_script_i = 0; node_script_i < this._nodeScriptArray.Length; ++node_script_i) {
-                this._nodeScriptArray[node_script_i] = new List<Lib.Scene.NodeScript>();
+            for (int script_i = 0; script_i < this._scriptArray.Length; ++script_i) {
+                this._scriptArray[script_i] = new List<Lib.Scene.Script>();
             }
 
-            this._objectNodeScriptArray = new List<Lib.Scene.ObjectNodeScript>[this.createDesc.nodeScriptCount];
+            this._objectNodeScriptArray = new List<Lib.Scene.ObjectNodeScript>[this.createDesc.scriptCount];
 
-            for (int node_script_i = 0; node_script_i < this._objectNodeScriptArray.Length; ++node_script_i) {
-                this._objectNodeScriptArray[node_script_i] = new List<Lib.Scene.ObjectNodeScript>();
+            for (int obj_node_script_i = 0; obj_node_script_i < this._objectNodeScriptArray.Length; ++obj_node_script_i) {
+                this._objectNodeScriptArray[obj_node_script_i] = new List<Lib.Scene.ObjectNodeScript>();
+            }
+
+            this._componentScriptArray = new List<Lib.Scene.ComponentScript>[this.createDesc.scriptCount];
+
+            for (int component_script_i = 0; component_script_i < this._componentScriptArray.Length; ++component_script_i) {
+                this._componentScriptArray[component_script_i] = new List<Lib.Scene.ComponentScript>();
             }
         }
 
@@ -163,39 +171,39 @@ public class Manager
     }
 
     /**
-     * @brief GetNodeScript関数
-     * @param node_script_inex (node_script_inex)
-     * @return node_script (node_script)<br>
+     * @brief GetScript関数
+     * @param script_inex (script_inex)
+     * @return script (script)<br>
      * null=失敗
      */
-    public Lib.Scene.NodeScript GetNodeScript(int node_script_inex)
+    public Lib.Scene.Script GetScript(int script_inex)
     {
-        if ((node_script_inex < 0)
-        || (node_script_inex >= this._nodeScriptArray.Length)) {
+        if ((script_inex < 0)
+        || (script_inex >= this._scriptArray.Length)) {
             return (null);
         }
 
-        if (this._nodeScriptArray[node_script_inex].Count <= 0) {
+        if (this._scriptArray[script_inex].Count <= 0) {
             return (null);
         }
 
-        return (this._nodeScriptArray[node_script_inex][0]);
+        return (this._scriptArray[script_inex][0]);
     }
 
     /**
-     * @brief GetNodeScriptContainer関数
-     * @param node_script_inex (node_script_inex)
-     * @return node_script_cont (node_script_container)<br>
+     * @brief GetScriptContainer関数
+     * @param script_inex (script_inex)
+     * @return script_cont (script_container)<br>
      * null=失敗
      */
-    public List<Lib.Scene.NodeScript> GetNodeScriptContainer(int node_script_inex)
+    public List<Lib.Scene.Script> GetScriptContainer(int script_inex)
     {
-        if ((node_script_inex < 0)
-        || (node_script_inex >= this._nodeScriptArray.Length)) {
+        if ((script_inex < 0)
+        || (script_inex >= this._scriptArray.Length)) {
             return (null);
         }
 
-        return (this._nodeScriptArray[node_script_inex]);
+        return (this._scriptArray[script_inex]);
     }
 
     /**
@@ -218,94 +226,114 @@ public class Manager
 
     /**
      * @brief GetObjectNodeScriptContainer関数
-     * @param node_script_inex (node_script_inex)
+     * @param script_inex (script_inex)
      * @return obj_node_script_cont (object_node_script_container)
      */
-    public List<Lib.Scene.ObjectNodeScript> GetObjectNodeScriptContainer(int node_script_inex)
+    public List<Lib.Scene.ObjectNodeScript> GetObjectNodeScriptContainer(int script_inex)
     {
-        return (this._objectNodeScriptArray[node_script_inex]);
+        return (this._objectNodeScriptArray[script_inex]);
     }
 
     /**
-     * @brief AddNodeScript関数
-     * @param node_script (node_script)
+     * @brief GetComponentScriptContainer関数
+     * @param script_inex (script_inex)
+     * @return component_script_cont (component_script_container)
+     */
+    public List<Lib.Scene.ComponentScript> GetComponentScriptContainer(int script_inex)
+    {
+        return (this._componentScriptArray[script_inex]);
+    }
+
+    /**
+     * @brief AddScript関数
+     * @param script (script)
      * @return result_val (result_value)<br>
      * 0未満=失敗
      */
-    public int AddNodeScript(Lib.Scene.NodeScript node_script)
+    public int AddScript(Lib.Scene.Script script)
     {
-        if ((node_script == null)
-        || (node_script.GetManager() != null)
-        || (node_script.GetNodeScriptIndex() >= this._nodeScriptArray.Length)) {
+        if ((script == null)
+        || (script.GetManager() != null)
+        || (script.GetScriptIndex() >= this._scriptArray.Length)) {
             return (-1);
         }
 
-        if (node_script.GetNodeScriptIndex() >= 0) {
-            this._nodeScriptArray[node_script.GetNodeScriptIndex()].Add(node_script);
+        if (script.GetScriptIndex() >= 0) {
+            this._scriptArray[script.GetScriptIndex()].Add(script);
 
-		    switch (node_script.GetNodeScriptType()) {
-		    case Lib.Util.SCENE.NODE_SCRIPT_TYPE.MAIN_SCENE: {
-                this._mainSceneNodeScript = (Lib.Scene.MainSceneNodeScript)node_script;
-
-			    break;
-		    }
-		    case Lib.Util.SCENE.NODE_SCRIPT_TYPE.SUB_SCENE: {
-                this._subSceneNodeScript = (Lib.Scene.SubSceneNodeScript)node_script;
+		    switch (script.GetScriptType()) {
+		    case Lib.Util.SCENE.SCRIPT_TYPE.MAIN_SCENE_NODE: {
+                this._mainSceneNodeScript = (Lib.Scene.MainSceneNodeScript)script;
 
 			    break;
 		    }
-		    case Lib.Util.SCENE.NODE_SCRIPT_TYPE.OBJECT: {
-                this._objectNodeScriptArray[node_script.GetNodeScriptIndex()].Add((Lib.Scene.ObjectNodeScript)node_script);
+		    case Lib.Util.SCENE.SCRIPT_TYPE.SUB_SCENE_NODE: {
+                this._subSceneNodeScript = (Lib.Scene.SubSceneNodeScript)script;
+
+			    break;
+		    }
+		    case Lib.Util.SCENE.SCRIPT_TYPE.OBJECT_NODE: {
+                this._objectNodeScriptArray[script.GetScriptIndex()].Add((Lib.Scene.ObjectNodeScript)script);
+
+			    break;
+		    }
+		    case Lib.Util.SCENE.SCRIPT_TYPE.COMPONENT: {
+                this._componentScriptArray[script.GetScriptIndex()].Add((Lib.Scene.ComponentScript)script);
 
 			    break;
 		    }
 		    }
         }
 
-        node_script.SetManager(this);
+        script.SetManager(this);
 
         return (0);
     }
 
     /**
-     * @brief RemoveNodeScript関数
-     * @param node_script (node_script)
+     * @brief RemoveScript関数
+     * @param script (script)
      */
-    public void RemoveNodeScript(Lib.Scene.NodeScript node_script)
+    public void RemoveScript(Lib.Scene.Script script)
     {
-        if ((node_script == null)
-        || (node_script.GetManager() == null)
-        || (node_script.GetNodeScriptIndex() >= this._nodeScriptArray.Length)) {
+        if ((script == null)
+        || (script.GetManager() == null)
+        || (script.GetScriptIndex() >= this._scriptArray.Length)) {
             return;
         }
 
-        if (node_script.GetNodeScriptIndex() >= 0) {
-            this._nodeScriptArray[node_script.GetNodeScriptIndex()].Remove(node_script);
+        if (script.GetScriptIndex() >= 0) {
+            this._scriptArray[script.GetScriptIndex()].Remove(script);
 
-		    switch (node_script.GetNodeScriptType()) {
-		    case Lib.Util.SCENE.NODE_SCRIPT_TYPE.MAIN_SCENE: {
-                if (this._mainSceneNodeScript == (Lib.Scene.MainSceneNodeScript)node_script) {
+		    switch (script.GetScriptType()) {
+		    case Lib.Util.SCENE.SCRIPT_TYPE.MAIN_SCENE_NODE: {
+                if (this._mainSceneNodeScript == (Lib.Scene.MainSceneNodeScript)script) {
                     this._mainSceneNodeScript = null;
                 }
 
 			    break;
 		    }
-		    case Lib.Util.SCENE.NODE_SCRIPT_TYPE.SUB_SCENE: {
-                if (this._subSceneNodeScript == (Lib.Scene.SubSceneNodeScript)node_script) {
+		    case Lib.Util.SCENE.SCRIPT_TYPE.SUB_SCENE_NODE: {
+                if (this._subSceneNodeScript == (Lib.Scene.SubSceneNodeScript)script) {
                     this._subSceneNodeScript = null;
                 }
 
 			    break;
 		    }
-		    case Lib.Util.SCENE.NODE_SCRIPT_TYPE.OBJECT: {
-                this._objectNodeScriptArray[node_script.GetNodeScriptIndex()].Remove((Lib.Scene.ObjectNodeScript)node_script);
+		    case Lib.Util.SCENE.SCRIPT_TYPE.OBJECT_NODE: {
+                this._objectNodeScriptArray[script.GetScriptIndex()].Remove((Lib.Scene.ObjectNodeScript)script);
+
+			    break;
+		    }
+		    case Lib.Util.SCENE.SCRIPT_TYPE.COMPONENT: {
+                this._componentScriptArray[script.GetScriptIndex()].Remove((Lib.Scene.ComponentScript)script);
 
 			    break;
 		    }
 		    }
         }
 
-        node_script.SetManager(null);
+        script.SetManager(null);
 
         return;
     }

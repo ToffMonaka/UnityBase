@@ -10,16 +10,42 @@ using UnityEngine;
 namespace ToffMonaka {
 namespace Lib.Scene {
 /**
+ * @brief ScriptCreateDescクラス
+ */
+public class ScriptCreateDesc
+{
+}
+
+/**
  * @brief Scriptクラス
  */
 public abstract class Script : MonoBehaviour
 {
+    public Lib.Scene.ScriptCreateDesc createDesc{get; private set;} = null;
+
+    private Lib.Scene.Manager _manager = null;
+    private Lib.Util.SCENE.SCRIPT_TYPE _scriptType = Lib.Util.SCENE.SCRIPT_TYPE.NONE;
+    private int _scriptIndex = (int)Lib.Util.SCENE.SCRIPT_INDEX.NONE;
+
     /**
      * @brief コンストラクタ
+     * @param script_type (script_type)
      */
-    public Script()
+    public Script(Lib.Util.SCENE.SCRIPT_TYPE script_type)
     {
+        this._scriptType = script_type;
+        this._scriptIndex = this._OnGetScriptIndex();
+
         return;
+    }
+
+    /**
+     * @brief _OnGetScriptIndex関数
+     * @return script_index (script_index)
+     */
+    protected virtual int _OnGetScriptIndex()
+    {
+        return ((int)Lib.Util.SCENE.SCRIPT_INDEX.NONE);
     }
 
     /**
@@ -135,6 +161,48 @@ public abstract class Script : MonoBehaviour
     }
 
     /**
+     * @brief DestroyByManager関数
+     */
+    public void DestroyByManager()
+    {
+        this._Destroy();
+
+        return;
+    }
+
+    /**
+     * @brief Create関数
+     * @param desc (desc)
+     * @return result_val (result_value)<br>
+     * 0未満=失敗
+     */
+    public virtual int Create(Lib.Scene.ScriptCreateDesc desc = null)
+    {
+        return (0);
+    }
+
+    /**
+     * @brief _OnCreate関数
+     * @return result_val (result_value)<br>
+     * 0未満=失敗
+     */
+    protected virtual int _OnCreate()
+    {
+        return (0);
+    }
+
+    /**
+     * @brief SetCreateDesc関数
+     * @param create_desc (create_desc)
+     */
+    public virtual void SetCreateDesc(Lib.Scene.ScriptCreateDesc create_desc)
+    {
+        this.createDesc = create_desc;
+
+        return;
+    }
+
+    /**
      * @brief _Active関数
      */
     protected virtual void _Active()
@@ -228,6 +296,44 @@ public abstract class Script : MonoBehaviour
     protected virtual void _OnLateUpdate()
     {
         return;
+    }
+
+    /**
+     * @brief GetManager関数
+     * @return manager (manager)
+     */
+    public Lib.Scene.Manager GetManager()
+    {
+        return (this._manager);
+    }
+
+    /**
+     * @brief SetManager関数
+     * @param manager (manager)
+     */
+    public void SetManager(Lib.Scene.Manager manager)
+    {
+        this._manager = manager;
+
+        return;
+    }
+
+    /**
+     * @brief GetScriptType関数
+     * @return script_type (script_type)
+     */
+    public Lib.Util.SCENE.SCRIPT_TYPE GetScriptType()
+    {
+        return (this._scriptType);
+    }
+
+    /**
+     * @brief GetScriptIndex関数
+     * @return script_index (script_index)
+     */
+    public int GetScriptIndex()
+    {
+        return (this._scriptIndex);
     }
 }
 }

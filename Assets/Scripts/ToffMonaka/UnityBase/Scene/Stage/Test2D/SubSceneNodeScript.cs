@@ -33,7 +33,7 @@ public class SubSceneNodeScript : UnityBase.Scene.Stage.SubSceneNodeScript
     /**
      * @brief コンストラクタ
      */
-    public SubSceneNodeScript() : base((int)UnityBase.Util.SCENE.NODE_SCRIPT_INDEX.TEST_2D_STAGE_SUB_SCENE)
+    public SubSceneNodeScript()
     {
         this._SetStageType(UnityBase.Util.SCENE.STAGE_TYPE.TEST_2D);
 
@@ -41,13 +41,12 @@ public class SubSceneNodeScript : UnityBase.Scene.Stage.SubSceneNodeScript
     }
 
     /**
-     * @brief _OnAwake関数
+     * @brief _OnGetScriptIndex関数
+     * @return script_index (script_index)
      */
-    protected override void _OnAwake()
+    protected override int _OnGetScriptIndex()
     {
-        base._OnAwake();
-
-        return;
+        return ((int)UnityBase.Util.SCENE.SCRIPT_INDEX.TEST_2D_STAGE_SUB_SCENE_NODE);
     }
 
     /**
@@ -81,7 +80,7 @@ public class SubSceneNodeScript : UnityBase.Scene.Stage.SubSceneNodeScript
      * @brief SetCreateDesc関数
      * @param create_desc (create_desc)
      */
-    public override void SetCreateDesc(Lib.Scene.NodeScriptCreateDesc create_desc)
+    public override void SetCreateDesc(Lib.Scene.ScriptCreateDesc create_desc)
     {
 	    this.createDesc = create_desc as UnityBase.Scene.Stage.Test2D.SubSceneNodeScriptCreateDesc;
 

@@ -32,19 +32,19 @@ public class SubSceneNodeScript : Lib.Scene.SubSceneNodeScript
 
     /**
      * @brief コンストラクタ
-     * @param node_script_index (node_script_index)
      */
-    public SubSceneNodeScript(int node_script_index) : base(node_script_index)
+    public SubSceneNodeScript()
     {
         return;
     }
 
     /**
-     * @brief _OnAwake関数
+     * @brief _OnGetScriptIndex関数
+     * @return script_index (script_index)
      */
-    protected override void _OnAwake()
+    protected override int _OnGetScriptIndex()
     {
-        return;
+        return ((int)UnityBase.Util.SCENE.SCRIPT_INDEX.STAGE_SUB_SCENE_NODE);
     }
 
     /**
@@ -93,7 +93,7 @@ public class SubSceneNodeScript : Lib.Scene.SubSceneNodeScript
      * @brief SetCreateDesc関数
      * @param create_desc (create_desc)
      */
-    public override void SetCreateDesc(Lib.Scene.NodeScriptCreateDesc create_desc)
+    public override void SetCreateDesc(Lib.Scene.ScriptCreateDesc create_desc)
     {
 	    this.createDesc = create_desc as UnityBase.Scene.Stage.SubSceneNodeScriptCreateDesc;
 

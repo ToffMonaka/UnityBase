@@ -74,36 +74,40 @@ public static class Util
 
     public static class SCENE
     {
-        public enum NODE_SCRIPT_INDEX : int
+        public enum SCRIPT_INDEX : int
         {
-            MAIN_SCENE = Lib.Util.SCENE.NODE_SCRIPT_INDEX.COUNT,
-            INIT_SUB_SCENE,
-            TITLE_SUB_SCENE,
-            SELECT_SUB_SCENE,
-            SELECT_BACK_BUTTON,
-            SELECT_STAGE_BOARD,
-            SELECT_STAGE_BUTTON,
-            STAGE_BACK_BUTTON,
-            TEST_2D_STAGE_SUB_SCENE,
-            TEST_3D_STAGE_SUB_SCENE,
-            MENU,
-            MENU_OPEN_CLOSE_BUTTON,
-            MENU_SELECT,
-            MENU_SELECT_STAGE_BUTTON,
-            MENU_OPTION_STAGE,
-            MENU_FAQ_STAGE,
-            MENU_STAFF_STAGE,
-            MENU_LICENSE_STAGE,
-            MENU_PRIVACY_POLICY_STAGE,
-            MENU_END_STAGE,
-            MENU_CHEAT_STAGE,
-            MENU_CHEAT_STAGE_COMMAND_BUTTON,
-            SELECT_DIALOG,
-            SELECT_DIALOG_ITEM_BUTTON,
-            INPUT_DIALOG,
+            MAIN_SCENE_NODE = Lib.Util.SCENE.SCRIPT_INDEX.COUNT,
+            INIT_SUB_SCENE_NODE,
+            TITLE_SUB_SCENE_NODE,
+            SELECT_SUB_SCENE_NODE,
+            SELECT_BACK_BUTTON_NODE,
+            SELECT_BOARD_NODE,
+            SELECT_STAGE_BOARD_NODE,
+            SELECT_STAGE_BUTTON_NODE,
+            STAGE_SUB_SCENE_NODE,
+            STAGE_BACK_BUTTON_NODE,
+            TEST_2D_STAGE_SUB_SCENE_NODE,
+            TEST_3D_STAGE_SUB_SCENE_NODE,
+            MENU_NODE,
+            MENU_OPEN_CLOSE_BUTTON_NODE,
+            MENU_SELECT_NODE,
+            MENU_SELECT_STAGE_BUTTON_NODE,
+            MENU_STAGE_NODE,
+            MENU_OPTION_STAGE_NODE,
+            MENU_FAQ_STAGE_NODE,
+            MENU_STAFF_STAGE_NODE,
+            MENU_LICENSE_STAGE_NODE,
+            MENU_PRIVACY_POLICY_STAGE_NODE,
+            MENU_END_STAGE_NODE,
+            MENU_CHEAT_STAGE_NODE,
+            MENU_CHEAT_STAGE_COMMAND_BUTTON_NODE,
+            DIALOG_NODE,
+            SELECT_DIALOG_NODE,
+            SELECT_DIALOG_ITEM_BUTTON_NODE,
+            INPUT_DIALOG_NODE,
 		    COUNT
         }
-        public static readonly int NODE_SCRIPT_INDEX_COUNT = (int)UnityBase.Util.SCENE.NODE_SCRIPT_INDEX.COUNT;
+        public static readonly int SCRIPT_INDEX_COUNT = (int)UnityBase.Util.SCENE.SCRIPT_INDEX.COUNT;
 
         public static class NAME
         {

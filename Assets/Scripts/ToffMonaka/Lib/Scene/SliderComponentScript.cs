@@ -1,6 +1,6 @@
 ﻿/**
  * @file
- * @brief SoundBgmNodeScriptファイル
+ * @brief SliderComponentScriptファイル
  */
 
 
@@ -10,36 +10,34 @@ using UnityEngine;
 namespace ToffMonaka {
 namespace Lib.Scene {
 /**
- * @brief SoundBgmNodeScriptCreateDescクラス
+ * @brief SliderComponentScriptCreateDescクラス
  */
-public class SoundBgmNodeScriptCreateDesc : Lib.Scene.ObjectNodeScriptCreateDesc
+public class SliderComponentScriptCreateDesc : Lib.Scene.ComponentScriptCreateDesc
 {
 }
 
 /**
- * @brief SoundBgmNodeScriptクラス
+ * @brief SliderComponentScriptクラス
  */
-public class SoundBgmNodeScript : Lib.Scene.ObjectNodeScript
+public class SliderComponentScript : Lib.Scene.ComponentScript
 {
-    [SerializeField] private AudioSource _audioSource = null;
-
-    public new Lib.Scene.SoundBgmNodeScriptCreateDesc createDesc{get; private set;} = null;
+    public new Lib.Scene.SliderComponentScriptCreateDesc createDesc{get; private set;} = null;
 
     /**
      * @brief コンストラクタ
      */
-    public SoundBgmNodeScript()
+    public SliderComponentScript()
     {
         return;
     }
-    
+
     /**
      * @brief _OnGetScriptIndex関数
      * @return script_index (script_index)
      */
     protected override int _OnGetScriptIndex()
     {
-        return ((int)Lib.Util.SCENE.SCRIPT_INDEX.SOUND_BGM_NODE);
+        return ((int)Lib.Util.SCENE.SCRIPT_INDEX.SLIDER_COMPONENT);
     }
 
     /**
@@ -66,7 +64,7 @@ public class SoundBgmNodeScript : Lib.Scene.ObjectNodeScript
      */
     public override void SetCreateDesc(Lib.Scene.ScriptCreateDesc create_desc)
     {
-	    this.createDesc = create_desc as Lib.Scene.SoundBgmNodeScriptCreateDesc;
+	    this.createDesc = create_desc as Lib.Scene.SliderComponentScriptCreateDesc;
 
         base.SetCreateDesc(this.createDesc);
 
@@ -94,20 +92,7 @@ public class SoundBgmNodeScript : Lib.Scene.ObjectNodeScript
      */
     protected override void _OnUpdate()
     {
-        if (this._audioSource.isPlaying == false) {
-            this.Close(0);
-        }
-
         return;
-    }
-
-    /**
-     * @brief GetAudioSource関数
-     * @return audio_src (audio_source)
-     */
-    public AudioSource GetAudioSource()
-    {
-        return (this._audioSource);
     }
 }
 }
