@@ -26,6 +26,7 @@ public abstract class Script : MonoBehaviour
     private Lib.Scene.Manager _manager = null;
     private Lib.Util.SCENE.SCRIPT_TYPE _scriptType = Lib.Util.SCENE.SCRIPT_TYPE.NONE;
     private int _scriptIndex = (int)Lib.Util.SCENE.SCRIPT_INDEX.NONE;
+    private bool _activedFlag = false;
 
     /**
      * @brief コンストラクタ
@@ -73,7 +74,14 @@ public abstract class Script : MonoBehaviour
      */
     private void OnEnable()
     {
+        if ((this._manager == null)
+        || (this._activedFlag)) {
+            return;
+        }
+
         this._Active();
+
+        this._activedFlag = true;
 
         return;
     }
@@ -83,7 +91,14 @@ public abstract class Script : MonoBehaviour
      */
     private void OnDisable()
     {
+        if ((this._manager == null)
+        || (!this._activedFlag)) {
+            return;
+        }
+
         this._Deactive();
+
+        this._activedFlag = false;
 
         return;
     }
@@ -334,6 +349,15 @@ public abstract class Script : MonoBehaviour
     public int GetScriptIndex()
     {
         return (this._scriptIndex);
+    }
+
+    /**
+     * @brief GetActivedFlag関数
+     * @return actived_flg (actived_flag)
+     */
+    public bool GetActivedFlag()
+    {
+        return (this._activedFlag);
     }
 }
 }

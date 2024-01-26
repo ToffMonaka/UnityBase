@@ -68,9 +68,8 @@ public static class Util
             SOUND_SE_NODE,
             COMPONENT,
             BUTTON_COMPONENT,
-            SCROLL_VIEW_COMPONENT,
-            SCROLL_BAR_COMPONENT,
             SLIDER_COMPONENT,
+            SCROLL_VIEW_COMPONENT,
 		    COUNT
         }
         public static readonly int SCRIPT_INDEX_COUNT = (int)Lib.Util.SCENE.SCRIPT_INDEX.COUNT;

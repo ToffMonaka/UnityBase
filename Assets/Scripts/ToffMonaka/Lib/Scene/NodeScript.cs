@@ -26,7 +26,6 @@ public abstract class NodeScript : Lib.Scene.Script
     public new Lib.Scene.NodeScriptCreateDesc createDesc{get; private set;} = null;
 
     private bool _activeAutoFlag = true;
-    private bool _activedFlag = false;
     private int _openType = 0;
     private int _openedType = 0;
     private bool _openFlag = false;
@@ -151,14 +150,7 @@ public abstract class NodeScript : Lib.Scene.Script
      */
     protected override void _Active()
     {
-        if ((this.GetManager() == null)
-        || (this._activedFlag)) {
-            return;
-        }
-
         this._OnActive();
-
-        this._activedFlag = true;
 
         return;
     }
@@ -168,14 +160,7 @@ public abstract class NodeScript : Lib.Scene.Script
      */
     protected override void _Deactive()
     {
-        if ((this.GetManager() == null)
-        || (!this._activedFlag)) {
-            return;
-        }
-
         this._OnDeactive();
-
-        this._activedFlag = false;
 
         return;
     }
@@ -235,15 +220,6 @@ public abstract class NodeScript : Lib.Scene.Script
     public bool GetActiveAutoFlag()
     {
         return (this._activeAutoFlag);
-    }
-
-    /**
-     * @brief GetActivedFlag関数
-     * @return actived_flg (actived_flag)
-     */
-    public bool GetActivedFlag()
-    {
-        return (this._activedFlag);
     }
 
     /**
