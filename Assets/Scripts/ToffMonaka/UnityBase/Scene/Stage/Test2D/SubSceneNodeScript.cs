@@ -33,10 +33,8 @@ public class SubSceneNodeScript : UnityBase.Scene.Stage.SubSceneNodeScript
     /**
      * @brief コンストラクタ
      */
-    public SubSceneNodeScript()
+    public SubSceneNodeScript() : base(UnityBase.Util.SCENE.STAGE_TYPE.TEST_2D)
     {
-        this._SetStageType(UnityBase.Util.SCENE.STAGE_TYPE.TEST_2D);
-
         return;
     }
 
@@ -223,16 +221,6 @@ public class SubSceneNodeScript : UnityBase.Scene.Stage.SubSceneNodeScript
 		    }
 		    }
         }
-
-        return;
-    }
-
-    /**
-     * @brief RunBackButton関数
-     */
-    public override void RunBackButton()
-    {
-        this.Close(1, 1);
 
         return;
     }

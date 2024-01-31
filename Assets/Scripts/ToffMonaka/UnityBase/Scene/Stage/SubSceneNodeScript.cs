@@ -32,9 +32,12 @@ public class SubSceneNodeScript : Lib.Scene.SubSceneNodeScript
 
     /**
      * @brief コンストラクタ
+     * @param stage_type (stage_type)
      */
-    public SubSceneNodeScript()
+    public SubSceneNodeScript(UnityBase.Util.SCENE.STAGE_TYPE stage_type)
     {
+        this._stageType = stage_type;
+
         return;
     }
 
@@ -66,7 +69,11 @@ public class SubSceneNodeScript : Lib.Scene.SubSceneNodeScript
             var script = this._backButtonNode.GetComponent<UnityBase.Scene.Stage.BackButtonNodeScript>();
             var script_create_desc = new UnityBase.Scene.Stage.BackButtonNodeScriptCreateDesc();
 
-            script_create_desc.subSceneNodeScript = this;
+            script_create_desc.onClick = (UnityBase.Scene.Stage.BackButtonNodeScript owner) => {
+                this.Close(1, 1);
+
+                return;
+            };
 
             script.Create(script_create_desc);
             script.Open(1);
@@ -165,25 +172,6 @@ public class SubSceneNodeScript : Lib.Scene.SubSceneNodeScript
     public UnityBase.Util.SCENE.STAGE_TYPE GetStageType()
     {
         return (this._stageType);
-    }
-
-    /**
-     * @brief _SetStageType関数
-     * @param stage_type (stage_type)
-     */
-    protected void _SetStageType(UnityBase.Util.SCENE.STAGE_TYPE stage_type)
-    {
-        this._stageType = stage_type;
-
-        return;
-    }
-
-    /**
-     * @brief RunBackButton関数
-     */
-    public virtual void RunBackButton()
-    {
-        return;
     }
 }
 }
