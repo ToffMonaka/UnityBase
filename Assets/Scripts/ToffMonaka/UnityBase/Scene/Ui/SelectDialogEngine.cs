@@ -32,25 +32,25 @@ public abstract class SelectDialogEngine
     }
 
     /**
-     * @brief OnClickItemButton関数
+     * @brief OnClickItem関数
      * @param dialog_node_script (dialog_node_script)
-     * @param item_btn_node_script (item_button_node_script)
+     * @param item_node_script (item_node_script)
      */
-    public virtual void OnClickItemButton(UnityBase.Scene.Ui.SelectDialogNodeScript dialog_node_script, UnityBase.Scene.Ui.SelectDialogItemButtonNodeScript item_btn_node_script)
+    public virtual void OnClickItem(UnityBase.Scene.Ui.SelectDialogNodeScript dialog_node_script, UnityBase.Scene.Ui.SelectDialogItemNodeScript item_node_script)
     {
         return;
     }
 }
 
 /**
- * @brief SelectDialogItemButtonEngineクラス
+ * @brief SelectDialogItemEngineクラス
  */
-public abstract class SelectDialogItemButtonEngine
+public abstract class SelectDialogItemEngine
 {
     /**
      * @brief コンストラクタ
      */
-    public SelectDialogItemButtonEngine()
+    public SelectDialogItemEngine()
     {
         return;
     }

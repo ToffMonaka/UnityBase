@@ -1,6 +1,6 @@
 ﻿/**
  * @file
- * @brief SelectDialogItemButtonNodeScriptファイル
+ * @brief SelectDialogItemNodeScriptファイル
  */
 
 
@@ -13,31 +13,31 @@ using TMPro;
 namespace ToffMonaka {
 namespace UnityBase.Scene.Ui {
 /**
- * @brief SelectDialogItemButtonNodeScriptCreateDescクラス
+ * @brief SelectDialogItemNodeScriptCreateDescクラス
  */
-public class SelectDialogItemButtonNodeScriptCreateDesc : Lib.Scene.ObjectNodeScriptCreateDesc
+public class SelectDialogItemNodeScriptCreateDesc : Lib.Scene.ObjectNodeScriptCreateDesc
 {
-    public UnityBase.Scene.Ui.SelectDialogItemButtonEngine engine = null;
-    public System.Action<UnityBase.Scene.Ui.SelectDialogItemButtonNodeScript> onClick = null;
+    public UnityBase.Scene.Ui.SelectDialogItemEngine engine = null;
+    public System.Action<UnityBase.Scene.Ui.SelectDialogItemNodeScript> onClick = null;
 }
 
 /**
- * @brief SelectDialogItemButtonNodeScriptクラス
+ * @brief SelectDialogItemNodeScriptクラス
  */
-public class SelectDialogItemButtonNodeScript : Lib.Scene.ObjectNodeScript, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
+public class SelectDialogItemNodeScript : Lib.Scene.ObjectNodeScript, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
 {
     [SerializeField] private TMP_Text _nameText = null;
     [SerializeField] private Image _coverImage = null;
 
-    public new UnityBase.Scene.Ui.SelectDialogItemButtonNodeScriptCreateDesc createDesc{get; private set;} = null;
+    public new UnityBase.Scene.Ui.SelectDialogItemNodeScriptCreateDesc createDesc{get; private set;} = null;
 
-    private UnityBase.Scene.Ui.SelectDialogItemButtonEngine _engine = null;
-    private System.Action<UnityBase.Scene.Ui.SelectDialogItemButtonNodeScript> _onClick = null;
+    private UnityBase.Scene.Ui.SelectDialogItemEngine _engine = null;
+    private System.Action<UnityBase.Scene.Ui.SelectDialogItemNodeScript> _onClick = null;
 
     /**
      * @brief コンストラクタ
      */
-    public SelectDialogItemButtonNodeScript()
+    public SelectDialogItemNodeScript()
     {
         return;
     }
@@ -48,7 +48,7 @@ public class SelectDialogItemButtonNodeScript : Lib.Scene.ObjectNodeScript, IPoi
      */
     protected override int _OnGetScriptIndex()
     {
-        return ((int)UnityBase.Util.SCENE.SCRIPT_INDEX.SELECT_DIALOG_ITEM_BUTTON_NODE);
+        return ((int)UnityBase.Util.SCENE.SCRIPT_INDEX.SELECT_DIALOG_ITEM_NODE);
     }
 
     /**
@@ -85,7 +85,7 @@ public class SelectDialogItemButtonNodeScript : Lib.Scene.ObjectNodeScript, IPoi
      */
     public override void SetCreateDesc(Lib.Scene.ScriptCreateDesc create_desc)
     {
-	    this.createDesc = create_desc as UnityBase.Scene.Ui.SelectDialogItemButtonNodeScriptCreateDesc;
+	    this.createDesc = create_desc as UnityBase.Scene.Ui.SelectDialogItemNodeScriptCreateDesc;
 
         base.SetCreateDesc(this.createDesc);
 
@@ -201,7 +201,7 @@ public class SelectDialogItemButtonNodeScript : Lib.Scene.ObjectNodeScript, IPoi
      * @brief GetEngine関数
      * @return engine (engine)
      */
-    public UnityBase.Scene.Ui.SelectDialogItemButtonEngine GetEngine()
+    public UnityBase.Scene.Ui.SelectDialogItemEngine GetEngine()
     {
         return (this._engine);
     }

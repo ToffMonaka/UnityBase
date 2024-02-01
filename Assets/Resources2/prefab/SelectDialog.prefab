@@ -423,7 +423,7 @@ GameObject:
   - component: {fileID: 198333941070483839}
   - component: {fileID: 9044642895819290960}
   m_Layer: 5
-  m_Name: ItemButton
+  m_Name: Item
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1484,8 +1484,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _canvasGroup: {fileID: 2906105076529643805}
   _nameText: {fileID: 3534783089290749998}
-  _itemScrollRect: {fileID: 5636749661322728868}
-  _itemButtonNode: {fileID: 2740718328570381744}
+  _scrollRect: {fileID: 5636749661322728868}
+  _itemNode: {fileID: 2740718328570381744}
   _closeButtonCoverImage: {fileID: 540555718964677450}
 --- !u!225 &2906105076529643805
 CanvasGroup:

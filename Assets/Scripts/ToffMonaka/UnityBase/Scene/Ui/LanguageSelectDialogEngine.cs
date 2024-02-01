@@ -14,15 +14,15 @@ namespace UnityBase.Scene.Ui {
  */
 public class LanguageSelectDialogEngine : UnityBase.Scene.Ui.SelectDialogEngine
 {
-    private System.Action<UnityBase.Scene.Ui.SelectDialogNodeScript, UnityBase.Scene.Ui.SelectDialogItemButtonNodeScript> _onClickItemButton;
+    private System.Action<UnityBase.Scene.Ui.SelectDialogNodeScript, UnityBase.Scene.Ui.SelectDialogItemNodeScript> _onClickItem;
 
     /**
      * @brief コンストラクタ
-     * @param on_click_item_btn (on_click_item_button)
+     * @param on_click_item (on_click_item)
      */
-    public LanguageSelectDialogEngine(System.Action<UnityBase.Scene.Ui.SelectDialogNodeScript, UnityBase.Scene.Ui.SelectDialogItemButtonNodeScript> on_click_item_btn)
+    public LanguageSelectDialogEngine(System.Action<UnityBase.Scene.Ui.SelectDialogNodeScript, UnityBase.Scene.Ui.SelectDialogItemNodeScript> on_click_item)
     {
-        this._onClickItemButton = on_click_item_btn;
+        this._onClickItem = on_click_item;
 
         return;
     }
@@ -37,22 +37,22 @@ public class LanguageSelectDialogEngine : UnityBase.Scene.Ui.SelectDialogEngine
     }
 
     /**
-     * @brief OnClickItemButton関数
+     * @brief OnClickItem関数
      * @param dialog_node_script (dialog_node_script)
-     * @param item_btn_node_script (item_button_node_script)
+     * @param item_node_script (item_node_script)
      */
-    public override void OnClickItemButton(UnityBase.Scene.Ui.SelectDialogNodeScript dialog_node_script, UnityBase.Scene.Ui.SelectDialogItemButtonNodeScript item_btn_node_script)
+    public override void OnClickItem(UnityBase.Scene.Ui.SelectDialogNodeScript dialog_node_script, UnityBase.Scene.Ui.SelectDialogItemNodeScript item_node_script)
     {
-        this._onClickItemButton?.Invoke(dialog_node_script, item_btn_node_script);
+        this._onClickItem?.Invoke(dialog_node_script, item_node_script);
 
         return;
     }
 }
 
 /**
- * @brief LanguageSelectDialogItemButtonEngineクラス
+ * @brief LanguageSelectDialogItemEngineクラス
  */
-public class LanguageSelectDialogItemButtonEngine : UnityBase.Scene.Ui.SelectDialogItemButtonEngine
+public class LanguageSelectDialogItemEngine : UnityBase.Scene.Ui.SelectDialogItemEngine
 {
     private UnityBase.Util.LANGUAGE_TYPE _languageType;
 
@@ -60,7 +60,7 @@ public class LanguageSelectDialogItemButtonEngine : UnityBase.Scene.Ui.SelectDia
      * @brief コンストラクタ
      * @param language_type (language_type)
      */
-    public LanguageSelectDialogItemButtonEngine(UnityBase.Util.LANGUAGE_TYPE language_type)
+    public LanguageSelectDialogItemEngine(UnityBase.Util.LANGUAGE_TYPE language_type)
     {
         this._languageType = language_type;
 

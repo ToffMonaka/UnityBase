@@ -229,23 +229,23 @@ public class MenuOptionStageNodeScript : UnityBase.Scene.Ui.MenuStageNodeScript
             var script = this._languageSelectDialogNode.GetComponent<UnityBase.Scene.Ui.SelectDialogNodeScript>();
             var script_create_desc = new UnityBase.Scene.Ui.SelectDialogNodeScriptCreateDesc();
 
-            void on_click_item_btn(UnityBase.Scene.Ui.SelectDialogNodeScript dialog_node_script, UnityBase.Scene.Ui.SelectDialogItemButtonNodeScript item_btn_node_script)
+            void on_click_item(UnityBase.Scene.Ui.SelectDialogNodeScript dialog_node_script, UnityBase.Scene.Ui.SelectDialogItemNodeScript item_node_script)
             {
-                var item_btn_node_script_engine = item_btn_node_script.GetEngine() as UnityBase.Scene.Ui.LanguageSelectDialogItemButtonEngine;
+                var item_node_script_engine = item_node_script.GetEngine() as UnityBase.Scene.Ui.LanguageSelectDialogItemEngine;
 
-                this.SetLanguageType(item_btn_node_script_engine.GetLanguageType());
+                this.SetLanguageType(item_node_script_engine.GetLanguageType());
 
                 return;
             }
 
-            script_create_desc.engine = new UnityBase.Scene.Ui.LanguageSelectDialogEngine(on_click_item_btn);
+            script_create_desc.engine = new UnityBase.Scene.Ui.LanguageSelectDialogEngine(on_click_item);
 
             script.Create(script_create_desc);
 
             this._languageSelectDialogNodeScript = script;
 
-            this._languageSelectDialogNodeScript.AddItemButton(new UnityBase.Scene.Ui.LanguageSelectDialogItemButtonEngine(UnityBase.Util.LANGUAGE_TYPE.ENGLISH));
-            this._languageSelectDialogNodeScript.AddItemButton(new UnityBase.Scene.Ui.LanguageSelectDialogItemButtonEngine(UnityBase.Util.LANGUAGE_TYPE.JAPANESE));
+            this._languageSelectDialogNodeScript.AddItem(new UnityBase.Scene.Ui.LanguageSelectDialogItemEngine(UnityBase.Util.LANGUAGE_TYPE.ENGLISH));
+            this._languageSelectDialogNodeScript.AddItem(new UnityBase.Scene.Ui.LanguageSelectDialogItemEngine(UnityBase.Util.LANGUAGE_TYPE.JAPANESE));
         }
 
         if (this._languageSelectDialogNodeScript != null) {

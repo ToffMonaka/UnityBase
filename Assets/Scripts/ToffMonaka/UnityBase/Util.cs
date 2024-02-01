@@ -103,7 +103,7 @@ public static class Util
             MENU_CHEAT_STAGE_COMMAND_BUTTON_NODE,
             DIALOG_NODE,
             SELECT_DIALOG_NODE,
-            SELECT_DIALOG_ITEM_BUTTON_NODE,
+            SELECT_DIALOG_ITEM_NODE,
             INPUT_DIALOG_NODE,
 		    COUNT
         }

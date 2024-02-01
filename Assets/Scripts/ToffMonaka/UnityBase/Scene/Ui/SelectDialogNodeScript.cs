@@ -27,14 +27,14 @@ public class SelectDialogNodeScriptCreateDesc : UnityBase.Scene.Ui.DialogNodeScr
 public class SelectDialogNodeScript : UnityBase.Scene.Ui.DialogNodeScript
 {
     [SerializeField] private TMP_Text _nameText = null;
-    [SerializeField] private ScrollRect _itemScrollRect = null;
-    [SerializeField] private GameObject _itemButtonNode = null;
+    [SerializeField] private ScrollRect _scrollRect = null;
+    [SerializeField] private GameObject _itemNode = null;
     [SerializeField] private Image _closeButtonCoverImage = null;
 
     public new UnityBase.Scene.Ui.SelectDialogNodeScriptCreateDesc createDesc{get; private set;} = null;
 
     private UnityBase.Scene.Ui.SelectDialogEngine _engine = null;
-    private List<UnityBase.Scene.Ui.SelectDialogItemButtonNodeScript> _itemButtonNodeScriptContainer = new List<UnityBase.Scene.Ui.SelectDialogItemButtonNodeScript>();
+    private List<UnityBase.Scene.Ui.SelectDialogItemNodeScript> _itemNodeScriptContainer = new List<UnityBase.Scene.Ui.SelectDialogItemNodeScript>();
 
     /**
      * @brief コンストラクタ
@@ -82,7 +82,7 @@ public class SelectDialogNodeScript : UnityBase.Scene.Ui.DialogNodeScript
 
         this._nameText.SetText(this._engine.OnGetName());
 
-        this._itemButtonNode.SetActive(false);
+        this._itemNode.SetActive(false);
 
         return (0);
     }
@@ -107,7 +107,7 @@ public class SelectDialogNodeScript : UnityBase.Scene.Ui.DialogNodeScript
     {
         base._OnActive();
 
-        this._itemScrollRect.verticalNormalizedPosition = 1.0f;
+        this._scrollRect.verticalNormalizedPosition = 1.0f;
         this._closeButtonCoverImage.gameObject.SetActive(false);
 
         return;
@@ -226,24 +226,24 @@ public class SelectDialogNodeScript : UnityBase.Scene.Ui.DialogNodeScript
     }
 
     /**
-     * @brief AddItemButton関数
-     * @param item_btn_engine (item_button_engine)
+     * @brief AddItem関数
+     * @param item_engine (item_engine)
      * @return result_val (result_value)<br>
      * 0未満=失敗
      */
-    public int AddItemButton(UnityBase.Scene.Ui.SelectDialogItemButtonEngine item_btn_engine)
+    public int AddItem(UnityBase.Scene.Ui.SelectDialogItemEngine item_engine)
     {
-        if (item_btn_engine == null) {
+        if (item_engine == null) {
             return (-1);
         }
 
-        {// ItemButtonNodeScript Create
-            var script = GameObject.Instantiate(this._itemButtonNode, this._itemButtonNode.transform.parent).GetComponent<UnityBase.Scene.Ui.SelectDialogItemButtonNodeScript>();
-            var script_create_desc = new UnityBase.Scene.Ui.SelectDialogItemButtonNodeScriptCreateDesc();
+        {// ItemNodeScript Create
+            var script = GameObject.Instantiate(this._itemNode, this._itemNode.transform.parent).GetComponent<UnityBase.Scene.Ui.SelectDialogItemNodeScript>();
+            var script_create_desc = new UnityBase.Scene.Ui.SelectDialogItemNodeScriptCreateDesc();
 
-            script_create_desc.engine = item_btn_engine;
-            script_create_desc.onClick = (UnityBase.Scene.Ui.SelectDialogItemButtonNodeScript item_btn_node_script) => {
-                this._engine.OnClickItemButton(this, item_btn_node_script);
+            script_create_desc.engine = item_engine;
+            script_create_desc.onClick = (UnityBase.Scene.Ui.SelectDialogItemNodeScript item_node_script) => {
+                this._engine.OnClickItem(this, item_node_script);
 
                 this.Close(1);
 
@@ -253,24 +253,24 @@ public class SelectDialogNodeScript : UnityBase.Scene.Ui.DialogNodeScript
             script.Create(script_create_desc);
             script.Open(0);
 
-            this._itemButtonNodeScriptContainer.Add(script);
+            this._itemNodeScriptContainer.Add(script);
         }
 
         return (0);
     }
 
     /**
-     * @brief RemoveItemButton関数
+     * @brief RemoveItem関数
      */
-    public void RemoveItemButton()
+    public void RemoveItem()
     {
-        foreach (var item_btn_node_script in this._itemButtonNodeScriptContainer) {
-            item_btn_node_script.Close(0);
+        foreach (var item_node_script in this._itemNodeScriptContainer) {
+            item_node_script.Close(0);
 
-            GameObject.Destroy(item_btn_node_script.gameObject);
+            GameObject.Destroy(item_node_script.gameObject);
         }
 
-        this._itemButtonNodeScriptContainer.Clear();
+        this._itemNodeScriptContainer.Clear();
 
         return;
     }
