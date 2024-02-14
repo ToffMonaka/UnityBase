@@ -242,8 +242,8 @@ public class SelectDialogNodeScript : UnityBase.Scene.Ui.DialogNodeScript
             var script_create_desc = new UnityBase.Scene.Ui.SelectDialogItemNodeScriptCreateDesc();
 
             script_create_desc.engine = item_engine;
-            script_create_desc.onClick = (UnityBase.Scene.Ui.SelectDialogItemNodeScript item_node_script) => {
-                this._engine.OnClickItem(this, item_node_script);
+            script_create_desc.onClick = (UnityBase.Scene.Ui.SelectDialogItemNodeScript owner) => {
+                this._engine.OnClickItem(this, owner);
 
                 this.Close(1);
 
