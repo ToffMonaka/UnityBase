@@ -244,12 +244,12 @@ public class MainSceneNodeScript : Lib.Scene.MainSceneNodeScript
             var manager_create_desc = new Lib.Scene.SoundManagerCreateDesc();
 
             manager_create_desc.soundNode = this.GetSoundNode();
-            manager_create_desc.bgmNode = this.GetSoundBgmNode();
+            manager_create_desc.bgmPrefabFilePath = UnityBase.Util.FILE_PATH.SOUND_BGM_PREFAB;
             manager_create_desc.bgmAudioClipArray = this.GetSoundBgmAudioClipArray();
-            manager_create_desc.seNode = this.GetSoundSeNode();
-            manager_create_desc.seAudioClipArray = this.GetSoundSeAudioClipArray();
             manager_create_desc.bgmVolume = UnityBase.Global.systemConfigFile.data.soundBgmVolume;
             manager_create_desc.bgmMuteFlag = UnityBase.Global.systemConfigFile.data.soundBgmMuteFlag;
+            manager_create_desc.sePrefabFilePath = UnityBase.Util.FILE_PATH.SOUND_SE_PREFAB;
+            manager_create_desc.seAudioClipArray = this.GetSoundSeAudioClipArray();
             manager_create_desc.seVolume = UnityBase.Global.systemConfigFile.data.soundSeVolume;
             manager_create_desc.seMuteFlag = UnityBase.Global.systemConfigFile.data.soundSeMuteFlag;
 

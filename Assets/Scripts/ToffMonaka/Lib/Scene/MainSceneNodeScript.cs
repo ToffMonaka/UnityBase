@@ -25,9 +25,7 @@ public abstract class MainSceneNodeScript : Lib.Scene.NodeScript
     [SerializeField] private GameObject _inputNode = null;
     [SerializeField] private GameObject _graphicNode = null;
     [SerializeField] private GameObject _soundNode = null;
-    [SerializeField] private GameObject _soundBgmNode = null;
     [SerializeField] private AudioClip[] _soundBgmAudioClipArray = null;
-    [SerializeField] private GameObject _soundSeNode = null;
     [SerializeField] private AudioClip[] _soundSeAudioClipArray = null;
 
     public new Lib.Scene.MainSceneNodeScriptCreateDesc createDesc{get; private set;} = null;
@@ -207,30 +205,12 @@ public abstract class MainSceneNodeScript : Lib.Scene.NodeScript
     }
 
     /**
-     * @brief GetSoundBgmNode関数
-     * @return sound_bgm_node (sound_bgm_node)
-     */
-    public GameObject GetSoundBgmNode()
-    {
-        return (this._soundBgmNode);
-    }
-
-    /**
      * @brief GetSoundBgmAudioClipArray関数
      * @return sound_bgm_audio_clip_ary (sound_bgm_audio_clip_array)
      */
     public AudioClip[] GetSoundBgmAudioClipArray()
     {
         return (this._soundBgmAudioClipArray);
-    }
-
-    /**
-     * @brief GetSoundSeNode関数
-     * @return sound_se_node (sound_se_node)
-     */
-    public GameObject GetSoundSeNode()
-    {
-        return (this._soundSeNode);
     }
 
     /**

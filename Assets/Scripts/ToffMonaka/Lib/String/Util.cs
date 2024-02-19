@@ -33,12 +33,12 @@ public static class Util
 
     /**
      * @brief GetNewlineCode関数
-     * @param type (type)
-     * @param newline_code (newline_code)
+     * @param newline_type (newline_type)
+     * @return newline_code (newline_code)
      */
-    public static string GetNewlineCode(Lib.String.Util.NEWLINE_TYPE type)
+    public static string GetNewlineCode(Lib.String.Util.NEWLINE_TYPE newline_type)
     {
-        return (Lib.String.Util.NEWLINE_CODE_ARRAY[(int)type]);
+        return (Lib.String.Util.NEWLINE_CODE_ARRAY[(int)newline_type]);
     }
 
     /**

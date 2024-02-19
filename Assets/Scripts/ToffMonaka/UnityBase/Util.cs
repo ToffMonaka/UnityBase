@@ -33,6 +33,8 @@ public static class Util
         public static readonly string SYSTEM_CONFIG = "dat/sys_conf.ini";
         public static readonly string ENGLISH_MST_TEXT_TABLE = "Assets/Resources2/dat/en_mst_txt_tbl.csv";
         public static readonly string JAPANESE_MST_TEXT_TABLE = "Assets/Resources2/dat/jp_mst_txt_tbl.csv";
+        public static readonly string SOUND_BGM_PREFAB = "Assets/Resources2/prefab/SoundBgm.prefab";
+        public static readonly string SOUND_SE_PREFAB = "Assets/Resources2/prefab/SoundSe.prefab";
         public static readonly string INIT_SUB_SCENE_PREFAB = "Assets/Resources2/prefab/InitSubScene.prefab";
         public static readonly string TITLE_SUB_SCENE_PREFAB = "Assets/Resources2/prefab/TitleSubScene.prefab";
         public static readonly string SELECT_SUB_SCENE_PREFAB = "Assets/Resources2/prefab/SelectSubScene.prefab";
