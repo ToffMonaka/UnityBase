@@ -92,6 +92,10 @@ public class ScrollViewComponentScript : Lib.Scene.ComponentScript
 
         this._itemNode.SetActive(false);
 
+        this._itemCount = -1;
+
+        this.SetItemCount(0);
+
         return (0);
     }
 
@@ -167,6 +171,10 @@ public class ScrollViewComponentScript : Lib.Scene.ComponentScript
      */
     public void SetScrollValue(float scroll_val, bool norm_pos_set_flg = true)
     {
+        if (scroll_val == this._scrollValue) {
+            return;
+        }
+
         this._scrollValue = scroll_val;
 
         int item_index = 0;
@@ -210,7 +218,11 @@ public class ScrollViewComponentScript : Lib.Scene.ComponentScript
 
         this._subContentRectTransform.anchoredPosition = item_pos;
 
-        this._SetItemIndex(item_index);
+        if (item_index != this._itemIndex) {
+            this._itemIndex = item_index;
+
+            this.UpdateItem();
+        }
 
         return;
     }
@@ -230,8 +242,11 @@ public class ScrollViewComponentScript : Lib.Scene.ComponentScript
      */
     public void SetItemCount(int item_cnt)
     {
+        if (item_cnt == this._itemCount) {
+            return;
+        }
+
         this._itemCount = item_cnt;
-        this._itemIndex = -1;
 
         int item_node_cnt = 0;
 
@@ -295,23 +310,19 @@ public class ScrollViewComponentScript : Lib.Scene.ComponentScript
             }
         }
 
+        this._scrollValue = -1.0f;
+        this._itemIndex = -1;
+
         this.SetScrollValue(1.0f);
 
         return;
     }
 
     /**
-     * @brief _SetItemIndex関数
-     * @param item_index (item_index)
+     * @brief UpdateItem関数
      */
-    private void _SetItemIndex(int item_index)
+    public void UpdateItem()
     {
-        if (item_index == this._itemIndex) {
-            return;
-        }
-
-        this._itemIndex = item_index;
-
         for (int item_node_script_i = 0; item_node_script_i < this._itemNodeScriptContainer.Count; ++item_node_script_i) {
             this._onSetItemNodeScript(this._itemNodeScriptContainer[item_node_script_i], System.Math.Min(this._itemIndex + item_node_script_i, this._itemCount - 1));
         }
