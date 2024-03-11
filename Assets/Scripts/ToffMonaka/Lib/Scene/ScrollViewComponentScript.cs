@@ -93,7 +93,6 @@ public class ScrollViewComponentScript : Lib.Scene.ComponentScript
         this._itemNode.SetActive(false);
 
         this._itemCount = -1;
-
         this.SetItemCount(0);
 
         return (0);
@@ -228,6 +227,28 @@ public class ScrollViewComponentScript : Lib.Scene.ComponentScript
     }
 
     /**
+     * @brief _UpdateScrollBarSize関数
+     */
+    private void _UpdateScrollBarSize()
+    {
+        if (this._scrollRect.horizontal) {
+            if (this._scrollRect.horizontalScrollbar != null) {
+                if (this._scrollRect.horizontalScrollbar.size < this._scrollBarMinSize2.x) {
+                    this._scrollRect.horizontalScrollbar.size = this._scrollBarMinSize2.x;
+                }
+            }
+        } else if (this._scrollRect.vertical) {
+            if (this._scrollRect.verticalScrollbar != null) {
+                if (this._scrollRect.verticalScrollbar.size < this._scrollBarMinSize2.y) {
+                    this._scrollRect.verticalScrollbar.size = this._scrollBarMinSize2.y;
+                }
+            }
+        }
+
+        return;
+    }
+
+    /**
      * @brief GetItemCount関数
      * @return item_cnt (item_count)
      */
@@ -312,7 +333,6 @@ public class ScrollViewComponentScript : Lib.Scene.ComponentScript
 
         this._scrollValue = -1.0f;
         this._itemIndex = -1;
-
         this.SetScrollValue(1.0f);
 
         return;
@@ -325,28 +345,6 @@ public class ScrollViewComponentScript : Lib.Scene.ComponentScript
     {
         for (int item_node_script_i = 0; item_node_script_i < this._itemNodeScriptContainer.Count; ++item_node_script_i) {
             this._onSetItemNodeScript(this._itemNodeScriptContainer[item_node_script_i], System.Math.Min(this._itemIndex + item_node_script_i, this._itemCount - 1));
-        }
-
-        return;
-    }
-
-    /**
-     * @brief _UpdateScrollBarSize関数
-     */
-    private void _UpdateScrollBarSize()
-    {
-        if (this._scrollRect.horizontal) {
-            if (this._scrollRect.horizontalScrollbar != null) {
-                if (this._scrollRect.horizontalScrollbar.size < this._scrollBarMinSize2.x) {
-                    this._scrollRect.horizontalScrollbar.size = this._scrollBarMinSize2.x;
-                }
-            }
-        } else if (this._scrollRect.vertical) {
-            if (this._scrollRect.verticalScrollbar != null) {
-                if (this._scrollRect.verticalScrollbar.size < this._scrollBarMinSize2.y) {
-                    this._scrollRect.verticalScrollbar.size = this._scrollBarMinSize2.y;
-                }
-            }
         }
 
         return;
