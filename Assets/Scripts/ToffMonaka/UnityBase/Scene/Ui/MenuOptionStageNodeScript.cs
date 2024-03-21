@@ -66,7 +66,7 @@ public class MenuOptionStageNodeScript : UnityBase.Scene.Ui.MenuStageNodeScript
 
         return;
     }
-
+    
     /**
      * @brief _OnGetScriptIndex関数
      * @return script_index (script_index)
@@ -134,11 +134,11 @@ public class MenuOptionStageNodeScript : UnityBase.Scene.Ui.MenuStageNodeScript
         base._OnActive();
 
         this._editScrollRect.verticalNormalizedPosition = 1.0f;
-        this.SetLanguageType(UnityBase.Global.systemConfigFile.data.systemLanguageType);
-        this.SetSoundBgmVolume(UnityBase.Global.systemConfigFile.data.soundBgmVolume);
-        this.SetSoundBgmMuteFlag(UnityBase.Global.systemConfigFile.data.soundBgmMuteFlag);
-        this.SetSoundSeVolume(UnityBase.Global.systemConfigFile.data.soundSeVolume);
-        this.SetSoundSeMuteFlag(UnityBase.Global.systemConfigFile.data.soundSeMuteFlag);
+        this.SetLanguageType(UnityBase.Global.systemDataFile.data.systemLanguageType);
+        this.SetSoundBgmVolume(UnityBase.Global.systemDataFile.data.soundBgmVolume);
+        this.SetSoundBgmMuteFlag(UnityBase.Global.systemDataFile.data.soundBgmMuteFlag);
+        this.SetSoundSeVolume(UnityBase.Global.systemDataFile.data.soundSeVolume);
+        this.SetSoundSeMuteFlag(UnityBase.Global.systemDataFile.data.soundSeMuteFlag);
         this._languageButtonCoverImage.gameObject.SetActive(false);
         this._soundBgmVolumeSliderLeftButtonCoverImage.gameObject.SetActive(false);
         this._soundBgmVolumeSliderRightButtonCoverImage.gameObject.SetActive(false);
@@ -573,41 +573,13 @@ public class MenuOptionStageNodeScript : UnityBase.Scene.Ui.MenuStageNodeScript
 
         Lib.Scene.Util.GetSoundManager().PlaySe((int)UnityBase.Util.SOUND.SE_INDEX.OK2);
 
-        bool write_flg = false;
+        UnityBase.Global.systemDataFile.data.systemLanguageType = this._languageType;
+        UnityBase.Global.systemDataFile.data.soundBgmVolume = this._soundBgmVolume;
+        UnityBase.Global.systemDataFile.data.soundBgmMuteFlag = this._soundBgmMuteFlag;
+        UnityBase.Global.systemDataFile.data.soundSeVolume = this._soundSeVolume;
+        UnityBase.Global.systemDataFile.data.soundSeMuteFlag = this._soundSeMuteFlag;
 
-        if (this._languageType != UnityBase.Global.systemConfigFile.data.systemLanguageType) {
-            UnityBase.Global.systemConfigFile.data.systemLanguageType = this._languageType;
-
-            write_flg = true;
-        }
-
-        if (this._soundBgmVolume != UnityBase.Global.systemConfigFile.data.soundBgmVolume) {
-            UnityBase.Global.systemConfigFile.data.soundBgmVolume = this._soundBgmVolume;
-
-            write_flg = true;
-        }
-
-        if (this._soundBgmMuteFlag != UnityBase.Global.systemConfigFile.data.soundBgmMuteFlag) {
-            UnityBase.Global.systemConfigFile.data.soundBgmMuteFlag = this._soundBgmMuteFlag;
-
-            write_flg = true;
-        }
-
-        if (this._soundSeVolume != UnityBase.Global.systemConfigFile.data.soundSeVolume) {
-            UnityBase.Global.systemConfigFile.data.soundSeVolume = this._soundSeVolume;
-
-            write_flg = true;
-        }
-
-        if (this._soundSeMuteFlag != UnityBase.Global.systemConfigFile.data.soundSeMuteFlag) {
-            UnityBase.Global.systemConfigFile.data.soundSeMuteFlag = this._soundSeMuteFlag;
-
-            write_flg = true;
-        }
-
-        if (write_flg) {
-            UnityBase.Global.systemConfigFile.Write();
-        }
+        UnityBase.Global.systemDataFile.Write(true);
 
         if (this._restartFlag != 0U) {
             Lib.Scene.Util.GetManager().ChangeMainScene(UnityBase.Util.SCENE.NAME.MAIN);
@@ -656,10 +628,10 @@ public class MenuOptionStageNodeScript : UnityBase.Scene.Ui.MenuStageNodeScript
 
         Lib.Scene.Util.GetSoundManager().PlaySe((int)UnityBase.Util.SOUND.SE_INDEX.CANCEL);
 
-        Lib.Scene.Util.GetSoundManager().SetBgmVolume(UnityBase.Global.systemConfigFile.data.soundBgmVolume);
-        Lib.Scene.Util.GetSoundManager().SetBgmMuteFlag(UnityBase.Global.systemConfigFile.data.soundBgmMuteFlag);
-        Lib.Scene.Util.GetSoundManager().SetSeVolume(UnityBase.Global.systemConfigFile.data.soundSeVolume);
-        Lib.Scene.Util.GetSoundManager().SetSeMuteFlag(UnityBase.Global.systemConfigFile.data.soundSeMuteFlag);
+        Lib.Scene.Util.GetSoundManager().SetBgmVolume(UnityBase.Global.systemDataFile.data.soundBgmVolume);
+        Lib.Scene.Util.GetSoundManager().SetBgmMuteFlag(UnityBase.Global.systemDataFile.data.soundBgmMuteFlag);
+        Lib.Scene.Util.GetSoundManager().SetSeVolume(UnityBase.Global.systemDataFile.data.soundSeVolume);
+        Lib.Scene.Util.GetSoundManager().SetSeMuteFlag(UnityBase.Global.systemDataFile.data.soundSeMuteFlag);
 
         this.GetMenuNodeScript().RunStageCancelButton();
 
@@ -711,14 +683,14 @@ public class MenuOptionStageNodeScript : UnityBase.Scene.Ui.MenuStageNodeScript
 
         this._languageButtonNameText.SetText(UnityBase.Global.GetText(UnityBase.Util.LANGUAGE_NAME_MST_TEXT_ID_ARRAY[(int)this._languageType]));
 
-        this._SetRestartFlag((this._languageType != UnityBase.Global.systemConfigFile.data.systemLanguageType) ? (this._restartFlag | 0x0001U) : (this._restartFlag & ~0x0001U));
+        this._SetRestartFlag((this._languageType != UnityBase.Global.systemDataFile.data.systemLanguageType) ? (this._restartFlag | 0x0001U) : (this._restartFlag & ~0x0001U));
 
         return;
     }
 
     /**
      * @brief GetSoundBgmVolume関数
-     * @return sound_bgm_volume (sound_bgm_volume)
+     * @return sound_bgm_vol (sound_bgm_volume)
      */
     public float GetSoundBgmVolume()
     {
@@ -727,13 +699,13 @@ public class MenuOptionStageNodeScript : UnityBase.Scene.Ui.MenuStageNodeScript
 
     /**
      * @brief SetSoundBgmVolume関数
-     * @param sound_bgm_volume (sound_bgm_volume)
+     * @param sound_bgm_vol (sound_bgm_volume)
      */
-    public void SetSoundBgmVolume(float sound_bgm_volume)
+    public void SetSoundBgmVolume(float sound_bgm_vol)
     {
-        this._soundBgmVolume = (float)System.Math.Clamp(System.Math.Round(sound_bgm_volume, 1, System.MidpointRounding.AwayFromZero), 0.0, 1.0);
+        this._soundBgmVolume = (float)System.Math.Clamp(System.Math.Round(sound_bgm_vol, 1, System.MidpointRounding.AwayFromZero), 0.0, 1.0);
 
-        this._soundBgmVolumeNameText.SetText(UnityBase.Global.GetText(UnityBase.Util.MST_TEXT_ID.BGM_VOLUME) + " " + (this._soundBgmVolume * 10.0f));
+        this._soundBgmVolumeNameText.SetText(UnityBase.Global.GetText(UnityBase.Util.MST_TEXT_ID.BGM_VOLUME) + " " + (this._soundBgmVolume * 10.0f).ToString());
         this._soundBgmVolumeSlider.SetValueWithoutNotify(this._soundBgmVolume * 10.0f);
 
         return;
@@ -763,7 +735,7 @@ public class MenuOptionStageNodeScript : UnityBase.Scene.Ui.MenuStageNodeScript
 
     /**
      * @brief GetSoundSeVolume関数
-     * @return sound_se_volume (sound_se_volume)
+     * @return sound_se_vol (sound_se_volume)
      */
     public float GetSoundSeVolume()
     {
@@ -772,13 +744,13 @@ public class MenuOptionStageNodeScript : UnityBase.Scene.Ui.MenuStageNodeScript
 
     /**
      * @brief SetSoundSeVolume関数
-     * @param sound_se_volume (sound_se_volume)
+     * @param sound_se_vol (sound_se_volume)
      */
-    public void SetSoundSeVolume(float sound_se_volume)
+    public void SetSoundSeVolume(float sound_se_vol)
     {
-        this._soundSeVolume = (float)System.Math.Clamp(System.Math.Round(sound_se_volume, 1, System.MidpointRounding.AwayFromZero), 0.0, 1.0);
+        this._soundSeVolume = (float)System.Math.Clamp(System.Math.Round(sound_se_vol, 1, System.MidpointRounding.AwayFromZero), 0.0, 1.0);
 
-        this._soundSeVolumeNameText.SetText(UnityBase.Global.GetText(UnityBase.Util.MST_TEXT_ID.SE_VOLUME) + " " + (this._soundSeVolume * 10.0f));
+        this._soundSeVolumeNameText.SetText(UnityBase.Global.GetText(UnityBase.Util.MST_TEXT_ID.SE_VOLUME) + " " + (this._soundSeVolume * 10.0f).ToString());
         this._soundSeVolumeSlider.SetValueWithoutNotify(this._soundSeVolume * 10.0f);
 
         return;

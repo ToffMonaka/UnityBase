@@ -1,6 +1,6 @@
 ﻿/**
  * @file
- * @brief SystemConfigFileファイル
+ * @brief SystemDataFileファイル
  */
 
 
@@ -11,9 +11,9 @@ using System.Collections.Generic;
 namespace ToffMonaka {
 namespace UnityBase.Data {
 /**
- * @brief SystemConfigFileDataクラス
+ * @brief SystemDataFileDataクラス
  */
-public class SystemConfigFileData
+public class SystemDataFileData
 {
     public UnityBase.Util.LANGUAGE_TYPE systemLanguageType = UnityBase.Util.LANGUAGE_TYPE.ENGLISH;
     public float soundBgmVolume = 0.5f;
@@ -24,7 +24,7 @@ public class SystemConfigFileData
     /**
      * @brief コンストラクタ
      */
-    public SystemConfigFileData()
+    public SystemDataFileData()
     {
         return;
     }
@@ -55,18 +55,20 @@ public class SystemConfigFileData
 }
 
 /**
- * @brief SystemConfigFileクラス
+ * @brief SystemDataFileクラス
  */
-public class SystemConfigFile : Lib.Data.File
+public class SystemDataFile : Lib.Data.File
 {
-	public UnityBase.Data.SystemConfigFileData data = new UnityBase.Data.SystemConfigFileData();
+	public UnityBase.Data.SystemDataFileData data = new UnityBase.Data.SystemDataFileData();
 	public Lib.Data.FileReadDesc<Lib.Data.IniFileReadDescData> readDesc = new Lib.Data.FileReadDesc<Lib.Data.IniFileReadDescData>();
 	public Lib.Data.FileWriteDesc<Lib.Data.IniFileWriteDescData> writeDesc = new Lib.Data.FileWriteDesc<Lib.Data.IniFileWriteDescData>();
+
+    private bool _writeFlag = false;
 
     /**
      * @brief コンストラクタ
      */
-    public SystemConfigFile()
+    public SystemDataFile()
     {
         return;
     }
@@ -89,6 +91,7 @@ public class SystemConfigFile : Lib.Data.File
 	    this.data.Init();
 	    this.readDesc.Init();
 	    this.writeDesc.Init();
+        this._writeFlag = false;
 
         base.Init();
 
@@ -102,6 +105,10 @@ public class SystemConfigFile : Lib.Data.File
      */
     protected override int _OnRead()
     {
+        if (this._writeFlag) {
+            this.Write();
+        }
+
 	    var desc_dat = this.readDesc.GetDataByParent();
 
         var ini_file = new Lib.Data.IniFile();
@@ -123,7 +130,7 @@ public class SystemConfigFile : Lib.Data.File
         string val;
 
         {// System Section Read
-	        key_cont = ini_file.data.GetKeyContainer("SYSTEM");
+	        key_cont = ini_file.data.GetKeyContainer("SYS");
 
 	        if (key_cont != null) {
 		        val = ini_file.data.GetValue(key_cont, "LANGUAGE_TYPE");
@@ -145,7 +152,7 @@ public class SystemConfigFile : Lib.Data.File
 	        key_cont = ini_file.data.GetKeyContainer("SOUND");
 
 	        if (key_cont != null) {
-		        val = ini_file.data.GetValue(key_cont, "BGM_VOLUME");
+		        val = ini_file.data.GetValue(key_cont, "BGM_VOL");
 
 		        if (val != null) {
                     this.data.soundBgmVolume = float.Parse(val);
@@ -157,7 +164,7 @@ public class SystemConfigFile : Lib.Data.File
                     this.data.soundBgmMuteFlag = System.Convert.ToBoolean(int.Parse(val));
 		        }
 
-		        val = ini_file.data.GetValue(key_cont, "SE_VOLUME");
+		        val = ini_file.data.GetValue(key_cont, "SE_VOL");
 
 		        if (val != null) {
                     this.data.soundSeVolume = float.Parse(val);
@@ -185,6 +192,8 @@ public class SystemConfigFile : Lib.Data.File
 	    const string section_end_str = "]";
 	    const string equal_str = "=";
 
+        this._writeFlag = false;
+
 	    var desc_dat = this.writeDesc.GetDataByParent();
 
 	    if (desc_dat.filePath.Length <= 0) {
@@ -195,7 +204,7 @@ public class SystemConfigFile : Lib.Data.File
         int txt_file_write_result_val;
 
         {// System Section Write
-	        txt_file.data.lineTextContainer.Add(section_start_str + "SYSTEM" + section_end_str);
+	        txt_file.data.lineTextContainer.Add(section_start_str + "SYS" + section_end_str);
 	        txt_file.data.lineTextContainer.Add("LANGUAGE_TYPE" + equal_str + ((int)this.data.systemLanguageType).ToString());
 	        txt_file.data.lineTextContainer.Add(System.String.Empty);
         }
@@ -207,9 +216,9 @@ public class SystemConfigFile : Lib.Data.File
 
         {// Sound Section Write
 	        txt_file.data.lineTextContainer.Add(section_start_str + "SOUND" + section_end_str);
-	        txt_file.data.lineTextContainer.Add("BGM_VOLUME" + equal_str + this.data.soundBgmVolume.ToString());
+	        txt_file.data.lineTextContainer.Add("BGM_VOL" + equal_str + this.data.soundBgmVolume.ToString());
 	        txt_file.data.lineTextContainer.Add("BGM_MUTE_FLG" + equal_str + System.Convert.ToInt32(this.data.soundBgmMuteFlag).ToString());
-	        txt_file.data.lineTextContainer.Add("SE_VOLUME" + equal_str + this.data.soundSeVolume.ToString());
+	        txt_file.data.lineTextContainer.Add("SE_VOL" + equal_str + this.data.soundSeVolume.ToString());
 	        txt_file.data.lineTextContainer.Add("SE_MUTE_FLG" + equal_str + System.Convert.ToInt32(this.data.soundSeMuteFlag).ToString());
 	        txt_file.data.lineTextContainer.Add(System.String.Empty);
         }
@@ -221,6 +230,32 @@ public class SystemConfigFile : Lib.Data.File
         }
 
         return (0);
+    }
+
+    /**
+     * @brief Write関数
+     * @param delay_flg (delay_flag)
+     * @return result_val (result_value)<br>
+     * 0未満=失敗
+     */
+    public int Write(bool delay_flg)
+    {
+        if (delay_flg) {
+            this._writeFlag = true;
+
+            return (0);
+        }
+
+        return (this.Write());
+    }
+
+    /**
+     * @brief GetWriteFlag関数
+     * @return write_flg (write_flag)
+     */
+    public bool GetWriteFlag()
+    {
+        return (this._writeFlag);
     }
 }
 }

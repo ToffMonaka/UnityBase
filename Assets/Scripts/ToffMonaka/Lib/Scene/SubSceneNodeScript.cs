@@ -23,7 +23,7 @@ public abstract class SubSceneNodeScript : Lib.Scene.NodeScript
 {
     public new Lib.Scene.SubSceneNodeScriptCreateDesc createDesc{get; private set;} = null;
 
-    private GameObject _canvasNode = null;
+    private GameObject[] _canvasNodeArray = null;
     private GameObject _dialogNode = null;
 
     /**
@@ -68,14 +68,30 @@ public abstract class SubSceneNodeScript : Lib.Scene.NodeScript
      */
     protected override void _OnSetNode()
     {
-        var canvas_transform = this.transform.Find("Canvas");
+        const string canvas_name = "Canvas";
+        const string dialog_name = "Dialog";
 
-        if (canvas_transform != null) {
-            this._canvasNode = canvas_transform.gameObject;
+        this._canvasNodeArray = System.Array.Empty<GameObject>();
 
-            this._canvasNode.GetComponent<Canvas>().worldCamera = this.GetManager().GetMainSceneNodeScript().GetMainCamera();
+        var canvas_transform = this.transform.Find(canvas_name);
 
-            var dialog_transform = canvas_transform.Find("Dialog");
+    	while (canvas_transform != null) {
+            Lib.Array.Util.Resize(ref this._canvasNodeArray, this._canvasNodeArray.Length + 1, canvas_transform.gameObject);
+
+            canvas_transform = this.transform.Find(canvas_name + (this._canvasNodeArray.Length + 1));
+        }
+
+        for (int canvas_node_i = 0; canvas_node_i < this._canvasNodeArray.Length; ++canvas_node_i) {
+            var canvas_node = this._canvasNodeArray[canvas_node_i];
+            var canvas = canvas_node.GetComponent<Canvas>();
+
+            canvas.worldCamera = this.GetManager().GetMainSceneNodeScript().GetMainCamera();
+
+            if (canvas_node_i > 0) {
+                canvas.sortingLayerName = canvas.sortingLayerName + (canvas_node_i + 1);
+            }
+
+            var dialog_transform = canvas_node.transform.Find(dialog_name);
 
             if (dialog_transform != null) {
                 this._dialogNode = dialog_transform.gameObject;
@@ -159,12 +175,12 @@ public abstract class SubSceneNodeScript : Lib.Scene.NodeScript
     }
 
     /**
-     * @brief GetCanvasNode関数
-     * @return canvas_node (canvas_node)
+     * @brief GetCanvasNodeArray関数
+     * @return canvas_node_ary (canvas_node_array)
      */
-    public GameObject GetCanvasNode()
+    public GameObject[] GetCanvasNodeArray()
     {
-        return (this._canvasNode);
+        return (this._canvasNodeArray);
     }
 
     /**

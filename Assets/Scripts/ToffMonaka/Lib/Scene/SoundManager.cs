@@ -252,7 +252,7 @@ public class SoundManager
 
     /**
      * @brief GetBgmVolume関数
-     * @return bgm_volume (bgm_volume)
+     * @return bgm_vol (bgm_volume)
      */
     public float GetBgmVolume()
     {
@@ -261,17 +261,17 @@ public class SoundManager
 
     /**
      * @brief SetBgmVolume関数
-     * @param bgm_volume (bgm_volume)
+     * @param bgm_vol (bgm_volume)
      */
-    public void SetBgmVolume(float bgm_volume)
+    public void SetBgmVolume(float bgm_vol)
     {
-        float tmp_bgm_volume = System.Math.Clamp(bgm_volume, 0.0f, 1.0f);
+        float tmp_bgm_vol = System.Math.Clamp(bgm_vol, 0.0f, 1.0f);
 
-        if (tmp_bgm_volume == this._bgmVolume) {
+        if (tmp_bgm_vol == this._bgmVolume) {
             return;
         }
 
-        this._bgmVolume = tmp_bgm_volume;
+        this._bgmVolume = tmp_bgm_vol;
 
         this._FlushBgmVolume();
 
@@ -395,7 +395,7 @@ public class SoundManager
 
     /**
      * @brief GetSeVolume関数
-     * @return se_volume (se_volume)
+     * @return se_vol (se_volume)
      */
     public float GetSeVolume()
     {
@@ -404,17 +404,17 @@ public class SoundManager
 
     /**
      * @brief SetSeVolume関数
-     * @param se_volume (se_volume)
+     * @param se_vol (se_volume)
      */
-    public void SetSeVolume(float se_volume)
+    public void SetSeVolume(float se_vol)
     {
-        float tmp_se_volume = System.Math.Clamp(se_volume, 0.0f, 1.0f);
+        float tmp_se_vol = System.Math.Clamp(se_vol, 0.0f, 1.0f);
 
-        if (tmp_se_volume == this._seVolume) {
+        if (tmp_se_vol == this._seVolume) {
             return;
         }
 
-        this._seVolume = tmp_se_volume;
+        this._seVolume = tmp_se_vol;
 
         this._FlushSeVolume();
 

@@ -29,9 +29,9 @@ public class InitSubSceneNodeScript : Lib.Scene.SubSceneNodeScript
 
     public new UnityBase.Scene.InitSubSceneNodeScriptCreateDesc createDesc{get; private set;} = null;
 
-    private int _progressType = 0;
-    private int _progressCount = 0;
-    private float _progressElapsedTime = 0.0f;
+    private int _updateProgressType = 0;
+    private int _updateProgressCount = 0;
+    private float _updateProgressElapsedTime = 0.0f;
 
     /**
      * @brief コンストラクタ
@@ -40,7 +40,7 @@ public class InitSubSceneNodeScript : Lib.Scene.SubSceneNodeScript
     {
         return;
     }
-
+    
     /**
      * @brief _OnGetScriptIndex関数
      * @return script_index (script_index)
@@ -65,7 +65,7 @@ public class InitSubSceneNodeScript : Lib.Scene.SubSceneNodeScript
      */
     protected override int _OnCreate()
     {
-		switch (UnityBase.Global.systemConfigFile.data.systemLanguageType) {
+		switch (UnityBase.Global.systemDataFile.data.systemLanguageType) {
 		case UnityBase.Util.LANGUAGE_TYPE.JAPANESE: {
             this._messageText.SetText("ちょっと待ってね。");
 
@@ -77,6 +77,8 @@ public class InitSubSceneNodeScript : Lib.Scene.SubSceneNodeScript
 			break;
 		}
 		}
+
+        this.SetUpdateProgressType(1);
 
         return (0);
     }
@@ -99,8 +101,6 @@ public class InitSubSceneNodeScript : Lib.Scene.SubSceneNodeScript
      */
     protected override void _OnActive()
     {
-        this.SetProgressType(1);
-
         return;
     }
 
@@ -117,66 +117,7 @@ public class InitSubSceneNodeScript : Lib.Scene.SubSceneNodeScript
      */
     protected override void _OnUpdate()
     {
-		switch (this._progressType) {
-		case 1: {
-            this._progressElapsedTime += Time.deltaTime;
-
-            this.SetProgressType(2);
-
-			break;
-		}
-		case 2: {
-            this._progressElapsedTime += Time.deltaTime;
-
-		    switch (this._progressCount) {
-		    case 0: {
-                {// MstTextTableFile Create
-		            switch (UnityBase.Global.systemConfigFile.data.systemLanguageType) {
-		            case UnityBase.Util.LANGUAGE_TYPE.JAPANESE: {
-                        UnityBase.Global.mstTextTableFile.readDesc.data.filePath = UnityBase.Util.FILE_PATH.JAPANESE_MST_TEXT_TABLE;
-
-			            break;
-		            }
-		            default: {
-                        UnityBase.Global.mstTextTableFile.readDesc.data.filePath = UnityBase.Util.FILE_PATH.ENGLISH_MST_TEXT_TABLE;
-
-			            break;
-		            }
-		            }
-
-                    UnityBase.Global.mstTextTableFile.readDesc.data.addressablesFlag = true;
-
-                    UnityBase.Global.mstTextTableFile.Read();
-                }
-
-                ++this._progressCount;
-
-			    break;
-		    }
-		    default: {
-                this.SetProgressType(3);
-
-			    break;
-		    }
-		    }
-
-			break;
-		}
-		case 3: {
-            this._progressElapsedTime += Time.deltaTime;
-
-            if (this._progressElapsedTime >= 3.0f) {
-                this.Close(1, 1);
-
-                this.SetProgressType(4);
-            }
-
-			break;
-		}
-		default: {
-			break;
-		}
-		}
+        this._UpdateProgress();
 
         return;
     }
@@ -282,23 +223,119 @@ public class InitSubSceneNodeScript : Lib.Scene.SubSceneNodeScript
     }
 
     /**
-     * @brief GetProgressType関数
-     * @return progress_type (progress_type)
+     * @brief GetUpdateProgressType関数
+     * @return update_progress_type (update_progress_type)
      */
-    public int GetProgressType()
+    public int GetUpdateProgressType()
     {
-        return (this._progressType);
+        return (this._updateProgressType);
     }
 
     /**
-     * @brief SetProgressType関数
-     * @param progress_type (progress_type)
+     * @brief SetUpdateProgressType関数
+     * @param update_progress_type (update_progress_type)
      */
-    public void SetProgressType(int progress_type)
+    public void SetUpdateProgressType(int update_progress_type)
     {
-        this._progressType = progress_type;
-        this._progressCount = 0;
-        this._progressElapsedTime = 0.0f;
+        this._updateProgressType = update_progress_type;
+        this._updateProgressCount = 0;
+        this._updateProgressElapsedTime = 0.0f;
+
+        return;
+    }
+
+    /**
+     * @brief _UpdateProgress関数
+     */
+    private void _UpdateProgress()
+    {
+        if (this._updateProgressType == 0) {
+            return;
+        }
+
+        this._updateProgressElapsedTime += Time.deltaTime;
+
+		switch (this._updateProgressType) {
+		case 1: {
+            this.SetUpdateProgressType(2);
+
+			break;
+		}
+		case 2: {
+		    switch (this._updateProgressCount) {
+		    case 0: {
+                {// MstTextTableFile Create
+		            switch (UnityBase.Global.systemDataFile.data.systemLanguageType) {
+		            case UnityBase.Util.LANGUAGE_TYPE.JAPANESE: {
+                        UnityBase.Global.mstTextTableFile.readDesc.data.filePath = UnityBase.Util.FILE_PATH.JAPANESE_MST_TEXT_TABLE;
+
+			            break;
+		            }
+		            default: {
+                        UnityBase.Global.mstTextTableFile.readDesc.data.filePath = UnityBase.Util.FILE_PATH.ENGLISH_MST_TEXT_TABLE;
+
+			            break;
+		            }
+		            }
+
+                    UnityBase.Global.mstTextTableFile.readDesc.data.addressablesFlag = true;
+
+                    UnityBase.Global.mstTextTableFile.Read();
+                }
+
+                ++this._updateProgressCount;
+
+			    break;
+		    }
+		    default: {
+                this.SetUpdateProgressType(3);
+
+			    break;
+		    }
+		    }
+
+			break;
+		}
+		case 3: {
+		    switch (this._updateProgressCount) {
+		    case 0: {
+                {// UserDataFile Create
+                    UnityBase.Global.userDataFile.readDesc.data.filePath = Application.persistentDataPath + "/" + UnityBase.Util.FILE_PATH.USER_DATA;
+                    UnityBase.Global.userDataFile.writeDesc.data.filePath = UnityBase.Global.userDataFile.readDesc.data.filePath;
+
+                    if (Lib.Data.Util.IsExistFile(UnityBase.Global.userDataFile.readDesc.data.filePath)) {
+                        UnityBase.Global.userDataFile.Read();
+                    } else {
+                        UnityBase.Global.userDataFile.Write();
+                    }
+                }
+
+                ++this._updateProgressCount;
+
+			    break;
+		    }
+		    default: {
+                this.SetUpdateProgressType(4);
+
+			    break;
+		    }
+		    }
+
+			break;
+		}
+		case 4: {
+            if (this._updateProgressElapsedTime >= 3.0f) {
+                this.Close(1, 1);
+
+                this.SetUpdateProgressType(5);
+            }
+
+			break;
+		}
+		default: {
+			break;
+		}
+		}
 
         return;
     }
