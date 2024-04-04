@@ -179,14 +179,16 @@ public class MenuEndStageNodeScript : UnityBase.Scene.Ui.MenuStageNodeScript
      */
     public void OnRestartToggleValueChanged(bool event_val)
     {
+        if (this._restartToggle.isOn) {
+            this._endToggle.SetIsOnWithoutNotify(false);
+        }
+
         if (!this.IsControllable()) {
             return;
         }
 
         if (this._restartToggle.isOn) {
             Lib.Scene.Util.GetSoundManager().PlaySe((int)UnityBase.Util.SOUND.SE_INDEX.OK2);
-
-            this._endToggle.SetIsOnWithoutNotify(false);
         } else {
             Lib.Scene.Util.GetSoundManager().PlaySe((int)UnityBase.Util.SOUND.SE_INDEX.CANCEL);
         }
@@ -200,14 +202,16 @@ public class MenuEndStageNodeScript : UnityBase.Scene.Ui.MenuStageNodeScript
      */
     public void OnEndToggleValueChanged(bool event_val)
     {
+        if (this._endToggle.isOn) {
+            this._restartToggle.SetIsOnWithoutNotify(false);
+        }
+
         if (!this.IsControllable()) {
             return;
         }
 
         if (this._endToggle.isOn) {
             Lib.Scene.Util.GetSoundManager().PlaySe((int)UnityBase.Util.SOUND.SE_INDEX.OK2);
-
-            this._restartToggle.SetIsOnWithoutNotify(false);
         } else {
             Lib.Scene.Util.GetSoundManager().PlaySe((int)UnityBase.Util.SOUND.SE_INDEX.CANCEL);
         }

@@ -404,19 +404,15 @@ public class MenuOptionStageNodeScript : UnityBase.Scene.Ui.MenuStageNodeScript
             return;
         }
 
-        var old_val = this._soundBgmMuteFlag;
+        Lib.Scene.Util.GetSoundManager().SetBgmMuteFlag(this._soundBgmMuteToggle.isOn);
+
+        if (this._soundBgmMuteToggle.isOn) {
+            Lib.Scene.Util.GetSoundManager().PlaySe((int)UnityBase.Util.SOUND.SE_INDEX.OK2);
+        } else {
+            Lib.Scene.Util.GetSoundManager().PlaySe((int)UnityBase.Util.SOUND.SE_INDEX.CANCEL);
+        }
 
         this.SetSoundBgmMuteFlag(this._soundBgmMuteToggle.isOn);
-
-        Lib.Scene.Util.GetSoundManager().SetBgmMuteFlag(this._soundBgmMuteFlag);
-
-        if (this._soundBgmMuteFlag != old_val) {
-            if (this._soundBgmMuteFlag) {
-                Lib.Scene.Util.GetSoundManager().PlaySe((int)UnityBase.Util.SOUND.SE_INDEX.OK2);
-            } else {
-                Lib.Scene.Util.GetSoundManager().PlaySe((int)UnityBase.Util.SOUND.SE_INDEX.CANCEL);
-            }
-        }
 
         return;
     }
@@ -544,19 +540,15 @@ public class MenuOptionStageNodeScript : UnityBase.Scene.Ui.MenuStageNodeScript
             return;
         }
 
-        var old_val = this._soundSeMuteFlag;
+        Lib.Scene.Util.GetSoundManager().SetSeMuteFlag(this._soundSeMuteToggle.isOn);
+
+        if (this._soundSeMuteToggle.isOn) {
+            Lib.Scene.Util.GetSoundManager().PlaySe((int)UnityBase.Util.SOUND.SE_INDEX.OK2);
+        } else {
+            Lib.Scene.Util.GetSoundManager().PlaySe((int)UnityBase.Util.SOUND.SE_INDEX.CANCEL);
+        }
 
         this.SetSoundSeMuteFlag(this._soundSeMuteToggle.isOn);
-
-        Lib.Scene.Util.GetSoundManager().SetSeMuteFlag(this._soundSeMuteFlag);
-
-        if (this._soundSeMuteFlag != old_val) {
-            if (this._soundSeMuteFlag) {
-                Lib.Scene.Util.GetSoundManager().PlaySe((int)UnityBase.Util.SOUND.SE_INDEX.OK2);
-            } else {
-                Lib.Scene.Util.GetSoundManager().PlaySe((int)UnityBase.Util.SOUND.SE_INDEX.CANCEL);
-            }
-        }
 
         return;
     }
