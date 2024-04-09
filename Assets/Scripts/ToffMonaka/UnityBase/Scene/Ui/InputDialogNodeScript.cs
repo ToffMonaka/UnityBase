@@ -18,6 +18,7 @@ namespace UnityBase.Scene.Ui {
 public class InputDialogNodeScriptCreateDesc : UnityBase.Scene.Ui.DialogNodeScriptCreateDesc
 {
     public UnityBase.Scene.Ui.InputDialogEngine engine = null;
+    public System.Action<UnityBase.Scene.Ui.InputDialogNodeScript> onClickOkButton = null;
 }
 
 /**
@@ -37,6 +38,7 @@ public class InputDialogNodeScript : UnityBase.Scene.Ui.DialogNodeScript
     public new UnityBase.Scene.Ui.InputDialogNodeScriptCreateDesc createDesc{get; private set;} = null;
 
     private UnityBase.Scene.Ui.InputDialogEngine _engine = null;
+    private System.Action<UnityBase.Scene.Ui.InputDialogNodeScript> _onClickOkButton = null;
 
     /**
      * @brief コンストラクタ
@@ -45,7 +47,7 @@ public class InputDialogNodeScript : UnityBase.Scene.Ui.DialogNodeScript
     {
         return;
     }
-
+    
     /**
      * @brief _OnGetScriptIndex関数
      * @return script_index (script_index)
@@ -81,12 +83,13 @@ public class InputDialogNodeScript : UnityBase.Scene.Ui.DialogNodeScript
         }
 
         this._engine = this.createDesc.engine;
+        this._onClickOkButton = this.createDesc.onClickOkButton;
 
         this._nameText.SetText(this._engine.OnGetName());
         this._okButtonNameText.SetText(UnityBase.Global.GetText(UnityBase.Util.MST_TEXT_ID.OK));
         this._cancelButtonNameText.SetText(UnityBase.Global.GetText(UnityBase.Util.MST_TEXT_ID.CANCEL));
 
-        if (this._engine.OnGetOkButtonFlag()) {
+        if (this._onClickOkButton != null) {
             this._okButtonNameText.transform.parent.gameObject.SetActive(true);
         } else {
             this._okButtonNameText.transform.parent.gameObject.SetActive(false);
@@ -240,7 +243,7 @@ public class InputDialogNodeScript : UnityBase.Scene.Ui.DialogNodeScript
 
         Lib.Scene.Util.GetSoundManager().PlaySe((int)UnityBase.Util.SOUND.SE_INDEX.OK2);
 
-        this._engine.OnClickOkButton(this);
+        this._onClickOkButton?.Invoke(this);
 
         this.Close(1);
 

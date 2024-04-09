@@ -229,7 +229,7 @@ public class MenuOptionStageNodeScript : UnityBase.Scene.Ui.MenuStageNodeScript
             var script = this._languageSelectDialogNode.GetComponent<UnityBase.Scene.Ui.SelectDialogNodeScript>();
             var script_create_desc = new UnityBase.Scene.Ui.SelectDialogNodeScriptCreateDesc();
 
-            void on_click_item(UnityBase.Scene.Ui.SelectDialogNodeScript dialog_node_script, UnityBase.Scene.Ui.SelectDialogItemNodeScript item_node_script)
+            void on_click_item(UnityBase.Scene.Ui.SelectDialogNodeScript owner, UnityBase.Scene.Ui.SelectDialogItemNodeScript item_node_script)
             {
                 var item_node_script_engine = item_node_script.GetEngine() as UnityBase.Scene.Ui.LanguageSelectDialogItemEngine;
 
@@ -238,7 +238,8 @@ public class MenuOptionStageNodeScript : UnityBase.Scene.Ui.MenuStageNodeScript
                 return;
             }
 
-            script_create_desc.engine = new UnityBase.Scene.Ui.LanguageSelectDialogEngine(on_click_item);
+            script_create_desc.engine = new UnityBase.Scene.Ui.LanguageSelectDialogEngine();
+            script_create_desc.onClickItem = on_click_item;
 
             script.Create(script_create_desc);
 

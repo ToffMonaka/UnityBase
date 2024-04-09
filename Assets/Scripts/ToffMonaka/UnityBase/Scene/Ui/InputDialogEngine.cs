@@ -30,24 +30,6 @@ public abstract class InputDialogEngine
     {
         return (System.String.Empty);
     }
-
-    /**
-     * @brief OnGetOkButtonFlag関数
-     * @return ok_btn_flg (ok_button_flag)
-     */
-    public virtual bool OnGetOkButtonFlag()
-    {
-        return (false);
-    }
-
-    /**
-     * @brief OnClickOkButton関数
-     * @param dialog_node_script (dialog_node_script)
-     */
-    public virtual void OnClickOkButton(UnityBase.Scene.Ui.InputDialogNodeScript dialog_node_script)
-    {
-        return;
-    }
 }
 }
 }

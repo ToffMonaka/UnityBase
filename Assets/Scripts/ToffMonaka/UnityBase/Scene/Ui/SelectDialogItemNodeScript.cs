@@ -41,7 +41,7 @@ public class SelectDialogItemNodeScript : Lib.Scene.ObjectNodeScript, IPointerCl
     {
         return;
     }
-
+    
     /**
      * @brief _OnGetScriptIndex関数
      * @return script_index (script_index)
@@ -71,7 +71,6 @@ public class SelectDialogItemNodeScript : Lib.Scene.ObjectNodeScript, IPointerCl
         }
 
         this._engine = this.createDesc.engine;
-
         this._onClick = this.createDesc.onClick;
 
         this._nameText.SetText(this._engine.OnGetName());
@@ -166,7 +165,7 @@ public class SelectDialogItemNodeScript : Lib.Scene.ObjectNodeScript, IPointerCl
 
         Lib.Scene.Util.GetSoundManager().PlaySe((int)UnityBase.Util.SOUND.SE_INDEX.OK2);
 
-        this._onClick(this);
+        this._onClick?.Invoke(this);
 
         return;
     }

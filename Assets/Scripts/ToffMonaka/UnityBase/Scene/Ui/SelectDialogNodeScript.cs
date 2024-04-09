@@ -19,6 +19,7 @@ namespace UnityBase.Scene.Ui {
 public class SelectDialogNodeScriptCreateDesc : UnityBase.Scene.Ui.DialogNodeScriptCreateDesc
 {
     public UnityBase.Scene.Ui.SelectDialogEngine engine = null;
+    public System.Action<UnityBase.Scene.Ui.SelectDialogNodeScript, UnityBase.Scene.Ui.SelectDialogItemNodeScript> onClickItem = null;
 }
 
 /**
@@ -27,14 +28,15 @@ public class SelectDialogNodeScriptCreateDesc : UnityBase.Scene.Ui.DialogNodeScr
 public class SelectDialogNodeScript : UnityBase.Scene.Ui.DialogNodeScript
 {
     [SerializeField] private TMP_Text _nameText = null;
+    [SerializeField] private Image _closeButtonCoverImage = null;
     [SerializeField] private ScrollRect _scrollRect = null;
     [SerializeField] private GameObject _itemNode = null;
-    [SerializeField] private Image _closeButtonCoverImage = null;
 
     public new UnityBase.Scene.Ui.SelectDialogNodeScriptCreateDesc createDesc{get; private set;} = null;
 
     private UnityBase.Scene.Ui.SelectDialogEngine _engine = null;
     private List<UnityBase.Scene.Ui.SelectDialogItemNodeScript> _itemNodeScriptContainer = new List<UnityBase.Scene.Ui.SelectDialogItemNodeScript>();
+    private System.Action<UnityBase.Scene.Ui.SelectDialogNodeScript, UnityBase.Scene.Ui.SelectDialogItemNodeScript> _onClickItem = null;
 
     /**
      * @brief コンストラクタ
@@ -43,7 +45,7 @@ public class SelectDialogNodeScript : UnityBase.Scene.Ui.DialogNodeScript
     {
         return;
     }
-
+    
     /**
      * @brief _OnGetScriptIndex関数
      * @return script_index (script_index)
@@ -79,9 +81,9 @@ public class SelectDialogNodeScript : UnityBase.Scene.Ui.DialogNodeScript
         }
 
         this._engine = this.createDesc.engine;
+        this._onClickItem = this.createDesc.onClickItem;
 
         this._nameText.SetText(this._engine.OnGetName());
-
         this._itemNode.SetActive(false);
 
         return (0);
@@ -107,8 +109,8 @@ public class SelectDialogNodeScript : UnityBase.Scene.Ui.DialogNodeScript
     {
         base._OnActive();
 
-        this._scrollRect.verticalNormalizedPosition = 1.0f;
         this._closeButtonCoverImage.gameObject.SetActive(false);
+        this._scrollRect.verticalNormalizedPosition = 1.0f;
 
         return;
     }
@@ -241,14 +243,17 @@ public class SelectDialogNodeScript : UnityBase.Scene.Ui.DialogNodeScript
             var script = GameObject.Instantiate(this._itemNode, this._itemNode.transform.parent).GetComponent<UnityBase.Scene.Ui.SelectDialogItemNodeScript>();
             var script_create_desc = new UnityBase.Scene.Ui.SelectDialogItemNodeScriptCreateDesc();
 
-            script_create_desc.engine = item_engine;
-            script_create_desc.onClick = (UnityBase.Scene.Ui.SelectDialogItemNodeScript owner) => {
-                this._engine.OnClickItem(this, owner);
+            void on_click(UnityBase.Scene.Ui.SelectDialogItemNodeScript owner)
+            {
+                this._onClickItem?.Invoke(this, owner);
 
                 this.Close(1);
 
                 return;
-            };
+            }
+
+            script_create_desc.engine = item_engine;
+            script_create_desc.onClick = on_click;
 
             script.Create(script_create_desc);
             script.Open(0);

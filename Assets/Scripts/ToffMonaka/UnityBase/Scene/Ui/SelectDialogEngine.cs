@@ -30,16 +30,6 @@ public abstract class SelectDialogEngine
     {
         return (System.String.Empty);
     }
-
-    /**
-     * @brief OnClickItem関数
-     * @param dialog_node_script (dialog_node_script)
-     * @param item_node_script (item_node_script)
-     */
-    public virtual void OnClickItem(UnityBase.Scene.Ui.SelectDialogNodeScript dialog_node_script, UnityBase.Scene.Ui.SelectDialogItemNodeScript item_node_script)
-    {
-        return;
-    }
 }
 
 /**
