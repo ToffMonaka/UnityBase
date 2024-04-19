@@ -1,6 +1,6 @@
 ﻿/**
  * @file
- * @brief SystemDataFileファイル
+ * @brief SystemConfigFileファイル
  */
 
 
@@ -11,29 +11,23 @@ using System.Collections.Generic;
 namespace ToffMonaka {
 namespace UnityBase.Data {
 /**
- * @brief SystemDataFileDataクラス
+ * @brief SystemConfigFileDataクラス
  */
-public class SystemDataFileData
+public class SystemConfigFileData
 {
-    public UnityBase.Util.LANGUAGE_TYPE systemLanguageType = UnityBase.Util.LANGUAGE_TYPE.ENGLISH;
-    public float soundBgmVolume = 0.5f;
-    public bool soundBgmMuteFlag = false;
-    public float soundSeVolume = 0.5f;
-    public bool soundSeMuteFlag = false;
+    public UnityBase.Util.LANGUAGE_TYPE systemLanguageType;
+    public float soundBgmVolume;
+    public bool soundBgmMuteFlag;
+    public float soundSeVolume;
+    public bool soundSeMuteFlag;
 
     /**
      * @brief コンストラクタ
      */
-    public SystemDataFileData()
+    public SystemConfigFileData()
     {
-        return;
-    }
+        this.Init();
 
-    /**
-     * @brief _Release関数
-     */
-    private void _Release()
-    {
         return;
     }
 
@@ -42,8 +36,6 @@ public class SystemDataFileData
      */
     public virtual void Init()
     {
-        this._Release();
-
         this.systemLanguageType = UnityBase.Util.LANGUAGE_TYPE.ENGLISH;
         this.soundBgmVolume = 0.5f;
         this.soundBgmMuteFlag = false;
@@ -55,28 +47,20 @@ public class SystemDataFileData
 }
 
 /**
- * @brief SystemDataFileクラス
+ * @brief SystemConfigFileクラス
  */
-public class SystemDataFile : Lib.Data.File
+public class SystemConfigFile : Lib.Data.File
 {
-	public UnityBase.Data.SystemDataFileData data = new UnityBase.Data.SystemDataFileData();
-	public Lib.Data.FileReadDesc<Lib.Data.IniFileReadDescData> readDesc = new Lib.Data.FileReadDesc<Lib.Data.IniFileReadDescData>();
-	public Lib.Data.FileWriteDesc<Lib.Data.IniFileWriteDescData> writeDesc = new Lib.Data.FileWriteDesc<Lib.Data.IniFileWriteDescData>();
+	public UnityBase.Data.SystemConfigFileData data = new();
+	public Lib.Data.FileReadDesc<Lib.Data.IniFileReadDescData> readDesc = new();
+	public Lib.Data.FileWriteDesc<Lib.Data.IniFileWriteDescData> writeDesc = new();
 
-    private bool _writeFlag = false;
+    private bool _writeFlag;
 
     /**
      * @brief コンストラクタ
      */
-    public SystemDataFile()
-    {
-        return;
-    }
-
-    /**
-     * @brief _Release関数
-     */
-    private void _Release()
+    public SystemConfigFile() : base()
     {
         return;
     }
@@ -86,14 +70,12 @@ public class SystemDataFile : Lib.Data.File
      */
     public override void Init()
     {
-        this._Release();
+        base.Init();
 
 	    this.data.Init();
 	    this.readDesc.Init();
 	    this.writeDesc.Init();
         this._writeFlag = false;
-
-        base.Init();
 
         return;
     }
@@ -188,10 +170,6 @@ public class SystemDataFile : Lib.Data.File
      */
     protected override int _OnWrite()
     {
-	    const string section_start_str = "[";
-	    const string section_end_str = "]";
-	    const string equal_str = "=";
-
         this._writeFlag = false;
 
 	    var desc_dat = this.writeDesc.GetDataByParent();
@@ -204,22 +182,22 @@ public class SystemDataFile : Lib.Data.File
         int txt_file_write_result_val;
 
         {// System Section Write
-	        txt_file.data.lineTextContainer.Add(section_start_str + "SYS" + section_end_str);
-	        txt_file.data.lineTextContainer.Add("LANGUAGE_TYPE" + equal_str + ((int)this.data.systemLanguageType).ToString());
+	        txt_file.data.lineTextContainer.Add(Lib.Data.IniFileUtil.SECTION_START_CODE + "SYS" + Lib.Data.IniFileUtil.SECTION_END_CODE);
+	        txt_file.data.lineTextContainer.Add("LANGUAGE_TYPE" + Lib.Data.IniFileUtil.EQUAL_CODE + ((int)this.data.systemLanguageType).ToString());
 	        txt_file.data.lineTextContainer.Add(System.String.Empty);
         }
 
         {// Graphic Section Write
-	        txt_file.data.lineTextContainer.Add(section_start_str + "GRAPHIC" + section_end_str);
+	        txt_file.data.lineTextContainer.Add(Lib.Data.IniFileUtil.SECTION_START_CODE + "GRAPHIC" + Lib.Data.IniFileUtil.SECTION_END_CODE);
 	        txt_file.data.lineTextContainer.Add(System.String.Empty);
         }
 
         {// Sound Section Write
-	        txt_file.data.lineTextContainer.Add(section_start_str + "SOUND" + section_end_str);
-	        txt_file.data.lineTextContainer.Add("BGM_VOL" + equal_str + this.data.soundBgmVolume.ToString());
-	        txt_file.data.lineTextContainer.Add("BGM_MUTE_FLG" + equal_str + System.Convert.ToInt32(this.data.soundBgmMuteFlag).ToString());
-	        txt_file.data.lineTextContainer.Add("SE_VOL" + equal_str + this.data.soundSeVolume.ToString());
-	        txt_file.data.lineTextContainer.Add("SE_MUTE_FLG" + equal_str + System.Convert.ToInt32(this.data.soundSeMuteFlag).ToString());
+	        txt_file.data.lineTextContainer.Add(Lib.Data.IniFileUtil.SECTION_START_CODE + "SOUND" + Lib.Data.IniFileUtil.SECTION_END_CODE);
+	        txt_file.data.lineTextContainer.Add("BGM_VOL" + Lib.Data.IniFileUtil.EQUAL_CODE + this.data.soundBgmVolume.ToString());
+	        txt_file.data.lineTextContainer.Add("BGM_MUTE_FLG" + Lib.Data.IniFileUtil.EQUAL_CODE + System.Convert.ToInt32(this.data.soundBgmMuteFlag).ToString());
+	        txt_file.data.lineTextContainer.Add("SE_VOL" + Lib.Data.IniFileUtil.EQUAL_CODE + this.data.soundSeVolume.ToString());
+	        txt_file.data.lineTextContainer.Add("SE_MUTE_FLG" + Lib.Data.IniFileUtil.EQUAL_CODE + System.Convert.ToInt32(this.data.soundSeMuteFlag).ToString());
 	        txt_file.data.lineTextContainer.Add(System.String.Empty);
         }
 

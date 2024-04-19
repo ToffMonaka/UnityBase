@@ -134,11 +134,11 @@ public class MenuOptionStageNodeScript : UnityBase.Scene.Ui.MenuStageNodeScript
         base._OnActive();
 
         this._editScrollRect.verticalNormalizedPosition = 1.0f;
-        this.SetLanguageType(UnityBase.Global.systemDataFile.data.systemLanguageType);
-        this.SetSoundBgmVolume(UnityBase.Global.systemDataFile.data.soundBgmVolume);
-        this.SetSoundBgmMuteFlag(UnityBase.Global.systemDataFile.data.soundBgmMuteFlag);
-        this.SetSoundSeVolume(UnityBase.Global.systemDataFile.data.soundSeVolume);
-        this.SetSoundSeMuteFlag(UnityBase.Global.systemDataFile.data.soundSeMuteFlag);
+        this.SetLanguageType(UnityBase.Global.systemConfigFile.data.systemLanguageType);
+        this.SetSoundBgmVolume(UnityBase.Global.systemConfigFile.data.soundBgmVolume);
+        this.SetSoundBgmMuteFlag(UnityBase.Global.systemConfigFile.data.soundBgmMuteFlag);
+        this.SetSoundSeVolume(UnityBase.Global.systemConfigFile.data.soundSeVolume);
+        this.SetSoundSeMuteFlag(UnityBase.Global.systemConfigFile.data.soundSeMuteFlag);
         this._languageButtonCoverImage.gameObject.SetActive(false);
         this._soundBgmVolumeSliderLeftButtonCoverImage.gameObject.SetActive(false);
         this._soundBgmVolumeSliderRightButtonCoverImage.gameObject.SetActive(false);
@@ -566,13 +566,13 @@ public class MenuOptionStageNodeScript : UnityBase.Scene.Ui.MenuStageNodeScript
 
         Lib.Scene.Util.GetSoundManager().PlaySe((int)UnityBase.Util.SOUND.SE_INDEX.OK2);
 
-        UnityBase.Global.systemDataFile.data.systemLanguageType = this._languageType;
-        UnityBase.Global.systemDataFile.data.soundBgmVolume = this._soundBgmVolume;
-        UnityBase.Global.systemDataFile.data.soundBgmMuteFlag = this._soundBgmMuteFlag;
-        UnityBase.Global.systemDataFile.data.soundSeVolume = this._soundSeVolume;
-        UnityBase.Global.systemDataFile.data.soundSeMuteFlag = this._soundSeMuteFlag;
+        UnityBase.Global.systemConfigFile.data.systemLanguageType = this._languageType;
+        UnityBase.Global.systemConfigFile.data.soundBgmVolume = this._soundBgmVolume;
+        UnityBase.Global.systemConfigFile.data.soundBgmMuteFlag = this._soundBgmMuteFlag;
+        UnityBase.Global.systemConfigFile.data.soundSeVolume = this._soundSeVolume;
+        UnityBase.Global.systemConfigFile.data.soundSeMuteFlag = this._soundSeMuteFlag;
 
-        UnityBase.Global.systemDataFile.Write(true);
+        UnityBase.Global.systemConfigFile.Write(true);
 
         if (this._restartFlag != 0U) {
             Lib.Scene.Util.GetManager().ChangeMainScene(UnityBase.Util.SCENE.NAME.MAIN);
@@ -621,10 +621,10 @@ public class MenuOptionStageNodeScript : UnityBase.Scene.Ui.MenuStageNodeScript
 
         Lib.Scene.Util.GetSoundManager().PlaySe((int)UnityBase.Util.SOUND.SE_INDEX.CANCEL);
 
-        Lib.Scene.Util.GetSoundManager().SetBgmVolume(UnityBase.Global.systemDataFile.data.soundBgmVolume);
-        Lib.Scene.Util.GetSoundManager().SetBgmMuteFlag(UnityBase.Global.systemDataFile.data.soundBgmMuteFlag);
-        Lib.Scene.Util.GetSoundManager().SetSeVolume(UnityBase.Global.systemDataFile.data.soundSeVolume);
-        Lib.Scene.Util.GetSoundManager().SetSeMuteFlag(UnityBase.Global.systemDataFile.data.soundSeMuteFlag);
+        Lib.Scene.Util.GetSoundManager().SetBgmVolume(UnityBase.Global.systemConfigFile.data.soundBgmVolume);
+        Lib.Scene.Util.GetSoundManager().SetBgmMuteFlag(UnityBase.Global.systemConfigFile.data.soundBgmMuteFlag);
+        Lib.Scene.Util.GetSoundManager().SetSeVolume(UnityBase.Global.systemConfigFile.data.soundSeVolume);
+        Lib.Scene.Util.GetSoundManager().SetSeMuteFlag(UnityBase.Global.systemConfigFile.data.soundSeMuteFlag);
 
         this.GetMenuNodeScript().RunStageCancelButton();
 
@@ -676,7 +676,7 @@ public class MenuOptionStageNodeScript : UnityBase.Scene.Ui.MenuStageNodeScript
 
         this._languageButtonNameText.SetText(UnityBase.Global.GetText(UnityBase.Util.LANGUAGE_NAME_MST_TEXT_ID_ARRAY[(int)this._languageType]));
 
-        this._SetRestartFlag((this._languageType != UnityBase.Global.systemDataFile.data.systemLanguageType) ? (this._restartFlag | 0x0001U) : (this._restartFlag & ~0x0001U));
+        this._SetRestartFlag((this._languageType != UnityBase.Global.systemConfigFile.data.systemLanguageType) ? (this._restartFlag | 0x0001U) : (this._restartFlag & ~0x0001U));
 
         return;
     }

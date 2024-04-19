@@ -11,25 +11,28 @@ using System.Collections.Generic;
 namespace ToffMonaka {
 namespace Lib.Data {
 /**
+ * @brief ConfigFileUtilクラス
+ */
+public static class ConfigFileUtil
+{
+    public static readonly string EQUAL_CODE = "=";
+    public static readonly string COMMENT_CODE = "#";
+}
+
+/**
  * @brief ConfigFileDataクラス
  */
 public class ConfigFileData
 {
-	public Dictionary<string, string> valueContainer = new Dictionary<string, string>();
+	public Dictionary<string, string> valueContainer = new();
 
     /**
      * @brief コンストラクタ
      */
     public ConfigFileData()
     {
-        return;
-    }
+        this.Init();
 
-    /**
-     * @brief _Release関数
-     */
-    private void _Release()
-    {
         return;
     }
 
@@ -38,8 +41,6 @@ public class ConfigFileData
      */
     public virtual void Init()
     {
-        this._Release();
-
         this.valueContainer.Clear();
 
         return;
@@ -69,15 +70,7 @@ public class ConfigFileReadDescData : Lib.Data.TextFileReadDescData
     /**
      * @brief コンストラクタ
      */
-    public ConfigFileReadDescData()
-    {
-        return;
-    }
-
-    /**
-     * @brief _Release関数
-     */
-    private void _Release()
+    public ConfigFileReadDescData() : base()
     {
         return;
     }
@@ -87,8 +80,6 @@ public class ConfigFileReadDescData : Lib.Data.TextFileReadDescData
      */
     public override void Init()
     {
-        this._Release();
-
         base.Init();
 
         return;
@@ -113,15 +104,7 @@ public class ConfigFileWriteDescData : Lib.Data.TextFileWriteDescData
     /**
      * @brief コンストラクタ
      */
-    public ConfigFileWriteDescData()
-    {
-        return;
-    }
-
-    /**
-     * @brief _Release関数
-     */
-    private void _Release()
+    public ConfigFileWriteDescData() : base()
     {
         return;
     }
@@ -131,8 +114,6 @@ public class ConfigFileWriteDescData : Lib.Data.TextFileWriteDescData
      */
     public override void Init()
     {
-        this._Release();
-
         base.Init();
 
         return;
@@ -154,22 +135,14 @@ public class ConfigFileWriteDescData : Lib.Data.TextFileWriteDescData
  */
 public class ConfigFile : Lib.Data.File
 {
-	public Lib.Data.ConfigFileData data = new Lib.Data.ConfigFileData();
-	public Lib.Data.FileReadDesc<Lib.Data.ConfigFileReadDescData> readDesc = new Lib.Data.FileReadDesc<Lib.Data.ConfigFileReadDescData>();
-	public Lib.Data.FileWriteDesc<Lib.Data.ConfigFileWriteDescData> writeDesc = new Lib.Data.FileWriteDesc<Lib.Data.ConfigFileWriteDescData>();
+	public Lib.Data.ConfigFileData data = new();
+	public Lib.Data.FileReadDesc<Lib.Data.ConfigFileReadDescData> readDesc = new();
+	public Lib.Data.FileWriteDesc<Lib.Data.ConfigFileWriteDescData> writeDesc = new();
 
     /**
      * @brief コンストラクタ
      */
-    public ConfigFile()
-    {
-        return;
-    }
-
-    /**
-     * @brief _Release関数
-     */
-    private void _Release()
+    public ConfigFile() : base()
     {
         return;
     }
@@ -179,13 +152,11 @@ public class ConfigFile : Lib.Data.File
      */
     public override void Init()
     {
-        this._Release();
+        base.Init();
 
 	    this.data.Init();
 	    this.readDesc.Init();
 	    this.writeDesc.Init();
-
-        base.Init();
 
         return;
     }
@@ -197,9 +168,6 @@ public class ConfigFile : Lib.Data.File
      */
     protected override int _OnRead()
     {
-        const string equal_str = "=";
-        const string comment_str = "#";
-
 	    var desc_dat = this.readDesc.GetDataByParent();
 
         var txt_file = new Lib.Data.TextFile();
@@ -220,8 +188,8 @@ public class ConfigFile : Lib.Data.File
         string line_txt;
         int equal_str_index;
         int comment_str_index;
-        string key = "";
-        string val = "";
+        string key;
+        string val;
 
 	    foreach (var txt_file_line_txt in txt_file.data.lineTextContainer) {
 	        if (txt_file_line_txt.Length <= 0) {
@@ -231,7 +199,7 @@ public class ConfigFile : Lib.Data.File
 	        line_txt = txt_file_line_txt;
 
 	        {// コメントを削除
-		        comment_str_index = line_txt.IndexOf(comment_str);
+		        comment_str_index = line_txt.IndexOf(Lib.Data.ConfigFileUtil.COMMENT_CODE);
 
 		        if (comment_str_index >= 0) {
 			        line_txt = line_txt.Remove(comment_str_index);
@@ -243,7 +211,7 @@ public class ConfigFile : Lib.Data.File
 	        }
 
 	        {// ｢=｣を確認
-		        equal_str_index = line_txt.IndexOf(equal_str);
+		        equal_str_index = line_txt.IndexOf(Lib.Data.ConfigFileUtil.EQUAL_CODE);
 
 		        if (equal_str_index < 0) {
 			        continue;
@@ -257,7 +225,7 @@ public class ConfigFile : Lib.Data.File
 		        continue;
 	        }
 
-	        val = line_txt.Substring(equal_str_index + equal_str.Length);
+	        val = line_txt.Substring(equal_str_index + Lib.Data.ConfigFileUtil.EQUAL_CODE.Length);
 	        val = val.Trim();
 
 	        this.data.valueContainer.Add(key, val);
@@ -273,8 +241,6 @@ public class ConfigFile : Lib.Data.File
      */
     protected override int _OnWrite()
     {
-        const string equal_str = "=";
-
 	    var desc_dat = this.writeDesc.GetDataByParent();
 
 	    if (desc_dat.filePath.Length <= 0) {
@@ -289,7 +255,7 @@ public class ConfigFile : Lib.Data.File
 
 	        foreach (var val in this.data.valueContainer) {
 		        line_txt = val.Key;
-		        line_txt += equal_str;
+		        line_txt += Lib.Data.ConfigFileUtil.EQUAL_CODE;
 		        line_txt += val.Value;
 
 		        txt_file.data.lineTextContainer.Add(line_txt);

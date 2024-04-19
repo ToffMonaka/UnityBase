@@ -11,25 +11,30 @@ using System.Collections.Generic;
 namespace ToffMonaka {
 namespace Lib.Data {
 /**
+ * @brief IniFileUtilクラス
+ */
+public static class IniFileUtil
+{
+    public static readonly string SECTION_START_CODE = "[";
+    public static readonly string SECTION_END_CODE = "]";
+    public static readonly string EQUAL_CODE = "=";
+    public static readonly string COMMENT_CODE = ";";
+}
+
+/**
  * @brief IniFileDataクラス
  */
 public class IniFileData
 {
-	public Dictionary<string, Dictionary<string, string>> valueContainer = new Dictionary<string, Dictionary<string, string>>();
+	public Dictionary<string, Dictionary<string, string>> valueContainer = new();
 
     /**
      * @brief コンストラクタ
      */
     public IniFileData()
     {
-        return;
-    }
+        this.Init();
 
-    /**
-     * @brief _Release関数
-     */
-    private void _Release()
-    {
         return;
     }
 
@@ -38,8 +43,6 @@ public class IniFileData
      */
     public virtual void Init()
     {
-        this._Release();
-
         this.valueContainer.Clear();
 
         return;
@@ -105,15 +108,7 @@ public class IniFileReadDescData : Lib.Data.TextFileReadDescData
     /**
      * @brief コンストラクタ
      */
-    public IniFileReadDescData()
-    {
-        return;
-    }
-
-    /**
-     * @brief _Release関数
-     */
-    private void _Release()
+    public IniFileReadDescData() : base()
     {
         return;
     }
@@ -123,8 +118,6 @@ public class IniFileReadDescData : Lib.Data.TextFileReadDescData
      */
     public override void Init()
     {
-        this._Release();
-
         base.Init();
 
         return;
@@ -149,15 +142,7 @@ public class IniFileWriteDescData : Lib.Data.TextFileWriteDescData
     /**
      * @brief コンストラクタ
      */
-    public IniFileWriteDescData()
-    {
-        return;
-    }
-
-    /**
-     * @brief _Release関数
-     */
-    private void _Release()
+    public IniFileWriteDescData() : base()
     {
         return;
     }
@@ -167,8 +152,6 @@ public class IniFileWriteDescData : Lib.Data.TextFileWriteDescData
      */
     public override void Init()
     {
-        this._Release();
-
         base.Init();
 
         return;
@@ -190,22 +173,14 @@ public class IniFileWriteDescData : Lib.Data.TextFileWriteDescData
  */
 public class IniFile : Lib.Data.File
 {
-	public Lib.Data.IniFileData data = new Lib.Data.IniFileData();
-	public Lib.Data.FileReadDesc<Lib.Data.IniFileReadDescData> readDesc = new Lib.Data.FileReadDesc<Lib.Data.IniFileReadDescData>();
-	public Lib.Data.FileWriteDesc<Lib.Data.IniFileWriteDescData> writeDesc = new Lib.Data.FileWriteDesc<Lib.Data.IniFileWriteDescData>();
+	public Lib.Data.IniFileData data = new();
+	public Lib.Data.FileReadDesc<Lib.Data.IniFileReadDescData> readDesc = new();
+	public Lib.Data.FileWriteDesc<Lib.Data.IniFileWriteDescData> writeDesc = new();
 
     /**
      * @brief コンストラクタ
      */
-    public IniFile()
-    {
-        return;
-    }
-
-    /**
-     * @brief _Release関数
-     */
-    private void _Release()
+    public IniFile() : base()
     {
         return;
     }
@@ -215,13 +190,11 @@ public class IniFile : Lib.Data.File
      */
     public override void Init()
     {
-        this._Release();
+        base.Init();
 
 	    this.data.Init();
 	    this.readDesc.Init();
 	    this.writeDesc.Init();
-
-        base.Init();
 
         return;
     }
@@ -233,11 +206,6 @@ public class IniFile : Lib.Data.File
      */
     protected override int _OnRead()
     {
-        const string section_start_str = "[";
-        const string section_end_str = "]";
-        const string equal_str = "=";
-        const string comment_str = ";";
-
 	    var desc_dat = this.readDesc.GetDataByParent();
 
         var txt_file = new Lib.Data.TextFile();
@@ -260,9 +228,11 @@ public class IniFile : Lib.Data.File
         int section_end_str_index;
         int equal_str_index;
         int comment_str_index;
-        string section_name = "";
-        string key = "";
-        string val = "";
+        string section_name;
+        string key;
+        string val;
+
+        section_name = "";
 
 	    foreach (var txt_file_line_txt in txt_file.data.lineTextContainer) {
 	        if (txt_file_line_txt.Length <= 0) {
@@ -272,7 +242,7 @@ public class IniFile : Lib.Data.File
 	        line_txt = txt_file_line_txt;
 
 	        {// コメントを削除
-		        comment_str_index = line_txt.IndexOf(comment_str);
+		        comment_str_index = line_txt.IndexOf(Lib.Data.IniFileUtil.COMMENT_CODE);
 
 		        if (comment_str_index >= 0) {
 			        line_txt = line_txt.Remove(comment_str_index);
@@ -284,22 +254,22 @@ public class IniFile : Lib.Data.File
 	        }
 
 	        {// ｢=｣を確認
-		        equal_str_index = line_txt.IndexOf(equal_str);
+		        equal_str_index = line_txt.IndexOf(Lib.Data.IniFileUtil.EQUAL_CODE);
 
 		        if (equal_str_index < 0) {
-			        section_start_str_index = line_txt.IndexOf(section_start_str);
+			        section_start_str_index = line_txt.IndexOf(Lib.Data.IniFileUtil.SECTION_START_CODE);
 
 			        if (section_start_str_index < 0) {
 				        continue;
 			        }
 
-			        section_end_str_index = line_txt.IndexOf(section_end_str, section_start_str_index + section_start_str.Length);
+			        section_end_str_index = line_txt.IndexOf(Lib.Data.IniFileUtil.SECTION_END_CODE, section_start_str_index + Lib.Data.IniFileUtil.SECTION_START_CODE.Length);
 
 			        if (section_end_str_index < 0) {
 				        continue;
 			        }
 
-			        string tmp_section_name = line_txt.Substring(section_start_str_index + section_start_str.Length, section_end_str_index - (section_start_str_index + section_start_str.Length));
+			        string tmp_section_name = line_txt.Substring(section_start_str_index + Lib.Data.IniFileUtil.SECTION_START_CODE.Length, section_end_str_index - (section_start_str_index + Lib.Data.IniFileUtil.SECTION_START_CODE.Length));
 
 			        if (tmp_section_name.Length > 0) {
 				        section_name = tmp_section_name;
@@ -324,7 +294,7 @@ public class IniFile : Lib.Data.File
 		        continue;
 	        }
 
-	        val = line_txt.Substring(equal_str_index + equal_str.Length);
+	        val = line_txt.Substring(equal_str_index + Lib.Data.IniFileUtil.EQUAL_CODE.Length);
 	        val = val.Trim();
 
 	        key_cont.Add(key, val);
@@ -340,10 +310,6 @@ public class IniFile : Lib.Data.File
      */
     protected override int _OnWrite()
     {
-        const string section_start_str = "[";
-        const string section_end_str = "]";
-        const string equal_str = "=";
-
 	    var desc_dat = this.writeDesc.GetDataByParent();
 
 	    if (desc_dat.filePath.Length <= 0) {
@@ -357,15 +323,15 @@ public class IniFile : Lib.Data.File
 		    string line_txt;
 
 		    foreach (var key_cont in this.data.valueContainer) {
-			    line_txt = section_start_str;
+			    line_txt = Lib.Data.IniFileUtil.SECTION_START_CODE;
 			    line_txt += key_cont.Key;
-			    line_txt += section_end_str;
+			    line_txt += Lib.Data.IniFileUtil.SECTION_END_CODE;
 
 			    txt_file.data.lineTextContainer.Add(line_txt);
 
 			    foreach (var val in key_cont.Value) {
 				    line_txt = val.Key;
-				    line_txt += equal_str;
+				    line_txt += Lib.Data.IniFileUtil.EQUAL_CODE;
 				    line_txt += val.Value;
 
 				    txt_file.data.lineTextContainer.Add(line_txt);

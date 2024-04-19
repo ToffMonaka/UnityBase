@@ -14,22 +14,16 @@ namespace UnityBase.Data {
  */
 public class MstTextEntity
 {
-	public int mstTextId = 0;
-	public string text = "";
+	public int mstTextId;
+	public string text;
 
     /**
      * @brief コンストラクタ
      */
     public MstTextEntity()
     {
-        return;
-    }
+        this.Init();
 
-    /**
-     * @brief _Release関数
-     */
-    private void _Release()
-    {
         return;
     }
 
@@ -38,8 +32,6 @@ public class MstTextEntity
      */
     public virtual void Init()
     {
-        this._Release();
-
         this.mstTextId = 0;
         this.text = "";
 
@@ -52,22 +44,16 @@ public class MstTextEntity
  */
 public class MstTextTableFileData
 {
-	public UnityBase.Data.MstTextEntity[] entityArray = System.Array.Empty<UnityBase.Data.MstTextEntity>();
-	public UnityBase.Data.MstTextEntity[] entityArrayByMstTextId = System.Array.Empty<UnityBase.Data.MstTextEntity>();
+	public UnityBase.Data.MstTextEntity[] entityArray;
+	public UnityBase.Data.MstTextEntity[] entityArrayByMstTextId;
 
     /**
      * @brief コンストラクタ
      */
     public MstTextTableFileData()
     {
-        return;
-    }
+        this.Init();
 
-    /**
-     * @brief _Release関数
-     */
-    private void _Release()
-    {
         return;
     }
 
@@ -76,8 +62,6 @@ public class MstTextTableFileData
      */
     public virtual void Init()
     {
-        this._Release();
-
     	this.entityArray = System.Array.Empty<UnityBase.Data.MstTextEntity>();
     	this.entityArrayByMstTextId = System.Array.Empty<UnityBase.Data.MstTextEntity>();
 
@@ -90,22 +74,14 @@ public class MstTextTableFileData
  */
 public class MstTextTableFile : Lib.Data.File
 {
-	public UnityBase.Data.MstTextTableFileData data = new UnityBase.Data.MstTextTableFileData();
-	public Lib.Data.FileReadDesc<Lib.Data.CsvFileReadDescData> readDesc = new Lib.Data.FileReadDesc<Lib.Data.CsvFileReadDescData>();
-	public Lib.Data.FileWriteDesc<Lib.Data.CsvFileWriteDescData> writeDesc = new Lib.Data.FileWriteDesc<Lib.Data.CsvFileWriteDescData>();
+	public UnityBase.Data.MstTextTableFileData data = new();
+	public Lib.Data.FileReadDesc<Lib.Data.CsvFileReadDescData> readDesc = new();
+	public Lib.Data.FileWriteDesc<Lib.Data.CsvFileWriteDescData> writeDesc = new();
 
     /**
      * @brief コンストラクタ
      */
-    public MstTextTableFile()
-    {
-        return;
-    }
-
-    /**
-     * @brief _Release関数
-     */
-    private void _Release()
+    public MstTextTableFile() : base()
     {
         return;
     }
@@ -115,13 +91,11 @@ public class MstTextTableFile : Lib.Data.File
      */
     public override void Init()
     {
-        this._Release();
+        base.Init();
 
 	    this.data.Init();
 	    this.readDesc.Init();
 	    this.writeDesc.Init();
-
-        base.Init();
 
         return;
     }

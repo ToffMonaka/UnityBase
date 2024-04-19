@@ -12,25 +12,26 @@ using System.IO;
 namespace ToffMonaka {
 namespace Lib.Data {
 /**
+ * @brief BinaryFileUtilクラス
+ */
+public static class BinaryFileUtil
+{
+}
+
+/**
  * @brief BinaryFileDataクラス
  */
 public class BinaryFileData
 {
-    public byte[] buffer = System.Array.Empty<byte>();
+    public Lib.Buffer.Buffer buffer = new();
 
     /**
      * @brief コンストラクタ
      */
     public BinaryFileData()
     {
-        return;
-    }
+        this.Init();
 
-    /**
-     * @brief _Release関数
-     */
-    private void _Release()
-    {
         return;
     }
 
@@ -39,9 +40,7 @@ public class BinaryFileData
      */
     public virtual void Init()
     {
-        this._Release();
-
-        this.buffer = System.Array.Empty<byte>();
+        this.buffer.Init();
 
         return;
     }
@@ -52,20 +51,12 @@ public class BinaryFileData
  */
 public class BinaryFileReadDescData : Lib.Data.FileReadDescData
 {
-    public byte[] buffer = System.Array.Empty<byte>();
+    public Lib.Buffer.Buffer buffer = new();
 
     /**
      * @brief コンストラクタ
      */
-    public BinaryFileReadDescData()
-    {
-        return;
-    }
-
-    /**
-     * @brief _Release関数
-     */
-    private void _Release()
+    public BinaryFileReadDescData() : base()
     {
         return;
     }
@@ -75,11 +66,9 @@ public class BinaryFileReadDescData : Lib.Data.FileReadDescData
      */
     public override void Init()
     {
-        this._Release();
-
-        this.buffer = System.Array.Empty<byte>();
-
         base.Init();
+
+        this.buffer.Init();
 
         return;
     }
@@ -91,7 +80,7 @@ public class BinaryFileReadDescData : Lib.Data.FileReadDescData
      */
     public override bool IsEmpty()
     {
-	    if (this.buffer.Length > 0) {
+	    if (this.buffer.GetLength() > 0) {
 		    return (false);
 	    }
 
@@ -107,15 +96,7 @@ public class BinaryFileWriteDescData : Lib.Data.FileWriteDescData
     /**
      * @brief コンストラクタ
      */
-    public BinaryFileWriteDescData()
-    {
-        return;
-    }
-
-    /**
-     * @brief _Release関数
-     */
-    private void _Release()
+    public BinaryFileWriteDescData() : base()
     {
         return;
     }
@@ -125,8 +106,6 @@ public class BinaryFileWriteDescData : Lib.Data.FileWriteDescData
      */
     public override void Init()
     {
-        this._Release();
-
         base.Init();
 
         return;
@@ -148,22 +127,14 @@ public class BinaryFileWriteDescData : Lib.Data.FileWriteDescData
  */
 public class BinaryFile : Lib.Data.File
 {
-	public Lib.Data.BinaryFileData data = new Lib.Data.BinaryFileData();
-	public Lib.Data.FileReadDesc<Lib.Data.BinaryFileReadDescData> readDesc = new Lib.Data.FileReadDesc<Lib.Data.BinaryFileReadDescData>();
-	public Lib.Data.FileWriteDesc<Lib.Data.BinaryFileWriteDescData> writeDesc = new Lib.Data.FileWriteDesc<Lib.Data.BinaryFileWriteDescData>();
+	public Lib.Data.BinaryFileData data = new();
+	public Lib.Data.FileReadDesc<Lib.Data.BinaryFileReadDescData> readDesc = new();
+	public Lib.Data.FileWriteDesc<Lib.Data.BinaryFileWriteDescData> writeDesc = new();
 
     /**
      * @brief コンストラクタ
      */
-    public BinaryFile()
-    {
-        return;
-    }
-
-    /**
-     * @brief _Release関数
-     */
-    private void _Release()
+    public BinaryFile() : base()
     {
         return;
     }
@@ -173,13 +144,11 @@ public class BinaryFile : Lib.Data.File
      */
     public override void Init()
     {
-        this._Release();
+        base.Init();
 
 	    this.data.Init();
 	    this.readDesc.Init();
 	    this.writeDesc.Init();
-
-        base.Init();
 
         return;
     }
@@ -196,8 +165,8 @@ public class BinaryFile : Lib.Data.File
 	    if (desc_dat.filePath.Length <= 0) {
 		    this.data.Init();
 
-		    if (desc_dat.buffer.Length > 0) {
-			    this.data.buffer = (byte[])desc_dat.buffer.Clone();
+		    if (desc_dat.buffer.GetLength() > 0) {
+			    this.data.buffer.Init(desc_dat.buffer);
 		    }
 
 		    return (0);
@@ -255,7 +224,7 @@ public class BinaryFile : Lib.Data.File
 		this.data.Init();
 
 	    if (buf.Length > 0) {
-		    this.data.buffer = buf;
+		    this.data.buffer.Init(buf, buf.Length, true);
 	    }
 
         return (0);
@@ -268,6 +237,10 @@ public class BinaryFile : Lib.Data.File
      */
     protected override int _OnWrite()
     {
+        if (this.data.buffer.GetWriteResultValue() < 0) {
+	        return (-1);
+        }
+
 	    var desc_dat = this.writeDesc.GetDataByParent();
 
 	    if (desc_dat.filePath.Length <= 0) {
@@ -282,6 +255,8 @@ public class BinaryFile : Lib.Data.File
             }
         }
 
+        byte[] buf = this.data.buffer.GetArray();
+        int buf_size = this.data.buffer.GetLength();
 	    int buf_index = 0;
 
 	    var write_buf = new byte[2048];
@@ -291,15 +266,15 @@ public class BinaryFile : Lib.Data.File
         try {
             using (var fs = new FileStream(desc_dat.filePath, (desc_dat.appendFlag) ? FileMode.Append : FileMode.Create, FileAccess.Write)) {
                 while (true) {
-				    write_size = System.Math.Min(this.data.buffer.Length - buf_index, write_buf.Length);
+				    write_size = System.Math.Min(buf_size - buf_index, write_buf.Length);
 
-                    System.Buffer.BlockCopy(this.data.buffer, buf_index, write_buf, 0, write_size);
+                    System.Buffer.BlockCopy(buf, buf_index, write_buf, 0, write_size);
 
 				    fs.Write(write_buf, 0, write_size);
 
 				    buf_index += write_size;
 
-				    if (buf_index >= this.data.buffer.Length) {
+				    if (buf_index >= buf_size) {
 					    break;
 				    }
                 }

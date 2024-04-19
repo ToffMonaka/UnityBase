@@ -12,25 +12,26 @@ using System.Text;
 namespace ToffMonaka {
 namespace Lib.Data {
 /**
+ * @brief TextFileUtilクラス
+ */
+public static class TextFileUtil
+{
+}
+
+/**
  * @brief TextFileDataクラス
  */
 public class TextFileData
 {
-    public List<string> lineTextContainer = new List<string>();
+    public List<string> lineTextContainer = new();
 
     /**
      * @brief コンストラクタ
      */
     public TextFileData()
     {
-        return;
-    }
+        this.Init();
 
-    /**
-     * @brief _Release関数
-     */
-    private void _Release()
-    {
         return;
     }
 
@@ -39,8 +40,6 @@ public class TextFileData
      */
     public virtual void Init()
     {
-        this._Release();
-
         this.lineTextContainer.Clear();
 
         return;
@@ -52,22 +51,14 @@ public class TextFileData
  */
 public class TextFileReadDescData : Lib.Data.BinaryFileReadDescData
 {
-    public string text = "";
-    public string charset = "utf-8";
-    public Lib.String.Util.NEWLINE_TYPE newlineType = Lib.String.Util.NEWLINE_TYPE.CRLF;
+    public string text;
+    public string charset;
+    public Lib.String.Util.NEWLINE_TYPE newlineType;
 
     /**
      * @brief コンストラクタ
      */
-    public TextFileReadDescData()
-    {
-        return;
-    }
-
-    /**
-     * @brief _Release関数
-     */
-    private void _Release()
+    public TextFileReadDescData() : base()
     {
         return;
     }
@@ -77,13 +68,11 @@ public class TextFileReadDescData : Lib.Data.BinaryFileReadDescData
      */
     public override void Init()
     {
-        this._Release();
+        base.Init();
 
         this.text = "";
         this.charset = "utf-8";
         this.newlineType = Lib.String.Util.NEWLINE_TYPE.CRLF;
-
-        base.Init();
 
         return;
     }
@@ -108,22 +97,14 @@ public class TextFileReadDescData : Lib.Data.BinaryFileReadDescData
  */
 public class TextFileWriteDescData : Lib.Data.BinaryFileWriteDescData
 {
-	public int appendNewlineCount = 1;
-    public string charset = "utf-8";
-    public Lib.String.Util.NEWLINE_TYPE newlineType = Lib.String.Util.NEWLINE_TYPE.CRLF;
+	public int appendNewlineCount;
+    public string charset;
+    public Lib.String.Util.NEWLINE_TYPE newlineType;
 
     /**
      * @brief コンストラクタ
      */
-    public TextFileWriteDescData()
-    {
-        return;
-    }
-
-    /**
-     * @brief _Release関数
-     */
-    private void _Release()
+    public TextFileWriteDescData() : base()
     {
         return;
     }
@@ -133,8 +114,6 @@ public class TextFileWriteDescData : Lib.Data.BinaryFileWriteDescData
      */
     public override void Init()
     {
-        this._Release();
-
         this.appendNewlineCount = 1;
         this.charset = "utf-8";
         this.newlineType = Lib.String.Util.NEWLINE_TYPE.CRLF;
@@ -160,22 +139,14 @@ public class TextFileWriteDescData : Lib.Data.BinaryFileWriteDescData
  */
 public class TextFile : Lib.Data.File
 {
-	public Lib.Data.TextFileData data = new Lib.Data.TextFileData();
-	public Lib.Data.FileReadDesc<Lib.Data.TextFileReadDescData> readDesc = new Lib.Data.FileReadDesc<Lib.Data.TextFileReadDescData>();
-	public Lib.Data.FileWriteDesc<Lib.Data.TextFileWriteDescData> writeDesc = new Lib.Data.FileWriteDesc<Lib.Data.TextFileWriteDescData>();
+	public Lib.Data.TextFileData data = new();
+	public Lib.Data.FileReadDesc<Lib.Data.TextFileReadDescData> readDesc = new();
+	public Lib.Data.FileWriteDesc<Lib.Data.TextFileWriteDescData> writeDesc = new();
 
     /**
      * @brief コンストラクタ
      */
-    public TextFile()
-    {
-        return;
-    }
-
-    /**
-     * @brief _Release関数
-     */
-    private void _Release()
+    public TextFile() : base()
     {
         return;
     }
@@ -185,13 +156,11 @@ public class TextFile : Lib.Data.File
      */
     public override void Init()
     {
-        this._Release();
+        base.Init();
 
 	    this.data.Init();
 	    this.readDesc.Init();
 	    this.writeDesc.Init();
-
-        base.Init();
 
         return;
     }
@@ -206,7 +175,7 @@ public class TextFile : Lib.Data.File
 	    var desc_dat = this.readDesc.GetDataByParent();
 
 	    if (desc_dat.filePath.Length <= 0) {
-		    if (desc_dat.buffer.Length <= 0) {
+		    if (desc_dat.buffer.GetLength() <= 0) {
 		        this.data.Init();
 
 		        if (desc_dat.text.Length > 0) {
@@ -228,11 +197,13 @@ public class TextFile : Lib.Data.File
 
         this.data.Init();
 
-        if (bin_file.data.buffer.Length <= 0) {
+        if (bin_file.data.buffer.GetLength() <= 0) {
 	        return (0);
         }
 
-        string buf_str = Encoding.GetEncoding(desc_dat.charset).GetString(bin_file.data.buffer);
+        byte[] buf = bin_file.data.buffer.GetArray();
+        int buf_size = bin_file.data.buffer.GetLength();
+        string buf_str = Encoding.GetEncoding(desc_dat.charset).GetString(buf, 0, buf_size);
 
         this.data.lineTextContainer = new List<string>(buf_str.Split(Lib.String.Util.GetNewlineCode(desc_dat.newlineType)));
 
@@ -252,6 +223,8 @@ public class TextFile : Lib.Data.File
 		    return (-1);
 	    }
 
+        byte[] buf = System.Array.Empty<byte>();
+        int buf_size = buf.Length;
         string buf_str = System.String.Join(Lib.String.Util.GetNewlineCode(desc_dat.newlineType), this.data.lineTextContainer);
 
         if (buf_str.Length > 0) {
@@ -265,12 +238,15 @@ public class TextFile : Lib.Data.File
 
 		        buf_str = buf_str.Insert(0, newline_code);
 	        }
+
+            buf = Encoding.GetEncoding(desc_dat.charset).GetBytes(buf_str);
+            buf_size = buf.Length;
         }
 
         var bin_file = new Lib.Data.BinaryFile();
         int bin_file_write_result_val;
 
-        bin_file.data.buffer = Encoding.GetEncoding(desc_dat.charset).GetBytes(buf_str);
+        bin_file.data.buffer.Init(buf, buf_size, true);
 
         bin_file.writeDesc.parentData = desc_dat;
 

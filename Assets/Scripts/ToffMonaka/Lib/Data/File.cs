@@ -14,22 +14,16 @@ namespace Lib.Data {
  */
 public abstract class FileReadDescData
 {
-    public string filePath = "";
-    public bool addressablesFlag = false;
+    public string filePath;
+    public bool addressablesFlag;
 
     /**
      * @brief コンストラクタ
      */
     public FileReadDescData()
     {
-        return;
-    }
+        this.Init();
 
-    /**
-     * @brief _Release関数
-     */
-    private void _Release()
-    {
         return;
     }
 
@@ -38,8 +32,6 @@ public abstract class FileReadDescData
      */
     public virtual void Init()
     {
-        this._Release();
-
         this.filePath = "";
         this.addressablesFlag = false;
 
@@ -62,14 +54,16 @@ public abstract class FileReadDescData
  */
 public class FileReadDesc<T> where T : Lib.Data.FileReadDescData, new()
 {
-    public T data = new T();
-    public T parentData = null;
+    public T data = new();
+    public T parentData;
 
     /**
      * @brief コンストラクタ
      */
     public FileReadDesc()
     {
+        this.Init();
+
         return;
     }
 
@@ -79,16 +73,8 @@ public class FileReadDesc<T> where T : Lib.Data.FileReadDescData, new()
      */
     public FileReadDesc(string file_path)
     {
-        this.data.filePath = file_path;
+        this.Init(file_path);
 
-        return;
-    }
-
-    /**
-     * @brief _Release関数
-     */
-    private void _Release()
-    {
         return;
     }
 
@@ -97,8 +83,6 @@ public class FileReadDesc<T> where T : Lib.Data.FileReadDescData, new()
      */
     public virtual void Init()
     {
-        this._Release();
-
 	    this.data.Init();
 	    this.parentData = null;
 
@@ -111,8 +95,6 @@ public class FileReadDesc<T> where T : Lib.Data.FileReadDescData, new()
      */
     public virtual void Init(string file_path)
     {
-        this._Release();
-
 	    this.data.Init();
         this.data.filePath = file_path;
 	    this.parentData = null;
@@ -135,22 +117,16 @@ public class FileReadDesc<T> where T : Lib.Data.FileReadDescData, new()
  */
 public abstract class FileWriteDescData
 {
-    public string filePath = "";
-    public bool appendFlag = false;
+    public string filePath;
+    public bool appendFlag;
 
     /**
      * @brief コンストラクタ
      */
     public FileWriteDescData()
     {
-        return;
-    }
+        this.Init();
 
-    /**
-     * @brief _Release関数
-     */
-    private void _Release()
-    {
         return;
     }
 
@@ -159,8 +135,6 @@ public abstract class FileWriteDescData
      */
     public virtual void Init()
     {
-        this._Release();
-
         this.filePath = "";
         this.appendFlag = false;
 
@@ -183,14 +157,16 @@ public abstract class FileWriteDescData
  */
 public class FileWriteDesc<T> where T : Lib.Data.FileWriteDescData, new()
 {
-    public T data = new T();
-    public T parentData = null;
+    public T data = new();
+    public T parentData;
 
     /**
      * @brief コンストラクタ
      */
     public FileWriteDesc()
     {
+        this.Init();
+
         return;
     }
 
@@ -200,16 +176,8 @@ public class FileWriteDesc<T> where T : Lib.Data.FileWriteDescData, new()
      */
     public FileWriteDesc(string file_path)
     {
-        this.data.filePath = file_path;
+        this.Init(file_path);
 
-        return;
-    }
-
-    /**
-     * @brief _Release関数
-     */
-    private void _Release()
-    {
         return;
     }
 
@@ -218,8 +186,6 @@ public class FileWriteDesc<T> where T : Lib.Data.FileWriteDescData, new()
      */
     public virtual void Init()
     {
-        this._Release();
-
 	    this.data.Init();
 	    this.parentData = null;
 
@@ -232,8 +198,6 @@ public class FileWriteDesc<T> where T : Lib.Data.FileWriteDescData, new()
      */
     public virtual void Init(string file_path)
     {
-        this._Release();
-
 	    this.data.Init();
         this.data.filePath = file_path;
 	    this.parentData = null;
@@ -261,14 +225,8 @@ public abstract class File
      */
     public File()
     {
-        return;
-    }
+        this.Init();
 
-    /**
-     * @brief _Release関数
-     */
-    private void _Release()
-    {
         return;
     }
 
@@ -277,8 +235,6 @@ public abstract class File
      */
     public virtual void Init()
     {
-        this._Release();
-
         return;
     }
 

@@ -102,14 +102,14 @@ public class MainSceneNodeScript : Lib.Scene.MainSceneNodeScript
      */
     protected override void _OnStartApplication()
     {
-        {// SystemDataFile Create
-            UnityBase.Global.systemDataFile.readDesc.data.filePath = Application.persistentDataPath + "/" + UnityBase.Util.FILE_PATH.SYSTEM_DATA;
-            UnityBase.Global.systemDataFile.writeDesc.data.filePath = UnityBase.Global.systemDataFile.readDesc.data.filePath;
+        {// SystemConfigFile Create
+            UnityBase.Global.systemConfigFile.readDesc.data.filePath = Application.persistentDataPath + "/" + UnityBase.Util.FILE_PATH.SYSTEM_CONFIG;
+            UnityBase.Global.systemConfigFile.writeDesc.data.filePath = UnityBase.Global.systemConfigFile.readDesc.data.filePath;
 
-            if (Lib.Data.Util.IsExistFile(UnityBase.Global.systemDataFile.readDesc.data.filePath)) {
-                UnityBase.Global.systemDataFile.Read();
+            if (Lib.Data.Util.IsExistFile(UnityBase.Global.systemConfigFile.readDesc.data.filePath)) {
+                UnityBase.Global.systemConfigFile.Read();
             } else {
-                UnityBase.Global.systemDataFile.Write();
+                UnityBase.Global.systemConfigFile.Write();
             }
         }
 
@@ -250,12 +250,12 @@ public class MainSceneNodeScript : Lib.Scene.MainSceneNodeScript
             manager_create_desc.soundNode = this.GetSoundNode();
             manager_create_desc.bgmPrefabFilePath = UnityBase.Util.FILE_PATH.SOUND_BGM_PREFAB;
             manager_create_desc.bgmAudioClipArray = this.GetSoundBgmAudioClipArray();
-            manager_create_desc.bgmVolume = UnityBase.Global.systemDataFile.data.soundBgmVolume;
-            manager_create_desc.bgmMuteFlag = UnityBase.Global.systemDataFile.data.soundBgmMuteFlag;
+            manager_create_desc.bgmVolume = UnityBase.Global.systemConfigFile.data.soundBgmVolume;
+            manager_create_desc.bgmMuteFlag = UnityBase.Global.systemConfigFile.data.soundBgmMuteFlag;
             manager_create_desc.sePrefabFilePath = UnityBase.Util.FILE_PATH.SOUND_SE_PREFAB;
             manager_create_desc.seAudioClipArray = this.GetSoundSeAudioClipArray();
-            manager_create_desc.seVolume = UnityBase.Global.systemDataFile.data.soundSeVolume;
-            manager_create_desc.seMuteFlag = UnityBase.Global.systemDataFile.data.soundSeMuteFlag;
+            manager_create_desc.seVolume = UnityBase.Global.systemConfigFile.data.soundSeVolume;
+            manager_create_desc.seMuteFlag = UnityBase.Global.systemConfigFile.data.soundSeMuteFlag;
 
             if (manager.Create(manager_create_desc) < 0) {
                 this._ReleaseManager();
@@ -290,12 +290,12 @@ public class MainSceneNodeScript : Lib.Scene.MainSceneNodeScript
      */
     private void _WriteDataFile()
     {
-        if (UnityBase.Global.systemDataFile.GetWriteFlag()) {
-            UnityBase.Global.systemDataFile.Write();
+        if (UnityBase.Global.systemConfigFile.GetWriteFlag()) {
+            UnityBase.Global.systemConfigFile.Write();
         }
 
-        if (UnityBase.Global.userDataFile.GetWriteFlag()) {
-            UnityBase.Global.userDataFile.Write();
+        if (UnityBase.Global.userFile.GetWriteFlag()) {
+            UnityBase.Global.userFile.Write();
         }
 
         return;

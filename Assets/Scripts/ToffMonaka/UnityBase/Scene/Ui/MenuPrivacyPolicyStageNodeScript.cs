@@ -206,7 +206,7 @@ public class MenuPrivacyPolicyStageNodeScript : UnityBase.Scene.Ui.MenuStageNode
             };
             string[] txt_ary;
 
-		    switch (UnityBase.Global.systemDataFile.data.systemLanguageType) {
+		    switch (UnityBase.Global.systemConfigFile.data.systemLanguageType) {
 		    case UnityBase.Util.LANGUAGE_TYPE.JAPANESE: {
                 txt_ary = jp_txt_ary;
 

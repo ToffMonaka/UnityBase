@@ -14,8 +14,8 @@ namespace UnityBase {
  */
 public static class Global
 {
-    public static UnityBase.Data.SystemDataFile systemDataFile = new UnityBase.Data.SystemDataFile();
-    public static UnityBase.Data.UserDataFile userDataFile = new UnityBase.Data.UserDataFile();
+    public static UnityBase.Data.SystemConfigFile systemConfigFile = new UnityBase.Data.SystemConfigFile();
+    public static UnityBase.Data.UserFile userFile = new UnityBase.Data.UserFile();
     public static UnityBase.Data.MstTextTableFile mstTextTableFile = new UnityBase.Data.MstTextTableFile();
 
     // Change Property Name

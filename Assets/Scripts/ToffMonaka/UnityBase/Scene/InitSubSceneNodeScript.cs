@@ -65,7 +65,7 @@ public class InitSubSceneNodeScript : Lib.Scene.SubSceneNodeScript
      */
     protected override int _OnCreate()
     {
-		switch (UnityBase.Global.systemDataFile.data.systemLanguageType) {
+		switch (UnityBase.Global.systemConfigFile.data.systemLanguageType) {
 		case UnityBase.Util.LANGUAGE_TYPE.JAPANESE: {
             this._messageText.SetText("ちょっと待ってね。");
 
@@ -265,7 +265,7 @@ public class InitSubSceneNodeScript : Lib.Scene.SubSceneNodeScript
 		    switch (this._updateProgressCount) {
 		    case 0: {
                 {// MstTextTableFile Create
-		            switch (UnityBase.Global.systemDataFile.data.systemLanguageType) {
+		            switch (UnityBase.Global.systemConfigFile.data.systemLanguageType) {
 		            case UnityBase.Util.LANGUAGE_TYPE.JAPANESE: {
                         UnityBase.Global.mstTextTableFile.readDesc.data.filePath = UnityBase.Util.FILE_PATH.JAPANESE_MST_TEXT_TABLE;
 
@@ -299,14 +299,14 @@ public class InitSubSceneNodeScript : Lib.Scene.SubSceneNodeScript
 		case 3: {
 		    switch (this._updateProgressCount) {
 		    case 0: {
-                {// UserDataFile Create
-                    UnityBase.Global.userDataFile.readDesc.data.filePath = Application.persistentDataPath + "/" + UnityBase.Util.FILE_PATH.USER_DATA;
-                    UnityBase.Global.userDataFile.writeDesc.data.filePath = UnityBase.Global.userDataFile.readDesc.data.filePath;
+                {// UserFile Create
+                    UnityBase.Global.userFile.readDesc.data.filePath = Application.persistentDataPath + "/" + UnityBase.Util.FILE_PATH.USER;
+                    UnityBase.Global.userFile.writeDesc.data.filePath = UnityBase.Global.userFile.readDesc.data.filePath;
 
-                    if (Lib.Data.Util.IsExistFile(UnityBase.Global.userDataFile.readDesc.data.filePath)) {
-                        UnityBase.Global.userDataFile.Read();
+                    if (Lib.Data.Util.IsExistFile(UnityBase.Global.userFile.readDesc.data.filePath)) {
+                        UnityBase.Global.userFile.Read();
                     } else {
-                        UnityBase.Global.userDataFile.Write();
+                        UnityBase.Global.userFile.Write();
                     }
                 }
 

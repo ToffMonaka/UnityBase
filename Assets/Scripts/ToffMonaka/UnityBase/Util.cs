@@ -30,8 +30,8 @@ public static class Util
     public static class FILE_PATH
     {
         public static readonly string NONE = "";
-        public static readonly string SYSTEM_DATA = "dat/sys.dat";
-        public static readonly string USER_DATA = "dat/user.dat";
+        public static readonly string SYSTEM_CONFIG = "dat/sys_conf.ini";
+        public static readonly string USER = "dat/user.dat";
         public static readonly string ENGLISH_MST_TEXT_TABLE = "Assets/Resources2/dat/en_mst_txt_tbl.csv";
         public static readonly string JAPANESE_MST_TEXT_TABLE = "Assets/Resources2/dat/jp_mst_txt_tbl.csv";
         public static readonly string SOUND_BGM_PREFAB = "Assets/Resources2/prefab/SoundBgm.prefab";
