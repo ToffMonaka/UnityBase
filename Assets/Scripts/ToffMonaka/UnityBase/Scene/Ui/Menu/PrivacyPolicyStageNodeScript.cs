@@ -1,6 +1,6 @@
 ﻿/**
  * @file
- * @brief MenuFaqStageNodeScriptファイル
+ * @brief PrivacyPolicyStageNodeScriptファイル
  */
 
 
@@ -11,32 +11,35 @@ using TMPro;
 
 
 namespace ToffMonaka {
-namespace UnityBase.Scene.Ui {
+namespace UnityBase.Scene.Ui.Menu {
 /**
- * @brief MenuFaqStageNodeScriptCreateDescクラス
+ * @brief PrivacyPolicyStageNodeScriptCreateDescクラス
  */
-public class MenuFaqStageNodeScriptCreateDesc : UnityBase.Scene.Ui.MenuStageNodeScriptCreateDesc
+public class PrivacyPolicyStageNodeScriptCreateDesc : UnityBase.Scene.Ui.Menu.StageNodeScriptCreateDesc
 {
 }
 
 /**
- * @brief MenuFaqStageNodeScriptクラス
+ * @brief PrivacyPolicyStageNodeScriptクラス
  */
-public class MenuFaqStageNodeScript : UnityBase.Scene.Ui.MenuStageNodeScript
+public class PrivacyPolicyStageNodeScript : UnityBase.Scene.Ui.Menu.StageNodeScript
 {
-    [SerializeField] private ScrollRect _messageScrollRect = null;
+    [SerializeField] private ScrollRect _scrollRect = null;
+    [SerializeField] private float _scrollBarMinSize = 64.0f;
     [SerializeField] private GameObject _messageNode = null;
     [SerializeField] private TMP_Text _cancelButtonNameText = null;
     [SerializeField] private Image _cancelButtonCoverImage = null;
 
-    public new UnityBase.Scene.Ui.MenuFaqStageNodeScriptCreateDesc createDesc{get; private set;} = null;
+    public new UnityBase.Scene.Ui.Menu.PrivacyPolicyStageNodeScriptCreateDesc createDesc{get; private set;} = null;
+
+    private Vector2 _scrollBarMinSize2 = Vector2.zero;
 
     /**
      * @brief コンストラクタ
      */
-    public MenuFaqStageNodeScript()
+    public PrivacyPolicyStageNodeScript()
     {
-        this._SetStageType(UnityBase.Util.SCENE.MENU_STAGE_TYPE.FAQ);
+        this._SetStageType(UnityBase.Util.SCENE.MENU_STAGE_TYPE.PRIVACY_POLICY);
 
         return;
     }
@@ -47,7 +50,7 @@ public class MenuFaqStageNodeScript : UnityBase.Scene.Ui.MenuStageNodeScript
      */
     protected override int _OnGetScriptIndex()
     {
-        return ((int)UnityBase.Util.SCENE.SCRIPT_INDEX.MENU_FAQ_STAGE_NODE);
+        return ((int)UnityBase.Util.SCENE.SCRIPT_INDEX.MENU_PRIVACY_POLICY_STAGE_NODE);
     }
 
     /**
@@ -71,27 +74,22 @@ public class MenuFaqStageNodeScript : UnityBase.Scene.Ui.MenuStageNodeScript
             return (-1);
         }
 
+        this._scrollBarMinSize2 = new Vector2(1.0f / this._scrollRect.viewport.rect.width * this._scrollBarMinSize, 1.0f / this._scrollRect.viewport.rect.height * this._scrollBarMinSize);
+        this._cancelButtonNameText.SetText(UnityBase.Global.GetText(UnityBase.Util.MST_TEXT_ID.CANCEL));
+
         this._messageNode.SetActive(false);
 
         {// MessageNode Create
-            var en_txt_ary = new string[]{
-                "Q, What is the application to do?\n" +
-                "A, It is a Unity base application."
-            };
-            var jp_txt_ary = new string[]{
-                "Q, 何をするアプリなんですか？\n" +
-                "A, Unityのベースアプリです。"
-            };
             string[] txt_ary;
 
 		    switch (UnityBase.Global.systemConfigFile.data.systemLanguageType) {
 		    case UnityBase.Util.LANGUAGE_TYPE.JAPANESE: {
-                txt_ary = jp_txt_ary;
+                txt_ary = UnityBase.Scene.Ui.Menu.PrivacyPolicyMessageUtil.JAPANESE_TEXT_ARRAY;
 
 			    break;
 		    }
 		    default: {
-                txt_ary = en_txt_ary;
+                txt_ary = UnityBase.Scene.Ui.Menu.PrivacyPolicyMessageUtil.ENGLISH_TEXT_ARRAY;
 
 			    break;
 		    }
@@ -99,16 +97,12 @@ public class MenuFaqStageNodeScript : UnityBase.Scene.Ui.MenuStageNodeScript
 
             for (int txt_i = 0; txt_i < txt_ary.Length; ++txt_i) {
                 var txt = (txt_i <= 0) ? txt_ary[txt_i] : "\n" + txt_ary[txt_i];
-
                 var node = GameObject.Instantiate(this._messageNode, this._messageNode.transform.parent);
 
                 node.GetComponent<TMP_Text>().SetText(txt);
-
                 node.SetActive(true);
             }
         }
-
-        this._cancelButtonNameText.SetText(UnityBase.Global.GetText(UnityBase.Util.MST_TEXT_ID.CANCEL));
 
         return (0);
     }
@@ -119,7 +113,7 @@ public class MenuFaqStageNodeScript : UnityBase.Scene.Ui.MenuStageNodeScript
      */
     public override void SetCreateDesc(Lib.Scene.ScriptCreateDesc create_desc)
     {
-	    this.createDesc = create_desc as UnityBase.Scene.Ui.MenuFaqStageNodeScriptCreateDesc;
+	    this.createDesc = create_desc as UnityBase.Scene.Ui.Menu.PrivacyPolicyStageNodeScriptCreateDesc;
 
         base.SetCreateDesc(this.createDesc);
 
@@ -133,7 +127,7 @@ public class MenuFaqStageNodeScript : UnityBase.Scene.Ui.MenuStageNodeScript
     {
         base._OnActive();
 
-        this._messageScrollRect.verticalNormalizedPosition = 1.0f;
+        this._scrollRect.verticalNormalizedPosition = 1.0f;
         this._cancelButtonCoverImage.gameObject.SetActive(false);
 
         return;
@@ -155,6 +149,8 @@ public class MenuFaqStageNodeScript : UnityBase.Scene.Ui.MenuStageNodeScript
     protected override void _OnUpdate()
     {
         base._OnUpdate();
+
+        this._UpdateScrollBarSize();
 
         return;
     }
@@ -200,6 +196,17 @@ public class MenuFaqStageNodeScript : UnityBase.Scene.Ui.MenuStageNodeScript
     }
 
     /**
+     * @brief OnScrollRectValueChanged関数
+     * @param event_pos (event_position)
+     */
+    public void OnScrollRectValueChanged(Vector2 event_pos)
+    {
+        this._UpdateScrollBarSize();
+
+        return;
+    }
+
+    /**
      * @brief OnCancelButtonPointerClick関数
      * @param event_dat (event_data)
      */
@@ -238,6 +245,22 @@ public class MenuFaqStageNodeScript : UnityBase.Scene.Ui.MenuStageNodeScript
     public void OnCancelButtonPointerExit(PointerEventData event_dat)
     {
         this._cancelButtonCoverImage.gameObject.SetActive(false);
+
+        return;
+    }
+
+    /**
+     * @brief _UpdateScrollBarSize関数
+     */
+    private void _UpdateScrollBarSize()
+    {
+        if (this._scrollRect.vertical) {
+            if (this._scrollRect.verticalScrollbar != null) {
+                if (this._scrollRect.verticalScrollbar.size < this._scrollBarMinSize2.y) {
+                    this._scrollRect.verticalScrollbar.size = this._scrollBarMinSize2.y;
+                }
+            }
+        }
 
         return;
     }

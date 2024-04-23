@@ -1,6 +1,6 @@
 ﻿/**
  * @file
- * @brief MenuStaffStageNodeScriptファイル
+ * @brief StaffStageNodeScriptファイル
  */
 
 
@@ -11,30 +11,33 @@ using TMPro;
 
 
 namespace ToffMonaka {
-namespace UnityBase.Scene.Ui {
+namespace UnityBase.Scene.Ui.Menu {
 /**
- * @brief MenuStaffStageNodeScriptCreateDescクラス
+ * @brief StaffStageNodeScriptCreateDescクラス
  */
-public class MenuStaffStageNodeScriptCreateDesc : UnityBase.Scene.Ui.MenuStageNodeScriptCreateDesc
+public class StaffStageNodeScriptCreateDesc : UnityBase.Scene.Ui.Menu.StageNodeScriptCreateDesc
 {
 }
 
 /**
- * @brief MenuStaffStageNodeScriptクラス
+ * @brief StaffStageNodeScriptクラス
  */
-public class MenuStaffStageNodeScript : UnityBase.Scene.Ui.MenuStageNodeScript
+public class StaffStageNodeScript : UnityBase.Scene.Ui.Menu.StageNodeScript
 {
-    [SerializeField] private ScrollRect _messageScrollRect = null;
+    [SerializeField] private ScrollRect _scrollRect = null;
+    [SerializeField] private float _scrollBarMinSize = 64.0f;
     [SerializeField] private GameObject _messageNode = null;
     [SerializeField] private TMP_Text _cancelButtonNameText = null;
     [SerializeField] private Image _cancelButtonCoverImage = null;
 
-    public new UnityBase.Scene.Ui.MenuStaffStageNodeScriptCreateDesc createDesc{get; private set;} = null;
+    public new UnityBase.Scene.Ui.Menu.StaffStageNodeScriptCreateDesc createDesc{get; private set;} = null;
+
+    private Vector2 _scrollBarMinSize2 = Vector2.zero;
 
     /**
      * @brief コンストラクタ
      */
-    public MenuStaffStageNodeScript()
+    public StaffStageNodeScript()
     {
         this._SetStageType(UnityBase.Util.SCENE.MENU_STAGE_TYPE.STAFF);
 
@@ -71,61 +74,22 @@ public class MenuStaffStageNodeScript : UnityBase.Scene.Ui.MenuStageNodeScript
             return (-1);
         }
 
+        this._scrollBarMinSize2 = new Vector2(1.0f / this._scrollRect.viewport.rect.width * this._scrollBarMinSize, 1.0f / this._scrollRect.viewport.rect.height * this._scrollBarMinSize);
+        this._cancelButtonNameText.SetText(UnityBase.Global.GetText(UnityBase.Util.MST_TEXT_ID.CANCEL));
+
         this._messageNode.SetActive(false);
 
         {// MessageNode Create
-            var en_txt_ary = new string[]{
-                "-SCENARIO-\n" +
-                "Toff Monaka",
-    
-                "-PROGRAM-\n" +
-                "Toff Monaka",
-    
-                "-GRAPHIC-\n" +
-                "Toff Monaka",
-    
-                "-SOUND-\n" +
-                "Toff Monaka\n" +
-                "無料効果音で遊ぼう！/無料効果音素材\n" +
-                "http://taira-komori.jpn.org/freesound.html\n" +
-                "©効果音ラボ\n" +
-                "https://soundeffect-lab.info/\n" +
-                "On-Jin ～音人～\n" +
-                "https://on-jin.com/\n" +
-                "甘茶の音楽工房\n" +
-                "http://amachamusic.chagasi.com/"
-            };
-            var jp_txt_ary = new string[]{
-                "-シナリオ-\n" +
-                "Toff Monaka",
-    
-                "-プログラム-\n" +
-                "Toff Monaka",
-    
-                "-グラフィック-\n" +
-                "Toff Monaka",
-    
-                "-サウンド-\n" +
-                "Toff Monaka\n" +
-                "無料効果音で遊ぼう！/無料効果音素材\n" +
-                "http://taira-komori.jpn.org/freesound.html\n" +
-                "©効果音ラボ\n" +
-                "https://soundeffect-lab.info/\n" +
-                "On-Jin ～音人～\n" +
-                "https://on-jin.com/\n" +
-                "甘茶の音楽工房\n" +
-                "http://amachamusic.chagasi.com/"
-            };
             string[] txt_ary;
 
 		    switch (UnityBase.Global.systemConfigFile.data.systemLanguageType) {
 		    case UnityBase.Util.LANGUAGE_TYPE.JAPANESE: {
-                txt_ary = jp_txt_ary;
+                txt_ary = UnityBase.Scene.Ui.Menu.StaffMessageUtil.JAPANESE_TEXT_ARRAY;
 
 			    break;
 		    }
 		    default: {
-                txt_ary = en_txt_ary;
+                txt_ary = UnityBase.Scene.Ui.Menu.StaffMessageUtil.ENGLISH_TEXT_ARRAY;
 
 			    break;
 		    }
@@ -133,16 +97,12 @@ public class MenuStaffStageNodeScript : UnityBase.Scene.Ui.MenuStageNodeScript
 
             for (int txt_i = 0; txt_i < txt_ary.Length; ++txt_i) {
                 var txt = (txt_i <= 0) ? txt_ary[txt_i] : "\n" + txt_ary[txt_i];
-
                 var node = GameObject.Instantiate(this._messageNode, this._messageNode.transform.parent);
 
                 node.GetComponent<TMP_Text>().SetText(txt);
-
                 node.SetActive(true);
             }
         }
-
-        this._cancelButtonNameText.SetText(UnityBase.Global.GetText(UnityBase.Util.MST_TEXT_ID.CANCEL));
 
         return (0);
     }
@@ -153,7 +113,7 @@ public class MenuStaffStageNodeScript : UnityBase.Scene.Ui.MenuStageNodeScript
      */
     public override void SetCreateDesc(Lib.Scene.ScriptCreateDesc create_desc)
     {
-	    this.createDesc = create_desc as UnityBase.Scene.Ui.MenuStaffStageNodeScriptCreateDesc;
+	    this.createDesc = create_desc as UnityBase.Scene.Ui.Menu.StaffStageNodeScriptCreateDesc;
 
         base.SetCreateDesc(this.createDesc);
 
@@ -167,7 +127,7 @@ public class MenuStaffStageNodeScript : UnityBase.Scene.Ui.MenuStageNodeScript
     {
         base._OnActive();
 
-        this._messageScrollRect.verticalNormalizedPosition = 1.0f;
+        this._scrollRect.verticalNormalizedPosition = 1.0f;
         this._cancelButtonCoverImage.gameObject.SetActive(false);
 
         return;
@@ -189,6 +149,8 @@ public class MenuStaffStageNodeScript : UnityBase.Scene.Ui.MenuStageNodeScript
     protected override void _OnUpdate()
     {
         base._OnUpdate();
+
+        this._UpdateScrollBarSize();
 
         return;
     }
@@ -234,6 +196,17 @@ public class MenuStaffStageNodeScript : UnityBase.Scene.Ui.MenuStageNodeScript
     }
 
     /**
+     * @brief OnScrollRectValueChanged関数
+     * @param event_pos (event_position)
+     */
+    public void OnScrollRectValueChanged(Vector2 event_pos)
+    {
+        this._UpdateScrollBarSize();
+
+        return;
+    }
+
+    /**
      * @brief OnCancelButtonPointerClick関数
      * @param event_dat (event_data)
      */
@@ -272,6 +245,22 @@ public class MenuStaffStageNodeScript : UnityBase.Scene.Ui.MenuStageNodeScript
     public void OnCancelButtonPointerExit(PointerEventData event_dat)
     {
         this._cancelButtonCoverImage.gameObject.SetActive(false);
+
+        return;
+    }
+
+    /**
+     * @brief _UpdateScrollBarSize関数
+     */
+    private void _UpdateScrollBarSize()
+    {
+        if (this._scrollRect.vertical) {
+            if (this._scrollRect.verticalScrollbar != null) {
+                if (this._scrollRect.verticalScrollbar.size < this._scrollBarMinSize2.y) {
+                    this._scrollRect.verticalScrollbar.size = this._scrollBarMinSize2.y;
+                }
+            }
+        }
 
         return;
     }

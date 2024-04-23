@@ -28,7 +28,7 @@ public class SubSceneNodeScript : Lib.Scene.SubSceneNodeScript
 
     private UnityBase.Util.SCENE.STAGE_TYPE _stageType = UnityBase.Util.SCENE.STAGE_TYPE.NONE;
     private UnityBase.Scene.Stage.BackButtonNodeScript _backButtonNodeScript = null;
-    private UnityBase.Scene.Ui.MenuNodeScript _menuNodeScript = null;
+    private UnityBase.Scene.Ui.Menu.NodeScript _menuNodeScript = null;
 
     /**
      * @brief コンストラクタ
@@ -82,8 +82,8 @@ public class SubSceneNodeScript : Lib.Scene.SubSceneNodeScript
         }
 
         {// MenuNodeScript Create
-            var script = this._menuNode.GetComponent<UnityBase.Scene.Ui.MenuNodeScript>();
-            var script_create_desc = new UnityBase.Scene.Ui.MenuNodeScriptCreateDesc();
+            var script = this._menuNode.GetComponent<UnityBase.Scene.Ui.Menu.NodeScript>();
+            var script_create_desc = new UnityBase.Scene.Ui.Menu.NodeScriptCreateDesc();
 
             script_create_desc.subSceneNodeScript = this;
 

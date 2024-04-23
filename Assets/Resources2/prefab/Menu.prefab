@@ -3165,7 +3165,20 @@ MonoBehaviour:
   m_VerticalScrollbarSpacing: -3
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 251552391365341875}
+        m_TargetAssemblyTypeName: ToffMonaka.UnityBase.Scene.Ui.Menu.LicenseStageNodeScript,
+          Assembly-CSharp
+        m_MethodName: OnScrollRectValueChanged
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1612450828949031110
 GameObject:
   m_ObjectHideFlags: 0
@@ -4982,7 +4995,20 @@ MonoBehaviour:
   m_VerticalScrollbarSpacing: -3
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2524354789726119884}
+        m_TargetAssemblyTypeName: ToffMonaka.UnityBase.Scene.Ui.Menu.FaqStageNodeScript,
+          Assembly-CSharp
+        m_MethodName: OnScrollRectValueChanged
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &2321987831096931183
 GameObject:
   m_ObjectHideFlags: 0
@@ -10933,7 +10959,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _nameText: {fileID: 5869442471597258566}
-  _messageScrollRect: {fileID: 5301342080167646245}
+  _scrollRect: {fileID: 5301342080167646245}
+  _scrollBarMinSize: 64
   _messageNode: {fileID: 4562970491120814912}
   _cancelButtonNameText: {fileID: 3758416651243195693}
   _cancelButtonCoverImage: {fileID: 3508922755028422564}
@@ -13001,7 +13028,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _nameText: {fileID: 4996440002242584550}
-  _messageScrollRect: {fileID: 6004782640438397213}
+  _scrollRect: {fileID: 6004782640438397213}
+  _scrollBarMinSize: 64
   _messageNode: {fileID: 1403030381161591099}
   _cancelButtonNameText: {fileID: 7923150608748885646}
   _cancelButtonCoverImage: {fileID: 7201826461135935804}
@@ -17233,7 +17261,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _nameText: {fileID: 4312521068194282904}
-  _messageScrollRect: {fileID: 2329338443214509783}
+  _scrollRect: {fileID: 2329338443214509783}
+  _scrollBarMinSize: 64
   _messageNode: {fileID: 393318880073946428}
   _cancelButtonNameText: {fileID: 5312268281658542251}
   _cancelButtonCoverImage: {fileID: 6561431719102695846}
@@ -17384,7 +17413,20 @@ MonoBehaviour:
   m_VerticalScrollbarSpacing: -3
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2756076326550919670}
+        m_TargetAssemblyTypeName: ToffMonaka.UnityBase.Scene.Ui.Menu.PrivacyPolicyStageNodeScript,
+          Assembly-CSharp
+        m_MethodName: OnScrollRectValueChanged
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &7956591019307260870
 GameObject:
   m_ObjectHideFlags: 0
@@ -17758,7 +17800,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _nameText: {fileID: 2039998379449724127}
-  _messageScrollRect: {fileID: 4367270967027744248}
+  _scrollRect: {fileID: 4367270967027744248}
+  _scrollBarMinSize: 64
   _messageNode: {fileID: 3111224982059054437}
   _cancelButtonNameText: {fileID: 4365854133631283444}
   _cancelButtonCoverImage: {fileID: 1061121237887617151}
@@ -18736,7 +18779,20 @@ MonoBehaviour:
   m_VerticalScrollbarSpacing: -3
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 5664511488434716458}
+        m_TargetAssemblyTypeName: ToffMonaka.UnityBase.Scene.Ui.Menu.StaffStageNodeScript,
+          Assembly-CSharp
+        m_MethodName: OnScrollRectValueChanged
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &8379413707679644530
 GameObject:
   m_ObjectHideFlags: 0

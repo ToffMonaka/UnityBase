@@ -1,49 +1,47 @@
 ﻿/**
  * @file
- * @brief MenuCheatStageNodeScriptファイル
+ * @brief EndStageNodeScriptファイル
  */
 
 
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
-using System.Collections.Generic;
 using TMPro;
 
 
 namespace ToffMonaka {
-namespace UnityBase.Scene.Ui {
+namespace UnityBase.Scene.Ui.Menu {
 /**
- * @brief MenuCheatStageNodeScriptCreateDescクラス
+ * @brief EndStageNodeScriptCreateDescクラス
  */
-public class MenuCheatStageNodeScriptCreateDesc : UnityBase.Scene.Ui.MenuStageNodeScriptCreateDesc
+public class EndStageNodeScriptCreateDesc : UnityBase.Scene.Ui.Menu.StageNodeScriptCreateDesc
 {
 }
 
 /**
- * @brief MenuCheatStageNodeScriptクラス
+ * @brief EndStageNodeScriptクラス
  */
-public class MenuCheatStageNodeScript : UnityBase.Scene.Ui.MenuStageNodeScript
+public class EndStageNodeScript : UnityBase.Scene.Ui.Menu.StageNodeScript
 {
-    [SerializeField] private TMP_Text _commandNameText = null;
-    [SerializeField] private TMP_InputField _commandInputField = null;
-    [SerializeField] private ScrollRect _commandScrollRect = null;
-    [SerializeField] private GameObject _commandButtonNode = null;
+    [SerializeField] private ScrollRect _editScrollRect = null;
+    [SerializeField] private TMP_Text _restartNameText = null;
+    [SerializeField] private Toggle _restartToggle = null;
+    [SerializeField] private TMP_Text _endNameText = null;
+    [SerializeField] private Toggle _endToggle = null;
     [SerializeField] private TMP_Text _okButtonNameText = null;
     [SerializeField] private Image _okButtonCoverImage = null;
     [SerializeField] private TMP_Text _cancelButtonNameText = null;
     [SerializeField] private Image _cancelButtonCoverImage = null;
 
-    public new UnityBase.Scene.Ui.MenuCheatStageNodeScriptCreateDesc createDesc{get; private set;} = null;
-
-    private List<UnityBase.Scene.Ui.MenuCheatStageCommandButtonNodeScript> _commandButtonNodeScriptContainer = new List<UnityBase.Scene.Ui.MenuCheatStageCommandButtonNodeScript>();
+    public new UnityBase.Scene.Ui.Menu.EndStageNodeScriptCreateDesc createDesc{get; private set;} = null;
 
     /**
      * @brief コンストラクタ
      */
-    public MenuCheatStageNodeScript()
+    public EndStageNodeScript()
     {
-        this._SetStageType(UnityBase.Util.SCENE.MENU_STAGE_TYPE.CHEAT);
+        this._SetStageType(UnityBase.Util.SCENE.MENU_STAGE_TYPE.END);
 
         return;
     }
@@ -54,7 +52,7 @@ public class MenuCheatStageNodeScript : UnityBase.Scene.Ui.MenuStageNodeScript
      */
     protected override int _OnGetScriptIndex()
     {
-        return ((int)UnityBase.Util.SCENE.SCRIPT_INDEX.MENU_CHEAT_STAGE_NODE);
+        return ((int)UnityBase.Util.SCENE.SCRIPT_INDEX.MENU_END_STAGE_NODE);
     }
 
     /**
@@ -78,23 +76,8 @@ public class MenuCheatStageNodeScript : UnityBase.Scene.Ui.MenuStageNodeScript
             return (-1);
         }
 
-        this._commandNameText.SetText(UnityBase.Global.GetText(UnityBase.Util.MST_TEXT_ID.COMMAND));
-
-        this._commandButtonNode.SetActive(false);
-
-        {// CommandButtonNodeScript Create
-            var script = GameObject.Instantiate(this._commandButtonNode, this._commandButtonNode.transform.parent).GetComponent<UnityBase.Scene.Ui.MenuCheatStageCommandButtonNodeScript>();
-            var script_create_desc = new UnityBase.Scene.Ui.MenuCheatStageCommandButtonNodeScriptCreateDesc();
-
-            script_create_desc.stageNodeScript = this;
-            script_create_desc.commandType = UnityBase.Util.SCENE.MENU_CHEAT_STAGE_COMMAND_TYPE.DATA_DELETE;
-
-            script.Create(script_create_desc);
-            script.Open(0);
-
-            this._commandButtonNodeScriptContainer.Add(script);
-        }
-
+        this._restartNameText.SetText(UnityBase.Global.GetText(UnityBase.Util.MST_TEXT_ID.RESTART));
+        this._endNameText.SetText(UnityBase.Global.GetText(UnityBase.Util.MST_TEXT_ID.EXIT));
         this._okButtonNameText.SetText(UnityBase.Global.GetText(UnityBase.Util.MST_TEXT_ID.OK));
         this._cancelButtonNameText.SetText(UnityBase.Global.GetText(UnityBase.Util.MST_TEXT_ID.CANCEL));
 
@@ -107,7 +90,7 @@ public class MenuCheatStageNodeScript : UnityBase.Scene.Ui.MenuStageNodeScript
      */
     public override void SetCreateDesc(Lib.Scene.ScriptCreateDesc create_desc)
     {
-	    this.createDesc = create_desc as UnityBase.Scene.Ui.MenuCheatStageNodeScriptCreateDesc;
+	    this.createDesc = create_desc as UnityBase.Scene.Ui.Menu.EndStageNodeScriptCreateDesc;
 
         base.SetCreateDesc(this.createDesc);
 
@@ -121,8 +104,9 @@ public class MenuCheatStageNodeScript : UnityBase.Scene.Ui.MenuStageNodeScript
     {
         base._OnActive();
 
-        this._commandInputField.SetTextWithoutNotify("");
-        this._commandScrollRect.verticalNormalizedPosition = 1.0f;
+        this._editScrollRect.verticalNormalizedPosition = 1.0f;
+        this._restartToggle.SetIsOnWithoutNotify(false);
+        this._endToggle.SetIsOnWithoutNotify(false);
         this._okButtonCoverImage.gameObject.SetActive(false);
         this._cancelButtonCoverImage.gameObject.SetActive(false);
 
@@ -190,6 +174,52 @@ public class MenuCheatStageNodeScript : UnityBase.Scene.Ui.MenuStageNodeScript
     }
 
     /**
+     * @brief OnRestartToggleValueChanged関数
+     * @param event_val (event_value)
+     */
+    public void OnRestartToggleValueChanged(bool event_val)
+    {
+        if (this._restartToggle.isOn) {
+            this._endToggle.SetIsOnWithoutNotify(false);
+        }
+
+        if (!this.IsControllable()) {
+            return;
+        }
+
+        if (this._restartToggle.isOn) {
+            Lib.Scene.Util.GetSoundManager().PlaySe((int)UnityBase.Util.SOUND.SE_INDEX.OK2);
+        } else {
+            Lib.Scene.Util.GetSoundManager().PlaySe((int)UnityBase.Util.SOUND.SE_INDEX.CANCEL);
+        }
+
+        return;
+    }
+
+    /**
+     * @brief OnEndToggleValueChanged関数
+     * @param event_val (event_value)
+     */
+    public void OnEndToggleValueChanged(bool event_val)
+    {
+        if (this._endToggle.isOn) {
+            this._restartToggle.SetIsOnWithoutNotify(false);
+        }
+
+        if (!this.IsControllable()) {
+            return;
+        }
+
+        if (this._endToggle.isOn) {
+            Lib.Scene.Util.GetSoundManager().PlaySe((int)UnityBase.Util.SOUND.SE_INDEX.OK2);
+        } else {
+            Lib.Scene.Util.GetSoundManager().PlaySe((int)UnityBase.Util.SOUND.SE_INDEX.CANCEL);
+        }
+
+        return;
+    }
+
+    /**
      * @brief OnOkButtonPointerClick関数
      * @param event_dat (event_data)
      */
@@ -201,29 +231,15 @@ public class MenuCheatStageNodeScript : UnityBase.Scene.Ui.MenuStageNodeScript
 
         Lib.Scene.Util.GetSoundManager().PlaySe((int)UnityBase.Util.SOUND.SE_INDEX.OK2);
 
-        var cmd_type = UnityBase.Util.SCENE.MENU_CHEAT_STAGE_COMMAND_TYPE.NONE;
-        var cmd_param_ary = System.Array.Empty<string>();
-
-        for (int command_type_i = 1; command_type_i < UnityBase.Util.SCENE.MENU_CHEAT_STAGE_COMMAND_TYPE_COUNT; ++command_type_i) {
-            int cmd_func_str_index = this._commandInputField.text.IndexOf(UnityBase.Util.SCENE.MENU_CHEAT_STAGE_COMMAND_FUNCTION_ARRAY[command_type_i]);
-
-            if (cmd_func_str_index >= 0) {
-                cmd_type = (UnityBase.Util.SCENE.MENU_CHEAT_STAGE_COMMAND_TYPE)command_type_i;
-                cmd_param_ary = this._commandInputField.text.Substring(cmd_func_str_index + UnityBase.Util.SCENE.MENU_CHEAT_STAGE_COMMAND_FUNCTION_ARRAY[command_type_i].Length).Split(',');
-
-                for (int cmd_param_i = 0; cmd_param_i < cmd_param_ary.Length; ++cmd_param_i) {
-                    cmd_param_ary[cmd_param_i] = cmd_param_ary[cmd_param_i].Trim();
-                }
-
-                break;
-            }
+        if (this._restartToggle.isOn) {
+            Lib.Scene.Util.GetManager().ChangeMainScene(UnityBase.Util.SCENE.NAME.MAIN);
+        } else if (this._endToggle.isOn) {
+#if UNITY_EDITOR
+            UnityEditor.EditorApplication.isPlaying = false;
+#else
+            Application.Quit();
+#endif
         }
-
-		switch (cmd_type) {
-		case UnityBase.Util.SCENE.MENU_CHEAT_STAGE_COMMAND_TYPE.DATA_DELETE: {
-			break;
-		}
-		}
 
         this.GetMenuNodeScript().RunStageOkButton();
 
@@ -295,22 +311,6 @@ public class MenuCheatStageNodeScript : UnityBase.Scene.Ui.MenuStageNodeScript
     public void OnCancelButtonPointerExit(PointerEventData event_dat)
     {
         this._cancelButtonCoverImage.gameObject.SetActive(false);
-
-        return;
-    }
-
-    /**
-     * @brief RunCommandButton関数
-     */
-    public void RunCommandButton(UnityBase.Util.SCENE.MENU_CHEAT_STAGE_COMMAND_TYPE cmd_type)
-    {
-        var param = UnityBase.Util.SCENE.MENU_CHEAT_STAGE_COMMAND_PARAMETER_ARRAY[(int)cmd_type];
-
-        if (param.Length > 0) {
-            this._commandInputField.SetTextWithoutNotify(UnityBase.Util.SCENE.MENU_CHEAT_STAGE_COMMAND_FUNCTION_ARRAY[(int)cmd_type] + " " + param);
-        } else {
-            this._commandInputField.SetTextWithoutNotify(UnityBase.Util.SCENE.MENU_CHEAT_STAGE_COMMAND_FUNCTION_ARRAY[(int)cmd_type]);
-        }
 
         return;
     }

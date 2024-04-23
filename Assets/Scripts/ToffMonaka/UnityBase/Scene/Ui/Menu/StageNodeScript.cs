@@ -1,6 +1,6 @@
 ﻿/**
  * @file
- * @brief MenuStageNodeScriptファイル
+ * @brief StageNodeScriptファイル
  */
 
 
@@ -10,31 +10,31 @@ using DG.Tweening;
 
 
 namespace ToffMonaka {
-namespace UnityBase.Scene.Ui {
+namespace UnityBase.Scene.Ui.Menu {
 /**
- * @brief MenuStageNodeScriptCreateDescクラス
+ * @brief StageNodeScriptCreateDescクラス
  */
-public class MenuStageNodeScriptCreateDesc : Lib.Scene.ObjectNodeScriptCreateDesc
+public class StageNodeScriptCreateDesc : Lib.Scene.ObjectNodeScriptCreateDesc
 {
-    public UnityBase.Scene.Ui.MenuNodeScript menuNodeScript = null;
+    public UnityBase.Scene.Ui.Menu.NodeScript menuNodeScript = null;
 }
 
 /**
- * @brief MenuStageNodeScriptクラス
+ * @brief StageNodeScriptクラス
  */
-public class MenuStageNodeScript : Lib.Scene.ObjectNodeScript
+public class StageNodeScript : Lib.Scene.ObjectNodeScript
 {
     [SerializeField] private TMP_Text _nameText = null;
 
-    public new UnityBase.Scene.Ui.MenuStageNodeScriptCreateDesc createDesc{get; private set;} = null;
+    public new UnityBase.Scene.Ui.Menu.StageNodeScriptCreateDesc createDesc{get; private set;} = null;
 
-    private UnityBase.Scene.Ui.MenuNodeScript _menuNodeScript = null;
+    private UnityBase.Scene.Ui.Menu.NodeScript _menuNodeScript = null;
     private UnityBase.Util.SCENE.MENU_STAGE_TYPE _stageType = UnityBase.Util.SCENE.MENU_STAGE_TYPE.NONE;
 
     /**
      * @brief コンストラクタ
      */
-    public MenuStageNodeScript()
+    public StageNodeScript()
     {
         return;
     }
@@ -76,7 +76,7 @@ public class MenuStageNodeScript : Lib.Scene.ObjectNodeScript
      */
     public override void SetCreateDesc(Lib.Scene.ScriptCreateDesc create_desc)
     {
-	    this.createDesc = create_desc as UnityBase.Scene.Ui.MenuStageNodeScriptCreateDesc;
+	    this.createDesc = create_desc as UnityBase.Scene.Ui.Menu.StageNodeScriptCreateDesc;
 
         base.SetCreateDesc(this.createDesc);
 
@@ -195,7 +195,7 @@ public class MenuStageNodeScript : Lib.Scene.ObjectNodeScript
      * @brief GetMenuNodeScript関数
      * @return menu_node_script (menu_node_script)
      */
-    public UnityBase.Scene.Ui.MenuNodeScript GetMenuNodeScript()
+    public UnityBase.Scene.Ui.Menu.NodeScript GetMenuNodeScript()
     {
         return (this._menuNodeScript);
     }

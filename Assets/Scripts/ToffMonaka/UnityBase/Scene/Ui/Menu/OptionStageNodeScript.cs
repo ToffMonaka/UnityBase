@@ -1,6 +1,6 @@
 ﻿/**
  * @file
- * @brief MenuOptionStageNodeScriptファイル
+ * @brief OptionStageNodeScriptファイル
  */
 
 
@@ -11,18 +11,18 @@ using TMPro;
 
 
 namespace ToffMonaka {
-namespace UnityBase.Scene.Ui {
+namespace UnityBase.Scene.Ui.Menu {
 /**
- * @brief MenuOptionStageNodeScriptCreateDescクラス
+ * @brief OptionStageNodeScriptCreateDescクラス
  */
-public class MenuOptionStageNodeScriptCreateDesc : UnityBase.Scene.Ui.MenuStageNodeScriptCreateDesc
+public class OptionStageNodeScriptCreateDesc : UnityBase.Scene.Ui.Menu.StageNodeScriptCreateDesc
 {
 }
 
 /**
- * @brief MenuOptionStageNodeScriptクラス
+ * @brief OptionStageNodeScriptクラス
  */
-public class MenuOptionStageNodeScript : UnityBase.Scene.Ui.MenuStageNodeScript
+public class OptionStageNodeScript : UnityBase.Scene.Ui.Menu.StageNodeScript
 {
     [SerializeField] private ScrollRect _editScrollRect = null;
     [SerializeField] private TMP_Text _languageNameText = null;
@@ -46,7 +46,7 @@ public class MenuOptionStageNodeScript : UnityBase.Scene.Ui.MenuStageNodeScript
     [SerializeField] private TMP_Text _cancelButtonNameText = null;
     [SerializeField] private Image _cancelButtonCoverImage = null;
 
-    public new UnityBase.Scene.Ui.MenuOptionStageNodeScriptCreateDesc createDesc{get; private set;} = null;
+    public new UnityBase.Scene.Ui.Menu.OptionStageNodeScriptCreateDesc createDesc{get; private set;} = null;
 
     private UnityBase.Util.LANGUAGE_TYPE _languageType = UnityBase.Util.LANGUAGE_TYPE.NONE;
     private float _soundBgmVolume = 1.0f;
@@ -60,7 +60,7 @@ public class MenuOptionStageNodeScript : UnityBase.Scene.Ui.MenuStageNodeScript
     /**
      * @brief コンストラクタ
      */
-    public MenuOptionStageNodeScript()
+    public OptionStageNodeScript()
     {
         this._SetStageType(UnityBase.Util.SCENE.MENU_STAGE_TYPE.OPTION);
 
@@ -119,7 +119,7 @@ public class MenuOptionStageNodeScript : UnityBase.Scene.Ui.MenuStageNodeScript
      */
     public override void SetCreateDesc(Lib.Scene.ScriptCreateDesc create_desc)
     {
-	    this.createDesc = create_desc as UnityBase.Scene.Ui.MenuOptionStageNodeScriptCreateDesc;
+	    this.createDesc = create_desc as UnityBase.Scene.Ui.Menu.OptionStageNodeScriptCreateDesc;
 
         base.SetCreateDesc(this.createDesc);
 

@@ -1,6 +1,6 @@
 ﻿/**
  * @file
- * @brief MenuLicenseStageNodeScriptファイル
+ * @brief LicenseStageNodeScriptファイル
  */
 
 
@@ -11,30 +11,33 @@ using TMPro;
 
 
 namespace ToffMonaka {
-namespace UnityBase.Scene.Ui {
+namespace UnityBase.Scene.Ui.Menu {
 /**
- * @brief MenuLicenseStageNodeScriptCreateDescクラス
+ * @brief LicenseStageNodeScriptCreateDescクラス
  */
-public class MenuLicenseStageNodeScriptCreateDesc : UnityBase.Scene.Ui.MenuStageNodeScriptCreateDesc
+public class LicenseStageNodeScriptCreateDesc : UnityBase.Scene.Ui.Menu.StageNodeScriptCreateDesc
 {
 }
 
 /**
- * @brief MenuLicenseStageNodeScriptクラス
+ * @brief LicenseStageNodeScriptクラス
  */
-public class MenuLicenseStageNodeScript : UnityBase.Scene.Ui.MenuStageNodeScript
+public class LicenseStageNodeScript : UnityBase.Scene.Ui.Menu.StageNodeScript
 {
-    [SerializeField] private ScrollRect _messageScrollRect = null;
+    [SerializeField] private ScrollRect _scrollRect = null;
+    [SerializeField] private float _scrollBarMinSize = 64.0f;
     [SerializeField] private GameObject _messageNode = null;
     [SerializeField] private TMP_Text _cancelButtonNameText = null;
     [SerializeField] private Image _cancelButtonCoverImage = null;
 
-    public new UnityBase.Scene.Ui.MenuLicenseStageNodeScriptCreateDesc createDesc{get; private set;} = null;
+    public new UnityBase.Scene.Ui.Menu.LicenseStageNodeScriptCreateDesc createDesc{get; private set;} = null;
+
+    private Vector2 _scrollBarMinSize2 = Vector2.zero;
 
     /**
      * @brief コンストラクタ
      */
-    public MenuLicenseStageNodeScript()
+    public LicenseStageNodeScript()
     {
         this._SetStageType(UnityBase.Util.SCENE.MENU_STAGE_TYPE.LICENSE);
 
@@ -71,36 +74,22 @@ public class MenuLicenseStageNodeScript : UnityBase.Scene.Ui.MenuStageNodeScript
             return (-1);
         }
 
+        this._scrollBarMinSize2 = new Vector2(1.0f / this._scrollRect.viewport.rect.width * this._scrollBarMinSize, 1.0f / this._scrollRect.viewport.rect.height * this._scrollBarMinSize);
+        this._cancelButtonNameText.SetText(UnityBase.Global.GetText(UnityBase.Util.MST_TEXT_ID.CANCEL));
+
         this._messageNode.SetActive(false);
 
         {// MessageNode Create
-            var txt_ary = new string[]{
-                "-----------------------------------\n" +
-                "Unity TextMeshPro\n" +
-                "-----------------------------------\n" +
-                "https://docs.unity3d.com/Packages/com.unity.textmeshpro@3.0/license/LICENSE.html\n" +
-                "\n" +
-                "TextMesh Pro copyright © 2021 Unity Technologies ApS\n" +
-                "\n" +
-                "Licensed under the Unity Companion License for Unity-dependent projects--see Unity\n" +
-                "Companion License.\n" +
-                "\n" +
-                "Unless expressly provided otherwise, the Software under this license is made available strictly on an “AS IS” BASIS WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED.\n" +
-                "Please review the license for details on these and other terms and conditions."
-            };
+            var txt_ary = UnityBase.Scene.Ui.Menu.LicenseMessageUtil.TEXT_ARRAY;
 
             for (int txt_i = 0; txt_i < txt_ary.Length; ++txt_i) {
                 var txt = (txt_i <= 0) ? txt_ary[txt_i] : "\n" + txt_ary[txt_i];
-
                 var node = GameObject.Instantiate(this._messageNode, this._messageNode.transform.parent);
 
                 node.GetComponent<TMP_Text>().SetText(txt);
-
                 node.SetActive(true);
             }
         }
-
-        this._cancelButtonNameText.SetText(UnityBase.Global.GetText(UnityBase.Util.MST_TEXT_ID.CANCEL));
 
         return (0);
     }
@@ -111,7 +100,7 @@ public class MenuLicenseStageNodeScript : UnityBase.Scene.Ui.MenuStageNodeScript
      */
     public override void SetCreateDesc(Lib.Scene.ScriptCreateDesc create_desc)
     {
-	    this.createDesc = create_desc as UnityBase.Scene.Ui.MenuLicenseStageNodeScriptCreateDesc;
+	    this.createDesc = create_desc as UnityBase.Scene.Ui.Menu.LicenseStageNodeScriptCreateDesc;
 
         base.SetCreateDesc(this.createDesc);
 
@@ -125,7 +114,7 @@ public class MenuLicenseStageNodeScript : UnityBase.Scene.Ui.MenuStageNodeScript
     {
         base._OnActive();
 
-        this._messageScrollRect.verticalNormalizedPosition = 1.0f;
+        this._scrollRect.verticalNormalizedPosition = 1.0f;
         this._cancelButtonCoverImage.gameObject.SetActive(false);
 
         return;
@@ -147,6 +136,8 @@ public class MenuLicenseStageNodeScript : UnityBase.Scene.Ui.MenuStageNodeScript
     protected override void _OnUpdate()
     {
         base._OnUpdate();
+
+        this._UpdateScrollBarSize();
 
         return;
     }
@@ -192,6 +183,17 @@ public class MenuLicenseStageNodeScript : UnityBase.Scene.Ui.MenuStageNodeScript
     }
 
     /**
+     * @brief OnScrollRectValueChanged関数
+     * @param event_pos (event_position)
+     */
+    public void OnScrollRectValueChanged(Vector2 event_pos)
+    {
+        this._UpdateScrollBarSize();
+
+        return;
+    }
+
+    /**
      * @brief OnCancelButtonPointerClick関数
      * @param event_dat (event_data)
      */
@@ -230,6 +232,22 @@ public class MenuLicenseStageNodeScript : UnityBase.Scene.Ui.MenuStageNodeScript
     public void OnCancelButtonPointerExit(PointerEventData event_dat)
     {
         this._cancelButtonCoverImage.gameObject.SetActive(false);
+
+        return;
+    }
+
+    /**
+     * @brief _UpdateScrollBarSize関数
+     */
+    private void _UpdateScrollBarSize()
+    {
+        if (this._scrollRect.vertical) {
+            if (this._scrollRect.verticalScrollbar != null) {
+                if (this._scrollRect.verticalScrollbar.size < this._scrollBarMinSize2.y) {
+                    this._scrollRect.verticalScrollbar.size = this._scrollBarMinSize2.y;
+                }
+            }
+        }
 
         return;
     }

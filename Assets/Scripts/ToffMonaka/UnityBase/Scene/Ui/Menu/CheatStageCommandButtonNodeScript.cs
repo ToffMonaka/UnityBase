@@ -1,6 +1,6 @@
 ﻿/**
  * @file
- * @brief MenuCheatStageCommandButtonNodeScriptファイル
+ * @brief CheatStageCommandButtonNodeScriptファイル
  */
 
 
@@ -11,34 +11,34 @@ using TMPro;
 
 
 namespace ToffMonaka {
-namespace UnityBase.Scene.Ui {
+namespace UnityBase.Scene.Ui.Menu {
 /**
- * @brief MenuCheatStageCommandButtonNodeScriptCreateDescクラス
+ * @brief CheatStageCommandButtonNodeScriptCreateDescクラス
  */
-public class MenuCheatStageCommandButtonNodeScriptCreateDesc : Lib.Scene.ObjectNodeScriptCreateDesc
+public class CheatStageCommandButtonNodeScriptCreateDesc : Lib.Scene.ObjectNodeScriptCreateDesc
 {
-    public UnityBase.Scene.Ui.MenuCheatStageNodeScript stageNodeScript = null;
+    public UnityBase.Scene.Ui.Menu.CheatStageNodeScript stageNodeScript = null;
     public UnityBase.Util.SCENE.MENU_CHEAT_STAGE_COMMAND_TYPE commandType = UnityBase.Util.SCENE.MENU_CHEAT_STAGE_COMMAND_TYPE.NONE;
 }
 
 /**
- * @brief MenuCheatStageCommandButtonNodeScriptクラス
+ * @brief CheatStageCommandButtonNodeScriptクラス
  */
-public class MenuCheatStageCommandButtonNodeScript : Lib.Scene.ObjectNodeScript, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
+public class CheatStageCommandButtonNodeScript : Lib.Scene.ObjectNodeScript, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
 {
     [SerializeField] private TMP_Text _nameText = null;
     [SerializeField] private TMP_Text _detailText = null;
     [SerializeField] private Image _coverImage = null;
 
-    public new UnityBase.Scene.Ui.MenuCheatStageCommandButtonNodeScriptCreateDesc createDesc{get; private set;} = null;
+    public new UnityBase.Scene.Ui.Menu.CheatStageCommandButtonNodeScriptCreateDesc createDesc{get; private set;} = null;
 
-    private UnityBase.Scene.Ui.MenuCheatStageNodeScript _stageNodeScript = null;
+    private UnityBase.Scene.Ui.Menu.CheatStageNodeScript _stageNodeScript = null;
     private UnityBase.Util.SCENE.MENU_CHEAT_STAGE_COMMAND_TYPE _commandType = UnityBase.Util.SCENE.MENU_CHEAT_STAGE_COMMAND_TYPE.NONE;
 
     /**
      * @brief コンストラクタ
      */
-    public MenuCheatStageCommandButtonNodeScript()
+    public CheatStageCommandButtonNodeScript()
     {
         return;
     }
@@ -89,7 +89,7 @@ public class MenuCheatStageCommandButtonNodeScript : Lib.Scene.ObjectNodeScript,
      */
     public override void SetCreateDesc(Lib.Scene.ScriptCreateDesc create_desc)
     {
-	    this.createDesc = create_desc as UnityBase.Scene.Ui.MenuCheatStageCommandButtonNodeScriptCreateDesc;
+	    this.createDesc = create_desc as UnityBase.Scene.Ui.Menu.CheatStageCommandButtonNodeScriptCreateDesc;
 
         base.SetCreateDesc(this.createDesc);
 

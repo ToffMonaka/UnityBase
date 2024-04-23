@@ -1,6 +1,6 @@
 ﻿/**
  * @file
- * @brief MenuSelectStageButtonNodeScriptファイル
+ * @brief SelectStageButtonNodeScriptファイル
  */
 
 
@@ -11,33 +11,33 @@ using TMPro;
 
 
 namespace ToffMonaka {
-namespace UnityBase.Scene.Ui {
+namespace UnityBase.Scene.Ui.Menu {
 /**
- * @brief MenuSelectStageButtonNodeScriptCreateDescクラス
+ * @brief SelectStageButtonNodeScriptCreateDescクラス
  */
-public class MenuSelectStageButtonNodeScriptCreateDesc : Lib.Scene.ObjectNodeScriptCreateDesc
+public class SelectStageButtonNodeScriptCreateDesc : Lib.Scene.ObjectNodeScriptCreateDesc
 {
-    public UnityBase.Scene.Ui.MenuSelectNodeScript selectNodeScript = null;
+    public UnityBase.Scene.Ui.Menu.SelectNodeScript selectNodeScript = null;
     public UnityBase.Util.SCENE.MENU_STAGE_TYPE stageType = UnityBase.Util.SCENE.MENU_STAGE_TYPE.NONE;
 }
 
 /**
- * @brief MenuSelectStageButtonNodeScriptクラス
+ * @brief SelectStageButtonNodeScriptクラス
  */
-public class MenuSelectStageButtonNodeScript : Lib.Scene.ObjectNodeScript, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
+public class SelectStageButtonNodeScript : Lib.Scene.ObjectNodeScript, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
 {
     [SerializeField] private TMP_Text _nameText = null;
     [SerializeField] private Image _coverImage = null;
 
-    public new UnityBase.Scene.Ui.MenuSelectStageButtonNodeScriptCreateDesc createDesc{get; private set;} = null;
+    public new UnityBase.Scene.Ui.Menu.SelectStageButtonNodeScriptCreateDesc createDesc{get; private set;} = null;
 
-    private UnityBase.Scene.Ui.MenuSelectNodeScript _selectNodeScript = null;
+    private UnityBase.Scene.Ui.Menu.SelectNodeScript _selectNodeScript = null;
     private UnityBase.Util.SCENE.MENU_STAGE_TYPE _stageType = UnityBase.Util.SCENE.MENU_STAGE_TYPE.NONE;
 
     /**
      * @brief コンストラクタ
      */
-    public MenuSelectStageButtonNodeScript()
+    public SelectStageButtonNodeScript()
     {
         return;
     }
@@ -80,7 +80,7 @@ public class MenuSelectStageButtonNodeScript : Lib.Scene.ObjectNodeScript, IPoin
      */
     public override void SetCreateDesc(Lib.Scene.ScriptCreateDesc create_desc)
     {
-	    this.createDesc = create_desc as UnityBase.Scene.Ui.MenuSelectStageButtonNodeScriptCreateDesc;
+	    this.createDesc = create_desc as UnityBase.Scene.Ui.Menu.SelectStageButtonNodeScriptCreateDesc;
 
         base.SetCreateDesc(this.createDesc);
 

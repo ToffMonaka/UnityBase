@@ -1,6 +1,6 @@
 ﻿/**
  * @file
- * @brief MenuOpenCloseButtonNodeScriptファイル
+ * @brief OpenCloseButtonNodeScriptファイル
  */
 
 
@@ -11,30 +11,30 @@ using DG.Tweening;
 
 
 namespace ToffMonaka {
-namespace UnityBase.Scene.Ui {
+namespace UnityBase.Scene.Ui.Menu {
 /**
- * @brief MenuOpenCloseButtonNodeScriptCreateDescクラス
+ * @brief OpenCloseButtonNodeScriptCreateDescクラス
  */
-public class MenuOpenCloseButtonNodeScriptCreateDesc : Lib.Scene.ObjectNodeScriptCreateDesc
+public class OpenCloseButtonNodeScriptCreateDesc : Lib.Scene.ObjectNodeScriptCreateDesc
 {
-    public UnityBase.Scene.Ui.MenuNodeScript menuNodeScript = null;
+    public UnityBase.Scene.Ui.Menu.NodeScript menuNodeScript = null;
 }
 
 /**
- * @brief MenuOpenCloseButtonNodeScriptクラス
+ * @brief OpenCloseButtonNodeScriptクラス
  */
-public class MenuOpenCloseButtonNodeScript : Lib.Scene.ObjectNodeScript, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
+public class OpenCloseButtonNodeScript : Lib.Scene.ObjectNodeScript, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
 {
     [SerializeField] private Image _coverImage = null;
 
-    public new UnityBase.Scene.Ui.MenuOpenCloseButtonNodeScriptCreateDesc createDesc{get; private set;} = null;
+    public new UnityBase.Scene.Ui.Menu.OpenCloseButtonNodeScriptCreateDesc createDesc{get; private set;} = null;
 
-    private UnityBase.Scene.Ui.MenuNodeScript _menuNodeScript = null;
+    private UnityBase.Scene.Ui.Menu.NodeScript _menuNodeScript = null;
 
     /**
      * @brief コンストラクタ
      */
-    public MenuOpenCloseButtonNodeScript()
+    public OpenCloseButtonNodeScript()
     {
         return;
     }
@@ -74,7 +74,7 @@ public class MenuOpenCloseButtonNodeScript : Lib.Scene.ObjectNodeScript, IPointe
      */
     public override void SetCreateDesc(Lib.Scene.ScriptCreateDesc create_desc)
     {
-	    this.createDesc = create_desc as UnityBase.Scene.Ui.MenuOpenCloseButtonNodeScriptCreateDesc;
+	    this.createDesc = create_desc as UnityBase.Scene.Ui.Menu.OpenCloseButtonNodeScriptCreateDesc;
 
         base.SetCreateDesc(this.createDesc);
 
