@@ -37,10 +37,8 @@ public class PrivacyPolicyStageNodeScript : UnityBase.Scene.Ui.Menu.StageNodeScr
     /**
      * @brief コンストラクタ
      */
-    public PrivacyPolicyStageNodeScript()
+    public PrivacyPolicyStageNodeScript() : base(UnityBase.Util.SCENE.MENU_STAGE_TYPE.PRIVACY_POLICY)
     {
-        this._SetStageType(UnityBase.Util.SCENE.MENU_STAGE_TYPE.PRIVACY_POLICY);
-
         return;
     }
 
@@ -218,7 +216,7 @@ public class PrivacyPolicyStageNodeScript : UnityBase.Scene.Ui.Menu.StageNodeScr
 
         Lib.Scene.Util.GetSoundManager().PlaySe((int)UnityBase.Util.SOUND.SE_INDEX.CANCEL);
 
-        this.GetMenuNodeScript().RunStageCancelButton();
+        this.GetMenuNodeScript().ChangeStage(UnityBase.Util.SCENE.MENU_STAGE_TYPE.NONE);
 
         return;
     }

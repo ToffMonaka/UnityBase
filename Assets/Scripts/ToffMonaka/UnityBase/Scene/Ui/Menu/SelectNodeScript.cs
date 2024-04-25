@@ -26,12 +26,12 @@ public class SelectNodeScriptCreateDesc : Lib.Scene.ObjectNodeScriptCreateDesc
 public class SelectNodeScript : Lib.Scene.ObjectNodeScript
 {
     [SerializeField] private TMP_Text _nameText = null;
-    [SerializeField] private GameObject _stageButtonNode = null;
+    [SerializeField] private GameObject _itemNode = null;
 
     public new UnityBase.Scene.Ui.Menu.SelectNodeScriptCreateDesc createDesc{get; private set;} = null;
 
     private UnityBase.Scene.Ui.Menu.NodeScript _menuNodeScript = null;
-    private List<UnityBase.Scene.Ui.Menu.SelectStageButtonNodeScript> _stageButtonNodeScriptContainer = new List<UnityBase.Scene.Ui.Menu.SelectStageButtonNodeScript>();
+    private List<UnityBase.Scene.Ui.Menu.SelectItemNodeScript> _itemNodeScriptContainer = new List<UnityBase.Scene.Ui.Menu.SelectItemNodeScript>();
 
     /**
      * @brief コンストラクタ
@@ -40,7 +40,7 @@ public class SelectNodeScript : Lib.Scene.ObjectNodeScript
     {
         return;
     }
-
+    
     /**
      * @brief _OnGetScriptIndex関数
      * @return script_index (script_index)
@@ -69,100 +69,52 @@ public class SelectNodeScript : Lib.Scene.ObjectNodeScript
 
         this._nameText.SetText(UnityBase.Global.GetText(UnityBase.Util.MST_TEXT_ID.MENU));
 
-        this._stageButtonNode.SetActive(false);
+        this._itemNode.SetActive(false);
 
-        {// StageButtonNodeScript Create
-            var script = GameObject.Instantiate(this._stageButtonNode, this._stageButtonNode.transform.parent).GetComponent<UnityBase.Scene.Ui.Menu.SelectStageButtonNodeScript>();
-            var script_create_desc = new UnityBase.Scene.Ui.Menu.SelectStageButtonNodeScriptCreateDesc();
+        {// ItemNodeScript Create
+            UnityBase.Util.SCENE.MENU_STAGE_TYPE[] stage_type_ary = {
+                UnityBase.Util.SCENE.MENU_STAGE_TYPE.OPTION,
+                UnityBase.Util.SCENE.MENU_STAGE_TYPE.FAQ,
+                UnityBase.Util.SCENE.MENU_STAGE_TYPE.STAFF,
+                UnityBase.Util.SCENE.MENU_STAGE_TYPE.LICENSE,
+                UnityBase.Util.SCENE.MENU_STAGE_TYPE.PRIVACY_POLICY,
+                UnityBase.Util.SCENE.MENU_STAGE_TYPE.END
+            };
 
-            script_create_desc.selectNodeScript = this;
-            script_create_desc.stageType = UnityBase.Util.SCENE.MENU_STAGE_TYPE.OPTION;
+            void on_click(UnityBase.Scene.Ui.Menu.SelectItemNodeScript owner)
+            {
+                this._menuNodeScript.ChangeStage(owner.GetStageType());
 
-            script.Create(script_create_desc);
-            script.Open(0);
+                return;
+            }
 
-            this._stageButtonNodeScriptContainer.Add(script);
-        }
+            foreach (var stage_type in stage_type_ary) {
+                var script = GameObject.Instantiate(this._itemNode, this._itemNode.transform.parent).GetComponent<UnityBase.Scene.Ui.Menu.SelectItemNodeScript>();
+                var script_create_desc = new UnityBase.Scene.Ui.Menu.SelectItemNodeScriptCreateDesc();
 
-        {// StageButtonNodeScript Create
-            var script = GameObject.Instantiate(this._stageButtonNode, this._stageButtonNode.transform.parent).GetComponent<UnityBase.Scene.Ui.Menu.SelectStageButtonNodeScript>();
-            var script_create_desc = new UnityBase.Scene.Ui.Menu.SelectStageButtonNodeScriptCreateDesc();
+                script_create_desc.stageType = stage_type;
+                script_create_desc.onClick = on_click;
 
-            script_create_desc.selectNodeScript = this;
-            script_create_desc.stageType = UnityBase.Util.SCENE.MENU_STAGE_TYPE.FAQ;
+                script.Create(script_create_desc);
+                script.Open(0);
 
-            script.Create(script_create_desc);
-            script.Open(0);
+                this._itemNodeScriptContainer.Add(script);
+            }
 
-            this._stageButtonNodeScriptContainer.Add(script);
-        }
-
-        {// StageButtonNodeScript Create
-            var script = GameObject.Instantiate(this._stageButtonNode, this._stageButtonNode.transform.parent).GetComponent<UnityBase.Scene.Ui.Menu.SelectStageButtonNodeScript>();
-            var script_create_desc = new UnityBase.Scene.Ui.Menu.SelectStageButtonNodeScriptCreateDesc();
-
-            script_create_desc.selectNodeScript = this;
-            script_create_desc.stageType = UnityBase.Util.SCENE.MENU_STAGE_TYPE.STAFF;
-
-            script.Create(script_create_desc);
-            script.Open(0);
-
-            this._stageButtonNodeScriptContainer.Add(script);
-        }
-
-        {// StageButtonNodeScript Create
-            var script = GameObject.Instantiate(this._stageButtonNode, this._stageButtonNode.transform.parent).GetComponent<UnityBase.Scene.Ui.Menu.SelectStageButtonNodeScript>();
-            var script_create_desc = new UnityBase.Scene.Ui.Menu.SelectStageButtonNodeScriptCreateDesc();
-
-            script_create_desc.selectNodeScript = this;
-            script_create_desc.stageType = UnityBase.Util.SCENE.MENU_STAGE_TYPE.LICENSE;
-
-            script.Create(script_create_desc);
-            script.Open(0);
-
-            this._stageButtonNodeScriptContainer.Add(script);
-        }
-
-        {// StageButtonNodeScript Create
-            var script = GameObject.Instantiate(this._stageButtonNode, this._stageButtonNode.transform.parent).GetComponent<UnityBase.Scene.Ui.Menu.SelectStageButtonNodeScript>();
-            var script_create_desc = new UnityBase.Scene.Ui.Menu.SelectStageButtonNodeScriptCreateDesc();
-
-            script_create_desc.selectNodeScript = this;
-            script_create_desc.stageType = UnityBase.Util.SCENE.MENU_STAGE_TYPE.PRIVACY_POLICY;
-
-            script.Create(script_create_desc);
-            script.Open(0);
-
-            this._stageButtonNodeScriptContainer.Add(script);
-        }
-
-        {// StageButtonNodeScript Create
-            var script = GameObject.Instantiate(this._stageButtonNode, this._stageButtonNode.transform.parent).GetComponent<UnityBase.Scene.Ui.Menu.SelectStageButtonNodeScript>();
-            var script_create_desc = new UnityBase.Scene.Ui.Menu.SelectStageButtonNodeScriptCreateDesc();
-
-            script_create_desc.selectNodeScript = this;
-            script_create_desc.stageType = UnityBase.Util.SCENE.MENU_STAGE_TYPE.END;
-
-            script.Create(script_create_desc);
-            script.Open(0);
-
-            this._stageButtonNodeScriptContainer.Add(script);
-        }
-
-        // StageButtonNodeScript Create
-        if (UnityBase.Util.DEBUG_FLAG) {
+            if (UnityBase.Util.DEBUG_FLAG) {
 #pragma warning disable CS0162
-            var script = GameObject.Instantiate(this._stageButtonNode, this._stageButtonNode.transform.parent).GetComponent<UnityBase.Scene.Ui.Menu.SelectStageButtonNodeScript>();
-            var script_create_desc = new UnityBase.Scene.Ui.Menu.SelectStageButtonNodeScriptCreateDesc();
+                var script = GameObject.Instantiate(this._itemNode, this._itemNode.transform.parent).GetComponent<UnityBase.Scene.Ui.Menu.SelectItemNodeScript>();
+                var script_create_desc = new UnityBase.Scene.Ui.Menu.SelectItemNodeScriptCreateDesc();
 
-            script_create_desc.selectNodeScript = this;
-            script_create_desc.stageType = UnityBase.Util.SCENE.MENU_STAGE_TYPE.CHEAT;
+                script_create_desc.stageType = UnityBase.Util.SCENE.MENU_STAGE_TYPE.CHEAT;
+                script_create_desc.onClick = on_click;
 
-            script.Create(script_create_desc);
-            script.Open(0);
+                script.Create(script_create_desc);
+                script.Open(0);
 
-            this._stageButtonNodeScriptContainer.Add(script);
+                this._itemNodeScriptContainer.Add(script);
 #pragma warning restore CS0162
+            }
         }
 
         return (0);
@@ -285,17 +237,6 @@ public class SelectNodeScript : Lib.Scene.ObjectNodeScript
         if (!this.IsActiveOpenCloseSequence()) {
             this.CompleteClose();
         }
-
-        return;
-    }
-
-    /**
-     * @brief RunStageButton関数
-     * @param stage_type (stage_type)
-     */
-    public void RunStageButton(UnityBase.Util.SCENE.MENU_STAGE_TYPE stage_type)
-    {
-        this._menuNodeScript.RunSelectStageButton(stage_type);
 
         return;
     }

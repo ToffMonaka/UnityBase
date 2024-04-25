@@ -37,10 +37,8 @@ public class StaffStageNodeScript : UnityBase.Scene.Ui.Menu.StageNodeScript
     /**
      * @brief コンストラクタ
      */
-    public StaffStageNodeScript()
+    public StaffStageNodeScript() : base(UnityBase.Util.SCENE.MENU_STAGE_TYPE.STAFF)
     {
-        this._SetStageType(UnityBase.Util.SCENE.MENU_STAGE_TYPE.STAFF);
-
         return;
     }
 
@@ -218,7 +216,7 @@ public class StaffStageNodeScript : UnityBase.Scene.Ui.Menu.StageNodeScript
 
         Lib.Scene.Util.GetSoundManager().PlaySe((int)UnityBase.Util.SOUND.SE_INDEX.CANCEL);
 
-        this.GetMenuNodeScript().RunStageCancelButton();
+        this.GetMenuNodeScript().ChangeStage(UnityBase.Util.SCENE.MENU_STAGE_TYPE.NONE);
 
         return;
     }

@@ -56,7 +56,7 @@ public class NodeScript : Lib.Scene.ObjectNodeScript
     {
         return;
     }
-
+    
     /**
      * @brief _OnGetScriptIndex関数
      * @return script_index (script_index)
@@ -89,7 +89,40 @@ public class NodeScript : Lib.Scene.ObjectNodeScript
             var script = this._openCloseButtonNode.GetComponent<UnityBase.Scene.Ui.Menu.OpenCloseButtonNodeScript>();
             var script_create_desc = new UnityBase.Scene.Ui.Menu.OpenCloseButtonNodeScriptCreateDesc();
 
-            script_create_desc.menuNodeScript = this;
+            void on_click(UnityBase.Scene.Ui.Menu.OpenCloseButtonNodeScript owner)
+            {
+                if (!this._backgroundImage.gameObject.activeSelf) {
+                    this._backgroundImage.gameObject.SetActive(true);
+
+                    this._openSelectNodeScript = this._selectNodeScript;
+
+                    this._openSelectNodeScript.Open(1);
+                } else {
+                    this._backgroundImage.gameObject.SetActive(false);
+
+                    if (this._openSelectNodeScript != null) {
+                        this._openSelectNodeScript.Close(1);
+
+                        this._openSelectNodeScript = null;
+                    }
+                }
+
+                if (this._openSelectNodeScript != null) {
+                    Lib.Scene.Util.GetSoundManager().PlaySe((int)UnityBase.Util.SOUND.SE_INDEX.OK2);
+                } else {
+                    Lib.Scene.Util.GetSoundManager().PlaySe((int)UnityBase.Util.SOUND.SE_INDEX.CANCEL);
+                }
+
+                if (this._openStageNodeScript != null) {
+                    this._openStageNodeScript.Close(1);
+
+                    this._openStageNodeScript = null;
+                }
+
+                return;
+            }
+
+            script_create_desc.onClick = on_click;
 
             script.Create(script_create_desc);
             script.Open(1);
@@ -271,146 +304,76 @@ public class NodeScript : Lib.Scene.ObjectNodeScript
     }
 
     /**
-     * @brief GetOpenSelectNodeScript関数
-     * @return open_select_node_script (open_select_node_script)
+     * @brief ChangeStage関数
+     * @param stage_type (stage_type)
      */
-    public UnityBase.Scene.Ui.Menu.SelectNodeScript GetOpenSelectNodeScript()
+    public void ChangeStage(UnityBase.Util.SCENE.MENU_STAGE_TYPE stage_type)
     {
-        return (this._openSelectNodeScript);
-    }
-
-    /**
-     * @brief GetOpenStageNodeScript関数
-     * @return open_stage_node_script (open_stage_node_script)
-     */
-    public UnityBase.Scene.Ui.Menu.StageNodeScript GetOpenStageNodeScript()
-    {
-        return (this._openStageNodeScript);
-    }
-
-    /**
-     * @brief RunOpenCloseButton関数
-     */
-    public void RunOpenCloseButton()
-    {
-        if (!this._backgroundImage.gameObject.activeSelf) {
-            this._backgroundImage.gameObject.SetActive(true);
-
-            this._openSelectNodeScript = this._selectNodeScript;
-
-            this._openSelectNodeScript.Open(1);
-        } else {
-            this._backgroundImage.gameObject.SetActive(false);
-
-            if (this._openSelectNodeScript != null) {
-                this._openSelectNodeScript.Close(1);
-
-                this._openSelectNodeScript = null;
-            }
-        }
-
         if (this._openStageNodeScript != null) {
-            this._openStageNodeScript.Close(1);
+            this._openStageNodeScript.Close(0);
 
             this._openStageNodeScript = null;
         }
 
-        return;
-    }
-
-    /**
-     * @brief RunSelectStageButton関数
-     * @param stage_type (stage_type)
-     */
-    public void RunSelectStageButton(UnityBase.Util.SCENE.MENU_STAGE_TYPE stage_type)
-    {
-        UnityBase.Scene.Ui.Menu.StageNodeScript open_stage_node_script = null;
-
 		switch (stage_type) {
 		case UnityBase.Util.SCENE.MENU_STAGE_TYPE.OPTION: {
-            open_stage_node_script = this._optionStageNodeScript;
+            this._optionStageNodeScript.SetLanguageType(UnityBase.Global.systemConfigFile.data.systemLanguageType);
+            this._optionStageNodeScript.SetSoundBgmVolume(UnityBase.Global.systemConfigFile.data.soundBgmVolume);
+            this._optionStageNodeScript.SetSoundBgmMuteFlag(UnityBase.Global.systemConfigFile.data.soundBgmMuteFlag);
+            this._optionStageNodeScript.SetSoundSeVolume(UnityBase.Global.systemConfigFile.data.soundSeVolume);
+            this._optionStageNodeScript.SetSoundSeMuteFlag(UnityBase.Global.systemConfigFile.data.soundSeMuteFlag);
+
+            this._openStageNodeScript = this._optionStageNodeScript;
 
 			break;
 		}
 		case UnityBase.Util.SCENE.MENU_STAGE_TYPE.FAQ: {
-            open_stage_node_script = this._faqStageNodeScript;
+            this._openStageNodeScript = this._faqStageNodeScript;
 
 			break;
 		}
 		case UnityBase.Util.SCENE.MENU_STAGE_TYPE.STAFF: {
-            open_stage_node_script = this._staffStageNodeScript;
+            this._openStageNodeScript = this._staffStageNodeScript;
 
 			break;
 		}
 		case UnityBase.Util.SCENE.MENU_STAGE_TYPE.LICENSE: {
-            open_stage_node_script = this._licenseStageNodeScript;
+            this._openStageNodeScript = this._licenseStageNodeScript;
 
 			break;
 		}
 		case UnityBase.Util.SCENE.MENU_STAGE_TYPE.PRIVACY_POLICY: {
-            open_stage_node_script = this._privacyPolicyStageNodeScript;
+            this._openStageNodeScript = this._privacyPolicyStageNodeScript;
 
 			break;
 		}
 		case UnityBase.Util.SCENE.MENU_STAGE_TYPE.END: {
-            open_stage_node_script = this._endStageNodeScript;
+            this._openStageNodeScript = this._endStageNodeScript;
 
 			break;
 		}
 		case UnityBase.Util.SCENE.MENU_STAGE_TYPE.CHEAT: {
-            open_stage_node_script = this._cheatStageNodeScript;
+            this._openStageNodeScript = this._cheatStageNodeScript;
 
 			break;
 		}
 		}
 
-        if (open_stage_node_script != null) {
-            if (this._openSelectNodeScript != null) {
-                this._openSelectNodeScript.Close(1);
+        if (this._openStageNodeScript == null) {
+            this._openSelectNodeScript = this._selectNodeScript;
 
-                this._openSelectNodeScript = null;
-            }
+            this._openSelectNodeScript.Open(1);
 
-            this._openStageNodeScript = open_stage_node_script;
-
-            this._openStageNodeScript.Open(1);
+            return;
         }
 
-        return;
-    }
+        if (this._openSelectNodeScript != null) {
+            this._openSelectNodeScript.Close(1);
 
-    /**
-     * @brief RunStageOkButton関数
-     */
-    public void RunStageOkButton()
-    {
-        if (this._openStageNodeScript != null) {
-            this._openStageNodeScript.Close(1);
-
-            this._openStageNodeScript = null;
+            this._openSelectNodeScript = null;
         }
 
-        this._openSelectNodeScript = this._selectNodeScript;
-
-        this._openSelectNodeScript.Open(1);
-
-        return;
-    }
-
-    /**
-     * @brief RunStageCancelButton関数
-     */
-    public void RunStageCancelButton()
-    {
-        if (this._openStageNodeScript != null) {
-            this._openStageNodeScript.Close(1);
-
-            this._openStageNodeScript = null;
-        }
-
-        this._openSelectNodeScript = this._selectNodeScript;
-
-        this._openSelectNodeScript.Open(1);
+        this._openStageNodeScript.Open(1);
 
         return;
     }

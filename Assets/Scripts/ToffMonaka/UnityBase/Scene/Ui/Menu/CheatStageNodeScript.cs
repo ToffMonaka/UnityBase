@@ -27,8 +27,8 @@ public class CheatStageNodeScript : UnityBase.Scene.Ui.Menu.StageNodeScript
 {
     [SerializeField] private TMP_Text _commandNameText = null;
     [SerializeField] private TMP_InputField _commandInputField = null;
-    [SerializeField] private ScrollRect _commandScrollRect = null;
-    [SerializeField] private GameObject _commandButtonNode = null;
+    [SerializeField] private ScrollRect _scrollRect = null;
+    [SerializeField] private GameObject _itemNode = null;
     [SerializeField] private TMP_Text _okButtonNameText = null;
     [SerializeField] private Image _okButtonCoverImage = null;
     [SerializeField] private TMP_Text _cancelButtonNameText = null;
@@ -36,18 +36,16 @@ public class CheatStageNodeScript : UnityBase.Scene.Ui.Menu.StageNodeScript
 
     public new UnityBase.Scene.Ui.Menu.CheatStageNodeScriptCreateDesc createDesc{get; private set;} = null;
 
-    private List<UnityBase.Scene.Ui.Menu.CheatStageCommandButtonNodeScript> _commandButtonNodeScriptContainer = new List<UnityBase.Scene.Ui.Menu.CheatStageCommandButtonNodeScript>();
+    private List<UnityBase.Scene.Ui.Menu.CheatStageItemNodeScript> _itemNodeScriptContainer = new List<UnityBase.Scene.Ui.Menu.CheatStageItemNodeScript>();
 
     /**
      * @brief コンストラクタ
      */
-    public CheatStageNodeScript()
+    public CheatStageNodeScript() : base(UnityBase.Util.SCENE.MENU_STAGE_TYPE.CHEAT)
     {
-        this._SetStageType(UnityBase.Util.SCENE.MENU_STAGE_TYPE.CHEAT);
-
         return;
     }
-
+    
     /**
      * @brief _OnGetScriptIndex関数
      * @return script_index (script_index)
@@ -79,24 +77,42 @@ public class CheatStageNodeScript : UnityBase.Scene.Ui.Menu.StageNodeScript
         }
 
         this._commandNameText.SetText(UnityBase.Global.GetText(UnityBase.Util.MST_TEXT_ID.COMMAND));
-
-        this._commandButtonNode.SetActive(false);
-
-        {// CommandButtonNodeScript Create
-            var script = GameObject.Instantiate(this._commandButtonNode, this._commandButtonNode.transform.parent).GetComponent<UnityBase.Scene.Ui.Menu.CheatStageCommandButtonNodeScript>();
-            var script_create_desc = new UnityBase.Scene.Ui.Menu.CheatStageCommandButtonNodeScriptCreateDesc();
-
-            script_create_desc.stageNodeScript = this;
-            script_create_desc.commandType = UnityBase.Util.SCENE.MENU_CHEAT_STAGE_COMMAND_TYPE.DATA_DELETE;
-
-            script.Create(script_create_desc);
-            script.Open(0);
-
-            this._commandButtonNodeScriptContainer.Add(script);
-        }
-
         this._okButtonNameText.SetText(UnityBase.Global.GetText(UnityBase.Util.MST_TEXT_ID.OK));
         this._cancelButtonNameText.SetText(UnityBase.Global.GetText(UnityBase.Util.MST_TEXT_ID.CANCEL));
+
+        this._itemNode.SetActive(false);
+
+        {// ItemNodeScript Create
+            UnityBase.Util.SCENE.MENU_CHEAT_STAGE_COMMAND_TYPE[] cmd_type_ary = {
+                UnityBase.Util.SCENE.MENU_CHEAT_STAGE_COMMAND_TYPE.DATA_DELETE
+            };
+
+            void on_click(UnityBase.Scene.Ui.Menu.CheatStageItemNodeScript owner)
+            {
+                var param = UnityBase.Util.SCENE.MENU_CHEAT_STAGE_COMMAND_PARAMETER_ARRAY[(int)owner.GetCommandType()];
+
+                if (param.Length > 0) {
+                    this._commandInputField.SetTextWithoutNotify(UnityBase.Util.SCENE.MENU_CHEAT_STAGE_COMMAND_FUNCTION_ARRAY[(int)owner.GetCommandType()] + " " + param);
+                } else {
+                    this._commandInputField.SetTextWithoutNotify(UnityBase.Util.SCENE.MENU_CHEAT_STAGE_COMMAND_FUNCTION_ARRAY[(int)owner.GetCommandType()]);
+                }
+
+                return;
+            }
+
+            foreach (var cmd_type in cmd_type_ary) {
+                var script = GameObject.Instantiate(this._itemNode, this._itemNode.transform.parent).GetComponent<UnityBase.Scene.Ui.Menu.CheatStageItemNodeScript>();
+                var script_create_desc = new UnityBase.Scene.Ui.Menu.CheatStageItemNodeScriptCreateDesc();
+
+                script_create_desc.commandType = cmd_type;
+                script_create_desc.onClick = on_click;
+
+                script.Create(script_create_desc);
+                script.Open(0);
+
+                this._itemNodeScriptContainer.Add(script);
+            }
+        }
 
         return (0);
     }
@@ -122,7 +138,7 @@ public class CheatStageNodeScript : UnityBase.Scene.Ui.Menu.StageNodeScript
         base._OnActive();
 
         this._commandInputField.SetTextWithoutNotify("");
-        this._commandScrollRect.verticalNormalizedPosition = 1.0f;
+        this._scrollRect.verticalNormalizedPosition = 1.0f;
         this._okButtonCoverImage.gameObject.SetActive(false);
         this._cancelButtonCoverImage.gameObject.SetActive(false);
 
@@ -225,7 +241,7 @@ public class CheatStageNodeScript : UnityBase.Scene.Ui.Menu.StageNodeScript
 		}
 		}
 
-        this.GetMenuNodeScript().RunStageOkButton();
+        this.GetMenuNodeScript().ChangeStage(UnityBase.Util.SCENE.MENU_STAGE_TYPE.NONE);
 
         return;
     }
@@ -268,7 +284,7 @@ public class CheatStageNodeScript : UnityBase.Scene.Ui.Menu.StageNodeScript
 
         Lib.Scene.Util.GetSoundManager().PlaySe((int)UnityBase.Util.SOUND.SE_INDEX.CANCEL);
 
-        this.GetMenuNodeScript().RunStageCancelButton();
+        this.GetMenuNodeScript().ChangeStage(UnityBase.Util.SCENE.MENU_STAGE_TYPE.NONE);
 
         return;
     }
@@ -295,22 +311,6 @@ public class CheatStageNodeScript : UnityBase.Scene.Ui.Menu.StageNodeScript
     public void OnCancelButtonPointerExit(PointerEventData event_dat)
     {
         this._cancelButtonCoverImage.gameObject.SetActive(false);
-
-        return;
-    }
-
-    /**
-     * @brief RunCommandButton関数
-     */
-    public void RunCommandButton(UnityBase.Util.SCENE.MENU_CHEAT_STAGE_COMMAND_TYPE cmd_type)
-    {
-        var param = UnityBase.Util.SCENE.MENU_CHEAT_STAGE_COMMAND_PARAMETER_ARRAY[(int)cmd_type];
-
-        if (param.Length > 0) {
-            this._commandInputField.SetTextWithoutNotify(UnityBase.Util.SCENE.MENU_CHEAT_STAGE_COMMAND_FUNCTION_ARRAY[(int)cmd_type] + " " + param);
-        } else {
-            this._commandInputField.SetTextWithoutNotify(UnityBase.Util.SCENE.MENU_CHEAT_STAGE_COMMAND_FUNCTION_ARRAY[(int)cmd_type]);
-        }
 
         return;
     }

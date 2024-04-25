@@ -37,10 +37,8 @@ public class FaqStageNodeScript : UnityBase.Scene.Ui.Menu.StageNodeScript
     /**
      * @brief コンストラクタ
      */
-    public FaqStageNodeScript()
+    public FaqStageNodeScript() : base(UnityBase.Util.SCENE.MENU_STAGE_TYPE.FAQ)
     {
-        this._SetStageType(UnityBase.Util.SCENE.MENU_STAGE_TYPE.FAQ);
-
         return;
     }
 
@@ -218,7 +216,7 @@ public class FaqStageNodeScript : UnityBase.Scene.Ui.Menu.StageNodeScript
 
         Lib.Scene.Util.GetSoundManager().PlaySe((int)UnityBase.Util.SOUND.SE_INDEX.CANCEL);
 
-        this.GetMenuNodeScript().RunStageCancelButton();
+        this.GetMenuNodeScript().ChangeStage(UnityBase.Util.SCENE.MENU_STAGE_TYPE.NONE);
 
         return;
     }

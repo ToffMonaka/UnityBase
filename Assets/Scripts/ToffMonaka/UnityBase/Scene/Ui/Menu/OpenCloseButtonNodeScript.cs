@@ -17,7 +17,7 @@ namespace UnityBase.Scene.Ui.Menu {
  */
 public class OpenCloseButtonNodeScriptCreateDesc : Lib.Scene.ObjectNodeScriptCreateDesc
 {
-    public UnityBase.Scene.Ui.Menu.NodeScript menuNodeScript = null;
+    public System.Action<UnityBase.Scene.Ui.Menu.OpenCloseButtonNodeScript> onClick = null;
 }
 
 /**
@@ -29,7 +29,7 @@ public class OpenCloseButtonNodeScript : Lib.Scene.ObjectNodeScript, IPointerCli
 
     public new UnityBase.Scene.Ui.Menu.OpenCloseButtonNodeScriptCreateDesc createDesc{get; private set;} = null;
 
-    private UnityBase.Scene.Ui.Menu.NodeScript _menuNodeScript = null;
+    private System.Action<UnityBase.Scene.Ui.Menu.OpenCloseButtonNodeScript> _onClick = null;
 
     /**
      * @brief コンストラクタ
@@ -38,7 +38,7 @@ public class OpenCloseButtonNodeScript : Lib.Scene.ObjectNodeScript, IPointerCli
     {
         return;
     }
-
+    
     /**
      * @brief _OnGetScriptIndex関数
      * @return script_index (script_index)
@@ -63,7 +63,7 @@ public class OpenCloseButtonNodeScript : Lib.Scene.ObjectNodeScript, IPointerCli
      */
     protected override int _OnCreate()
     {
-        this._menuNodeScript = this.createDesc.menuNodeScript;
+        this._onClick = this.createDesc.onClick;
 
         return (0);
     }
@@ -201,13 +201,7 @@ public class OpenCloseButtonNodeScript : Lib.Scene.ObjectNodeScript, IPointerCli
             return;
         }
 
-        this._menuNodeScript.RunOpenCloseButton();
-
-        if (this._menuNodeScript.GetOpenSelectNodeScript() != null) {
-            Lib.Scene.Util.GetSoundManager().PlaySe((int)UnityBase.Util.SOUND.SE_INDEX.OK2);
-        } else {
-            Lib.Scene.Util.GetSoundManager().PlaySe((int)UnityBase.Util.SOUND.SE_INDEX.CANCEL);
-        }
+        this._onClick?.Invoke(this);
 
         return;
     }

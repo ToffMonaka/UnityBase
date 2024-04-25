@@ -33,9 +33,12 @@ public class StageNodeScript : Lib.Scene.ObjectNodeScript
 
     /**
      * @brief コンストラクタ
+     * @param stage_type (stage_type)
      */
-    public StageNodeScript()
+    public StageNodeScript(UnityBase.Util.SCENE.MENU_STAGE_TYPE stage_type)
     {
+        this._stageType = stage_type;
+
         return;
     }
 
@@ -207,17 +210,6 @@ public class StageNodeScript : Lib.Scene.ObjectNodeScript
     public UnityBase.Util.SCENE.MENU_STAGE_TYPE GetStageType()
     {
         return (this._stageType);
-    }
-
-    /**
-     * @brief _SetStageType関数
-     * @param stage_type (stage_type)
-     */
-    protected void _SetStageType(UnityBase.Util.SCENE.MENU_STAGE_TYPE stage_type)
-    {
-        this._stageType = stage_type;
-
-        return;
     }
 }
 }

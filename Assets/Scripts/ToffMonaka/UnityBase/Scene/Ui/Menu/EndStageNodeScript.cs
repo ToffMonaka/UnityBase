@@ -24,7 +24,7 @@ public class EndStageNodeScriptCreateDesc : UnityBase.Scene.Ui.Menu.StageNodeScr
  */
 public class EndStageNodeScript : UnityBase.Scene.Ui.Menu.StageNodeScript
 {
-    [SerializeField] private ScrollRect _editScrollRect = null;
+    [SerializeField] private ScrollRect _scrollRect = null;
     [SerializeField] private TMP_Text _restartNameText = null;
     [SerializeField] private Toggle _restartToggle = null;
     [SerializeField] private TMP_Text _endNameText = null;
@@ -39,13 +39,11 @@ public class EndStageNodeScript : UnityBase.Scene.Ui.Menu.StageNodeScript
     /**
      * @brief コンストラクタ
      */
-    public EndStageNodeScript()
+    public EndStageNodeScript() : base(UnityBase.Util.SCENE.MENU_STAGE_TYPE.END)
     {
-        this._SetStageType(UnityBase.Util.SCENE.MENU_STAGE_TYPE.END);
-
         return;
     }
-
+    
     /**
      * @brief _OnGetScriptIndex関数
      * @return script_index (script_index)
@@ -104,7 +102,7 @@ public class EndStageNodeScript : UnityBase.Scene.Ui.Menu.StageNodeScript
     {
         base._OnActive();
 
-        this._editScrollRect.verticalNormalizedPosition = 1.0f;
+        this._scrollRect.verticalNormalizedPosition = 1.0f;
         this._restartToggle.SetIsOnWithoutNotify(false);
         this._endToggle.SetIsOnWithoutNotify(false);
         this._okButtonCoverImage.gameObject.SetActive(false);
@@ -241,7 +239,7 @@ public class EndStageNodeScript : UnityBase.Scene.Ui.Menu.StageNodeScript
 #endif
         }
 
-        this.GetMenuNodeScript().RunStageOkButton();
+        this.GetMenuNodeScript().ChangeStage(UnityBase.Util.SCENE.MENU_STAGE_TYPE.NONE);
 
         return;
     }
@@ -284,7 +282,7 @@ public class EndStageNodeScript : UnityBase.Scene.Ui.Menu.StageNodeScript
 
         Lib.Scene.Util.GetSoundManager().PlaySe((int)UnityBase.Util.SOUND.SE_INDEX.CANCEL);
 
-        this.GetMenuNodeScript().RunStageCancelButton();
+        this.GetMenuNodeScript().ChangeStage(UnityBase.Util.SCENE.MENU_STAGE_TYPE.NONE);
 
         return;
     }

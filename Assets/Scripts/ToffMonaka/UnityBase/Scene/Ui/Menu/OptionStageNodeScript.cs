@@ -24,7 +24,7 @@ public class OptionStageNodeScriptCreateDesc : UnityBase.Scene.Ui.Menu.StageNode
  */
 public class OptionStageNodeScript : UnityBase.Scene.Ui.Menu.StageNodeScript
 {
-    [SerializeField] private ScrollRect _editScrollRect = null;
+    [SerializeField] private ScrollRect _scrollRect = null;
     [SerializeField] private TMP_Text _languageNameText = null;
     [SerializeField] private TMP_Text _languageButtonNameText = null;
     [SerializeField] private Image _languageButtonCoverImage = null;
@@ -60,10 +60,8 @@ public class OptionStageNodeScript : UnityBase.Scene.Ui.Menu.StageNodeScript
     /**
      * @brief コンストラクタ
      */
-    public OptionStageNodeScript()
+    public OptionStageNodeScript() : base(UnityBase.Util.SCENE.MENU_STAGE_TYPE.OPTION)
     {
-        this._SetStageType(UnityBase.Util.SCENE.MENU_STAGE_TYPE.OPTION);
-
         return;
     }
     
@@ -133,12 +131,7 @@ public class OptionStageNodeScript : UnityBase.Scene.Ui.Menu.StageNodeScript
     {
         base._OnActive();
 
-        this._editScrollRect.verticalNormalizedPosition = 1.0f;
-        this.SetLanguageType(UnityBase.Global.systemConfigFile.data.systemLanguageType);
-        this.SetSoundBgmVolume(UnityBase.Global.systemConfigFile.data.soundBgmVolume);
-        this.SetSoundBgmMuteFlag(UnityBase.Global.systemConfigFile.data.soundBgmMuteFlag);
-        this.SetSoundSeVolume(UnityBase.Global.systemConfigFile.data.soundSeVolume);
-        this.SetSoundSeMuteFlag(UnityBase.Global.systemConfigFile.data.soundSeMuteFlag);
+        this._scrollRect.verticalNormalizedPosition = 1.0f;
         this._languageButtonCoverImage.gameObject.SetActive(false);
         this._soundBgmVolumeSliderLeftButtonCoverImage.gameObject.SetActive(false);
         this._soundBgmVolumeSliderRightButtonCoverImage.gameObject.SetActive(false);
@@ -578,7 +571,7 @@ public class OptionStageNodeScript : UnityBase.Scene.Ui.Menu.StageNodeScript
             Lib.Scene.Util.GetManager().ChangeMainScene(UnityBase.Util.SCENE.NAME.MAIN);
         }
 
-        this.GetMenuNodeScript().RunStageOkButton();
+        this.GetMenuNodeScript().ChangeStage(UnityBase.Util.SCENE.MENU_STAGE_TYPE.NONE);
 
         return;
     }
@@ -626,7 +619,7 @@ public class OptionStageNodeScript : UnityBase.Scene.Ui.Menu.StageNodeScript
         Lib.Scene.Util.GetSoundManager().SetSeVolume(UnityBase.Global.systemConfigFile.data.soundSeVolume);
         Lib.Scene.Util.GetSoundManager().SetSeMuteFlag(UnityBase.Global.systemConfigFile.data.soundSeMuteFlag);
 
-        this.GetMenuNodeScript().RunStageCancelButton();
+        this.GetMenuNodeScript().ChangeStage(UnityBase.Util.SCENE.MENU_STAGE_TYPE.NONE);
 
         return;
     }

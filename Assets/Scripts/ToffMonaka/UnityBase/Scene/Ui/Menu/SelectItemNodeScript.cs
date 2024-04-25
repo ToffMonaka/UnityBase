@@ -1,6 +1,6 @@
 ﻿/**
  * @file
- * @brief CheatStageCommandButtonNodeScriptファイル
+ * @brief SelectItemNodeScriptファイル
  */
 
 
@@ -13,43 +13,42 @@ using TMPro;
 namespace ToffMonaka {
 namespace UnityBase.Scene.Ui.Menu {
 /**
- * @brief CheatStageCommandButtonNodeScriptCreateDescクラス
+ * @brief SelectItemNodeScriptCreateDescクラス
  */
-public class CheatStageCommandButtonNodeScriptCreateDesc : Lib.Scene.ObjectNodeScriptCreateDesc
+public class SelectItemNodeScriptCreateDesc : Lib.Scene.ObjectNodeScriptCreateDesc
 {
-    public UnityBase.Scene.Ui.Menu.CheatStageNodeScript stageNodeScript = null;
-    public UnityBase.Util.SCENE.MENU_CHEAT_STAGE_COMMAND_TYPE commandType = UnityBase.Util.SCENE.MENU_CHEAT_STAGE_COMMAND_TYPE.NONE;
+    public UnityBase.Util.SCENE.MENU_STAGE_TYPE stageType = UnityBase.Util.SCENE.MENU_STAGE_TYPE.NONE;
+    public System.Action<UnityBase.Scene.Ui.Menu.SelectItemNodeScript> onClick = null;
 }
 
 /**
- * @brief CheatStageCommandButtonNodeScriptクラス
+ * @brief SelectItemNodeScriptクラス
  */
-public class CheatStageCommandButtonNodeScript : Lib.Scene.ObjectNodeScript, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
+public class SelectItemNodeScript : Lib.Scene.ObjectNodeScript, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
 {
     [SerializeField] private TMP_Text _nameText = null;
-    [SerializeField] private TMP_Text _detailText = null;
     [SerializeField] private Image _coverImage = null;
 
-    public new UnityBase.Scene.Ui.Menu.CheatStageCommandButtonNodeScriptCreateDesc createDesc{get; private set;} = null;
+    public new UnityBase.Scene.Ui.Menu.SelectItemNodeScriptCreateDesc createDesc{get; private set;} = null;
 
-    private UnityBase.Scene.Ui.Menu.CheatStageNodeScript _stageNodeScript = null;
-    private UnityBase.Util.SCENE.MENU_CHEAT_STAGE_COMMAND_TYPE _commandType = UnityBase.Util.SCENE.MENU_CHEAT_STAGE_COMMAND_TYPE.NONE;
+    private UnityBase.Util.SCENE.MENU_STAGE_TYPE _stageType = UnityBase.Util.SCENE.MENU_STAGE_TYPE.NONE;
+    private System.Action<UnityBase.Scene.Ui.Menu.SelectItemNodeScript> _onClick = null;
 
     /**
      * @brief コンストラクタ
      */
-    public CheatStageCommandButtonNodeScript()
+    public SelectItemNodeScript()
     {
         return;
     }
-
+    
     /**
      * @brief _OnGetScriptIndex関数
      * @return script_index (script_index)
      */
     protected override int _OnGetScriptIndex()
     {
-        return ((int)UnityBase.Util.SCENE.SCRIPT_INDEX.MENU_CHEAT_STAGE_COMMAND_BUTTON_NODE);
+        return ((int)UnityBase.Util.SCENE.SCRIPT_INDEX.MENU_SELECT_ITEM_NODE);
     }
 
     /**
@@ -67,18 +66,10 @@ public class CheatStageCommandButtonNodeScript : Lib.Scene.ObjectNodeScript, IPo
      */
     protected override int _OnCreate()
     {
-        this._stageNodeScript = this.createDesc.stageNodeScript;
-        this._commandType = this.createDesc.commandType;
+        this._stageType = this.createDesc.stageType;
+        this._onClick = this.createDesc.onClick;
 
-        this._nameText.SetText(UnityBase.Global.GetText(UnityBase.Util.SCENE.MENU_CHEAT_STAGE_COMMAND_NAME_MST_TEXT_ID_ARRAY[(int)this._commandType]));
-
-        var param = UnityBase.Util.SCENE.MENU_CHEAT_STAGE_COMMAND_PARAMETER_ARRAY[(int)this._commandType];
-
-        if (param.Length > 0) {
-            this._detailText.SetText(UnityBase.Util.SCENE.MENU_CHEAT_STAGE_COMMAND_FUNCTION_ARRAY[(int)this._commandType] + " " + param);
-        } else {
-            this._detailText.SetText(UnityBase.Util.SCENE.MENU_CHEAT_STAGE_COMMAND_FUNCTION_ARRAY[(int)this._commandType]);
-        }
+        this._nameText.SetText(UnityBase.Global.GetText(UnityBase.Util.SCENE.MENU_STAGE_NAME_MST_TEXT_ID_ARRAY[(int)this._stageType]));
 
         return (0);
     }
@@ -89,7 +80,7 @@ public class CheatStageCommandButtonNodeScript : Lib.Scene.ObjectNodeScript, IPo
      */
     public override void SetCreateDesc(Lib.Scene.ScriptCreateDesc create_desc)
     {
-	    this.createDesc = create_desc as UnityBase.Scene.Ui.Menu.CheatStageCommandButtonNodeScriptCreateDesc;
+	    this.createDesc = create_desc as UnityBase.Scene.Ui.Menu.SelectItemNodeScriptCreateDesc;
 
         base.SetCreateDesc(this.createDesc);
 
@@ -170,7 +161,7 @@ public class CheatStageCommandButtonNodeScript : Lib.Scene.ObjectNodeScript, IPo
 
         Lib.Scene.Util.GetSoundManager().PlaySe((int)UnityBase.Util.SOUND.SE_INDEX.OK2);
 
-        this._stageNodeScript.RunCommandButton(this._commandType);
+        this._onClick?.Invoke(this);
 
         return;
     }
@@ -199,6 +190,15 @@ public class CheatStageCommandButtonNodeScript : Lib.Scene.ObjectNodeScript, IPo
         this._coverImage.gameObject.SetActive(false);
 
         return;
+    }
+
+    /**
+     * @brief GetStageType関数
+     * @return stage_type (stage_type)
+     */
+    public UnityBase.Util.SCENE.MENU_STAGE_TYPE GetStageType()
+    {
+        return (this._stageType);
     }
 }
 }

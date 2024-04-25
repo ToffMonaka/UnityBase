@@ -2331,7 +2331,7 @@ GameObject:
   - component: {fileID: 6148073710653987064}
   - component: {fileID: 8194479941246047403}
   m_Layer: 5
-  m_Name: CommandButton
+  m_Name: Item
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6757,7 +6757,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _nameText: {fileID: 1898566971483310765}
-  _editScrollRect: {fileID: 2061976648521620262}
+  _scrollRect: {fileID: 2061976648521620262}
   _languageNameText: {fileID: 1431066173069427855}
   _languageButtonNameText: {fileID: 4416823753698106363}
   _languageButtonCoverImage: {fileID: 6644201281435823109}
@@ -13338,7 +13338,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _nameText: {fileID: 5625108062777865306}
-  _stageButtonNode: {fileID: 7769016851166805710}
+  _itemNode: {fileID: 7769016851166805710}
 --- !u!114 &3782871042118282400
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13433,8 +13433,8 @@ MonoBehaviour:
   _nameText: {fileID: 5243167844452456029}
   _commandNameText: {fileID: 6581799221794815227}
   _commandInputField: {fileID: 3722826157310089117}
-  _commandScrollRect: {fileID: 4210570946933997043}
-  _commandButtonNode: {fileID: 1252633328980816030}
+  _scrollRect: {fileID: 4210570946933997043}
+  _itemNode: {fileID: 1252633328980816030}
   _okButtonNameText: {fileID: 3399895282076372730}
   _okButtonCoverImage: {fileID: 1146530419739096328}
   _cancelButtonNameText: {fileID: 1913100427331569588}
@@ -16831,7 +16831,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _nameText: {fileID: 2417303838254999737}
-  _editScrollRect: {fileID: 1573139690985760018}
+  _scrollRect: {fileID: 1573139690985760018}
   _restartNameText: {fileID: 2446018587330376513}
   _restartToggle: {fileID: 7560361477618082668}
   _endNameText: {fileID: 596620376510152751}
@@ -16987,7 +16987,7 @@ GameObject:
   - component: {fileID: 1983829959039893110}
   - component: {fileID: 8165453883870889443}
   m_Layer: 5
-  m_Name: StageButton
+  m_Name: Item
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

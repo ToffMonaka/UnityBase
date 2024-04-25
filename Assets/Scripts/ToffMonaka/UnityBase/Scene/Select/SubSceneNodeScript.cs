@@ -307,6 +307,10 @@ public class SubSceneNodeScript : Lib.Scene.SubSceneNodeScript
 		}
 		}
 
+        if (this._openBoardNodeScript == null) {
+            return;
+        }
+
         this._openBoardNodeScript.Open(open_type);
 
         return;
