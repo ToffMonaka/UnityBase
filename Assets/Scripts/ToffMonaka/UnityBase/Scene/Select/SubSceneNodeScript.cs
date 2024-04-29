@@ -72,7 +72,17 @@ public class SubSceneNodeScript : Lib.Scene.SubSceneNodeScript
             var script = this._stageBoardNode.GetComponent<UnityBase.Scene.Select.StageBoardNodeScript>();
             var script_create_desc = new UnityBase.Scene.Select.StageBoardNodeScriptCreateDesc();
 
+            void on_click_item(UnityBase.Scene.Select.StageBoardNodeScript owner, UnityBase.Scene.Select.StageBoardItemNodeScript item_node_script)
+            {
+                this._stageType = item_node_script.GetStageType();
+
+                this.Close(1, 1);
+
+                return;
+            }
+
             script_create_desc.subSceneNodeScript = this;
+            script_create_desc.onClickItem = on_click_item;
 
             script.Create(script_create_desc);
 
@@ -83,7 +93,17 @@ public class SubSceneNodeScript : Lib.Scene.SubSceneNodeScript
             var script = this._backButtonNode.GetComponent<UnityBase.Scene.Select.BackButtonNodeScript>();
             var script_create_desc = new UnityBase.Scene.Select.BackButtonNodeScriptCreateDesc();
 
-            script_create_desc.subSceneNodeScript = this;
+            script_create_desc.onClick = (UnityBase.Scene.Select.BackButtonNodeScript owner) => {
+		        switch (this._openBoardNodeScript.GetBoardType()) {
+		        case UnityBase.Util.SCENE.SELECT_BOARD_TYPE.STAGE: {
+                    this.Close(1, 2);
+
+			        break;
+		        }
+		        }
+
+                return;
+            };
 
             script.Create(script_create_desc);
             script.Open(1);
@@ -312,35 +332,6 @@ public class SubSceneNodeScript : Lib.Scene.SubSceneNodeScript
         }
 
         this._openBoardNodeScript.Open(open_type);
-
-        return;
-    }
-
-    /**
-     * @brief RunStageButton関数
-     * @param stage_type (stage_type)
-     */
-    public void RunStageButton(UnityBase.Util.SCENE.STAGE_TYPE stage_type)
-    {
-        this._stageType = stage_type;
-
-        this.Close(1, 1);
-
-        return;
-    }
-
-    /**
-     * @brief RunBackButton関数
-     */
-    public void RunBackButton()
-    {
-		switch (this._openBoardNodeScript.GetBoardType()) {
-		case UnityBase.Util.SCENE.SELECT_BOARD_TYPE.STAGE: {
-            this.Close(1, 2);
-
-			break;
-		}
-		}
 
         return;
     }

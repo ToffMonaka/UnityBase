@@ -86,7 +86,7 @@ public static class Util
             SELECT_BACK_BUTTON_NODE,
             SELECT_BOARD_NODE,
             SELECT_STAGE_BOARD_NODE,
-            SELECT_STAGE_BUTTON_NODE,
+            SELECT_STAGE_BOARD_ITEM_NODE,
             STAGE_SUB_SCENE_NODE,
             STAGE_BACK_BUTTON_NODE,
             TEST_2D_STAGE_SUB_SCENE_NODE,

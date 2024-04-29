@@ -33,9 +33,12 @@ public class BoardNodeScript : Lib.Scene.ObjectNodeScript
 
     /**
      * @brief コンストラクタ
+     * @param board_type (board_type)
      */
-    public BoardNodeScript()
+    public BoardNodeScript(UnityBase.Util.SCENE.SELECT_BOARD_TYPE board_type)
     {
+        this._boardType = board_type;
+
         return;
     }
 
@@ -207,17 +210,6 @@ public class BoardNodeScript : Lib.Scene.ObjectNodeScript
     public UnityBase.Util.SCENE.SELECT_BOARD_TYPE GetBoardType()
     {
         return (this._boardType);
-    }
-
-    /**
-     * @brief _SetBoardType関数
-     * @param board_type (board_type)
-     */
-    protected void _SetBoardType(UnityBase.Util.SCENE.SELECT_BOARD_TYPE board_type)
-    {
-        this._boardType = board_type;
-
-        return;
     }
 }
 }

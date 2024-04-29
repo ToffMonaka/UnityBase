@@ -203,7 +203,7 @@ public class BackButtonNodeScript : Lib.Scene.ObjectNodeScript, IPointerClickHan
 
         Lib.Scene.Util.GetSoundManager().PlaySe((int)UnityBase.Util.SOUND.SE_INDEX.CANCEL);
 
-        this._onClick(this);
+        this._onClick?.Invoke(this);
 
         return;
     }

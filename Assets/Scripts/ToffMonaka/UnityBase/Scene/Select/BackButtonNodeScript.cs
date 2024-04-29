@@ -17,7 +17,7 @@ namespace UnityBase.Scene.Select {
  */
 public class BackButtonNodeScriptCreateDesc : Lib.Scene.ObjectNodeScriptCreateDesc
 {
-    public UnityBase.Scene.Select.SubSceneNodeScript subSceneNodeScript = null;
+    public System.Action<UnityBase.Scene.Select.BackButtonNodeScript> onClick = null;
 }
 
 /**
@@ -29,7 +29,7 @@ public class BackButtonNodeScript : Lib.Scene.ObjectNodeScript, IPointerClickHan
 
     public new UnityBase.Scene.Select.BackButtonNodeScriptCreateDesc createDesc{get; private set;} = null;
 
-    private UnityBase.Scene.Select.SubSceneNodeScript _subSceneNodeScript = null;
+    private System.Action<UnityBase.Scene.Select.BackButtonNodeScript> _onClick = null;
 
     /**
      * @brief コンストラクタ
@@ -63,7 +63,7 @@ public class BackButtonNodeScript : Lib.Scene.ObjectNodeScript, IPointerClickHan
      */
     protected override int _OnCreate()
     {
-        this._subSceneNodeScript = this.createDesc.subSceneNodeScript;
+        this._onClick = this.createDesc.onClick;
 
         return (0);
     }
@@ -203,7 +203,7 @@ public class BackButtonNodeScript : Lib.Scene.ObjectNodeScript, IPointerClickHan
 
         Lib.Scene.Util.GetSoundManager().PlaySe((int)UnityBase.Util.SOUND.SE_INDEX.CANCEL);
 
-        this._subSceneNodeScript.RunBackButton();
+        this._onClick?.Invoke(this);
 
         return;
     }

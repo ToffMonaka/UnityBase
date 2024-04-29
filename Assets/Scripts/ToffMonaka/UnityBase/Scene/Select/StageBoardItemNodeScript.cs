@@ -1,6 +1,6 @@
 ﻿/**
  * @file
- * @brief StageButtonNodeScriptファイル
+ * @brief StageBoardItemNodeScriptファイル
  */
 
 
@@ -13,42 +13,42 @@ using TMPro;
 namespace ToffMonaka {
 namespace UnityBase.Scene.Select {
 /**
- * @brief StageButtonNodeScriptCreateDescクラス
+ * @brief StageBoardItemNodeScriptCreateDescクラス
  */
-public class StageButtonNodeScriptCreateDesc : Lib.Scene.ObjectNodeScriptCreateDesc
+public class StageBoardItemNodeScriptCreateDesc : Lib.Scene.ObjectNodeScriptCreateDesc
 {
-    public UnityBase.Scene.Select.StageBoardNodeScript boardNodeScript = null;
     public UnityBase.Util.SCENE.STAGE_TYPE stageType = UnityBase.Util.SCENE.STAGE_TYPE.NONE;
+    public System.Action<UnityBase.Scene.Select.StageBoardItemNodeScript> onClick = null;
 }
 
 /**
- * @brief StageButtonNodeScriptクラス
+ * @brief StageBoardItemNodeScriptクラス
  */
-public class StageButtonNodeScript : Lib.Scene.ObjectNodeScript, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
+public class StageBoardItemNodeScript : Lib.Scene.ObjectNodeScript, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
 {
     [SerializeField] private TMP_Text _nameText = null;
     [SerializeField] private Image _coverImage = null;
 
-    public new UnityBase.Scene.Select.StageButtonNodeScriptCreateDesc createDesc{get; private set;} = null;
+    public new UnityBase.Scene.Select.StageBoardItemNodeScriptCreateDesc createDesc{get; private set;} = null;
 
-    private UnityBase.Scene.Select.StageBoardNodeScript _boardNodeScript = null;
     private UnityBase.Util.SCENE.STAGE_TYPE _stageType = UnityBase.Util.SCENE.STAGE_TYPE.NONE;
+    private System.Action<UnityBase.Scene.Select.StageBoardItemNodeScript> _onClick = null;
 
     /**
      * @brief コンストラクタ
      */
-    public StageButtonNodeScript()
+    public StageBoardItemNodeScript()
     {
         return;
     }
-
+    
     /**
      * @brief _OnGetScriptIndex関数
      * @return script_index (script_index)
      */
     protected override int _OnGetScriptIndex()
     {
-        return ((int)UnityBase.Util.SCENE.SCRIPT_INDEX.SELECT_STAGE_BUTTON_NODE);
+        return ((int)UnityBase.Util.SCENE.SCRIPT_INDEX.SELECT_STAGE_BOARD_ITEM_NODE);
     }
 
     /**
@@ -66,10 +66,9 @@ public class StageButtonNodeScript : Lib.Scene.ObjectNodeScript, IPointerClickHa
      */
     protected override int _OnCreate()
     {
-        this._boardNodeScript = this.createDesc.boardNodeScript;
-        this._stageType = this.createDesc.stageType;
+        this._onClick = this.createDesc.onClick;
 
-        this._nameText.SetText(UnityBase.Global.GetText(UnityBase.Util.SCENE.STAGE_NAME_MST_TEXT_ID_ARRAY[(int)this._stageType]));
+        this.SetStageType(this.createDesc.stageType);
 
         return (0);
     }
@@ -80,7 +79,7 @@ public class StageButtonNodeScript : Lib.Scene.ObjectNodeScript, IPointerClickHa
      */
     public override void SetCreateDesc(Lib.Scene.ScriptCreateDesc create_desc)
     {
-	    this.createDesc = create_desc as UnityBase.Scene.Select.StageButtonNodeScriptCreateDesc;
+	    this.createDesc = create_desc as UnityBase.Scene.Select.StageBoardItemNodeScriptCreateDesc;
 
         base.SetCreateDesc(this.createDesc);
 
@@ -161,7 +160,7 @@ public class StageButtonNodeScript : Lib.Scene.ObjectNodeScript, IPointerClickHa
 
         Lib.Scene.Util.GetSoundManager().PlaySe((int)UnityBase.Util.SOUND.SE_INDEX.OK2);
 
-        this._boardNodeScript.RunStageButton(this._stageType);
+        this._onClick?.Invoke(this);
 
         return;
     }
@@ -188,6 +187,28 @@ public class StageButtonNodeScript : Lib.Scene.ObjectNodeScript, IPointerClickHa
     public void OnPointerExit(PointerEventData event_dat)
     {
         this._coverImage.gameObject.SetActive(false);
+
+        return;
+    }
+
+    /**
+     * @brief GetStageType関数
+     * @return stage_type (stage_type)
+     */
+    public UnityBase.Util.SCENE.STAGE_TYPE GetStageType()
+    {
+        return (this._stageType);
+    }
+
+    /**
+     * @brief SetStageType関数
+     * @param stage_type (stage_type)
+     */
+    public void SetStageType(UnityBase.Util.SCENE.STAGE_TYPE stage_type)
+    {
+        this._stageType = stage_type;
+
+        this._nameText.SetText(UnityBase.Global.GetText(UnityBase.Util.SCENE.STAGE_NAME_MST_TEXT_ID_ARRAY[(int)this._stageType]));
 
         return;
     }
