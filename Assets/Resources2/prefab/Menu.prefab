@@ -1610,7 +1610,7 @@ GameObject:
   - component: {fileID: 547314802502056496}
   - component: {fileID: 6154969917481595408}
   m_Layer: 5
-  m_Name: BgmVolume
+  m_Name: BgmVolumeSlider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1923,7 +1923,7 @@ GameObject:
   - component: {fileID: 6676873358243106849}
   - component: {fileID: 4946583069307328268}
   m_Layer: 5
-  m_Name: Language
+  m_Name: LanguageButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3608,7 +3608,7 @@ GameObject:
   m_Component:
   - component: {fileID: 379675474955750633}
   m_Layer: 5
-  m_Name: Command
+  m_Name: CommandInputField
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3918,7 +3918,7 @@ GameObject:
   - component: {fileID: 4337711543218450381}
   - component: {fileID: 8225557621205029598}
   m_Layer: 5
-  m_Name: End
+  m_Name: EndToggle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6090,7 +6090,7 @@ GameObject:
   - component: {fileID: 3501240114083619086}
   - component: {fileID: 8149527409188714232}
   m_Layer: 5
-  m_Name: BgmMute
+  m_Name: BgmMuteToggle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7159,7 +7159,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 262, y: -251}
+  m_AnchoredPosition: {x: 262, y: -235}
   m_SizeDelta: {x: 492, y: 2}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5792497982534414795
@@ -8539,8 +8539,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 262, y: -170}
-  m_SizeDelta: {x: 492, y: 144}
+  m_AnchoredPosition: {x: 262, y: -162}
+  m_SizeDelta: {x: 492, y: 128}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &3999363294698816248
 GameObject:
@@ -10371,8 +10371,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 262, y: -513}
-  m_SizeDelta: {x: 492, y: 506}
+  m_AnchoredPosition: {x: 262, y: -505}
+  m_SizeDelta: {x: 492, y: 522}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &4826267143225243911
 GameObject:
@@ -15288,7 +15288,7 @@ GameObject:
   - component: {fileID: 4322057128073959344}
   - component: {fileID: 6963524082269761974}
   m_Layer: 5
-  m_Name: Restart
+  m_Name: RestartToggle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -19381,7 +19381,7 @@ GameObject:
   - component: {fileID: 6864081489461405240}
   - component: {fileID: 363847121613878226}
   m_Layer: 5
-  m_Name: SeVolume
+  m_Name: SeVolumeSlider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -20286,7 +20286,7 @@ GameObject:
   - component: {fileID: 1518975169796635820}
   - component: {fileID: 1207533311088442089}
   m_Layer: 5
-  m_Name: SeMute
+  m_Name: SeMuteToggle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
