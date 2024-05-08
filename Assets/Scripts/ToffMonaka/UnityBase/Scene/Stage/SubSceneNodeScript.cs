@@ -142,9 +142,9 @@ public class SubSceneNodeScript : Lib.Scene.SubSceneNodeScript
     }
 
     /**
-     * @brief _OnUpdateOpen関数
+     * @brief _OnOpened関数
      */
-    protected override void _OnUpdateOpen()
+    protected override void _OnOpened()
     {
         return;
     }
@@ -158,9 +158,9 @@ public class SubSceneNodeScript : Lib.Scene.SubSceneNodeScript
     }
 
     /**
-     * @brief _OnUpdateClose関数
+     * @brief _OnClosed関数
      */
-    protected override void _OnUpdateClose()
+    protected override void _OnClosed()
     {
         return;
     }

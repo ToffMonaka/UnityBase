@@ -180,13 +180,8 @@ public abstract class NodeScript : Lib.Scene.Script
      */
     protected override void _Update()
     {
-        if (this._openFlag) {
-            this._OnUpdateOpen();
-        }
-
-        if (this._closeFlag) {
-            this._OnUpdateClose();
-        }
+        this._UpdateOpen();
+        this._UpdateClose();
 
         this._OnUpdate();
 
@@ -247,24 +242,28 @@ public abstract class NodeScript : Lib.Scene.Script
 
         this._OnOpen();
 
-        if (this._openFlag) {
-            this._OnUpdateOpen();
-        }
+        this._UpdateOpen();
 
         return;
     }
 
     /**
-     * @brief CompleteOpen関数
+     * @brief _UpdateOpen関数
      */
-    protected void CompleteOpen()
+    private void _UpdateOpen()
     {
         if (!this._openFlag) {
             return;
         }
 
+        if (this.IsActiveOpenCloseSequence()) {
+            return;
+        }
+
         this._openFlag = false;
         this._openedFlag = true;
+
+        this._OnOpened();
 
         return;
     }
@@ -278,12 +277,10 @@ public abstract class NodeScript : Lib.Scene.Script
     }
 
     /**
-     * @brief _OnUpdateOpen関数
+     * @brief _OnOpened関数
      */
-    protected virtual void _OnUpdateOpen()
+    protected virtual void _OnOpened()
     {
-        this.CompleteOpen();
-
         return;
     }
 
@@ -308,19 +305,21 @@ public abstract class NodeScript : Lib.Scene.Script
 
         this._OnClose();
 
-        if (this._closeFlag) {
-            this._OnUpdateClose();
-        }
+        this._UpdateClose();
 
         return;
     }
 
     /**
-     * @brief CompleteClose関数
+     * @brief _UpdateClose関数
      */
-    protected void CompleteClose()
+    private void _UpdateClose()
     {
         if (!this._closeFlag) {
+            return;
+        }
+
+        if (this.IsActiveOpenCloseSequence()) {
             return;
         }
 
@@ -330,6 +329,8 @@ public abstract class NodeScript : Lib.Scene.Script
         if (this._activeAutoFlag) {
             this.gameObject.SetActive(false);
         }
+
+        this._OnClosed();
 
         return;
     }
@@ -343,12 +344,10 @@ public abstract class NodeScript : Lib.Scene.Script
     }
 
     /**
-     * @brief _OnUpdateClose関数
+     * @brief _OnClosed関数
      */
-    protected virtual void _OnUpdateClose()
+    protected virtual void _OnClosed()
     {
-        this.CompleteClose();
-
         return;
     }
 
@@ -508,11 +507,7 @@ public abstract class NodeScript : Lib.Scene.Script
             return (false);
         }
 
-        if (this.GetClosedFlag()) {
-            return (false);
-        }
-
-        if (this.IsActiveOpenCloseSequence()) {
+        if (!this._openedFlag) {
             return (false);
         }
 

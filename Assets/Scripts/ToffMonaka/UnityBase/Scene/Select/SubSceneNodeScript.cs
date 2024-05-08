@@ -200,15 +200,13 @@ public class SubSceneNodeScript : Lib.Scene.SubSceneNodeScript
     }
 
     /**
-     * @brief _OnUpdateOpen関数
+     * @brief _OnOpened関数
      */
-    protected override void _OnUpdateOpen()
+    protected override void _OnOpened()
     {
-        if (!this.IsActiveOpenCloseSequence()) {
-            this.CompleteOpen();
+        Lib.Scene.Util.GetInputManager().EnableEventSystem();
 
-            this._openCloseFadeImage.gameObject.SetActive(false);
-        }
+        this._openCloseFadeImage.gameObject.SetActive(false);
 
         return;
     }
@@ -240,50 +238,34 @@ public class SubSceneNodeScript : Lib.Scene.SubSceneNodeScript
 		}
 		}
 
+        Lib.Scene.Util.GetInputManager().DisableEventSystem();
+
         return;
     }
 
     /**
-     * @brief _OnUpdateClose関数
+     * @brief _OnClosed関数
      */
-    protected override void _OnUpdateClose()
+    protected override void _OnClosed()
     {
-        if (!this.IsActiveOpenCloseSequence()) {
-            this.CompleteClose();
+		switch (this.GetClosedType()) {
+        case 1: {
+		    switch (this._stageType) {
+		    case UnityBase.Util.SCENE.STAGE_TYPE.TEST_2D: {
+                {// Test2DStageSubSceneNodeScript Create
+                    var script = this.GetManager().ChangeSubScene(UnityBase.Util.FILE_PATH.TEST_2D_STAGE_SUB_SCENE_PREFAB) as UnityBase.Scene.Stage.Test2D.SubSceneNodeScript;
+                    var script_create_desc = new UnityBase.Scene.Stage.Test2D.SubSceneNodeScriptCreateDesc();
 
-		    switch (this.GetClosedType()) {
-            case 1: {
-		        switch (this._stageType) {
-		        case UnityBase.Util.SCENE.STAGE_TYPE.TEST_2D: {
-                    {// Test2DStageSubSceneNodeScript Create
-                        var script = this.GetManager().ChangeSubScene(UnityBase.Util.FILE_PATH.TEST_2D_STAGE_SUB_SCENE_PREFAB) as UnityBase.Scene.Stage.Test2D.SubSceneNodeScript;
-                        var script_create_desc = new UnityBase.Scene.Stage.Test2D.SubSceneNodeScriptCreateDesc();
-
-                        script.Create(script_create_desc);
-                        script.Open(1);
-                    }
-
-			        break;
-		        }
-		        case UnityBase.Util.SCENE.STAGE_TYPE.TEST_3D: {
-                    {// Test3DStageSubSceneNodeScript Create
-                        var script = this.GetManager().ChangeSubScene(UnityBase.Util.FILE_PATH.TEST_3D_STAGE_SUB_SCENE_PREFAB) as UnityBase.Scene.Stage.Test3D.SubSceneNodeScript;
-                        var script_create_desc = new UnityBase.Scene.Stage.Test3D.SubSceneNodeScriptCreateDesc();
-
-                        script.Create(script_create_desc);
-                        script.Open(1);
-                    }
-
-			        break;
-		        }
-		        }
+                    script.Create(script_create_desc);
+                    script.Open(1);
+                }
 
 			    break;
 		    }
-            case 2: {
-                {// TitleSubSceneNodeScript Create
-                    var script = this.GetManager().ChangeSubScene(UnityBase.Util.FILE_PATH.TITLE_SUB_SCENE_PREFAB) as UnityBase.Scene.TitleSubSceneNodeScript;
-                    var script_create_desc = new UnityBase.Scene.TitleSubSceneNodeScriptCreateDesc();
+		    case UnityBase.Util.SCENE.STAGE_TYPE.TEST_3D: {
+                {// Test3DStageSubSceneNodeScript Create
+                    var script = this.GetManager().ChangeSubScene(UnityBase.Util.FILE_PATH.TEST_3D_STAGE_SUB_SCENE_PREFAB) as UnityBase.Scene.Stage.Test3D.SubSceneNodeScript;
+                    var script_create_desc = new UnityBase.Scene.Stage.Test3D.SubSceneNodeScriptCreateDesc();
 
                     script.Create(script_create_desc);
                     script.Open(1);
@@ -292,7 +274,21 @@ public class SubSceneNodeScript : Lib.Scene.SubSceneNodeScript
 			    break;
 		    }
 		    }
-        }
+
+			break;
+		}
+        case 2: {
+            {// TitleSubSceneNodeScript Create
+                var script = this.GetManager().ChangeSubScene(UnityBase.Util.FILE_PATH.TITLE_SUB_SCENE_PREFAB) as UnityBase.Scene.TitleSubSceneNodeScript;
+                var script_create_desc = new UnityBase.Scene.TitleSubSceneNodeScriptCreateDesc();
+
+                script.Create(script_create_desc);
+                script.Open(1);
+            }
+
+			break;
+		}
+		}
 
         return;
     }

@@ -5,6 +5,7 @@
 
 
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 
 namespace ToffMonaka {
@@ -25,6 +26,7 @@ public class InputManager
     public Lib.Scene.InputManagerCreateDesc createDesc{get; private set;} = null;
 
     private GameObject _inputNode = null;
+    private EventSystem _eventSystem = null;
 
     /**
      * @brief コンストラクタ
@@ -50,6 +52,7 @@ public class InputManager
         this._Release();
 
         this._inputNode = null;
+        this._eventSystem = null;
 
         return;
     }
@@ -70,6 +73,9 @@ public class InputManager
             }
 
             this._inputNode = desc.inputNode;
+
+            this._eventSystem = EventSystem.current;
+            this._eventSystem.enabled = false;
         }
 
         int create_result_val = this._OnCreate();
@@ -111,6 +117,46 @@ public class InputManager
     public GameObject GetInputNode()
     {
         return (this._inputNode);
+    }
+
+    /**
+     * @brief GetEventSystem関数
+     * @return event_sys (event_system)
+     */
+    public EventSystem GetEventSystem()
+    {
+        return (this._eventSystem);
+    }
+
+    /**
+     * @brief EnableEventSystem関数
+     */
+    public void EnableEventSystem()
+    {
+        this._eventSystem.enabled = true;
+
+        return;
+    }
+
+    /**
+     * @brief DisableEventSystem関数
+     */
+    public void DisableEventSystem()
+    {
+        this._eventSystem.enabled = false;
+
+        return;
+    }
+
+    /**
+     * @brief IsFocusNode関数
+     * @param node (node)
+     * @return focus_flg (focus_flg)<br>
+     * false=フォーカス無し,true=フォーカス有り
+     */
+    public bool IsFocusNode(GameObject node)
+    {
+        return (this._eventSystem.currentSelectedGameObject == node);
     }
 }
 }

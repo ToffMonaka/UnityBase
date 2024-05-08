@@ -6,7 +6,6 @@
 
 using UnityEngine;
 using UnityEngine.AddressableAssets;
-using UnityEngine.EventSystems;
 
 
 namespace ToffMonaka {
@@ -180,21 +179,6 @@ public static class Util
         Lib.Scene.Util._soundManager = sound_manager;
 
         return;
-    }
-
-    /**
-     * @brief IsFocusNode関数
-     * @param node (node)
-     * @return focus_flg (focus_flg)<br>
-     * false=フォーカス無し,true=フォーカス有り
-     */
-    public static bool IsFocusNode(GameObject node)
-    {
-        if (EventSystem.current == null) {
-            return (false);
-        }
-
-        return (EventSystem.current.currentSelectedGameObject == node);
     }
 }
 }

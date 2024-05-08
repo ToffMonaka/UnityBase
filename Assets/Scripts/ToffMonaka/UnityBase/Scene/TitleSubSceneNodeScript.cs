@@ -157,15 +157,13 @@ public class TitleSubSceneNodeScript : Lib.Scene.SubSceneNodeScript
     }
 
     /**
-     * @brief _OnUpdateOpen関数
+     * @brief _OnOpened関数
      */
-    protected override void _OnUpdateOpen()
+    protected override void _OnOpened()
     {
-        if (!this.IsActiveOpenCloseSequence()) {
-            this.CompleteOpen();
+        Lib.Scene.Util.GetInputManager().EnableEventSystem();
 
-            this._openCloseFadeImage.gameObject.SetActive(false);
-        }
+        this._openCloseFadeImage.gameObject.SetActive(false);
 
         return;
     }
@@ -197,31 +195,29 @@ public class TitleSubSceneNodeScript : Lib.Scene.SubSceneNodeScript
 		}
 		}
 
+        Lib.Scene.Util.GetInputManager().DisableEventSystem();
+
         return;
     }
 
     /**
-     * @brief _OnUpdateClose関数
+     * @brief _OnClosed関数
      */
-    protected override void _OnUpdateClose()
+    protected override void _OnClosed()
     {
-        if (!this.IsActiveOpenCloseSequence()) {
-            this.CompleteClose();
+		switch (this.GetClosedType()) {
+        case 1: {
+            {// SelectSubSceneNodeScript Create
+                var script = this.GetManager().ChangeSubScene(UnityBase.Util.FILE_PATH.SELECT_SUB_SCENE_PREFAB) as UnityBase.Scene.Select.SubSceneNodeScript;
+                var script_create_desc = new UnityBase.Scene.Select.SubSceneNodeScriptCreateDesc();
 
-		    switch (this.GetClosedType()) {
-            case 1: {
-                {// SelectSubSceneNodeScript Create
-                    var script = this.GetManager().ChangeSubScene(UnityBase.Util.FILE_PATH.SELECT_SUB_SCENE_PREFAB) as UnityBase.Scene.Select.SubSceneNodeScript;
-                    var script_create_desc = new UnityBase.Scene.Select.SubSceneNodeScriptCreateDesc();
+                script.Create(script_create_desc);
+                script.Open(1);
+            }
 
-                    script.Create(script_create_desc);
-                    script.Open(1);
-                }
-
-			    break;
-		    }
-		    }
-        }
+			break;
+		}
+		}
 
         return;
     }

@@ -188,14 +188,10 @@ public class SelectNodeScript : Lib.Scene.ObjectNodeScript
     }
 
     /**
-     * @brief _OnUpdateOpen関数
+     * @brief _OnOpened関数
      */
-    protected override void _OnUpdateOpen()
+    protected override void _OnOpened()
     {
-        if (!this.IsActiveOpenCloseSequence()) {
-            this.CompleteOpen();
-        }
-
         return;
     }
 
@@ -230,14 +226,10 @@ public class SelectNodeScript : Lib.Scene.ObjectNodeScript
     }
 
     /**
-     * @brief _OnUpdateClose関数
+     * @brief _OnClosed関数
      */
-    protected override void _OnUpdateClose()
+    protected override void _OnClosed()
     {
-        if (!this.IsActiveOpenCloseSequence()) {
-            this.CompleteClose();
-        }
-
         return;
     }
 }

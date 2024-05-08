@@ -176,11 +176,11 @@ public class CheatStageNodeScript : UnityBase.Scene.Ui.Menu.StageNodeScript
     }
 
     /**
-     * @brief _OnUpdateOpen関数
+     * @brief _OnOpened関数
      */
-    protected override void _OnUpdateOpen()
+    protected override void _OnOpened()
     {
-        base._OnUpdateOpen();
+        base._OnOpened();
 
         return;
     }
@@ -196,11 +196,11 @@ public class CheatStageNodeScript : UnityBase.Scene.Ui.Menu.StageNodeScript
     }
 
     /**
-     * @brief _OnUpdateClose関数
+     * @brief _OnClosed関数
      */
-    protected override void _OnUpdateClose()
+    protected override void _OnClosed()
     {
-        base._OnUpdateClose();
+        base._OnClosed();
 
         return;
     }
