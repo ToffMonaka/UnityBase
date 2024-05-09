@@ -15,11 +15,11 @@ namespace UnityBase.Scene.Ui.Menu {
 public static class FaqMessageUtil
 {
     public static readonly string[] ENGLISH_TEXT_ARRAY = {
-        "Q, What is the application to do?\n" +
+        "Q, What is this application to do?\n" +
         "A, It is a Unity base application."
     };
     public static readonly string[] JAPANESE_TEXT_ARRAY = {
-        "Q, 何をするアプリなんですか？\n" +
+        "Q, 何をするアプリですか？\n" +
         "A, Unityのベースアプリです。"
     };
 }
