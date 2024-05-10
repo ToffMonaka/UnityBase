@@ -15,134 +15,140 @@ namespace UnityBase.Scene.Ui.Menu {
 public static class PrivacyPolicyMessageUtil
 {
     public static readonly string[] ENGLISH_TEXT_ARRAY = {
-        "Application\n" +
+        "Privacy Policy\n" +
         "\n" +
-        "Toff Monaka built the Unity Base app as a Free app. This Service is provided by Toff Monaka at no cost and is intended for use as is.\n" +
-        "This page is used to inform visitors regarding my policies with the collection, use, and disclosure of Personal Information if anyone decided to use my Service.\n" +
-        "If you choose to use my Service, then you agree to the collection and use of information in relation to this policy. The Personal Information that I collect is used for providing and improving the Service. I will not use or share your information with anyone except as described in this Privacy Policy.\n" +
-        "The terms used in this Privacy Policy have the same meanings as in our Terms and Conditions, which are accessible at Unity Base unless otherwise defined in this Privacy Policy.\n" +
+        "This privacy policy applies to the Unity Base app (hereby referred to as \"Application\") for mobile devices that was created by Toff Monaka (hereby referred to as \"Service Provider\") as a Free service. This service is intended for use \"AS IS\".\n" +
         "\n" +
         "\n" +
         "Information Collection and Use\n" +
         "\n" +
-        "For a better experience, while using our Service, I may require you to provide us with certain personally identifiable information, including but not limited to Play data. The information that I request will be retained on your device and is not collected by me in any way.\n" +
-        "The app does use third-party services that may collect information used to identify you.\n" +
-        "Link to the privacy policy of third-party service providers used by the app\n" +
-        "  ・Google Play Services\n" +
-        "  ・Unity\n" +
+        "The Application collects information when you download and use it. This information may include information such as\n" +
+        " ・Your device's Internet Protocol address (e.g. IP address)\n" +
+        " ・The pages of the Application that you visit, the time and date of your visit, the time spent on those pages\n" +
+        " ・The time spent on the Application\n" +
+        " ・The operating system you use on your mobile device\n" +
+        "\n" +
+        "The Application does not gather precise information about the location of your mobile device.\n" +
+        "The Service Provider may use the information you provided to contact you from time to time to provide you with important information, required notices and marketing promotions.\n" +
+        "For a better experience, while using the Application, the Service Provider may require you to provide us with certain personally identifiable information. The information that the Service Provider request will be retained by them and used as described in this privacy policy.\n" +
         "\n" +
         "\n" +
-        "Log Data\n" +
+        "Third Party Access\n" +
         "\n" +
-        "I want to inform you that whenever you use my Service, in a case of an error in the app I collect data and information (through third-party products) on your phone called Log Data. This Log Data may include information such as your device Internet Protocol(IP) address, device name, operating system version, the configuration of the app when utilizing my Service, the time and date of your use of the Service, and other statistics.\n" +
+        "Only aggregated, anonymized data is periodically transmitted to external services to aid the Service Provider in improving the Application and their service. The Service Provider may share your information with third parties in the ways that are described in this privacy statement.\n" +
+        "Please note that the Application utilizes third-party services that have their own Privacy Policy about handling data. Below are third-party service used by the Application:\n" +
+        " ・Google Play Services\n" +
+        " ・Unity\n" +
+        "\n" +
+        "The Service Provider may disclose User Provided and Automatically Collected Information:\n" +
+        " ・as required by law, such as to comply with a subpoena, or similar legal process;\n" +
+        " ・when they believe in good faith that disclosure is necessary to protect their rights, protect your safety or the safety of others, investigate fraud, or respond to a government request;\n" +
+        " ・with their trusted services providers who work on their behalf, do not have an independent use of the information we disclose to them, and have agreed to adhere to the rules set forth in this privacy statement.\n" +
         "\n" +
         "\n" +
-        "Cookies\n" +
+        "Opt-Out Rights\n" +
         "\n" +
-        "Cookies are files with a small amount of data that are commonly used as anonymous unique identifiers. These are sent to your browser from the websites that you visit and are stored on your device's internal memory.\n" +
-        "This Service does not use these Cookies explicitly. However, the app may use third-party code and libraries that use Cookies to collect information and improve their services. You have the option to either accept or refuse these Cookies and know when a Cookies are being sent to your device. If you choose to refuse our Cookies, you may not be able to use some portions of this Service.\n" +
+        "You can stop all collection of information by the Application easily by uninstalling it. You may use the standard uninstall processes as may be available as part of your mobile device or via the mobile application marketplace or network.\n" +
         "\n" +
         "\n" +
-        "Service Providers\n" +
+        "Data Retention Policy\n" +
         "\n" +
-        "I may employ third-party companies and individuals due to the following reasons\n" +
-        "  ・To facilitate our Service\n" +
-        "  ・To provide the Service on our behalf\n" +
-        "  ・To perform Service-related services\n" +
-        "  ・To assist us in analyzing how our Service is used\n" +
+        "The Service Provider will retain User Provided data for as long as you use the Application and for a reasonable time thereafter. If you'd like them to delete User Provided Data that you have provided via the Application, please contact them at the Service Provider and they will respond in a reasonable time.\n" +
         "\n" +
-        "I want to inform users of this Service that these third parties have access to their Personal Information. The reason is to perform the tasks assigned to them on our behalf. However, they are obligated not to disclose or use the information for any other purpose.\n" +
+        "\n" +
+        "Children\n" +
+        "\n" +
+        "The Service Provider does not use the Application to knowingly solicit data from or market to children under the age of 13.\n" +
+        "The Application does not address anyone under the age of 13. The Service Provider does not knowingly collect personally identifiable information from children under 13 years of age. In the case the Service Provider discover that a child under 13 has provided personal information, the Service Provider will immediately delete this from their servers. If you are a parent or guardian and you are aware that your child has provided us with personal information, please contact the Service Provider so that they will be able to take the necessary actions.\n" +
         "\n" +
         "\n" +
         "Security\n" +
         "\n" +
-        "I value your trust in providing us your Personal Information, thus we are striving to use commercially acceptable means of protecting it. But remember that no method of transmission over the internet, or method of electronic storage is 100% secure and reliable, and I cannot guarantee its absolute security.\n" +
+        "The Service Provider is concerned about safeguarding the confidentiality of your information. The Service Provider provides physical, electronic, and procedural safeguards to protect information the Service Provider processes and maintains.\n" +
         "\n" +
         "\n" +
-        "Links to Other Sites\n" +
+        "Changes\n" +
         "\n" +
-        "This Service may contain links to other sites. If you click on a third-party link, you will be directed to that site. Note that these external sites are not operated by me. Therefore, I strongly advise you to review the Privacy Policy of these websites. I have no control over and assume no responsibility for the content, privacy policies, or practices of any third-party sites or services.\n" +
-        "\n" +
-        "\n" +
-        "Children's Privacy\n" +
-        "\n" +
-        "These Services do not address anyone under the age of 13. I do not knowingly collect personally identifiable information from children under 13 years of age. In the case I discover that a child under 13 has provided me with personal information, I immediately delete this from our servers. If you are a parent or guardian and you are aware that your child has provided us with personal information, please contact me so that I will be able to do the necessary actions.\n" +
+        "This Privacy Policy may be updated from time to time for any reason. The Service Provider will notify you of any changes to the Privacy Policy by updating this page with the new Privacy Policy. You are advised to consult this Privacy Policy regularly for any changes, as continued use is deemed approval of all changes.\n" +
+        "This privacy policy is effective as of 2024-05-10\n" +
         "\n" +
         "\n" +
-        "Changes to Privacy Policy\n" +
+        "Your Consent\n" +
         "\n" +
-        "I may update our Privacy Policy from time to time. Thus, you are advised to review this page periodically for any changes. I will notify you of any changes by posting the new Privacy Policy on this page.\n" +
-        "This policy is effective as of 2023-07-24\n" +
+        "By using the Application, you are consenting to the processing of your information as set forth in this Privacy Policy now and as amended by us.\n" +
         "\n" +
         "\n" +
         "Contact Us\n" +
         "\n" +
-        "If you have any questions about my Privacy Policy, do not hesitate to contact me at toff.monaka@gmail.com."
+        "If you have any questions regarding privacy while using the Application, or have questions about the practices, please contact the Service Provider via email at toff.monaka@gmail.com."
     };
     public static readonly string[] JAPANESE_TEXT_ARRAY = {
-        "アプリケーション\n" +
+        "プライバシーポリシー\n" +
         "\n" +
-        "Toff Monakaは、Unity Baseアプリを無料アプリとして構築しました。本サービスはToff Monakaによって無料で提供され、現状のまま使用することを目的としています。\n" +
-        "このページは、誰かが私のサービスを使用することを決めた場合に、個人情報の収集、使用、開示に関する私のポリシーについて訪問者に通知するために使用されます。\n" +
-        "私のサービスを使用することを選択した場合、このポリシーに関連した情報の収集と使用に同意したことになります。私が収集した個人情報は、サービスの提供と改善のために使用されます。このプライバシー ポリシーに記載されている場合を除き、私はあなたの情報を使用したり、誰かと共有したりすることはありません。\n" +
-        "このプライバシー ポリシーで使用される用語は、当社の利用規約と同じ意味を持ち、このプライバシー ポリシーで別途定義されていない限り、Unity Baseからアクセスできます。\n" +
+        "このプライバシーポリシーは、Toff Monaka(以下「サービスプロバイダー」と言います)が無料サービスとして作成したモバイルデバイス用のUnity Baseアプリ(以下「アプリケーション」と言います)に適用されます。このサービスは「現状のまま」使用することを目的としています。\n" +
         "\n" +
         "\n" +
         "情報の収集と利用\n" +
         "\n" +
-        "より良いエクスペリエンスを提供するために、当社のサービスをご利用いただく際に、Playデータを含む(ただしこれに限定されない)特定の個人を特定できる情報の提供をお客様に求める場合があります。私が要求した情報はあなたのデバイスに保存され、私によって収集されることはありません。\n" +
-        "このアプリは、お客様を特定するために使用される情報を収集する可能性のあるサードパーティのサービスを使用します。\n" +
-        "アプリで使用されるサードパーティサービスプロバイダーのプライバシーポリシーへのリンク\n" +
-        "  ・Google Play Services\n" +
-        "  ・Unity\n" +
+        "アプリケーションは、ダウンロードして使用するときに情報を収集します。この情報には、次のような情報が含まれる場合があります。\n" +
+        " ・デバイスのインターネットプロトコルアドレス(IPアドレスなど)\n" +
+        " ・あなたが訪問したアプリケーションのページ、訪問日時、それらのページに費やした時間\n" +
+        " ・アプリケーションに費やした時間\n" +
+        " ・モバイルデバイスで使用しているオペレーティングシステム\n" +
+        "\n" +
+        "このアプリケーションは、モバイルデバイスの位置に関する正確な情報を収集しません。\n" +
+        "サービスプロバイダーは、重要な情報、必要な通知、マーケティングプロモーションを提供するために、お客様が提供した情報を使用して随時お客様に連絡する場合があります。\n" +
+        "より良いエクスペリエンスを実現するために、アプリケーションの使用中に、サービスプロバイダーはお客様に特定の個人を特定できる情報の提供を要求する場合があります。サービスプロバイダーが要求した情報はサービスプロバイダーによって保持され、このプライバシーポリシーに記載されているように使用されます。\n" +
         "\n" +
         "\n" +
-        "ログデータ\n" +
+        "サードパーティのアクセス\n" +
         "\n" +
-        "あなたが私のサービスを使用するたびに、アプリでエラーが発生した場合、私はあなたの携帯電話上でログデータと呼ばれるデータと情報を（サードパーティ製品を通じて）収集することをお知らせしたいと思います。このログデータには、デバイスのインターネットプロトコル(IP)アドレス、デバイス名、オペレーティングシステムのバージョン、サービス利用時のアプリの構成、サービスの使用日時、その他の統計などの情報が含まれる場合があります。\n" +
+        "サービスプロバイダーによるアプリケーションとそのサービスの改善を支援するために、集約され匿名化されたデータのみが外部サービスに定期的に送信されます。サービスプロバイダーは、このプライバシーに関する声明に記載されている方法で、お客様の情報を第三者と共有する場合があります。\n" +
+        "本アプリケーションは、データの取り扱いに関して独自のプライバシーポリシーを持つサードパーティのサービスを利用していることに注意してください。以下は、アプリケーションで使用されるサードパーティサービスです。\n" +
+        " ・Google Play Services\n" +
+        " ・Unity\n" +
         "\n" +
-        "\n" +
-        "Cookie\n" +
-        "\n" +
-        "Cookieは、匿名の一意の識別子として一般に使用される少量のデータを含むファイルです。これらは、アクセスしたWebサイトからブラウザに送信され、デバイスの内部メモリに保存されます。\n" +
-        "本サービスはこれらのCookieを明示的に使用しません。ただし、アプリは情報を収集しサービスを向上させるためにCookieを使用するサードパーティのコードとライブラリを使用する場合があります。これらのCookieを受け入れるか拒否するかを選択でき、Cookieがいつデバイスに送信されるかを知ることができます。当社のCookieを拒否することを選択した場合、本サービスの一部を使用できなくなる場合があります。\n" +
-        "\n" +
-        "\n" +
-        "サービスプロバイダー\n" +
-        "\n" +
-        "私は、次の理由により、サードパーティの企業や個人を雇用する場合があります。\n" +
-        "   ・当社のサービスを促進するため。\n" +
-        "   ・当社に代わってサービスを提供するため。\n" +
-        "   ・サービス関連サービスを実行するため。\n" +
-        "   ・当社のサービスがどのように使用されているかの分析を支援するため。\n" +
-        "\n" +
-        "本サービスのユーザーに、これらの第三者がユーザーの個人情報にアクセスできることを知らせたいと思います。その理由は、私たちに代わって彼らに割り当てられたタスクを実行するためです。ただし、他の目的で情報を開示または使用しない義務があります。\n" +
+        "サービスプロバイダーは、ユーザーが提供した情報および自動的に収集された情報を開示する場合があります。\n" +
+        " ・召喚状または同様の法的手続きに従うなど、法律で要求される場合。\n" +
+        " ・自分の権利を守り、自分や他人の安全を守り、詐欺を調査し、または政府の要請に応えるために開示が必要であると誠意を持って信じている場合。\n" +
+        " ・彼らの信頼できるサービスプロバイダーは、彼らに代わって働き、当社が彼らに開示する情報を独自に使用することはなく、このプライバシーステートメントに記載されている規則を遵守することに同意しています。\n" +
         "\n" +
         "\n" +
-        "セキュリティ\n" +
+        "オプトアウトの権利\n" +
         "\n" +
-        "私はお客様の信頼を大切に個人情報を提供していただくため、商業的に許容される個人情報の保護手段を使用するよう努めています。ただし、インターネット上の送信方法や電子保存方法は100%安全で信頼できるものではなく、その絶対的な安全性を保証することはできないことを覚えておいてください。\n" +
+        "アプリケーションをアンインストールすることで、アプリケーションによるすべての情報収集を簡単に停止できます。モバイルデバイスの一部として、またはモバイルアプリケーションマーケットプレイスやネットワーク経由で利用できる標準のアンインストールプロセスを使用できます。\n" +
         "\n" +
         "\n" +
-        "他のサイトへのリンク\n" +
+        "データ保持ポリシー\n" +
         "\n" +
-        "本サービスには他のサイトへのリンクが含まれる場合があります。サードパーティのリンクをクリックすると、そのサイトに移動します。これらの外部サイトは私が運営しているものではないことに注意してください。したがって、これらのWebサイトのプライバシー ポリシーを確認することを強くお勧めします。私は、第三者のサイトやサービスのコンテンツ、プライバシー ポリシー、慣行を管理することはできず、責任を負いません。\n" +
+        "サービスプロバイダーは、ユーザーがアプリケーションを使用している間およびその後の合理的な期間、ユーザー提供のデータを保持します。アプリケーション経由で提供したユーザー提供データの削除を希望する場合は、サービスプロバイダーまでご連絡ください。適切な時間内に対応させていただきます。\n" +
         "\n" +
         "\n" +
         "子供のプライバシー\n" +
         "\n" +
-        "これらのサービスは13歳未満には対応しません。私は、13歳未満の子供から故意に個人を特定できる情報を収集しません。13歳未満の子供が私に個人情報を提供したことが判明した場合、私はこれを当社のサーバーから直ちに削除します。あなたが親または保護者で、お子様が当社に個人情報を提供したことをご存じの場合は、必要な措置を講じることができるよう、私にご連絡ください。\n" +
+        "サービスプロバイダーは、13歳未満の子供に対して故意にデータを要求したり、子供に売り込んだりするためにアプリケーションを使用しません。\n" +
+        "このアプリケーションは、13歳未満には対応していません。サービスプロバイダーは、13歳未満の子供から故意に個人を特定できる情報を収集しません。13歳未満の子供が個人情報を提供したことをサービスプロバイダーが発見した場合、サービスプロバイダーはこれをサーバーから直ちに削除します。あなたが親または保護者で、お子様が当社に個人情報を提供したことに気づいている場合は、必要な措置を講じられるよう、サービスプロバイダーまでご連絡ください。\n" +
+        "\n" +
+        "\n" +
+        "安全性\n" +
+        "\n" +
+        "サービスプロバイダーは、お客様の情報の機密性の保護に配慮しています。サービスプロバイダーは、サービスプロバイダーが処理および維持する情報を保護するために、物理的、電子的、および手続き上の保護手段を提供します。\n" +
         "\n" +
         "\n" +
         "プライバシーポリシーの変更\n" +
         "\n" +
-        "当社のプライバシーポリシーは随時更新される場合があります。したがって、変更がないか定期的にこのページを確認することをお勧めします。変更があった場合は、このページに新しいプライバシー ポリシーを掲載してお知らせします。\n" +
-        "このポリシーは2023年7月24日から発効します。\n" +
+        "このプライバシーポリシーは、理由の如何を問わず、随時更新される場合があります。サービスプロバイダーは、このページを新しいプライバシーポリシーで更新することにより、プライバシーポリシーの変更をお客様に通知します。継続して使用するとすべての変更が承認されたものとみなされますので、変更については定期的にこのプライバシーポリシーを参照することをお勧めします。\n" +
+        "このプライバシーポリシーは、2024年5月10日から発効します。\n" +
+        "\n" +
+        "\n" +
+        "あなたの同意\n" +
+        "\n" +
+        "アプリケーションを使用することにより、お客様は、このプライバシーポリシーに現在規定されている通り、および当社によって修正された通りに、お客様の情報が処理されることに同意したものとみなされます。\n" +
         "\n" +
         "\n" +
         "お問い合わせ\n" +
         "\n" +
-        "私のプライバシーポリシーについてご質問がございましたら、お気軽にtoff.monaka@gmail.comまでご連絡ください。"
+        "アプリケーションの使用中にプライバシーに関するご質問がある場合、またはその慣行についてご質問がある場合は、電子メール(toff.monaka@gmail.com)でサービスプロバイダーにお問い合わせください。"
     };
 }
 }
