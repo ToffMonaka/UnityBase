@@ -17,7 +17,7 @@ namespace UnityBase.Scene.Ui.Menu {
  */
 public class CheatStageItemNodeScriptCreateDesc : Lib.Scene.ObjectNodeScriptCreateDesc
 {
-    public UnityBase.Util.SCENE.MENU_CHEAT_STAGE_COMMAND_TYPE commandType = UnityBase.Util.SCENE.MENU_CHEAT_STAGE_COMMAND_TYPE.NONE;
+    public UnityBase.Scene.Ui.Menu.CheatCommandUtil.ADD_CODE_TYPE addCodeType = UnityBase.Scene.Ui.Menu.CheatCommandUtil.ADD_CODE_TYPE.NONE;
     public System.Action<UnityBase.Scene.Ui.Menu.CheatStageItemNodeScript> onClick = null;
 }
 
@@ -32,7 +32,7 @@ public class CheatStageItemNodeScript : Lib.Scene.ObjectNodeScript, IPointerClic
 
     public new UnityBase.Scene.Ui.Menu.CheatStageItemNodeScriptCreateDesc createDesc{get; private set;} = null;
 
-    private UnityBase.Util.SCENE.MENU_CHEAT_STAGE_COMMAND_TYPE _commandType = UnityBase.Util.SCENE.MENU_CHEAT_STAGE_COMMAND_TYPE.NONE;
+    private UnityBase.Scene.Ui.Menu.CheatCommandUtil.ADD_CODE_TYPE _addCodeType = UnityBase.Scene.Ui.Menu.CheatCommandUtil.ADD_CODE_TYPE.NONE;
     private System.Action<UnityBase.Scene.Ui.Menu.CheatStageItemNodeScript> _onClick = null;
 
     /**
@@ -67,18 +67,11 @@ public class CheatStageItemNodeScript : Lib.Scene.ObjectNodeScript, IPointerClic
      */
     protected override int _OnCreate()
     {
-        this._commandType = this.createDesc.commandType;
+        this._addCodeType = this.createDesc.addCodeType;
         this._onClick = this.createDesc.onClick;
 
-        this._nameText.SetText(UnityBase.Global.GetText(UnityBase.Util.SCENE.MENU_CHEAT_STAGE_COMMAND_NAME_MST_TEXT_ID_ARRAY[(int)this._commandType]));
-
-        var param = UnityBase.Util.SCENE.MENU_CHEAT_STAGE_COMMAND_PARAMETER_ARRAY[(int)this._commandType];
-
-        if (param.Length > 0) {
-            this._detailText.SetText(UnityBase.Util.SCENE.MENU_CHEAT_STAGE_COMMAND_FUNCTION_ARRAY[(int)this._commandType] + " " + param);
-        } else {
-            this._detailText.SetText(UnityBase.Util.SCENE.MENU_CHEAT_STAGE_COMMAND_FUNCTION_ARRAY[(int)this._commandType]);
-        }
+        this._nameText.SetText(UnityBase.Scene.Ui.Menu.CheatCommandUtil.ADD_CODE_NAME_ARRAY[(int)this._addCodeType]);
+        this._detailText.SetText(UnityBase.Scene.Ui.Menu.CheatCommandUtil.ADD_CODE_TEXT_ARRAY[(int)this._addCodeType]);
 
         return (0);
     }
@@ -198,12 +191,12 @@ public class CheatStageItemNodeScript : Lib.Scene.ObjectNodeScript, IPointerClic
     }
 
     /**
-     * @brief GetCommandType関数
-     * @return cmd_type (cmd_type)
+     * @brief GetAddCodeType関数
+     * @return add_code_type (add_code_type)
      */
-    public UnityBase.Util.SCENE.MENU_CHEAT_STAGE_COMMAND_TYPE GetCommandType()
+    public UnityBase.Scene.Ui.Menu.CheatCommandUtil.ADD_CODE_TYPE GetAddCodeType()
     {
-        return (this._commandType);
+        return (this._addCodeType);
     }
 }
 }

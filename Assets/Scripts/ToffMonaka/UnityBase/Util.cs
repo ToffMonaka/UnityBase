@@ -170,29 +170,6 @@ public static class Util
             UnityBase.Util.MST_TEXT_ID.EXIT,
             UnityBase.Util.MST_TEXT_ID.CHEAT
         };
-
-        public enum MENU_CHEAT_STAGE_COMMAND_TYPE : int
-        {
-            NONE = 0,
-            DATA_DELETE,
-		    COUNT
-        }
-        public static readonly int MENU_CHEAT_STAGE_COMMAND_TYPE_COUNT = (int)UnityBase.Util.SCENE.MENU_CHEAT_STAGE_COMMAND_TYPE.COUNT;
-
-        public static readonly UnityBase.Util.MST_TEXT_ID[] MENU_CHEAT_STAGE_COMMAND_NAME_MST_TEXT_ID_ARRAY = {
-            UnityBase.Util.MST_TEXT_ID.NONE,
-            UnityBase.Util.MST_TEXT_ID.DELETE_DATA
-        };
-
-        public static readonly string[] MENU_CHEAT_STAGE_COMMAND_FUNCTION_ARRAY = {
-            "",
-            "/DeleteData"
-        };
-
-        public static readonly string[] MENU_CHEAT_STAGE_COMMAND_PARAMETER_ARRAY = {
-            "",
-            ""
-        };
     }
 
     public enum MST_TEXT_ID : int
