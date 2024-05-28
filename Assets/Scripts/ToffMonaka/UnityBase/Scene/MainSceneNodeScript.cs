@@ -92,7 +92,7 @@ public class MainSceneNodeScript : Lib.Scene.MainSceneNodeScript
      */
     protected override void _OnUpdate()
     {
-        this._WriteDataFile();
+        this._UpdateDataFile();
 
         return;
     }
@@ -102,16 +102,7 @@ public class MainSceneNodeScript : Lib.Scene.MainSceneNodeScript
      */
     protected override void _OnStartApplication()
     {
-        {// SystemConfigFile Create
-            UnityBase.Global.systemConfigFile.readDesc.data.filePath = Application.persistentDataPath + "/" + UnityBase.Util.FILE_PATH.SYSTEM_CONFIG;
-            UnityBase.Global.systemConfigFile.writeDesc.data.filePath = UnityBase.Global.systemConfigFile.readDesc.data.filePath;
-
-            if (Lib.Data.Util.IsExistFile(UnityBase.Global.systemConfigFile.readDesc.data.filePath)) {
-                UnityBase.Global.systemConfigFile.Read();
-            } else {
-                UnityBase.Global.systemConfigFile.Write();
-            }
-        }
+        this._StartDataFile();
 
         this._CreateManager();
 
@@ -144,7 +135,77 @@ public class MainSceneNodeScript : Lib.Scene.MainSceneNodeScript
     {
         this._ReleaseManager();
 
-        this._WriteDataFile();
+        this._EndDataFile();
+
+        return;
+    }
+
+    /**
+     * @brief _StartDataFile関数
+     */
+    private void _StartDataFile()
+    {
+        {// SystemConfigFile Create
+            UnityBase.Global.systemConfigFile.readDesc.data.filePath = Application.persistentDataPath + "/" + UnityBase.Util.FILE_PATH.SYSTEM_CONFIG;
+            UnityBase.Global.systemConfigFile.writeDesc.data.filePath = UnityBase.Global.systemConfigFile.readDesc.data.filePath;
+
+            if (Lib.Data.Util.IsExistFile(UnityBase.Global.systemConfigFile.readDesc.data.filePath)) {
+                UnityBase.Global.systemConfigFile.Read();
+            } else {
+                UnityBase.Global.systemConfigFile.Write();
+            }
+        }
+
+        {// UserFile Create
+            UnityBase.Global.userFile.readDesc.data.filePath = Application.persistentDataPath + "/" + UnityBase.Util.FILE_PATH.USER;
+            UnityBase.Global.userFile.writeDesc.data.filePath = UnityBase.Global.userFile.readDesc.data.filePath;
+
+            if (Lib.Data.Util.IsExistFile(UnityBase.Global.userFile.readDesc.data.filePath)) {
+                UnityBase.Global.userFile.Read();
+            } else {
+                UnityBase.Global.userFile.Write();
+            }
+        }
+
+        return;
+    }
+
+    /**
+     * @brief _EndDataFile関数
+     */
+    private void _EndDataFile()
+    {
+        if (UnityBase.Global.systemConfigFile.GetDeleteFlag()) {
+            UnityBase.Global.systemConfigFile.Delete();
+        }
+
+        if (UnityBase.Global.userFile.GetDeleteFlag()) {
+            UnityBase.Global.userFile.Delete();
+        }
+
+        if (UnityBase.Global.systemConfigFile.GetWriteFlag()) {
+            UnityBase.Global.systemConfigFile.Write();
+        }
+
+        if (UnityBase.Global.userFile.GetWriteFlag()) {
+            UnityBase.Global.userFile.Write();
+        }
+
+        return;
+    }
+
+    /**
+     * @brief _UpdateDataFile関数
+     */
+    private void _UpdateDataFile()
+    {
+        if (UnityBase.Global.systemConfigFile.GetWriteFlag()) {
+            UnityBase.Global.systemConfigFile.Write();
+        }
+
+        if (UnityBase.Global.userFile.GetWriteFlag()) {
+            UnityBase.Global.userFile.Write();
+        }
 
         return;
     }
@@ -281,22 +342,6 @@ public class MainSceneNodeScript : Lib.Scene.MainSceneNodeScript
         Lib.Sound.Util.SetManager(null);
         Lib.Graphic.Util.SetManager(null);
         Lib.Input.Util.SetManager(null);
-
-        return;
-    }
-
-    /**
-     * @brief _WriteDataFile関数
-     */
-    private void _WriteDataFile()
-    {
-        if (UnityBase.Global.systemConfigFile.GetWriteFlag()) {
-            UnityBase.Global.systemConfigFile.Write();
-        }
-
-        if (UnityBase.Global.userFile.GetWriteFlag()) {
-            UnityBase.Global.userFile.Write();
-        }
 
         return;
     }

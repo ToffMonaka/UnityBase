@@ -293,37 +293,10 @@ public class InitSubSceneNodeScript : Lib.Scene.SubSceneNodeScript
 			break;
 		}
 		case 3: {
-		    switch (this._updateProgressCount) {
-		    case 0: {
-                {// UserFile Create
-                    UnityBase.Global.userFile.readDesc.data.filePath = Application.persistentDataPath + "/" + UnityBase.Util.FILE_PATH.USER;
-                    UnityBase.Global.userFile.writeDesc.data.filePath = UnityBase.Global.userFile.readDesc.data.filePath;
-
-                    if (Lib.Data.Util.IsExistFile(UnityBase.Global.userFile.readDesc.data.filePath)) {
-                        UnityBase.Global.userFile.Read();
-                    } else {
-                        UnityBase.Global.userFile.Write();
-                    }
-                }
-
-                ++this._updateProgressCount;
-
-			    break;
-		    }
-		    default: {
-                this.SetUpdateProgressType(4);
-
-			    break;
-		    }
-		    }
-
-			break;
-		}
-		case 4: {
             if (this._updateProgressElapsedTime >= 3.0f) {
                 this.Close(1, 1);
 
-                this.SetUpdateProgressType(5);
+                this.SetUpdateProgressType(4);
             }
 
 			break;

@@ -43,6 +43,7 @@ public class UserFile : Lib.Data.File
 	public Lib.Data.FileWriteDesc<Lib.Data.BinaryFileWriteDescData> writeDesc = new();
 
     private bool _writeFlag;
+    private bool _deleteFlag;
 
     /**
      * @brief コンストラクタ
@@ -63,6 +64,7 @@ public class UserFile : Lib.Data.File
 	    this.readDesc.Init();
 	    this.writeDesc.Init();
         this._writeFlag = false;
+        this._deleteFlag = false;
 
         return;
     }
@@ -181,6 +183,36 @@ public class UserFile : Lib.Data.File
     public bool GetWriteFlag()
     {
         return (this._writeFlag);
+    }
+
+    /**
+     * @brief Delete関数
+     * @param delay_flg (delay_flag)
+     * @return result_val (result_value)<br>
+     * 0未満=失敗
+     */
+    public int Delete(bool delay_flg = false)
+    {
+        if (delay_flg) {
+            this._deleteFlag = true;
+
+            return (0);
+        }
+
+        this._deleteFlag = false;
+
+        this.data.Init();
+
+        return (this.Write());
+    }
+
+    /**
+     * @brief GetDeleteFlag関数
+     * @return delete_flg (delete_flag)
+     */
+    public bool GetDeleteFlag()
+    {
+        return (this._deleteFlag);
     }
 }
 }

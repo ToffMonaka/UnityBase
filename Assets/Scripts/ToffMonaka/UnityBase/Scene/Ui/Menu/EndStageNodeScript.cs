@@ -230,13 +230,9 @@ public class EndStageNodeScript : UnityBase.Scene.Ui.Menu.StageNodeScript
         Lib.Scene.Util.GetSoundManager().PlaySe((int)UnityBase.Util.SOUND.SE_INDEX.OK2);
 
         if (this._restartToggle.isOn) {
-            Lib.Scene.Util.GetManager().ChangeMainScene(UnityBase.Util.SCENE.NAME.MAIN);
+            Lib.Scene.Util.GetManager().StartApplication();
         } else if (this._endToggle.isOn) {
-#if UNITY_EDITOR
-            UnityEditor.EditorApplication.isPlaying = false;
-#else
-            Application.Quit();
-#endif
+            Lib.Scene.Util.GetManager().EndApplication();
         }
 
         this.GetMenuNodeScript().ChangeStage(UnityBase.Util.SCENE.MENU_STAGE_TYPE.NONE);

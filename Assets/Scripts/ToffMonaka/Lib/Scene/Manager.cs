@@ -34,6 +34,8 @@ public class Manager
     private Lib.Scene.SubSceneNodeScript _subSceneNodeScript = null;
     private List<Lib.Scene.ObjectNodeScript>[]  _objectNodeScriptArray = null;
     private List<Lib.Scene.ComponentScript>[]  _componentScriptArray = null;
+    private bool _applicationStartedFlag = false;
+    private bool _applicationEndedFlag = false;
 
     /**
      * @brief コンストラクタ
@@ -80,6 +82,9 @@ public class Manager
         this._Release();
 
         this._mainSceneNode = null;
+        this._subSceneNode = null;
+        this._applicationStartedFlag = false;
+        this._applicationEndedFlag = false;
 
         return;
     }
@@ -374,6 +379,45 @@ public class Manager
         this._subSceneNode = Lib.Scene.Util.GetPrefabNode(prefab_file_path, this._mainSceneNode);
 
         return (this._subSceneNode.GetComponent<Lib.Scene.SubSceneNodeScript>());
+    }
+
+    /**
+     * @brief StartApplication関数
+     * @param scene_name (scene_name)
+     */
+    public void StartApplication(string scene_name = null)
+    {
+        if ((this._applicationStartedFlag)
+        || (this._applicationEndedFlag)) {
+            return;
+        }
+
+        this._applicationStartedFlag = true;
+
+        this.ChangeMainScene(scene_name ?? SceneManager.GetActiveScene().name);
+
+        return;
+    }
+
+    /**
+     * @brief EndApplication関数
+     */
+    public void EndApplication()
+    {
+        if ((this._applicationStartedFlag)
+        || (this._applicationEndedFlag)) {
+            return;
+        }
+
+        this._applicationEndedFlag = true;
+
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
+        Application.Quit();
+#endif
+
+        return;
     }
 }
 }

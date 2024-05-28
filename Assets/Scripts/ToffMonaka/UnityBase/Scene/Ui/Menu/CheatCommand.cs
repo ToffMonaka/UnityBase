@@ -58,7 +58,7 @@ public static class CheatCommandUtil
             return (0.0);
         }
 
-        Debug.Log("FunctionDeleteData");
+        UnityBase.Util.DeleteData();
 
         return (0.0);
     }

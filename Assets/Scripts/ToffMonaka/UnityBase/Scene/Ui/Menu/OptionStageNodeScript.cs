@@ -568,7 +568,7 @@ public class OptionStageNodeScript : UnityBase.Scene.Ui.Menu.StageNodeScript
         UnityBase.Global.systemConfigFile.Write(true);
 
         if (this._restartFlag != 0U) {
-            Lib.Scene.Util.GetManager().ChangeMainScene(UnityBase.Util.SCENE.NAME.MAIN);
+            Lib.Scene.Util.GetManager().StartApplication();
         }
 
         this.GetMenuNodeScript().ChangeStage(UnityBase.Util.SCENE.MENU_STAGE_TYPE.NONE);

@@ -112,12 +112,6 @@ public static class Util
         }
         public static readonly int SCRIPT_INDEX_COUNT = (int)UnityBase.Util.SCENE.SCRIPT_INDEX.COUNT;
 
-        public static class NAME
-        {
-            public static readonly string NONE = "";
-            public static readonly string MAIN = "MainScene";
-        }
-
         public enum SELECT_BOARD_TYPE : int
         {
             NONE = 0,
@@ -217,6 +211,19 @@ public static class Util
         UnityBase.Util.MST_TEXT_ID.ENGLISH,
         UnityBase.Util.MST_TEXT_ID.JAPANESE
     };
+
+    /**
+     * @brief DeleteData関数
+     */
+    public static void DeleteData()
+    {
+        UnityBase.Global.systemConfigFile.Delete(true);
+        UnityBase.Global.userFile.Delete(true);
+
+        Lib.Scene.Util.GetManager().StartApplication();
+
+        return;
+    }
 }
 }
 }
