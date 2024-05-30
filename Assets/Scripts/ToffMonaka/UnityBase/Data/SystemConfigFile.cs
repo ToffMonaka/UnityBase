@@ -36,7 +36,19 @@ public class SystemConfigFileData
      */
     public virtual void Init()
     {
-        this.systemLanguageType = UnityBase.Util.LANGUAGE_TYPE.ENGLISH;
+		switch (Application.systemLanguage) {
+		case SystemLanguage.Japanese: {
+            this.systemLanguageType = UnityBase.Util.LANGUAGE_TYPE.JAPANESE;
+
+			break;
+		}
+		default: {
+            this.systemLanguageType = UnityBase.Util.LANGUAGE_TYPE.ENGLISH;
+
+			break;
+		}
+		}
+
         this.soundBgmVolume = 0.5f;
         this.soundBgmMuteFlag = false;
         this.soundSeVolume = 0.5f;

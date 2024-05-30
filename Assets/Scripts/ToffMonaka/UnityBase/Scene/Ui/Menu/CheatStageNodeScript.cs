@@ -337,8 +337,6 @@ public class CheatStageNodeScript : UnityBase.Scene.Ui.Menu.StageNodeScript
             this._commandResultText.color = new UnityEngine.Color(252.0f / 255.0f, 8.0f / 255.0f, 8.0f / 255.0f, 1.0f);
 
             return;
-        } else {
-
         }
 
         this._commandResultText.SetText("GOOD");
