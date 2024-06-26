@@ -1,6 +1,6 @@
 ﻿/**
  * @file
- * @brief UserFileファイル
+ * @brief UserDataFileファイル
  */
 
 
@@ -10,14 +10,14 @@ using UnityEngine;
 namespace ToffMonaka {
 namespace UnityBase.Data {
 /**
- * @brief UserFileDataクラス
+ * @brief UserDataFileDataクラス
  */
-public class UserFileData
+public class UserDataFileData
 {
     /**
      * @brief コンストラクタ
      */
-    public UserFileData()
+    public UserDataFileData()
     {
         this.Init();
 
@@ -34,11 +34,11 @@ public class UserFileData
 }
 
 /**
- * @brief UserFileクラス
+ * @brief UserDataFileクラス
  */
-public class UserFile : Lib.Data.File
+public class UserDataFile : Lib.Data.File
 {
-	public UnityBase.Data.UserFileData data = new();
+	public UnityBase.Data.UserDataFileData data = new();
 	public Lib.Data.FileReadDesc<Lib.Data.BinaryFileReadDescData> readDesc = new();
 	public Lib.Data.FileWriteDesc<Lib.Data.BinaryFileWriteDescData> writeDesc = new();
 
@@ -48,7 +48,7 @@ public class UserFile : Lib.Data.File
     /**
      * @brief コンストラクタ
      */
-    public UserFile() : base()
+    public UserDataFile() : base()
     {
         return;
     }

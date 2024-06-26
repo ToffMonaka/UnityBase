@@ -156,14 +156,14 @@ public class MainSceneNodeScript : Lib.Scene.MainSceneNodeScript
             }
         }
 
-        {// UserFile Create
-            UnityBase.Global.userFile.readDesc.data.filePath = Application.persistentDataPath + "/" + UnityBase.Util.FILE_PATH.USER;
-            UnityBase.Global.userFile.writeDesc.data.filePath = UnityBase.Global.userFile.readDesc.data.filePath;
+        {// UserDataFile Create
+            UnityBase.Global.userDataFile.readDesc.data.filePath = Application.persistentDataPath + "/" + UnityBase.Util.FILE_PATH.USER_DATA;
+            UnityBase.Global.userDataFile.writeDesc.data.filePath = UnityBase.Global.userDataFile.readDesc.data.filePath;
 
-            if (Lib.Data.Util.IsExistFile(UnityBase.Global.userFile.readDesc.data.filePath)) {
-                UnityBase.Global.userFile.Read();
+            if (Lib.Data.Util.IsExistFile(UnityBase.Global.userDataFile.readDesc.data.filePath)) {
+                UnityBase.Global.userDataFile.Read();
             } else {
-                UnityBase.Global.userFile.Write();
+                UnityBase.Global.userDataFile.Write();
             }
         }
 
@@ -179,16 +179,16 @@ public class MainSceneNodeScript : Lib.Scene.MainSceneNodeScript
             UnityBase.Global.systemConfigFile.Delete();
         }
 
-        if (UnityBase.Global.userFile.GetDeleteFlag()) {
-            UnityBase.Global.userFile.Delete();
+        if (UnityBase.Global.userDataFile.GetDeleteFlag()) {
+            UnityBase.Global.userDataFile.Delete();
         }
 
         if (UnityBase.Global.systemConfigFile.GetWriteFlag()) {
             UnityBase.Global.systemConfigFile.Write();
         }
 
-        if (UnityBase.Global.userFile.GetWriteFlag()) {
-            UnityBase.Global.userFile.Write();
+        if (UnityBase.Global.userDataFile.GetWriteFlag()) {
+            UnityBase.Global.userDataFile.Write();
         }
 
         return;
@@ -203,8 +203,8 @@ public class MainSceneNodeScript : Lib.Scene.MainSceneNodeScript
             UnityBase.Global.systemConfigFile.Write();
         }
 
-        if (UnityBase.Global.userFile.GetWriteFlag()) {
-            UnityBase.Global.userFile.Write();
+        if (UnityBase.Global.userDataFile.GetWriteFlag()) {
+            UnityBase.Global.userDataFile.Write();
         }
 
         return;
