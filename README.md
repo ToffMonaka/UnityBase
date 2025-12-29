@@ -17,3 +17,5 @@ Assetsにcodeandweb.comを追加<br>
 PluginsにDemigiantを追加<br>
 ウィンドウ -> アセットストア -> DOTween<br>
 をインポートして下さい。<br>
+
+test
