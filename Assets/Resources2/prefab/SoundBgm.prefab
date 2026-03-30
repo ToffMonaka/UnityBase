@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &2597780599510338833
+--- !u!1 &9109443441264609503
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,9 +8,9 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 2597780599510338832}
-  - component: {fileID: 2597780599510338862}
-  - component: {fileID: 2597780599510338863}
+  - component: {fileID: 3878987942756503650}
+  - component: {fileID: 1299201837121024886}
+  - component: {fileID: 2141384479567545490}
   m_Layer: 0
   m_Name: SoundBgm
   m_TagString: Untagged
@@ -18,45 +18,46 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &2597780599510338832
+--- !u!4 &3878987942756503650
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2597780599510338833}
+  m_GameObject: {fileID: 9109443441264609503}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2597780599510338862
+--- !u!114 &1299201837121024886
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2597780599510338833}
+  m_GameObject: {fileID: 9109443441264609503}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e7086e850f2102840b2005c8cf77daad, type: 3}
+  m_Script: {fileID: 11500000, guid: 306d0c856b324f9479069880d11bc701, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: 
-  _audioSource: {fileID: 2597780599510338863}
---- !u!82 &2597780599510338863
+  m_EditorClassIdentifier: Assembly-CSharp::ToffMonaka.Lib.Scene.SoundBgmNodeScript
+  _audioSource: {fileID: 2141384479567545490}
+--- !u!82 &2141384479567545490
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2597780599510338833}
+  m_GameObject: {fileID: 9109443441264609503}
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1

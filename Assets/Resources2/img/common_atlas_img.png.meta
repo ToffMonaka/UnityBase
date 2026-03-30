@@ -1,12 +1,12 @@
 fileFormatVersion: 2
-guid: 70ab18295770fcf4babf4820374b1c47
+guid: 0e8949c9d6a8a734d89d9955fb2b42df
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
-  serializedVersion: 12
+  serializedVersion: 13
   mipmaps:
     mipMapMode: 0
-    enableMipMap: 0
+    enableMipMap: 1
     sRGBTexture: 1
     linearTexture: 0
     fadeOut: 0
@@ -20,11 +20,12 @@ TextureImporter:
     externalNormalMap: 0
     heightScale: 0.25
     normalMapFilter: 0
+    flipGreenChannel: 0
   isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
-  ignoreMasterTextureLimit: 0
+  ignoreMipmapLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -36,9 +37,9 @@ TextureImporter:
     filterMode: 1
     aniso: 1
     mipBias: 0
-    wrapU: 1
-    wrapV: 1
-    wrapW: 1
+    wrapU: 0
+    wrapV: 0
+    wrapW: 0
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
@@ -63,9 +64,10 @@ TextureImporter:
   textureFormatSet: 0
   ignorePngGamma: 0
   applyGammaDecoding: 0
+  swizzle: 50462976
   cookieLightType: 0
   platformSettings:
-  - serializedVersion: 3
+  - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -75,9 +77,10 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
+  - serializedVersion: 4
     buildTarget: Standalone
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -87,21 +90,10 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: Server
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
+  - serializedVersion: 4
     buildTarget: Android
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -111,133 +103,30 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: menu_icon_img
+      name: back_icon_img
       rect:
         serializedVersion: 2
-        x: 1
-        y: 57
+        x: 2
+        y: 182
         width: 64
         height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9549f6b328b7ce94e853626d39282f5c
-      internalID: -444311614
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: sliced_bg_img
-      rect:
-        serializedVersion: 2
-        x: 50
-        y: 8
-        width: 48
-        height: 48
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 5, y: 5, z: 5, w: 5}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: aeb434c17a446aa458ba84c4582f9953
-      internalID: 2045713713
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: sliced_bg2_img
-      rect:
-        serializedVersion: 2
-        x: 1
-        y: 8
-        width: 48
-        height: 48
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 5, y: 5, z: 5, w: 5}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 9c72aa3f552fc90418d68f14388b2c6c
-      internalID: 1020748398
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: title_name_img
-      rect:
-        serializedVersion: 2
-        x: 1
-        y: 255
-        width: 480
-        height: 256
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: a783efe74b9563749a1ff33d87efda7e
-      internalID: -1912320061
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: sliced_btn_cover_img
-      rect:
-        serializedVersion: 2
-        x: 66
-        y: 203
-        width: 48
-        height: 48
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 5, y: 5, z: 5, w: 5}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: be23bfe2f5c666c46a5d3cd9932e5cb9
-      internalID: 779608807
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: sliced_btn_img
-      rect:
-        serializedVersion: 2
-        x: 66
-        y: 154
-        width: 48
-        height: 48
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 5, y: 5, z: 5, w: 5}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 7d4e1cb567f5e3b4dada2dc4bef8ad5c
-      internalID: -549913937
+      spriteID: f5457ec672c72814aaa191118cf6495b
+      internalID: 1828093758
       vertices: []
       indices: 
       edges: []
@@ -246,40 +135,20 @@ TextureImporter:
       name: close_icon_img
       rect:
         serializedVersion: 2
-        x: 1
-        y: 122
+        x: 2
+        y: 116
         width: 64
         height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4e5625642948fb6488208b1ff98174d7
-      internalID: -108880751
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: back_icon_img
-      rect:
-        serializedVersion: 2
-        x: 1
-        y: 187
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 2c63e67b91ef144428d24009f3e73e36
-      internalID: 1902315550
+      spriteID: 1a780f67a80cd56488d0558a66727505
+      internalID: -484489551
       vertices: []
       indices: 
       edges: []
@@ -288,19 +157,20 @@ TextureImporter:
       name: left_btn_cover_img
       rect:
         serializedVersion: 2
-        x: 482
-        y: 447
+        x: 484
+        y: 446
         width: 24
         height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e15d167c06545db46916a6f9b2b08e17
-      internalID: -304043277
+      spriteID: 58949c95eb5e3d247a561cfb08d3b24c
+      internalID: -357185212
       vertices: []
       indices: 
       edges: []
@@ -309,19 +179,42 @@ TextureImporter:
       name: left_btn_img
       rect:
         serializedVersion: 2
-        x: 482
-        y: 382
+        x: 484
+        y: 380
         width: 24
         height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 99a669e912afa804d941b48a7b7d9002
-      internalID: -977036350
+      spriteID: 1e8c270714772e6468e5b3ba27719922
+      internalID: 197041024
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: menu_icon_img
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 50
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2235a83e19191f1479ceb545907f20d8
+      internalID: -949093935
       vertices: []
       indices: 
       edges: []
@@ -330,19 +223,20 @@ TextureImporter:
       name: right_btn_cover_img
       rect:
         serializedVersion: 2
-        x: 482
-        y: 317
+        x: 484
+        y: 314
         width: 24
         height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2b5a2a67dc896c64fa767c0758917a0c
-      internalID: 1521482529
+      spriteID: c66d281765424004aa4a85b1c4c07c2e
+      internalID: 1390778532
       vertices: []
       indices: 
       edges: []
@@ -351,71 +245,185 @@ TextureImporter:
       name: right_btn_img
       rect:
         serializedVersion: 2
-        x: 482
-        y: 252
+        x: 484
+        y: 248
         width: 24
         height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4140a9b36b81ca64f9c9a5a7f649b324
-      internalID: -1995911554
+      spriteID: 00b1ef4b2ba7e374d868a86a75248908
+      internalID: 346450444
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sliced_bg3_img
+      name: sliced_bg_img
       rect:
         serializedVersion: 2
-        x: 66
-        y: 121
+        x: 68
+        y: 148
+        width: 48
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 5, y: 5, z: 5, w: 5}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e8966394f41d1484c8316bb06c9c33d4
+      internalID: -490082733
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sliced_bg2_img
+      rect:
+        serializedVersion: 2
+        x: 68
+        y: 198
+        width: 48
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 5, y: 5, z: 5, w: 5}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 149d05f988a39de47ac2f72aac025c94
+      internalID: -1135536220
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sliced_btn_cover_img
+      rect:
+        serializedVersion: 2
+        x: 68
+        y: 98
+        width: 48
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 5, y: 5, z: 5, w: 5}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7d9a36b29524ee0488eca8f7b55d11b0
+      internalID: -360407231
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sliced_btn_img
+      rect:
+        serializedVersion: 2
+        x: 68
+        y: 48
+        width: 48
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 5, y: 5, z: 5, w: 5}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 38d44fa29af9224408fc91adb9f0dc0c
+      internalID: 575340965
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: title_name_img
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 254
+        width: 480
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8b5e62ff93e68c1479842d284f2b822b
+      internalID: -59364538
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sliced_bg_cover_img
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 16
         width: 32
         height: 32
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 5, y: 5, z: 5, w: 5}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 83788e7e4affe69438a297fb04e19bc6
-      internalID: -1544211645
+      spriteID: 1af8de4a2d7686942873946cab09a5ac
+      internalID: -107846777
       vertices: []
       indices: 
       edges: []
       weights: []
     outline: []
+    customData: 
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID: 7b95148d7222360439a33e5187339946
     internalID: 0
     vertices: []
     indices: 
     edges: []
     weights: []
     secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
     nameFileIdTable:
-      back_icon_img: 1902315550
-      close_icon_img: -108880751
-      left_btn_cover_img: -304043277
-      left_btn_img: -977036350
-      menu_icon_img: -444311614
-      right_btn_cover_img: 1521482529
-      right_btn_img: -1995911554
-      sliced_bg2_img: 1020748398
-      sliced_bg3_img: -1544211645
-      sliced_bg_img: 2045713713
-      sliced_btn_cover_img: 779608807
-      sliced_btn_img: -549913937
-      title_name_img: -1912320061
-  spritePackingTag: 
+      back_icon_img: 1828093758
+      close_icon_img: -484489551
+      left_btn_cover_img: -357185212
+      left_btn_img: 197041024
+      menu_icon_img: -949093935
+      right_btn_cover_img: 1390778532
+      right_btn_img: 346450444
+      sliced_bg2_img: -1135536220
+      sliced_bg_cover_img: -107846777
+      sliced_bg_img: -490082733
+      sliced_btn_cover_img: -360407231
+      sliced_btn_img: 575340965
+      title_name_img: -59364538
+  mipmapLimitGroupName: 
   pSDRemoveMatte: 0
-  pSDShowRemoveMatteOption: 0
   userData: 
   assetBundleName: 
   assetBundleVariant: 

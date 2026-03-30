@@ -2,18 +2,39 @@
 
 <br>
 
-Assets‚ÉAddressableAssetsData‚ğ’Ç‰Á<br>
-ƒEƒBƒ“ƒhƒE -> ƒpƒbƒP[ƒWƒ}ƒl[ƒWƒƒ[ -> Unity ƒŒƒWƒXƒgƒŠ -> Addressables<br>
-‚ğƒCƒ“ƒ|[ƒg‚µ‚Ä‰º‚³‚¢B<br>
+é–‹ç™ºç’°å¢ƒ<br>
+Unity 6.3 LTS (6000.3.6f1)<br>
+<details><summary>è¿½åŠ ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«</summary>
 
-Assets‚ÉTextMesh Pro‚ğ’Ç‰Á<br>
-ƒEƒBƒ“ƒhƒE -> TextMeshPro -> TMP Šî–{ƒŠƒ\[ƒX‚ÌƒCƒ“ƒ|[ƒg<br>
-‚ğƒCƒ“ƒ|[ƒg‚µ‚Ä‰º‚³‚¢B<br>
+    Android Build Support
+    OpenJDK
+    Android SDK & NDK Tools
+    æ—¥æœ¬èª
+</details><br>
 
-Assets‚Écodeandweb.com‚ğ’Ç‰Á<br>
-ƒEƒBƒ“ƒhƒE -> ƒAƒZƒbƒgƒXƒgƒA -> TexturePacker Importer<br>
-‚ğƒCƒ“ƒ|[ƒg‚µ‚Ä‰º‚³‚¢B<br>
+Visual Studio 2026<br>
+<details><summary>è¿½åŠ ãƒ¯ãƒ¼ã‚¯ãƒ­ãƒ¼ãƒ‰</summary>
 
-Plugins‚ÉDemigiant‚ğ’Ç‰Á<br>
-ƒEƒBƒ“ƒhƒE -> ƒAƒZƒbƒgƒXƒgƒA -> DOTween<br>
-‚ğƒCƒ“ƒ|[ƒg‚µ‚Ä‰º‚³‚¢B<br>
+    C++ã«ã‚ˆã‚‹ãƒ‡ã‚¹ã‚¯ãƒˆãƒƒãƒ—é–‹ç™º
+    .NETãƒ‡ã‚¹ã‚¯ãƒˆãƒƒãƒ—é–‹ç™º
+    C++ã«ã‚ˆã‚‹ã‚²ãƒ¼ãƒ é–‹ç™º
+    Unityã«ã‚ˆã‚‹ã‚²ãƒ¼ãƒ é–‹ç™º
+</details><br>
+
+Unityã§ãƒ—ãƒ­ã‚¸ã‚§ã‚¯ãƒˆã«ã‚¤ãƒ³ãƒãƒ¼ãƒˆ<br>
+Assetsã«AddressableAssetsDataã‚’è¿½åŠ <br>
+ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ -> ã‚¢ã‚»ãƒƒãƒˆç®¡ç† -> Addressables -> ã‚°ãƒ«ãƒ¼ãƒ—<br>
+Create Addressables Settingsã‚’ã‚¯ãƒªãƒƒã‚¯ã—ã¦ä¸‹ã•ã„ã€‚<br>
+Legacy Bundles Detectedã®è­¦å‘ŠãŒå‡ºãŸã‚‰ã€Ignoreã‚’ã‚¯ãƒªãƒƒã‚¯ã—ã¦ä¸‹ã•ã„ã€‚<br>
+
+Assetsã«TextMesh Proã‚’è¿½åŠ <br>
+ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ -> TextMeshPro -> TMP åŸºæœ¬ãƒªã‚½ãƒ¼ã‚¹ã®ã‚¤ãƒ³ãƒãƒ¼ãƒˆ<br>
+ã‚¤ãƒ³ãƒãƒ¼ãƒˆã‚’ã‚¯ãƒªãƒƒã‚¯ã—ã¦ä¸‹ã•ã„ã€‚<br>
+
+Assetsã«codeandweb.comã‚’è¿½åŠ <br>
+ãƒ‘ãƒƒã‚±ãƒ¼ã‚¸ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ -> ãƒã‚¤ã‚¢ã‚»ãƒƒãƒˆ -> TexturePacker Importer<br>
+ã‚¤ãƒ³ãƒãƒ¼ãƒˆã‚’ã‚¯ãƒªãƒƒã‚¯ã—ã¦ä¸‹ã•ã„ã€‚<br>
+
+Pluginsã«Demigiantã‚’è¿½åŠ <br>
+ãƒ‘ãƒƒã‚±ãƒ¼ã‚¸ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ -> ãƒã‚¤ã‚¢ã‚»ãƒƒãƒˆ -> DOTween<br>
+ã‚¤ãƒ³ãƒãƒ¼ãƒˆã‚’ã‚¯ãƒªãƒƒã‚¯ã—ã¦ä¸‹ã•ã„ã€‚<br>

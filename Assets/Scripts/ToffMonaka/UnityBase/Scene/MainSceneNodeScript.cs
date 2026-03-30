@@ -113,7 +113,7 @@ public class MainSceneNodeScript : Lib.Scene.MainSceneNodeScript
             script.Create(script_create_desc);
             script.Open(0);
         }
-
+        
         {// InitSubSceneNodeScript Create
             var script = this.GetManager().ChangeSubScene(UnityBase.Util.FILE_PATH.INIT_SUB_SCENE_PREFAB) as UnityBase.Scene.InitSubSceneNodeScript;
             var script_create_desc = new UnityBase.Scene.InitSubSceneNodeScriptCreateDesc();
