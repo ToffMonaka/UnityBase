@@ -101,7 +101,7 @@ public class SelectNodeScript : Lib.Scene.ObjectNodeScript
                 this._itemNodeScriptContainer.Add(script);
             }
 
-            if (UnityBase.Util.DEBUG_FLAG) {
+            if (UnityBase.Util.GetDebugFlag()) {
 #pragma warning disable CS0162
                 var script = GameObject.Instantiate(this._itemNode, this._itemNode.transform.parent).GetComponent<UnityBase.Scene.Ui.Menu.SelectItemNodeScript>();
                 var script_create_desc = new UnityBase.Scene.Ui.Menu.SelectItemNodeScriptCreateDesc();

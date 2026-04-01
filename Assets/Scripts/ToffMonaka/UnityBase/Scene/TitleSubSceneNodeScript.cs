@@ -26,6 +26,7 @@ public class TitleSubSceneNodeScriptCreateDesc : Lib.Scene.SubSceneNodeScriptCre
 public class TitleSubSceneNodeScript : Lib.Scene.SubSceneNodeScript
 {
     [SerializeField] private TMP_Text _startButtonNameText = null;
+    [SerializeField] private TMP_Text _debugNameText = null;
     [SerializeField] private TMP_Text _companyNameText = null;
     [SerializeField] private TMP_Text _versionNameText = null;
     [SerializeField] private GameObject _menuNode = null;
@@ -67,6 +68,7 @@ public class TitleSubSceneNodeScript : Lib.Scene.SubSceneNodeScript
      */
     protected override int _OnCreate()
     {
+        this._debugNameText.gameObject.SetActive(UnityBase.Util.GetDebugFlag());
         this._companyNameText.SetText(UnityBase.Util.PROJECT.COMPANY_NAME);
         this._versionNameText.SetText("Version " + UnityBase.Util.PROJECT.VERSION_NAME);
 

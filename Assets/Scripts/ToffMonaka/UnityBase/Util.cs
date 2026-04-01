@@ -15,9 +15,9 @@ namespace UnityBase {
 public static class Util
 {
 #if DEBUG
-    public static readonly bool DEBUG_FLAG = true;
+    private static bool _debugFlag = true;
 #else
-    public static readonly bool DEBUG_FLAG = false;
+    private static bool _debugFlag = false;
 #endif
 
     public static class PROJECT
@@ -211,6 +211,28 @@ public static class Util
         UnityBase.Util.MST_TEXT_ID.ENGLISH,
         UnityBase.Util.MST_TEXT_ID.JAPANESE
     };
+
+    /**
+     * @brief GetDebugFlag関数
+     * @return debug_flg (debug_flag)
+     */
+    public static bool GetDebugFlag()
+    {
+        return (UnityBase.Util._debugFlag);
+    }
+    
+    /**
+     * @brief SetDebugFlag関数
+     * @param debug_flg (debug_flag)
+     */
+    public static void SetDebugFlag(bool debug_flg)
+    {
+        Debug.Log("UnityBase.Util.SetDebugFlag: " + debug_flg);
+
+        UnityBase.Util._debugFlag = debug_flg;
+
+        return;
+    }
 
     /**
      * @brief DeleteData関数
