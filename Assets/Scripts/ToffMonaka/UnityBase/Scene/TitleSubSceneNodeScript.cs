@@ -107,7 +107,7 @@ public class TitleSubSceneNodeScript : Lib.Scene.SubSceneNodeScript
     {
         Lib.Scene.Util.GetSoundManager().PlayBgm((int)UnityBase.Util.SOUND.BGM_INDEX.TITLE);
 
-        this._startButtonNameText.DOFade(0.0f, 1.0f).SetLoops(-1, LoopType.Yoyo).SetEase(Ease.InQuart).SetDelay(1.0f).SetLink(this._startButtonNameText.gameObject);
+        this._startButtonNameText.DOFade(0.0f, 1.0f).SetEase(Ease.InCubic).SetLoops(-1, LoopType.Yoyo).SetDelay(1.0f).SetLink(this._startButtonNameText.gameObject);
 
         return;
     }

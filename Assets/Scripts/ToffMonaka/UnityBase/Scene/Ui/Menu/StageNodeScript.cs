@@ -123,7 +123,7 @@ public class StageNodeScript : Lib.Scene.ObjectNodeScript
 
             var open_close_sequence = DOTween.Sequence();
 
-            open_close_sequence.Append(rect_transform.DOAnchorPosX(8.0f, 0.1f));
+            open_close_sequence.Append(rect_transform.DOAnchorPosX(0.0f, 0.1f));
             open_close_sequence.SetLink(this.gameObject);
 
             this.AddOpenCloseSequence(open_close_sequence);

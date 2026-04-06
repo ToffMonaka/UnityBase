@@ -4,10 +4,11 @@
  */
 
 
-using UnityEngine;
+using DG.Tweening;
 using System.Collections.Generic;
 using TMPro;
-using DG.Tweening;
+using UnityEngine;
+using UnityEngine.UI;
 
 
 namespace ToffMonaka {
@@ -26,6 +27,7 @@ public class SelectNodeScriptCreateDesc : Lib.Scene.ObjectNodeScriptCreateDesc
 public class SelectNodeScript : Lib.Scene.ObjectNodeScript
 {
     [SerializeField] private TMP_Text _nameText = null;
+    [SerializeField] private ScrollRect _scrollRect = null;
     [SerializeField] private GameObject _itemNode = null;
 
     public new UnityBase.Scene.Ui.Menu.SelectNodeScriptCreateDesc createDesc{get; private set;} = null;
@@ -138,6 +140,8 @@ public class SelectNodeScript : Lib.Scene.ObjectNodeScript
      */
     protected override void _OnActive()
     {
+        this._scrollRect.verticalNormalizedPosition = 1.0f;
+
         return;
     }
 
