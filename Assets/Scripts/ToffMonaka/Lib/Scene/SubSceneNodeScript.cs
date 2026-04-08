@@ -23,8 +23,9 @@ public abstract class SubSceneNodeScript : Lib.Scene.NodeScript
 {
     public new Lib.Scene.SubSceneNodeScriptCreateDesc createDesc{get; private set;} = null;
 
-    private GameObject[] _canvasNodeArray = null;
-    private GameObject _dialogNode = null;
+    [SerializeField] private Camera _camera = null;
+    [SerializeField] private Camera _uiCamera = null;
+    [SerializeField] private GameObject _dialogNode = null;
 
     /**
      * @brief コンストラクタ
@@ -68,36 +69,6 @@ public abstract class SubSceneNodeScript : Lib.Scene.NodeScript
      */
     protected override void _OnSetNode()
     {
-        const string canvas_name = "Canvas";
-        const string dialog_name = "Dialog";
-
-        this._canvasNodeArray = System.Array.Empty<GameObject>();
-
-        var canvas_transform = this.transform.Find(canvas_name);
-
-    	while (canvas_transform != null) {
-            Lib.Array.Util.Resize(ref this._canvasNodeArray, this._canvasNodeArray.Length + 1, canvas_transform.gameObject);
-
-            canvas_transform = this.transform.Find(canvas_name + (this._canvasNodeArray.Length + 1));
-        }
-
-        for (int canvas_node_i = 0; canvas_node_i < this._canvasNodeArray.Length; ++canvas_node_i) {
-            var canvas_node = this._canvasNodeArray[canvas_node_i];
-            var canvas = canvas_node.GetComponent<Canvas>();
-
-            canvas.worldCamera = this.GetManager().GetMainSceneNodeScript().GetMainCamera();
-
-            if (canvas_node_i > 0) {
-                canvas.sortingLayerName = canvas.sortingLayerName + (canvas_node_i + 1);
-            }
-
-            var dialog_transform = canvas_node.transform.Find(dialog_name);
-
-            if (dialog_transform != null) {
-                this._dialogNode = dialog_transform.gameObject;
-            }
-        }
-
         return;
     }
 
@@ -174,13 +145,24 @@ public abstract class SubSceneNodeScript : Lib.Scene.NodeScript
         return;
     }
 
+
     /**
-     * @brief GetCanvasNodeArray関数
-     * @return canvas_node_ary (canvas_node_array)
+     * @brief GetCamera関数
+     * @return camera (camera)
      */
-    public GameObject[] GetCanvasNodeArray()
+    public Camera GetCamera()
     {
-        return (this._canvasNodeArray);
+        return (this._camera);
+    }
+
+
+    /**
+     * @brief GetUiCamera関数
+     * @return ui_camera (ui_camera)
+     */
+    public Camera GetUiCamera()
+    {
+        return (this._uiCamera);
     }
 
     /**

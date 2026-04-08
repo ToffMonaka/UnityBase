@@ -21,7 +21,6 @@ public class MainSceneNodeScriptCreateDesc : Lib.Scene.NodeScriptCreateDesc
  */
 public abstract class MainSceneNodeScript : Lib.Scene.NodeScript
 {
-    [SerializeField] private Camera _mainCamera = null;
     [SerializeField] private GameObject _inputNode = null;
     [SerializeField] private GameObject _graphicNode = null;
     [SerializeField] private GameObject _soundNode = null;
@@ -166,15 +165,6 @@ public abstract class MainSceneNodeScript : Lib.Scene.NodeScript
     protected virtual void _OnEndApplication()
     {
         return;
-    }
-
-    /**
-     * @brief GetMainCamera関数
-     * @return main_camera (main_camera)
-     */
-    public Camera GetMainCamera()
-    {
-        return (this._mainCamera);
     }
 
     /**
