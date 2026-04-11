@@ -26,6 +26,7 @@ public class SubSceneNodeScript : Lib.Scene.SubSceneNodeScript
     [SerializeField] private GameObject _stageBoardNode = null;
     [SerializeField] private GameObject _backButtonNode = null;
     [SerializeField] private GameObject _menuNode = null;
+    [SerializeField] private GameObject _dialogNode = null;
     [SerializeField] private Image _openCloseFadeImage = null;
 
     public new UnityBase.Scene.Select.SubSceneNodeScriptCreateDesc createDesc{get; private set;} = null;
@@ -116,6 +117,7 @@ public class SubSceneNodeScript : Lib.Scene.SubSceneNodeScript
             var script_create_desc = new UnityBase.Scene.Ui.Menu.NodeScriptCreateDesc();
 
             script_create_desc.subSceneNodeScript = this;
+            script_create_desc.dialogNode = this._dialogNode;
 
             script.Create(script_create_desc);
             script.Open(0);
@@ -291,6 +293,15 @@ public class SubSceneNodeScript : Lib.Scene.SubSceneNodeScript
 		}
 
         return;
+    }
+
+    /**
+     * @brief GetDialogNode関数
+     * @return dialog_node (dialog_node)
+     */
+    public GameObject GetDialogNode()
+    {
+        return (this._dialogNode);
     }
 
     /**

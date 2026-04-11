@@ -4,8 +4,8 @@
  */
 
 
-using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine;
 using DG.Tweening;
 
 
@@ -83,14 +83,6 @@ public abstract class NodeScript : Lib.Scene.Script
     }
 
     /**
-     * @brief _OnSetNode関数
-     */
-    protected virtual void _OnSetNode()
-    {
-        return;
-    }
-
-    /**
      * @brief Create関数
      * @param desc (desc)
      * @return result_val (result_value)<br>
@@ -117,8 +109,6 @@ public abstract class NodeScript : Lib.Scene.Script
             } else {
                 return (-1);
             }
-
-            this._OnSetNode();
         }
 
         int create_result_val = this._OnCreate();

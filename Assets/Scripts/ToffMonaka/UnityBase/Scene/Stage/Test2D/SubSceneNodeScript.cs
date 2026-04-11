@@ -26,7 +26,6 @@ public class SubSceneNodeScript : UnityBase.Scene.Stage.SubSceneNodeScript
 {
     [SerializeField] private TMP_Text _nameText = null;
     [SerializeField] private TMP_Text _messageText = null;
-    [SerializeField] private Image _openCloseFadeImage = null;
 
     public new UnityBase.Scene.Stage.Test2D.SubSceneNodeScriptCreateDesc createDesc{get; private set;} = null;
 

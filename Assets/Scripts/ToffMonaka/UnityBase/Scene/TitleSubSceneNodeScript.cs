@@ -30,6 +30,7 @@ public class TitleSubSceneNodeScript : Lib.Scene.SubSceneNodeScript
     [SerializeField] private TMP_Text _companyNameText = null;
     [SerializeField] private TMP_Text _versionNameText = null;
     [SerializeField] private GameObject _menuNode = null;
+    [SerializeField] private GameObject _dialogNode = null;
     [SerializeField] private Image _openCloseFadeImage = null;
 
     public new UnityBase.Scene.TitleSubSceneNodeScriptCreateDesc createDesc{get; private set;} = null;
@@ -77,6 +78,7 @@ public class TitleSubSceneNodeScript : Lib.Scene.SubSceneNodeScript
             var script_create_desc = new UnityBase.Scene.Ui.Menu.NodeScriptCreateDesc();
 
             script_create_desc.subSceneNodeScript = this;
+            script_create_desc.dialogNode = this._dialogNode;
 
             script.Create(script_create_desc);
             script.Open(0);
@@ -239,6 +241,15 @@ public class TitleSubSceneNodeScript : Lib.Scene.SubSceneNodeScript
         this.Close(1, 1);
 
         return;
+    }
+
+    /**
+     * @brief GetDialogNode関数
+     * @return dialog_node (dialog_node)
+     */
+    public GameObject GetDialogNode()
+    {
+        return (this._dialogNode);
     }
 }
 }

@@ -5,6 +5,7 @@
 
 
 using UnityEngine;
+using UnityEngine.UI;
 
 
 namespace ToffMonaka {
@@ -21,14 +22,16 @@ public class SubSceneNodeScriptCreateDesc : Lib.Scene.SubSceneNodeScriptCreateDe
  */
 public class SubSceneNodeScript : Lib.Scene.SubSceneNodeScript
 {
-    [SerializeField] private GameObject _backButtonNode = null;
-    [SerializeField] private GameObject _menuNode = null;
+    [SerializeField] protected GameObject _backButtonNode = null;
+    [SerializeField] protected GameObject _menuNode = null;
+    [SerializeField] protected GameObject _dialogNode = null;
+    [SerializeField] protected Image _openCloseFadeImage = null;
 
     public new UnityBase.Scene.Stage.SubSceneNodeScriptCreateDesc createDesc{get; private set;} = null;
 
     private UnityBase.Util.SCENE.STAGE_TYPE _stageType = UnityBase.Util.SCENE.STAGE_TYPE.NONE;
-    private UnityBase.Scene.Stage.BackButtonNodeScript _backButtonNodeScript = null;
-    private UnityBase.Scene.Ui.Menu.NodeScript _menuNodeScript = null;
+    protected UnityBase.Scene.Stage.BackButtonNodeScript _backButtonNodeScript = null;
+    protected UnityBase.Scene.Ui.Menu.NodeScript _menuNodeScript = null;
 
     /**
      * @brief コンストラクタ
@@ -86,6 +89,7 @@ public class SubSceneNodeScript : Lib.Scene.SubSceneNodeScript
             var script_create_desc = new UnityBase.Scene.Ui.Menu.NodeScriptCreateDesc();
 
             script_create_desc.subSceneNodeScript = this;
+            script_create_desc.dialogNode = this._dialogNode;
 
             script.Create(script_create_desc);
             script.Open(0);
@@ -163,6 +167,15 @@ public class SubSceneNodeScript : Lib.Scene.SubSceneNodeScript
     protected override void _OnClosed()
     {
         return;
+    }
+
+    /**
+     * @brief GetDialogNode関数
+     * @return dialog_node (dialog_node)
+     */
+    public GameObject GetDialogNode()
+    {
+        return (this._dialogNode);
     }
 
     /**

@@ -16,6 +16,7 @@ namespace UnityBase.Scene.Ui.Menu {
 public class NodeScriptCreateDesc : Lib.Scene.ObjectNodeScriptCreateDesc
 {
     public Lib.Scene.SubSceneNodeScript subSceneNodeScript = null;
+    public GameObject dialogNode = null;
 }
 
 /**
@@ -37,6 +38,7 @@ public class NodeScript : Lib.Scene.ObjectNodeScript
     public new UnityBase.Scene.Ui.Menu.NodeScriptCreateDesc createDesc{get; private set;} = null;
 
     private Lib.Scene.SubSceneNodeScript _subSceneNodeScript = null;
+    private GameObject _dialogNode = null;
     private UnityBase.Scene.Ui.Menu.OpenCloseButtonNodeScript _openCloseButtonNodeScript = null;
     private UnityBase.Scene.Ui.Menu.SelectNodeScript _selectNodeScript = null;
     private UnityBase.Scene.Ui.Menu.SelectNodeScript _openSelectNodeScript = null;
@@ -81,7 +83,20 @@ public class NodeScript : Lib.Scene.ObjectNodeScript
      */
     protected override int _OnCreate()
     {
+        if (this.createDesc.subSceneNodeScript == null) {
+            Debug.Log("Error: ToffMonaka.UnityBase.Scene.Ui.Menu.NodeScript._OnCreate: this.createDesc.subSceneNodeScript == null");
+
+            return (-1);
+        }
+
+        if (this.createDesc.dialogNode == null) {
+            Debug.Log("Error: ToffMonaka.UnityBase.Scene.Ui.Menu.NodeScript._OnCreate: this.createDesc.dialogNode == null");
+
+            return (-1);
+        }
+
         this._subSceneNodeScript = this.createDesc.subSceneNodeScript;
+        this._dialogNode = this.createDesc.dialogNode;
 
         this._backgroundImage.gameObject.SetActive(false);
 
@@ -297,6 +312,15 @@ public class NodeScript : Lib.Scene.ObjectNodeScript
     public Lib.Scene.SubSceneNodeScript GetSubSceneNodeScript()
     {
         return (this._subSceneNodeScript);
+    }
+
+    /**
+     * @brief GetDialogNode関数
+     * @return dialog_node (dialog_node)
+     */
+    public GameObject GetDialogNode()
+    {
+        return (this._dialogNode);
     }
 
     /**

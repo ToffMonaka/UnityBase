@@ -23,10 +23,6 @@ public abstract class SubSceneNodeScript : Lib.Scene.NodeScript
 {
     public new Lib.Scene.SubSceneNodeScriptCreateDesc createDesc{get; private set;} = null;
 
-    [SerializeField] private Camera _camera = null;
-    [SerializeField] private Camera _uiCamera = null;
-    [SerializeField] private GameObject _dialogNode = null;
-
     /**
      * @brief コンストラクタ
      */
@@ -61,14 +57,6 @@ public abstract class SubSceneNodeScript : Lib.Scene.NodeScript
     {
         base._Destroy();
 
-        return;
-    }
-
-    /**
-     * @brief _OnSetNode関数
-     */
-    protected override void _OnSetNode()
-    {
         return;
     }
 
@@ -143,35 +131,6 @@ public abstract class SubSceneNodeScript : Lib.Scene.NodeScript
         base._LateUpdate();
 
         return;
-    }
-
-
-    /**
-     * @brief GetCamera関数
-     * @return camera (camera)
-     */
-    public Camera GetCamera()
-    {
-        return (this._camera);
-    }
-
-
-    /**
-     * @brief GetUiCamera関数
-     * @return ui_camera (ui_camera)
-     */
-    public Camera GetUiCamera()
-    {
-        return (this._uiCamera);
-    }
-
-    /**
-     * @brief GetDialogNode関数
-     * @return dialog_node (dialog_node)
-     */
-    public GameObject GetDialogNode()
-    {
-        return (this._dialogNode);
     }
 }
 }

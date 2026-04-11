@@ -227,7 +227,7 @@ public static class Util
      */
     public static void SetDebugFlag(bool debug_flg)
     {
-        Debug.Log("UnityBase.Util.SetDebugFlag: " + debug_flg);
+        Debug.Log("Warning: ToffMonaka.UnityBase.Util.SetDebugFlag: " + debug_flg);
 
         UnityBase.Util._debugFlag = debug_flg;
 

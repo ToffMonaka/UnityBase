@@ -90,7 +90,7 @@ public static class Util
      */
     public static void SetDebugFlag(bool debug_flg)
     {
-        Debug.Log("Lib.Util.SetDebugFlag: " + debug_flg);
+        Debug.Log("Warning: ToffMonaka.Lib.Util.SetDebugFlag: " + debug_flg);
 
         Lib.Util._debugFlag = debug_flg;
 
