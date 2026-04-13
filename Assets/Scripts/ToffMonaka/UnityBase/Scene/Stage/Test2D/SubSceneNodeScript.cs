@@ -155,10 +155,6 @@ public class SubSceneNodeScript : UnityBase.Scene.Stage.SubSceneNodeScript
     {
         base._OnOpened();
 
-        Lib.Scene.Util.GetInputManager().EnableEventSystem();
-
-        this._openCloseFadeImage.gameObject.SetActive(false);
-
         return;
     }
 
@@ -190,8 +186,6 @@ public class SubSceneNodeScript : UnityBase.Scene.Stage.SubSceneNodeScript
 			break;
 		}
 		}
-
-        Lib.Scene.Util.GetInputManager().DisableEventSystem();
 
         return;
     }

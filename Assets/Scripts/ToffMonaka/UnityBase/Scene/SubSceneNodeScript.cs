@@ -9,34 +9,32 @@ using UnityEngine.UI;
 
 
 namespace ToffMonaka {
-namespace UnityBase.Scene.Stage {
+namespace UnityBase.Scene {
 /**
  * @brief SubSceneNodeScriptCreateDescクラス
  */
-public class SubSceneNodeScriptCreateDesc : UnityBase.Scene.SubSceneNodeScriptCreateDesc
+public class SubSceneNodeScriptCreateDesc : Lib.Scene.SubSceneNodeScriptCreateDesc
 {
 }
 
 /**
  * @brief SubSceneNodeScriptクラス
  */
-public class SubSceneNodeScript : UnityBase.Scene.SubSceneNodeScript
+public class SubSceneNodeScript : Lib.Scene.SubSceneNodeScript
 {
-    [SerializeField] protected GameObject _backButtonNode = null;
+    [SerializeField] protected GameObject _menuNode = null;
+    [SerializeField] protected GameObject _dialogNode = null;
+    [SerializeField] protected Image _openCloseFadeImage = null;
 
-    public new UnityBase.Scene.Stage.SubSceneNodeScriptCreateDesc createDesc{get; private set;} = null;
+    public new UnityBase.Scene.SubSceneNodeScriptCreateDesc createDesc{get; private set;} = null;
 
-    private UnityBase.Util.SCENE.STAGE_TYPE _stageType = UnityBase.Util.SCENE.STAGE_TYPE.NONE;
-    protected UnityBase.Scene.Stage.BackButtonNodeScript _backButtonNodeScript = null;
+    protected UnityBase.Scene.Ui.Menu.NodeScript _menuNodeScript = null;
 
     /**
      * @brief コンストラクタ
-     * @param stage_type (stage_type)
      */
-    public SubSceneNodeScript(UnityBase.Util.SCENE.STAGE_TYPE stage_type)
+    public SubSceneNodeScript()
     {
-        this._stageType = stage_type;
-
         return;
     }
 
@@ -46,7 +44,7 @@ public class SubSceneNodeScript : UnityBase.Scene.SubSceneNodeScript
      */
     protected override int _OnGetScriptIndex()
     {
-        return ((int)UnityBase.Util.SCENE.SCRIPT_INDEX.STAGE_SUB_SCENE_NODE);
+        return ((int)UnityBase.Util.SCENE.SCRIPT_INDEX.SUB_SCENE_NODE);
     }
 
     /**
@@ -54,8 +52,6 @@ public class SubSceneNodeScript : UnityBase.Scene.SubSceneNodeScript
      */
     protected override void _OnDestroy()
     {
-        base._OnDestroy();
-
         return;
     }
 
@@ -66,24 +62,17 @@ public class SubSceneNodeScript : UnityBase.Scene.SubSceneNodeScript
      */
     protected override int _OnCreate()
     {
-        if (base._OnCreate() < 0) {
-            return (-1);
-        }
+        // MenuNodeScript Create
+        if (this._menuNode != null) {
+            var script = this._menuNode.GetComponent<UnityBase.Scene.Ui.Menu.NodeScript>();
+            var script_create_desc = new UnityBase.Scene.Ui.Menu.NodeScriptCreateDesc();
 
-        {// BackButtonNodeScript Create
-            var script = this._backButtonNode.GetComponent<UnityBase.Scene.Stage.BackButtonNodeScript>();
-            var script_create_desc = new UnityBase.Scene.Stage.BackButtonNodeScriptCreateDesc();
-
-            script_create_desc.onClick = (UnityBase.Scene.Stage.BackButtonNodeScript owner) => {
-                this.Close(1, 1);
-
-                return;
-            };
+            script_create_desc.subSceneNodeScript = this;
 
             script.Create(script_create_desc);
-            script.Open(1);
+            script.Open(0);
 
-            this._backButtonNodeScript = script;
+            this._menuNodeScript = script;
         }
 
         return (0);
@@ -95,7 +84,7 @@ public class SubSceneNodeScript : UnityBase.Scene.SubSceneNodeScript
      */
     public override void SetCreateDesc(Lib.Scene.ScriptCreateDesc create_desc)
     {
-	    this.createDesc = create_desc as UnityBase.Scene.Stage.SubSceneNodeScriptCreateDesc;
+	    this.createDesc = create_desc as UnityBase.Scene.SubSceneNodeScriptCreateDesc;
 
         base.SetCreateDesc(this.createDesc);
 
@@ -107,8 +96,6 @@ public class SubSceneNodeScript : UnityBase.Scene.SubSceneNodeScript
      */
     protected override void _OnActive()
     {
-        base._OnActive();
-    
         return;
     }
 
@@ -117,8 +104,6 @@ public class SubSceneNodeScript : UnityBase.Scene.SubSceneNodeScript
      */
     protected override void _OnDeactive()
     {
-        base._OnDeactive();
-
         return;
     }
 
@@ -127,8 +112,6 @@ public class SubSceneNodeScript : UnityBase.Scene.SubSceneNodeScript
      */
     protected override void _OnUpdate()
     {
-        base._OnUpdate();
-
         return;
     }
 
@@ -137,8 +120,6 @@ public class SubSceneNodeScript : UnityBase.Scene.SubSceneNodeScript
      */
     protected override void _OnOpen()
     {
-        base._OnOpen();
-
         return;
     }
 
@@ -147,7 +128,11 @@ public class SubSceneNodeScript : UnityBase.Scene.SubSceneNodeScript
      */
     protected override void _OnOpened()
     {
-        base._OnOpened();
+        Lib.Scene.Util.GetInputManager().EnableEventSystem();
+
+        if (this._openCloseFadeImage != null) {
+            this._openCloseFadeImage.gameObject.SetActive(false);
+        }
 
         return;
     }
@@ -157,7 +142,7 @@ public class SubSceneNodeScript : UnityBase.Scene.SubSceneNodeScript
      */
     protected override void _OnClose()
     {
-        base._OnClose();
+        Lib.Scene.Util.GetInputManager().DisableEventSystem();
 
         return;
     }
@@ -167,18 +152,16 @@ public class SubSceneNodeScript : UnityBase.Scene.SubSceneNodeScript
      */
     protected override void _OnClosed()
     {
-        base._OnClosed();
-
         return;
     }
 
     /**
-     * @brief GetStageType関数
-     * @return stage_type (stage_type)
+     * @brief GetDialogNode関数
+     * @return dialog_node (dialog_node)
      */
-    public UnityBase.Util.SCENE.STAGE_TYPE GetStageType()
+    public GameObject GetDialogNode()
     {
-        return (this._stageType);
+        return (this._dialogNode);
     }
 }
 }

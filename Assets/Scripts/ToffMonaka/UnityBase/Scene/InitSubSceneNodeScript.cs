@@ -15,17 +15,16 @@ namespace UnityBase.Scene {
 /**
  * @brief InitSubSceneNodeScriptCreateDescクラス
  */
-public class InitSubSceneNodeScriptCreateDesc : Lib.Scene.SubSceneNodeScriptCreateDesc
+public class InitSubSceneNodeScriptCreateDesc : UnityBase.Scene.SubSceneNodeScriptCreateDesc
 {
 }
 
 /**
  * @brief InitSubSceneNodeScriptクラス
  */
-public class InitSubSceneNodeScript : Lib.Scene.SubSceneNodeScript
+public class InitSubSceneNodeScript : UnityBase.Scene.SubSceneNodeScript
 {
     [SerializeField] private TMP_Text _messageText = null;
-    [SerializeField] private Image _openCloseFadeImage = null;
 
     public new UnityBase.Scene.InitSubSceneNodeScriptCreateDesc createDesc{get; private set;} = null;
 
@@ -55,6 +54,8 @@ public class InitSubSceneNodeScript : Lib.Scene.SubSceneNodeScript
      */
     protected override void _OnDestroy()
     {
+        base._OnDestroy();
+
         return;
     }
 
@@ -65,6 +66,10 @@ public class InitSubSceneNodeScript : Lib.Scene.SubSceneNodeScript
      */
     protected override int _OnCreate()
     {
+        if (base._OnCreate() < 0) {
+            return (-1);
+        }
+
 		switch (UnityBase.Global.systemConfigFile.data.systemLanguageType) {
 		case UnityBase.Util.LANGUAGE_TYPE.JAPANESE: {
             this._messageText.SetText("ちょっと待ってね。");
@@ -101,6 +106,8 @@ public class InitSubSceneNodeScript : Lib.Scene.SubSceneNodeScript
      */
     protected override void _OnActive()
     {
+        base._OnActive();
+
         return;
     }
 
@@ -109,6 +116,8 @@ public class InitSubSceneNodeScript : Lib.Scene.SubSceneNodeScript
      */
     protected override void _OnDeactive()
     {
+        base._OnDeactive();
+
         return;
     }
 
@@ -117,6 +126,8 @@ public class InitSubSceneNodeScript : Lib.Scene.SubSceneNodeScript
      */
     protected override void _OnUpdate()
     {
+        base._OnUpdate();
+
         this._UpdateProgress();
 
         return;
@@ -127,6 +138,8 @@ public class InitSubSceneNodeScript : Lib.Scene.SubSceneNodeScript
      */
     protected override void _OnOpen()
     {
+        base._OnOpen();
+
 		switch (this.GetOpenType()) {
 		case 1: {
             this._openCloseFadeImage.gameObject.SetActive(true);
@@ -157,9 +170,7 @@ public class InitSubSceneNodeScript : Lib.Scene.SubSceneNodeScript
      */
     protected override void _OnOpened()
     {
-        Lib.Scene.Util.GetInputManager().EnableEventSystem();
-
-        this._openCloseFadeImage.gameObject.SetActive(false);
+        base._OnOpened();
 
         return;
     }
@@ -169,6 +180,8 @@ public class InitSubSceneNodeScript : Lib.Scene.SubSceneNodeScript
      */
     protected override void _OnClose()
     {
+        base._OnClose();
+
 		switch (this.GetCloseType()) {
 		case 1: {
             this._openCloseFadeImage.gameObject.SetActive(true);
@@ -191,8 +204,6 @@ public class InitSubSceneNodeScript : Lib.Scene.SubSceneNodeScript
 		}
 		}
 
-        Lib.Scene.Util.GetInputManager().DisableEventSystem();
-
         return;
     }
 
@@ -201,6 +212,8 @@ public class InitSubSceneNodeScript : Lib.Scene.SubSceneNodeScript
      */
     protected override void _OnClosed()
     {
+        base._OnClosed();
+
 		switch (this.GetClosedType()) {
         case 1: {
             {// TitleSubSceneNodeScript Create

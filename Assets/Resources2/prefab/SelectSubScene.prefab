@@ -1102,13 +1102,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9c50a0d65616f143a60ee691cf54862, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ToffMonaka.UnityBase.Scene.Select.SubSceneNodeScript
-  _camera: {fileID: 3341525871033295904}
-  _uiCamera: {fileID: 5065270447681249253}
+  _menuNode: {fileID: 2208233531020471564}
   _dialogNode: {fileID: 8974346132547311608}
+  _openCloseFadeImage: {fileID: 9145360300844260911}
   _stageBoardNode: {fileID: 227792603277538933}
   _backButtonNode: {fileID: 9120661118286272424}
-  _menuNode: {fileID: 2208233531020471564}
-  _openCloseFadeImage: {fileID: 9145360300844260911}
 --- !u!1 &6253974444106004136
 GameObject:
   m_ObjectHideFlags: 0

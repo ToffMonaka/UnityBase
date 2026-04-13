@@ -80,6 +80,7 @@ public static class Util
         public enum SCRIPT_INDEX : int
         {
             MAIN_SCENE_NODE = Lib.Util.SCENE.SCRIPT_INDEX.COUNT,
+            SUB_SCENE_NODE,
             INIT_SUB_SCENE_NODE,
             TITLE_SUB_SCENE_NODE,
             SELECT_SUB_SCENE_NODE,

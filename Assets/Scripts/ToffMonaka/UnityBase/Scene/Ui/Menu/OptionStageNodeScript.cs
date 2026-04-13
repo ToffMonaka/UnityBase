@@ -217,7 +217,7 @@ public class OptionStageNodeScript : UnityBase.Scene.Ui.Menu.StageNodeScript
 
         // LanguageSelectDialogNodeScript Create
         if (this._languageSelectDialogNodeScript == null) {
-            this._languageSelectDialogNode = Lib.Scene.Util.GetPrefabNode(UnityBase.Util.FILE_PATH.SELECT_DIALOG_PREFAB, this.GetMenuNodeScript().GetDialogNode());
+            this._languageSelectDialogNode = Lib.Scene.Util.GetPrefabNode(UnityBase.Util.FILE_PATH.SELECT_DIALOG_PREFAB, this.GetMenuNodeScript().GetSubSceneNodeScript().GetDialogNode());
 
             var script = this._languageSelectDialogNode.GetComponent<UnityBase.Scene.Ui.SelectDialogNodeScript>();
             var script_create_desc = new UnityBase.Scene.Ui.SelectDialogNodeScriptCreateDesc();

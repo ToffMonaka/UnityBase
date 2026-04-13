@@ -14,20 +14,17 @@ namespace UnityBase.Scene.Select {
 /**
  * @brief SubSceneNodeScriptCreateDescクラス
  */
-public class SubSceneNodeScriptCreateDesc : Lib.Scene.SubSceneNodeScriptCreateDesc
+public class SubSceneNodeScriptCreateDesc : UnityBase.Scene.SubSceneNodeScriptCreateDesc
 {
 }
 
 /**
  * @brief SubSceneNodeScriptクラス
  */
-public class SubSceneNodeScript : Lib.Scene.SubSceneNodeScript
+public class SubSceneNodeScript : UnityBase.Scene.SubSceneNodeScript
 {
     [SerializeField] private GameObject _stageBoardNode = null;
     [SerializeField] private GameObject _backButtonNode = null;
-    [SerializeField] private GameObject _menuNode = null;
-    [SerializeField] private GameObject _dialogNode = null;
-    [SerializeField] private Image _openCloseFadeImage = null;
 
     public new UnityBase.Scene.Select.SubSceneNodeScriptCreateDesc createDesc{get; private set;} = null;
 
@@ -35,7 +32,6 @@ public class SubSceneNodeScript : Lib.Scene.SubSceneNodeScript
     private UnityBase.Scene.Select.BoardNodeScript _openBoardNodeScript = null;
     private UnityBase.Util.SCENE.STAGE_TYPE _stageType = UnityBase.Util.SCENE.STAGE_TYPE.NONE;
     private UnityBase.Scene.Select.BackButtonNodeScript _backButtonNodeScript = null;
-    private UnityBase.Scene.Ui.Menu.NodeScript _menuNodeScript = null;
 
     /**
      * @brief コンストラクタ
@@ -59,6 +55,8 @@ public class SubSceneNodeScript : Lib.Scene.SubSceneNodeScript
      */
     protected override void _OnDestroy()
     {
+        base._OnDestroy();
+
         return;
     }
 
@@ -69,6 +67,10 @@ public class SubSceneNodeScript : Lib.Scene.SubSceneNodeScript
      */
     protected override int _OnCreate()
     {
+        if (base._OnCreate() < 0) {
+            return (-1);
+        }
+
         {// StageBoardNodeScript Create
             var script = this._stageBoardNode.GetComponent<UnityBase.Scene.Select.StageBoardNodeScript>();
             var script_create_desc = new UnityBase.Scene.Select.StageBoardNodeScriptCreateDesc();
@@ -112,19 +114,6 @@ public class SubSceneNodeScript : Lib.Scene.SubSceneNodeScript
             this._backButtonNodeScript = script;
         }
 
-        {// MenuNodeScript Create
-            var script = this._menuNode.GetComponent<UnityBase.Scene.Ui.Menu.NodeScript>();
-            var script_create_desc = new UnityBase.Scene.Ui.Menu.NodeScriptCreateDesc();
-
-            script_create_desc.subSceneNodeScript = this;
-            script_create_desc.dialogNode = this._dialogNode;
-
-            script.Create(script_create_desc);
-            script.Open(0);
-
-            this._menuNodeScript = script;
-        }
-
         return (0);
     }
 
@@ -146,6 +135,8 @@ public class SubSceneNodeScript : Lib.Scene.SubSceneNodeScript
      */
     protected override void _OnActive()
     {
+        base._OnActive();
+
         Lib.Scene.Util.GetSoundManager().PlayBgm((int)UnityBase.Util.SOUND.BGM_INDEX.SELECT);
 
         this._stageType = UnityBase.Util.SCENE.STAGE_TYPE.NONE;
@@ -160,6 +151,8 @@ public class SubSceneNodeScript : Lib.Scene.SubSceneNodeScript
      */
     protected override void _OnDeactive()
     {
+        base._OnDeactive();
+
         return;
     }
 
@@ -168,6 +161,8 @@ public class SubSceneNodeScript : Lib.Scene.SubSceneNodeScript
      */
     protected override void _OnUpdate()
     {
+        base._OnUpdate();
+
         return;
     }
 
@@ -176,6 +171,8 @@ public class SubSceneNodeScript : Lib.Scene.SubSceneNodeScript
      */
     protected override void _OnOpen()
     {
+        base._OnOpen();
+
 		switch (this.GetOpenType()) {
 		case 1: {
             this._openCloseFadeImage.gameObject.SetActive(true);
@@ -206,9 +203,7 @@ public class SubSceneNodeScript : Lib.Scene.SubSceneNodeScript
      */
     protected override void _OnOpened()
     {
-        Lib.Scene.Util.GetInputManager().EnableEventSystem();
-
-        this._openCloseFadeImage.gameObject.SetActive(false);
+        base._OnOpened();
 
         return;
     }
@@ -218,6 +213,8 @@ public class SubSceneNodeScript : Lib.Scene.SubSceneNodeScript
      */
     protected override void _OnClose()
     {
+        base._OnClose();
+
 		switch (this.GetCloseType()) {
 		case 1: {
             this._openCloseFadeImage.gameObject.SetActive(true);
@@ -240,8 +237,6 @@ public class SubSceneNodeScript : Lib.Scene.SubSceneNodeScript
 		}
 		}
 
-        Lib.Scene.Util.GetInputManager().DisableEventSystem();
-
         return;
     }
 
@@ -250,6 +245,8 @@ public class SubSceneNodeScript : Lib.Scene.SubSceneNodeScript
      */
     protected override void _OnClosed()
     {
+        base._OnClosed();
+
 		switch (this.GetClosedType()) {
         case 1: {
 		    switch (this._stageType) {
@@ -293,15 +290,6 @@ public class SubSceneNodeScript : Lib.Scene.SubSceneNodeScript
 		}
 
         return;
-    }
-
-    /**
-     * @brief GetDialogNode関数
-     * @return dialog_node (dialog_node)
-     */
-    public GameObject GetDialogNode()
-    {
-        return (this._dialogNode);
     }
 
     /**

@@ -273,7 +273,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c963795de4c83b49b9a150de9dec801, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ToffMonaka.UnityBase.Scene.MainSceneNodeScript
-  _mainCamera: {fileID: 0}
   _inputNode: {fileID: 874790673}
   _graphicNode: {fileID: 1798314778}
   _soundNode: {fileID: 1897055024}
