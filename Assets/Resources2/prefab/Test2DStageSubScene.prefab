@@ -348,14 +348,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e7e872648ca2804d985fd1152fae7e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ToffMonaka.UnityBase.Scene.Stage.Test2D.SubSceneNodeScript
-  _camera: {fileID: 343511359980794603}
-  _uiCamera: {fileID: 2119239921323329224}
-  _dialogNode: {fileID: 495842425589519146}
-  _backButtonNode: {fileID: 1770633016476638975}
   _menuNode: {fileID: 3938838446271992881}
+  _dialogNode: {fileID: 495842425589519146}
+  _openCloseFadeImage: {fileID: 6293969429683596095}
+  _backButtonNode: {fileID: 1770633016476638975}
   _nameText: {fileID: 862540398915890208}
   _messageText: {fileID: 8572822463480697056}
-  _openCloseFadeImage: {fileID: 6293969429683596095}
 --- !u!1 &4635150829364507547
 GameObject:
   m_ObjectHideFlags: 0

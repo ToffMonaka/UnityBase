@@ -1274,15 +1274,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 479e5d1da1e25514f8dd688a12047d49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ToffMonaka.UnityBase.Scene.TitleSubSceneNodeScript
-  _camera: {fileID: 2032990903613766564}
-  _uiCamera: {fileID: 7183291508053068089}
+  _menuNode: {fileID: 4489160909677869645}
   _dialogNode: {fileID: 1132653986154439773}
+  _openCloseFadeImage: {fileID: 7766883382882280234}
   _startButtonNameText: {fileID: 6115790907380713227}
   _debugNameText: {fileID: 8851907437075125794}
   _companyNameText: {fileID: 2210995570269262657}
   _versionNameText: {fileID: 3717761163834534197}
-  _menuNode: {fileID: 4489160909677869645}
-  _openCloseFadeImage: {fileID: 7766883382882280234}
 --- !u!1 &8771928023051681788
 GameObject:
   m_ObjectHideFlags: 0
