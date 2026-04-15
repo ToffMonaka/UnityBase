@@ -3,7 +3,7 @@
 <br>
 
 開発環境<br>
-Unity 6.3 LTS (6000.3.6f1)<br>
+Unity 6.3 LTS (6000.3.13f1)<br>
 <details><summary>追加モジュール (クリックで展開)</summary>
 
     Android Build Support
