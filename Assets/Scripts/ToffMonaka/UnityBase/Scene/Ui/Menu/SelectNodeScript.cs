@@ -44,12 +44,12 @@ public class SelectNodeScript : Lib.Scene.ObjectNodeScript
     }
     
     /**
-     * @brief _OnGetScriptIndex関数
-     * @return script_index (script_index)
+     * @brief _OnGetNodeScriptIndex関数
+     * @return node_script_index (node_script_index)
      */
-    protected override int _OnGetScriptIndex()
+    protected override int _OnGetNodeScriptIndex()
     {
-        return ((int)UnityBase.Util.SCENE.SCRIPT_INDEX.MENU_SELECT_NODE);
+        return ((int)UnityBase.Util.SCENE.NODE_SCRIPT_INDEX.MENU_SELECT);
     }
 
     /**
@@ -126,7 +126,7 @@ public class SelectNodeScript : Lib.Scene.ObjectNodeScript
      * @brief SetCreateDesc関数
      * @param create_desc (create_desc)
      */
-    public override void SetCreateDesc(Lib.Scene.ScriptCreateDesc create_desc)
+    public override void SetCreateDesc(Lib.Scene.NodeScriptCreateDesc create_desc)
     {
 	    this.createDesc = create_desc as UnityBase.Scene.Ui.Menu.SelectNodeScriptCreateDesc;
 

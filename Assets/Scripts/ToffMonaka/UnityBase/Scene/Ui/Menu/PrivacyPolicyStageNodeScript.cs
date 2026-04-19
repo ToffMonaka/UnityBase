@@ -32,8 +32,6 @@ public class PrivacyPolicyStageNodeScript : UnityBase.Scene.Ui.Menu.StageNodeScr
 
     public new UnityBase.Scene.Ui.Menu.PrivacyPolicyStageNodeScriptCreateDesc createDesc{get; private set;} = null;
 
-    private Vector2 _scrollBarMinSize2 = Vector2.zero;
-
     /**
      * @brief コンストラクタ
      */
@@ -43,12 +41,12 @@ public class PrivacyPolicyStageNodeScript : UnityBase.Scene.Ui.Menu.StageNodeScr
     }
 
     /**
-     * @brief _OnGetScriptIndex関数
-     * @return script_index (script_index)
+     * @brief _OnGetNodeScriptIndex関数
+     * @return node_script_index (node_script_index)
      */
-    protected override int _OnGetScriptIndex()
+    protected override int _OnGetNodeScriptIndex()
     {
-        return ((int)UnityBase.Util.SCENE.SCRIPT_INDEX.MENU_PRIVACY_POLICY_STAGE_NODE);
+        return ((int)UnityBase.Util.SCENE.NODE_SCRIPT_INDEX.MENU_PRIVACY_POLICY_STAGE);
     }
 
     /**
@@ -72,7 +70,6 @@ public class PrivacyPolicyStageNodeScript : UnityBase.Scene.Ui.Menu.StageNodeScr
             return (-1);
         }
 
-        this._scrollBarMinSize2 = new Vector2(1.0f / this._scrollRect.viewport.rect.width * this._scrollBarMinSize, 1.0f / this._scrollRect.viewport.rect.height * this._scrollBarMinSize);
         this._cancelButtonNameText.SetText(UnityBase.Global.GetText(UnityBase.Util.MST_TEXT_ID.CANCEL));
 
         this._messageNode.SetActive(false);
@@ -109,7 +106,7 @@ public class PrivacyPolicyStageNodeScript : UnityBase.Scene.Ui.Menu.StageNodeScr
      * @brief SetCreateDesc関数
      * @param create_desc (create_desc)
      */
-    public override void SetCreateDesc(Lib.Scene.ScriptCreateDesc create_desc)
+    public override void SetCreateDesc(Lib.Scene.NodeScriptCreateDesc create_desc)
     {
 	    this.createDesc = create_desc as UnityBase.Scene.Ui.Menu.PrivacyPolicyStageNodeScriptCreateDesc;
 
@@ -254,8 +251,10 @@ public class PrivacyPolicyStageNodeScript : UnityBase.Scene.Ui.Menu.StageNodeScr
     {
         if (this._scrollRect.vertical) {
             if (this._scrollRect.verticalScrollbar != null) {
-                if (this._scrollRect.verticalScrollbar.size < this._scrollBarMinSize2.y) {
-                    this._scrollRect.verticalScrollbar.size = this._scrollBarMinSize2.y;
+                var min_size = 1.0f / this._scrollRect.viewport.rect.height * this._scrollBarMinSize;
+
+                if (this._scrollRect.verticalScrollbar.size < min_size) {
+                    this._scrollRect.verticalScrollbar.size = min_size;
                 }
             }
         }

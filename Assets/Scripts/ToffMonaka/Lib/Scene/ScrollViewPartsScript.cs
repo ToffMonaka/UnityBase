@@ -1,6 +1,6 @@
 ﻿/**
  * @file
- * @brief ScrollViewComponentScriptファイル
+ * @brief ScrollViewPartsScriptファイル
  */
 
 
@@ -12,57 +12,35 @@ using UnityEngine.UI;
 namespace ToffMonaka {
 namespace Lib.Scene {
 /**
- * @brief ScrollViewComponentScriptCreateDescクラス
+ * @brief ScrollViewPartsScriptクラス
  */
-public class ScrollViewComponentScriptCreateDesc : Lib.Scene.ComponentScriptCreateDesc
+public class ScrollViewPartsScript : Lib.Scene.PartsScript
 {
-    public System.Func<GameObject, Lib.Scene.ObjectNodeScript> onGetItemNodeScript = null;
-    public System.Action<Lib.Scene.ObjectNodeScript, int> onSetItemNodeScript = null;
-}
-
-/**
- * @brief ScrollViewComponentScriptクラス
- */
-public class ScrollViewComponentScript : Lib.Scene.ComponentScript
-{
+    [SerializeField] private ScrollRect _scrollRect = null;
     [SerializeField] private float _scrollBarMinSize = 64.0f;
-    [SerializeField] private GameObject _mainContentNode = null;
-    [SerializeField] private GameObject _subContentNode = null;
+    [SerializeField] private RectTransform _mainContentRectTransform = null;
+    [SerializeField] private RectTransform _subContentRectTransform = null;
+    [SerializeField] private HorizontalLayoutGroup _subContentHorizontalLayoutGroup = null;
+    [SerializeField] private VerticalLayoutGroup _subContentVerticalLayoutGroup = null;
     [SerializeField] private GameObject _itemNode = null;
+    [SerializeField] private RectTransform _itemRectTransform = null;
 
-    public new Lib.Scene.ScrollViewComponentScriptCreateDesc createDesc{get; private set;} = null;
-
-    private ScrollRect _scrollRect = null;
     private float _scrollValue = 1.0f;
-    private Vector2 _scrollBarMinSize2 = Vector2.zero;
-    private RectTransform _mainContentRectTransform = null;
     private Vector2 _mainContentSize = Vector2.zero;
-    private RectTransform _subContentRectTransform = null;
     private Vector2 _subContentSize = Vector2.zero;
-    private HorizontalLayoutGroup _subContentHorizontalLayoutGroup = null;
-    private VerticalLayoutGroup _subContentVerticalLayoutGroup = null;
-    private RectTransform _itemRectTransform = null;
     private int _itemCount = 0;
+    private bool _itemCountSetFlag = false;
     private int _itemIndex = 0;
     private List<Lib.Scene.ObjectNodeScript> _itemNodeScriptContainer = new List<Lib.Scene.ObjectNodeScript>();
-    private System.Func<GameObject, Lib.Scene.ObjectNodeScript> _onGetItemNodeScript = null;
-    private System.Action<Lib.Scene.ObjectNodeScript, int> _onSetItemNodeScript = null;
+    public System.Func<GameObject, Lib.Scene.ObjectNodeScript> onGetItemNodeScript = null;
+    public System.Action<Lib.Scene.ObjectNodeScript, int> onSetItemNodeScript = null;
 
     /**
      * @brief コンストラクタ
      */
-    public ScrollViewComponentScript()
+    public ScrollViewPartsScript()
     {
         return;
-    }
-
-    /**
-     * @brief _OnGetScriptIndex関数
-     * @return script_index (script_index)
-     */
-    protected override int _OnGetScriptIndex()
-    {
-        return ((int)Lib.Util.SCENE.SCRIPT_INDEX.SCROLL_VIEW_COMPONENT);
     }
 
     /**
@@ -70,44 +48,6 @@ public class ScrollViewComponentScript : Lib.Scene.ComponentScript
      */
     protected override void _OnDestroy()
     {
-        return;
-    }
-
-    /**
-     * @brief _OnCreate関数
-     * @return result_val (result_value)<br>
-     * 0未満=失敗
-     */
-    protected override int _OnCreate()
-    {
-        this._scrollRect = this.gameObject.GetComponent<ScrollRect>();
-        this._scrollBarMinSize2 = new Vector2(1.0f / this._scrollRect.viewport.rect.width * this._scrollBarMinSize, 1.0f / this._scrollRect.viewport.rect.height * this._scrollBarMinSize);
-        this._mainContentRectTransform = this._mainContentNode.GetComponent<RectTransform>();
-        this._subContentRectTransform = this._subContentNode.GetComponent<RectTransform>();
-        this._subContentHorizontalLayoutGroup = this._subContentNode.GetComponent<HorizontalLayoutGroup>();
-        this._subContentVerticalLayoutGroup = this._subContentNode.GetComponent<VerticalLayoutGroup>();
-        this._itemRectTransform = this._itemNode.GetComponent<RectTransform>();
-        this._onGetItemNodeScript = this.createDesc.onGetItemNodeScript;
-        this._onSetItemNodeScript = this.createDesc.onSetItemNodeScript;
-
-        this._itemNode.SetActive(false);
-
-        this._itemCount = -1;
-        this.SetItemCount(0);
-
-        return (0);
-    }
-
-    /**
-     * @brief SetCreateDesc関数
-     * @param create_desc (create_desc)
-     */
-    public override void SetCreateDesc(Lib.Scene.ScriptCreateDesc create_desc)
-    {
-	    this.createDesc = create_desc as Lib.Scene.ScrollViewComponentScriptCreateDesc;
-
-        base.SetCreateDesc(this.createDesc);
-
         return;
     }
 
@@ -233,14 +173,18 @@ public class ScrollViewComponentScript : Lib.Scene.ComponentScript
     {
         if (this._scrollRect.horizontal) {
             if (this._scrollRect.horizontalScrollbar != null) {
-                if (this._scrollRect.horizontalScrollbar.size < this._scrollBarMinSize2.x) {
-                    this._scrollRect.horizontalScrollbar.size = this._scrollBarMinSize2.x;
+                var min_size = 1.0f / this._scrollRect.viewport.rect.width * this._scrollBarMinSize;
+
+                if (this._scrollRect.horizontalScrollbar.size < min_size) {
+                    this._scrollRect.horizontalScrollbar.size = min_size;
                 }
             }
         } else if (this._scrollRect.vertical) {
             if (this._scrollRect.verticalScrollbar != null) {
-                if (this._scrollRect.verticalScrollbar.size < this._scrollBarMinSize2.y) {
-                    this._scrollRect.verticalScrollbar.size = this._scrollBarMinSize2.y;
+                var min_size = 1.0f / this._scrollRect.viewport.rect.height * this._scrollBarMinSize;
+
+                if (this._scrollRect.verticalScrollbar.size < min_size) {
+                    this._scrollRect.verticalScrollbar.size = min_size;
                 }
             }
         }
@@ -263,8 +207,14 @@ public class ScrollViewComponentScript : Lib.Scene.ComponentScript
      */
     public void SetItemCount(int item_cnt)
     {
-        if (item_cnt == this._itemCount) {
-            return;
+        if (this._itemCountSetFlag) {
+            if (item_cnt == this._itemCount) {
+                return;
+            }
+        } else {
+            this._itemCountSetFlag = true;
+
+            this._itemNode.SetActive(false);
         }
 
         this._itemCount = item_cnt;
@@ -327,7 +277,7 @@ public class ScrollViewComponentScript : Lib.Scene.ComponentScript
             this._itemNodeScriptContainer.Clear();
 
             for (int item_node_i = 0; item_node_i < item_node_cnt; ++item_node_i) {
-                this._itemNodeScriptContainer.Add(this._onGetItemNodeScript(this._itemNode));
+                this._itemNodeScriptContainer.Add(this.onGetItemNodeScript(this._itemNode));
             }
         }
 
@@ -344,7 +294,7 @@ public class ScrollViewComponentScript : Lib.Scene.ComponentScript
     public void UpdateItem()
     {
         for (int item_node_script_i = 0; item_node_script_i < this._itemNodeScriptContainer.Count; ++item_node_script_i) {
-            this._onSetItemNodeScript(this._itemNodeScriptContainer[item_node_script_i], System.Math.Min(this._itemIndex + item_node_script_i, this._itemCount - 1));
+            this.onSetItemNodeScript(this._itemNodeScriptContainer[item_node_script_i], System.Math.Min(this._itemIndex + item_node_script_i, this._itemCount - 1));
         }
 
         return;

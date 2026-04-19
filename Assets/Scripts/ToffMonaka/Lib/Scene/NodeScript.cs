@@ -14,7 +14,7 @@ namespace Lib.Scene {
 /**
  * @brief NodeScriptCreateDescクラス
  */
-public class NodeScriptCreateDesc : Lib.Scene.ScriptCreateDesc
+public class NodeScriptCreateDesc
 {
 }
 
@@ -23,9 +23,13 @@ public class NodeScriptCreateDesc : Lib.Scene.ScriptCreateDesc
  */
 public abstract class NodeScript : Lib.Scene.Script
 {
-    public new Lib.Scene.NodeScriptCreateDesc createDesc{get; private set;} = null;
+    public Lib.Scene.NodeScriptCreateDesc createDesc{get; private set;} = null;
 
+    private Lib.Scene.Manager _manager = null;
+    private Lib.Util.SCENE.NODE_SCRIPT_TYPE _nodeScriptType = Lib.Util.SCENE.NODE_SCRIPT_TYPE.NONE;
+    private int _nodeScriptIndex = (int)Lib.Util.SCENE.NODE_SCRIPT_INDEX.NONE;
     private bool _activeAutoFlag = true;
+    private bool _activedFlag = false;
     private int _openType = 0;
     private int _openedType = 0;
     private bool _openFlag = false;
@@ -39,23 +43,25 @@ public abstract class NodeScript : Lib.Scene.Script
 
     /**
      * @brief コンストラクタ
-     * @param script_type (script_type)
+     * @param node_script_type (node_script_type)
      * @param active_auto_flg (active_auto_flag)
      */
-    public NodeScript(Lib.Util.SCENE.SCRIPT_TYPE script_type, bool active_auto_flg) : base(script_type)
+    public NodeScript(Lib.Util.SCENE.NODE_SCRIPT_TYPE node_script_type, bool active_auto_flg) : base(Lib.Util.SCENE.SCRIPT_TYPE.NODE)
     {
+        this._nodeScriptType = node_script_type;
+        this._nodeScriptIndex = this._OnGetNodeScriptIndex();
         this._activeAutoFlag = active_auto_flg;
 
         return;
     }
 
     /**
-     * @brief _OnGetScriptIndex関数
-     * @return script_index (script_index)
+     * @brief _OnGetNodeScriptIndex関数
+     * @return node_script_index (node_script_index)
      */
-    protected override int _OnGetScriptIndex()
+    protected virtual int _OnGetNodeScriptIndex()
     {
-        return ((int)Lib.Util.SCENE.SCRIPT_INDEX.NODE);
+        return ((int)Lib.Util.SCENE.NODE_SCRIPT_INDEX.NONE);
     }
 
     /**
@@ -75,9 +81,21 @@ public abstract class NodeScript : Lib.Scene.Script
     {
         this._OnDestroy();
 
-        if (this.GetManager() != null) {
-            this.GetManager().RemoveScript(this);
+        if (this._manager != null) {
+            if (Lib.Scene.Util.GetManager() != null) {
+                Lib.Scene.Util.GetManager().RemoveScript(this);
+            }
         }
+
+        return;
+    }
+
+    /**
+     * @brief DestroyByManager関数
+     */
+    public void DestroyByManager()
+    {
+        this._Destroy();
 
         return;
     }
@@ -88,9 +106,9 @@ public abstract class NodeScript : Lib.Scene.Script
      * @return result_val (result_value)<br>
      * 0未満=失敗
      */
-    public override int Create(Lib.Scene.ScriptCreateDesc desc = null)
+    public virtual int Create(Lib.Scene.NodeScriptCreateDesc desc = null)
     {
-        if (this.GetManager() == null) {
+        if (this._manager == null) {
             if (this._activeAutoFlag) {
                 this.gameObject.SetActive(true);
                 this.gameObject.SetActive(false);
@@ -123,14 +141,22 @@ public abstract class NodeScript : Lib.Scene.Script
     }
 
     /**
+     * @brief _OnCreate関数
+     * @return result_val (result_value)<br>
+     * 0未満=失敗
+     */
+    protected virtual int _OnCreate()
+    {
+        return (0);
+    }
+
+    /**
      * @brief SetCreateDesc関数
      * @param create_desc (create_desc)
      */
-    public override void SetCreateDesc(Lib.Scene.ScriptCreateDesc create_desc)
+    public virtual void SetCreateDesc(Lib.Scene.NodeScriptCreateDesc create_desc)
     {
-	    this.createDesc = create_desc as Lib.Scene.NodeScriptCreateDesc;
-
-        base.SetCreateDesc(this.createDesc);
+	    this.createDesc = create_desc;
 
         return;
     }
@@ -140,7 +166,14 @@ public abstract class NodeScript : Lib.Scene.Script
      */
     protected override void _Active()
     {
+        if ((this._manager == null)
+        || (this._activedFlag)) {
+            return;
+        }
+
         this._OnActive();
+
+        this._activedFlag = true;
 
         return;
     }
@@ -150,7 +183,14 @@ public abstract class NodeScript : Lib.Scene.Script
      */
     protected override void _Deactive()
     {
+        if ((this._manager == null)
+        || (!this._activedFlag)) {
+            return;
+        }
+
         this._OnDeactive();
+
+        this._activedFlag = false;
 
         return;
     }
@@ -199,12 +239,59 @@ public abstract class NodeScript : Lib.Scene.Script
     }
 
     /**
+     * @brief GetManager関数
+     * @return manager (manager)
+     */
+    public Lib.Scene.Manager GetManager()
+    {
+        return (this._manager);
+    }
+
+    /**
+     * @brief SetManager関数
+     * @param manager (manager)
+     */
+    public void SetManager(Lib.Scene.Manager manager)
+    {
+        this._manager = manager;
+
+        return;
+    }
+
+    /**
+     * @brief GetNodeScriptType関数
+     * @return node_script_type (node_script_type)
+     */
+    public Lib.Util.SCENE.NODE_SCRIPT_TYPE GetNodeScriptType()
+    {
+        return (this._nodeScriptType);
+    }
+
+    /**
+     * @brief GetNodeScriptIndex関数
+     * @return node_script_index (node_script_index)
+     */
+    public int GetNodeScriptIndex()
+    {
+        return (this._nodeScriptIndex);
+    }
+
+    /**
      * @brief GetActiveAutoFlag関数
      * @return active_auto_flg (active_auto_flag)
      */
     public bool GetActiveAutoFlag()
     {
         return (this._activeAutoFlag);
+    }
+
+    /**
+     * @brief GetActivedFlag関数
+     * @return actived_flg (actived_flag)
+     */
+    public bool GetActivedFlag()
+    {
+        return (this._activedFlag);
     }
 
     /**
