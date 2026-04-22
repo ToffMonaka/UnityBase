@@ -12,6 +12,13 @@ using UnityEngine.Events;
 namespace ToffMonaka {
 namespace Lib.Scene {
 /**
+ * @brief ButtonPartsScriptCreateDescクラス
+ */
+public class ButtonPartsScriptCreateDesc : Lib.Scene.PartsScriptCreateDesc
+{
+}
+
+/**
  * @brief ButtonPartsScriptクラス
  */
 public class ButtonPartsScript : Lib.Scene.PartsScript, IPointerDownHandler, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
@@ -23,10 +30,21 @@ public class ButtonPartsScript : Lib.Scene.PartsScript, IPointerDownHandler, IPo
     [SerializeField] private PointerEvent _pointerEnterEvent = new PointerEvent();
     [SerializeField] private PointerEvent _pointerExitEvent = new PointerEvent();
 
+    public new Lib.Scene.ButtonPartsScriptCreateDesc createDesc{get; private set;} = null;
+
     /**
-     * @brief コンストラクタ
+     * @brief _OnGetScriptIndex関数
+     * @return script_index (script_index)
      */
-    public ButtonPartsScript()
+    protected override int _OnGetScriptIndex()
+    {
+        return ((int)Lib.Util.SCENE.SCRIPT_INDEX.BUTTON_PARTS);
+    }
+
+    /**
+     * @brief _OnAwake関数
+     */
+    protected override void _OnAwake()
     {
         return;
     }
@@ -36,6 +54,29 @@ public class ButtonPartsScript : Lib.Scene.PartsScript, IPointerDownHandler, IPo
      */
     protected override void _OnDestroy()
     {
+        return;
+    }
+
+    /**
+     * @brief _OnCreate関数
+     * @return result_val (result_value)<br>
+     * 0未満=失敗
+     */
+    protected override int _OnCreate()
+    {
+        return (0);
+    }
+
+    /**
+     * @brief SetCreateDesc関数
+     * @param create_desc (create_desc)
+     */
+    public override void SetCreateDesc(Lib.Scene.ScriptCreateDesc create_desc)
+    {
+	    this.createDesc = create_desc as Lib.Scene.ButtonPartsScriptCreateDesc;
+
+        base.SetCreateDesc(this.createDesc);
+
         return;
     }
 

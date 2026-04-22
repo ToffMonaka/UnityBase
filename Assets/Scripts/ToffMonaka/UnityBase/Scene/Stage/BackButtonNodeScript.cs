@@ -32,20 +32,20 @@ public class BackButtonNodeScript : Lib.Scene.ObjectNodeScript, IPointerClickHan
     private System.Action<UnityBase.Scene.Stage.BackButtonNodeScript> _onClick = null;
 
     /**
-     * @brief コンストラクタ
+     * @brief _OnGetScriptIndex関数
+     * @return script_index (script_index)
      */
-    public BackButtonNodeScript()
+    protected override int _OnGetScriptIndex()
     {
-        return;
+        return ((int)UnityBase.Util.SCENE.SCRIPT_INDEX.STAGE_BACK_BUTTON_NODE);
     }
 
     /**
-     * @brief _OnGetNodeScriptIndex関数
-     * @return node_script_index (node_script_index)
+     * @brief _OnAwake関数
      */
-    protected override int _OnGetNodeScriptIndex()
+    protected override void _OnAwake()
     {
-        return ((int)UnityBase.Util.SCENE.NODE_SCRIPT_INDEX.STAGE_BACK_BUTTON);
+        return;
     }
 
     /**
@@ -72,7 +72,7 @@ public class BackButtonNodeScript : Lib.Scene.ObjectNodeScript, IPointerClickHan
      * @brief SetCreateDesc関数
      * @param create_desc (create_desc)
      */
-    public override void SetCreateDesc(Lib.Scene.NodeScriptCreateDesc create_desc)
+    public override void SetCreateDesc(Lib.Scene.ScriptCreateDesc create_desc)
     {
 	    this.createDesc = create_desc as UnityBase.Scene.Stage.BackButtonNodeScriptCreateDesc;
 

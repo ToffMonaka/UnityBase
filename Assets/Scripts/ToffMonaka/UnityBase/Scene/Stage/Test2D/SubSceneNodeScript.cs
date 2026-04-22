@@ -30,20 +30,31 @@ public class SubSceneNodeScript : UnityBase.Scene.Stage.SubSceneNodeScript
     public new UnityBase.Scene.Stage.Test2D.SubSceneNodeScriptCreateDesc createDesc{get; private set;} = null;
 
     /**
-     * @brief コンストラクタ
+     * @brief _OnGetScriptIndex関数
+     * @return script_index (script_index)
      */
-    public SubSceneNodeScript() : base(UnityBase.Util.SCENE.STAGE_TYPE.TEST_2D)
+    protected override int _OnGetScriptIndex()
     {
-        return;
+        return ((int)UnityBase.Util.SCENE.SCRIPT_INDEX.TEST_2D_STAGE_SUB_SCENE_NODE);
     }
 
     /**
-     * @brief _OnGetNodeScriptIndex関数
-     * @return node_script_index (node_script_index)
+     * @brief _OnGetStageType関数
+     * @return stage_type (stage_type)
      */
-    protected override int _OnGetNodeScriptIndex()
+    protected override UnityBase.Util.SCENE.STAGE_TYPE _OnGetStageType()
     {
-        return ((int)UnityBase.Util.SCENE.NODE_SCRIPT_INDEX.TEST_2D_STAGE_SUB_SCENE);
+        return (UnityBase.Util.SCENE.STAGE_TYPE.TEST_2D);
+    }
+
+    /**
+     * @brief _OnAwake関数
+     */
+    protected override void _OnAwake()
+    {
+        base._OnAwake();
+
+        return;
     }
 
     /**
@@ -77,7 +88,7 @@ public class SubSceneNodeScript : UnityBase.Scene.Stage.SubSceneNodeScript
      * @brief SetCreateDesc関数
      * @param create_desc (create_desc)
      */
-    public override void SetCreateDesc(Lib.Scene.NodeScriptCreateDesc create_desc)
+    public override void SetCreateDesc(Lib.Scene.ScriptCreateDesc create_desc)
     {
 	    this.createDesc = create_desc as UnityBase.Scene.Stage.Test2D.SubSceneNodeScriptCreateDesc;
 

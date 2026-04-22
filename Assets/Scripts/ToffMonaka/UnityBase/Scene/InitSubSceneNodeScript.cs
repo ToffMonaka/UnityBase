@@ -33,20 +33,22 @@ public class InitSubSceneNodeScript : UnityBase.Scene.SubSceneNodeScript
     private float _updateProgressElapsedTime = 0.0f;
 
     /**
-     * @brief コンストラクタ
+     * @brief _OnGetScriptIndex関数
+     * @return script_index (script_index)
      */
-    public InitSubSceneNodeScript()
+    protected override int _OnGetScriptIndex()
     {
-        return;
+        return ((int)UnityBase.Util.SCENE.SCRIPT_INDEX.INIT_SUB_SCENE_NODE);
     }
-    
+
     /**
-     * @brief _OnGetNodeScriptIndex関数
-     * @return node_script_index (node_script_index)
+     * @brief _OnAwake関数
      */
-    protected override int _OnGetNodeScriptIndex()
+    protected override void _OnAwake()
     {
-        return ((int)UnityBase.Util.SCENE.NODE_SCRIPT_INDEX.INIT_SUB_SCENE);
+        base._OnAwake();
+
+        return;
     }
 
     /**
@@ -92,7 +94,7 @@ public class InitSubSceneNodeScript : UnityBase.Scene.SubSceneNodeScript
      * @brief SetCreateDesc関数
      * @param create_desc (create_desc)
      */
-    public override void SetCreateDesc(Lib.Scene.NodeScriptCreateDesc create_desc)
+    public override void SetCreateDesc(Lib.Scene.ScriptCreateDesc create_desc)
     {
 	    this.createDesc = create_desc as UnityBase.Scene.InitSubSceneNodeScriptCreateDesc;
 

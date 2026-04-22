@@ -32,23 +32,31 @@ public class BoardNodeScript : Lib.Scene.ObjectNodeScript
     private UnityBase.Util.SCENE.SELECT_BOARD_TYPE _boardType = UnityBase.Util.SCENE.SELECT_BOARD_TYPE.NONE;
 
     /**
-     * @brief コンストラクタ
-     * @param board_type (board_type)
+     * @brief _OnGetScriptIndex関数
+     * @return script_index (script_index)
      */
-    public BoardNodeScript(UnityBase.Util.SCENE.SELECT_BOARD_TYPE board_type)
+    protected override int _OnGetScriptIndex()
     {
-        this._boardType = board_type;
-
-        return;
+        return ((int)UnityBase.Util.SCENE.SCRIPT_INDEX.SELECT_BOARD_NODE);
     }
 
     /**
-     * @brief _OnGetNodeScriptIndex関数
-     * @return node_script_index (node_script_index)
+     * @brief _OnGetBoardType関数
+     * @return board_type (board_type)
      */
-    protected override int _OnGetNodeScriptIndex()
+    protected virtual UnityBase.Util.SCENE.SELECT_BOARD_TYPE _OnGetBoardType()
     {
-        return ((int)UnityBase.Util.SCENE.NODE_SCRIPT_INDEX.SELECT_BOARD);
+        return (UnityBase.Util.SCENE.SELECT_BOARD_TYPE.NONE);
+    }
+
+    /**
+     * @brief _OnAwake関数
+     */
+    protected override void _OnAwake()
+    {
+        this._boardType = this._OnGetBoardType();
+
+        return;
     }
 
     /**
@@ -77,7 +85,7 @@ public class BoardNodeScript : Lib.Scene.ObjectNodeScript
      * @brief SetCreateDesc関数
      * @param create_desc (create_desc)
      */
-    public override void SetCreateDesc(Lib.Scene.NodeScriptCreateDesc create_desc)
+    public override void SetCreateDesc(Lib.Scene.ScriptCreateDesc create_desc)
     {
 	    this.createDesc = create_desc as UnityBase.Scene.Select.BoardNodeScriptCreateDesc;
 

@@ -31,20 +31,31 @@ public class StageBoardNodeScript : UnityBase.Scene.Select.BoardNodeScript
     private System.Action<UnityBase.Scene.Select.StageBoardNodeScript, UnityBase.Scene.Select.StageBoardItemNodeScript> _onClickItem = null;
 
     /**
-     * @brief コンストラクタ
+     * @brief _OnGetScriptIndex関数
+     * @return script_index (script_index)
      */
-    public StageBoardNodeScript() : base(UnityBase.Util.SCENE.SELECT_BOARD_TYPE.STAGE)
+    protected override int _OnGetScriptIndex()
     {
-        return;
+        return ((int)UnityBase.Util.SCENE.SCRIPT_INDEX.SELECT_STAGE_BOARD_ITEM_NODE);
     }
-    
+
     /**
-     * @brief _OnGetNodeScriptIndex関数
-     * @return node_script_index (node_script_index)
+     * @brief _OnGetBoardType関数
+     * @return board_type (board_type)
      */
-    protected override int _OnGetNodeScriptIndex()
+    protected override UnityBase.Util.SCENE.SELECT_BOARD_TYPE _OnGetBoardType()
     {
-        return ((int)UnityBase.Util.SCENE.NODE_SCRIPT_INDEX.SELECT_STAGE_BOARD);
+        return (UnityBase.Util.SCENE.SELECT_BOARD_TYPE.STAGE);
+    }
+
+    /**
+     * @brief _OnAwake関数
+     */
+    protected override void _OnAwake()
+    {
+        base._OnAwake();
+
+        return;
     }
 
     /**
@@ -106,7 +117,7 @@ public class StageBoardNodeScript : UnityBase.Scene.Select.BoardNodeScript
      * @brief SetCreateDesc関数
      * @param create_desc (create_desc)
      */
-    public override void SetCreateDesc(Lib.Scene.NodeScriptCreateDesc create_desc)
+    public override void SetCreateDesc(Lib.Scene.ScriptCreateDesc create_desc)
     {
 	    this.createDesc = create_desc as UnityBase.Scene.Select.StageBoardNodeScriptCreateDesc;
 

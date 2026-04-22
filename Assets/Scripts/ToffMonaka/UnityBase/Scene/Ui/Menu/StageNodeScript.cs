@@ -32,23 +32,31 @@ public class StageNodeScript : Lib.Scene.ObjectNodeScript
     private UnityBase.Util.SCENE.MENU_STAGE_TYPE _stageType = UnityBase.Util.SCENE.MENU_STAGE_TYPE.NONE;
 
     /**
-     * @brief コンストラクタ
-     * @param stage_type (stage_type)
+     * @brief _OnGetScriptIndex関数
+     * @return script_index (script_index)
      */
-    public StageNodeScript(UnityBase.Util.SCENE.MENU_STAGE_TYPE stage_type)
+    protected override int _OnGetScriptIndex()
     {
-        this._stageType = stage_type;
-
-        return;
+        return ((int)UnityBase.Util.SCENE.SCRIPT_INDEX.MENU_STAGE_NODE);
     }
 
     /**
-     * @brief _OnGetNodeScriptIndex関数
-     * @return node_script_index (node_script_index)
+     * @brief _OnGetStageType関数
+     * @return stage_type (stage_type)
      */
-    protected override int _OnGetNodeScriptIndex()
+    protected virtual UnityBase.Util.SCENE.MENU_STAGE_TYPE _OnGetStageType()
     {
-        return ((int)UnityBase.Util.SCENE.NODE_SCRIPT_INDEX.MENU_STAGE);
+        return (UnityBase.Util.SCENE.MENU_STAGE_TYPE.NONE);
+    }
+
+    /**
+     * @brief _OnAwake関数
+     */
+    protected override void _OnAwake()
+    {
+        this._stageType = this._OnGetStageType();
+
+        return;
     }
 
     /**
@@ -77,7 +85,7 @@ public class StageNodeScript : Lib.Scene.ObjectNodeScript
      * @brief SetCreateDesc関数
      * @param create_desc (create_desc)
      */
-    public override void SetCreateDesc(Lib.Scene.NodeScriptCreateDesc create_desc)
+    public override void SetCreateDesc(Lib.Scene.ScriptCreateDesc create_desc)
     {
 	    this.createDesc = create_desc as UnityBase.Scene.Ui.Menu.StageNodeScriptCreateDesc;
 

@@ -21,17 +21,40 @@ public class ScriptCreateDesc
  */
 public abstract class Script : MonoBehaviour
 {
+    public Lib.Scene.ScriptCreateDesc createDesc{get; private set;} = null;
+
+    private Lib.Scene.Manager _manager = null;
     private Lib.Util.SCENE.SCRIPT_TYPE _scriptType = Lib.Util.SCENE.SCRIPT_TYPE.NONE;
+    private int _scriptIndex = (int)Lib.Util.SCENE.SCRIPT_INDEX.NONE;
+    private bool _activeAutoFlag = true;
+    private bool _createdFlag = false;
+    private bool _controlFlag = false;
 
     /**
-     * @brief コンストラクタ
-     * @param script_type (script_type)
+     * @brief _OnGetScriptType関数
+     * @return script_type (script_type)
      */
-    public Script(Lib.Util.SCENE.SCRIPT_TYPE script_type)
+    protected virtual Lib.Util.SCENE.SCRIPT_TYPE _OnGetScriptType()
     {
-        this._scriptType = script_type;
+        return (Lib.Util.SCENE.SCRIPT_TYPE.NONE);
+    }
 
-        return;
+    /**
+     * @brief _OnGetScriptIndex関数
+     * @return script_index (script_index)
+     */
+    protected virtual int _OnGetScriptIndex()
+    {
+        return ((int)Lib.Util.SCENE.SCRIPT_INDEX.NONE);
+    }
+
+    /**
+     * @brief _OnGetActiveAutoFlag関数
+     * @return active_auto_flg (active_auto_flag)
+     */
+    protected virtual bool _OnGetActiveAutoFlag()
+    {
+        return (true);
     }
 
     /**
@@ -55,10 +78,24 @@ public abstract class Script : MonoBehaviour
     }
 
     /**
+     * @brief Start関数
+     */
+    private void Start()
+    {
+        this._Start();
+
+        return;
+    }
+
+    /**
      * @brief OnEnable関数
      */
     private void OnEnable()
     {
+        if (!this._createdFlag) {
+            return;
+        }
+
         this._Active();
 
         return;
@@ -69,17 +106,11 @@ public abstract class Script : MonoBehaviour
      */
     private void OnDisable()
     {
+        if (!this._createdFlag) {
+            return;
+        }
+
         this._Deactive();
-
-        return;
-    }
-
-    /**
-     * @brief Start関数
-     */
-    private void Start()
-    {
-        this._FirstUpdate();
 
         return;
     }
@@ -89,6 +120,10 @@ public abstract class Script : MonoBehaviour
      */
     private void Update()
     {
+        if (!this._createdFlag) {
+            return;
+        }
+
         this._Update();
 
         return;
@@ -99,6 +134,10 @@ public abstract class Script : MonoBehaviour
      */
     private void FixedUpdate()
     {
+        if (!this._createdFlag) {
+            return;
+        }
+
         this._FixedUpdate();
 
         return;
@@ -109,6 +148,10 @@ public abstract class Script : MonoBehaviour
      */
     private void LateUpdate()
     {
+        if (!this._createdFlag) {
+            return;
+        }
+
         this._LateUpdate();
 
         return;
@@ -119,6 +162,12 @@ public abstract class Script : MonoBehaviour
      */
     protected virtual void _Awake()
     {
+        this._scriptType = this._OnGetScriptType();
+        this._scriptIndex = this._OnGetScriptIndex();
+        this._activeAutoFlag = this._OnGetActiveAutoFlag();
+
+        this._OnAwake();
+
         return;
     }
 
@@ -135,6 +184,12 @@ public abstract class Script : MonoBehaviour
      */
     protected virtual void _Destroy()
     {
+        this._OnDestroy();
+
+        if (Lib.Scene.Util.GetManager() != null) {
+            Lib.Scene.Util.GetManager().RemoveScript(this);
+        }
+
         return;
     }
 
@@ -143,6 +198,91 @@ public abstract class Script : MonoBehaviour
      */
     protected virtual void _OnDestroy()
     {
+        return;
+    }
+
+    /**
+     * @brief DestroyByManager関数
+     */
+    public void DestroyByManager()
+    {
+        this._Destroy();
+
+        return;
+    }
+
+    /**
+     * @brief _Start関数
+     */
+    protected virtual void _Start()
+    {
+        return;
+    }
+
+    /**
+     * @brief _OnStart関数
+     */
+    protected virtual void _OnStart()
+    {
+        return;
+    }
+
+    /**
+     * @brief Create関数
+     * @param desc (desc)
+     * @return result_val (result_value)<br>
+     * 0未満=失敗
+     */
+    public virtual int Create(Lib.Scene.ScriptCreateDesc desc = null)
+    {
+        if (this._activeAutoFlag) {
+            this.gameObject.SetActive(true);
+        }
+
+        {// This Create
+            if (desc != null) {
+                this.SetCreateDesc(desc);
+            }
+
+            if (Lib.Scene.Util.GetManager() != null) {
+                if (Lib.Scene.Util.GetManager().AddScript(this) < 0) {
+                    return (-1);
+                }
+            } else {
+                return (-1);
+            }
+        }
+
+        int create_result_val = this._OnCreate();
+
+        if (create_result_val < 0) {
+            return (create_result_val);
+        }
+
+        this._createdFlag = true;
+        this._controlFlag = true;
+
+        return (0);
+    }
+
+    /**
+     * @brief _OnCreate関数
+     * @return result_val (result_value)<br>
+     * 0未満=失敗
+     */
+    protected virtual int _OnCreate()
+    {
+        return (0);
+    }
+
+    /**
+     * @brief SetCreateDesc関数
+     * @param create_desc (create_desc)
+     */
+    public virtual void SetCreateDesc(Lib.Scene.ScriptCreateDesc create_desc)
+    {
+        this.createDesc = create_desc;
+
         return;
     }
 
@@ -174,22 +314,6 @@ public abstract class Script : MonoBehaviour
      * @brief _OnDeactive関数
      */
     protected virtual void _OnDeactive()
-    {
-        return;
-    }
-
-    /**
-     * @brief _FirstUpdate関数
-     */
-    protected virtual void _FirstUpdate()
-    {
-        return;
-    }
-
-    /**
-     * @brief _OnFirstUpdate関数
-     */
-    protected virtual void _OnFirstUpdate()
     {
         return;
     }
@@ -243,12 +367,97 @@ public abstract class Script : MonoBehaviour
     }
 
     /**
+     * @brief GetManager関数
+     * @return manager (manager)
+     */
+    public Lib.Scene.Manager GetManager()
+    {
+        return (this._manager);
+    }
+
+    /**
+     * @brief SetManager関数
+     * @param manager (manager)
+     */
+    public void SetManager(Lib.Scene.Manager manager)
+    {
+        this._manager = manager;
+
+        return;
+    }
+
+    /**
      * @brief GetScriptType関数
      * @return script_type (script_type)
      */
     public Lib.Util.SCENE.SCRIPT_TYPE GetScriptType()
     {
         return (this._scriptType);
+    }
+
+    /**
+     * @brief GetScriptIndex関数
+     * @return script_index (script_index)
+     */
+    public int GetScriptIndex()
+    {
+        return (this._scriptIndex);
+    }
+
+    /**
+     * @brief GetActiveAutoFlag関数
+     * @return active_auto_flg (active_auto_flag)
+     */
+    public bool GetActiveAutoFlag()
+    {
+        return (this._activeAutoFlag);
+    }
+
+    /**
+     * @brief GetCreatedFlag関数
+     * @return created_flg (created_flg)
+     */
+    public bool GetCreatedFlag()
+    {
+        return (this._createdFlag);
+    }
+
+    /**
+     * @brief GetControlFlag関数
+     * @return ctrl_flg (control_flg)
+     */
+    public bool GetControlFlag()
+    {
+        return (this._controlFlag);
+    }
+
+    /**
+     * @brief SetControlFlag関数
+     * @param ctrl_flg (control_flg)
+     */
+    public void SetControlFlag(bool ctrl_flg)
+    {
+        this._controlFlag = ctrl_flg;
+
+        return;
+    }
+
+    /**
+     * @brief IsControllable関数
+     * @return controllable_flg (controllable_flag)<br>
+     * false=コントロール不可,true=コントロール可
+     */
+    public virtual bool IsControllable()
+    {
+        if (!this._createdFlag) {
+            return (false);
+        }
+
+        if (!this._controlFlag) {
+            return (false);
+        }
+
+        return (true);
     }
 }
 }

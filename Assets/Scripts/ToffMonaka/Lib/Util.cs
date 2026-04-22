@@ -49,34 +49,30 @@ public static class Util
         public enum SCRIPT_TYPE : int
         {
             NONE = 0,
-            NODE,
+            MAIN_SCENE_NODE,
+            SUB_SCENE_NODE,
+            OBJECT_NODE,
             PARTS,
 		    COUNT
         }
         public static readonly int SCRIPT_TYPE_COUNT = (int)Lib.Util.SCENE.SCRIPT_TYPE.COUNT;
 
-        public enum NODE_SCRIPT_TYPE : int
-        {
-            NONE = 0,
-            MAIN_SCENE,
-            SUB_SCENE,
-            OBJECT,
-		    COUNT
-        }
-        public static readonly int NODE_SCRIPT_TYPE_COUNT = (int)Lib.Util.SCENE.NODE_SCRIPT_TYPE.COUNT;
-
-        public enum NODE_SCRIPT_INDEX : int
+        public enum SCRIPT_INDEX : int
         {
             NONE = -1,
             NODE,
-            MAIN_SCENE,
-            SUB_SCENE,
-            OBJECT,
-            SOUND_BGM,
-            SOUND_SE,
+            MAIN_SCENE_NODE,
+            SUB_SCENE_NODE,
+            OBJECT_NODE,
+            SOUND_BGM_NODE,
+            SOUND_SE_NODE,
+            PARTS,
+            BUTTON_PARTS,
+            SCROLL_VIEW_PARTS,
+            SLIDER_PARTS,
 		    COUNT
         }
-        public static readonly int NODE_SCRIPT_INDEX_COUNT = (int)Lib.Util.SCENE.NODE_SCRIPT_INDEX.COUNT;
+        public static readonly int SCRIPT_INDEX_COUNT = (int)Lib.Util.SCENE.SCRIPT_INDEX.COUNT;
     }
 
     /**

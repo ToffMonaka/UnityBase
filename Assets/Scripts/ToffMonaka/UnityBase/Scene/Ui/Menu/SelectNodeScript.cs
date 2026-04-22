@@ -36,20 +36,20 @@ public class SelectNodeScript : Lib.Scene.ObjectNodeScript
     private List<UnityBase.Scene.Ui.Menu.SelectItemNodeScript> _itemNodeScriptContainer = new List<UnityBase.Scene.Ui.Menu.SelectItemNodeScript>();
 
     /**
-     * @brief コンストラクタ
+     * @brief _OnGetScriptIndex関数
+     * @return script_index (script_index)
      */
-    public SelectNodeScript()
+    protected override int _OnGetScriptIndex()
+    {
+        return ((int)UnityBase.Util.SCENE.SCRIPT_INDEX.MENU_SELECT_NODE);
+    }
+
+    /**
+     * @brief _OnAwake関数
+     */
+    protected override void _OnAwake()
     {
         return;
-    }
-    
-    /**
-     * @brief _OnGetNodeScriptIndex関数
-     * @return node_script_index (node_script_index)
-     */
-    protected override int _OnGetNodeScriptIndex()
-    {
-        return ((int)UnityBase.Util.SCENE.NODE_SCRIPT_INDEX.MENU_SELECT);
     }
 
     /**
@@ -126,7 +126,7 @@ public class SelectNodeScript : Lib.Scene.ObjectNodeScript
      * @brief SetCreateDesc関数
      * @param create_desc (create_desc)
      */
-    public override void SetCreateDesc(Lib.Scene.NodeScriptCreateDesc create_desc)
+    public override void SetCreateDesc(Lib.Scene.ScriptCreateDesc create_desc)
     {
 	    this.createDesc = create_desc as UnityBase.Scene.Ui.Menu.SelectNodeScriptCreateDesc;
 

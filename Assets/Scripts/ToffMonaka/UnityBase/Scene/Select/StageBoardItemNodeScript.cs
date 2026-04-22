@@ -35,20 +35,20 @@ public class StageBoardItemNodeScript : Lib.Scene.ObjectNodeScript, IPointerClic
     private System.Action<UnityBase.Scene.Select.StageBoardItemNodeScript> _onClick = null;
 
     /**
-     * @brief コンストラクタ
+     * @brief _OnGetScriptIndex関数
+     * @return script_index (script_index)
      */
-    public StageBoardItemNodeScript()
+    protected override int _OnGetScriptIndex()
+    {
+        return ((int)UnityBase.Util.SCENE.SCRIPT_INDEX.SELECT_STAGE_BOARD_ITEM_NODE);
+    }
+
+    /**
+     * @brief _OnAwake関数
+     */
+    protected override void _OnAwake()
     {
         return;
-    }
-    
-    /**
-     * @brief _OnGetNodeScriptIndex関数
-     * @return node_script_index (node_script_index)
-     */
-    protected override int _OnGetNodeScriptIndex()
-    {
-        return ((int)UnityBase.Util.SCENE.NODE_SCRIPT_INDEX.SELECT_STAGE_BOARD_ITEM);
     }
 
     /**
@@ -77,7 +77,7 @@ public class StageBoardItemNodeScript : Lib.Scene.ObjectNodeScript, IPointerClic
      * @brief SetCreateDesc関数
      * @param create_desc (create_desc)
      */
-    public override void SetCreateDesc(Lib.Scene.NodeScriptCreateDesc create_desc)
+    public override void SetCreateDesc(Lib.Scene.ScriptCreateDesc create_desc)
     {
 	    this.createDesc = create_desc as UnityBase.Scene.Select.StageBoardItemNodeScriptCreateDesc;
 

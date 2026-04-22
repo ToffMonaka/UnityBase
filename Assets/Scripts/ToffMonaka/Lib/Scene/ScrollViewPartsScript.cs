@@ -12,33 +12,54 @@ using UnityEngine.UI;
 namespace ToffMonaka {
 namespace Lib.Scene {
 /**
+ * @brief ScrollViewPartsScriptCreateDescクラス
+ */
+public class ScrollViewPartsScriptCreateDesc : Lib.Scene.PartsScriptCreateDesc
+{
+    public System.Func<GameObject, Lib.Scene.ObjectNodeScript> onGetItemNodeScript = null;
+    public System.Action<Lib.Scene.ObjectNodeScript, int> onSetItemNodeScript = null;
+}
+
+/**
  * @brief ScrollViewPartsScriptクラス
  */
 public class ScrollViewPartsScript : Lib.Scene.PartsScript
 {
     [SerializeField] private ScrollRect _scrollRect = null;
     [SerializeField] private float _scrollBarMinSize = 64.0f;
-    [SerializeField] private RectTransform _mainContentRectTransform = null;
-    [SerializeField] private RectTransform _subContentRectTransform = null;
-    [SerializeField] private HorizontalLayoutGroup _subContentHorizontalLayoutGroup = null;
-    [SerializeField] private VerticalLayoutGroup _subContentVerticalLayoutGroup = null;
+    [SerializeField] private GameObject _mainContentNode = null;
+    [SerializeField] private GameObject _subContentNode = null;
     [SerializeField] private GameObject _itemNode = null;
-    [SerializeField] private RectTransform _itemRectTransform = null;
+
+    public new Lib.Scene.ScrollViewPartsScriptCreateDesc createDesc{get; private set;} = null;
 
     private float _scrollValue = 1.0f;
+    private RectTransform _mainContentRectTransform = null;
     private Vector2 _mainContentSize = Vector2.zero;
+    private RectTransform _subContentRectTransform = null;
     private Vector2 _subContentSize = Vector2.zero;
+    private HorizontalLayoutGroup _subContentHorizontalLayoutGroup = null;
+    private VerticalLayoutGroup _subContentVerticalLayoutGroup = null;
+    private RectTransform _itemRectTransform = null;
     private int _itemCount = 0;
-    private bool _itemCountSetFlag = false;
     private int _itemIndex = 0;
     private List<Lib.Scene.ObjectNodeScript> _itemNodeScriptContainer = new List<Lib.Scene.ObjectNodeScript>();
-    public System.Func<GameObject, Lib.Scene.ObjectNodeScript> onGetItemNodeScript = null;
-    public System.Action<Lib.Scene.ObjectNodeScript, int> onSetItemNodeScript = null;
+    private System.Func<GameObject, Lib.Scene.ObjectNodeScript> _onGetItemNodeScript = null;
+    private System.Action<Lib.Scene.ObjectNodeScript, int> _onSetItemNodeScript = null;
 
     /**
-     * @brief コンストラクタ
+     * @brief _OnGetScriptIndex関数
+     * @return script_index (script_index)
      */
-    public ScrollViewPartsScript()
+    protected override int _OnGetScriptIndex()
+    {
+        return ((int)Lib.Util.SCENE.SCRIPT_INDEX.SCROLL_VIEW_PARTS);
+    }
+
+    /**
+     * @brief _OnAwake関数
+     */
+    protected override void _OnAwake()
     {
         return;
     }
@@ -48,6 +69,42 @@ public class ScrollViewPartsScript : Lib.Scene.PartsScript
      */
     protected override void _OnDestroy()
     {
+        return;
+    }
+
+    /**
+     * @brief _OnCreate関数
+     * @return result_val (result_value)<br>
+     * 0未満=失敗
+     */
+    protected override int _OnCreate()
+    {
+        this._mainContentRectTransform = this._mainContentNode.GetComponent<RectTransform>();
+        this._subContentRectTransform = this._subContentNode.GetComponent<RectTransform>();
+        this._subContentHorizontalLayoutGroup = this._subContentNode.GetComponent<HorizontalLayoutGroup>();
+        this._subContentVerticalLayoutGroup = this._subContentNode.GetComponent<VerticalLayoutGroup>();
+        this._itemRectTransform = this._itemNode.GetComponent<RectTransform>();
+        this._onGetItemNodeScript = this.createDesc.onGetItemNodeScript;
+        this._onSetItemNodeScript = this.createDesc.onSetItemNodeScript;
+
+        this._itemNode.SetActive(false);
+
+        this._itemCount = -1;
+        this.SetItemCount(0);
+
+        return (0);
+    }
+
+    /**
+     * @brief SetCreateDesc関数
+     * @param create_desc (create_desc)
+     */
+    public override void SetCreateDesc(Lib.Scene.ScriptCreateDesc create_desc)
+    {
+	    this.createDesc = create_desc as Lib.Scene.ScrollViewPartsScriptCreateDesc;
+
+        base.SetCreateDesc(this.createDesc);
+
         return;
     }
 
@@ -207,14 +264,8 @@ public class ScrollViewPartsScript : Lib.Scene.PartsScript
      */
     public void SetItemCount(int item_cnt)
     {
-        if (this._itemCountSetFlag) {
-            if (item_cnt == this._itemCount) {
-                return;
-            }
-        } else {
-            this._itemCountSetFlag = true;
-
-            this._itemNode.SetActive(false);
+        if (item_cnt == this._itemCount) {
+            return;
         }
 
         this._itemCount = item_cnt;
@@ -277,7 +328,7 @@ public class ScrollViewPartsScript : Lib.Scene.PartsScript
             this._itemNodeScriptContainer.Clear();
 
             for (int item_node_i = 0; item_node_i < item_node_cnt; ++item_node_i) {
-                this._itemNodeScriptContainer.Add(this.onGetItemNodeScript(this._itemNode));
+                this._itemNodeScriptContainer.Add(this._onGetItemNodeScript(this._itemNode));
             }
         }
 
@@ -294,7 +345,7 @@ public class ScrollViewPartsScript : Lib.Scene.PartsScript
     public void UpdateItem()
     {
         for (int item_node_script_i = 0; item_node_script_i < this._itemNodeScriptContainer.Count; ++item_node_script_i) {
-            this.onSetItemNodeScript(this._itemNodeScriptContainer[item_node_script_i], System.Math.Min(this._itemIndex + item_node_script_i, this._itemCount - 1));
+            this._onSetItemNodeScript(this._itemNodeScriptContainer[item_node_script_i], System.Math.Min(this._itemIndex + item_node_script_i, this._itemCount - 1));
         }
 
         return;

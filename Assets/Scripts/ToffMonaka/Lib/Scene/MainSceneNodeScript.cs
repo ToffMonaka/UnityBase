@@ -30,20 +30,30 @@ public abstract class MainSceneNodeScript : Lib.Scene.NodeScript
     public new Lib.Scene.MainSceneNodeScriptCreateDesc createDesc{get; private set;} = null;
 
     /**
-     * @brief コンストラクタ
+     * @brief _OnGetScriptType関数
+     * @return script_type (script_type)
      */
-    public MainSceneNodeScript() : base(Lib.Util.SCENE.NODE_SCRIPT_TYPE.MAIN_SCENE, false)
+    protected override sealed Lib.Util.SCENE.SCRIPT_TYPE _OnGetScriptType()
     {
-        return;
+        return (Lib.Util.SCENE.SCRIPT_TYPE.MAIN_SCENE_NODE);
     }
 
     /**
-     * @brief _OnGetNodeScriptIndex関数
-     * @return node_script_index (node_script_index)
+     * @brief _OnGetScriptIndex関数
+     * @return script_index (script_index)
      */
-    protected override int _OnGetNodeScriptIndex()
+    protected override int _OnGetScriptIndex()
     {
-        return ((int)Lib.Util.SCENE.NODE_SCRIPT_INDEX.MAIN_SCENE);
+        return ((int)Lib.Util.SCENE.SCRIPT_INDEX.MAIN_SCENE_NODE);
+    }
+
+    /**
+     * @brief _OnGetActiveAutoFlag関数
+     * @return active_auto_flg (active_auto_flag)
+     */
+    protected override sealed bool _OnGetActiveAutoFlag()
+    {
+        return (false);
     }
 
     /**
@@ -51,8 +61,6 @@ public abstract class MainSceneNodeScript : Lib.Scene.NodeScript
      */
     protected override void _Awake()
     {
-        this._OnStartApplication();
-
         base._Awake();
 
         return;
@@ -71,10 +79,22 @@ public abstract class MainSceneNodeScript : Lib.Scene.NodeScript
     }
 
     /**
+     * @brief _Start関数
+     */
+    protected override void _Start()
+    {
+        this._OnStartApplication();
+
+        base._Start();
+
+        return;
+    }
+
+    /**
      * @brief SetCreateDesc関数
      * @param create_desc (create_desc)
      */
-    public override void SetCreateDesc(Lib.Scene.NodeScriptCreateDesc create_desc)
+    public override void SetCreateDesc(Lib.Scene.ScriptCreateDesc create_desc)
     {
 	    this.createDesc = create_desc as Lib.Scene.MainSceneNodeScriptCreateDesc;
 
@@ -99,16 +119,6 @@ public abstract class MainSceneNodeScript : Lib.Scene.NodeScript
     protected override void _Deactive()
     {
         base._Deactive();
-
-        return;
-    }
-
-    /**
-     * @brief _FirstUpdate関数
-     */
-    protected override void _FirstUpdate()
-    {
-        base._FirstUpdate();
 
         return;
     }

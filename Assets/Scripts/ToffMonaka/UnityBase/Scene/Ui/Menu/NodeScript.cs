@@ -50,20 +50,20 @@ public class NodeScript : Lib.Scene.ObjectNodeScript
     private UnityBase.Scene.Ui.Menu.StageNodeScript _openStageNodeScript = null;
 
     /**
-     * @brief コンストラクタ
+     * @brief _OnGetScriptIndex関数
+     * @return script_index (script_index)
      */
-    public NodeScript()
+    protected override int _OnGetScriptIndex()
+    {
+        return ((int)UnityBase.Util.SCENE.SCRIPT_INDEX.MENU_NODE);
+    }
+
+    /**
+     * @brief _OnAwake関数
+     */
+    protected override void _OnAwake()
     {
         return;
-    }
-    
-    /**
-     * @brief _OnGetNodeScriptIndex関数
-     * @return node_script_index (node_script_index)
-     */
-    protected override int _OnGetNodeScriptIndex()
-    {
-        return ((int)UnityBase.Util.SCENE.NODE_SCRIPT_INDEX.MENU);
     }
 
     /**
@@ -225,7 +225,7 @@ public class NodeScript : Lib.Scene.ObjectNodeScript
      * @brief SetCreateDesc関数
      * @param create_desc (create_desc)
      */
-    public override void SetCreateDesc(Lib.Scene.NodeScriptCreateDesc create_desc)
+    public override void SetCreateDesc(Lib.Scene.ScriptCreateDesc create_desc)
     {
 	    this.createDesc = create_desc as UnityBase.Scene.Ui.Menu.NodeScriptCreateDesc;
 

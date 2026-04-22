@@ -24,20 +24,30 @@ public abstract class SubSceneNodeScript : Lib.Scene.NodeScript
     public new Lib.Scene.SubSceneNodeScriptCreateDesc createDesc{get; private set;} = null;
 
     /**
-     * @brief コンストラクタ
+     * @brief _OnGetScriptType関数
+     * @return script_type (script_type)
      */
-    public SubSceneNodeScript() : base(Lib.Util.SCENE.NODE_SCRIPT_TYPE.SUB_SCENE, true)
+    protected override sealed Lib.Util.SCENE.SCRIPT_TYPE _OnGetScriptType()
     {
-        return;
+        return (Lib.Util.SCENE.SCRIPT_TYPE.SUB_SCENE_NODE);
     }
 
     /**
-     * @brief _OnGetNodeScriptIndex関数
-     * @return node_script_index (node_script_index)
+     * @brief _OnGetScriptIndex関数
+     * @return script_index (script_index)
      */
-    protected override int _OnGetNodeScriptIndex()
+    protected override int _OnGetScriptIndex()
     {
-        return ((int)Lib.Util.SCENE.NODE_SCRIPT_INDEX.SUB_SCENE);
+        return ((int)Lib.Util.SCENE.SCRIPT_INDEX.SUB_SCENE_NODE);
+    }
+
+    /**
+     * @brief _OnGetActiveAutoFlag関数
+     * @return active_auto_flg (active_auto_flag)
+     */
+    protected override sealed bool _OnGetActiveAutoFlag()
+    {
+        return (true);
     }
 
     /**
@@ -61,10 +71,20 @@ public abstract class SubSceneNodeScript : Lib.Scene.NodeScript
     }
 
     /**
+     * @brief _Start関数
+     */
+    protected override void _Start()
+    {
+        base._Start();
+
+        return;
+    }
+
+    /**
      * @brief SetCreateDesc関数
      * @param create_desc (create_desc)
      */
-    public override void SetCreateDesc(Lib.Scene.NodeScriptCreateDesc create_desc)
+    public override void SetCreateDesc(Lib.Scene.ScriptCreateDesc create_desc)
     {
 	    this.createDesc = create_desc as Lib.Scene.SubSceneNodeScriptCreateDesc;
 
@@ -89,16 +109,6 @@ public abstract class SubSceneNodeScript : Lib.Scene.NodeScript
     protected override void _Deactive()
     {
         base._Deactive();
-
-        return;
-    }
-
-    /**
-     * @brief _FirstUpdate関数
-     */
-    protected override void _FirstUpdate()
-    {
-        base._FirstUpdate();
 
         return;
     }

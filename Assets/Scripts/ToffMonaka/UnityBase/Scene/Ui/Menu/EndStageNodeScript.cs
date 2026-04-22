@@ -37,20 +37,31 @@ public class EndStageNodeScript : UnityBase.Scene.Ui.Menu.StageNodeScript
     public new UnityBase.Scene.Ui.Menu.EndStageNodeScriptCreateDesc createDesc{get; private set;} = null;
 
     /**
-     * @brief コンストラクタ
+     * @brief _OnGetScriptIndex関数
+     * @return script_index (script_index)
      */
-    public EndStageNodeScript() : base(UnityBase.Util.SCENE.MENU_STAGE_TYPE.END)
+    protected override int _OnGetScriptIndex()
     {
-        return;
+        return ((int)UnityBase.Util.SCENE.SCRIPT_INDEX.MENU_END_STAGE_NODE);
     }
-    
+
     /**
-     * @brief _OnGetNodeScriptIndex関数
-     * @return node_script_index (node_script_index)
+     * @brief _OnGetStageType関数
+     * @return stage_type (stage_type)
      */
-    protected override int _OnGetNodeScriptIndex()
+    protected override UnityBase.Util.SCENE.MENU_STAGE_TYPE _OnGetStageType()
     {
-        return ((int)UnityBase.Util.SCENE.NODE_SCRIPT_INDEX.MENU_END_STAGE);
+        return (UnityBase.Util.SCENE.MENU_STAGE_TYPE.END);
+    }
+
+    /**
+     * @brief _OnAwake関数
+     */
+    protected override void _OnAwake()
+    {
+        base._OnAwake();
+
+        return;
     }
 
     /**
@@ -86,7 +97,7 @@ public class EndStageNodeScript : UnityBase.Scene.Ui.Menu.StageNodeScript
      * @brief SetCreateDesc関数
      * @param create_desc (create_desc)
      */
-    public override void SetCreateDesc(Lib.Scene.NodeScriptCreateDesc create_desc)
+    public override void SetCreateDesc(Lib.Scene.ScriptCreateDesc create_desc)
     {
 	    this.createDesc = create_desc as UnityBase.Scene.Ui.Menu.EndStageNodeScriptCreateDesc;
 

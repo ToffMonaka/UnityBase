@@ -26,20 +26,20 @@ public class SoundSeNodeScript : Lib.Scene.ObjectNodeScript
     public new Lib.Scene.SoundSeNodeScriptCreateDesc createDesc{get; private set;} = null;
 
     /**
-     * @brief コンストラクタ
+     * @brief _OnGetScriptIndex関数
+     * @return script_index (script_index)
      */
-    public SoundSeNodeScript()
+    protected override int _OnGetScriptIndex()
+    {
+        return ((int)Lib.Util.SCENE.SCRIPT_INDEX.SOUND_SE_NODE);
+    }
+
+    /**
+     * @brief _OnAwake関数
+     */
+    protected override void _OnAwake()
     {
         return;
-    }
-    
-    /**
-     * @brief _OnGetNodeScriptIndex関数
-     * @return node_script_index (node_script_index)
-     */
-    protected override int _OnGetNodeScriptIndex()
-    {
-        return ((int)Lib.Util.SCENE.NODE_SCRIPT_INDEX.SOUND_SE);
     }
 
     /**
@@ -64,7 +64,7 @@ public class SoundSeNodeScript : Lib.Scene.ObjectNodeScript
      * @brief SetCreateDesc関数
      * @param create_desc (create_desc)
      */
-    public override void SetCreateDesc(Lib.Scene.NodeScriptCreateDesc create_desc)
+    public override void SetCreateDesc(Lib.Scene.ScriptCreateDesc create_desc)
     {
 	    this.createDesc = create_desc as Lib.Scene.SoundSeNodeScriptCreateDesc;
 

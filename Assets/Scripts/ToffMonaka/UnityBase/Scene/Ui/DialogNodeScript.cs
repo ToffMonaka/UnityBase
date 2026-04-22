@@ -27,20 +27,20 @@ public class DialogNodeScript : Lib.Scene.ObjectNodeScript
     public new UnityBase.Scene.Ui.DialogNodeScriptCreateDesc createDesc{get; private set;} = null;
 
     /**
-     * @brief コンストラクタ
+     * @brief _OnGetScriptIndex関数
+     * @return script_index (script_index)
      */
-    public DialogNodeScript()
+    protected override int _OnGetScriptIndex()
     {
-        return;
+        return ((int)UnityBase.Util.SCENE.SCRIPT_INDEX.DIALOG_NODE);
     }
 
     /**
-     * @brief _OnGetNodeScriptIndex関数
-     * @return node_script_index (node_script_index)
+     * @brief _OnAwake関数
      */
-    protected override int _OnGetNodeScriptIndex()
+    protected override void _OnAwake()
     {
-        return ((int)UnityBase.Util.SCENE.NODE_SCRIPT_INDEX.DIALOG);
+        return;
     }
 
     /**
@@ -65,7 +65,7 @@ public class DialogNodeScript : Lib.Scene.ObjectNodeScript
      * @brief SetCreateDesc関数
      * @param create_desc (create_desc)
      */
-    public override void SetCreateDesc(Lib.Scene.NodeScriptCreateDesc create_desc)
+    public override void SetCreateDesc(Lib.Scene.ScriptCreateDesc create_desc)
     {
 	    this.createDesc = create_desc as UnityBase.Scene.Ui.DialogNodeScriptCreateDesc;
 

@@ -14,7 +14,7 @@ namespace Lib.Scene {
 /**
  * @brief NodeScriptCreateDescクラス
  */
-public class NodeScriptCreateDesc
+public class NodeScriptCreateDesc : Lib.Scene.ScriptCreateDesc
 {
 }
 
@@ -23,13 +23,8 @@ public class NodeScriptCreateDesc
  */
 public abstract class NodeScript : Lib.Scene.Script
 {
-    public Lib.Scene.NodeScriptCreateDesc createDesc{get; private set;} = null;
+    public new Lib.Scene.NodeScriptCreateDesc createDesc{get; private set;} = null;
 
-    private Lib.Scene.Manager _manager = null;
-    private Lib.Util.SCENE.NODE_SCRIPT_TYPE _nodeScriptType = Lib.Util.SCENE.NODE_SCRIPT_TYPE.NONE;
-    private int _nodeScriptIndex = (int)Lib.Util.SCENE.NODE_SCRIPT_INDEX.NONE;
-    private bool _activeAutoFlag = true;
-    private bool _activedFlag = false;
     private int _openType = 0;
     private int _openedType = 0;
     private bool _openFlag = false;
@@ -39,29 +34,14 @@ public abstract class NodeScript : Lib.Scene.Script
     private bool _closeFlag = false;
     private bool _closedFlag = true;
     private List<Sequence> _openCloseSequenceContainer = new List<Sequence>();
-    private bool _controlFlag = false;
 
     /**
-     * @brief コンストラクタ
-     * @param node_script_type (node_script_type)
-     * @param active_auto_flg (active_auto_flag)
+     * @brief _OnGetScriptIndex関数
+     * @return script_index (script_index)
      */
-    public NodeScript(Lib.Util.SCENE.NODE_SCRIPT_TYPE node_script_type, bool active_auto_flg) : base(Lib.Util.SCENE.SCRIPT_TYPE.NODE)
+    protected override int _OnGetScriptIndex()
     {
-        this._nodeScriptType = node_script_type;
-        this._nodeScriptIndex = this._OnGetNodeScriptIndex();
-        this._activeAutoFlag = active_auto_flg;
-
-        return;
-    }
-
-    /**
-     * @brief _OnGetNodeScriptIndex関数
-     * @return node_script_index (node_script_index)
-     */
-    protected virtual int _OnGetNodeScriptIndex()
-    {
-        return ((int)Lib.Util.SCENE.NODE_SCRIPT_INDEX.NONE);
+        return ((int)Lib.Util.SCENE.SCRIPT_INDEX.NODE);
     }
 
     /**
@@ -69,7 +49,7 @@ public abstract class NodeScript : Lib.Scene.Script
      */
     protected override void _Awake()
     {
-        this._OnAwake();
+        base._Awake();
 
         return;
     }
@@ -79,23 +59,17 @@ public abstract class NodeScript : Lib.Scene.Script
      */
     protected override void _Destroy()
     {
-        this._OnDestroy();
-
-        if (this._manager != null) {
-            if (Lib.Scene.Util.GetManager() != null) {
-                Lib.Scene.Util.GetManager().RemoveScript(this);
-            }
-        }
+        base._Destroy();
 
         return;
     }
 
     /**
-     * @brief DestroyByManager関数
+     * @brief _Start関数
      */
-    public void DestroyByManager()
+    protected override void _Start()
     {
-        this._Destroy();
+        this._OnStart();
 
         return;
     }
@@ -106,47 +80,18 @@ public abstract class NodeScript : Lib.Scene.Script
      * @return result_val (result_value)<br>
      * 0未満=失敗
      */
-    public virtual int Create(Lib.Scene.NodeScriptCreateDesc desc = null)
+    public override int Create(Lib.Scene.ScriptCreateDesc desc = null)
     {
-        if (this._manager == null) {
-            if (this._activeAutoFlag) {
-                this.gameObject.SetActive(true);
-                this.gameObject.SetActive(false);
-            }
-        }
-
-        {// This Create
-            if (desc != null) {
-                this.SetCreateDesc(desc);
-            }
-
-            if (Lib.Scene.Util.GetManager() != null) {
-                if (Lib.Scene.Util.GetManager().AddScript(this) < 0) {
-                    return (-1);
-                }
-            } else {
-                return (-1);
-            }
-        }
-
-        int create_result_val = this._OnCreate();
+        int create_result_val = base.Create(desc);
 
         if (create_result_val < 0) {
             return (create_result_val);
         }
 
-        this._controlFlag = true;
+        if (this.GetActiveAutoFlag()) {
+            this.gameObject.SetActive(false);
+        }
 
-        return (0);
-    }
-
-    /**
-     * @brief _OnCreate関数
-     * @return result_val (result_value)<br>
-     * 0未満=失敗
-     */
-    protected virtual int _OnCreate()
-    {
         return (0);
     }
 
@@ -154,9 +99,11 @@ public abstract class NodeScript : Lib.Scene.Script
      * @brief SetCreateDesc関数
      * @param create_desc (create_desc)
      */
-    public virtual void SetCreateDesc(Lib.Scene.NodeScriptCreateDesc create_desc)
+    public override void SetCreateDesc(Lib.Scene.ScriptCreateDesc create_desc)
     {
-	    this.createDesc = create_desc;
+	    this.createDesc = create_desc as Lib.Scene.NodeScriptCreateDesc;
+
+        base.SetCreateDesc(this.createDesc);
 
         return;
     }
@@ -166,14 +113,7 @@ public abstract class NodeScript : Lib.Scene.Script
      */
     protected override void _Active()
     {
-        if ((this._manager == null)
-        || (this._activedFlag)) {
-            return;
-        }
-
         this._OnActive();
-
-        this._activedFlag = true;
 
         return;
     }
@@ -183,24 +123,7 @@ public abstract class NodeScript : Lib.Scene.Script
      */
     protected override void _Deactive()
     {
-        if ((this._manager == null)
-        || (!this._activedFlag)) {
-            return;
-        }
-
         this._OnDeactive();
-
-        this._activedFlag = false;
-
-        return;
-    }
-
-    /**
-     * @brief _FirstUpdate関数
-     */
-    protected override void _FirstUpdate()
-    {
-        this._OnFirstUpdate();
 
         return;
     }
@@ -239,59 +162,21 @@ public abstract class NodeScript : Lib.Scene.Script
     }
 
     /**
-     * @brief GetManager関数
-     * @return manager (manager)
+     * @brief IsControllable関数
+     * @return controllable_flg (controllable_flag)<br>
+     * false=コントロール不可,true=コントロール可
      */
-    public Lib.Scene.Manager GetManager()
+    public override bool IsControllable()
     {
-        return (this._manager);
-    }
+        if (!base.IsControllable()) {
+            return (false);
+        }
 
-    /**
-     * @brief SetManager関数
-     * @param manager (manager)
-     */
-    public void SetManager(Lib.Scene.Manager manager)
-    {
-        this._manager = manager;
+        if (!this._openedFlag) {
+            return (false);
+        }
 
-        return;
-    }
-
-    /**
-     * @brief GetNodeScriptType関数
-     * @return node_script_type (node_script_type)
-     */
-    public Lib.Util.SCENE.NODE_SCRIPT_TYPE GetNodeScriptType()
-    {
-        return (this._nodeScriptType);
-    }
-
-    /**
-     * @brief GetNodeScriptIndex関数
-     * @return node_script_index (node_script_index)
-     */
-    public int GetNodeScriptIndex()
-    {
-        return (this._nodeScriptIndex);
-    }
-
-    /**
-     * @brief GetActiveAutoFlag関数
-     * @return active_auto_flg (active_auto_flag)
-     */
-    public bool GetActiveAutoFlag()
-    {
-        return (this._activeAutoFlag);
-    }
-
-    /**
-     * @brief GetActivedFlag関数
-     * @return actived_flg (actived_flag)
-     */
-    public bool GetActivedFlag()
-    {
-        return (this._activedFlag);
+        return (true);
     }
 
     /**
@@ -301,7 +186,7 @@ public abstract class NodeScript : Lib.Scene.Script
      */
     public void Open(int open_type = 0, int opened_type = 0)
     {
-        if (this._activeAutoFlag) {
+        if (this.GetActiveAutoFlag()) {
             this.gameObject.SetActive(true);
         }
 
@@ -403,7 +288,7 @@ public abstract class NodeScript : Lib.Scene.Script
         this._closeFlag = false;
         this._closedFlag = true;
 
-        if (this._activeAutoFlag) {
+        if (this.GetActiveAutoFlag()) {
             this.gameObject.SetActive(false);
         }
 
@@ -551,44 +436,6 @@ public abstract class NodeScript : Lib.Scene.Script
         }
 
         return (active_flg);
-    }
-
-    /**
-     * @brief GetControlFlag関数
-     * @return ctrl_flg (control_flg)
-     */
-    public bool GetControlFlag()
-    {
-        return (this._controlFlag);
-    }
-
-    /**
-     * @brief SetControlFlag関数
-     * @param ctrl_flg (control_flg)
-     */
-    public void SetControlFlag(bool ctrl_flg)
-    {
-        this._controlFlag = ctrl_flg;
-
-        return;
-    }
-
-    /**
-     * @brief IsControllable関数
-     * @return controllable_flg (controllable_flag)<br>
-     * false=コントロール不可,true=コントロール可
-     */
-    public virtual bool IsControllable()
-    {
-        if (!this._controlFlag) {
-            return (false);
-        }
-
-        if (!this._openedFlag) {
-            return (false);
-        }
-
-        return (true);
     }
 }
 }
