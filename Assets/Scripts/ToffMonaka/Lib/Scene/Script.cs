@@ -27,6 +27,7 @@ public abstract class Script : MonoBehaviour
     private Lib.Util.SCENE.SCRIPT_TYPE _scriptType = Lib.Util.SCENE.SCRIPT_TYPE.NONE;
     private int _scriptIndex = (int)Lib.Util.SCENE.SCRIPT_INDEX.NONE;
     private bool _activeAutoFlag = true;
+    private bool _awakedFlag = false;
     private bool _createdFlag = false;
     private bool _controlFlag = false;
 
@@ -92,10 +93,6 @@ public abstract class Script : MonoBehaviour
      */
     private void OnEnable()
     {
-        if (!this._createdFlag) {
-            return;
-        }
-
         this._Active();
 
         return;
@@ -106,10 +103,6 @@ public abstract class Script : MonoBehaviour
      */
     private void OnDisable()
     {
-        if (!this._createdFlag) {
-            return;
-        }
-
         this._Deactive();
 
         return;
@@ -120,10 +113,6 @@ public abstract class Script : MonoBehaviour
      */
     private void Update()
     {
-        if (!this._createdFlag) {
-            return;
-        }
-
         this._Update();
 
         return;
@@ -134,10 +123,6 @@ public abstract class Script : MonoBehaviour
      */
     private void FixedUpdate()
     {
-        if (!this._createdFlag) {
-            return;
-        }
-
         this._FixedUpdate();
 
         return;
@@ -148,10 +133,6 @@ public abstract class Script : MonoBehaviour
      */
     private void LateUpdate()
     {
-        if (!this._createdFlag) {
-            return;
-        }
-
         this._LateUpdate();
 
         return;
@@ -162,11 +143,17 @@ public abstract class Script : MonoBehaviour
      */
     protected virtual void _Awake()
     {
+        if (this._awakedFlag) {
+            return;
+        }
+
         this._scriptType = this._OnGetScriptType();
         this._scriptIndex = this._OnGetScriptIndex();
         this._activeAutoFlag = this._OnGetActiveAutoFlag();
 
         this._OnAwake();
+
+        this._awakedFlag = true;
 
         return;
     }
@@ -216,6 +203,8 @@ public abstract class Script : MonoBehaviour
      */
     protected virtual void _Start()
     {
+        this._OnStart();
+
         return;
     }
 
@@ -235,6 +224,11 @@ public abstract class Script : MonoBehaviour
      */
     public virtual int Create(Lib.Scene.ScriptCreateDesc desc = null)
     {
+        this._Awake();
+
+        this._createdFlag = false;
+        this._controlFlag = false;
+
         if (this._activeAutoFlag) {
             this.gameObject.SetActive(true);
         }
@@ -257,6 +251,10 @@ public abstract class Script : MonoBehaviour
 
         if (create_result_val < 0) {
             return (create_result_val);
+        }
+
+        if (this._activeAutoFlag) {
+            this.gameObject.SetActive(false);
         }
 
         this._createdFlag = true;
@@ -414,8 +412,17 @@ public abstract class Script : MonoBehaviour
     }
 
     /**
+     * @brief GetAwakedFlag関数
+     * @return awaked_flg (awaked_flag)
+     */
+    public bool GetAwakedFlag()
+    {
+        return (this._awakedFlag);
+    }
+
+    /**
      * @brief GetCreatedFlag関数
-     * @return created_flg (created_flg)
+     * @return created_flg (created_flag)
      */
     public bool GetCreatedFlag()
     {
@@ -424,7 +431,7 @@ public abstract class Script : MonoBehaviour
 
     /**
      * @brief GetControlFlag関数
-     * @return ctrl_flg (control_flg)
+     * @return ctrl_flg (control_flag)
      */
     public bool GetControlFlag()
     {
@@ -433,7 +440,7 @@ public abstract class Script : MonoBehaviour
 
     /**
      * @brief SetControlFlag関数
-     * @param ctrl_flg (control_flg)
+     * @param ctrl_flg (control_flag)
      */
     public void SetControlFlag(bool ctrl_flg)
     {

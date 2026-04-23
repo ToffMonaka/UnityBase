@@ -47,7 +47,7 @@ public abstract class PartsScript : Lib.Scene.Script
      */
     protected override sealed bool _OnGetActiveAutoFlag()
     {
-        return (true);
+        return (false);
     }
 
     /**
@@ -75,26 +75,9 @@ public abstract class PartsScript : Lib.Scene.Script
      */
     protected override void _Start()
     {
-        this._OnStart();
+        base._Start();
 
         return;
-    }
-
-    /**
-     * @brief Create関数
-     * @param desc (desc)
-     * @return result_val (result_value)<br>
-     * 0未満=失敗
-     */
-    public override int Create(Lib.Scene.ScriptCreateDesc desc = null)
-    {
-        int create_result_val = base.Create(desc);
-
-        if (create_result_val < 0) {
-            return (create_result_val);
-        }
-
-        return (0);
     }
 
     /**
@@ -115,6 +98,10 @@ public abstract class PartsScript : Lib.Scene.Script
      */
     protected override void _Active()
     {
+        if (!this.GetCreatedFlag()) {
+            return;
+        }
+
         this._OnActive();
 
         return;
@@ -125,6 +112,10 @@ public abstract class PartsScript : Lib.Scene.Script
      */
     protected override void _Deactive()
     {
+        if (!this.GetCreatedFlag()) {
+            return;
+        }
+
         this._OnDeactive();
 
         return;
@@ -135,6 +126,10 @@ public abstract class PartsScript : Lib.Scene.Script
      */
     protected override void _Update()
     {
+        if (!this.GetCreatedFlag()) {
+            return;
+        }
+
         this._OnUpdate();
 
         return;
@@ -145,6 +140,10 @@ public abstract class PartsScript : Lib.Scene.Script
      */
     protected override void _FixedUpdate()
     {
+        if (!this.GetCreatedFlag()) {
+            return;
+        }
+
         this._OnFixedUpdate();
 
         return;
@@ -155,6 +154,10 @@ public abstract class PartsScript : Lib.Scene.Script
      */
     protected override void _LateUpdate()
     {
+        if (!this.GetCreatedFlag()) {
+            return;
+        }
+
         this._OnLateUpdate();
 
         return;
