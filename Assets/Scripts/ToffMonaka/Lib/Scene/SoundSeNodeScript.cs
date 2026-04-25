@@ -64,8 +64,14 @@ public class SoundSeNodeScript : Lib.Scene.ObjectNodeScript
      * @brief SetCreateDesc関数
      * @param create_desc (create_desc)
      */
-    public override void SetCreateDesc(Lib.Scene.ScriptCreateDesc create_desc)
+    public override void SetCreateDesc(Lib.Scene.ScriptCreateDesc create_desc = null)
     {
+        if (create_desc == null) {
+            this.SetCreateDesc(new Lib.Scene.SoundSeNodeScriptCreateDesc());
+
+            return;
+        }
+
 	    this.createDesc = create_desc as Lib.Scene.SoundSeNodeScriptCreateDesc;
 
         base.SetCreateDesc(this.createDesc);

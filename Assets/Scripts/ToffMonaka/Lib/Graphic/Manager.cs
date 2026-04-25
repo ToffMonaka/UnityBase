@@ -60,9 +60,7 @@ public class Manager
         this.Init();
 
         {// This Create
-            if (desc != null) {
-                this.SetCreateDesc(desc);
-            }
+            this.SetCreateDesc(desc);
         }
 
         int create_result_val = this._OnCreate();
@@ -90,8 +88,14 @@ public class Manager
      * @brief SetCreateDesc関数
      * @param create_desc (create_desc)
      */
-    public virtual void SetCreateDesc(Lib.Graphic.ManagerCreateDesc create_desc)
+    public virtual void SetCreateDesc(Lib.Graphic.ManagerCreateDesc create_desc = null)
     {
+        if (create_desc == null) {
+            this.SetCreateDesc(new Lib.Graphic.ManagerCreateDesc());
+
+            return;
+        }
+
         this.createDesc = create_desc;
 
         return;

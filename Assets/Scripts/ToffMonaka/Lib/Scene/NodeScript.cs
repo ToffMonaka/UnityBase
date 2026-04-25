@@ -78,8 +78,14 @@ public abstract class NodeScript : Lib.Scene.Script
      * @brief SetCreateDesc関数
      * @param create_desc (create_desc)
      */
-    public override void SetCreateDesc(Lib.Scene.ScriptCreateDesc create_desc)
+    public override void SetCreateDesc(Lib.Scene.ScriptCreateDesc create_desc = null)
     {
+        if (create_desc == null) {
+            this.SetCreateDesc(new Lib.Scene.NodeScriptCreateDesc());
+
+            return;
+        }
+
 	    this.createDesc = create_desc as Lib.Scene.NodeScriptCreateDesc;
 
         base.SetCreateDesc(this.createDesc);

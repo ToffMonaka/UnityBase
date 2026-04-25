@@ -82,8 +82,14 @@ public class SubSceneNodeScript : Lib.Scene.SubSceneNodeScript
      * @brief SetCreateDesc関数
      * @param create_desc (create_desc)
      */
-    public override void SetCreateDesc(Lib.Scene.ScriptCreateDesc create_desc)
+    public override void SetCreateDesc(Lib.Scene.ScriptCreateDesc create_desc = null)
     {
+        if (create_desc == null) {
+            this.SetCreateDesc(new UnityBase.Scene.SubSceneNodeScriptCreateDesc());
+
+            return;
+        }
+
 	    this.createDesc = create_desc as UnityBase.Scene.SubSceneNodeScriptCreateDesc;
 
         base.SetCreateDesc(this.createDesc);

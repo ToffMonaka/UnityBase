@@ -117,8 +117,14 @@ public class PrivacyPolicyStageNodeScript : UnityBase.Scene.Ui.Menu.StageNodeScr
      * @brief SetCreateDesc関数
      * @param create_desc (create_desc)
      */
-    public override void SetCreateDesc(Lib.Scene.ScriptCreateDesc create_desc)
+    public override void SetCreateDesc(Lib.Scene.ScriptCreateDesc create_desc = null)
     {
+        if (create_desc == null) {
+            this.SetCreateDesc(new UnityBase.Scene.Ui.Menu.PrivacyPolicyStageNodeScriptCreateDesc());
+
+            return;
+        }
+
 	    this.createDesc = create_desc as UnityBase.Scene.Ui.Menu.PrivacyPolicyStageNodeScriptCreateDesc;
 
         base.SetCreateDesc(this.createDesc);

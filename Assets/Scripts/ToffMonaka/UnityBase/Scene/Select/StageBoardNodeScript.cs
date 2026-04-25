@@ -117,8 +117,14 @@ public class StageBoardNodeScript : UnityBase.Scene.Select.BoardNodeScript
      * @brief SetCreateDesc関数
      * @param create_desc (create_desc)
      */
-    public override void SetCreateDesc(Lib.Scene.ScriptCreateDesc create_desc)
+    public override void SetCreateDesc(Lib.Scene.ScriptCreateDesc create_desc = null)
     {
+        if (create_desc == null) {
+            this.SetCreateDesc(new UnityBase.Scene.Select.StageBoardNodeScriptCreateDesc());
+
+            return;
+        }
+
 	    this.createDesc = create_desc as UnityBase.Scene.Select.StageBoardNodeScriptCreateDesc;
 
         base.SetCreateDesc(this.createDesc);

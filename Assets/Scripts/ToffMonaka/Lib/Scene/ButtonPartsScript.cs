@@ -5,6 +5,7 @@
 
 
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using UnityEngine.Events;
 
@@ -25,6 +26,7 @@ public class ButtonPartsScript : Lib.Scene.PartsScript, IPointerDownHandler, IPo
 {
     [System.Serializable] public class PointerEvent : UnityEvent<PointerEventData> {}
 
+    [SerializeField] private Image _coverImage = null;
     [SerializeField] private PointerEvent _pointerDownEvent = new PointerEvent();
     [SerializeField] private PointerEvent _pointerClickEvent = new PointerEvent();
     [SerializeField] private PointerEvent _pointerEnterEvent = new PointerEvent();
@@ -71,8 +73,14 @@ public class ButtonPartsScript : Lib.Scene.PartsScript, IPointerDownHandler, IPo
      * @brief SetCreateDesc関数
      * @param create_desc (create_desc)
      */
-    public override void SetCreateDesc(Lib.Scene.ScriptCreateDesc create_desc)
+    public override void SetCreateDesc(Lib.Scene.ScriptCreateDesc create_desc = null)
     {
+        if (create_desc == null) {
+            this.SetCreateDesc(new Lib.Scene.ButtonPartsScriptCreateDesc());
+
+            return;
+        }
+
 	    this.createDesc = create_desc as Lib.Scene.ButtonPartsScriptCreateDesc;
 
         base.SetCreateDesc(this.createDesc);
@@ -85,6 +93,8 @@ public class ButtonPartsScript : Lib.Scene.PartsScript, IPointerDownHandler, IPo
      */
     protected override void _OnActive()
     {
+        this._coverImage?.gameObject.SetActive(false);
+
         return;
     }
 
@@ -110,6 +120,10 @@ public class ButtonPartsScript : Lib.Scene.PartsScript, IPointerDownHandler, IPo
      */
     public void OnPointerDown(PointerEventData event_dat)
     {
+        if (!this.IsControllable()) {
+            return;
+        }
+
         this._pointerDownEvent.Invoke(event_dat);
 
         return;
@@ -121,6 +135,10 @@ public class ButtonPartsScript : Lib.Scene.PartsScript, IPointerDownHandler, IPo
      */
     public void OnPointerClick(PointerEventData event_dat)
     {
+        if (!this.IsControllable()) {
+            return;
+        }
+
         this._pointerClickEvent.Invoke(event_dat);
 
         return;
@@ -132,6 +150,8 @@ public class ButtonPartsScript : Lib.Scene.PartsScript, IPointerDownHandler, IPo
      */
     public void OnPointerEnter(PointerEventData event_dat)
     {
+        this._coverImage?.gameObject.SetActive(true);
+
         this._pointerEnterEvent.Invoke(event_dat);
 
         return;
@@ -143,6 +163,8 @@ public class ButtonPartsScript : Lib.Scene.PartsScript, IPointerDownHandler, IPo
      */
     public void OnPointerExit(PointerEventData event_dat)
     {
+        this._coverImage?.gameObject.SetActive(false);
+
         this._pointerExitEvent.Invoke(event_dat);
 
         return;

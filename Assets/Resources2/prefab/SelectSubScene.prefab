@@ -1694,6 +1694,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1251724577724369076}
   - component: {fileID: 4555027664772184598}
+  - component: {fileID: 6775526965051898645}
   - component: {fileID: 8084857727103676254}
   - component: {fileID: 74604050181804974}
   m_Layer: 5
@@ -1736,7 +1737,44 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4fa0811449e38a743a8c2f19e8f96527, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ToffMonaka.UnityBase.Scene.Select.BackButtonNodeScript
+--- !u!114 &6775526965051898645
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9120661118286272424}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e6c3e733a943304c9c1a2804cdedd34, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ToffMonaka.Lib.Scene.ButtonPartsScript
   _coverImage: {fileID: 4081625084819560138}
+  _pointerDownEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  _pointerClickEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4555027664772184598}
+        m_TargetAssemblyTypeName: ToffMonaka.UnityBase.Scene.Select.BackButtonNodeScript,
+          Assembly-CSharp
+        m_MethodName: OnPointerClick
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  _pointerEnterEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  _pointerExitEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!222 &8084857727103676254
 CanvasRenderer:
   m_ObjectHideFlags: 0

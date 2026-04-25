@@ -234,9 +234,7 @@ public abstract class Script : MonoBehaviour
         }
 
         {// This Create
-            if (desc != null) {
-                this.SetCreateDesc(desc);
-            }
+            this.SetCreateDesc(desc);
 
             if (Lib.Scene.Util.GetManager() != null) {
                 if (Lib.Scene.Util.GetManager().AddScript(this) < 0) {
@@ -277,8 +275,14 @@ public abstract class Script : MonoBehaviour
      * @brief SetCreateDesc関数
      * @param create_desc (create_desc)
      */
-    public virtual void SetCreateDesc(Lib.Scene.ScriptCreateDesc create_desc)
+    public virtual void SetCreateDesc(Lib.Scene.ScriptCreateDesc create_desc = null)
     {
+        if (create_desc == null) {
+            this.SetCreateDesc(new Lib.Scene.ScriptCreateDesc());
+
+            return;
+        }
+
         this.createDesc = create_desc;
 
         return;

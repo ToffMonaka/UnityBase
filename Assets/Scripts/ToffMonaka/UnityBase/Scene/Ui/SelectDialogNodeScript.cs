@@ -95,8 +95,14 @@ public class SelectDialogNodeScript : UnityBase.Scene.Ui.DialogNodeScript
      * @brief SetCreateDesc関数
      * @param create_desc (create_desc)
      */
-    public override void SetCreateDesc(Lib.Scene.ScriptCreateDesc create_desc)
+    public override void SetCreateDesc(Lib.Scene.ScriptCreateDesc create_desc = null)
     {
+        if (create_desc == null) {
+            this.SetCreateDesc(new UnityBase.Scene.Ui.SelectDialogNodeScriptCreateDesc());
+
+            return;
+        }
+
 	    this.createDesc = create_desc as UnityBase.Scene.Ui.SelectDialogNodeScriptCreateDesc;
 
         base.SetCreateDesc(this.createDesc);

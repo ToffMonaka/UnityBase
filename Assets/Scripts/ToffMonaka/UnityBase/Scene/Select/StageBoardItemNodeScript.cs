@@ -77,8 +77,14 @@ public class StageBoardItemNodeScript : Lib.Scene.ObjectNodeScript, IPointerClic
      * @brief SetCreateDesc関数
      * @param create_desc (create_desc)
      */
-    public override void SetCreateDesc(Lib.Scene.ScriptCreateDesc create_desc)
+    public override void SetCreateDesc(Lib.Scene.ScriptCreateDesc create_desc = null)
     {
+        if (create_desc == null) {
+            this.SetCreateDesc(new UnityBase.Scene.Select.StageBoardItemNodeScriptCreateDesc());
+
+            return;
+        }
+
 	    this.createDesc = create_desc as UnityBase.Scene.Select.StageBoardItemNodeScriptCreateDesc;
 
         base.SetCreateDesc(this.createDesc);

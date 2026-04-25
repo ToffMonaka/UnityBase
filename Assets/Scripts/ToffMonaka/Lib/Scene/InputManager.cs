@@ -68,9 +68,7 @@ public class InputManager
         this.Init();
 
         {// This Create
-            if (desc != null) {
-                this.SetCreateDesc(desc);
-            }
+            this.SetCreateDesc(desc);
 
             this._inputNode = desc.inputNode;
 
@@ -103,8 +101,14 @@ public class InputManager
      * @brief SetCreateDesc関数
      * @param create_desc (create_desc)
      */
-    public virtual void SetCreateDesc(Lib.Scene.InputManagerCreateDesc create_desc)
+    public virtual void SetCreateDesc(Lib.Scene.InputManagerCreateDesc create_desc = null)
     {
+        if (create_desc == null) {
+            this.SetCreateDesc(new Lib.Scene.InputManagerCreateDesc());
+
+            return;
+        }
+
         this.createDesc = create_desc;
 
         return;

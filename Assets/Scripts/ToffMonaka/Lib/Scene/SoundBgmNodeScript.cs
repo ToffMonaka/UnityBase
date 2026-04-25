@@ -64,8 +64,14 @@ public class SoundBgmNodeScript : Lib.Scene.ObjectNodeScript
      * @brief SetCreateDesc関数
      * @param create_desc (create_desc)
      */
-    public override void SetCreateDesc(Lib.Scene.ScriptCreateDesc create_desc)
+    public override void SetCreateDesc(Lib.Scene.ScriptCreateDesc create_desc = null)
     {
+        if (create_desc == null) {
+            this.SetCreateDesc(new Lib.Scene.SoundBgmNodeScriptCreateDesc());
+
+            return;
+        }
+
 	    this.createDesc = create_desc as Lib.Scene.SoundBgmNodeScriptCreateDesc;
 
         base.SetCreateDesc(this.createDesc);

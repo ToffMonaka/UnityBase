@@ -75,6 +75,10 @@ public abstract class PartsScript : Lib.Scene.Script
      */
     protected override void _Start()
     {
+        if (!this.GetCreatedFlag()) {
+            this.Create();
+        }
+
         base._Start();
 
         return;
@@ -84,8 +88,14 @@ public abstract class PartsScript : Lib.Scene.Script
      * @brief SetCreateDesc関数
      * @param create_desc (create_desc)
      */
-    public override void SetCreateDesc(Lib.Scene.ScriptCreateDesc create_desc)
+    public override void SetCreateDesc(Lib.Scene.ScriptCreateDesc create_desc = null)
     {
+        if (create_desc == null) {
+            this.SetCreateDesc(new Lib.Scene.PartsScriptCreateDesc());
+
+            return;
+        }
+
 	    this.createDesc = create_desc as Lib.Scene.PartsScriptCreateDesc;
 
         base.SetCreateDesc(this.createDesc);

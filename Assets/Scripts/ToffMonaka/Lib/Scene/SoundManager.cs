@@ -108,9 +108,7 @@ public class SoundManager
         this.Init();
 
         {// This Create
-            if (desc != null) {
-                this.SetCreateDesc(desc);
-            }
+            this.SetCreateDesc(desc);
 
             this._soundNode = desc.soundNode;
 
@@ -174,8 +172,14 @@ public class SoundManager
      * @brief SetCreateDesc関数
      * @param create_desc (create_desc)
      */
-    public virtual void SetCreateDesc(Lib.Scene.SoundManagerCreateDesc create_desc)
+    public virtual void SetCreateDesc(Lib.Scene.SoundManagerCreateDesc create_desc = null)
     {
+        if (create_desc == null) {
+            this.SetCreateDesc(new Lib.Scene.SoundManagerCreateDesc());
+
+            return;
+        }
+
         this.createDesc = create_desc;
 
         return;

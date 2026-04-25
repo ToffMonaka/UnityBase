@@ -23,10 +23,8 @@ public class BackButtonNodeScriptCreateDesc : Lib.Scene.ObjectNodeScriptCreateDe
 /**
  * @brief BackButtonNodeScriptクラス
  */
-public class BackButtonNodeScript : Lib.Scene.ObjectNodeScript, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
+public class BackButtonNodeScript : Lib.Scene.ObjectNodeScript
 {
-    [SerializeField] private Image _coverImage = null;
-
     public new UnityBase.Scene.Select.BackButtonNodeScriptCreateDesc createDesc{get; private set;} = null;
 
     private System.Action<UnityBase.Scene.Select.BackButtonNodeScript> _onClick = null;
@@ -72,8 +70,14 @@ public class BackButtonNodeScript : Lib.Scene.ObjectNodeScript, IPointerClickHan
      * @brief SetCreateDesc関数
      * @param create_desc (create_desc)
      */
-    public override void SetCreateDesc(Lib.Scene.ScriptCreateDesc create_desc)
+    public override void SetCreateDesc(Lib.Scene.ScriptCreateDesc create_desc = null)
     {
+        if (create_desc == null) {
+            this.SetCreateDesc(new UnityBase.Scene.Select.BackButtonNodeScriptCreateDesc());
+
+            return;
+        }
+
 	    this.createDesc = create_desc as UnityBase.Scene.Select.BackButtonNodeScriptCreateDesc;
 
         base.SetCreateDesc(this.createDesc);
@@ -86,8 +90,6 @@ public class BackButtonNodeScript : Lib.Scene.ObjectNodeScript, IPointerClickHan
      */
     protected override void _OnActive()
     {
-        this._coverImage.gameObject.SetActive(false);
-
         return;
     }
 
@@ -196,32 +198,6 @@ public class BackButtonNodeScript : Lib.Scene.ObjectNodeScript, IPointerClickHan
         Lib.Scene.Util.GetSoundManager().PlaySe((int)UnityBase.Util.SOUND.SE_INDEX.CANCEL);
 
         this._onClick?.Invoke(this);
-
-        return;
-    }
-
-    /**
-     * @brief OnPointerEnter関数
-     * @param event_dat (event_data)
-     */
-    public void OnPointerEnter(PointerEventData event_dat)
-    {
-        if (!this.IsControllable()) {
-            return;
-        }
-
-        this._coverImage.gameObject.SetActive(true);
-
-        return;
-    }
-
-    /**
-     * @brief OnPointerExit関数
-     * @param event_dat (event_data)
-     */
-    public void OnPointerExit(PointerEventData event_dat)
-    {
-        this._coverImage.gameObject.SetActive(false);
 
         return;
     }
