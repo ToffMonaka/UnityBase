@@ -27,7 +27,7 @@ public class SubSceneNodeScript : UnityBase.Scene.SubSceneNodeScript
     public new UnityBase.Scene.Stage.SubSceneNodeScriptCreateDesc createDesc{get; private set;} = null;
 
     private UnityBase.Util.SCENE.STAGE_TYPE _stageType = UnityBase.Util.SCENE.STAGE_TYPE.NONE;
-    protected UnityBase.Scene.Stage.BackButtonNodeScript _backButtonNodeScript = null;
+    protected UnityBase.Scene.Ui.BackButtonNodeScript _backButtonNodeScript = null;
 
     /**
      * @brief _OnGetScriptIndex関数
@@ -81,10 +81,10 @@ public class SubSceneNodeScript : UnityBase.Scene.SubSceneNodeScript
         }
 
         {// BackButtonNodeScript Create
-            var script = this._backButtonNode.GetComponent<UnityBase.Scene.Stage.BackButtonNodeScript>();
-            var script_create_desc = new UnityBase.Scene.Stage.BackButtonNodeScriptCreateDesc();
+            var script = this._backButtonNode.GetComponent<UnityBase.Scene.Ui.BackButtonNodeScript>();
+            var script_create_desc = new UnityBase.Scene.Ui.BackButtonNodeScriptCreateDesc();
 
-            script_create_desc.onClick = (UnityBase.Scene.Stage.BackButtonNodeScript owner) => {
+            script_create_desc.onClick = (UnityBase.Scene.Ui.BackButtonNodeScript owner) => {
                 this.Close(1, 1);
 
                 return;

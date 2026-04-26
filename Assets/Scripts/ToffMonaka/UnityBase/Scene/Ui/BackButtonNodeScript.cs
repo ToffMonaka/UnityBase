@@ -11,13 +11,13 @@ using DG.Tweening;
 
 
 namespace ToffMonaka {
-namespace UnityBase.Scene.Select {
+namespace UnityBase.Scene.Ui {
 /**
  * @brief BackButtonNodeScriptCreateDescクラス
  */
 public class BackButtonNodeScriptCreateDesc : Lib.Scene.ObjectNodeScriptCreateDesc
 {
-    public System.Action<UnityBase.Scene.Select.BackButtonNodeScript> onClick = null;
+    public System.Action<UnityBase.Scene.Ui.BackButtonNodeScript> onClick = null;
 }
 
 /**
@@ -25,9 +25,9 @@ public class BackButtonNodeScriptCreateDesc : Lib.Scene.ObjectNodeScriptCreateDe
  */
 public class BackButtonNodeScript : Lib.Scene.ObjectNodeScript
 {
-    public new UnityBase.Scene.Select.BackButtonNodeScriptCreateDesc createDesc{get; private set;} = null;
+    public new UnityBase.Scene.Ui.BackButtonNodeScriptCreateDesc createDesc{get; private set;} = null;
 
-    private System.Action<UnityBase.Scene.Select.BackButtonNodeScript> _onClick = null;
+    private System.Action<UnityBase.Scene.Ui.BackButtonNodeScript> _onClick = null;
 
     /**
      * @brief _OnGetScriptIndex関数
@@ -35,7 +35,7 @@ public class BackButtonNodeScript : Lib.Scene.ObjectNodeScript
      */
     protected override int _OnGetScriptIndex()
     {
-        return ((int)UnityBase.Util.SCENE.SCRIPT_INDEX.SELECT_BACK_BUTTON_NODE);
+        return ((int)UnityBase.Util.SCENE.SCRIPT_INDEX.STAGE_BACK_BUTTON_NODE);
     }
 
     /**
@@ -73,12 +73,12 @@ public class BackButtonNodeScript : Lib.Scene.ObjectNodeScript
     public override void SetCreateDesc(Lib.Scene.ScriptCreateDesc create_desc = null)
     {
         if (create_desc == null) {
-            this.SetCreateDesc(new UnityBase.Scene.Select.BackButtonNodeScriptCreateDesc());
+            this.SetCreateDesc(new UnityBase.Scene.Ui.BackButtonNodeScriptCreateDesc());
 
             return;
         }
 
-	    this.createDesc = create_desc as UnityBase.Scene.Select.BackButtonNodeScriptCreateDesc;
+	    this.createDesc = create_desc as UnityBase.Scene.Ui.BackButtonNodeScriptCreateDesc;
 
         base.SetCreateDesc(this.createDesc);
 

@@ -27,13 +27,10 @@ public class InputDialogNodeScriptCreateDesc : UnityBase.Scene.Ui.DialogNodeScri
 public class InputDialogNodeScript : UnityBase.Scene.Ui.DialogNodeScript
 {
     [SerializeField] private TMP_Text _nameText = null;
-    [SerializeField] private Image _closeButtonCoverImage = null;
     [SerializeField] private TMP_InputField _inputField = null;
     [SerializeField] private Scrollbar _inputFieldScrollbar = null;
     [SerializeField] private TMP_Text _okButtonNameText = null;
-    [SerializeField] private Image _okButtonCoverImage = null;
     [SerializeField] private TMP_Text _cancelButtonNameText = null;
-    [SerializeField] private Image _cancelButtonCoverImage = null;
 
     public new UnityBase.Scene.Ui.InputDialogNodeScriptCreateDesc createDesc{get; private set;} = null;
 
@@ -126,12 +123,9 @@ public class InputDialogNodeScript : UnityBase.Scene.Ui.DialogNodeScript
     {
         base._OnActive();
 
-        this._closeButtonCoverImage.gameObject.SetActive(false);
         this._inputField.textComponent.rectTransform.localPosition = Vector3.zero;
         this._inputField.GetComponentInChildren<TMP_SelectionCaret>().rectTransform.localPosition = Vector3.zero;
         this._inputFieldScrollbar.SetValueWithoutNotify(0.0f);
-        this._okButtonCoverImage.gameObject.SetActive(false);
-        this._cancelButtonCoverImage.gameObject.SetActive(false);
 
         return;
     }
@@ -214,32 +208,6 @@ public class InputDialogNodeScript : UnityBase.Scene.Ui.DialogNodeScript
     }
 
     /**
-     * @brief OnCloseButtonPointerEnter関数
-     * @param event_dat (event_data)
-     */
-    public void OnCloseButtonPointerEnter(PointerEventData event_dat)
-    {
-        if (!this.IsControllable()) {
-            return;
-        }
-
-        this._closeButtonCoverImage.gameObject.SetActive(true);
-
-        return;
-    }
-
-    /**
-     * @brief OnCloseButtonPointerExit関数
-     * @param event_dat (event_data)
-     */
-    public void OnCloseButtonPointerExit(PointerEventData event_dat)
-    {
-        this._closeButtonCoverImage.gameObject.SetActive(false);
-
-        return;
-    }
-
-    /**
      * @brief OnOkButtonPointerClick関数
      * @param event_dat (event_data)
      */
@@ -259,32 +227,6 @@ public class InputDialogNodeScript : UnityBase.Scene.Ui.DialogNodeScript
     }
 
     /**
-     * @brief OnOkButtonPointerEnter関数
-     * @param event_dat (event_data)
-     */
-    public void OnOkButtonPointerEnter(PointerEventData event_dat)
-    {
-        if (!this.IsControllable()) {
-            return;
-        }
-
-        this._okButtonCoverImage.gameObject.SetActive(true);
-
-        return;
-    }
-
-    /**
-     * @brief OnOkButtonPointerExit関数
-     * @param event_dat (event_data)
-     */
-    public void OnOkButtonPointerExit(PointerEventData event_dat)
-    {
-        this._okButtonCoverImage.gameObject.SetActive(false);
-
-        return;
-    }
-
-    /**
      * @brief OnCancelButtonPointerClick関数
      * @param event_dat (event_data)
      */
@@ -297,32 +239,6 @@ public class InputDialogNodeScript : UnityBase.Scene.Ui.DialogNodeScript
         Lib.Scene.Util.GetSoundManager().PlaySe((int)UnityBase.Util.SOUND.SE_INDEX.CANCEL);
 
         this.Close(1);
-
-        return;
-    }
-
-    /**
-     * @brief OnCancelButtonPointerEnter関数
-     * @param event_dat (event_data)
-     */
-    public void OnCancelButtonPointerEnter(PointerEventData event_dat)
-    {
-        if (!this.IsControllable()) {
-            return;
-        }
-
-        this._cancelButtonCoverImage.gameObject.SetActive(true);
-
-        return;
-    }
-
-    /**
-     * @brief OnCancelButtonPointerExit関数
-     * @param event_dat (event_data)
-     */
-    public void OnCancelButtonPointerExit(PointerEventData event_dat)
-    {
-        this._cancelButtonCoverImage.gameObject.SetActive(false);
 
         return;
     }

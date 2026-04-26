@@ -31,9 +31,7 @@ public class CheatStageNodeScript : UnityBase.Scene.Ui.Menu.StageNodeScript
     [SerializeField] private ScrollRect _scrollRect = null;
     [SerializeField] private GameObject _itemNode = null;
     [SerializeField] private TMP_Text _okButtonNameText = null;
-    [SerializeField] private Image _okButtonCoverImage = null;
     [SerializeField] private TMP_Text _cancelButtonNameText = null;
-    [SerializeField] private Image _cancelButtonCoverImage = null;
 
     public new UnityBase.Scene.Ui.Menu.CheatStageNodeScriptCreateDesc createDesc{get; private set;} = null;
 
@@ -160,8 +158,6 @@ public class CheatStageNodeScript : UnityBase.Scene.Ui.Menu.StageNodeScript
         base._OnActive();
 
         this._scrollRect.verticalNormalizedPosition = 1.0f;
-        this._okButtonCoverImage.gameObject.SetActive(false);
-        this._cancelButtonCoverImage.gameObject.SetActive(false);
 
         this.SetCheatCommand("");
         this._cheatCommandCalculateOption.Init();
@@ -260,32 +256,6 @@ public class CheatStageNodeScript : UnityBase.Scene.Ui.Menu.StageNodeScript
     }
 
     /**
-     * @brief OnOkButtonPointerEnter関数
-     * @param event_dat (event_data)
-     */
-    public void OnOkButtonPointerEnter(PointerEventData event_dat)
-    {
-        if (!this.IsControllable()) {
-            return;
-        }
-
-        this._okButtonCoverImage.gameObject.SetActive(true);
-
-        return;
-    }
-
-    /**
-     * @brief OnOkButtonPointerExit関数
-     * @param event_dat (event_data)
-     */
-    public void OnOkButtonPointerExit(PointerEventData event_dat)
-    {
-        this._okButtonCoverImage.gameObject.SetActive(false);
-
-        return;
-    }
-
-    /**
      * @brief OnCancelButtonPointerClick関数
      * @param event_dat (event_data)
      */
@@ -298,32 +268,6 @@ public class CheatStageNodeScript : UnityBase.Scene.Ui.Menu.StageNodeScript
         Lib.Scene.Util.GetSoundManager().PlaySe((int)UnityBase.Util.SOUND.SE_INDEX.CANCEL);
 
         this.GetMenuNodeScript().ChangeStage(UnityBase.Util.SCENE.MENU_STAGE_TYPE.NONE);
-
-        return;
-    }
-
-    /**
-     * @brief OnCancelButtonPointerEnter関数
-     * @param event_dat (event_data)
-     */
-    public void OnCancelButtonPointerEnter(PointerEventData event_dat)
-    {
-        if (!this.IsControllable()) {
-            return;
-        }
-
-        this._cancelButtonCoverImage.gameObject.SetActive(true);
-
-        return;
-    }
-
-    /**
-     * @brief OnCancelButtonPointerExit関数
-     * @param event_dat (event_data)
-     */
-    public void OnCancelButtonPointerExit(PointerEventData event_dat)
-    {
-        this._cancelButtonCoverImage.gameObject.SetActive(false);
 
         return;
     }

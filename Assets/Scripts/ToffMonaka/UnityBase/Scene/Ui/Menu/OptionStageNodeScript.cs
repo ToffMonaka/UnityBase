@@ -27,24 +27,17 @@ public class OptionStageNodeScript : UnityBase.Scene.Ui.Menu.StageNodeScript
     [SerializeField] private ScrollRect _scrollRect = null;
     [SerializeField] private TMP_Text _languageNameText = null;
     [SerializeField] private TMP_Text _languageButtonNameText = null;
-    [SerializeField] private Image _languageButtonCoverImage = null;
     [SerializeField] private TMP_Text _soundNameText = null;
     [SerializeField] private TMP_Text _soundBgmVolumeNameText = null;
     [SerializeField] private Slider _soundBgmVolumeSlider = null;
-    [SerializeField] private Image _soundBgmVolumeSliderLeftButtonCoverImage = null;
-    [SerializeField] private Image _soundBgmVolumeSliderRightButtonCoverImage = null;
     [SerializeField] private TMP_Text _soundBgmMuteNameText = null;
     [SerializeField] private Toggle _soundBgmMuteToggle = null;
     [SerializeField] private TMP_Text _soundSeVolumeNameText = null;
     [SerializeField] private Slider _soundSeVolumeSlider = null;
-    [SerializeField] private Image _soundSeVolumeSliderLeftButtonCoverImage = null;
-    [SerializeField] private Image _soundSeVolumeSliderRightButtonCoverImage = null;
     [SerializeField] private TMP_Text _soundSeMuteNameText = null;
     [SerializeField] private Toggle _soundSeMuteToggle = null;
     [SerializeField] private TMP_Text _okButtonNameText = null;
-    [SerializeField] private Image _okButtonCoverImage = null;
     [SerializeField] private TMP_Text _cancelButtonNameText = null;
-    [SerializeField] private Image _cancelButtonCoverImage = null;
 
     public new UnityBase.Scene.Ui.Menu.OptionStageNodeScriptCreateDesc createDesc{get; private set;} = null;
 
@@ -149,13 +142,6 @@ public class OptionStageNodeScript : UnityBase.Scene.Ui.Menu.StageNodeScript
         base._OnActive();
 
         this._scrollRect.verticalNormalizedPosition = 1.0f;
-        this._languageButtonCoverImage.gameObject.SetActive(false);
-        this._soundBgmVolumeSliderLeftButtonCoverImage.gameObject.SetActive(false);
-        this._soundBgmVolumeSliderRightButtonCoverImage.gameObject.SetActive(false);
-        this._soundSeVolumeSliderLeftButtonCoverImage.gameObject.SetActive(false);
-        this._soundSeVolumeSliderRightButtonCoverImage.gameObject.SetActive(false);
-        this._okButtonCoverImage.gameObject.SetActive(false);
-        this._cancelButtonCoverImage.gameObject.SetActive(false);
 
         return;
     }
@@ -267,32 +253,6 @@ public class OptionStageNodeScript : UnityBase.Scene.Ui.Menu.StageNodeScript
     }
 
     /**
-     * @brief OnLanguageButtonPointerEnter関数
-     * @param event_dat (event_data)
-     */
-    public void OnLanguageButtonPointerEnter(PointerEventData event_dat)
-    {
-        if (!this.IsControllable()) {
-            return;
-        }
-
-        this._languageButtonCoverImage.gameObject.SetActive(true);
-
-        return;
-    }
-
-    /**
-     * @brief OnLanguageButtonPointerExit関数
-     * @param event_dat (event_data)
-     */
-    public void OnLanguageButtonPointerExit(PointerEventData event_dat)
-    {
-        this._languageButtonCoverImage.gameObject.SetActive(false);
-
-        return;
-    }
-
-    /**
      * @brief OnSoundBgmVolumeSliderValueChanged関数
      * @param event_val (event_value)
      */
@@ -335,32 +295,6 @@ public class OptionStageNodeScript : UnityBase.Scene.Ui.Menu.StageNodeScript
     }
 
     /**
-     * @brief OnSoundBgmVolumeSliderLeftButtonPointerEnter関数
-     * @param event_dat (event_data)
-     */
-    public void OnSoundBgmVolumeSliderLeftButtonPointerEnter(PointerEventData event_dat)
-    {
-        if (!this.IsControllable()) {
-            return;
-        }
-
-        this._soundBgmVolumeSliderLeftButtonCoverImage.gameObject.SetActive(true);
-
-        return;
-    }
-
-    /**
-     * @brief OnSoundBgmVolumeSliderLeftButtonPointerExit関数
-     * @param event_dat (event_data)
-     */
-    public void OnSoundBgmVolumeSliderLeftButtonPointerExit(PointerEventData event_dat)
-    {
-        this._soundBgmVolumeSliderLeftButtonCoverImage.gameObject.SetActive(false);
-
-        return;
-    }
-
-    /**
      * @brief OnSoundBgmVolumeSliderRightButtonPointerClick関数
      * @param event_dat (event_data)
      */
@@ -375,32 +309,6 @@ public class OptionStageNodeScript : UnityBase.Scene.Ui.Menu.StageNodeScript
         this.SetSoundBgmVolume(System.Math.Min(this._soundBgmVolume + 0.1f, 1.0f));
 
         Lib.Scene.Util.GetSoundManager().SetBgmVolume(this._soundBgmVolume);
-
-        return;
-    }
-
-    /**
-     * @brief OnSoundBgmVolumeSliderRightButtonPointerEnter関数
-     * @param event_dat (event_data)
-     */
-    public void OnSoundBgmVolumeSliderRightButtonPointerEnter(PointerEventData event_dat)
-    {
-        if (!this.IsControllable()) {
-            return;
-        }
-
-        this._soundBgmVolumeSliderRightButtonCoverImage.gameObject.SetActive(true);
-
-        return;
-    }
-
-    /**
-     * @brief OnSoundBgmVolumeSliderRightButtonPointerExit関数
-     * @param event_dat (event_data)
-     */
-    public void OnSoundBgmVolumeSliderRightButtonPointerExit(PointerEventData event_dat)
-    {
-        this._soundBgmVolumeSliderRightButtonCoverImage.gameObject.SetActive(false);
 
         return;
     }
@@ -471,32 +379,6 @@ public class OptionStageNodeScript : UnityBase.Scene.Ui.Menu.StageNodeScript
     }
 
     /**
-     * @brief OnSoundSeVolumeSliderLeftButtonPointerEnter関数
-     * @param event_dat (event_data)
-     */
-    public void OnSoundSeVolumeSliderLeftButtonPointerEnter(PointerEventData event_dat)
-    {
-        if (!this.IsControllable()) {
-            return;
-        }
-
-        this._soundSeVolumeSliderLeftButtonCoverImage.gameObject.SetActive(true);
-
-        return;
-    }
-
-    /**
-     * @brief OnSoundSeVolumeSliderLeftButtonPointerExit関数
-     * @param event_dat (event_data)
-     */
-    public void OnSoundSeVolumeSliderLeftButtonPointerExit(PointerEventData event_dat)
-    {
-        this._soundSeVolumeSliderLeftButtonCoverImage.gameObject.SetActive(false);
-
-        return;
-    }
-
-    /**
      * @brief OnSoundSeVolumeSliderRightButtonPointerClick関数
      * @param event_dat (event_data)
      */
@@ -511,32 +393,6 @@ public class OptionStageNodeScript : UnityBase.Scene.Ui.Menu.StageNodeScript
         this.SetSoundSeVolume(System.Math.Min(this._soundSeVolume + 0.1f, 1.0f));
 
         Lib.Scene.Util.GetSoundManager().SetSeVolume(this._soundSeVolume);
-
-        return;
-    }
-
-    /**
-     * @brief OnSoundSeVolumeSliderRightButtonPointerEnter関数
-     * @param event_dat (event_data)
-     */
-    public void OnSoundSeVolumeSliderRightButtonPointerEnter(PointerEventData event_dat)
-    {
-        if (!this.IsControllable()) {
-            return;
-        }
-
-        this._soundSeVolumeSliderRightButtonCoverImage.gameObject.SetActive(true);
-
-        return;
-    }
-
-    /**
-     * @brief OnSoundSeVolumeSliderRightButtonPointerExit関数
-     * @param event_dat (event_data)
-     */
-    public void OnSoundSeVolumeSliderRightButtonPointerExit(PointerEventData event_dat)
-    {
-        this._soundSeVolumeSliderRightButtonCoverImage.gameObject.SetActive(false);
 
         return;
     }
@@ -594,32 +450,6 @@ public class OptionStageNodeScript : UnityBase.Scene.Ui.Menu.StageNodeScript
     }
 
     /**
-     * @brief OnOkButtonPointerEnter関数
-     * @param event_dat (event_data)
-     */
-    public void OnOkButtonPointerEnter(PointerEventData event_dat)
-    {
-        if (!this.IsControllable()) {
-            return;
-        }
-
-        this._okButtonCoverImage.gameObject.SetActive(true);
-
-        return;
-    }
-
-    /**
-     * @brief OnOkButtonPointerExit関数
-     * @param event_dat (event_data)
-     */
-    public void OnOkButtonPointerExit(PointerEventData event_dat)
-    {
-        this._okButtonCoverImage.gameObject.SetActive(false);
-
-        return;
-    }
-
-    /**
      * @brief OnCancelButtonPointerClick関数
      * @param event_dat (event_data)
      */
@@ -637,32 +467,6 @@ public class OptionStageNodeScript : UnityBase.Scene.Ui.Menu.StageNodeScript
         Lib.Scene.Util.GetSoundManager().SetSeMuteFlag(UnityBase.Global.systemConfigFile.data.soundSeMuteFlag);
 
         this.GetMenuNodeScript().ChangeStage(UnityBase.Util.SCENE.MENU_STAGE_TYPE.NONE);
-
-        return;
-    }
-
-    /**
-     * @brief OnCancelButtonPointerEnter関数
-     * @param event_dat (event_data)
-     */
-    public void OnCancelButtonPointerEnter(PointerEventData event_dat)
-    {
-        if (!this.IsControllable()) {
-            return;
-        }
-
-        this._cancelButtonCoverImage.gameObject.SetActive(true);
-
-        return;
-    }
-
-    /**
-     * @brief OnCancelButtonPointerExit関数
-     * @param event_dat (event_data)
-     */
-    public void OnCancelButtonPointerExit(PointerEventData event_dat)
-    {
-        this._cancelButtonCoverImage.gameObject.SetActive(false);
 
         return;
     }

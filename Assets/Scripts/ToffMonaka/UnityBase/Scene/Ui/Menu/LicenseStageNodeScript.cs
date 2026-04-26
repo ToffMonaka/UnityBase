@@ -28,7 +28,6 @@ public class LicenseStageNodeScript : UnityBase.Scene.Ui.Menu.StageNodeScript
     [SerializeField] private float _scrollBarMinSize = 64.0f;
     [SerializeField] private GameObject _messageNode = null;
     [SerializeField] private TMP_Text _cancelButtonNameText = null;
-    [SerializeField] private Image _cancelButtonCoverImage = null;
 
     public new UnityBase.Scene.Ui.Menu.LicenseStageNodeScriptCreateDesc createDesc{get; private set;} = null;
 
@@ -127,7 +126,6 @@ public class LicenseStageNodeScript : UnityBase.Scene.Ui.Menu.StageNodeScript
         base._OnActive();
 
         this._scrollRect.verticalNormalizedPosition = 1.0f;
-        this._cancelButtonCoverImage.gameObject.SetActive(false);
 
         return;
     }
@@ -218,32 +216,6 @@ public class LicenseStageNodeScript : UnityBase.Scene.Ui.Menu.StageNodeScript
         Lib.Scene.Util.GetSoundManager().PlaySe((int)UnityBase.Util.SOUND.SE_INDEX.CANCEL);
 
         this.GetMenuNodeScript().ChangeStage(UnityBase.Util.SCENE.MENU_STAGE_TYPE.NONE);
-
-        return;
-    }
-
-    /**
-     * @brief OnCancelButtonPointerEnter関数
-     * @param event_dat (event_data)
-     */
-    public void OnCancelButtonPointerEnter(PointerEventData event_dat)
-    {
-        if (!this.IsControllable()) {
-            return;
-        }
-
-        this._cancelButtonCoverImage.gameObject.SetActive(true);
-
-        return;
-    }
-
-    /**
-     * @brief OnCancelButtonPointerExit関数
-     * @param event_dat (event_data)
-     */
-    public void OnCancelButtonPointerExit(PointerEventData event_dat)
-    {
-        this._cancelButtonCoverImage.gameObject.SetActive(false);
 
         return;
     }

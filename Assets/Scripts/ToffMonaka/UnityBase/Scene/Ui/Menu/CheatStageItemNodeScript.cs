@@ -24,11 +24,10 @@ public class CheatStageItemNodeScriptCreateDesc : Lib.Scene.ObjectNodeScriptCrea
 /**
  * @brief CheatStageItemNodeScriptクラス
  */
-public class CheatStageItemNodeScript : Lib.Scene.ObjectNodeScript, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
+public class CheatStageItemNodeScript : Lib.Scene.ObjectNodeScript
 {
     [SerializeField] private TMP_Text _nameText = null;
     [SerializeField] private TMP_Text _detailText = null;
-    [SerializeField] private Image _coverImage = null;
 
     public new UnityBase.Scene.Ui.Menu.CheatStageItemNodeScriptCreateDesc createDesc{get; private set;} = null;
 
@@ -100,8 +99,6 @@ public class CheatStageItemNodeScript : Lib.Scene.ObjectNodeScript, IPointerClic
      */
     protected override void _OnActive()
     {
-        this._coverImage.gameObject.SetActive(false);
-
         return;
     }
 
@@ -166,32 +163,6 @@ public class CheatStageItemNodeScript : Lib.Scene.ObjectNodeScript, IPointerClic
         Lib.Scene.Util.GetSoundManager().PlaySe((int)UnityBase.Util.SOUND.SE_INDEX.OK2);
 
         this._onClick?.Invoke(this);
-
-        return;
-    }
-
-    /**
-     * @brief OnPointerEnter関数
-     * @param event_dat (event_data)
-     */
-    public void OnPointerEnter(PointerEventData event_dat)
-    {
-        if (!this.IsControllable()) {
-            return;
-        }
-
-        this._coverImage.gameObject.SetActive(true);
-
-        return;
-    }
-
-    /**
-     * @brief OnPointerExit関数
-     * @param event_dat (event_data)
-     */
-    public void OnPointerExit(PointerEventData event_dat)
-    {
-        this._coverImage.gameObject.SetActive(false);
 
         return;
     }

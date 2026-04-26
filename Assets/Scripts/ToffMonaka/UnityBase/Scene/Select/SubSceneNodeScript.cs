@@ -31,7 +31,7 @@ public class SubSceneNodeScript : UnityBase.Scene.SubSceneNodeScript
     private UnityBase.Scene.Select.StageBoardNodeScript _stageBoardNodeScript = null;
     private UnityBase.Scene.Select.BoardNodeScript _openBoardNodeScript = null;
     private UnityBase.Util.SCENE.STAGE_TYPE _stageType = UnityBase.Util.SCENE.STAGE_TYPE.NONE;
-    private UnityBase.Scene.Select.BackButtonNodeScript _backButtonNodeScript = null;
+    private UnityBase.Scene.Ui.BackButtonNodeScript _backButtonNodeScript = null;
 
     /**
      * @brief _OnGetScriptIndex関数
@@ -95,10 +95,10 @@ public class SubSceneNodeScript : UnityBase.Scene.SubSceneNodeScript
         }
 
         {// BackButtonNodeScript Create
-            var script = this._backButtonNode.GetComponent<UnityBase.Scene.Select.BackButtonNodeScript>();
-            var script_create_desc = new UnityBase.Scene.Select.BackButtonNodeScriptCreateDesc();
+            var script = this._backButtonNode.GetComponent<UnityBase.Scene.Ui.BackButtonNodeScript>();
+            var script_create_desc = new UnityBase.Scene.Ui.BackButtonNodeScriptCreateDesc();
 
-            script_create_desc.onClick = (UnityBase.Scene.Select.BackButtonNodeScript owner) => {
+            script_create_desc.onClick = (UnityBase.Scene.Ui.BackButtonNodeScript owner) => {
 		        switch (this._openBoardNodeScript.GetBoardType()) {
 		        case UnityBase.Util.SCENE.SELECT_BOARD_TYPE.STAGE: {
                     this.Close(1, 2);

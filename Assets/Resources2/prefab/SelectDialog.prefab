@@ -166,6 +166,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7339932490419790776}
   - component: {fileID: 4378146052156916154}
+  - component: {fileID: 4854135107570317361}
   - component: {fileID: 7855723566751250289}
   - component: {fileID: 7597245887440696407}
   m_Layer: 5
@@ -209,7 +210,44 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ToffMonaka.UnityBase.Scene.Ui.SelectDialogItemNodeScript
   _nameText: {fileID: 7968766301512978618}
+--- !u!114 &4854135107570317361
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1174433939107847729}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e6c3e733a943304c9c1a2804cdedd34, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ToffMonaka.Lib.Scene.ButtonPartsScript
   _coverImage: {fileID: 4762903641599720536}
+  _pointerDownEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  _pointerClickEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4378146052156916154}
+        m_TargetAssemblyTypeName: ToffMonaka.UnityBase.Scene.Ui.SelectDialogItemNodeScript,
+          Assembly-CSharp
+        m_MethodName: OnPointerClick
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  _pointerEnterEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  _pointerExitEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!222 &7855723566751250289
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -891,7 +929,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ToffMonaka.UnityBase.Scene.Ui.SelectDialogNodeScript
   _canvasGroup: {fileID: 4773300249126424629}
   _nameText: {fileID: 8856799941468557326}
-  _closeButtonCoverImage: {fileID: 7791873782123199918}
   _scrollRect: {fileID: 5814984327629157228}
   _itemNode: {fileID: 1174433939107847729}
 --- !u!225 &4773300249126424629
@@ -1362,6 +1399,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e6c3e733a943304c9c1a2804cdedd34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ToffMonaka.Lib.Scene.ButtonComponentScript
+  _coverImage: {fileID: 7791873782123199918}
   _pointerDownEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -1383,36 +1421,10 @@ MonoBehaviour:
         m_CallState: 2
   _pointerEnterEvent:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 871251653377197051}
-        m_TargetAssemblyTypeName: ToffMonaka.UnityBase.Scene.Ui.SelectDialogNodeScript,
-          Assembly-CSharp
-        m_MethodName: OnCloseButtonPointerEnter
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   _pointerExitEvent:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 871251653377197051}
-        m_TargetAssemblyTypeName: ToffMonaka.UnityBase.Scene.Ui.SelectDialogNodeScript,
-          Assembly-CSharp
-        m_MethodName: OnCloseButtonPointerExit
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!222 &2657302853124698654
 CanvasRenderer:
   m_ObjectHideFlags: 0

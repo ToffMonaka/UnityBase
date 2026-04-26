@@ -28,7 +28,6 @@ public class SelectDialogNodeScriptCreateDesc : UnityBase.Scene.Ui.DialogNodeScr
 public class SelectDialogNodeScript : UnityBase.Scene.Ui.DialogNodeScript
 {
     [SerializeField] private TMP_Text _nameText = null;
-    [SerializeField] private Image _closeButtonCoverImage = null;
     [SerializeField] private ScrollRect _scrollRect = null;
     [SerializeField] private GameObject _itemNode = null;
 
@@ -117,7 +116,6 @@ public class SelectDialogNodeScript : UnityBase.Scene.Ui.DialogNodeScript
     {
         base._OnActive();
 
-        this._closeButtonCoverImage.gameObject.SetActive(false);
         this._scrollRect.verticalNormalizedPosition = 1.0f;
 
         return;
@@ -196,32 +194,6 @@ public class SelectDialogNodeScript : UnityBase.Scene.Ui.DialogNodeScript
         Lib.Scene.Util.GetSoundManager().PlaySe((int)UnityBase.Util.SOUND.SE_INDEX.CANCEL);
 
         this.Close(1);
-
-        return;
-    }
-
-    /**
-     * @brief OnCloseButtonPointerEnter関数
-     * @param event_dat (event_data)
-     */
-    public void OnCloseButtonPointerEnter(PointerEventData event_dat)
-    {
-        if (!this.IsControllable()) {
-            return;
-        }
-
-        this._closeButtonCoverImage.gameObject.SetActive(true);
-
-        return;
-    }
-
-    /**
-     * @brief OnCloseButtonPointerExit関数
-     * @param event_dat (event_data)
-     */
-    public void OnCloseButtonPointerExit(PointerEventData event_dat)
-    {
-        this._closeButtonCoverImage.gameObject.SetActive(false);
 
         return;
     }

@@ -24,10 +24,9 @@ public class SelectItemNodeScriptCreateDesc : Lib.Scene.ObjectNodeScriptCreateDe
 /**
  * @brief SelectItemNodeScriptクラス
  */
-public class SelectItemNodeScript : Lib.Scene.ObjectNodeScript, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
+public class SelectItemNodeScript : Lib.Scene.ObjectNodeScript
 {
     [SerializeField] private TMP_Text _nameText = null;
-    [SerializeField] private Image _coverImage = null;
 
     public new UnityBase.Scene.Ui.Menu.SelectItemNodeScriptCreateDesc createDesc{get; private set;} = null;
 
@@ -98,8 +97,6 @@ public class SelectItemNodeScript : Lib.Scene.ObjectNodeScript, IPointerClickHan
      */
     protected override void _OnActive()
     {
-        this._coverImage.gameObject.SetActive(false);
-
         return;
     }
 
@@ -164,32 +161,6 @@ public class SelectItemNodeScript : Lib.Scene.ObjectNodeScript, IPointerClickHan
         Lib.Scene.Util.GetSoundManager().PlaySe((int)UnityBase.Util.SOUND.SE_INDEX.OK2);
 
         this._onClick?.Invoke(this);
-
-        return;
-    }
-
-    /**
-     * @brief OnPointerEnter関数
-     * @param event_dat (event_data)
-     */
-    public void OnPointerEnter(PointerEventData event_dat)
-    {
-        if (!this.IsControllable()) {
-            return;
-        }
-
-        this._coverImage.gameObject.SetActive(true);
-
-        return;
-    }
-
-    /**
-     * @brief OnPointerExit関数
-     * @param event_dat (event_data)
-     */
-    public void OnPointerExit(PointerEventData event_dat)
-    {
-        this._coverImage.gameObject.SetActive(false);
 
         return;
     }

@@ -459,13 +459,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ToffMonaka.UnityBase.Scene.Ui.InputDialogNodeScript
   _canvasGroup: {fileID: 6321983218247722035}
   _nameText: {fileID: 6656153368291631557}
-  _closeButtonCoverImage: {fileID: 7383765666036992647}
   _inputField: {fileID: 4685556175039912252}
   _inputFieldScrollbar: {fileID: 7213044427325391039}
   _okButtonNameText: {fileID: 4022127402549603583}
-  _okButtonCoverImage: {fileID: 5296405224928439924}
   _cancelButtonNameText: {fileID: 8077329689343704143}
-  _cancelButtonCoverImage: {fileID: 5726852404683164589}
 --- !u!225 &6321983218247722035
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -530,6 +527,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e6c3e733a943304c9c1a2804cdedd34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ToffMonaka.Lib.Scene.ButtonComponentScript
+  _coverImage: {fileID: 7383765666036992647}
   _pointerDownEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -551,36 +549,10 @@ MonoBehaviour:
         m_CallState: 2
   _pointerEnterEvent:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 434842436564017941}
-        m_TargetAssemblyTypeName: ToffMonaka.UnityBase.Scene.Ui.InputDialogNodeScript,
-          Assembly-CSharp
-        m_MethodName: OnCloseButtonPointerEnter
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   _pointerExitEvent:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 434842436564017941}
-        m_TargetAssemblyTypeName: ToffMonaka.UnityBase.Scene.Ui.InputDialogNodeScript,
-          Assembly-CSharp
-        m_MethodName: OnCloseButtonPointerExit
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!222 &645408917345581342
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1493,6 +1465,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e6c3e733a943304c9c1a2804cdedd34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ToffMonaka.Lib.Scene.ButtonComponentScript
+  _coverImage: {fileID: 5296405224928439924}
   _pointerDownEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -1514,36 +1487,10 @@ MonoBehaviour:
         m_CallState: 2
   _pointerEnterEvent:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 434842436564017941}
-        m_TargetAssemblyTypeName: ToffMonaka.UnityBase.Scene.Ui.InputDialogNodeScript,
-          Assembly-CSharp
-        m_MethodName: OnOkButtonPointerEnter
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   _pointerExitEvent:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 434842436564017941}
-        m_TargetAssemblyTypeName: ToffMonaka.UnityBase.Scene.Ui.InputDialogNodeScript,
-          Assembly-CSharp
-        m_MethodName: OnOkButtonPointerExit
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!222 &4523348120376028358
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1634,6 +1581,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e6c3e733a943304c9c1a2804cdedd34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ToffMonaka.Lib.Scene.ButtonComponentScript
+  _coverImage: {fileID: 5726852404683164589}
   _pointerDownEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -1655,36 +1603,10 @@ MonoBehaviour:
         m_CallState: 2
   _pointerEnterEvent:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 434842436564017941}
-        m_TargetAssemblyTypeName: ToffMonaka.UnityBase.Scene.Ui.InputDialogNodeScript,
-          Assembly-CSharp
-        m_MethodName: OnCancelButtonPointerEnter
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   _pointerExitEvent:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 434842436564017941}
-        m_TargetAssemblyTypeName: ToffMonaka.UnityBase.Scene.Ui.InputDialogNodeScript,
-          Assembly-CSharp
-        m_MethodName: OnCancelButtonPointerExit
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!222 &3493652290391782792
 CanvasRenderer:
   m_ObjectHideFlags: 0

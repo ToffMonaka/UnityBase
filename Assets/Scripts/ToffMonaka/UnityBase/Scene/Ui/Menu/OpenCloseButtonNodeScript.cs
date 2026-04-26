@@ -23,10 +23,8 @@ public class OpenCloseButtonNodeScriptCreateDesc : Lib.Scene.ObjectNodeScriptCre
 /**
  * @brief OpenCloseButtonNodeScriptクラス
  */
-public class OpenCloseButtonNodeScript : Lib.Scene.ObjectNodeScript, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
+public class OpenCloseButtonNodeScript : Lib.Scene.ObjectNodeScript
 {
-    [SerializeField] private Image _coverImage = null;
-
     public new UnityBase.Scene.Ui.Menu.OpenCloseButtonNodeScriptCreateDesc createDesc{get; private set;} = null;
 
     private System.Action<UnityBase.Scene.Ui.Menu.OpenCloseButtonNodeScript> _onClick = null;
@@ -92,8 +90,6 @@ public class OpenCloseButtonNodeScript : Lib.Scene.ObjectNodeScript, IPointerCli
      */
     protected override void _OnActive()
     {
-        this._coverImage.gameObject.SetActive(false);
-
         return;
     }
 
@@ -200,32 +196,6 @@ public class OpenCloseButtonNodeScript : Lib.Scene.ObjectNodeScript, IPointerCli
         }
 
         this._onClick?.Invoke(this);
-
-        return;
-    }
-
-    /**
-     * @brief OnPointerEnter関数
-     * @param event_dat (event_data)
-     */
-    public void OnPointerEnter(PointerEventData event_dat)
-    {
-        if (!this.IsControllable()) {
-            return;
-        }
-
-        this._coverImage.gameObject.SetActive(true);
-
-        return;
-    }
-
-    /**
-     * @brief OnPointerExit関数
-     * @param event_dat (event_data)
-     */
-    public void OnPointerExit(PointerEventData event_dat)
-    {
-        this._coverImage.gameObject.SetActive(false);
 
         return;
     }
