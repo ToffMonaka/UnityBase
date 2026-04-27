@@ -11,18 +11,18 @@ using TMPro;
 
 
 namespace ToffMonaka {
-namespace UnityBase.Scene.Ui.Menu {
+namespace UnityBase.Scene.Ui.MenuSystem {
 /**
  * @brief OptionStageNodeScriptCreateDescクラス
  */
-public class OptionStageNodeScriptCreateDesc : UnityBase.Scene.Ui.Menu.StageNodeScriptCreateDesc
+public class OptionStageNodeScriptCreateDesc : UnityBase.Scene.Ui.MenuSystem.StageNodeScriptCreateDesc
 {
 }
 
 /**
  * @brief OptionStageNodeScriptクラス
  */
-public class OptionStageNodeScript : UnityBase.Scene.Ui.Menu.StageNodeScript
+public class OptionStageNodeScript : UnityBase.Scene.Ui.MenuSystem.StageNodeScript
 {
     [SerializeField] private ScrollRect _scrollRect = null;
     [SerializeField] private TMP_Text _languageNameText = null;
@@ -39,7 +39,7 @@ public class OptionStageNodeScript : UnityBase.Scene.Ui.Menu.StageNodeScript
     [SerializeField] private TMP_Text _okButtonNameText = null;
     [SerializeField] private TMP_Text _cancelButtonNameText = null;
 
-    public new UnityBase.Scene.Ui.Menu.OptionStageNodeScriptCreateDesc createDesc{get; private set;} = null;
+    public new UnityBase.Scene.Ui.MenuSystem.OptionStageNodeScriptCreateDesc createDesc{get; private set;} = null;
 
     private UnityBase.Util.LANGUAGE_TYPE _languageType = UnityBase.Util.LANGUAGE_TYPE.NONE;
     private float _soundBgmVolume = 1.0f;
@@ -122,12 +122,12 @@ public class OptionStageNodeScript : UnityBase.Scene.Ui.Menu.StageNodeScript
     public override void SetCreateDesc(Lib.Scene.ScriptCreateDesc create_desc = null)
     {
         if (create_desc == null) {
-            this.SetCreateDesc(new UnityBase.Scene.Ui.Menu.OptionStageNodeScriptCreateDesc());
+            this.SetCreateDesc(new UnityBase.Scene.Ui.MenuSystem.OptionStageNodeScriptCreateDesc());
 
             return;
         }
 
-	    this.createDesc = create_desc as UnityBase.Scene.Ui.Menu.OptionStageNodeScriptCreateDesc;
+	    this.createDesc = create_desc as UnityBase.Scene.Ui.MenuSystem.OptionStageNodeScriptCreateDesc;
 
         base.SetCreateDesc(this.createDesc);
 
@@ -220,7 +220,7 @@ public class OptionStageNodeScript : UnityBase.Scene.Ui.Menu.StageNodeScript
 
         // LanguageSelectDialogNodeScript Create
         if (this._languageSelectDialogNodeScript == null) {
-            this._languageSelectDialogNode = Lib.Scene.Util.GetPrefabNode(UnityBase.Util.FILE_PATH.SELECT_DIALOG_PREFAB, this.GetMenuNodeScript().GetSubSceneNodeScript().GetDialogNode());
+            this._languageSelectDialogNode = Lib.Scene.Util.GetPrefabNode(UnityBase.Util.FILE_PATH.SELECT_DIALOG_PREFAB, this.GetMenuNodeScript().GetSubSceneNodeScript().GetDialogSystemNodeScript().gameObject);
 
             var script = this._languageSelectDialogNode.GetComponent<UnityBase.Scene.Ui.SelectDialogNodeScript>();
             var script_create_desc = new UnityBase.Scene.Ui.SelectDialogNodeScriptCreateDesc();

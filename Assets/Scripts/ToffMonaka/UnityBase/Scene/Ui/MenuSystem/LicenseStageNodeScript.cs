@@ -11,25 +11,25 @@ using TMPro;
 
 
 namespace ToffMonaka {
-namespace UnityBase.Scene.Ui.Menu {
+namespace UnityBase.Scene.Ui.MenuSystem {
 /**
  * @brief LicenseStageNodeScriptCreateDescクラス
  */
-public class LicenseStageNodeScriptCreateDesc : UnityBase.Scene.Ui.Menu.StageNodeScriptCreateDesc
+public class LicenseStageNodeScriptCreateDesc : UnityBase.Scene.Ui.MenuSystem.StageNodeScriptCreateDesc
 {
 }
 
 /**
  * @brief LicenseStageNodeScriptクラス
  */
-public class LicenseStageNodeScript : UnityBase.Scene.Ui.Menu.StageNodeScript
+public class LicenseStageNodeScript : UnityBase.Scene.Ui.MenuSystem.StageNodeScript
 {
     [SerializeField] private ScrollRect _scrollRect = null;
     [SerializeField] private float _scrollBarMinSize = 64.0f;
     [SerializeField] private GameObject _messageNode = null;
     [SerializeField] private TMP_Text _cancelButtonNameText = null;
 
-    public new UnityBase.Scene.Ui.Menu.LicenseStageNodeScriptCreateDesc createDesc{get; private set;} = null;
+    public new UnityBase.Scene.Ui.MenuSystem.LicenseStageNodeScriptCreateDesc createDesc{get; private set;} = null;
 
     /**
      * @brief _OnGetScriptIndex関数
@@ -85,7 +85,7 @@ public class LicenseStageNodeScript : UnityBase.Scene.Ui.Menu.StageNodeScript
         this._messageNode.SetActive(false);
 
         {// MessageNode Create
-            var txt_ary = UnityBase.Scene.Ui.Menu.LicenseMessageUtil.TEXT_ARRAY;
+            var txt_ary = UnityBase.Scene.Ui.MenuSystem.LicenseMessageUtil.TEXT_ARRAY;
 
             for (int txt_i = 0; txt_i < txt_ary.Length; ++txt_i) {
                 var txt = (txt_i <= 0) ? txt_ary[txt_i] : "\n" + txt_ary[txt_i];
@@ -106,12 +106,12 @@ public class LicenseStageNodeScript : UnityBase.Scene.Ui.Menu.StageNodeScript
     public override void SetCreateDesc(Lib.Scene.ScriptCreateDesc create_desc = null)
     {
         if (create_desc == null) {
-            this.SetCreateDesc(new UnityBase.Scene.Ui.Menu.LicenseStageNodeScriptCreateDesc());
+            this.SetCreateDesc(new UnityBase.Scene.Ui.MenuSystem.LicenseStageNodeScriptCreateDesc());
 
             return;
         }
 
-	    this.createDesc = create_desc as UnityBase.Scene.Ui.Menu.LicenseStageNodeScriptCreateDesc;
+	    this.createDesc = create_desc as UnityBase.Scene.Ui.MenuSystem.LicenseStageNodeScriptCreateDesc;
 
         base.SetCreateDesc(this.createDesc);
 

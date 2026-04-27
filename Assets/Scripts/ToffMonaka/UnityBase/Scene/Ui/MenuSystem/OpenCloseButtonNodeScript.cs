@@ -11,13 +11,13 @@ using DG.Tweening;
 
 
 namespace ToffMonaka {
-namespace UnityBase.Scene.Ui.Menu {
+namespace UnityBase.Scene.Ui.MenuSystem {
 /**
  * @brief OpenCloseButtonNodeScriptCreateDescクラス
  */
 public class OpenCloseButtonNodeScriptCreateDesc : Lib.Scene.ObjectNodeScriptCreateDesc
 {
-    public System.Action<UnityBase.Scene.Ui.Menu.OpenCloseButtonNodeScript> onClick = null;
+    public System.Action<UnityBase.Scene.Ui.MenuSystem.OpenCloseButtonNodeScript> onClick = null;
 }
 
 /**
@@ -25,9 +25,9 @@ public class OpenCloseButtonNodeScriptCreateDesc : Lib.Scene.ObjectNodeScriptCre
  */
 public class OpenCloseButtonNodeScript : Lib.Scene.ObjectNodeScript
 {
-    public new UnityBase.Scene.Ui.Menu.OpenCloseButtonNodeScriptCreateDesc createDesc{get; private set;} = null;
+    public new UnityBase.Scene.Ui.MenuSystem.OpenCloseButtonNodeScriptCreateDesc createDesc{get; private set;} = null;
 
-    private System.Action<UnityBase.Scene.Ui.Menu.OpenCloseButtonNodeScript> _onClick = null;
+    private System.Action<UnityBase.Scene.Ui.MenuSystem.OpenCloseButtonNodeScript> _onClick = null;
 
     /**
      * @brief _OnGetScriptIndex関数
@@ -73,12 +73,12 @@ public class OpenCloseButtonNodeScript : Lib.Scene.ObjectNodeScript
     public override void SetCreateDesc(Lib.Scene.ScriptCreateDesc create_desc = null)
     {
         if (create_desc == null) {
-            this.SetCreateDesc(new UnityBase.Scene.Ui.Menu.OpenCloseButtonNodeScriptCreateDesc());
+            this.SetCreateDesc(new UnityBase.Scene.Ui.MenuSystem.OpenCloseButtonNodeScriptCreateDesc());
 
             return;
         }
 
-	    this.createDesc = create_desc as UnityBase.Scene.Ui.Menu.OpenCloseButtonNodeScriptCreateDesc;
+	    this.createDesc = create_desc as UnityBase.Scene.Ui.MenuSystem.OpenCloseButtonNodeScriptCreateDesc;
 
         base.SetCreateDesc(this.createDesc);
 

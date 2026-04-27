@@ -11,25 +11,25 @@ using TMPro;
 
 
 namespace ToffMonaka {
-namespace UnityBase.Scene.Ui.Menu {
+namespace UnityBase.Scene.Ui.MenuSystem {
 /**
  * @brief PrivacyPolicyStageNodeScriptCreateDescクラス
  */
-public class PrivacyPolicyStageNodeScriptCreateDesc : UnityBase.Scene.Ui.Menu.StageNodeScriptCreateDesc
+public class PrivacyPolicyStageNodeScriptCreateDesc : UnityBase.Scene.Ui.MenuSystem.StageNodeScriptCreateDesc
 {
 }
 
 /**
  * @brief PrivacyPolicyStageNodeScriptクラス
  */
-public class PrivacyPolicyStageNodeScript : UnityBase.Scene.Ui.Menu.StageNodeScript
+public class PrivacyPolicyStageNodeScript : UnityBase.Scene.Ui.MenuSystem.StageNodeScript
 {
     [SerializeField] private ScrollRect _scrollRect = null;
     [SerializeField] private float _scrollBarMinSize = 64.0f;
     [SerializeField] private GameObject _messageNode = null;
     [SerializeField] private TMP_Text _cancelButtonNameText = null;
 
-    public new UnityBase.Scene.Ui.Menu.PrivacyPolicyStageNodeScriptCreateDesc createDesc{get; private set;} = null;
+    public new UnityBase.Scene.Ui.MenuSystem.PrivacyPolicyStageNodeScriptCreateDesc createDesc{get; private set;} = null;
 
     /**
      * @brief _OnGetScriptIndex関数
@@ -89,12 +89,12 @@ public class PrivacyPolicyStageNodeScript : UnityBase.Scene.Ui.Menu.StageNodeScr
 
 		    switch (UnityBase.Global.systemConfigFile.data.systemLanguageType) {
 		    case UnityBase.Util.LANGUAGE_TYPE.JAPANESE: {
-                txt_ary = UnityBase.Scene.Ui.Menu.PrivacyPolicyMessageUtil.JAPANESE_TEXT_ARRAY;
+                txt_ary = UnityBase.Scene.Ui.MenuSystem.PrivacyPolicyMessageUtil.JAPANESE_TEXT_ARRAY;
 
 			    break;
 		    }
 		    default: {
-                txt_ary = UnityBase.Scene.Ui.Menu.PrivacyPolicyMessageUtil.ENGLISH_TEXT_ARRAY;
+                txt_ary = UnityBase.Scene.Ui.MenuSystem.PrivacyPolicyMessageUtil.ENGLISH_TEXT_ARRAY;
 
 			    break;
 		    }
@@ -119,12 +119,12 @@ public class PrivacyPolicyStageNodeScript : UnityBase.Scene.Ui.Menu.StageNodeScr
     public override void SetCreateDesc(Lib.Scene.ScriptCreateDesc create_desc = null)
     {
         if (create_desc == null) {
-            this.SetCreateDesc(new UnityBase.Scene.Ui.Menu.PrivacyPolicyStageNodeScriptCreateDesc());
+            this.SetCreateDesc(new UnityBase.Scene.Ui.MenuSystem.PrivacyPolicyStageNodeScriptCreateDesc());
 
             return;
         }
 
-	    this.createDesc = create_desc as UnityBase.Scene.Ui.Menu.PrivacyPolicyStageNodeScriptCreateDesc;
+	    this.createDesc = create_desc as UnityBase.Scene.Ui.MenuSystem.PrivacyPolicyStageNodeScriptCreateDesc;
 
         base.SetCreateDesc(this.createDesc);
 

@@ -11,25 +11,25 @@ using TMPro;
 
 
 namespace ToffMonaka {
-namespace UnityBase.Scene.Ui.Menu {
+namespace UnityBase.Scene.Ui.MenuSystem {
 /**
  * @brief StaffStageNodeScriptCreateDescクラス
  */
-public class StaffStageNodeScriptCreateDesc : UnityBase.Scene.Ui.Menu.StageNodeScriptCreateDesc
+public class StaffStageNodeScriptCreateDesc : UnityBase.Scene.Ui.MenuSystem.StageNodeScriptCreateDesc
 {
 }
 
 /**
  * @brief StaffStageNodeScriptクラス
  */
-public class StaffStageNodeScript : UnityBase.Scene.Ui.Menu.StageNodeScript
+public class StaffStageNodeScript : UnityBase.Scene.Ui.MenuSystem.StageNodeScript
 {
     [SerializeField] private ScrollRect _scrollRect = null;
     [SerializeField] private float _scrollBarMinSize = 64.0f;
     [SerializeField] private GameObject _messageNode = null;
     [SerializeField] private TMP_Text _cancelButtonNameText = null;
 
-    public new UnityBase.Scene.Ui.Menu.StaffStageNodeScriptCreateDesc createDesc{get; private set;} = null;
+    public new UnityBase.Scene.Ui.MenuSystem.StaffStageNodeScriptCreateDesc createDesc{get; private set;} = null;
 
     /**
      * @brief _OnGetScriptIndex関数
@@ -89,12 +89,12 @@ public class StaffStageNodeScript : UnityBase.Scene.Ui.Menu.StageNodeScript
 
 		    switch (UnityBase.Global.systemConfigFile.data.systemLanguageType) {
 		    case UnityBase.Util.LANGUAGE_TYPE.JAPANESE: {
-                txt_ary = UnityBase.Scene.Ui.Menu.StaffMessageUtil.JAPANESE_TEXT_ARRAY;
+                txt_ary = UnityBase.Scene.Ui.MenuSystem.StaffMessageUtil.JAPANESE_TEXT_ARRAY;
 
 			    break;
 		    }
 		    default: {
-                txt_ary = UnityBase.Scene.Ui.Menu.StaffMessageUtil.ENGLISH_TEXT_ARRAY;
+                txt_ary = UnityBase.Scene.Ui.MenuSystem.StaffMessageUtil.ENGLISH_TEXT_ARRAY;
 
 			    break;
 		    }
@@ -119,12 +119,12 @@ public class StaffStageNodeScript : UnityBase.Scene.Ui.Menu.StageNodeScript
     public override void SetCreateDesc(Lib.Scene.ScriptCreateDesc create_desc = null)
     {
         if (create_desc == null) {
-            this.SetCreateDesc(new UnityBase.Scene.Ui.Menu.StaffStageNodeScriptCreateDesc());
+            this.SetCreateDesc(new UnityBase.Scene.Ui.MenuSystem.StaffStageNodeScriptCreateDesc());
 
             return;
         }
 
-	    this.createDesc = create_desc as UnityBase.Scene.Ui.Menu.StaffStageNodeScriptCreateDesc;
+	    this.createDesc = create_desc as UnityBase.Scene.Ui.MenuSystem.StaffStageNodeScriptCreateDesc;
 
         base.SetCreateDesc(this.createDesc);
 

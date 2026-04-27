@@ -9,7 +9,7 @@ using UnityEngine.UI;
 
 
 namespace ToffMonaka {
-namespace UnityBase.Scene.Ui.Menu {
+namespace UnityBase.Scene.Ui.MenuSystem {
 /**
  * @brief NodeScriptCreateDescクラス
  */
@@ -34,20 +34,20 @@ public class NodeScript : Lib.Scene.ObjectNodeScript
     [SerializeField] private GameObject _endStageNode = null;
     [SerializeField] private GameObject _cheatStageNode = null;
 
-    public new UnityBase.Scene.Ui.Menu.NodeScriptCreateDesc createDesc{get; private set;} = null;
+    public new UnityBase.Scene.Ui.MenuSystem.NodeScriptCreateDesc createDesc{get; private set;} = null;
 
     private UnityBase.Scene.SubSceneNodeScript _subSceneNodeScript = null;
-    private UnityBase.Scene.Ui.Menu.OpenCloseButtonNodeScript _openCloseButtonNodeScript = null;
-    private UnityBase.Scene.Ui.Menu.SelectNodeScript _selectNodeScript = null;
-    private UnityBase.Scene.Ui.Menu.SelectNodeScript _openSelectNodeScript = null;
-    private UnityBase.Scene.Ui.Menu.OptionStageNodeScript _optionStageNodeScript = null;
-    private UnityBase.Scene.Ui.Menu.FaqStageNodeScript _faqStageNodeScript = null;
-    private UnityBase.Scene.Ui.Menu.StaffStageNodeScript _staffStageNodeScript = null;
-    private UnityBase.Scene.Ui.Menu.LicenseStageNodeScript _licenseStageNodeScript = null;
-    private UnityBase.Scene.Ui.Menu.PrivacyPolicyStageNodeScript _privacyPolicyStageNodeScript = null;
-    private UnityBase.Scene.Ui.Menu.EndStageNodeScript _endStageNodeScript = null;
-    private UnityBase.Scene.Ui.Menu.CheatStageNodeScript _cheatStageNodeScript = null;
-    private UnityBase.Scene.Ui.Menu.StageNodeScript _openStageNodeScript = null;
+    private UnityBase.Scene.Ui.MenuSystem.OpenCloseButtonNodeScript _openCloseButtonNodeScript = null;
+    private UnityBase.Scene.Ui.MenuSystem.SelectNodeScript _selectNodeScript = null;
+    private UnityBase.Scene.Ui.MenuSystem.SelectNodeScript _openSelectNodeScript = null;
+    private UnityBase.Scene.Ui.MenuSystem.OptionStageNodeScript _optionStageNodeScript = null;
+    private UnityBase.Scene.Ui.MenuSystem.FaqStageNodeScript _faqStageNodeScript = null;
+    private UnityBase.Scene.Ui.MenuSystem.StaffStageNodeScript _staffStageNodeScript = null;
+    private UnityBase.Scene.Ui.MenuSystem.LicenseStageNodeScript _licenseStageNodeScript = null;
+    private UnityBase.Scene.Ui.MenuSystem.PrivacyPolicyStageNodeScript _privacyPolicyStageNodeScript = null;
+    private UnityBase.Scene.Ui.MenuSystem.EndStageNodeScript _endStageNodeScript = null;
+    private UnityBase.Scene.Ui.MenuSystem.CheatStageNodeScript _cheatStageNodeScript = null;
+    private UnityBase.Scene.Ui.MenuSystem.StageNodeScript _openStageNodeScript = null;
 
     /**
      * @brief _OnGetScriptIndex関数
@@ -55,7 +55,7 @@ public class NodeScript : Lib.Scene.ObjectNodeScript
      */
     protected override int _OnGetScriptIndex()
     {
-        return ((int)UnityBase.Util.SCENE.SCRIPT_INDEX.MENU_NODE);
+        return ((int)UnityBase.Util.SCENE.SCRIPT_INDEX.MENU_SYSTEM_NODE);
     }
 
     /**
@@ -86,10 +86,10 @@ public class NodeScript : Lib.Scene.ObjectNodeScript
         this._backgroundImage.gameObject.SetActive(false);
 
         {// OpenCloseButtonNodeScript Create
-            var script = this._openCloseButtonNode.GetComponent<UnityBase.Scene.Ui.Menu.OpenCloseButtonNodeScript>();
-            var script_create_desc = new UnityBase.Scene.Ui.Menu.OpenCloseButtonNodeScriptCreateDesc();
+            var script = this._openCloseButtonNode.GetComponent<UnityBase.Scene.Ui.MenuSystem.OpenCloseButtonNodeScript>();
+            var script_create_desc = new UnityBase.Scene.Ui.MenuSystem.OpenCloseButtonNodeScriptCreateDesc();
 
-            void on_click(UnityBase.Scene.Ui.Menu.OpenCloseButtonNodeScript owner)
+            void on_click(UnityBase.Scene.Ui.MenuSystem.OpenCloseButtonNodeScript owner)
             {
                 if (!this._backgroundImage.gameObject.activeSelf) {
                     this._backgroundImage.gameObject.SetActive(true);
@@ -131,8 +131,8 @@ public class NodeScript : Lib.Scene.ObjectNodeScript
         }
 
         {// SelectNodeScript Create
-            var script = this._selectNode.GetComponent<UnityBase.Scene.Ui.Menu.SelectNodeScript>();
-            var script_create_desc = new UnityBase.Scene.Ui.Menu.SelectNodeScriptCreateDesc();
+            var script = this._selectNode.GetComponent<UnityBase.Scene.Ui.MenuSystem.SelectNodeScript>();
+            var script_create_desc = new UnityBase.Scene.Ui.MenuSystem.SelectNodeScriptCreateDesc();
 
             script_create_desc.menuNodeScript = this;
 
@@ -142,8 +142,8 @@ public class NodeScript : Lib.Scene.ObjectNodeScript
         }
 
         {// OptionStageNodeScript Create
-            var script = this._optionStageNode.GetComponent<UnityBase.Scene.Ui.Menu.OptionStageNodeScript>();
-            var script_create_desc = new UnityBase.Scene.Ui.Menu.OptionStageNodeScriptCreateDesc();
+            var script = this._optionStageNode.GetComponent<UnityBase.Scene.Ui.MenuSystem.OptionStageNodeScript>();
+            var script_create_desc = new UnityBase.Scene.Ui.MenuSystem.OptionStageNodeScriptCreateDesc();
 
             script_create_desc.menuNodeScript = this;
 
@@ -153,8 +153,8 @@ public class NodeScript : Lib.Scene.ObjectNodeScript
         }
 
         {// FaqStageNodeScript Create
-            var script = this._faqStageNode.GetComponent<UnityBase.Scene.Ui.Menu.FaqStageNodeScript>();
-            var script_create_desc = new UnityBase.Scene.Ui.Menu.FaqStageNodeScriptCreateDesc();
+            var script = this._faqStageNode.GetComponent<UnityBase.Scene.Ui.MenuSystem.FaqStageNodeScript>();
+            var script_create_desc = new UnityBase.Scene.Ui.MenuSystem.FaqStageNodeScriptCreateDesc();
 
             script_create_desc.menuNodeScript = this;
 
@@ -164,8 +164,8 @@ public class NodeScript : Lib.Scene.ObjectNodeScript
         }
 
         {// StaffStageNodeScript Create
-            var script = this._staffStageNode.GetComponent<UnityBase.Scene.Ui.Menu.StaffStageNodeScript>();
-            var script_create_desc = new UnityBase.Scene.Ui.Menu.StaffStageNodeScriptCreateDesc();
+            var script = this._staffStageNode.GetComponent<UnityBase.Scene.Ui.MenuSystem.StaffStageNodeScript>();
+            var script_create_desc = new UnityBase.Scene.Ui.MenuSystem.StaffStageNodeScriptCreateDesc();
 
             script_create_desc.menuNodeScript = this;
 
@@ -175,8 +175,8 @@ public class NodeScript : Lib.Scene.ObjectNodeScript
         }
 
         {// LicenseStageNodeScript Create
-            var script = this._licenseStageNode.GetComponent<UnityBase.Scene.Ui.Menu.LicenseStageNodeScript>();
-            var script_create_desc = new UnityBase.Scene.Ui.Menu.LicenseStageNodeScriptCreateDesc();
+            var script = this._licenseStageNode.GetComponent<UnityBase.Scene.Ui.MenuSystem.LicenseStageNodeScript>();
+            var script_create_desc = new UnityBase.Scene.Ui.MenuSystem.LicenseStageNodeScriptCreateDesc();
 
             script_create_desc.menuNodeScript = this;
 
@@ -186,8 +186,8 @@ public class NodeScript : Lib.Scene.ObjectNodeScript
         }
 
         {// PrivacyPolicyStageNodeScript Create
-            var script = this._privacyPolicyStageNode.GetComponent<UnityBase.Scene.Ui.Menu.PrivacyPolicyStageNodeScript>();
-            var script_create_desc = new UnityBase.Scene.Ui.Menu.PrivacyPolicyStageNodeScriptCreateDesc();
+            var script = this._privacyPolicyStageNode.GetComponent<UnityBase.Scene.Ui.MenuSystem.PrivacyPolicyStageNodeScript>();
+            var script_create_desc = new UnityBase.Scene.Ui.MenuSystem.PrivacyPolicyStageNodeScriptCreateDesc();
 
             script_create_desc.menuNodeScript = this;
 
@@ -197,8 +197,8 @@ public class NodeScript : Lib.Scene.ObjectNodeScript
         }
 
         {// EndStageNodeScript Create
-            var script = this._endStageNode.GetComponent<UnityBase.Scene.Ui.Menu.EndStageNodeScript>();
-            var script_create_desc = new UnityBase.Scene.Ui.Menu.EndStageNodeScriptCreateDesc();
+            var script = this._endStageNode.GetComponent<UnityBase.Scene.Ui.MenuSystem.EndStageNodeScript>();
+            var script_create_desc = new UnityBase.Scene.Ui.MenuSystem.EndStageNodeScriptCreateDesc();
 
             script_create_desc.menuNodeScript = this;
 
@@ -208,8 +208,8 @@ public class NodeScript : Lib.Scene.ObjectNodeScript
         }
 
         {// CheatStageNodeScript Create
-            var script = this._cheatStageNode.GetComponent<UnityBase.Scene.Ui.Menu.CheatStageNodeScript>();
-            var script_create_desc = new UnityBase.Scene.Ui.Menu.CheatStageNodeScriptCreateDesc();
+            var script = this._cheatStageNode.GetComponent<UnityBase.Scene.Ui.MenuSystem.CheatStageNodeScript>();
+            var script_create_desc = new UnityBase.Scene.Ui.MenuSystem.CheatStageNodeScriptCreateDesc();
 
             script_create_desc.menuNodeScript = this;
 
@@ -228,12 +228,12 @@ public class NodeScript : Lib.Scene.ObjectNodeScript
     public override void SetCreateDesc(Lib.Scene.ScriptCreateDesc create_desc = null)
     {
         if (create_desc == null) {
-            this.SetCreateDesc(new UnityBase.Scene.Ui.Menu.NodeScriptCreateDesc());
+            this.SetCreateDesc(new UnityBase.Scene.Ui.MenuSystem.NodeScriptCreateDesc());
 
             return;
         }
 
-	    this.createDesc = create_desc as UnityBase.Scene.Ui.Menu.NodeScriptCreateDesc;
+	    this.createDesc = create_desc as UnityBase.Scene.Ui.MenuSystem.NodeScriptCreateDesc;
 
         base.SetCreateDesc(this.createDesc);
 

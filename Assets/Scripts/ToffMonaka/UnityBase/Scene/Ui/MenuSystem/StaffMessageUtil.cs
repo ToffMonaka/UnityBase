@@ -8,7 +8,7 @@ using UnityEngine;
 
 
 namespace ToffMonaka {
-namespace UnityBase.Scene.Ui.Menu {
+namespace UnityBase.Scene.Ui.MenuSystem {
 /**
  * @brief StaffMessageUtilクラス
  */

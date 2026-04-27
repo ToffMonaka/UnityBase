@@ -9,13 +9,13 @@ using UnityEngine;
 
 
 namespace ToffMonaka {
-namespace UnityBase.Scene.Ui.Menu {
+namespace UnityBase.Scene.Ui.MenuSystem {
 /**
  * @brief CheatCommandCalculateOptionクラス
  */
 public class CheatCommandCalculateOption
 {
-    public delegate double Function(UnityBase.Scene.Ui.Menu.CheatCommand owner, double[] arg_val_ary, out int dst_result_val);
+    public delegate double Function(UnityBase.Scene.Ui.MenuSystem.CheatCommand owner, double[] arg_val_ary, out int dst_result_val);
 
 	private Function[] _functionArray;
 	private Dictionary<string, int> _functionIndexContainer;
@@ -46,13 +46,13 @@ public class CheatCommandCalculateOption
     public void SetFunction()
     {
 	    this._functionArray = new Function[]{
-            new Function(UnityBase.Scene.Ui.Menu.CheatCommandUtil.FunctionDeleteData)
+            new Function(UnityBase.Scene.Ui.MenuSystem.CheatCommandUtil.FunctionDeleteData)
         };
 
 	    this._functionIndexContainer = new Dictionary<string, int>();
 
-        for (int add_code_type_i = 0; add_code_type_i < UnityBase.Scene.Ui.Menu.CheatCommandUtil.FUNCTION_ADD_CODE_TYPE_ARRAY.Length; ++add_code_type_i) {
-        	this._functionIndexContainer[UnityBase.Scene.Ui.Menu.CheatCommandUtil.ADD_CODE_NAME_ARRAY[(int)UnityBase.Scene.Ui.Menu.CheatCommandUtil.FUNCTION_ADD_CODE_TYPE_ARRAY[add_code_type_i]]] = add_code_type_i;
+        for (int add_code_type_i = 0; add_code_type_i < UnityBase.Scene.Ui.MenuSystem.CheatCommandUtil.FUNCTION_ADD_CODE_TYPE_ARRAY.Length; ++add_code_type_i) {
+        	this._functionIndexContainer[UnityBase.Scene.Ui.MenuSystem.CheatCommandUtil.ADD_CODE_NAME_ARRAY[(int)UnityBase.Scene.Ui.MenuSystem.CheatCommandUtil.FUNCTION_ADD_CODE_TYPE_ARRAY[add_code_type_i]]] = add_code_type_i;
         }
 
         return;

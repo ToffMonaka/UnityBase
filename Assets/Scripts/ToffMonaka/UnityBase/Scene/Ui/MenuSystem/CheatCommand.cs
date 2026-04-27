@@ -8,7 +8,7 @@ using UnityEngine;
 
 
 namespace ToffMonaka {
-namespace UnityBase.Scene.Ui.Menu {
+namespace UnityBase.Scene.Ui.MenuSystem {
 /**
  * @brief CheatCommandUtilクラス
  */
@@ -20,7 +20,7 @@ public static class CheatCommandUtil
         FUNCTION_DELETE_DATA,
 		COUNT
     }
-    public static readonly int ADD_CODE_TYPE_COUNT = (int)UnityBase.Scene.Ui.Menu.CheatCommandUtil.ADD_CODE_TYPE.COUNT;
+    public static readonly int ADD_CODE_TYPE_COUNT = (int)UnityBase.Scene.Ui.MenuSystem.CheatCommandUtil.ADD_CODE_TYPE.COUNT;
 
     public static readonly string[] ADD_CODE_NAME_ARRAY = {
         "",
@@ -32,8 +32,8 @@ public static class CheatCommandUtil
         "DeleteData()"
     };
 
-    public static readonly UnityBase.Scene.Ui.Menu.CheatCommandUtil.ADD_CODE_TYPE[] FUNCTION_ADD_CODE_TYPE_ARRAY = {
-        UnityBase.Scene.Ui.Menu.CheatCommandUtil.ADD_CODE_TYPE.FUNCTION_DELETE_DATA
+    public static readonly UnityBase.Scene.Ui.MenuSystem.CheatCommandUtil.ADD_CODE_TYPE[] FUNCTION_ADD_CODE_TYPE_ARRAY = {
+        UnityBase.Scene.Ui.MenuSystem.CheatCommandUtil.ADD_CODE_TYPE.FUNCTION_DELETE_DATA
     };
 
     /**
@@ -44,7 +44,7 @@ public static class CheatCommandUtil
      * 0未満=失敗
      * @return val (value)
      */
-    public static double FunctionDeleteData(UnityBase.Scene.Ui.Menu.CheatCommand owner, double[] arg_val_ary, out int dst_result_val)
+    public static double FunctionDeleteData(UnityBase.Scene.Ui.MenuSystem.CheatCommand owner, double[] arg_val_ary, out int dst_result_val)
     {
         if (arg_val_ary.Length < 0) {
             dst_result_val = -1;
@@ -71,9 +71,9 @@ public class CheatCommand
 {
     private string _code;
     private int _codeIndex;
-	private UnityBase.Scene.Ui.Menu.CheatCommandCalculateOption _calculateOption;
+	private UnityBase.Scene.Ui.MenuSystem.CheatCommandCalculateOption _calculateOption;
 	private bool _calculateTestFlag;
-	private UnityBase.Scene.Ui.Menu.CheatCommandParser _parser;
+	private UnityBase.Scene.Ui.MenuSystem.CheatCommandParser _parser;
 
     /**
      * @brief コンストラクタ
@@ -161,7 +161,7 @@ public class CheatCommand
      */
     public CheatCommand Clone()
     {
-        return (new UnityBase.Scene.Ui.Menu.CheatCommand(this));
+        return (new UnityBase.Scene.Ui.MenuSystem.CheatCommand(this));
     }
 
     /**
@@ -209,7 +209,7 @@ public class CheatCommand
      * @brief GetCalculateOption関数
      * @param calc_option (calculate_option)
      */
-    public UnityBase.Scene.Ui.Menu.CheatCommandCalculateOption GetCalculateOption()
+    public UnityBase.Scene.Ui.MenuSystem.CheatCommandCalculateOption GetCalculateOption()
     {
         return (this._calculateOption);
     }
@@ -227,7 +227,7 @@ public class CheatCommand
      * @brief GetParser関数
      * @return parser (parser)
      */
-    public UnityBase.Scene.Ui.Menu.CheatCommandParser GetParser()
+    public UnityBase.Scene.Ui.MenuSystem.CheatCommandParser GetParser()
     {
         return (this._parser);
     }
@@ -241,7 +241,7 @@ public class CheatCommand
      * @return result_val (result_value)<br>
      * 0未満=失敗
      */
-    public int Calculate(out double dst_calc_val, UnityBase.Scene.Ui.Menu.CheatCommandCalculateOption calc_option, bool calc_test_flg = false, UnityBase.Scene.Ui.Menu.CheatCommandParser parser = null)
+    public int Calculate(out double dst_calc_val, UnityBase.Scene.Ui.MenuSystem.CheatCommandCalculateOption calc_option, bool calc_test_flg = false, UnityBase.Scene.Ui.MenuSystem.CheatCommandParser parser = null)
     {
         dst_calc_val = 0.0;
 
@@ -250,7 +250,7 @@ public class CheatCommand
         this._parser = parser;
         
         if (this._parser == null) {
-            this._parser = new UnityBase.Scene.Ui.Menu.CheatCommandParser(this._code);
+            this._parser = new UnityBase.Scene.Ui.MenuSystem.CheatCommandParser(this._code);
         }
 
         if (this._parser.GetNodeContainer().Count <= 0) {
@@ -258,7 +258,7 @@ public class CheatCommand
         }
 
         foreach (var node in this._parser.GetNodeContainer()) {
-            if (node.GetNodeType() == UnityBase.Scene.Ui.Menu.CheatCommandParserUtil.NODE_TYPE.EMPTY) {
+            if (node.GetNodeType() == UnityBase.Scene.Ui.MenuSystem.CheatCommandParserUtil.NODE_TYPE.EMPTY) {
                 return (-1);
             }
 
@@ -279,19 +279,19 @@ public class CheatCommand
      * @param node (node)
      * @return result (result)
      */
-    public System.Tuple<int, double> _CalculateNode(UnityBase.Scene.Ui.Menu.CheatCommandParserNode node)
+    public System.Tuple<int, double> _CalculateNode(UnityBase.Scene.Ui.MenuSystem.CheatCommandParserNode node)
     {
         double calc_val = 0.0;
 
 		switch (node.GetNodeType()) {
-		case UnityBase.Scene.Ui.Menu.CheatCommandParserUtil.NODE_TYPE.NUMBER: {
+		case UnityBase.Scene.Ui.MenuSystem.CheatCommandParserUtil.NODE_TYPE.NUMBER: {
             if (!double.TryParse(node.GetText(), out calc_val)) {
                 return (new System.Tuple<int, double>(-1, 0.0));
             }
 
             break;
 		}
-		case UnityBase.Scene.Ui.Menu.CheatCommandParserUtil.NODE_TYPE.UNARY_EXPRESSION: {
+		case UnityBase.Scene.Ui.MenuSystem.CheatCommandParserUtil.NODE_TYPE.UNARY_EXPRESSION: {
             var right_calc_result = this._CalculateNode(node.GetRightNode());
 
             if (right_calc_result.Item1 < 0) {
@@ -321,7 +321,7 @@ public class CheatCommand
 
             break;
 		}
-		case UnityBase.Scene.Ui.Menu.CheatCommandParserUtil.NODE_TYPE.FUNCTION: {
+		case UnityBase.Scene.Ui.MenuSystem.CheatCommandParserUtil.NODE_TYPE.FUNCTION: {
             var func = this._calculateOption.GetFunction(node.GetText(), out int get_result_val);
 
             if (get_result_val < 0) {

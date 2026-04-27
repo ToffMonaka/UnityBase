@@ -10,13 +10,13 @@ using DG.Tweening;
 
 
 namespace ToffMonaka {
-namespace UnityBase.Scene.Ui.Menu {
+namespace UnityBase.Scene.Ui.MenuSystem {
 /**
  * @brief StageNodeScriptCreateDescクラス
  */
 public class StageNodeScriptCreateDesc : Lib.Scene.ObjectNodeScriptCreateDesc
 {
-    public UnityBase.Scene.Ui.Menu.NodeScript menuNodeScript = null;
+    public UnityBase.Scene.Ui.MenuSystem.NodeScript menuNodeScript = null;
 }
 
 /**
@@ -26,9 +26,9 @@ public class StageNodeScript : Lib.Scene.ObjectNodeScript
 {
     [SerializeField] private TMP_Text _nameText = null;
 
-    public new UnityBase.Scene.Ui.Menu.StageNodeScriptCreateDesc createDesc{get; private set;} = null;
+    public new UnityBase.Scene.Ui.MenuSystem.StageNodeScriptCreateDesc createDesc{get; private set;} = null;
 
-    private UnityBase.Scene.Ui.Menu.NodeScript _menuNodeScript = null;
+    private UnityBase.Scene.Ui.MenuSystem.NodeScript _menuNodeScript = null;
     private UnityBase.Util.SCENE.MENU_STAGE_TYPE _stageType = UnityBase.Util.SCENE.MENU_STAGE_TYPE.NONE;
 
     /**
@@ -88,12 +88,12 @@ public class StageNodeScript : Lib.Scene.ObjectNodeScript
     public override void SetCreateDesc(Lib.Scene.ScriptCreateDesc create_desc = null)
     {
         if (create_desc == null) {
-            this.SetCreateDesc(new UnityBase.Scene.Ui.Menu.StageNodeScriptCreateDesc());
+            this.SetCreateDesc(new UnityBase.Scene.Ui.MenuSystem.StageNodeScriptCreateDesc());
 
             return;
         }
 
-	    this.createDesc = create_desc as UnityBase.Scene.Ui.Menu.StageNodeScriptCreateDesc;
+	    this.createDesc = create_desc as UnityBase.Scene.Ui.MenuSystem.StageNodeScriptCreateDesc;
 
         base.SetCreateDesc(this.createDesc);
 
@@ -204,7 +204,7 @@ public class StageNodeScript : Lib.Scene.ObjectNodeScript
      * @brief GetMenuNodeScript関数
      * @return menu_node_script (menu_node_script)
      */
-    public UnityBase.Scene.Ui.Menu.NodeScript GetMenuNodeScript()
+    public UnityBase.Scene.Ui.MenuSystem.NodeScript GetMenuNodeScript()
     {
         return (this._menuNodeScript);
     }

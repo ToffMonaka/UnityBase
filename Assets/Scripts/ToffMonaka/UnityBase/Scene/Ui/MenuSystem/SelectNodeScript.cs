@@ -12,13 +12,13 @@ using DG.Tweening;
 
 
 namespace ToffMonaka {
-namespace UnityBase.Scene.Ui.Menu {
+namespace UnityBase.Scene.Ui.MenuSystem {
 /**
  * @brief SelectNodeScriptCreateDescクラス
  */
 public class SelectNodeScriptCreateDesc : Lib.Scene.ObjectNodeScriptCreateDesc
 {
-    public UnityBase.Scene.Ui.Menu.NodeScript menuNodeScript = null;
+    public UnityBase.Scene.Ui.MenuSystem.NodeScript menuNodeScript = null;
 }
 
 /**
@@ -30,10 +30,10 @@ public class SelectNodeScript : Lib.Scene.ObjectNodeScript
     [SerializeField] private ScrollRect _scrollRect = null;
     [SerializeField] private GameObject _itemNode = null;
 
-    public new UnityBase.Scene.Ui.Menu.SelectNodeScriptCreateDesc createDesc{get; private set;} = null;
+    public new UnityBase.Scene.Ui.MenuSystem.SelectNodeScriptCreateDesc createDesc{get; private set;} = null;
 
-    private UnityBase.Scene.Ui.Menu.NodeScript _menuNodeScript = null;
-    private List<UnityBase.Scene.Ui.Menu.SelectItemNodeScript> _itemNodeScriptContainer = new List<UnityBase.Scene.Ui.Menu.SelectItemNodeScript>();
+    private UnityBase.Scene.Ui.MenuSystem.NodeScript _menuNodeScript = null;
+    private List<UnityBase.Scene.Ui.MenuSystem.SelectItemNodeScript> _itemNodeScriptContainer = new List<UnityBase.Scene.Ui.MenuSystem.SelectItemNodeScript>();
 
     /**
      * @brief _OnGetScriptIndex関数
@@ -83,7 +83,7 @@ public class SelectNodeScript : Lib.Scene.ObjectNodeScript
                 UnityBase.Util.SCENE.MENU_STAGE_TYPE.END
             };
 
-            void on_click(UnityBase.Scene.Ui.Menu.SelectItemNodeScript owner)
+            void on_click(UnityBase.Scene.Ui.MenuSystem.SelectItemNodeScript owner)
             {
                 this._menuNodeScript.ChangeStage(owner.GetStageType());
 
@@ -91,8 +91,8 @@ public class SelectNodeScript : Lib.Scene.ObjectNodeScript
             }
 
             foreach (var stage_type in stage_type_ary) {
-                var script = GameObject.Instantiate(this._itemNode, this._itemNode.transform.parent).GetComponent<UnityBase.Scene.Ui.Menu.SelectItemNodeScript>();
-                var script_create_desc = new UnityBase.Scene.Ui.Menu.SelectItemNodeScriptCreateDesc();
+                var script = GameObject.Instantiate(this._itemNode, this._itemNode.transform.parent).GetComponent<UnityBase.Scene.Ui.MenuSystem.SelectItemNodeScript>();
+                var script_create_desc = new UnityBase.Scene.Ui.MenuSystem.SelectItemNodeScriptCreateDesc();
 
                 script_create_desc.stageType = stage_type;
                 script_create_desc.onClick = on_click;
@@ -105,8 +105,8 @@ public class SelectNodeScript : Lib.Scene.ObjectNodeScript
 
             if (UnityBase.Util.GetDebugFlag()) {
 #pragma warning disable CS0162
-                var script = GameObject.Instantiate(this._itemNode, this._itemNode.transform.parent).GetComponent<UnityBase.Scene.Ui.Menu.SelectItemNodeScript>();
-                var script_create_desc = new UnityBase.Scene.Ui.Menu.SelectItemNodeScriptCreateDesc();
+                var script = GameObject.Instantiate(this._itemNode, this._itemNode.transform.parent).GetComponent<UnityBase.Scene.Ui.MenuSystem.SelectItemNodeScript>();
+                var script_create_desc = new UnityBase.Scene.Ui.MenuSystem.SelectItemNodeScriptCreateDesc();
 
                 script_create_desc.stageType = UnityBase.Util.SCENE.MENU_STAGE_TYPE.CHEAT;
                 script_create_desc.onClick = on_click;
@@ -129,12 +129,12 @@ public class SelectNodeScript : Lib.Scene.ObjectNodeScript
     public override void SetCreateDesc(Lib.Scene.ScriptCreateDesc create_desc = null)
     {
         if (create_desc == null) {
-            this.SetCreateDesc(new UnityBase.Scene.Ui.Menu.SelectNodeScriptCreateDesc());
+            this.SetCreateDesc(new UnityBase.Scene.Ui.MenuSystem.SelectNodeScriptCreateDesc());
 
             return;
         }
 
-	    this.createDesc = create_desc as UnityBase.Scene.Ui.Menu.SelectNodeScriptCreateDesc;
+	    this.createDesc = create_desc as UnityBase.Scene.Ui.MenuSystem.SelectNodeScriptCreateDesc;
 
         base.SetCreateDesc(this.createDesc);
 

@@ -27,7 +27,7 @@ public class SubSceneNodeScript : UnityBase.Scene.SubSceneNodeScript
     public new UnityBase.Scene.Stage.SubSceneNodeScriptCreateDesc createDesc{get; private set;} = null;
 
     private UnityBase.Util.SCENE.STAGE_TYPE _stageType = UnityBase.Util.SCENE.STAGE_TYPE.NONE;
-    protected UnityBase.Scene.Ui.BackButtonNodeScript _backButtonNodeScript = null;
+    private UnityBase.Scene.Ui.BackButtonNodeScript _backButtonNodeScript = null;
 
     /**
      * @brief _OnGetScriptIndex関数

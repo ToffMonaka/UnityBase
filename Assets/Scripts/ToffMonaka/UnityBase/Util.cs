@@ -92,7 +92,7 @@ public static class Util
             STAGE_BACK_BUTTON_NODE,
             TEST_2D_STAGE_SUB_SCENE_NODE,
             TEST_3D_STAGE_SUB_SCENE_NODE,
-            MENU_NODE,
+            MENU_SYSTEM_NODE,
             MENU_OPEN_CLOSE_BUTTON_NODE,
             MENU_SELECT_NODE,
             MENU_SELECT_ITEM_NODE,
@@ -105,10 +105,12 @@ public static class Util
             MENU_END_STAGE_NODE,
             MENU_CHEAT_STAGE_NODE,
             MENU_CHEAT_STAGE_ITEM_NODE,
+            DIALOG_SYSTEM_NODE,
             DIALOG_NODE,
             SELECT_DIALOG_NODE,
             SELECT_DIALOG_ITEM_NODE,
             INPUT_DIALOG_NODE,
+            FADE_SYSTEM_NODE,
 		    COUNT
         }
         public static readonly int SCRIPT_INDEX_COUNT = (int)UnityBase.Util.SCENE.SCRIPT_INDEX.COUNT;
