@@ -313,7 +313,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e7e872648ca2804d985fd1152fae7e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ToffMonaka.UnityBase.Scene.Stage.Test2D.SubSceneNodeScript
-  _menuSystemNode: {fileID: 8263867022720438841}
+  _mainMenuSystemNode: {fileID: 6225459191879788742}
   _dialogSystemNode: {fileID: 3048190085849416835}
   _fadeSystemNode: {fileID: 161161718417634666}
   _openCloseFadeImage: {fileID: 6293969429683596095}
@@ -565,7 +565,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 793505864873890716}
-  - {fileID: 4888632638463079424}
+  - {fileID: 7430244599492677375}
   - {fileID: 3588334872228041478}
   - {fileID: 1993211708113942427}
   - {fileID: 6005135989223699406}
@@ -1276,7 +1276,7 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 2035615302179591474, guid: 78bfd15b892ea0647bb4d479158b63d1, type: 3}
   m_PrefabInstance: {fileID: 5273520266969463302}
   m_PrefabAsset: {fileID: 0}
---- !u!1001 &8648388857546980320
+--- !u!1001 &6687668129230143775
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -1286,7 +1286,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 768453752194181593, guid: 35b6299e7944f134793ab3fad0776c69, type: 3}
       propertyPath: m_Name
-      value: MenuSystem
+      value: MainMenu
       objectReference: {fileID: 0}
     - target: {fileID: 4310743791220838368, guid: 35b6299e7944f134793ab3fad0776c69, type: 3}
       propertyPath: m_Pivot.x
@@ -1368,22 +1368,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 9041566714285367433, guid: 35b6299e7944f134793ab3fad0776c69, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 35b6299e7944f134793ab3fad0776c69, type: 3}
---- !u!224 &4888632638463079424 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 4310743791220838368, guid: 35b6299e7944f134793ab3fad0776c69, type: 3}
-  m_PrefabInstance: {fileID: 8648388857546980320}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &8263867022720438841 stripped
+--- !u!1 &6225459191879788742 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 768453752194181593, guid: 35b6299e7944f134793ab3fad0776c69, type: 3}
-  m_PrefabInstance: {fileID: 8648388857546980320}
+  m_PrefabInstance: {fileID: 6687668129230143775}
+  m_PrefabAsset: {fileID: 0}
+--- !u!224 &7430244599492677375 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 4310743791220838368, guid: 35b6299e7944f134793ab3fad0776c69, type: 3}
+  m_PrefabInstance: {fileID: 6687668129230143775}
   m_PrefabAsset: {fileID: 0}

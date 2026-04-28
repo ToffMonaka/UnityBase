@@ -63,7 +63,9 @@ public static class Util
             return (null);
         }
 
-        node.transform.SetParent(parent_node.transform, pos_keep_flg);
+        if (parent_node != null) {
+            node.transform.SetParent(parent_node.transform, pos_keep_flg);
+        }
 
         return (node);
     }
