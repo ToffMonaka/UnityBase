@@ -22,7 +22,7 @@ public class BoardNodeScriptCreateDesc : Lib.Scene.ObjectNodeScriptCreateDesc
 /**
  * @brief BoardNodeScriptクラス
  */
-public class BoardNodeScript : Lib.Scene.ObjectNodeScript
+public abstract class BoardNodeScript : Lib.Scene.ObjectNodeScript
 {
     [SerializeField] private TMP_Text _nameText = null;
 

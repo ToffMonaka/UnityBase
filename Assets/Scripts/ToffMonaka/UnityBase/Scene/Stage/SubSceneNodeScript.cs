@@ -20,7 +20,7 @@ public class SubSceneNodeScriptCreateDesc : UnityBase.Scene.SubSceneNodeScriptCr
 /**
  * @brief SubSceneNodeScriptクラス
  */
-public class SubSceneNodeScript : UnityBase.Scene.SubSceneNodeScript
+public abstract class SubSceneNodeScript : UnityBase.Scene.SubSceneNodeScript
 {
     [SerializeField] protected GameObject _backButtonNode = null;
 

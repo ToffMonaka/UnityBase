@@ -217,6 +217,30 @@ public class MainSceneNodeScript : Lib.Scene.MainSceneNodeScript
     }
 
     /**
+     * @brief SaveDataFile関数
+     */
+    public void SaveDataFile()
+    {
+        UnityBase.Global.systemConfigFile.Write(true);
+        UnityBase.Global.userDataFile.Write(true);
+
+        return;
+    }
+
+    /**
+     * @brief DeleteDataFile関数
+     */
+    public void DeleteDataFile()
+    {
+        UnityBase.Global.systemConfigFile.Delete(true);
+        UnityBase.Global.userDataFile.Delete(true);
+
+        Lib.Scene.Util.GetManager().StartApplication();
+
+        return;
+    }
+
+    /**
      * @brief _CreateManager関数
      * @return result_val (result_value)<br>
      * 0未満=失敗

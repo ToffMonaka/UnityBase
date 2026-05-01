@@ -20,9 +20,9 @@ public class SubSceneNodeScriptCreateDesc : Lib.Scene.SubSceneNodeScriptCreateDe
 /**
  * @brief SubSceneNodeScriptクラス
  */
-public class SubSceneNodeScript : Lib.Scene.SubSceneNodeScript
+public abstract class SubSceneNodeScript : Lib.Scene.SubSceneNodeScript
 {
-    [SerializeField] private GameObject _mainMenuSystemNode = null;
+    [SerializeField] private GameObject _mainMenuNode = null;
     [SerializeField] private GameObject _dialogSystemNode = null;
     [SerializeField] private GameObject _fadeSystemNode = null;
 
@@ -30,7 +30,7 @@ public class SubSceneNodeScript : Lib.Scene.SubSceneNodeScript
 
     public new UnityBase.Scene.SubSceneNodeScriptCreateDesc createDesc{get; private set;} = null;
 
-    private UnityBase.Scene.Ui.Menu.Main.NodeScript _mainMenuSystemNodeScript = null;
+    private UnityBase.Scene.Ui.Menu.Main.NodeScript _mainMenuNodeScript = null;
     private UnityBase.Scene.Ui.Dialog.SystemNodeScript _dialogSystemNodeScript = null;
     private UnityBase.Scene.Ui.Fade.SystemNodeScript _fadeSystemNodeScript = null;
 
@@ -66,25 +66,21 @@ public class SubSceneNodeScript : Lib.Scene.SubSceneNodeScript
      */
     protected override int _OnCreate()
     {
-        // MainMenuSystemNodeScript Create
-        if (this._mainMenuSystemNode != null) {
-            var script = this._mainMenuSystemNode.GetComponent<UnityBase.Scene.Ui.Menu.Main.NodeScript>();
+        // MainMenuNodeScript Create
+        if (this._mainMenuNode != null) {
+            var script = this._mainMenuNode.GetComponent<UnityBase.Scene.Ui.Menu.Main.NodeScript>();
             var script_create_desc = new UnityBase.Scene.Ui.Menu.Main.NodeScriptCreateDesc();
-
-            script_create_desc.subSceneNodeScript = this;
 
             script.Create(script_create_desc);
             script.Open(0);
 
-            this._mainMenuSystemNodeScript = script;
+            this._mainMenuNodeScript = script;
         }
 
         // DialogSystemNodeScript Create
         if (this._dialogSystemNode != null) {
             var script = this._dialogSystemNode.GetComponent<UnityBase.Scene.Ui.Dialog.SystemNodeScript>();
             var script_create_desc = new UnityBase.Scene.Ui.Dialog.SystemNodeScriptCreateDesc();
-
-            script_create_desc.subSceneNodeScript = this;
 
             script.Create(script_create_desc);
             script.Open(0);
@@ -96,8 +92,6 @@ public class SubSceneNodeScript : Lib.Scene.SubSceneNodeScript
         if (this._fadeSystemNode != null) {
             var script = this._fadeSystemNode.GetComponent<UnityBase.Scene.Ui.Fade.SystemNodeScript>();
             var script_create_desc = new UnityBase.Scene.Ui.Fade.SystemNodeScriptCreateDesc();
-
-            script_create_desc.subSceneNodeScript = this;
 
             script.Create(script_create_desc);
             script.Open(0);
@@ -192,12 +186,12 @@ public class SubSceneNodeScript : Lib.Scene.SubSceneNodeScript
     }
 
     /**
-     * @brief GetMainMenuSystemNodeScript関数
-     * @return main_menu_sys_node_script (main_menu_system_node_script)
+     * @brief GetMainMenuNodeScript関数
+     * @return main_menu_node_script (main_menu_node_script)
      */
-    public UnityBase.Scene.Ui.Menu.Main.NodeScript GetMainMenuSystemNodeScript()
+    public UnityBase.Scene.Ui.Menu.Main.NodeScript GetMainMenuNodeScript()
     {
-        return (this._mainMenuSystemNodeScript);
+        return (this._mainMenuNodeScript);
     }
 
     /**

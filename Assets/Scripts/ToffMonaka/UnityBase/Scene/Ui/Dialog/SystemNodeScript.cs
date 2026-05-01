@@ -14,7 +14,6 @@ namespace UnityBase.Scene.Ui.Dialog {
  */
 public class SystemNodeScriptCreateDesc : Lib.Scene.ObjectNodeScriptCreateDesc
 {
-    public UnityBase.Scene.SubSceneNodeScript subSceneNodeScript = null;
 }
 
 /**
@@ -23,8 +22,6 @@ public class SystemNodeScriptCreateDesc : Lib.Scene.ObjectNodeScriptCreateDesc
 public class SystemNodeScript : Lib.Scene.ObjectNodeScript
 {
     public new UnityBase.Scene.Ui.Dialog.SystemNodeScriptCreateDesc createDesc{get; private set;} = null;
-
-    private UnityBase.Scene.SubSceneNodeScript _subSceneNodeScript = null;
 
     /**
      * @brief _OnGetScriptIndex関数
@@ -58,8 +55,6 @@ public class SystemNodeScript : Lib.Scene.ObjectNodeScript
      */
     protected override int _OnCreate()
     {
-        this._subSceneNodeScript = this.createDesc.subSceneNodeScript;
-
         return (0);
     }
 

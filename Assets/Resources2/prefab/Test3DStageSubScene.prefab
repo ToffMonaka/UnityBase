@@ -227,7 +227,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 774e5835730814d4aacafa9b9499ff8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ToffMonaka.UnityBase.Scene.Stage.Test3D.SubSceneNodeScript
-  _mainMenuSystemNode: {fileID: 6374672483091174196}
+  _mainMenuNode: {fileID: 6374672483091174196}
   _dialogSystemNode: {fileID: 2070502008531703582}
   _fadeSystemNode: {fileID: 972730563523938436}
   _openCloseFadeImage: {fileID: 8743706933725798703}
@@ -1259,6 +1259,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4310743791220838368, guid: 35b6299e7944f134793ab3fad0776c69, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9041566714285367433, guid: 35b6299e7944f134793ab3fad0776c69, type: 3}
+      propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

@@ -245,7 +245,7 @@ public class OptionStageNodeScript : UnityBase.Scene.Ui.Menu.Main.StageNodeScrip
             this._languageSelectDialogNodeScript.AddItem(new UnityBase.Scene.Ui.Dialog.LanguageSelectDialogItemEngine(UnityBase.Util.LANGUAGE_TYPE.JAPANESE));
         }
 
-        this.GetMenuNodeScript().GetSubSceneNodeScript().GetDialogSystemNodeScript().AddDialog(this._languageSelectDialogNodeScript);
+        UnityBase.Util.GetSubSceneNodeScript().GetDialogSystemNodeScript().AddDialog(this._languageSelectDialogNodeScript);
 
         return;
     }

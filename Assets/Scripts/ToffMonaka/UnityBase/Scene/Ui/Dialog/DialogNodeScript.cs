@@ -20,7 +20,7 @@ public class DialogNodeScriptCreateDesc : Lib.Scene.ObjectNodeScriptCreateDesc
 /**
  * @brief DialogNodeScriptクラス
  */
-public class DialogNodeScript : Lib.Scene.ObjectNodeScript
+public abstract class DialogNodeScript : Lib.Scene.ObjectNodeScript
 {
     [SerializeField] private CanvasGroup _canvasGroup = null;
 

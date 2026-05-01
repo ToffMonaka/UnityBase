@@ -238,16 +238,21 @@ public static class Util
     }
 
     /**
-     * @brief DeleteData関数
+     * @brief GetMainSceneNodeScript関数
+     * @return main_scene_node_script (main_scene_node_script)
      */
-    public static void DeleteData()
+    public static UnityBase.Scene.MainSceneNodeScript GetMainSceneNodeScript()
     {
-        UnityBase.Global.systemConfigFile.Delete(true);
-        UnityBase.Global.userDataFile.Delete(true);
+        return (Lib.Scene.Util.GetManager().GetMainSceneNodeScript() as UnityBase.Scene.MainSceneNodeScript);
+    }
 
-        Lib.Scene.Util.GetManager().StartApplication();
-
-        return;
+    /**
+     * @brief GetSubSceneNodeScript関数
+     * @return sub_scene_node_script (sub_scene_node_script)
+     */
+    public static UnityBase.Scene.SubSceneNodeScript GetSubSceneNodeScript()
+    {
+        return (Lib.Scene.Util.GetManager().GetSubSceneNodeScript() as UnityBase.Scene.SubSceneNodeScript);
     }
 }
 }
