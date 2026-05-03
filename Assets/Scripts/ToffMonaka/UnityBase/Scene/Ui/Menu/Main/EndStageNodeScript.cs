@@ -243,12 +243,12 @@ public class EndStageNodeScript : UnityBase.Scene.Ui.Menu.Main.StageNodeScript
         Lib.Scene.Util.GetSoundManager().PlaySe((int)UnityBase.Util.SOUND.SE_INDEX.OK2);
 
         if (this._restartToggle.isOn) {
-            Lib.Scene.Util.GetManager().StartApplication();
+            Lib.Scene.Util.GetManager().StartMainScene();
         } else if (this._endToggle.isOn) {
-            Lib.Scene.Util.GetManager().EndApplication();
+            Lib.Scene.Util.GetManager().EndMainScene();
         }
 
-        this.GetMenuNodeScript().ChangeStage(UnityBase.Util.SCENE.MENU_STAGE_TYPE.NONE);
+        this._onChangeStage(this, UnityBase.Util.SCENE.MENU_STAGE_TYPE.NONE);
 
         return;
     }
@@ -265,7 +265,7 @@ public class EndStageNodeScript : UnityBase.Scene.Ui.Menu.Main.StageNodeScript
 
         Lib.Scene.Util.GetSoundManager().PlaySe((int)UnityBase.Util.SOUND.SE_INDEX.CANCEL);
 
-        this.GetMenuNodeScript().ChangeStage(UnityBase.Util.SCENE.MENU_STAGE_TYPE.NONE);
+        this._onChangeStage(this, UnityBase.Util.SCENE.MENU_STAGE_TYPE.NONE);
 
         return;
     }

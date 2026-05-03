@@ -150,13 +150,13 @@ public class InitSubSceneNodeScript : UnityBase.Scene.SubSceneNodeScript
 
 		switch (this.GetOpenType()) {
 		case 1: {
-            this._openCloseFadeImage.gameObject.SetActive(true);
-            this._openCloseFadeImage.color = new Color32(8, 8, 8, 255);
+            this._openCloseCoverImage.gameObject.SetActive(true);
+            this._openCloseCoverImage.color = new Color32(8, 8, 8, 255);
 
             var open_close_sequence = DOTween.Sequence();
 
             open_close_sequence.AppendInterval(0.05f);
-            open_close_sequence.Append(this._openCloseFadeImage.DOFade(0.0f, 0.2f));
+            open_close_sequence.Append(this._openCloseCoverImage.DOFade(0.0f, 0.2f));
             open_close_sequence.SetLink(this.gameObject);
 
             this.AddOpenCloseSequence(open_close_sequence);
@@ -164,7 +164,7 @@ public class InitSubSceneNodeScript : UnityBase.Scene.SubSceneNodeScript
 			break;
 		}
 		default: {
-            this._openCloseFadeImage.gameObject.SetActive(false);
+            this._openCloseCoverImage.gameObject.SetActive(false);
 
 			break;
 		}
@@ -192,12 +192,12 @@ public class InitSubSceneNodeScript : UnityBase.Scene.SubSceneNodeScript
 
 		switch (this.GetCloseType()) {
 		case 1: {
-            this._openCloseFadeImage.gameObject.SetActive(true);
-            this._openCloseFadeImage.color = new Color32(8, 8, 8, 0);
+            this._openCloseCoverImage.gameObject.SetActive(true);
+            this._openCloseCoverImage.color = new Color32(8, 8, 8, 0);
 
             var open_close_sequence = DOTween.Sequence();
 
-            open_close_sequence.Append(this._openCloseFadeImage.DOFade(1.0f, 0.2f));
+            open_close_sequence.Append(this._openCloseCoverImage.DOFade(1.0f, 0.2f));
             open_close_sequence.AppendInterval(0.05f);
             open_close_sequence.SetLink(this.gameObject);
 
@@ -206,7 +206,7 @@ public class InitSubSceneNodeScript : UnityBase.Scene.SubSceneNodeScript
 			break;
 		}
 		default: {
-            this._openCloseFadeImage.gameObject.SetActive(false);
+            this._openCloseCoverImage.gameObject.SetActive(false);
 
 			break;
 		}
@@ -225,7 +225,7 @@ public class InitSubSceneNodeScript : UnityBase.Scene.SubSceneNodeScript
 		switch (this.GetClosedType()) {
         case 1: {
             {// TitleSubSceneNodeScript Create
-                var script = this.GetManager().ChangeSubScene(UnityBase.Util.FILE_PATH.TITLE_SUB_SCENE_PREFAB) as UnityBase.Scene.TitleSubSceneNodeScript;
+                var script = Lib.Scene.Util.GetManager().ChangeSubScene(UnityBase.Util.FILE_PATH.TITLE_SUB_SCENE_PREFAB) as UnityBase.Scene.TitleSubSceneNodeScript;
                 var script_create_desc = new UnityBase.Scene.TitleSubSceneNodeScriptCreateDesc();
 
                 script.Create(script_create_desc);

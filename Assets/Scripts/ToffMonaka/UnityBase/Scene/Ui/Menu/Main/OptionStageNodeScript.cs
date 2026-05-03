@@ -439,10 +439,10 @@ public class OptionStageNodeScript : UnityBase.Scene.Ui.Menu.Main.StageNodeScrip
         UnityBase.Global.systemConfigFile.Write(true);
 
         if (this._restartFlag != 0U) {
-            Lib.Scene.Util.GetManager().StartApplication();
+            Lib.Scene.Util.GetManager().StartMainScene();
         }
 
-        this.GetMenuNodeScript().ChangeStage(UnityBase.Util.SCENE.MENU_STAGE_TYPE.NONE);
+        this._onChangeStage(this, UnityBase.Util.SCENE.MENU_STAGE_TYPE.NONE);
 
         return;
     }
@@ -464,7 +464,7 @@ public class OptionStageNodeScript : UnityBase.Scene.Ui.Menu.Main.StageNodeScrip
         Lib.Scene.Util.GetSoundManager().SetSeVolume(UnityBase.Global.systemConfigFile.data.soundSeVolume);
         Lib.Scene.Util.GetSoundManager().SetSeMuteFlag(UnityBase.Global.systemConfigFile.data.soundSeMuteFlag);
 
-        this.GetMenuNodeScript().ChangeStage(UnityBase.Util.SCENE.MENU_STAGE_TYPE.NONE);
+        this._onChangeStage(this, UnityBase.Util.SCENE.MENU_STAGE_TYPE.NONE);
 
         return;
     }

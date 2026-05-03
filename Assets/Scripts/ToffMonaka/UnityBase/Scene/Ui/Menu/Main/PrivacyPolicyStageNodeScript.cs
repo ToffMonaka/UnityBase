@@ -228,7 +228,7 @@ public class PrivacyPolicyStageNodeScript : UnityBase.Scene.Ui.Menu.Main.StageNo
 
         Lib.Scene.Util.GetSoundManager().PlaySe((int)UnityBase.Util.SOUND.SE_INDEX.CANCEL);
 
-        this.GetMenuNodeScript().ChangeStage(UnityBase.Util.SCENE.MENU_STAGE_TYPE.NONE);
+        this._onChangeStage(this, UnityBase.Util.SCENE.MENU_STAGE_TYPE.NONE);
 
         return;
     }

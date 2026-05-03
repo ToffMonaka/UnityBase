@@ -23,10 +23,10 @@ public abstract class Script : MonoBehaviour
 {
     public Lib.Scene.ScriptCreateDesc createDesc{get; private set;} = null;
 
-    private Lib.Scene.Manager _manager = null;
     private Lib.Util.SCENE.SCRIPT_TYPE _scriptType = Lib.Util.SCENE.SCRIPT_TYPE.NONE;
     private int _scriptIndex = (int)Lib.Util.SCENE.SCRIPT_INDEX.NONE;
     private bool _activeAutoFlag = true;
+    private bool _managerAddedFlag = false;
     private bool _awakedFlag = false;
     private bool _createdFlag = false;
     private bool _controlFlag = false;
@@ -369,26 +369,6 @@ public abstract class Script : MonoBehaviour
     }
 
     /**
-     * @brief GetManager関数
-     * @return manager (manager)
-     */
-    public Lib.Scene.Manager GetManager()
-    {
-        return (this._manager);
-    }
-
-    /**
-     * @brief SetManager関数
-     * @param manager (manager)
-     */
-    public void SetManager(Lib.Scene.Manager manager)
-    {
-        this._manager = manager;
-
-        return;
-    }
-
-    /**
      * @brief GetScriptType関数
      * @return script_type (script_type)
      */
@@ -413,6 +393,26 @@ public abstract class Script : MonoBehaviour
     public bool GetActiveAutoFlag()
     {
         return (this._activeAutoFlag);
+    }
+
+    /**
+     * @brief GetManagerAddedFlag関数
+     * @return manager_added_flg (manager_added_flag)
+     */
+    public bool GetManagerAddedFlag()
+    {
+        return (this._managerAddedFlag);
+    }
+
+    /**
+     * @brief SetManagerAddedFlag関数
+     * @param manager_added_flg (manager_added_flag)
+     */
+    public void SetManagerAddedFlag(bool manager_added_flg)
+    {
+        this._managerAddedFlag = manager_added_flg;
+
+        return;
     }
 
     /**

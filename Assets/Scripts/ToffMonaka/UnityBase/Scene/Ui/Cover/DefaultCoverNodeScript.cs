@@ -1,27 +1,30 @@
 ﻿/**
  * @file
- * @brief NodeScriptファイル
+ * @brief DefaultCoverNodeScriptファイル
  */
 
 
 using UnityEngine;
+using UnityEngine.UI;
 
 
 namespace ToffMonaka {
-namespace UnityBase.Scene.Ui.Fade {
+namespace UnityBase.Scene.Ui.Cover {
 /**
- * @brief SystemNodeScriptCreateDescクラス
+ * @brief DefaultCoverNodeScriptCreateDescクラス
  */
-public class SystemNodeScriptCreateDesc : Lib.Scene.ObjectNodeScriptCreateDesc
+public class DefaultCoverNodeScriptCreateDesc : UnityBase.Scene.Ui.Cover.CoverNodeScriptCreateDesc
 {
 }
 
 /**
- * @brief NodeScriptクラス
+ * @brief DefaultCoverNodeScriptクラス
  */
-public class SystemNodeScript : Lib.Scene.ObjectNodeScript
+public class DefaultCoverNodeScript : UnityBase.Scene.Ui.Cover.CoverNodeScript
 {
-    public new UnityBase.Scene.Ui.Fade.SystemNodeScriptCreateDesc createDesc{get; private set;} = null;
+    [SerializeField] private Image _coverImage = null;
+
+    public new UnityBase.Scene.Ui.Cover.DefaultCoverNodeScriptCreateDesc createDesc{get; private set;} = null;
 
     /**
      * @brief _OnGetScriptIndex関数
@@ -29,7 +32,7 @@ public class SystemNodeScript : Lib.Scene.ObjectNodeScript
      */
     protected override int _OnGetScriptIndex()
     {
-        return ((int)UnityBase.Util.SCENE.SCRIPT_INDEX.FADE_SYSTEM_NODE);
+        return ((int)UnityBase.Util.SCENE.SCRIPT_INDEX.DEFAULT_COVER_NODE);
     }
 
     /**
@@ -37,6 +40,8 @@ public class SystemNodeScript : Lib.Scene.ObjectNodeScript
      */
     protected override void _OnAwake()
     {
+        base._OnAwake();
+
         return;
     }
 
@@ -45,6 +50,8 @@ public class SystemNodeScript : Lib.Scene.ObjectNodeScript
      */
     protected override void _OnDestroy()
     {
+        base._OnDestroy();
+
         return;
     }
 
@@ -55,6 +62,10 @@ public class SystemNodeScript : Lib.Scene.ObjectNodeScript
      */
     protected override int _OnCreate()
     {
+        if (base._OnCreate() < 0) {
+            return (-1);
+        }
+
         return (0);
     }
 
@@ -65,12 +76,12 @@ public class SystemNodeScript : Lib.Scene.ObjectNodeScript
     public override void SetCreateDesc(Lib.Scene.ScriptCreateDesc create_desc = null)
     {
         if (create_desc == null) {
-            this.SetCreateDesc(new UnityBase.Scene.Ui.Fade.SystemNodeScriptCreateDesc());
+            this.SetCreateDesc(new UnityBase.Scene.Ui.Cover.DefaultCoverNodeScriptCreateDesc());
 
             return;
         }
 
-	    this.createDesc = create_desc as UnityBase.Scene.Ui.Fade.SystemNodeScriptCreateDesc;
+	    this.createDesc = create_desc as UnityBase.Scene.Ui.Cover.DefaultCoverNodeScriptCreateDesc;
 
         base.SetCreateDesc(this.createDesc);
 
@@ -82,6 +93,8 @@ public class SystemNodeScript : Lib.Scene.ObjectNodeScript
      */
     protected override void _OnActive()
     {
+        base._OnActive();
+
         return;
     }
 
@@ -90,6 +103,8 @@ public class SystemNodeScript : Lib.Scene.ObjectNodeScript
      */
     protected override void _OnDeactive()
     {
+        base._OnDeactive();
+
         return;
     }
 
@@ -98,6 +113,8 @@ public class SystemNodeScript : Lib.Scene.ObjectNodeScript
      */
     protected override void _OnUpdate()
     {
+        base._OnUpdate();
+
         return;
     }
 
@@ -106,6 +123,8 @@ public class SystemNodeScript : Lib.Scene.ObjectNodeScript
      */
     protected override void _OnOpen()
     {
+        base._OnOpen();
+
         return;
     }
 
@@ -114,6 +133,8 @@ public class SystemNodeScript : Lib.Scene.ObjectNodeScript
      */
     protected override void _OnOpened()
     {
+        base._OnOpened();
+
         return;
     }
 
@@ -122,6 +143,8 @@ public class SystemNodeScript : Lib.Scene.ObjectNodeScript
      */
     protected override void _OnClose()
     {
+        base._OnClose();
+
         return;
     }
 
@@ -130,6 +153,8 @@ public class SystemNodeScript : Lib.Scene.ObjectNodeScript
      */
     protected override void _OnClosed()
     {
+        base._OnClosed();
+
         return;
     }
 }

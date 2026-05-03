@@ -118,7 +118,6 @@ public class NodeScript : Lib.Scene.ObjectNodeScript
                 return;
             }
 
-            script_create_desc.menuNodeScript = this;
             script_create_desc.onClick = on_click;
 
             script.Create(script_create_desc);
@@ -131,7 +130,14 @@ public class NodeScript : Lib.Scene.ObjectNodeScript
             var script = this._selectNode.GetComponent<UnityBase.Scene.Ui.Menu.Main.SelectNodeScript>();
             var script_create_desc = new UnityBase.Scene.Ui.Menu.Main.SelectNodeScriptCreateDesc();
 
-            script_create_desc.menuNodeScript = this;
+            void on_change_stage(UnityBase.Scene.Ui.Menu.Main.SelectNodeScript owner, UnityBase.Util.SCENE.MENU_STAGE_TYPE stage_type)
+            {
+                this.ChangeStage(stage_type);
+
+                return;
+            }
+
+            script_create_desc.onChangeStage = on_change_stage;
 
             script.Create(script_create_desc);
 
@@ -142,7 +148,14 @@ public class NodeScript : Lib.Scene.ObjectNodeScript
             var script = this._optionStageNode.GetComponent<UnityBase.Scene.Ui.Menu.Main.OptionStageNodeScript>();
             var script_create_desc = new UnityBase.Scene.Ui.Menu.Main.OptionStageNodeScriptCreateDesc();
 
-            script_create_desc.menuNodeScript = this;
+            void on_change_stage(UnityBase.Scene.Ui.Menu.Main.StageNodeScript owner, UnityBase.Util.SCENE.MENU_STAGE_TYPE stage_type)
+            {
+                this.ChangeStage(stage_type);
+
+                return;
+            }
+
+            script_create_desc.onChangeStage = on_change_stage;
 
             script.Create(script_create_desc);
 
@@ -153,7 +166,14 @@ public class NodeScript : Lib.Scene.ObjectNodeScript
             var script = this._faqStageNode.GetComponent<UnityBase.Scene.Ui.Menu.Main.FaqStageNodeScript>();
             var script_create_desc = new UnityBase.Scene.Ui.Menu.Main.FaqStageNodeScriptCreateDesc();
 
-            script_create_desc.menuNodeScript = this;
+            void on_change_stage(UnityBase.Scene.Ui.Menu.Main.StageNodeScript owner, UnityBase.Util.SCENE.MENU_STAGE_TYPE stage_type)
+            {
+                this.ChangeStage(stage_type);
+
+                return;
+            }
+
+            script_create_desc.onChangeStage = on_change_stage;
 
             script.Create(script_create_desc);
 
@@ -164,7 +184,14 @@ public class NodeScript : Lib.Scene.ObjectNodeScript
             var script = this._staffStageNode.GetComponent<UnityBase.Scene.Ui.Menu.Main.StaffStageNodeScript>();
             var script_create_desc = new UnityBase.Scene.Ui.Menu.Main.StaffStageNodeScriptCreateDesc();
 
-            script_create_desc.menuNodeScript = this;
+            void on_change_stage(UnityBase.Scene.Ui.Menu.Main.StageNodeScript owner, UnityBase.Util.SCENE.MENU_STAGE_TYPE stage_type)
+            {
+                this.ChangeStage(stage_type);
+
+                return;
+            }
+
+            script_create_desc.onChangeStage = on_change_stage;
 
             script.Create(script_create_desc);
 
@@ -175,7 +202,14 @@ public class NodeScript : Lib.Scene.ObjectNodeScript
             var script = this._licenseStageNode.GetComponent<UnityBase.Scene.Ui.Menu.Main.LicenseStageNodeScript>();
             var script_create_desc = new UnityBase.Scene.Ui.Menu.Main.LicenseStageNodeScriptCreateDesc();
 
-            script_create_desc.menuNodeScript = this;
+            void on_change_stage(UnityBase.Scene.Ui.Menu.Main.StageNodeScript owner, UnityBase.Util.SCENE.MENU_STAGE_TYPE stage_type)
+            {
+                this.ChangeStage(stage_type);
+
+                return;
+            }
+
+            script_create_desc.onChangeStage = on_change_stage;
 
             script.Create(script_create_desc);
 
@@ -186,7 +220,14 @@ public class NodeScript : Lib.Scene.ObjectNodeScript
             var script = this._privacyPolicyStageNode.GetComponent<UnityBase.Scene.Ui.Menu.Main.PrivacyPolicyStageNodeScript>();
             var script_create_desc = new UnityBase.Scene.Ui.Menu.Main.PrivacyPolicyStageNodeScriptCreateDesc();
 
-            script_create_desc.menuNodeScript = this;
+            void on_change_stage(UnityBase.Scene.Ui.Menu.Main.StageNodeScript owner, UnityBase.Util.SCENE.MENU_STAGE_TYPE stage_type)
+            {
+                this.ChangeStage(stage_type);
+
+                return;
+            }
+
+            script_create_desc.onChangeStage = on_change_stage;
 
             script.Create(script_create_desc);
 
@@ -197,7 +238,14 @@ public class NodeScript : Lib.Scene.ObjectNodeScript
             var script = this._endStageNode.GetComponent<UnityBase.Scene.Ui.Menu.Main.EndStageNodeScript>();
             var script_create_desc = new UnityBase.Scene.Ui.Menu.Main.EndStageNodeScriptCreateDesc();
 
-            script_create_desc.menuNodeScript = this;
+            void on_change_stage(UnityBase.Scene.Ui.Menu.Main.StageNodeScript owner, UnityBase.Util.SCENE.MENU_STAGE_TYPE stage_type)
+            {
+                this.ChangeStage(stage_type);
+
+                return;
+            }
+
+            script_create_desc.onChangeStage = on_change_stage;
 
             script.Create(script_create_desc);
 
@@ -208,7 +256,14 @@ public class NodeScript : Lib.Scene.ObjectNodeScript
             var script = this._cheatStageNode.GetComponent<UnityBase.Scene.Ui.Menu.Main.CheatStageNodeScript>();
             var script_create_desc = new UnityBase.Scene.Ui.Menu.Main.CheatStageNodeScriptCreateDesc();
 
-            script_create_desc.menuNodeScript = this;
+            void on_change_stage(UnityBase.Scene.Ui.Menu.Main.StageNodeScript owner, UnityBase.Util.SCENE.MENU_STAGE_TYPE stage_type)
+            {
+                this.ChangeStage(stage_type);
+
+                return;
+            }
+
+            script_create_desc.onChangeStage = on_change_stage;
 
             script.Create(script_create_desc);
 

@@ -18,7 +18,7 @@ namespace UnityBase.Scene.Ui.Menu.Main {
  */
 public class SelectNodeScriptCreateDesc : Lib.Scene.ObjectNodeScriptCreateDesc
 {
-    public UnityBase.Scene.Ui.Menu.Main.NodeScript menuNodeScript = null;
+    public System.Action<UnityBase.Scene.Ui.Menu.Main.SelectNodeScript, UnityBase.Util.SCENE.MENU_STAGE_TYPE> onChangeStage = null;
 }
 
 /**
@@ -32,8 +32,8 @@ public class SelectNodeScript : Lib.Scene.ObjectNodeScript
 
     public new UnityBase.Scene.Ui.Menu.Main.SelectNodeScriptCreateDesc createDesc{get; private set;} = null;
 
-    private UnityBase.Scene.Ui.Menu.Main.NodeScript _menuNodeScript = null;
     private List<UnityBase.Scene.Ui.Menu.Main.SelectItemNodeScript> _itemNodeScriptContainer = new List<UnityBase.Scene.Ui.Menu.Main.SelectItemNodeScript>();
+    private System.Action<UnityBase.Scene.Ui.Menu.Main.SelectNodeScript, UnityBase.Util.SCENE.MENU_STAGE_TYPE> _onChangeStage = null;
 
     /**
      * @brief _OnGetScriptIndex関数
@@ -67,7 +67,7 @@ public class SelectNodeScript : Lib.Scene.ObjectNodeScript
      */
     protected override int _OnCreate()
     {
-        this._menuNodeScript = this.createDesc.menuNodeScript;
+        this._onChangeStage = this.createDesc.onChangeStage;
 
         this._nameText.SetText(UnityBase.Global.GetText(UnityBase.Util.MST_TEXT_ID.MENU));
 
@@ -85,7 +85,7 @@ public class SelectNodeScript : Lib.Scene.ObjectNodeScript
 
             void on_click(UnityBase.Scene.Ui.Menu.Main.SelectItemNodeScript owner)
             {
-                this._menuNodeScript.ChangeStage(owner.GetStageType());
+                this._onChangeStage(this, owner.GetStageType());
 
                 return;
             }
@@ -241,15 +241,6 @@ public class SelectNodeScript : Lib.Scene.ObjectNodeScript
     protected override void _OnClosed()
     {
         return;
-    }
-
-    /**
-     * @brief GetMenuNodeScript関数
-     * @return menu_node_script (menu_node_script)
-     */
-    public UnityBase.Scene.Ui.Menu.Main.NodeScript GetMenuNodeScript()
-    {
-        return (this._menuNodeScript);
     }
 }
 }

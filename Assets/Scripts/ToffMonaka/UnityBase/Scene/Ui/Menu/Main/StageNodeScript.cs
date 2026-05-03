@@ -16,7 +16,7 @@ namespace UnityBase.Scene.Ui.Menu.Main {
  */
 public class StageNodeScriptCreateDesc : Lib.Scene.ObjectNodeScriptCreateDesc
 {
-    public UnityBase.Scene.Ui.Menu.Main.NodeScript menuNodeScript = null;
+    public System.Action<UnityBase.Scene.Ui.Menu.Main.StageNodeScript, UnityBase.Util.SCENE.MENU_STAGE_TYPE> onChangeStage = null;
 }
 
 /**
@@ -28,8 +28,8 @@ public abstract class StageNodeScript : Lib.Scene.ObjectNodeScript
 
     public new UnityBase.Scene.Ui.Menu.Main.StageNodeScriptCreateDesc createDesc{get; private set;} = null;
 
-    private UnityBase.Scene.Ui.Menu.Main.NodeScript _menuNodeScript = null;
     private UnityBase.Util.SCENE.MENU_STAGE_TYPE _stageType = UnityBase.Util.SCENE.MENU_STAGE_TYPE.NONE;
+    protected System.Action<UnityBase.Scene.Ui.Menu.Main.StageNodeScript, UnityBase.Util.SCENE.MENU_STAGE_TYPE> _onChangeStage = null;
 
     /**
      * @brief _OnGetScriptIndex関数
@@ -74,7 +74,7 @@ public abstract class StageNodeScript : Lib.Scene.ObjectNodeScript
      */
     protected override int _OnCreate()
     {
-        this._menuNodeScript = this.createDesc.menuNodeScript;
+        this._onChangeStage = this.createDesc.onChangeStage;
 
         this._nameText.SetText(UnityBase.Global.GetText(UnityBase.Util.SCENE.MENU_STAGE_NAME_MST_TEXT_ID_ARRAY[(int)this._stageType]));
 
@@ -198,15 +198,6 @@ public abstract class StageNodeScript : Lib.Scene.ObjectNodeScript
     protected override void _OnClosed()
     {
         return;
-    }
-
-    /**
-     * @brief GetMenuNodeScript関数
-     * @return menu_node_script (menu_node_script)
-     */
-    public UnityBase.Scene.Ui.Menu.Main.NodeScript GetMenuNodeScript()
-    {
-        return (this._menuNodeScript);
     }
 
     /**

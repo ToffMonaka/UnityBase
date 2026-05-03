@@ -24,15 +24,14 @@ public abstract class SubSceneNodeScript : Lib.Scene.SubSceneNodeScript
 {
     [SerializeField] private GameObject _mainMenuNode = null;
     [SerializeField] private GameObject _dialogSystemNode = null;
-    [SerializeField] private GameObject _fadeSystemNode = null;
-
-    [SerializeField] protected Image _openCloseFadeImage = null;
+    [SerializeField] private GameObject _coverSystemNode = null;
+    [SerializeField] protected Image _openCloseCoverImage = null;
 
     public new UnityBase.Scene.SubSceneNodeScriptCreateDesc createDesc{get; private set;} = null;
 
     private UnityBase.Scene.Ui.Menu.Main.NodeScript _mainMenuNodeScript = null;
     private UnityBase.Scene.Ui.Dialog.SystemNodeScript _dialogSystemNodeScript = null;
-    private UnityBase.Scene.Ui.Fade.SystemNodeScript _fadeSystemNodeScript = null;
+    private UnityBase.Scene.Ui.Cover.SystemNodeScript _coverSystemNodeScript = null;
 
     /**
      * @brief _OnGetScriptIndex関数
@@ -88,15 +87,15 @@ public abstract class SubSceneNodeScript : Lib.Scene.SubSceneNodeScript
             this._dialogSystemNodeScript = script;
         }
 
-        // FadeSystemNodeScript Create
-        if (this._fadeSystemNode != null) {
-            var script = this._fadeSystemNode.GetComponent<UnityBase.Scene.Ui.Fade.SystemNodeScript>();
-            var script_create_desc = new UnityBase.Scene.Ui.Fade.SystemNodeScriptCreateDesc();
+        // CoverSystemNodeScript Create
+        if (this._coverSystemNode != null) {
+            var script = this._coverSystemNode.GetComponent<UnityBase.Scene.Ui.Cover.SystemNodeScript>();
+            var script_create_desc = new UnityBase.Scene.Ui.Cover.SystemNodeScriptCreateDesc();
 
             script.Create(script_create_desc);
             script.Open(0);
 
-            this._fadeSystemNodeScript = script;
+            this._coverSystemNodeScript = script;
         }
 
         return (0);
@@ -160,8 +159,8 @@ public abstract class SubSceneNodeScript : Lib.Scene.SubSceneNodeScript
     {
         Lib.Scene.Util.GetInputManager().EnableEventSystem();
 
-        if (this._openCloseFadeImage != null) {
-            this._openCloseFadeImage.gameObject.SetActive(false);
+        if (this._openCloseCoverImage != null) {
+            this._openCloseCoverImage.gameObject.SetActive(false);
         }
 
         return;
@@ -204,12 +203,12 @@ public abstract class SubSceneNodeScript : Lib.Scene.SubSceneNodeScript
     }
 
     /**
-     * @brief GetFadeSystemNodeScript関数
-     * @return fade_sys_node_script (fade_system_node_script)
+     * @brief GetCoverSystemNodeScript関数
+     * @return cover_sys_node_script (cover_system_node_script)
      */
-    public UnityBase.Scene.Ui.Fade.SystemNodeScript GetFadeSystemNodeScript()
+    public UnityBase.Scene.Ui.Cover.SystemNodeScript GetCoverSystemNodeScript()
     {
-        return (this._fadeSystemNodeScript);
+        return (this._coverSystemNodeScript);
     }
 }
 }

@@ -121,7 +121,7 @@ public class MainSceneNodeScript : Lib.Scene.MainSceneNodeScript
         }
         
         {// InitSubSceneNodeScript Create
-            var script = this.GetManager().ChangeSubScene(UnityBase.Util.FILE_PATH.INIT_SUB_SCENE_PREFAB) as UnityBase.Scene.InitSubSceneNodeScript;
+            var script = Lib.Scene.Util.GetManager().ChangeSubScene(UnityBase.Util.FILE_PATH.INIT_SUB_SCENE_PREFAB) as UnityBase.Scene.InitSubSceneNodeScript;
             var script_create_desc = new UnityBase.Scene.InitSubSceneNodeScriptCreateDesc();
 
             script.Create(script_create_desc);
@@ -212,30 +212,6 @@ public class MainSceneNodeScript : Lib.Scene.MainSceneNodeScript
         if (UnityBase.Global.userDataFile.GetWriteFlag()) {
             UnityBase.Global.userDataFile.Write();
         }
-
-        return;
-    }
-
-    /**
-     * @brief SaveDataFile関数
-     */
-    public void SaveDataFile()
-    {
-        UnityBase.Global.systemConfigFile.Write(true);
-        UnityBase.Global.userDataFile.Write(true);
-
-        return;
-    }
-
-    /**
-     * @brief DeleteDataFile関数
-     */
-    public void DeleteDataFile()
-    {
-        UnityBase.Global.systemConfigFile.Delete(true);
-        UnityBase.Global.userDataFile.Delete(true);
-
-        Lib.Scene.Util.GetManager().StartApplication();
 
         return;
     }

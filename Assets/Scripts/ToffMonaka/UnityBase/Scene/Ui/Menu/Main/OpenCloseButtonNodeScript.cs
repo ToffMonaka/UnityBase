@@ -17,7 +17,6 @@ namespace UnityBase.Scene.Ui.Menu.Main {
  */
 public class OpenCloseButtonNodeScriptCreateDesc : Lib.Scene.ObjectNodeScriptCreateDesc
 {
-    public UnityBase.Scene.Ui.Menu.Main.NodeScript menuNodeScript = null;
     public System.Action<UnityBase.Scene.Ui.Menu.Main.OpenCloseButtonNodeScript> onClick = null;
 }
 
@@ -28,7 +27,6 @@ public class OpenCloseButtonNodeScript : Lib.Scene.ObjectNodeScript
 {
     public new UnityBase.Scene.Ui.Menu.Main.OpenCloseButtonNodeScriptCreateDesc createDesc{get; private set;} = null;
 
-    private UnityBase.Scene.Ui.Menu.Main.NodeScript _menuNodeScript = null;
     private System.Action<UnityBase.Scene.Ui.Menu.Main.OpenCloseButtonNodeScript> _onClick = null;
 
     /**
@@ -63,8 +61,6 @@ public class OpenCloseButtonNodeScript : Lib.Scene.ObjectNodeScript
      */
     protected override int _OnCreate()
     {
-        this._menuNodeScript = this.createDesc.menuNodeScript;
-
         this._onClick = this.createDesc.onClick;
 
         return (0);
@@ -202,15 +198,6 @@ public class OpenCloseButtonNodeScript : Lib.Scene.ObjectNodeScript
         this._onClick?.Invoke(this);
 
         return;
-    }
-
-    /**
-     * @brief GetMenuNodeScript関数
-     * @return menu_node_script (menu_node_script)
-     */
-    public UnityBase.Scene.Ui.Menu.Main.NodeScript GetMenuNodeScript()
-    {
-        return (this._menuNodeScript);
     }
 }
 }

@@ -22,6 +22,30 @@ public static class Global
     // [UnityEngine.Serialization.FormerlySerializedAs("_propertyName")]
 
     /**
+     * @brief SaveDataFile関数
+     */
+    public static void SaveDataFile()
+    {
+        UnityBase.Global.systemConfigFile.Write(true);
+        UnityBase.Global.userDataFile.Write(true);
+
+        return;
+    }
+
+    /**
+     * @brief DeleteDataFile関数
+     */
+    public static void DeleteDataFile()
+    {
+        UnityBase.Global.systemConfigFile.Delete(true);
+        UnityBase.Global.userDataFile.Delete(true);
+
+        Lib.Scene.Util.GetManager().StartMainScene();
+
+        return;
+    }
+
+    /**
      * @brief GetText関数
      * @param mst_txt_id (mst_text_id)
      * @return txt (text)

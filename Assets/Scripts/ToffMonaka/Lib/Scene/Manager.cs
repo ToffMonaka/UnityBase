@@ -28,14 +28,14 @@ public class Manager
     public Lib.Scene.ManagerCreateDesc createDesc{get; private set;} = null;
 
     private GameObject _mainSceneNode = null;
+    private bool _mainSceneStartedFlag = false;
+    private bool _mainSceneEndedFlag = false;
     private GameObject _subSceneNode = null;
     private List<Lib.Scene.Script>[] _scriptArray = null;
     private Lib.Scene.MainSceneNodeScript _mainSceneNodeScript = null;
     private Lib.Scene.SubSceneNodeScript _subSceneNodeScript = null;
     private List<Lib.Scene.ObjectNodeScript>[]  _objectNodeScriptArray = null;
     private List<Lib.Scene.PartsScript>[]  _partsScriptArray = null;
-    private bool _applicationStartedFlag = false;
-    private bool _applicationEndedFlag = false;
 
     /**
      * @brief コンストラクタ
@@ -82,9 +82,9 @@ public class Manager
         this._Release();
 
         this._mainSceneNode = null;
+        this._mainSceneStartedFlag = false;
+        this._mainSceneEndedFlag = false;
         this._subSceneNode = null;
-        this._applicationStartedFlag = false;
-        this._applicationEndedFlag = false;
 
         return;
     }
@@ -171,12 +171,72 @@ public class Manager
     }
 
     /**
+     * @brief StartMainScene関数
+     */
+    public void StartMainScene()
+    {
+        if ((this._mainSceneNode == null)
+        || (this._mainSceneStartedFlag)
+        || (this._mainSceneEndedFlag)) {
+            return;
+        }
+
+        this._mainSceneStartedFlag = true;
+
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+
+        return;
+    }
+
+    /**
+     * @brief EndMainScene関数
+     */
+    public void EndMainScene()
+    {
+        if ((this._mainSceneNode == null)
+        || (this._mainSceneStartedFlag)
+        || (this._mainSceneEndedFlag)) {
+            return;
+        }
+
+        this._mainSceneEndedFlag = true;
+
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
+        Application.Quit();
+#endif
+
+        return;
+    }
+
+    /**
      * @brief GetSubSceneNode関数
      * @return sub_scene_node (sub_scene_node)
      */
     public GameObject GetSubSceneNode()
     {
         return (this._subSceneNode);
+    }
+
+    /**
+     * @brief ChangeSubScene関数
+     * @param prefab_file_path (prefab_file_path)
+     * @return sub_scene_node_script (sub_scene_node_script)<br>
+     * null=失敗
+     */
+    public Lib.Scene.SubSceneNodeScript ChangeSubScene(string prefab_file_path)
+    {
+        Lib.Scene.Util.ReleasePrefabNode(ref this._subSceneNode);
+
+        if ((this._mainSceneNode == null)
+        || (prefab_file_path.Length <= 0)) {
+            return (null);
+        }
+
+        this._subSceneNode = Lib.Scene.Util.GetPrefabNode(prefab_file_path, this._mainSceneNode);
+
+        return (this._subSceneNode.GetComponent<Lib.Scene.SubSceneNodeScript>());
     }
 
     /**
@@ -262,7 +322,7 @@ public class Manager
     public int AddScript(Lib.Scene.Script script)
     {
         if ((script == null)
-        || (script.GetManager() != null)
+        || (script.GetManagerAddedFlag())
         || (script.GetScriptIndex() >= this._scriptArray.Length)) {
             return (-1);
         }
@@ -294,7 +354,7 @@ public class Manager
 		    }
         }
 
-        script.SetManager(this);
+        script.SetManagerAddedFlag(true);
 
         return (0);
     }
@@ -306,7 +366,7 @@ public class Manager
     public void RemoveScript(Lib.Scene.Script script)
     {
         if ((script == null)
-        || (script.GetManager() == null)
+        || (!script.GetManagerAddedFlag())
         || (script.GetScriptIndex() >= this._scriptArray.Length)) {
             return;
         }
@@ -342,84 +402,7 @@ public class Manager
 		    }
         }
 
-        script.SetManager(null);
-
-        return;
-    }
-
-    /**
-     * @brief ChangeMainScene関数
-     * @param name (name)
-     * @return main_scene_node_script (main_scene_node_script)<br>
-     * null=失敗
-     */
-    public Lib.Scene.MainSceneNodeScript ChangeMainScene(string name)
-    {
-        if ((this._mainSceneNode == null)
-        || (name.Length <= 0)) {
-            return (null);
-        }
-
-        SceneManager.LoadScene(name);
-
-        return (this._mainSceneNode.GetComponent<Lib.Scene.MainSceneNodeScript>());
-    }
-
-    /**
-     * @brief ChangeSubScene関数
-     * @param prefab_file_path (prefab_file_path)
-     * @return sub_scene_node_script (sub_scene_node_script)<br>
-     * null=失敗
-     */
-    public Lib.Scene.SubSceneNodeScript ChangeSubScene(string prefab_file_path)
-    {
-        Lib.Scene.Util.ReleasePrefabNode(ref this._subSceneNode);
-
-        if ((this._mainSceneNode == null)
-        || (prefab_file_path.Length <= 0)) {
-            return (null);
-        }
-
-        this._subSceneNode = Lib.Scene.Util.GetPrefabNode(prefab_file_path, this._mainSceneNode);
-
-        return (this._subSceneNode.GetComponent<Lib.Scene.SubSceneNodeScript>());
-    }
-
-    /**
-     * @brief StartApplication関数
-     * @param scene_name (scene_name)
-     */
-    public void StartApplication(string scene_name = null)
-    {
-        if ((this._applicationStartedFlag)
-        || (this._applicationEndedFlag)) {
-            return;
-        }
-
-        this._applicationStartedFlag = true;
-
-        this.ChangeMainScene(scene_name ?? SceneManager.GetActiveScene().name);
-
-        return;
-    }
-
-    /**
-     * @brief EndApplication関数
-     */
-    public void EndApplication()
-    {
-        if ((this._applicationStartedFlag)
-        || (this._applicationEndedFlag)) {
-            return;
-        }
-
-        this._applicationEndedFlag = true;
-
-#if UNITY_EDITOR
-        UnityEditor.EditorApplication.isPlaying = false;
-#else
-        Application.Quit();
-#endif
+        script.SetManagerAddedFlag(false);
 
         return;
     }

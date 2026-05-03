@@ -250,7 +250,7 @@ public class CheatStageNodeScript : UnityBase.Scene.Ui.Menu.Main.StageNodeScript
 
         this._cheatCommand.Calculate(out this._calculateValue, this._cheatCommandCalculateOption, false);
 
-        this.GetMenuNodeScript().ChangeStage(UnityBase.Util.SCENE.MENU_STAGE_TYPE.NONE);
+        this._onChangeStage(this, UnityBase.Util.SCENE.MENU_STAGE_TYPE.NONE);
 
         return;
     }
@@ -267,7 +267,7 @@ public class CheatStageNodeScript : UnityBase.Scene.Ui.Menu.Main.StageNodeScript
 
         Lib.Scene.Util.GetSoundManager().PlaySe((int)UnityBase.Util.SOUND.SE_INDEX.CANCEL);
 
-        this.GetMenuNodeScript().ChangeStage(UnityBase.Util.SCENE.MENU_STAGE_TYPE.NONE);
+        this._onChangeStage(this, UnityBase.Util.SCENE.MENU_STAGE_TYPE.NONE);
 
         return;
     }

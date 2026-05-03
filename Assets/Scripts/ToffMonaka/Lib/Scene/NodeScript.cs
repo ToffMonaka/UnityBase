@@ -34,6 +34,7 @@ public abstract class NodeScript : Lib.Scene.Script
     private bool _closeFlag = false;
     private bool _closedFlag = true;
     private List<Sequence> _openCloseSequenceContainer = new List<Sequence>();
+    private List<System.Func<Lib.Scene.NodeScript, bool>> _openCloseCheckerContainer = new List<System.Func<Lib.Scene.NodeScript, bool>>();
 
     /**
      * @brief _OnGetScriptIndex関数
@@ -199,10 +200,6 @@ public abstract class NodeScript : Lib.Scene.Script
             this.gameObject.SetActive(true);
         }
 
-        if (!this.gameObject.activeSelf) {
-            return;
-        }
-
         this._openType = open_type;
         this._openedType = opened_type;
         this._openFlag = true;
@@ -227,7 +224,7 @@ public abstract class NodeScript : Lib.Scene.Script
             return;
         }
 
-        if (this.IsActiveOpenCloseSequence()) {
+        if (this.IsOpenClose()) {
             return;
         }
 
@@ -266,10 +263,6 @@ public abstract class NodeScript : Lib.Scene.Script
             return;
         }
 
-        if (!this.gameObject.activeSelf) {
-            return;
-        }
-
         this._closeType = close_type;
         this._closedType = closed_type;
         this._openFlag = false;
@@ -294,18 +287,18 @@ public abstract class NodeScript : Lib.Scene.Script
             return;
         }
 
-        if (this.IsActiveOpenCloseSequence()) {
+        if (this.IsOpenClose()) {
             return;
         }
 
         this._closeFlag = false;
         this._closedFlag = true;
 
+        this._OnClosed();
+
         if (this.GetActiveAutoFlag()) {
             this.gameObject.SetActive(false);
         }
-
-        this._OnClosed();
 
         return;
     }
@@ -399,6 +392,34 @@ public abstract class NodeScript : Lib.Scene.Script
     }
 
     /**
+     * @brief IsOpenClose関数
+     * @return active_flg (active_flag)<br>
+     * false=非アクティブ,true=アクティブ
+     */
+    public bool IsOpenClose()
+    {
+        bool active_flg = false;
+
+        foreach (var open_close_sequence in this._openCloseSequenceContainer) {
+            if (open_close_sequence.IsActive()) {
+                active_flg = true;
+
+                break;
+            }
+        }
+
+        foreach (var open_close_checker in this._openCloseCheckerContainer) {
+            if (open_close_checker(this)) {
+                active_flg = true;
+
+                break;
+            }
+        }
+
+        return (active_flg);
+    }
+
+    /**
      * @brief AddOpenCloseSequence関数
      * @param open_close_sequence (open_close_sequence)
      * @return result_val (result_value)<br>
@@ -432,23 +453,30 @@ public abstract class NodeScript : Lib.Scene.Script
     }
 
     /**
-     * @brief IsActiveOpenCloseSequence関数
-     * @return active_flg (active_flag)<br>
-     * false=非アクティブ,true=アクティブ
+     * @brief AddOpenCloseChecker関数
+     * @param open_close_checker (open_close_checker)
+     * @return result_val (result_value)<br>
+     * 0未満=失敗
      */
-    public bool IsActiveOpenCloseSequence()
+    public int AddOpenCloseChecker(System.Func<Lib.Scene.NodeScript, bool> open_close_checker)
     {
-        bool active_flg = false;
-
-        foreach (var open_close_sequence in this._openCloseSequenceContainer) {
-            if (open_close_sequence.IsActive()) {
-                active_flg = true;
-
-                break;
-            }
+        if (open_close_checker == null) {
+            return (-1);
         }
 
-        return (active_flg);
+        this._openCloseCheckerContainer.Add(open_close_checker);
+
+        return (0);
+    }
+
+    /**
+     * @brief RemoveOpenCloseChecker関数
+     */
+    public void RemoveOpenCloseChecker()
+    {
+        this._openCloseCheckerContainer.Clear();
+
+        return;
     }
 }
 }

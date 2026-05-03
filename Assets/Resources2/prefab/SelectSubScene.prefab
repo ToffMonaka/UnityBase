@@ -1029,7 +1029,7 @@ GameObject:
   - component: {fileID: 8373488227373303967}
   - component: {fileID: 9145360300844260911}
   m_Layer: 5
-  m_Name: OpenCloseFade
+  m_Name: OpenCloseCover
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1142,8 +1142,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ToffMonaka.UnityBase.Scene.Select.SubSceneNodeScript
   _mainMenuNode: {fileID: 77531899890585859}
   _dialogSystemNode: {fileID: 5482323089450872715}
-  _fadeSystemNode: {fileID: 1346749640772263309}
-  _openCloseFadeImage: {fileID: 9145360300844260911}
+  _coverSystemNode: {fileID: 1204599960936255210}
+  _openCloseCoverImage: {fileID: 9145360300844260911}
   _stageBoardNode: {fileID: 227792603277538933}
   _backButtonNode: {fileID: 667451113108140548}
 --- !u!1 &6253974444106004136
@@ -1392,7 +1392,7 @@ RectTransform:
   - {fileID: 6291776937573125804}
   - {fileID: 3489090024087271226}
   - {fileID: 6310692050316867598}
-  - {fileID: 803150843677695868}
+  - {fileID: 658186962269981723}
   - {fileID: 3380370291580358400}
   m_Father: {fileID: 6724896148846732640}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1757,7 +1757,7 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 4768282722218469786, guid: 78bfd15b892ea0647bb4d479158b63d1, type: 3}
   m_PrefabInstance: {fileID: 1548312574502397750}
   m_PrefabAsset: {fileID: 0}
---- !u!1001 &6027486960600890875
+--- !u!1001 &5882523089915981468
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -1767,7 +1767,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4689780880849739894, guid: 70e4b130ec7b7804db7ac0ee1723ada4, type: 3}
       propertyPath: m_Name
-      value: FadeSystem
+      value: CoverSystem
       objectReference: {fileID: 0}
     - target: {fileID: 6377292902541615751, guid: 70e4b130ec7b7804db7ac0ee1723ada4, type: 3}
       propertyPath: m_Pivot.x
@@ -1854,15 +1854,15 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 70e4b130ec7b7804db7ac0ee1723ada4, type: 3}
---- !u!224 &803150843677695868 stripped
+--- !u!224 &658186962269981723 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6377292902541615751, guid: 70e4b130ec7b7804db7ac0ee1723ada4, type: 3}
-  m_PrefabInstance: {fileID: 6027486960600890875}
+  m_PrefabInstance: {fileID: 5882523089915981468}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1346749640772263309 stripped
+--- !u!1 &1204599960936255210 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4689780880849739894, guid: 70e4b130ec7b7804db7ac0ee1723ada4, type: 3}
-  m_PrefabInstance: {fileID: 6027486960600890875}
+  m_PrefabInstance: {fileID: 5882523089915981468}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8374444377753473205
 PrefabInstance:

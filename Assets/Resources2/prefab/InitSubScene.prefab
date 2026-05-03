@@ -469,7 +469,7 @@ GameObject:
   - component: {fileID: 1295339543458560067}
   - component: {fileID: 317199829132536404}
   m_Layer: 5
-  m_Name: OpenCloseFade
+  m_Name: OpenCloseCover
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -821,7 +821,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 779f5a4b72fd74a4cbcf8f0426d6a39c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ToffMonaka.UnityBase.Scene.InitSubSceneNodeScript
-  _menuNode: {fileID: 0}
-  _dialogNode: {fileID: 0}
-  _openCloseFadeImage: {fileID: 317199829132536404}
+  _mainMenuNode: {fileID: 0}
+  _dialogSystemNode: {fileID: 0}
+  _coverSystemNode: {fileID: 0}
+  _openCloseCoverImage: {fileID: 317199829132536404}
   _messageText: {fileID: 3741505704045232267}

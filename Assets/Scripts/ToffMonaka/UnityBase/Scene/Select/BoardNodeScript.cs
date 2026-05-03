@@ -16,7 +16,6 @@ namespace UnityBase.Scene.Select {
  */
 public class BoardNodeScriptCreateDesc : Lib.Scene.ObjectNodeScriptCreateDesc
 {
-    public UnityBase.Scene.Select.SubSceneNodeScript subSceneNodeScript = null;
 }
 
 /**
@@ -28,7 +27,6 @@ public abstract class BoardNodeScript : Lib.Scene.ObjectNodeScript
 
     public new UnityBase.Scene.Select.BoardNodeScriptCreateDesc createDesc{get; private set;} = null;
 
-    private UnityBase.Scene.Select.SubSceneNodeScript _subSceneNodeScript = null;
     private UnityBase.Util.SCENE.SELECT_BOARD_TYPE _boardType = UnityBase.Util.SCENE.SELECT_BOARD_TYPE.NONE;
 
     /**
@@ -74,8 +72,6 @@ public abstract class BoardNodeScript : Lib.Scene.ObjectNodeScript
      */
     protected override int _OnCreate()
     {
-        this._subSceneNodeScript = this.createDesc.subSceneNodeScript;
-
         this._nameText.SetText(UnityBase.Global.GetText(UnityBase.Util.SCENE.SELECT_BOARD_NAME_MST_TEXT_ID_ARRAY[(int)this._boardType]));
 
         return (0);
@@ -198,15 +194,6 @@ public abstract class BoardNodeScript : Lib.Scene.ObjectNodeScript
     protected override void _OnClosed()
     {
         return;
-    }
-
-    /**
-     * @brief GetSubSceneNodeScript関数
-     * @return sub_scene_node_script (sub_scene_node_script)
-     */
-    public UnityBase.Scene.Select.SubSceneNodeScript GetSubSceneNodeScript()
-    {
-        return (this._subSceneNodeScript);
     }
 
     /**

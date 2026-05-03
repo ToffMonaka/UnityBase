@@ -110,7 +110,9 @@ public static class Util
             SELECT_DIALOG_NODE,
             SELECT_DIALOG_ITEM_NODE,
             INPUT_DIALOG_NODE,
-            FADE_SYSTEM_NODE,
+            COVER_SYSTEM_NODE,
+            COVER_NODE,
+            DEFAULT_COVER_NODE,
 		    COUNT
         }
         public static readonly int SCRIPT_INDEX_COUNT = (int)UnityBase.Util.SCENE.SCRIPT_INDEX.COUNT;
