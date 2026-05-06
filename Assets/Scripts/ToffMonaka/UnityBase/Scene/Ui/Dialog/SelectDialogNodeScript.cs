@@ -191,7 +191,7 @@ public class SelectDialogNodeScript : UnityBase.Scene.Ui.Dialog.DialogNodeScript
             return;
         }
 
-        Lib.Scene.Util.GetSoundManager().PlaySe((int)UnityBase.Util.SOUND.SE_INDEX.CANCEL);
+        Lib.Scene.Util.GetManager().PlaySoundSe((int)UnityBase.Util.SOUND.SE_INDEX.CANCEL);
 
         this.Close(1);
 

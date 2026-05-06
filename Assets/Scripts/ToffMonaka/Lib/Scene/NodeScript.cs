@@ -207,6 +207,7 @@ public abstract class NodeScript : Lib.Scene.Script
         this._closeFlag = false;
         this._closedFlag = false;
         this.RemoveOpenCloseSequence();
+        this.RemoveOpenCloseChecker();
 
         this._OnOpen();
 
@@ -270,6 +271,7 @@ public abstract class NodeScript : Lib.Scene.Script
         this._closeFlag = true;
         this._closedFlag = false;
         this.RemoveOpenCloseSequence();
+        this.RemoveOpenCloseChecker();
 
         this._OnClose();
 

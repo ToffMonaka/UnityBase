@@ -80,7 +80,7 @@ public class LicenseStageNodeScript : UnityBase.Scene.Ui.Menu.Main.StageNodeScri
             return (-1);
         }
 
-        this._cancelButtonNameText.SetText(UnityBase.Global.GetText(UnityBase.Util.MST_TEXT_ID.CANCEL));
+        this._cancelButtonNameText.SetText(UnityBase.Util.GetText(UnityBase.Util.MST_TEXT_ID.CANCEL));
 
         this._messageNode.SetActive(false);
 
@@ -213,9 +213,9 @@ public class LicenseStageNodeScript : UnityBase.Scene.Ui.Menu.Main.StageNodeScri
             return;
         }
 
-        Lib.Scene.Util.GetSoundManager().PlaySe((int)UnityBase.Util.SOUND.SE_INDEX.CANCEL);
+        Lib.Scene.Util.GetManager().PlaySoundSe((int)UnityBase.Util.SOUND.SE_INDEX.CANCEL);
 
-        this._onChangeStage(this, UnityBase.Util.SCENE.MENU_STAGE_TYPE.NONE);
+        this._onCloseStage(this);
 
         return;
     }

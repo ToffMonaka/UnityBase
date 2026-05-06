@@ -58,7 +58,7 @@ public static class CheatCommandUtil
             return (0.0);
         }
 
-        UnityBase.Global.DeleteDataFile();
+        UnityBase.Util.DeleteDataFile();
 
         return (0.0);
     }

@@ -72,7 +72,7 @@ public class InitSubSceneNodeScript : UnityBase.Scene.SubSceneNodeScript
             return (-1);
         }
 
-		switch (UnityBase.Global.systemConfigFile.data.systemLanguageType) {
+		switch (UnityBase.Util.systemConfigFile.data.systemLanguageType) {
 		case UnityBase.Util.LANGUAGE_TYPE.JAPANESE: {
             this._messageText.SetText("ちょっと待ってね。");
 
@@ -282,22 +282,22 @@ public class InitSubSceneNodeScript : UnityBase.Scene.SubSceneNodeScript
 		    switch (this._updateProgressCount) {
 		    case 0: {
                 {// MstTextTableFile Create
-		            switch (UnityBase.Global.systemConfigFile.data.systemLanguageType) {
+		            switch (UnityBase.Util.systemConfigFile.data.systemLanguageType) {
 		            case UnityBase.Util.LANGUAGE_TYPE.JAPANESE: {
-                        UnityBase.Global.mstTextTableFile.readDesc.data.filePath = UnityBase.Util.FILE_PATH.JAPANESE_MST_TEXT_TABLE;
+                        UnityBase.Util.mstTextTableFile.readDesc.data.filePath = UnityBase.Util.FILE_PATH.JAPANESE_MST_TEXT_TABLE;
 
 			            break;
 		            }
 		            default: {
-                        UnityBase.Global.mstTextTableFile.readDesc.data.filePath = UnityBase.Util.FILE_PATH.ENGLISH_MST_TEXT_TABLE;
+                        UnityBase.Util.mstTextTableFile.readDesc.data.filePath = UnityBase.Util.FILE_PATH.ENGLISH_MST_TEXT_TABLE;
 
 			            break;
 		            }
 		            }
 
-                    UnityBase.Global.mstTextTableFile.readDesc.data.addressablesFlag = true;
+                    UnityBase.Util.mstTextTableFile.readDesc.data.addressablesFlag = true;
 
-                    UnityBase.Global.mstTextTableFile.Read();
+                    UnityBase.Util.mstTextTableFile.Read();
                 }
 
                 ++this._updateProgressCount;

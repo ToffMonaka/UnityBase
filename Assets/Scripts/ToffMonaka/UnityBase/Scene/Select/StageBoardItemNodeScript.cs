@@ -157,7 +157,7 @@ public class StageBoardItemNodeScript : Lib.Scene.ObjectNodeScript
             return;
         }
 
-        Lib.Scene.Util.GetSoundManager().PlaySe((int)UnityBase.Util.SOUND.SE_INDEX.OK2);
+        Lib.Scene.Util.GetManager().PlaySoundSe((int)UnityBase.Util.SOUND.SE_INDEX.OK2);
 
         this._onClick?.Invoke(this);
 
@@ -181,7 +181,7 @@ public class StageBoardItemNodeScript : Lib.Scene.ObjectNodeScript
     {
         this._stageType = stage_type;
 
-        this._nameText.SetText(UnityBase.Global.GetText(UnityBase.Util.SCENE.STAGE_NAME_MST_TEXT_ID_ARRAY[(int)this._stageType]));
+        this._nameText.SetText(UnityBase.Util.GetText(UnityBase.Util.SCENE.STAGE_NAME_MST_TEXT_ID_ARRAY[(int)this._stageType]));
 
         return;
     }

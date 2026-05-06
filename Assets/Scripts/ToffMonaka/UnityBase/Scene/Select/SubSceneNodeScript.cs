@@ -144,7 +144,7 @@ public class SubSceneNodeScript : UnityBase.Scene.SubSceneNodeScript
     {
         base._OnActive();
 
-        Lib.Scene.Util.GetSoundManager().PlayBgm((int)UnityBase.Util.SOUND.BGM_INDEX.SELECT);
+        Lib.Scene.Util.GetManager().PlaySoundBgm((int)UnityBase.Util.SOUND.BGM_INDEX.SELECT);
 
         this._stageType = UnityBase.Util.SCENE.STAGE_TYPE.NONE;
 

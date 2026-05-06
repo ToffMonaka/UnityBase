@@ -85,8 +85,8 @@ public class InputDialogNodeScript : UnityBase.Scene.Ui.Dialog.DialogNodeScript
         this._onClickOkButton = this.createDesc.onClickOkButton;
 
         this._nameText.SetText(this._engine.OnGetName());
-        this._okButtonNameText.SetText(UnityBase.Global.GetText(UnityBase.Util.MST_TEXT_ID.OK));
-        this._cancelButtonNameText.SetText(UnityBase.Global.GetText(UnityBase.Util.MST_TEXT_ID.CANCEL));
+        this._okButtonNameText.SetText(UnityBase.Util.GetText(UnityBase.Util.MST_TEXT_ID.OK));
+        this._cancelButtonNameText.SetText(UnityBase.Util.GetText(UnityBase.Util.MST_TEXT_ID.CANCEL));
 
         if (this._onClickOkButton != null) {
             this._okButtonNameText.transform.parent.gameObject.SetActive(true);
@@ -200,7 +200,7 @@ public class InputDialogNodeScript : UnityBase.Scene.Ui.Dialog.DialogNodeScript
             return;
         }
 
-        Lib.Scene.Util.GetSoundManager().PlaySe((int)UnityBase.Util.SOUND.SE_INDEX.CANCEL);
+        Lib.Scene.Util.GetManager().PlaySoundSe((int)UnityBase.Util.SOUND.SE_INDEX.CANCEL);
 
         this.Close(1);
 
@@ -217,7 +217,7 @@ public class InputDialogNodeScript : UnityBase.Scene.Ui.Dialog.DialogNodeScript
             return;
         }
 
-        Lib.Scene.Util.GetSoundManager().PlaySe((int)UnityBase.Util.SOUND.SE_INDEX.OK2);
+        Lib.Scene.Util.GetManager().PlaySoundSe((int)UnityBase.Util.SOUND.SE_INDEX.OK2);
 
         this._onClickOkButton?.Invoke(this);
 
@@ -236,7 +236,7 @@ public class InputDialogNodeScript : UnityBase.Scene.Ui.Dialog.DialogNodeScript
             return;
         }
 
-        Lib.Scene.Util.GetSoundManager().PlaySe((int)UnityBase.Util.SOUND.SE_INDEX.CANCEL);
+        Lib.Scene.Util.GetManager().PlaySoundSe((int)UnityBase.Util.SOUND.SE_INDEX.CANCEL);
 
         this.Close(1);
 

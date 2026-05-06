@@ -104,9 +104,9 @@ public class NodeScript : Lib.Scene.ObjectNodeScript
                 }
 
                 if (this._openSelectNodeScript != null) {
-                    Lib.Scene.Util.GetSoundManager().PlaySe((int)UnityBase.Util.SOUND.SE_INDEX.OK2);
+                    Lib.Scene.Util.GetManager().PlaySoundSe((int)UnityBase.Util.SOUND.SE_INDEX.OK2);
                 } else {
-                    Lib.Scene.Util.GetSoundManager().PlaySe((int)UnityBase.Util.SOUND.SE_INDEX.CANCEL);
+                    Lib.Scene.Util.GetManager().PlaySoundSe((int)UnityBase.Util.SOUND.SE_INDEX.CANCEL);
                 }
 
                 if (this._openStageNodeScript != null) {
@@ -130,14 +130,14 @@ public class NodeScript : Lib.Scene.ObjectNodeScript
             var script = this._selectNode.GetComponent<UnityBase.Scene.Ui.Menu.Main.SelectNodeScript>();
             var script_create_desc = new UnityBase.Scene.Ui.Menu.Main.SelectNodeScriptCreateDesc();
 
-            void on_change_stage(UnityBase.Scene.Ui.Menu.Main.SelectNodeScript owner, UnityBase.Util.SCENE.MENU_STAGE_TYPE stage_type)
+            void on_open_stage(UnityBase.Scene.Ui.Menu.Main.SelectNodeScript owner, UnityBase.Util.SCENE.MENU_STAGE_TYPE stage_type)
             {
                 this.ChangeStage(stage_type);
 
                 return;
             }
 
-            script_create_desc.onChangeStage = on_change_stage;
+            script_create_desc.onOpenStage = on_open_stage;
 
             script.Create(script_create_desc);
 
@@ -148,14 +148,14 @@ public class NodeScript : Lib.Scene.ObjectNodeScript
             var script = this._optionStageNode.GetComponent<UnityBase.Scene.Ui.Menu.Main.OptionStageNodeScript>();
             var script_create_desc = new UnityBase.Scene.Ui.Menu.Main.OptionStageNodeScriptCreateDesc();
 
-            void on_change_stage(UnityBase.Scene.Ui.Menu.Main.StageNodeScript owner, UnityBase.Util.SCENE.MENU_STAGE_TYPE stage_type)
+            void on_close_stage(UnityBase.Scene.Ui.Menu.Main.StageNodeScript owner)
             {
-                this.ChangeStage(stage_type);
+                this.ChangeStage(UnityBase.Util.SCENE.MENU_STAGE_TYPE.NONE);
 
                 return;
             }
 
-            script_create_desc.onChangeStage = on_change_stage;
+            script_create_desc.onCloseStage = on_close_stage;
 
             script.Create(script_create_desc);
 
@@ -166,14 +166,14 @@ public class NodeScript : Lib.Scene.ObjectNodeScript
             var script = this._faqStageNode.GetComponent<UnityBase.Scene.Ui.Menu.Main.FaqStageNodeScript>();
             var script_create_desc = new UnityBase.Scene.Ui.Menu.Main.FaqStageNodeScriptCreateDesc();
 
-            void on_change_stage(UnityBase.Scene.Ui.Menu.Main.StageNodeScript owner, UnityBase.Util.SCENE.MENU_STAGE_TYPE stage_type)
+            void on_close_stage(UnityBase.Scene.Ui.Menu.Main.StageNodeScript owner)
             {
-                this.ChangeStage(stage_type);
+                this.ChangeStage(UnityBase.Util.SCENE.MENU_STAGE_TYPE.NONE);
 
                 return;
             }
 
-            script_create_desc.onChangeStage = on_change_stage;
+            script_create_desc.onCloseStage = on_close_stage;
 
             script.Create(script_create_desc);
 
@@ -184,14 +184,14 @@ public class NodeScript : Lib.Scene.ObjectNodeScript
             var script = this._staffStageNode.GetComponent<UnityBase.Scene.Ui.Menu.Main.StaffStageNodeScript>();
             var script_create_desc = new UnityBase.Scene.Ui.Menu.Main.StaffStageNodeScriptCreateDesc();
 
-            void on_change_stage(UnityBase.Scene.Ui.Menu.Main.StageNodeScript owner, UnityBase.Util.SCENE.MENU_STAGE_TYPE stage_type)
+            void on_close_stage(UnityBase.Scene.Ui.Menu.Main.StageNodeScript owner)
             {
-                this.ChangeStage(stage_type);
+                this.ChangeStage(UnityBase.Util.SCENE.MENU_STAGE_TYPE.NONE);
 
                 return;
             }
 
-            script_create_desc.onChangeStage = on_change_stage;
+            script_create_desc.onCloseStage = on_close_stage;
 
             script.Create(script_create_desc);
 
@@ -202,14 +202,14 @@ public class NodeScript : Lib.Scene.ObjectNodeScript
             var script = this._licenseStageNode.GetComponent<UnityBase.Scene.Ui.Menu.Main.LicenseStageNodeScript>();
             var script_create_desc = new UnityBase.Scene.Ui.Menu.Main.LicenseStageNodeScriptCreateDesc();
 
-            void on_change_stage(UnityBase.Scene.Ui.Menu.Main.StageNodeScript owner, UnityBase.Util.SCENE.MENU_STAGE_TYPE stage_type)
+            void on_close_stage(UnityBase.Scene.Ui.Menu.Main.StageNodeScript owner)
             {
-                this.ChangeStage(stage_type);
+                this.ChangeStage(UnityBase.Util.SCENE.MENU_STAGE_TYPE.NONE);
 
                 return;
             }
 
-            script_create_desc.onChangeStage = on_change_stage;
+            script_create_desc.onCloseStage = on_close_stage;
 
             script.Create(script_create_desc);
 
@@ -220,14 +220,14 @@ public class NodeScript : Lib.Scene.ObjectNodeScript
             var script = this._privacyPolicyStageNode.GetComponent<UnityBase.Scene.Ui.Menu.Main.PrivacyPolicyStageNodeScript>();
             var script_create_desc = new UnityBase.Scene.Ui.Menu.Main.PrivacyPolicyStageNodeScriptCreateDesc();
 
-            void on_change_stage(UnityBase.Scene.Ui.Menu.Main.StageNodeScript owner, UnityBase.Util.SCENE.MENU_STAGE_TYPE stage_type)
+            void on_close_stage(UnityBase.Scene.Ui.Menu.Main.StageNodeScript owner)
             {
-                this.ChangeStage(stage_type);
+                this.ChangeStage(UnityBase.Util.SCENE.MENU_STAGE_TYPE.NONE);
 
                 return;
             }
 
-            script_create_desc.onChangeStage = on_change_stage;
+            script_create_desc.onCloseStage = on_close_stage;
 
             script.Create(script_create_desc);
 
@@ -238,14 +238,14 @@ public class NodeScript : Lib.Scene.ObjectNodeScript
             var script = this._endStageNode.GetComponent<UnityBase.Scene.Ui.Menu.Main.EndStageNodeScript>();
             var script_create_desc = new UnityBase.Scene.Ui.Menu.Main.EndStageNodeScriptCreateDesc();
 
-            void on_change_stage(UnityBase.Scene.Ui.Menu.Main.StageNodeScript owner, UnityBase.Util.SCENE.MENU_STAGE_TYPE stage_type)
+            void on_close_stage(UnityBase.Scene.Ui.Menu.Main.StageNodeScript owner)
             {
-                this.ChangeStage(stage_type);
+                this.ChangeStage(UnityBase.Util.SCENE.MENU_STAGE_TYPE.NONE);
 
                 return;
             }
 
-            script_create_desc.onChangeStage = on_change_stage;
+            script_create_desc.onCloseStage = on_close_stage;
 
             script.Create(script_create_desc);
 
@@ -256,14 +256,14 @@ public class NodeScript : Lib.Scene.ObjectNodeScript
             var script = this._cheatStageNode.GetComponent<UnityBase.Scene.Ui.Menu.Main.CheatStageNodeScript>();
             var script_create_desc = new UnityBase.Scene.Ui.Menu.Main.CheatStageNodeScriptCreateDesc();
 
-            void on_change_stage(UnityBase.Scene.Ui.Menu.Main.StageNodeScript owner, UnityBase.Util.SCENE.MENU_STAGE_TYPE stage_type)
+            void on_close_stage(UnityBase.Scene.Ui.Menu.Main.StageNodeScript owner)
             {
-                this.ChangeStage(stage_type);
+                this.ChangeStage(UnityBase.Util.SCENE.MENU_STAGE_TYPE.NONE);
 
                 return;
             }
 
-            script_create_desc.onChangeStage = on_change_stage;
+            script_create_desc.onCloseStage = on_close_stage;
 
             script.Create(script_create_desc);
 
@@ -362,11 +362,11 @@ public class NodeScript : Lib.Scene.ObjectNodeScript
 
 		switch (stage_type) {
 		case UnityBase.Util.SCENE.MENU_STAGE_TYPE.OPTION: {
-            this._optionStageNodeScript.SetLanguageType(UnityBase.Global.systemConfigFile.data.systemLanguageType);
-            this._optionStageNodeScript.SetSoundBgmVolume(UnityBase.Global.systemConfigFile.data.soundBgmVolume);
-            this._optionStageNodeScript.SetSoundBgmMuteFlag(UnityBase.Global.systemConfigFile.data.soundBgmMuteFlag);
-            this._optionStageNodeScript.SetSoundSeVolume(UnityBase.Global.systemConfigFile.data.soundSeVolume);
-            this._optionStageNodeScript.SetSoundSeMuteFlag(UnityBase.Global.systemConfigFile.data.soundSeMuteFlag);
+            this._optionStageNodeScript.SetLanguageType(UnityBase.Util.systemConfigFile.data.systemLanguageType);
+            this._optionStageNodeScript.SetSoundBgmVolume(UnityBase.Util.systemConfigFile.data.soundBgmVolume);
+            this._optionStageNodeScript.SetSoundBgmMuteFlag(UnityBase.Util.systemConfigFile.data.soundBgmMuteFlag);
+            this._optionStageNodeScript.SetSoundSeVolume(UnityBase.Util.systemConfigFile.data.soundSeVolume);
+            this._optionStageNodeScript.SetSoundSeMuteFlag(UnityBase.Util.systemConfigFile.data.soundSeMuteFlag);
 
             this._openStageNodeScript = this._optionStageNodeScript;
 

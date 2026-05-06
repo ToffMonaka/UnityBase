@@ -16,7 +16,7 @@ namespace UnityBase.Scene.Ui.Menu.Main {
  */
 public class StageNodeScriptCreateDesc : Lib.Scene.ObjectNodeScriptCreateDesc
 {
-    public System.Action<UnityBase.Scene.Ui.Menu.Main.StageNodeScript, UnityBase.Util.SCENE.MENU_STAGE_TYPE> onChangeStage = null;
+    public System.Action<UnityBase.Scene.Ui.Menu.Main.StageNodeScript> onCloseStage = null;
 }
 
 /**
@@ -29,7 +29,7 @@ public abstract class StageNodeScript : Lib.Scene.ObjectNodeScript
     public new UnityBase.Scene.Ui.Menu.Main.StageNodeScriptCreateDesc createDesc{get; private set;} = null;
 
     private UnityBase.Util.SCENE.MENU_STAGE_TYPE _stageType = UnityBase.Util.SCENE.MENU_STAGE_TYPE.NONE;
-    protected System.Action<UnityBase.Scene.Ui.Menu.Main.StageNodeScript, UnityBase.Util.SCENE.MENU_STAGE_TYPE> _onChangeStage = null;
+    protected System.Action<UnityBase.Scene.Ui.Menu.Main.StageNodeScript> _onCloseStage = null;
 
     /**
      * @brief _OnGetScriptIndex関数
@@ -74,9 +74,9 @@ public abstract class StageNodeScript : Lib.Scene.ObjectNodeScript
      */
     protected override int _OnCreate()
     {
-        this._onChangeStage = this.createDesc.onChangeStage;
+        this._onCloseStage = this.createDesc.onCloseStage;
 
-        this._nameText.SetText(UnityBase.Global.GetText(UnityBase.Util.SCENE.MENU_STAGE_NAME_MST_TEXT_ID_ARRAY[(int)this._stageType]));
+        this._nameText.SetText(UnityBase.Util.GetText(UnityBase.Util.SCENE.MENU_STAGE_NAME_MST_TEXT_ID_ARRAY[(int)this._stageType]));
 
         return (0);
     }

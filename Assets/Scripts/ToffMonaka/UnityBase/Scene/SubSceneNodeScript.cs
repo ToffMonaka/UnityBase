@@ -157,7 +157,7 @@ public abstract class SubSceneNodeScript : Lib.Scene.SubSceneNodeScript
      */
     protected override void _OnOpened()
     {
-        Lib.Scene.Util.GetInputManager().EnableEventSystem();
+        Lib.Scene.Util.GetManager().EnableInputEventSystem();
 
         if (this._openCloseCoverImage != null) {
             this._openCloseCoverImage.gameObject.SetActive(false);
@@ -171,7 +171,7 @@ public abstract class SubSceneNodeScript : Lib.Scene.SubSceneNodeScript
      */
     protected override void _OnClose()
     {
-        Lib.Scene.Util.GetInputManager().DisableEventSystem();
+        Lib.Scene.Util.GetManager().DisableInputEventSystem();
 
         return;
     }

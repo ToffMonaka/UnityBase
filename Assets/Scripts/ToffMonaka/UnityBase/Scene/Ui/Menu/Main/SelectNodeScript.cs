@@ -18,7 +18,7 @@ namespace UnityBase.Scene.Ui.Menu.Main {
  */
 public class SelectNodeScriptCreateDesc : Lib.Scene.ObjectNodeScriptCreateDesc
 {
-    public System.Action<UnityBase.Scene.Ui.Menu.Main.SelectNodeScript, UnityBase.Util.SCENE.MENU_STAGE_TYPE> onChangeStage = null;
+    public System.Action<UnityBase.Scene.Ui.Menu.Main.SelectNodeScript, UnityBase.Util.SCENE.MENU_STAGE_TYPE> onOpenStage = null;
 }
 
 /**
@@ -33,7 +33,7 @@ public class SelectNodeScript : Lib.Scene.ObjectNodeScript
     public new UnityBase.Scene.Ui.Menu.Main.SelectNodeScriptCreateDesc createDesc{get; private set;} = null;
 
     private List<UnityBase.Scene.Ui.Menu.Main.SelectItemNodeScript> _itemNodeScriptContainer = new List<UnityBase.Scene.Ui.Menu.Main.SelectItemNodeScript>();
-    private System.Action<UnityBase.Scene.Ui.Menu.Main.SelectNodeScript, UnityBase.Util.SCENE.MENU_STAGE_TYPE> _onChangeStage = null;
+    private System.Action<UnityBase.Scene.Ui.Menu.Main.SelectNodeScript, UnityBase.Util.SCENE.MENU_STAGE_TYPE> _onOpenStage = null;
 
     /**
      * @brief _OnGetScriptIndex関数
@@ -67,9 +67,9 @@ public class SelectNodeScript : Lib.Scene.ObjectNodeScript
      */
     protected override int _OnCreate()
     {
-        this._onChangeStage = this.createDesc.onChangeStage;
+        this._onOpenStage = this.createDesc.onOpenStage;
 
-        this._nameText.SetText(UnityBase.Global.GetText(UnityBase.Util.MST_TEXT_ID.MENU));
+        this._nameText.SetText(UnityBase.Util.GetText(UnityBase.Util.MST_TEXT_ID.MENU));
 
         this._itemNode.SetActive(false);
 
@@ -85,7 +85,7 @@ public class SelectNodeScript : Lib.Scene.ObjectNodeScript
 
             void on_click(UnityBase.Scene.Ui.Menu.Main.SelectItemNodeScript owner)
             {
-                this._onChangeStage(this, owner.GetStageType());
+                this._onOpenStage(this, owner.GetStageType());
 
                 return;
             }

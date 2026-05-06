@@ -152,24 +152,24 @@ public class MainSceneNodeScript : Lib.Scene.MainSceneNodeScript
     private void _StartDataFile()
     {
         {// SystemConfigFile Create
-            UnityBase.Global.systemConfigFile.readDesc.data.filePath = Application.persistentDataPath + "/" + UnityBase.Util.FILE_PATH.SYSTEM_CONFIG;
-            UnityBase.Global.systemConfigFile.writeDesc.data.filePath = UnityBase.Global.systemConfigFile.readDesc.data.filePath;
+            UnityBase.Util.systemConfigFile.readDesc.data.filePath = Application.persistentDataPath + "/" + UnityBase.Util.FILE_PATH.SYSTEM_CONFIG;
+            UnityBase.Util.systemConfigFile.writeDesc.data.filePath = UnityBase.Util.systemConfigFile.readDesc.data.filePath;
 
-            if (Lib.Data.Util.IsExistFile(UnityBase.Global.systemConfigFile.readDesc.data.filePath)) {
-                UnityBase.Global.systemConfigFile.Read();
+            if (Lib.Data.Util.IsExistFile(UnityBase.Util.systemConfigFile.readDesc.data.filePath)) {
+                UnityBase.Util.systemConfigFile.Read();
             } else {
-                UnityBase.Global.systemConfigFile.Write();
+                UnityBase.Util.systemConfigFile.Write();
             }
         }
 
         {// UserDataFile Create
-            UnityBase.Global.userDataFile.readDesc.data.filePath = Application.persistentDataPath + "/" + UnityBase.Util.FILE_PATH.USER_DATA;
-            UnityBase.Global.userDataFile.writeDesc.data.filePath = UnityBase.Global.userDataFile.readDesc.data.filePath;
+            UnityBase.Util.userDataFile.readDesc.data.filePath = Application.persistentDataPath + "/" + UnityBase.Util.FILE_PATH.USER_DATA;
+            UnityBase.Util.userDataFile.writeDesc.data.filePath = UnityBase.Util.userDataFile.readDesc.data.filePath;
 
-            if (Lib.Data.Util.IsExistFile(UnityBase.Global.userDataFile.readDesc.data.filePath)) {
-                UnityBase.Global.userDataFile.Read();
+            if (Lib.Data.Util.IsExistFile(UnityBase.Util.userDataFile.readDesc.data.filePath)) {
+                UnityBase.Util.userDataFile.Read();
             } else {
-                UnityBase.Global.userDataFile.Write();
+                UnityBase.Util.userDataFile.Write();
             }
         }
 
@@ -181,20 +181,20 @@ public class MainSceneNodeScript : Lib.Scene.MainSceneNodeScript
      */
     private void _EndDataFile()
     {
-        if (UnityBase.Global.systemConfigFile.GetDeleteFlag()) {
-            UnityBase.Global.systemConfigFile.Delete();
+        if (UnityBase.Util.systemConfigFile.GetDeleteFlag()) {
+            UnityBase.Util.systemConfigFile.Delete();
         }
 
-        if (UnityBase.Global.userDataFile.GetDeleteFlag()) {
-            UnityBase.Global.userDataFile.Delete();
+        if (UnityBase.Util.userDataFile.GetDeleteFlag()) {
+            UnityBase.Util.userDataFile.Delete();
         }
 
-        if (UnityBase.Global.systemConfigFile.GetWriteFlag()) {
-            UnityBase.Global.systemConfigFile.Write();
+        if (UnityBase.Util.systemConfigFile.GetWriteFlag()) {
+            UnityBase.Util.systemConfigFile.Write();
         }
 
-        if (UnityBase.Global.userDataFile.GetWriteFlag()) {
-            UnityBase.Global.userDataFile.Write();
+        if (UnityBase.Util.userDataFile.GetWriteFlag()) {
+            UnityBase.Util.userDataFile.Write();
         }
 
         return;
@@ -205,12 +205,12 @@ public class MainSceneNodeScript : Lib.Scene.MainSceneNodeScript
      */
     private void _UpdateDataFile()
     {
-        if (UnityBase.Global.systemConfigFile.GetWriteFlag()) {
-            UnityBase.Global.systemConfigFile.Write();
+        if (UnityBase.Util.systemConfigFile.GetWriteFlag()) {
+            UnityBase.Util.systemConfigFile.Write();
         }
 
-        if (UnityBase.Global.userDataFile.GetWriteFlag()) {
-            UnityBase.Global.userDataFile.Write();
+        if (UnityBase.Util.userDataFile.GetWriteFlag()) {
+            UnityBase.Util.userDataFile.Write();
         }
 
         return;
@@ -269,6 +269,17 @@ public class MainSceneNodeScript : Lib.Scene.MainSceneNodeScript
             var manager_create_desc = new Lib.Scene.ManagerCreateDesc();
 
             manager_create_desc.mainSceneNode = this.gameObject;
+            manager_create_desc.inputNode = this.GetInputNode();
+            manager_create_desc.graphicNode = this.GetGraphicNode();
+            manager_create_desc.soundNode = this.GetSoundNode();
+            manager_create_desc.soundBgmPrefabFilePath = UnityBase.Util.FILE_PATH.SOUND_BGM_PREFAB;
+            manager_create_desc.soundBgmAudioClipArray = this.GetSoundBgmAudioClipArray();
+            manager_create_desc.soundBgmVolume = UnityBase.Util.systemConfigFile.data.soundBgmVolume;
+            manager_create_desc.soundBgmMuteFlag = UnityBase.Util.systemConfigFile.data.soundBgmMuteFlag;
+            manager_create_desc.soundSePrefabFilePath = UnityBase.Util.FILE_PATH.SOUND_SE_PREFAB;
+            manager_create_desc.soundSeAudioClipArray = this.GetSoundSeAudioClipArray();
+            manager_create_desc.soundSeVolume = UnityBase.Util.systemConfigFile.data.soundSeVolume;
+            manager_create_desc.soundSeMuteFlag = UnityBase.Util.systemConfigFile.data.soundSeMuteFlag;
             manager_create_desc.scriptCount = (int)UnityBase.Util.SCENE.SCRIPT_INDEX_COUNT;
 
             if (manager.Create(manager_create_desc) < 0) {
@@ -280,59 +291,6 @@ public class MainSceneNodeScript : Lib.Scene.MainSceneNodeScript
             Lib.Scene.Util.SetManager(manager);
         }
 
-        {// SceneInputManager Create
-            var manager = new Lib.Scene.InputManager();
-            var manager_create_desc = new Lib.Scene.InputManagerCreateDesc();
-
-            manager_create_desc.inputNode = this.GetInputNode();
-
-            if (manager.Create(manager_create_desc) < 0) {
-                this._ReleaseManager();
-
-                return (-1);
-            }
-
-            Lib.Scene.Util.SetInputManager(manager);
-        }
-
-        {// SceneGraphicManager Create
-            var manager = new Lib.Scene.GraphicManager();
-            var manager_create_desc = new Lib.Scene.GraphicManagerCreateDesc();
-
-            manager_create_desc.graphicNode = this.GetGraphicNode();
-
-            if (manager.Create(manager_create_desc) < 0) {
-                this._ReleaseManager();
-
-                return (-1);
-            }
-
-            Lib.Scene.Util.SetGraphicManager(manager);
-        }
-
-        {// SceneSoundManager Create
-            var manager = new Lib.Scene.SoundManager();
-            var manager_create_desc = new Lib.Scene.SoundManagerCreateDesc();
-
-            manager_create_desc.soundNode = this.GetSoundNode();
-            manager_create_desc.bgmPrefabFilePath = UnityBase.Util.FILE_PATH.SOUND_BGM_PREFAB;
-            manager_create_desc.bgmAudioClipArray = this.GetSoundBgmAudioClipArray();
-            manager_create_desc.bgmVolume = UnityBase.Global.systemConfigFile.data.soundBgmVolume;
-            manager_create_desc.bgmMuteFlag = UnityBase.Global.systemConfigFile.data.soundBgmMuteFlag;
-            manager_create_desc.sePrefabFilePath = UnityBase.Util.FILE_PATH.SOUND_SE_PREFAB;
-            manager_create_desc.seAudioClipArray = this.GetSoundSeAudioClipArray();
-            manager_create_desc.seVolume = UnityBase.Global.systemConfigFile.data.soundSeVolume;
-            manager_create_desc.seMuteFlag = UnityBase.Global.systemConfigFile.data.soundSeMuteFlag;
-
-            if (manager.Create(manager_create_desc) < 0) {
-                this._ReleaseManager();
-
-                return (-1);
-            }
-
-            Lib.Scene.Util.SetSoundManager(manager);
-        }
-
         return (0);
     }
 
@@ -341,9 +299,6 @@ public class MainSceneNodeScript : Lib.Scene.MainSceneNodeScript
      */
     private void _ReleaseManager()
     {
-        Lib.Scene.Util.SetSoundManager(null);
-        Lib.Scene.Util.SetGraphicManager(null);
-        Lib.Scene.Util.SetInputManager(null);
         Lib.Scene.Util.SetManager(null);
         Lib.Sound.Util.SetManager(null);
         Lib.Graphic.Util.SetManager(null);

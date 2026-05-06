@@ -105,7 +105,7 @@ public class TitleSubSceneNodeScript : UnityBase.Scene.SubSceneNodeScript
     {
         base._OnActive();
 
-        Lib.Scene.Util.GetSoundManager().PlayBgm((int)UnityBase.Util.SOUND.BGM_INDEX.TITLE);
+        Lib.Scene.Util.GetManager().PlaySoundBgm((int)UnityBase.Util.SOUND.BGM_INDEX.TITLE);
 
         this._startButtonNameText.DOFade(0.0f, 1.0f).SetEase(Ease.InCubic).SetLoops(-1, LoopType.Yoyo).SetDelay(1.0f).SetLink(this._startButtonNameText.gameObject);
 
@@ -240,7 +240,7 @@ public class TitleSubSceneNodeScript : UnityBase.Scene.SubSceneNodeScript
             return;
         }
 
-        Lib.Scene.Util.GetSoundManager().PlaySe((int)UnityBase.Util.SOUND.SE_INDEX.OK);
+        Lib.Scene.Util.GetManager().PlaySoundSe((int)UnityBase.Util.SOUND.SE_INDEX.OK);
 
         this.Close(1, 1);
 

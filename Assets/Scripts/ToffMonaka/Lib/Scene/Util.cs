@@ -16,9 +16,6 @@ namespace Lib.Scene {
 public static class Util
 {
     private static Lib.Scene.Manager _manager = null;
-    private static Lib.Scene.InputManager _inputManager = null;
-    private static Lib.Scene.GraphicManager _graphicManager = null;
-    private static Lib.Scene.SoundManager _soundManager = null;
 
     /**
      * @brief GetPrefabNode関数
@@ -107,78 +104,6 @@ public static class Util
         }
 
         Lib.Scene.Util._manager = manager;
-
-        return;
-    }
-
-    /**
-     * @brief GetInputManager関数
-     * @return input_manager (input_manager)
-     */
-    public static Lib.Scene.InputManager GetInputManager()
-    {
-        return (Lib.Scene.Util._inputManager);
-    }
-
-    /**
-     * @brief SetInputManager関数
-     * @param input_manager (input_manager)
-     */
-    public static void SetInputManager(Lib.Scene.InputManager input_manager)
-    {
-        if (Lib.Scene.Util._inputManager != null) {
-            Lib.Scene.Util._inputManager.Init();
-        }
-
-        Lib.Scene.Util._inputManager = input_manager;
-
-        return;
-    }
-
-    /**
-     * @brief GetGraphicManager関数
-     * @return graphic_manager (graphic_manager)
-     */
-    public static Lib.Scene.GraphicManager GetGraphicManager()
-    {
-        return (Lib.Scene.Util._graphicManager);
-    }
-
-    /**
-     * @brief SetGraphicManager関数
-     * @param graphic_manager (graphic_manager)
-     */
-    public static void SetGraphicManager(Lib.Scene.GraphicManager graphic_manager)
-    {
-        if (Lib.Scene.Util._graphicManager != null) {
-            Lib.Scene.Util._graphicManager.Init();
-        }
-
-        Lib.Scene.Util._graphicManager = graphic_manager;
-
-        return;
-    }
-
-    /**
-     * @brief GetSoundManager関数
-     * @return sound_manager (sound_manager)
-     */
-    public static Lib.Scene.SoundManager GetSoundManager()
-    {
-        return (Lib.Scene.Util._soundManager);
-    }
-
-    /**
-     * @brief SetSoundManager関数
-     * @param sound_manager (sound_manager)
-     */
-    public static void SetSoundManager(Lib.Scene.SoundManager sound_manager)
-    {
-        if (Lib.Scene.Util._soundManager != null) {
-            Lib.Scene.Util._soundManager.Init();
-        }
-
-        Lib.Scene.Util._soundManager = sound_manager;
 
         return;
     }
