@@ -90,9 +90,9 @@ public class CheatStageNodeScript : UnityBase.Scene.Ui.Menu.Main.StageNodeScript
             return (-1);
         }
 
-        this._commandNameText.SetText(UnityBase.Util.GetText(UnityBase.Util.MST_TEXT_ID.COMMAND));
-        this._okButtonNameText.SetText(UnityBase.Util.GetText(UnityBase.Util.MST_TEXT_ID.OK));
-        this._cancelButtonNameText.SetText(UnityBase.Util.GetText(UnityBase.Util.MST_TEXT_ID.CANCEL));
+        this._commandNameText.SetText(UnityBase.Global.GetText(UnityBase.Util.MST_TEXT_ID.COMMAND));
+        this._okButtonNameText.SetText(UnityBase.Global.GetText(UnityBase.Util.MST_TEXT_ID.OK));
+        this._cancelButtonNameText.SetText(UnityBase.Global.GetText(UnityBase.Util.MST_TEXT_ID.CANCEL));
 
         this._itemNode.SetActive(false);
 
@@ -246,7 +246,7 @@ public class CheatStageNodeScript : UnityBase.Scene.Ui.Menu.Main.StageNodeScript
             return;
         }
 
-        Lib.Scene.Util.GetManager().PlaySoundSe((int)UnityBase.Util.SOUND.SE_INDEX.OK2);
+        UnityBase.Global.GetSceneManager().PlaySoundSe((int)UnityBase.Util.SOUND.SE_INDEX.OK2);
 
         this._cheatCommand.Calculate(out this._calculateValue, this._cheatCommandCalculateOption, false);
 
@@ -265,7 +265,7 @@ public class CheatStageNodeScript : UnityBase.Scene.Ui.Menu.Main.StageNodeScript
             return;
         }
 
-        Lib.Scene.Util.GetManager().PlaySoundSe((int)UnityBase.Util.SOUND.SE_INDEX.CANCEL);
+        UnityBase.Global.GetSceneManager().PlaySoundSe((int)UnityBase.Util.SOUND.SE_INDEX.CANCEL);
 
         this._onCloseStage(this);
 

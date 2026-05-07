@@ -104,9 +104,9 @@ public class NodeScript : Lib.Scene.ObjectNodeScript
                 }
 
                 if (this._openSelectNodeScript != null) {
-                    Lib.Scene.Util.GetManager().PlaySoundSe((int)UnityBase.Util.SOUND.SE_INDEX.OK2);
+                    UnityBase.Global.GetSceneManager().PlaySoundSe((int)UnityBase.Util.SOUND.SE_INDEX.OK2);
                 } else {
-                    Lib.Scene.Util.GetManager().PlaySoundSe((int)UnityBase.Util.SOUND.SE_INDEX.CANCEL);
+                    UnityBase.Global.GetSceneManager().PlaySoundSe((int)UnityBase.Util.SOUND.SE_INDEX.CANCEL);
                 }
 
                 if (this._openStageNodeScript != null) {
@@ -362,11 +362,11 @@ public class NodeScript : Lib.Scene.ObjectNodeScript
 
 		switch (stage_type) {
 		case UnityBase.Util.SCENE.MENU_STAGE_TYPE.OPTION: {
-            this._optionStageNodeScript.SetLanguageType(UnityBase.Util.systemConfigFile.data.systemLanguageType);
-            this._optionStageNodeScript.SetSoundBgmVolume(UnityBase.Util.systemConfigFile.data.soundBgmVolume);
-            this._optionStageNodeScript.SetSoundBgmMuteFlag(UnityBase.Util.systemConfigFile.data.soundBgmMuteFlag);
-            this._optionStageNodeScript.SetSoundSeVolume(UnityBase.Util.systemConfigFile.data.soundSeVolume);
-            this._optionStageNodeScript.SetSoundSeMuteFlag(UnityBase.Util.systemConfigFile.data.soundSeMuteFlag);
+            this._optionStageNodeScript.SetLanguageType(UnityBase.Global.systemConfigFile.data.systemLanguageType);
+            this._optionStageNodeScript.SetSoundBgmVolume(UnityBase.Global.systemConfigFile.data.soundBgmVolume);
+            this._optionStageNodeScript.SetSoundBgmMuteFlag(UnityBase.Global.systemConfigFile.data.soundBgmMuteFlag);
+            this._optionStageNodeScript.SetSoundSeVolume(UnityBase.Global.systemConfigFile.data.soundSeVolume);
+            this._optionStageNodeScript.SetSoundSeMuteFlag(UnityBase.Global.systemConfigFile.data.soundSeMuteFlag);
 
             this._openStageNodeScript = this._optionStageNodeScript;
 

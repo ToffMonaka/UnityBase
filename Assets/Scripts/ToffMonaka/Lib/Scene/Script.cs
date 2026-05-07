@@ -173,8 +173,8 @@ public abstract class Script : MonoBehaviour
     {
         this._OnDestroy();
 
-        if (Lib.Scene.Util.GetManager() != null) {
-            Lib.Scene.Util.GetManager().RemoveScript(this);
+        if (Lib.Global.GetSceneManager() != null) {
+            Lib.Global.GetSceneManager().RemoveScript(this);
         }
 
         return;
@@ -236,8 +236,8 @@ public abstract class Script : MonoBehaviour
         {// This Create
             this.SetCreateDesc(desc);
 
-            if (Lib.Scene.Util.GetManager() != null) {
-                if (Lib.Scene.Util.GetManager().AddScript(this) < 0) {
+            if (Lib.Global.GetSceneManager() != null) {
+                if (Lib.Global.GetSceneManager().AddScript(this) < 0) {
                     return (-1);
                 }
             } else {

@@ -15,8 +15,6 @@ namespace Lib.Scene {
  */
 public static class Util
 {
-    private static Lib.Scene.Manager _manager = null;
-
     /**
      * @brief GetPrefabNode関数
      * @param prefab_file_path (prefab_file_path)
@@ -80,30 +78,6 @@ public static class Util
         Addressables.ReleaseInstance(prefab_node);
 
         prefab_node = null;
-
-        return;
-    }
-
-    /**
-     * @brief GetManager関数
-     * @return manager (manager)
-     */
-    public static Lib.Scene.Manager GetManager()
-    {
-        return (Lib.Scene.Util._manager);
-    }
-
-    /**
-     * @brief SetManager関数
-     * @param manager (manager)
-     */
-    public static void SetManager(Lib.Scene.Manager manager)
-    {
-        if (Lib.Scene.Util._manager != null) {
-            Lib.Scene.Util._manager.Init();
-        }
-
-        Lib.Scene.Util._manager = manager;
 
         return;
     }

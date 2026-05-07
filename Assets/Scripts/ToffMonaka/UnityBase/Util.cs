@@ -217,13 +217,6 @@ public static class Util
         UnityBase.Util.MST_TEXT_ID.JAPANESE
     };
 
-    public static UnityBase.Data.SystemConfigFile systemConfigFile = new UnityBase.Data.SystemConfigFile();
-    public static UnityBase.Data.UserDataFile userDataFile = new UnityBase.Data.UserDataFile();
-    public static UnityBase.Data.MstTextTableFile mstTextTableFile = new UnityBase.Data.MstTextTableFile();
-
-    // Change Property Name
-    // [UnityEngine.Serialization.FormerlySerializedAs("_propertyName")]
-
     /**
      * @brief GetDebugFlag関数
      * @return debug_flg (debug_flag)
@@ -244,72 +237,6 @@ public static class Util
         UnityBase.Util._debugFlag = debug_flg;
 
         return;
-    }
-
-    /**
-     * @brief GetMainSceneNodeScript関数
-     * @return main_scene_node_script (main_scene_node_script)
-     */
-    public static UnityBase.Scene.MainSceneNodeScript GetMainSceneNodeScript()
-    {
-        return (Lib.Scene.Util.GetManager().GetMainSceneNodeScript() as UnityBase.Scene.MainSceneNodeScript);
-    }
-
-    /**
-     * @brief GetSubSceneNodeScript関数
-     * @return sub_scene_node_script (sub_scene_node_script)
-     */
-    public static UnityBase.Scene.SubSceneNodeScript GetSubSceneNodeScript()
-    {
-        return (Lib.Scene.Util.GetManager().GetSubSceneNodeScript() as UnityBase.Scene.SubSceneNodeScript);
-    }
-
-    /**
-     * @brief SaveDataFile関数
-     */
-    public static void SaveDataFile()
-    {
-        UnityBase.Util.systemConfigFile.Write(true);
-        UnityBase.Util.userDataFile.Write(true);
-
-        return;
-    }
-
-    /**
-     * @brief DeleteDataFile関数
-     */
-    public static void DeleteDataFile()
-    {
-        UnityBase.Util.systemConfigFile.Delete(true);
-        UnityBase.Util.userDataFile.Delete(true);
-
-        Lib.Scene.Util.GetManager().StartMainScene();
-
-        return;
-    }
-
-    /**
-     * @brief GetText関数
-     * @param mst_txt_id (mst_text_id)
-     * @return txt (text)
-     */
-    public static string GetText(int mst_txt_id)
-    {
-        if (mst_txt_id >= UnityBase.Util.mstTextTableFile.data.entityArrayByMstTextId.Length) {
-            return (System.String.Empty);
-        }
-
-        return (UnityBase.Util.mstTextTableFile.data.entityArrayByMstTextId[mst_txt_id].text);
-    }
-
-    /**
-     * @brief GetText関数
-     * @param mst_txt_id (mst_text_id)
-     * @return txt (text)
-     */
-    public static string GetText(UnityBase.Util.MST_TEXT_ID mst_txt_id)
-    {
-        return (UnityBase.Util.mstTextTableFile.data.entityArrayByMstTextId[(int)mst_txt_id].text);
     }
 }
 }

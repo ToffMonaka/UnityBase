@@ -68,7 +68,7 @@ public class SelectItemNodeScript : Lib.Scene.ObjectNodeScript
         this._stageType = this.createDesc.stageType;
         this._onClick = this.createDesc.onClick;
 
-        this._nameText.SetText(UnityBase.Util.GetText(UnityBase.Util.SCENE.MENU_STAGE_NAME_MST_TEXT_ID_ARRAY[(int)this._stageType]));
+        this._nameText.SetText(UnityBase.Global.GetText(UnityBase.Util.SCENE.MENU_STAGE_NAME_MST_TEXT_ID_ARRAY[(int)this._stageType]));
 
         return (0);
     }
@@ -158,7 +158,7 @@ public class SelectItemNodeScript : Lib.Scene.ObjectNodeScript
             return;
         }
 
-        Lib.Scene.Util.GetManager().PlaySoundSe((int)UnityBase.Util.SOUND.SE_INDEX.OK2);
+        UnityBase.Global.GetSceneManager().PlaySoundSe((int)UnityBase.Util.SOUND.SE_INDEX.OK2);
 
         this._onClick?.Invoke(this);
 

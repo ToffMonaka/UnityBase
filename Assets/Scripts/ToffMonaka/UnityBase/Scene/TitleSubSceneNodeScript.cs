@@ -105,7 +105,7 @@ public class TitleSubSceneNodeScript : UnityBase.Scene.SubSceneNodeScript
     {
         base._OnActive();
 
-        Lib.Scene.Util.GetManager().PlaySoundBgm((int)UnityBase.Util.SOUND.BGM_INDEX.TITLE);
+        UnityBase.Global.GetSceneManager().PlaySoundBgm((int)UnityBase.Util.SOUND.BGM_INDEX.TITLE);
 
         this._startButtonNameText.DOFade(0.0f, 1.0f).SetEase(Ease.InCubic).SetLoops(-1, LoopType.Yoyo).SetDelay(1.0f).SetLink(this._startButtonNameText.gameObject);
 
@@ -216,7 +216,7 @@ public class TitleSubSceneNodeScript : UnityBase.Scene.SubSceneNodeScript
 		switch (this.GetClosedType()) {
         case 1: {
             {// SelectSubSceneNodeScript Create
-                var script = Lib.Scene.Util.GetManager().ChangeSubScene(UnityBase.Util.FILE_PATH.SELECT_SUB_SCENE_PREFAB) as UnityBase.Scene.Select.SubSceneNodeScript;
+                var script = UnityBase.Global.GetSceneManager().ChangeSubScene(UnityBase.Util.FILE_PATH.SELECT_SUB_SCENE_PREFAB) as UnityBase.Scene.Select.SubSceneNodeScript;
                 var script_create_desc = new UnityBase.Scene.Select.SubSceneNodeScriptCreateDesc();
 
                 script.Create(script_create_desc);
@@ -240,7 +240,7 @@ public class TitleSubSceneNodeScript : UnityBase.Scene.SubSceneNodeScript
             return;
         }
 
-        Lib.Scene.Util.GetManager().PlaySoundSe((int)UnityBase.Util.SOUND.SE_INDEX.OK);
+        UnityBase.Global.GetSceneManager().PlaySoundSe((int)UnityBase.Util.SOUND.SE_INDEX.OK);
 
         this.Close(1, 1);
 

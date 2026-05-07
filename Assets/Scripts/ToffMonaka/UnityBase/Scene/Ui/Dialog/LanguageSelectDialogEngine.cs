@@ -29,7 +29,7 @@ public class LanguageSelectDialogEngine : UnityBase.Scene.Ui.Dialog.SelectDialog
      */
     public override string OnGetName()
     {
-        return (UnityBase.Util.GetText(UnityBase.Util.MST_TEXT_ID.LANGUAGE));
+        return (UnityBase.Global.GetText(UnityBase.Util.MST_TEXT_ID.LANGUAGE));
     }
 }
 
@@ -57,7 +57,7 @@ public class LanguageSelectDialogItemEngine : UnityBase.Scene.Ui.Dialog.SelectDi
      */
     public override string OnGetName()
     {
-        return (UnityBase.Util.GetText(UnityBase.Util.LANGUAGE_NAME_MST_TEXT_ID_ARRAY[(int)this._languageType]));
+        return (UnityBase.Global.GetText(UnityBase.Util.LANGUAGE_NAME_MST_TEXT_ID_ARRAY[(int)this._languageType]));
     }
 
     /**

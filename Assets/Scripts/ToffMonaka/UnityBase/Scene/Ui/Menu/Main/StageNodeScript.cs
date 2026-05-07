@@ -76,7 +76,7 @@ public abstract class StageNodeScript : Lib.Scene.ObjectNodeScript
     {
         this._onCloseStage = this.createDesc.onCloseStage;
 
-        this._nameText.SetText(UnityBase.Util.GetText(UnityBase.Util.SCENE.MENU_STAGE_NAME_MST_TEXT_ID_ARRAY[(int)this._stageType]));
+        this._nameText.SetText(UnityBase.Global.GetText(UnityBase.Util.SCENE.MENU_STAGE_NAME_MST_TEXT_ID_ARRAY[(int)this._stageType]));
 
         return (0);
     }

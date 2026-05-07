@@ -80,14 +80,14 @@ public class PrivacyPolicyStageNodeScript : UnityBase.Scene.Ui.Menu.Main.StageNo
             return (-1);
         }
 
-        this._cancelButtonNameText.SetText(UnityBase.Util.GetText(UnityBase.Util.MST_TEXT_ID.CANCEL));
+        this._cancelButtonNameText.SetText(UnityBase.Global.GetText(UnityBase.Util.MST_TEXT_ID.CANCEL));
 
         this._messageNode.SetActive(false);
 
         {// MessageNode Create
             string[] txt_ary;
 
-		    switch (UnityBase.Util.systemConfigFile.data.systemLanguageType) {
+		    switch (UnityBase.Global.systemConfigFile.data.systemLanguageType) {
 		    case UnityBase.Util.LANGUAGE_TYPE.JAPANESE: {
                 txt_ary = UnityBase.Scene.Ui.Menu.Main.PrivacyPolicyMessageUtil.JAPANESE_TEXT_ARRAY;
 
@@ -226,7 +226,7 @@ public class PrivacyPolicyStageNodeScript : UnityBase.Scene.Ui.Menu.Main.StageNo
             return;
         }
 
-        Lib.Scene.Util.GetManager().PlaySoundSe((int)UnityBase.Util.SOUND.SE_INDEX.CANCEL);
+        UnityBase.Global.GetSceneManager().PlaySoundSe((int)UnityBase.Util.SOUND.SE_INDEX.CANCEL);
 
         this._onCloseStage(this);
 

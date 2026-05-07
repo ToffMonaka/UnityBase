@@ -162,7 +162,7 @@ public class SelectDialogItemNodeScript : Lib.Scene.ObjectNodeScript
             return;
         }
 
-        Lib.Scene.Util.GetManager().PlaySoundSe((int)UnityBase.Util.SOUND.SE_INDEX.OK2);
+        UnityBase.Global.GetSceneManager().PlaySoundSe((int)UnityBase.Util.SOUND.SE_INDEX.OK2);
 
         this._onClick?.Invoke(this);
 

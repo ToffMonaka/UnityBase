@@ -195,7 +195,7 @@ public class BackButtonNodeScript : Lib.Scene.ObjectNodeScript
             return;
         }
 
-        Lib.Scene.Util.GetManager().PlaySoundSe((int)UnityBase.Util.SOUND.SE_INDEX.CANCEL);
+        UnityBase.Global.GetSceneManager().PlaySoundSe((int)UnityBase.Util.SOUND.SE_INDEX.CANCEL);
 
         this._onClick?.Invoke(this);
 

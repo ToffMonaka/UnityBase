@@ -144,7 +144,7 @@ public class SubSceneNodeScript : UnityBase.Scene.SubSceneNodeScript
     {
         base._OnActive();
 
-        Lib.Scene.Util.GetManager().PlaySoundBgm((int)UnityBase.Util.SOUND.BGM_INDEX.SELECT);
+        UnityBase.Global.GetSceneManager().PlaySoundBgm((int)UnityBase.Util.SOUND.BGM_INDEX.SELECT);
 
         this._stageType = UnityBase.Util.SCENE.STAGE_TYPE.NONE;
 
@@ -259,7 +259,7 @@ public class SubSceneNodeScript : UnityBase.Scene.SubSceneNodeScript
 		    switch (this._stageType) {
 		    case UnityBase.Util.SCENE.STAGE_TYPE.TEST_2D: {
                 {// Test2DStageSubSceneNodeScript Create
-                    var script = Lib.Scene.Util.GetManager().ChangeSubScene(UnityBase.Util.FILE_PATH.TEST_2D_STAGE_SUB_SCENE_PREFAB) as UnityBase.Scene.Stage.Test2D.SubSceneNodeScript;
+                    var script = UnityBase.Global.GetSceneManager().ChangeSubScene(UnityBase.Util.FILE_PATH.TEST_2D_STAGE_SUB_SCENE_PREFAB) as UnityBase.Scene.Stage.Test2D.SubSceneNodeScript;
                     var script_create_desc = new UnityBase.Scene.Stage.Test2D.SubSceneNodeScriptCreateDesc();
 
                     script.Create(script_create_desc);
@@ -270,7 +270,7 @@ public class SubSceneNodeScript : UnityBase.Scene.SubSceneNodeScript
 		    }
 		    case UnityBase.Util.SCENE.STAGE_TYPE.TEST_3D: {
                 {// Test3DStageSubSceneNodeScript Create
-                    var script = Lib.Scene.Util.GetManager().ChangeSubScene(UnityBase.Util.FILE_PATH.TEST_3D_STAGE_SUB_SCENE_PREFAB) as UnityBase.Scene.Stage.Test3D.SubSceneNodeScript;
+                    var script = UnityBase.Global.GetSceneManager().ChangeSubScene(UnityBase.Util.FILE_PATH.TEST_3D_STAGE_SUB_SCENE_PREFAB) as UnityBase.Scene.Stage.Test3D.SubSceneNodeScript;
                     var script_create_desc = new UnityBase.Scene.Stage.Test3D.SubSceneNodeScriptCreateDesc();
 
                     script.Create(script_create_desc);
@@ -285,7 +285,7 @@ public class SubSceneNodeScript : UnityBase.Scene.SubSceneNodeScript
 		}
         case 2: {
             {// TitleSubSceneNodeScript Create
-                var script = Lib.Scene.Util.GetManager().ChangeSubScene(UnityBase.Util.FILE_PATH.TITLE_SUB_SCENE_PREFAB) as UnityBase.Scene.TitleSubSceneNodeScript;
+                var script = UnityBase.Global.GetSceneManager().ChangeSubScene(UnityBase.Util.FILE_PATH.TITLE_SUB_SCENE_PREFAB) as UnityBase.Scene.TitleSubSceneNodeScript;
                 var script_create_desc = new UnityBase.Scene.TitleSubSceneNodeScriptCreateDesc();
 
                 script.Create(script_create_desc);

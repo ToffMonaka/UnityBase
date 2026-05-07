@@ -83,10 +83,10 @@ public class EndStageNodeScript : UnityBase.Scene.Ui.Menu.Main.StageNodeScript
             return (-1);
         }
 
-        this._restartNameText.SetText(UnityBase.Util.GetText(UnityBase.Util.MST_TEXT_ID.RESTART));
-        this._endNameText.SetText(UnityBase.Util.GetText(UnityBase.Util.MST_TEXT_ID.EXIT));
-        this._okButtonNameText.SetText(UnityBase.Util.GetText(UnityBase.Util.MST_TEXT_ID.OK));
-        this._cancelButtonNameText.SetText(UnityBase.Util.GetText(UnityBase.Util.MST_TEXT_ID.CANCEL));
+        this._restartNameText.SetText(UnityBase.Global.GetText(UnityBase.Util.MST_TEXT_ID.RESTART));
+        this._endNameText.SetText(UnityBase.Global.GetText(UnityBase.Util.MST_TEXT_ID.EXIT));
+        this._okButtonNameText.SetText(UnityBase.Global.GetText(UnityBase.Util.MST_TEXT_ID.OK));
+        this._cancelButtonNameText.SetText(UnityBase.Global.GetText(UnityBase.Util.MST_TEXT_ID.CANCEL));
 
         return (0);
     }
@@ -199,9 +199,9 @@ public class EndStageNodeScript : UnityBase.Scene.Ui.Menu.Main.StageNodeScript
         }
 
         if (this._restartToggle.isOn) {
-            Lib.Scene.Util.GetManager().PlaySoundSe((int)UnityBase.Util.SOUND.SE_INDEX.OK2);
+            UnityBase.Global.GetSceneManager().PlaySoundSe((int)UnityBase.Util.SOUND.SE_INDEX.OK2);
         } else {
-            Lib.Scene.Util.GetManager().PlaySoundSe((int)UnityBase.Util.SOUND.SE_INDEX.CANCEL);
+            UnityBase.Global.GetSceneManager().PlaySoundSe((int)UnityBase.Util.SOUND.SE_INDEX.CANCEL);
         }
 
         return;
@@ -222,9 +222,9 @@ public class EndStageNodeScript : UnityBase.Scene.Ui.Menu.Main.StageNodeScript
         }
 
         if (this._endToggle.isOn) {
-            Lib.Scene.Util.GetManager().PlaySoundSe((int)UnityBase.Util.SOUND.SE_INDEX.OK2);
+            UnityBase.Global.GetSceneManager().PlaySoundSe((int)UnityBase.Util.SOUND.SE_INDEX.OK2);
         } else {
-            Lib.Scene.Util.GetManager().PlaySoundSe((int)UnityBase.Util.SOUND.SE_INDEX.CANCEL);
+            UnityBase.Global.GetSceneManager().PlaySoundSe((int)UnityBase.Util.SOUND.SE_INDEX.CANCEL);
         }
 
         return;
@@ -240,12 +240,12 @@ public class EndStageNodeScript : UnityBase.Scene.Ui.Menu.Main.StageNodeScript
             return;
         }
 
-        Lib.Scene.Util.GetManager().PlaySoundSe((int)UnityBase.Util.SOUND.SE_INDEX.OK2);
+        UnityBase.Global.GetSceneManager().PlaySoundSe((int)UnityBase.Util.SOUND.SE_INDEX.OK2);
 
         if (this._restartToggle.isOn) {
-            Lib.Scene.Util.GetManager().StartMainScene();
+            UnityBase.Global.GetSceneManager().StartMainScene();
         } else if (this._endToggle.isOn) {
-            Lib.Scene.Util.GetManager().EndMainScene();
+            UnityBase.Global.GetSceneManager().EndMainScene();
         }
 
         this._onCloseStage(this);
@@ -263,7 +263,7 @@ public class EndStageNodeScript : UnityBase.Scene.Ui.Menu.Main.StageNodeScript
             return;
         }
 
-        Lib.Scene.Util.GetManager().PlaySoundSe((int)UnityBase.Util.SOUND.SE_INDEX.CANCEL);
+        UnityBase.Global.GetSceneManager().PlaySoundSe((int)UnityBase.Util.SOUND.SE_INDEX.CANCEL);
 
         this._onCloseStage(this);
 

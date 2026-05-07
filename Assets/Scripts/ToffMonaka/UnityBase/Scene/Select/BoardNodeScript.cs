@@ -72,7 +72,7 @@ public abstract class BoardNodeScript : Lib.Scene.ObjectNodeScript
      */
     protected override int _OnCreate()
     {
-        this._nameText.SetText(UnityBase.Util.GetText(UnityBase.Util.SCENE.SELECT_BOARD_NAME_MST_TEXT_ID_ARRAY[(int)this._boardType]));
+        this._nameText.SetText(UnityBase.Global.GetText(UnityBase.Util.SCENE.SELECT_BOARD_NAME_MST_TEXT_ID_ARRAY[(int)this._boardType]));
 
         return (0);
     }

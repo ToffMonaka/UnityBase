@@ -69,7 +69,7 @@ public class SelectNodeScript : Lib.Scene.ObjectNodeScript
     {
         this._onOpenStage = this.createDesc.onOpenStage;
 
-        this._nameText.SetText(UnityBase.Util.GetText(UnityBase.Util.MST_TEXT_ID.MENU));
+        this._nameText.SetText(UnityBase.Global.GetText(UnityBase.Util.MST_TEXT_ID.MENU));
 
         this._itemNode.SetActive(false);
 

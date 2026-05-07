@@ -78,8 +78,8 @@ public class SubSceneNodeScript : UnityBase.Scene.Stage.SubSceneNodeScript
             return (-1);
         }
 
-        this._nameText.SetText(UnityBase.Util.GetText(UnityBase.Util.SCENE.STAGE_NAME_MST_TEXT_ID_ARRAY[(int)this.GetStageType()]));
-        this._messageText.SetText(UnityBase.Util.GetText(UnityBase.Util.MST_TEXT_ID.IN_PREPARATION));
+        this._nameText.SetText(UnityBase.Global.GetText(UnityBase.Util.SCENE.STAGE_NAME_MST_TEXT_ID_ARRAY[(int)this.GetStageType()]));
+        this._messageText.SetText(UnityBase.Global.GetText(UnityBase.Util.MST_TEXT_ID.IN_PREPARATION));
 
         return (0);
     }
@@ -217,7 +217,7 @@ public class SubSceneNodeScript : UnityBase.Scene.Stage.SubSceneNodeScript
 		switch (this.GetClosedType()) {
         case 1: {
             {// SelectSubSceneNodeScript Create
-                var script = Lib.Scene.Util.GetManager().ChangeSubScene(UnityBase.Util.FILE_PATH.SELECT_SUB_SCENE_PREFAB) as UnityBase.Scene.Select.SubSceneNodeScript;
+                var script = UnityBase.Global.GetSceneManager().ChangeSubScene(UnityBase.Util.FILE_PATH.SELECT_SUB_SCENE_PREFAB) as UnityBase.Scene.Select.SubSceneNodeScript;
                 var script_create_desc = new UnityBase.Scene.Select.SubSceneNodeScriptCreateDesc();
 
                 script.Create(script_create_desc);
