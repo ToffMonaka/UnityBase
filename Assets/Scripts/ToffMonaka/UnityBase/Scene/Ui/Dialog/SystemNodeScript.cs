@@ -24,7 +24,7 @@ public class SystemNodeScript : Lib.Scene.ObjectNodeScript
 {
     public new UnityBase.Scene.Ui.Dialog.SystemNodeScriptCreateDesc createDesc{get; private set;} = null;
 
-    private List<GameObject> _dialogNodeContainer = new List<GameObject>();
+    private List<UnityBase.Scene.Ui.Dialog.DialogNodeScript> _dialogNodeScriptContainer = new List<UnityBase.Scene.Ui.Dialog.DialogNodeScript>();
 
     /**
      * @brief _OnGetScriptIndex関数
@@ -48,7 +48,7 @@ public class SystemNodeScript : Lib.Scene.ObjectNodeScript
      */
     protected override void _OnDestroy()
     {
-        this._RemoveDialogNode();
+        this._RemoveDialog();
 
         return;
     }
@@ -103,6 +103,8 @@ public class SystemNodeScript : Lib.Scene.ObjectNodeScript
      */
     protected override void _OnUpdate()
     {
+        this._UpdateDialog();
+
         return;
     }
 
@@ -140,50 +142,68 @@ public class SystemNodeScript : Lib.Scene.ObjectNodeScript
 
     /**
      * @brief AddDialog関数
-     * @param dialog_node_script (dialog_node_script)
-     * @return result_val (result_value)<br>
-     * 0未満=失敗
+     * @param script_create_desc (script_create_desc)
+     * @return script<br>
+     * null=失敗
      */
-    public int AddDialog(UnityBase.Scene.Ui.Dialog.DialogNodeScript dialog_node_script)
+    public UnityBase.Scene.Ui.Dialog.DialogNodeScript AddDialog(UnityBase.Scene.Ui.Dialog.DialogNodeScriptCreateDesc script_create_desc)
     {
-        if (dialog_node_script == null) {
-            return (-1);
+        if (script_create_desc == null) {
+            return (null);
         }
 
-        dialog_node_script.gameObject.transform.SetParent(this.gameObject.transform, false);
+        var script = script_create_desc.GetNewScript(script_create_desc.GetPrefabFilePath());
 
-        dialog_node_script.Open(1);
+        if (script == null) {
+            return (null);
+        }
 
-        return (0);
+        script.gameObject.transform.SetParent(this.gameObject.transform, false);
+
+        script.Create(script_create_desc);
+        script.Open(1);
+
+        this._dialogNodeScriptContainer.Add(script);
+
+        return (script);
     }
 
     /**
-     * @brief _AddDialogNode関数
-     * @param create_desc (create_desc)
-     * @return result_val (result_value)<br>
-     * 0未満=失敗
+     * @brief _RemoveDialog関数
      */
-    private int _AddDialogNode(UnityBase.Scene.Ui.Dialog.DialogNodeScriptCreateDesc create_desc)
+    private void _RemoveDialog()
     {
-        if (create_desc == null) {
-            return (-1);
+        foreach (var script in this._dialogNodeScriptContainer) {
+            var node = script.gameObject;
+
+            Lib.Scene.Util.ReleasePrefabNode(ref node);
         }
 
-        return (0);
+        this._dialogNodeScriptContainer.Clear();
+
+        return;
     }
 
     /**
-     * @brief _RemoveDialogNode関数
+     * @brief _UpdateDialog関数
      */
-    private void _RemoveDialogNode()
+    private void _UpdateDialog()
     {
-        foreach (var dialog_node in this._dialogNodeContainer) {
-            var tmp_dialog_node = dialog_node;
+        for (int script_i = this._dialogNodeScriptContainer.Count - 1; script_i >= 0; --script_i) {
+            var script = this._dialogNodeScriptContainer[script_i];
 
-            Lib.Scene.Util.ReleasePrefabNode(ref tmp_dialog_node);
+            if (!script.GetClosedFlag()) {
+                continue;
+            }
+
+            var node = script.gameObject;
+
+            Lib.Scene.Util.ReleasePrefabNode(ref node);
+
+            this._dialogNodeScriptContainer.RemoveAt(script_i);
+
+            break;
         }
-
-        this._dialogNodeContainer.Clear();
 
         return;
     }

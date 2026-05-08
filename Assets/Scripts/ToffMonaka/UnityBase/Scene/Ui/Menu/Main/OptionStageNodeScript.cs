@@ -47,8 +47,6 @@ public class OptionStageNodeScript : UnityBase.Scene.Ui.Menu.Main.StageNodeScrip
     private float _soundSeVolume = 1.0f;
     private bool _soundSeMuteFlag = false;
     private uint _restartFlag = 0U;
-    private GameObject _languageSelectDialogNode = null;
-    private UnityBase.Scene.Ui.Dialog.SelectDialogNodeScript _languageSelectDialogNodeScript = null;
 
     /**
      * @brief _OnGetScriptIndex関数
@@ -83,12 +81,6 @@ public class OptionStageNodeScript : UnityBase.Scene.Ui.Menu.Main.StageNodeScrip
      */
     protected override void _OnDestroy()
     {
-        if (this._languageSelectDialogNodeScript != null) {
-            Lib.Scene.Util.ReleasePrefabNode(ref this._languageSelectDialogNode);
-
-            this._languageSelectDialogNodeScript = null;
-        }
-
         base._OnDestroy();
 
         return;
@@ -218,11 +210,7 @@ public class OptionStageNodeScript : UnityBase.Scene.Ui.Menu.Main.StageNodeScrip
 
         UnityBase.Global.GetSceneManager().PlaySoundSe((int)UnityBase.Util.SOUND.SE_INDEX.OK2);
 
-        // LanguageSelectDialogNodeScript Create
-        if (this._languageSelectDialogNodeScript == null) {
-            this._languageSelectDialogNode = Lib.Scene.Util.GetPrefabNode(UnityBase.Util.FILE_PATH.SELECT_DIALOG_PREFAB);
-
-            var script = this._languageSelectDialogNode.GetComponent<UnityBase.Scene.Ui.Dialog.SelectDialogNodeScript>();
+        {// LanguageSelectDialog Add
             var script_create_desc = new UnityBase.Scene.Ui.Dialog.SelectDialogNodeScriptCreateDesc();
 
             void on_click_item(UnityBase.Scene.Ui.Dialog.SelectDialogNodeScript owner, UnityBase.Scene.Ui.Dialog.SelectDialogItemNodeScript item_node_script)
@@ -237,15 +225,11 @@ public class OptionStageNodeScript : UnityBase.Scene.Ui.Menu.Main.StageNodeScrip
             script_create_desc.engine = new UnityBase.Scene.Ui.Dialog.LanguageSelectDialogEngine();
             script_create_desc.onClickItem = on_click_item;
 
-            script.Create(script_create_desc);
+            var script = UnityBase.Global.GetSubSceneNodeScript().GetDialogSystemNodeScript().AddDialog(script_create_desc) as UnityBase.Scene.Ui.Dialog.SelectDialogNodeScript;
 
-            this._languageSelectDialogNodeScript = script;
-
-            this._languageSelectDialogNodeScript.AddItem(new UnityBase.Scene.Ui.Dialog.LanguageSelectDialogItemEngine(UnityBase.Util.LANGUAGE_TYPE.ENGLISH));
-            this._languageSelectDialogNodeScript.AddItem(new UnityBase.Scene.Ui.Dialog.LanguageSelectDialogItemEngine(UnityBase.Util.LANGUAGE_TYPE.JAPANESE));
+            script.AddItem(new UnityBase.Scene.Ui.Dialog.LanguageSelectDialogItemEngine(UnityBase.Util.LANGUAGE_TYPE.ENGLISH));
+            script.AddItem(new UnityBase.Scene.Ui.Dialog.LanguageSelectDialogItemEngine(UnityBase.Util.LANGUAGE_TYPE.JAPANESE));
         }
-
-        UnityBase.Global.GetSubSceneNodeScript().GetDialogSystemNodeScript().AddDialog(this._languageSelectDialogNodeScript);
 
         return;
     }

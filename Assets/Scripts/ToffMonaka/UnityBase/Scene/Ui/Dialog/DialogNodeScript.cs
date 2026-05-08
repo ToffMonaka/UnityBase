@@ -15,6 +15,24 @@ namespace UnityBase.Scene.Ui.Dialog {
  */
 public class DialogNodeScriptCreateDesc : Lib.Scene.ObjectNodeScriptCreateDesc
 {
+    /**
+     * @brief GetPrefabFilePath関数
+     * @return prefab_file_path (prefab_file_path)
+     */
+    public virtual string GetPrefabFilePath()
+    {
+        return (System.String.Empty);
+    }
+
+    /**
+     * @brief GetNewScript関数
+     * @param prefab_file_path (prefab_file_path)
+     * @return script (script)
+     */
+    public virtual UnityBase.Scene.Ui.Dialog.DialogNodeScript GetNewScript(string prefab_file_path)
+    {
+        return (null);
+    }
 }
 
 /**

@@ -20,6 +20,27 @@ public class SelectDialogNodeScriptCreateDesc : UnityBase.Scene.Ui.Dialog.Dialog
 {
     public UnityBase.Scene.Ui.Dialog.SelectDialogEngine engine = null;
     public System.Action<UnityBase.Scene.Ui.Dialog.SelectDialogNodeScript, UnityBase.Scene.Ui.Dialog.SelectDialogItemNodeScript> onClickItem = null;
+
+    /**
+     * @brief GetPrefabFilePath関数
+     * @return prefab_file_path (prefab_file_path)
+     */
+    public override string GetPrefabFilePath()
+    {
+        return (UnityBase.Util.FILE_PATH.SELECT_DIALOG_PREFAB);
+    }
+
+    /**
+     * @brief GetNewScript関数
+     * @param prefab_file_path (prefab_file_path)
+     * @return script (script)
+     */
+    public override UnityBase.Scene.Ui.Dialog.DialogNodeScript GetNewScript(string prefab_file_path)
+    {
+        var node = Lib.Scene.Util.GetPrefabNode(prefab_file_path);
+
+        return (node.GetComponent<UnityBase.Scene.Ui.Dialog.SelectDialogNodeScript>());
+    }
 }
 
 /**
