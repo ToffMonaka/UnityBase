@@ -25,7 +25,6 @@ public abstract class SubSceneNodeScript : Lib.Scene.SubSceneNodeScript
     [SerializeField] private GameObject _mainMenuNode = null;
     [SerializeField] private GameObject _dialogSystemNode = null;
     [SerializeField] private GameObject _coverSystemNode = null;
-    [SerializeField] protected Image _openCloseCoverImage = null;
 
     public new UnityBase.Scene.SubSceneNodeScriptCreateDesc createDesc{get; private set;} = null;
 
@@ -149,6 +148,10 @@ public abstract class SubSceneNodeScript : Lib.Scene.SubSceneNodeScript
      */
     protected override void _OnOpen()
     {
+        if (this._coverSystemNodeScript != null) {
+            this._coverSystemNodeScript.CloseCover();
+        }
+
         return;
     }
 
@@ -159,8 +162,8 @@ public abstract class SubSceneNodeScript : Lib.Scene.SubSceneNodeScript
     {
         UnityBase.Global.GetSceneManager().EnableInputEventSystem();
 
-        if (this._openCloseCoverImage != null) {
-            this._openCloseCoverImage.gameObject.SetActive(false);
+        if (this._coverSystemNodeScript != null) {
+            this._coverSystemNodeScript.CloseCover();
         }
 
         return;
@@ -173,6 +176,10 @@ public abstract class SubSceneNodeScript : Lib.Scene.SubSceneNodeScript
     {
         UnityBase.Global.GetSceneManager().DisableInputEventSystem();
 
+        if (this._coverSystemNodeScript != null) {
+            this._coverSystemNodeScript.CloseCover();
+        }
+
         return;
     }
 
@@ -181,6 +188,10 @@ public abstract class SubSceneNodeScript : Lib.Scene.SubSceneNodeScript
      */
     protected override void _OnClosed()
     {
+        if (this._coverSystemNodeScript != null) {
+            this._coverSystemNodeScript.CloseCover();
+        }
+
         return;
     }
 

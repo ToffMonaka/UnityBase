@@ -43,6 +43,7 @@ public static class Util
         public static readonly string TEST_3D_STAGE_SUB_SCENE_PREFAB = "Assets/Resources2/prefab/Test3DStageSubScene.prefab";
         public static readonly string SELECT_DIALOG_PREFAB = "Assets/Resources2/prefab/SelectDialog.prefab";
         public static readonly string INPUT_DIALOG_PREFAB = "Assets/Resources2/prefab/InputDialog.prefab";
+        public static readonly string DEFAULT_COVER_PREFAB = "Assets/Resources2/prefab/DefaultCover.prefab";
     }
 
     public static class INPUT

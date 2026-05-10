@@ -52,17 +52,17 @@ public static class Util
             return (null);
         }
 
-        var node = Addressables.InstantiateAsync(prefab_file_path).WaitForCompletion();
+        var prefab_node = Addressables.InstantiateAsync(prefab_file_path).WaitForCompletion();
 
-        if (node == null) {
+        if (prefab_node == null) {
             return (null);
         }
 
         if (parent_node != null) {
-            node.transform.SetParent(parent_node.transform, pos_keep_flg);
+            prefab_node.transform.SetParent(parent_node.transform, pos_keep_flg);
         }
 
-        return (node);
+        return (prefab_node);
     }
 
     /**

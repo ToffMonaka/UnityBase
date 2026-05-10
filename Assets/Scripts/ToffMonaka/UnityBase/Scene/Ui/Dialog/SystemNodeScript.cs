@@ -142,30 +142,30 @@ public class SystemNodeScript : Lib.Scene.ObjectNodeScript
 
     /**
      * @brief AddDialog関数
-     * @param script_create_desc (script_create_desc)
-     * @return script<br>
+     * @param dialog_node_script_create_desc (dialog_node_script_create_desc)
+     * @return dialog_node_script<br>
      * null=失敗
      */
-    public UnityBase.Scene.Ui.Dialog.DialogNodeScript AddDialog(UnityBase.Scene.Ui.Dialog.DialogNodeScriptCreateDesc script_create_desc)
+    public UnityBase.Scene.Ui.Dialog.DialogNodeScript AddDialog(UnityBase.Scene.Ui.Dialog.DialogNodeScriptCreateDesc dialog_node_script_create_desc)
     {
-        if (script_create_desc == null) {
+        if (dialog_node_script_create_desc == null) {
             return (null);
         }
 
-        var script = script_create_desc.GetNewScript(script_create_desc.GetPrefabFilePath());
+        var dialog_node_script = dialog_node_script_create_desc.GetNewScript(dialog_node_script_create_desc.GetPrefabFilePath());
 
-        if (script == null) {
+        if (dialog_node_script == null) {
             return (null);
         }
 
-        script.gameObject.transform.SetParent(this.gameObject.transform, false);
+        dialog_node_script.gameObject.transform.SetParent(this.gameObject.transform, false);
 
-        script.Create(script_create_desc);
-        script.Open(1);
+        dialog_node_script.Create(dialog_node_script_create_desc);
+        dialog_node_script.Open(1);
 
-        this._dialogNodeScriptContainer.Add(script);
+        this._dialogNodeScriptContainer.Add(dialog_node_script);
 
-        return (script);
+        return (dialog_node_script);
     }
 
     /**
@@ -173,8 +173,8 @@ public class SystemNodeScript : Lib.Scene.ObjectNodeScript
      */
     private void _RemoveDialog()
     {
-        foreach (var script in this._dialogNodeScriptContainer) {
-            var node = script.gameObject;
+        foreach (var dialog_node_script in this._dialogNodeScriptContainer) {
+            var node = dialog_node_script.gameObject;
 
             Lib.Scene.Util.ReleasePrefabNode(ref node);
         }
@@ -189,20 +189,32 @@ public class SystemNodeScript : Lib.Scene.ObjectNodeScript
      */
     private void _UpdateDialog()
     {
-        for (int script_i = this._dialogNodeScriptContainer.Count - 1; script_i >= 0; --script_i) {
-            var script = this._dialogNodeScriptContainer[script_i];
+        for (int dialog_node_script_i = this._dialogNodeScriptContainer.Count - 1; dialog_node_script_i >= 0; --dialog_node_script_i) {
+            var dialog_node_script = this._dialogNodeScriptContainer[dialog_node_script_i];
 
-            if (!script.GetClosedFlag()) {
+            if (!dialog_node_script.GetClosedFlag()) {
                 continue;
             }
 
-            var node = script.gameObject;
+            var dialog_node = dialog_node_script.gameObject;
 
-            Lib.Scene.Util.ReleasePrefabNode(ref node);
+            Lib.Scene.Util.ReleasePrefabNode(ref dialog_node);
 
-            this._dialogNodeScriptContainer.RemoveAt(script_i);
+            this._dialogNodeScriptContainer.RemoveAt(dialog_node_script_i);
 
             break;
+        }
+
+        return;
+    }
+
+    /**
+     * @brief CloseDialog関数
+     */
+    public void CloseDialog()
+    {
+        foreach (var dialog_node_script in this._dialogNodeScriptContainer) {
+            dialog_node_script.Close(0);
         }
 
         return;

@@ -150,22 +150,25 @@ public class InitSubSceneNodeScript : UnityBase.Scene.SubSceneNodeScript
 
 		switch (this.GetOpenType()) {
 		case 1: {
-            this._openCloseCoverImage.gameObject.SetActive(true);
-            this._openCloseCoverImage.color = new Color32(8, 8, 8, 255);
+            {// DefaultCover Add
+                var script_create_desc = new UnityBase.Scene.Ui.Cover.DefaultCoverNodeScriptCreateDesc();
 
-            var open_close_sequence = DOTween.Sequence();
+                script_create_desc.color = new Color32(8, 8, 8, 255);
+                script_create_desc.playTime = 0.2f;
+                script_create_desc.waitTime = 0.05f;
+                script_create_desc.reverseFlag = false;
 
-            open_close_sequence.AppendInterval(0.05f);
-            open_close_sequence.Append(this._openCloseCoverImage.DOFade(0.0f, 0.2f));
-            open_close_sequence.SetLink(this.gameObject);
+                this.GetCoverSystemNodeScript().AddCover(script_create_desc);
+            }
 
-            this.AddOpenCloseSequence(open_close_sequence);
+            this.AddOpenCloseChecker((Lib.Scene.NodeScript owner) =>
+            {
+                return (this.GetCoverSystemNodeScript().IsPlay());
+            });
 
 			break;
 		}
 		default: {
-            this._openCloseCoverImage.gameObject.SetActive(false);
-
 			break;
 		}
 		}
@@ -192,22 +195,25 @@ public class InitSubSceneNodeScript : UnityBase.Scene.SubSceneNodeScript
 
 		switch (this.GetCloseType()) {
 		case 1: {
-            this._openCloseCoverImage.gameObject.SetActive(true);
-            this._openCloseCoverImage.color = new Color32(8, 8, 8, 0);
+            {// DefaultCover Add
+                var script_create_desc = new UnityBase.Scene.Ui.Cover.DefaultCoverNodeScriptCreateDesc();
 
-            var open_close_sequence = DOTween.Sequence();
+                script_create_desc.color = new Color32(8, 8, 8, 255);
+                script_create_desc.playTime = 0.2f;
+                script_create_desc.waitTime = 0.05f;
+                script_create_desc.reverseFlag = true;
 
-            open_close_sequence.Append(this._openCloseCoverImage.DOFade(1.0f, 0.2f));
-            open_close_sequence.AppendInterval(0.05f);
-            open_close_sequence.SetLink(this.gameObject);
+                this.GetCoverSystemNodeScript().AddCover(script_create_desc);
+            }
 
-            this.AddOpenCloseSequence(open_close_sequence);
+            this.AddOpenCloseChecker((Lib.Scene.NodeScript owner) =>
+            {
+                return (this.GetCoverSystemNodeScript().IsPlay());
+            });
 
 			break;
 		}
 		default: {
-            this._openCloseCoverImage.gameObject.SetActive(false);
-
 			break;
 		}
 		}

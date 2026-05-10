@@ -14,6 +14,24 @@ namespace UnityBase.Scene.Ui.Cover {
  */
 public class CoverNodeScriptCreateDesc : Lib.Scene.ObjectNodeScriptCreateDesc
 {
+    /**
+     * @brief GetPrefabFilePath関数
+     * @return prefab_file_path (prefab_file_path)
+     */
+    public virtual string GetPrefabFilePath()
+    {
+        return (System.String.Empty);
+    }
+
+    /**
+     * @brief GetNewScript関数
+     * @param prefab_file_path (prefab_file_path)
+     * @return script (script)
+     */
+    public virtual UnityBase.Scene.Ui.Cover.CoverNodeScript GetNewScript(string prefab_file_path)
+    {
+        return (null);
+    }
 }
 
 /**
@@ -131,6 +149,16 @@ public abstract class CoverNodeScript : Lib.Scene.ObjectNodeScript
     protected override void _OnClosed()
     {
         return;
+    }
+
+    /**
+     * @brief IsPlay関数
+     * @return play_flg (play_flag)<br>
+     * false=非プレイ,true=プレイ
+     */
+    public virtual bool IsPlay()
+    {
+        return (false);
     }
 }
 }
