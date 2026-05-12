@@ -8,7 +8,7 @@ using UnityEngine;
 
 
 namespace ToffMonaka {
-namespace UnityBase.Scene.Ui.Menu.Main {
+namespace UnityBase.Scene.Ui.Menu.Side {
 /**
  * @brief FaqMessageUtilクラス
  */

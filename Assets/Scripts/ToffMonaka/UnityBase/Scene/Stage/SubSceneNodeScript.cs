@@ -85,7 +85,17 @@ public abstract class SubSceneNodeScript : UnityBase.Scene.SubSceneNodeScript
             var script_create_desc = new UnityBase.Scene.Ui.BackButtonNodeScriptCreateDesc();
 
             script_create_desc.onClick = (UnityBase.Scene.Ui.BackButtonNodeScript owner) => {
-                this.Close(1, 1);
+                this.Close(1, (owner) => {
+                    {// SelectSubSceneNodeScript Create
+                        var script = UnityBase.Global.GetSceneManager().ChangeSubScene(UnityBase.Util.FILE_PATH.SELECT_SUB_SCENE_PREFAB) as UnityBase.Scene.Select.SubSceneNodeScript;
+                        var script_create_desc = new UnityBase.Scene.Select.SubSceneNodeScriptCreateDesc();
+
+                        script.Create(script_create_desc);
+                        script.Open(1);
+                    }
+
+                    return;
+                });
 
                 return;
             };

@@ -153,7 +153,7 @@ public class SubSceneNodeScript : UnityBase.Scene.Stage.SubSceneNodeScript
                 this.GetCoverSystemNodeScript().AddCover(script_create_desc);
             }
 
-            this.AddOpenCloseChecker((Lib.Scene.NodeScript owner) =>
+            this.AddOpenCloseChecker((owner) =>
             {
                 return (this.GetCoverSystemNodeScript().IsPlay());
             });
@@ -198,7 +198,7 @@ public class SubSceneNodeScript : UnityBase.Scene.Stage.SubSceneNodeScript
                 this.GetCoverSystemNodeScript().AddCover(script_create_desc);
             }
 
-            this.AddOpenCloseChecker((Lib.Scene.NodeScript owner) =>
+            this.AddOpenCloseChecker((owner) =>
             {
                 return (this.GetCoverSystemNodeScript().IsPlay());
             });
@@ -219,20 +219,6 @@ public class SubSceneNodeScript : UnityBase.Scene.Stage.SubSceneNodeScript
     protected override void _OnClosed()
     {
         base._OnClosed();
-
-		switch (this.GetClosedType()) {
-        case 1: {
-            {// SelectSubSceneNodeScript Create
-                var script = UnityBase.Global.GetSceneManager().ChangeSubScene(UnityBase.Util.FILE_PATH.SELECT_SUB_SCENE_PREFAB) as UnityBase.Scene.Select.SubSceneNodeScript;
-                var script_create_desc = new UnityBase.Scene.Select.SubSceneNodeScriptCreateDesc();
-
-                script.Create(script_create_desc);
-                script.Open(1);
-            }
-
-			break;
-		}
-		}
 
         return;
     }

@@ -161,7 +161,7 @@ public class InitSubSceneNodeScript : UnityBase.Scene.SubSceneNodeScript
                 this.GetCoverSystemNodeScript().AddCover(script_create_desc);
             }
 
-            this.AddOpenCloseChecker((Lib.Scene.NodeScript owner) =>
+            this.AddOpenCloseChecker((owner) =>
             {
                 return (this.GetCoverSystemNodeScript().IsPlay());
             });
@@ -206,7 +206,7 @@ public class InitSubSceneNodeScript : UnityBase.Scene.SubSceneNodeScript
                 this.GetCoverSystemNodeScript().AddCover(script_create_desc);
             }
 
-            this.AddOpenCloseChecker((Lib.Scene.NodeScript owner) =>
+            this.AddOpenCloseChecker((owner) =>
             {
                 return (this.GetCoverSystemNodeScript().IsPlay());
             });
@@ -227,20 +227,6 @@ public class InitSubSceneNodeScript : UnityBase.Scene.SubSceneNodeScript
     protected override void _OnClosed()
     {
         base._OnClosed();
-
-		switch (this.GetClosedType()) {
-        case 1: {
-            {// TitleSubSceneNodeScript Create
-                var script = UnityBase.Global.GetSceneManager().ChangeSubScene(UnityBase.Util.FILE_PATH.TITLE_SUB_SCENE_PREFAB) as UnityBase.Scene.TitleSubSceneNodeScript;
-                var script_create_desc = new UnityBase.Scene.TitleSubSceneNodeScriptCreateDesc();
-
-                script.Create(script_create_desc);
-                script.Open(1);
-            }
-
-			break;
-		}
-		}
 
         return;
     }
@@ -321,7 +307,17 @@ public class InitSubSceneNodeScript : UnityBase.Scene.SubSceneNodeScript
 		}
 		case 3: {
             if (this._updateProgressElapsedTime >= 3.0f) {
-                this.Close(1, 1);
+                this.Close(1, (owner) => {
+                    {// TitleSubSceneNodeScript Create
+                        var script = UnityBase.Global.GetSceneManager().ChangeSubScene(UnityBase.Util.FILE_PATH.TITLE_SUB_SCENE_PREFAB) as UnityBase.Scene.TitleSubSceneNodeScript;
+                        var script_create_desc = new UnityBase.Scene.TitleSubSceneNodeScriptCreateDesc();
+
+                        script.Create(script_create_desc);
+                        script.Open(1);
+                    }
+
+                    return;
+                });
 
                 this.SetUpdateProgressType(4);
             }

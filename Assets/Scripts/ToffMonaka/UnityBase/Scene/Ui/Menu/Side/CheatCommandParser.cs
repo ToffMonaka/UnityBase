@@ -9,7 +9,7 @@ using UnityEngine;
 
 
 namespace ToffMonaka {
-namespace UnityBase.Scene.Ui.Menu.Main {
+namespace UnityBase.Scene.Ui.Menu.Side {
 /**
  * @brief CheatCommandParserUtilクラス
  */
@@ -24,12 +24,12 @@ public static class CheatCommandParserUtil
         FUNCTION,
 		COUNT
     }
-    public static readonly int NODE_TYPE_COUNT = (int)UnityBase.Scene.Ui.Menu.Main.CheatCommandParserUtil.NODE_TYPE.COUNT;
+    public static readonly int NODE_TYPE_COUNT = (int)UnityBase.Scene.Ui.Menu.Side.CheatCommandParserUtil.NODE_TYPE.COUNT;
 
-    public static readonly UnityBase.Scene.Ui.Menu.Main.CheatCommandParserOperator[] UNARY_OPERATOR_ARRAY = {
-        new UnityBase.Scene.Ui.Menu.Main.CheatCommandParserOperator("+", 0),
-        new UnityBase.Scene.Ui.Menu.Main.CheatCommandParserOperator("-", 0),
-        new UnityBase.Scene.Ui.Menu.Main.CheatCommandParserOperator("~", 0)
+    public static readonly UnityBase.Scene.Ui.Menu.Side.CheatCommandParserOperator[] UNARY_OPERATOR_ARRAY = {
+        new UnityBase.Scene.Ui.Menu.Side.CheatCommandParserOperator("+", 0),
+        new UnityBase.Scene.Ui.Menu.Side.CheatCommandParserOperator("-", 0),
+        new UnityBase.Scene.Ui.Menu.Side.CheatCommandParserOperator("~", 0)
     };
 
     public static readonly int UNARY_OPERATOR_MAX_LENGTH = 1;
@@ -91,19 +91,19 @@ public class CheatCommandParserOperator
  */
 public class CheatCommandParserNode
 {
-    private UnityBase.Scene.Ui.Menu.Main.CheatCommandParserUtil.NODE_TYPE _nodeType;
+    private UnityBase.Scene.Ui.Menu.Side.CheatCommandParserUtil.NODE_TYPE _nodeType;
     private string _text;
-    private List<UnityBase.Scene.Ui.Menu.Main.CheatCommandParserNode> _argumentNodeContainer;
-    private UnityBase.Scene.Ui.Menu.Main.CheatCommandParserOperator _operator_;
-    private UnityBase.Scene.Ui.Menu.Main.CheatCommandParserNode _leftNode;
-    private UnityBase.Scene.Ui.Menu.Main.CheatCommandParserNode _rightNode;
+    private List<UnityBase.Scene.Ui.Menu.Side.CheatCommandParserNode> _argumentNodeContainer;
+    private UnityBase.Scene.Ui.Menu.Side.CheatCommandParserOperator _operator_;
+    private UnityBase.Scene.Ui.Menu.Side.CheatCommandParserNode _leftNode;
+    private UnityBase.Scene.Ui.Menu.Side.CheatCommandParserNode _rightNode;
 
     /**
      * @brief コンストラクタ
      */
     public CheatCommandParserNode()
     {
-        this._nodeType = UnityBase.Scene.Ui.Menu.Main.CheatCommandParserUtil.NODE_TYPE.NONE;
+        this._nodeType = UnityBase.Scene.Ui.Menu.Side.CheatCommandParserUtil.NODE_TYPE.NONE;
         this._text = "";
         this._argumentNodeContainer = null;
         this._operator_ = null;
@@ -117,7 +117,7 @@ public class CheatCommandParserNode
      * @brief コンストラクタ
      * @param node_type (node_type)
      */
-    public CheatCommandParserNode(UnityBase.Scene.Ui.Menu.Main.CheatCommandParserUtil.NODE_TYPE node_type)
+    public CheatCommandParserNode(UnityBase.Scene.Ui.Menu.Side.CheatCommandParserUtil.NODE_TYPE node_type)
     {
         this._nodeType = node_type;
         this._text = "";
@@ -134,7 +134,7 @@ public class CheatCommandParserNode
      * @param node_type (node_type)
      * @param txt (text)
      */
-    public CheatCommandParserNode(UnityBase.Scene.Ui.Menu.Main.CheatCommandParserUtil.NODE_TYPE node_type, string txt)
+    public CheatCommandParserNode(UnityBase.Scene.Ui.Menu.Side.CheatCommandParserUtil.NODE_TYPE node_type, string txt)
     {
         this._nodeType = node_type;
         this._text = txt;
@@ -152,7 +152,7 @@ public class CheatCommandParserNode
      * @param txt (text)
      * @param arg_node_cont (argument_node_container)
      */
-    public CheatCommandParserNode(UnityBase.Scene.Ui.Menu.Main.CheatCommandParserUtil.NODE_TYPE node_type, string txt, List<UnityBase.Scene.Ui.Menu.Main.CheatCommandParserNode> arg_node_cont)
+    public CheatCommandParserNode(UnityBase.Scene.Ui.Menu.Side.CheatCommandParserUtil.NODE_TYPE node_type, string txt, List<UnityBase.Scene.Ui.Menu.Side.CheatCommandParserNode> arg_node_cont)
     {
         this._nodeType = node_type;
         this._text = txt;
@@ -172,7 +172,7 @@ public class CheatCommandParserNode
      * @param left_node (left_node)
      * @param right_node (right_node)
      */
-    public CheatCommandParserNode(UnityBase.Scene.Ui.Menu.Main.CheatCommandParserUtil.NODE_TYPE node_type, string txt, UnityBase.Scene.Ui.Menu.Main.CheatCommandParserOperator op, UnityBase.Scene.Ui.Menu.Main.CheatCommandParserNode left_node, UnityBase.Scene.Ui.Menu.Main.CheatCommandParserNode right_node)
+    public CheatCommandParserNode(UnityBase.Scene.Ui.Menu.Side.CheatCommandParserUtil.NODE_TYPE node_type, string txt, UnityBase.Scene.Ui.Menu.Side.CheatCommandParserOperator op, UnityBase.Scene.Ui.Menu.Side.CheatCommandParserNode left_node, UnityBase.Scene.Ui.Menu.Side.CheatCommandParserNode right_node)
     {
         this._nodeType = node_type;
         this._text = txt;
@@ -188,7 +188,7 @@ public class CheatCommandParserNode
      * @brief GetNodeType関数
      * @return node_type (node_type)
      */
-    public UnityBase.Scene.Ui.Menu.Main.CheatCommandParserUtil.NODE_TYPE GetNodeType()
+    public UnityBase.Scene.Ui.Menu.Side.CheatCommandParserUtil.NODE_TYPE GetNodeType()
     {
         return (this._nodeType);
     }
@@ -206,7 +206,7 @@ public class CheatCommandParserNode
      * @brief GetArgumentNodeContainer関数
      * @return arg_node_cont (argument_node_container)
      */
-    public List<UnityBase.Scene.Ui.Menu.Main.CheatCommandParserNode> GetArgumentNodeContainer()
+    public List<UnityBase.Scene.Ui.Menu.Side.CheatCommandParserNode> GetArgumentNodeContainer()
     {
         return (this._argumentNodeContainer);
     }
@@ -215,7 +215,7 @@ public class CheatCommandParserNode
      * @brief GetOperator関数
      * @return op (operator)
      */
-    public UnityBase.Scene.Ui.Menu.Main.CheatCommandParserOperator GetOperator()
+    public UnityBase.Scene.Ui.Menu.Side.CheatCommandParserOperator GetOperator()
     {
         return (this._operator_);
     }
@@ -224,7 +224,7 @@ public class CheatCommandParserNode
      * @brief GetLeftNode関数
      * @return left_node (left_node)
      */
-    public UnityBase.Scene.Ui.Menu.Main.CheatCommandParserNode GetLeftNode()
+    public UnityBase.Scene.Ui.Menu.Side.CheatCommandParserNode GetLeftNode()
     {
         return (this._leftNode);
     }
@@ -233,7 +233,7 @@ public class CheatCommandParserNode
      * @brief GetRightNode関数
      * @return right_node (right_node)
      */
-    public UnityBase.Scene.Ui.Menu.Main.CheatCommandParserNode GetRightNode()
+    public UnityBase.Scene.Ui.Menu.Side.CheatCommandParserNode GetRightNode()
     {
         return (this._rightNode);
     }
@@ -246,7 +246,7 @@ public class CheatCommandParser
 {
     private string _code;
     private int _codeIndex;
-    private List<UnityBase.Scene.Ui.Menu.Main.CheatCommandParserNode> _nodeContainer;
+    private List<UnityBase.Scene.Ui.Menu.Side.CheatCommandParserNode> _nodeContainer;
 
     /**
      * @brief コンストラクタ
@@ -255,7 +255,7 @@ public class CheatCommandParser
     {
         this._code = "";
         this._codeIndex = 0;
-        this._nodeContainer = new List<UnityBase.Scene.Ui.Menu.Main.CheatCommandParserNode>();
+        this._nodeContainer = new List<UnityBase.Scene.Ui.Menu.Side.CheatCommandParserNode>();
 
         this._Parse();
 
@@ -270,7 +270,7 @@ public class CheatCommandParser
     {
         this._code = code;
         this._codeIndex = 0;
-        this._nodeContainer = new List<UnityBase.Scene.Ui.Menu.Main.CheatCommandParserNode>();
+        this._nodeContainer = new List<UnityBase.Scene.Ui.Menu.Side.CheatCommandParserNode>();
 
         this._Parse();
 
@@ -281,7 +281,7 @@ public class CheatCommandParser
      * @brief GetNodeContainer関数
      * @return node_cont (node_container)
      */
-    public List<UnityBase.Scene.Ui.Menu.Main.CheatCommandParserNode> GetNodeContainer()
+    public List<UnityBase.Scene.Ui.Menu.Side.CheatCommandParserNode> GetNodeContainer()
     {
         return (this._nodeContainer);
     }
@@ -303,7 +303,7 @@ public class CheatCommandParser
             if (parse_result.Item2 != null) {
                 this._nodeContainer.Add(parse_result.Item2);
             } else {
-                this._nodeContainer.Add(new UnityBase.Scene.Ui.Menu.Main.CheatCommandParserNode(UnityBase.Scene.Ui.Menu.Main.CheatCommandParserUtil.NODE_TYPE.EMPTY));
+                this._nodeContainer.Add(new UnityBase.Scene.Ui.Menu.Side.CheatCommandParserNode(UnityBase.Scene.Ui.Menu.Side.CheatCommandParserUtil.NODE_TYPE.EMPTY));
             }
 
             this._ParseTrim();
@@ -328,12 +328,12 @@ public class CheatCommandParser
      * @brief _ParseNode関数
      * @return result (result)
      */
-    private System.Tuple<int, UnityBase.Scene.Ui.Menu.Main.CheatCommandParserNode> _ParseNode()
+    private System.Tuple<int, UnityBase.Scene.Ui.Menu.Side.CheatCommandParserNode> _ParseNode()
     {
         var parse_result = this._ParseUnaryNode();
 
         if (parse_result.Item1 < 0) {
-            return (new System.Tuple<int, UnityBase.Scene.Ui.Menu.Main.CheatCommandParserNode>(-1, null));
+            return (new System.Tuple<int, UnityBase.Scene.Ui.Menu.Side.CheatCommandParserNode>(-1, null));
         }
 
         return (parse_result);
@@ -343,7 +343,7 @@ public class CheatCommandParser
      * @brief _ParseUnaryNode関数
      * @return result (result)
      */
-    private System.Tuple<int, UnityBase.Scene.Ui.Menu.Main.CheatCommandParserNode> _ParseUnaryNode()
+    private System.Tuple<int, UnityBase.Scene.Ui.Menu.Side.CheatCommandParserNode> _ParseUnaryNode()
     {
         this._ParseTrim();
 
@@ -394,24 +394,24 @@ public class CheatCommandParser
                 }
 
                 if (node_txt.Length == old_node_txt_len) {
-                    return (new System.Tuple<int, UnityBase.Scene.Ui.Menu.Main.CheatCommandParserNode>(-1, null));
+                    return (new System.Tuple<int, UnityBase.Scene.Ui.Menu.Side.CheatCommandParserNode>(-1, null));
                 }
             }
 
             c = this._GetCharacter(this._codeIndex);
 
             if (this._IsIdentifierStart(c) || (c == '.')) {
-                return (new System.Tuple<int, UnityBase.Scene.Ui.Menu.Main.CheatCommandParserNode>(-1, null));
+                return (new System.Tuple<int, UnityBase.Scene.Ui.Menu.Side.CheatCommandParserNode>(-1, null));
             }
 
-            var node = new UnityBase.Scene.Ui.Menu.Main.CheatCommandParserNode(UnityBase.Scene.Ui.Menu.Main.CheatCommandParserUtil.NODE_TYPE.NUMBER, node_txt);
+            var node = new UnityBase.Scene.Ui.Menu.Side.CheatCommandParserNode(UnityBase.Scene.Ui.Menu.Side.CheatCommandParserUtil.NODE_TYPE.NUMBER, node_txt);
 
-            return (new System.Tuple<int, UnityBase.Scene.Ui.Menu.Main.CheatCommandParserNode>(0, node));
+            return (new System.Tuple<int, UnityBase.Scene.Ui.Menu.Side.CheatCommandParserNode>(0, node));
         } else {
             var op_parse_result = this._ParseUnaryOperator();
 
             if (op_parse_result.Item1 < 0) {
-                return (new System.Tuple<int, UnityBase.Scene.Ui.Menu.Main.CheatCommandParserNode>(-1, null));
+                return (new System.Tuple<int, UnityBase.Scene.Ui.Menu.Side.CheatCommandParserNode>(-1, null));
             }
 
             if (op_parse_result.Item2 != null) {
@@ -419,12 +419,12 @@ public class CheatCommandParser
 
                 if ((right_parse_result.Item1 < 0)
                 || (right_parse_result.Item2 == null)) {
-                    return (new System.Tuple<int, UnityBase.Scene.Ui.Menu.Main.CheatCommandParserNode>(-1, null));
+                    return (new System.Tuple<int, UnityBase.Scene.Ui.Menu.Side.CheatCommandParserNode>(-1, null));
                 }
 
-                var node = new UnityBase.Scene.Ui.Menu.Main.CheatCommandParserNode(UnityBase.Scene.Ui.Menu.Main.CheatCommandParserUtil.NODE_TYPE.UNARY_EXPRESSION, System.String.Empty, op_parse_result.Item2, null, right_parse_result.Item2);
+                var node = new UnityBase.Scene.Ui.Menu.Side.CheatCommandParserNode(UnityBase.Scene.Ui.Menu.Side.CheatCommandParserUtil.NODE_TYPE.UNARY_EXPRESSION, System.String.Empty, op_parse_result.Item2, null, right_parse_result.Item2);
 
-                return (new System.Tuple<int, UnityBase.Scene.Ui.Menu.Main.CheatCommandParserNode>(0, node));
+                return (new System.Tuple<int, UnityBase.Scene.Ui.Menu.Side.CheatCommandParserNode>(0, node));
             }
 
             if (this._IsIdentifierStart(c)) {
@@ -449,7 +449,7 @@ public class CheatCommandParser
                 c = this._GetCharacter(this._codeIndex);
 
                 if (c == '(') {
-                    var arg_node_cont = new List<UnityBase.Scene.Ui.Menu.Main.CheatCommandParserNode>();
+                    var arg_node_cont = new List<UnityBase.Scene.Ui.Menu.Side.CheatCommandParserNode>();
                     bool arg_close_flg = false;
 
                     ++this._codeIndex;
@@ -472,7 +472,7 @@ public class CheatCommandParser
 
                             if ((parse_result.Item1 < 0)
                             || (parse_result.Item2 == null)) {
-                                return (new System.Tuple<int, UnityBase.Scene.Ui.Menu.Main.CheatCommandParserNode>(-1, null));
+                                return (new System.Tuple<int, UnityBase.Scene.Ui.Menu.Side.CheatCommandParserNode>(-1, null));
                             }
 
                             arg_node_cont.Add(parse_result.Item2);
@@ -480,14 +480,14 @@ public class CheatCommandParser
                     }
 
                     if (!arg_close_flg) {
-                        return (new System.Tuple<int, UnityBase.Scene.Ui.Menu.Main.CheatCommandParserNode>(-1, null));
+                        return (new System.Tuple<int, UnityBase.Scene.Ui.Menu.Side.CheatCommandParserNode>(-1, null));
                     }
 
-                    var node = new UnityBase.Scene.Ui.Menu.Main.CheatCommandParserNode(UnityBase.Scene.Ui.Menu.Main.CheatCommandParserUtil.NODE_TYPE.FUNCTION, identifier, arg_node_cont);
+                    var node = new UnityBase.Scene.Ui.Menu.Side.CheatCommandParserNode(UnityBase.Scene.Ui.Menu.Side.CheatCommandParserUtil.NODE_TYPE.FUNCTION, identifier, arg_node_cont);
 
-                    return (new System.Tuple<int, UnityBase.Scene.Ui.Menu.Main.CheatCommandParserNode>(0, node));
+                    return (new System.Tuple<int, UnityBase.Scene.Ui.Menu.Side.CheatCommandParserNode>(0, node));
                 } else {
-                    return (new System.Tuple<int, UnityBase.Scene.Ui.Menu.Main.CheatCommandParserNode>(-1, null));
+                    return (new System.Tuple<int, UnityBase.Scene.Ui.Menu.Side.CheatCommandParserNode>(-1, null));
                 }
             } else if (c == '(') {
                 ++this._codeIndex;
@@ -495,7 +495,7 @@ public class CheatCommandParser
                 var parse_result = this._ParseNode();
 
                 if (parse_result.Item1 < 0) {
-                    return (new System.Tuple<int, UnityBase.Scene.Ui.Menu.Main.CheatCommandParserNode>(-1, null));
+                    return (new System.Tuple<int, UnityBase.Scene.Ui.Menu.Side.CheatCommandParserNode>(-1, null));
                 }
 
                 this._ParseTrim();
@@ -507,37 +507,37 @@ public class CheatCommandParser
 
                     return (parse_result);
                 } else {
-                    return (new System.Tuple<int, UnityBase.Scene.Ui.Menu.Main.CheatCommandParserNode>(-1, null));
+                    return (new System.Tuple<int, UnityBase.Scene.Ui.Menu.Side.CheatCommandParserNode>(-1, null));
                 }
             }
         }
 
-        return (new System.Tuple<int, UnityBase.Scene.Ui.Menu.Main.CheatCommandParserNode>(0, null));
+        return (new System.Tuple<int, UnityBase.Scene.Ui.Menu.Side.CheatCommandParserNode>(0, null));
     }
 
     /**
      * @brief _ParseUnaryOperator関数
      * @return result (result)
      */
-    private System.Tuple<int, UnityBase.Scene.Ui.Menu.Main.CheatCommandParserOperator> _ParseUnaryOperator()
+    private System.Tuple<int, UnityBase.Scene.Ui.Menu.Side.CheatCommandParserOperator> _ParseUnaryOperator()
     {
         this._ParseTrim();
 
-        var op_name = this._GetString(this._codeIndex, UnityBase.Scene.Ui.Menu.Main.CheatCommandParserUtil.UNARY_OPERATOR_MAX_LENGTH);
+        var op_name = this._GetString(this._codeIndex, UnityBase.Scene.Ui.Menu.Side.CheatCommandParserUtil.UNARY_OPERATOR_MAX_LENGTH);
 
         while (op_name.Length > 0) {
-            foreach (var tmp_op in UnityBase.Scene.Ui.Menu.Main.CheatCommandParserUtil.UNARY_OPERATOR_ARRAY) {
+            foreach (var tmp_op in UnityBase.Scene.Ui.Menu.Side.CheatCommandParserUtil.UNARY_OPERATOR_ARRAY) {
                 if (tmp_op.GetName() == op_name) {
                     this._codeIndex += op_name.Length;
 
-                    return (new System.Tuple<int, UnityBase.Scene.Ui.Menu.Main.CheatCommandParserOperator>(0, tmp_op));
+                    return (new System.Tuple<int, UnityBase.Scene.Ui.Menu.Side.CheatCommandParserOperator>(0, tmp_op));
                 }
             }
 
             op_name = op_name.Substring(0, op_name.Length - 1);
         }
 
-        return (new System.Tuple<int, UnityBase.Scene.Ui.Menu.Main.CheatCommandParserOperator>(0, null));
+        return (new System.Tuple<int, UnityBase.Scene.Ui.Menu.Side.CheatCommandParserOperator>(0, null));
     }
 
     /**

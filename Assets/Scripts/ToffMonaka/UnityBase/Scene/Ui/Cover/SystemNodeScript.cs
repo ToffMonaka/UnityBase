@@ -234,11 +234,13 @@ public class SystemNodeScript : Lib.Scene.ObjectNodeScript
                 continue;
             }
 
-            if (cover_node_script.IsPlay()) {
-                play_flg = true;
-
-                break;
+            if (!cover_node_script.IsPlay()) {
+                continue;
             }
+
+            play_flg = true;
+
+            break;
         }
 
         return (play_flg);

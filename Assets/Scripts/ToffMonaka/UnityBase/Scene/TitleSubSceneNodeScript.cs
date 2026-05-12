@@ -152,7 +152,7 @@ public class TitleSubSceneNodeScript : UnityBase.Scene.SubSceneNodeScript
                 this.GetCoverSystemNodeScript().AddCover(script_create_desc);
             }
 
-            this.AddOpenCloseChecker((Lib.Scene.NodeScript owner) =>
+            this.AddOpenCloseChecker((owner) =>
             {
                 return (this.GetCoverSystemNodeScript().IsPlay());
             });
@@ -197,7 +197,7 @@ public class TitleSubSceneNodeScript : UnityBase.Scene.SubSceneNodeScript
                 this.GetCoverSystemNodeScript().AddCover(script_create_desc);
             }
 
-            this.AddOpenCloseChecker((Lib.Scene.NodeScript owner) =>
+            this.AddOpenCloseChecker((owner) =>
             {
                 return (this.GetCoverSystemNodeScript().IsPlay());
             });
@@ -219,20 +219,6 @@ public class TitleSubSceneNodeScript : UnityBase.Scene.SubSceneNodeScript
     {
         base._OnClosed();
 
-		switch (this.GetClosedType()) {
-        case 1: {
-            {// SelectSubSceneNodeScript Create
-                var script = UnityBase.Global.GetSceneManager().ChangeSubScene(UnityBase.Util.FILE_PATH.SELECT_SUB_SCENE_PREFAB) as UnityBase.Scene.Select.SubSceneNodeScript;
-                var script_create_desc = new UnityBase.Scene.Select.SubSceneNodeScriptCreateDesc();
-
-                script.Create(script_create_desc);
-                script.Open(1);
-            }
-
-			break;
-		}
-		}
-
         return;
     }
 
@@ -248,7 +234,17 @@ public class TitleSubSceneNodeScript : UnityBase.Scene.SubSceneNodeScript
 
         UnityBase.Global.GetSceneManager().PlaySoundSe((int)UnityBase.Util.SOUND.SE_INDEX.OK);
 
-        this.Close(1, 1);
+        this.Close(1, (owner) => {
+            {// SelectSubSceneNodeScript Create
+                var script = UnityBase.Global.GetSceneManager().ChangeSubScene(UnityBase.Util.FILE_PATH.SELECT_SUB_SCENE_PREFAB) as UnityBase.Scene.Select.SubSceneNodeScript;
+                var script_create_desc = new UnityBase.Scene.Select.SubSceneNodeScriptCreateDesc();
+
+                script.Create(script_create_desc);
+                script.Open(1);
+            }
+
+            return;
+        });
 
         return;
     }

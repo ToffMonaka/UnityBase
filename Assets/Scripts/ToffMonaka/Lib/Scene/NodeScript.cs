@@ -26,15 +26,15 @@ public abstract class NodeScript : Lib.Scene.Script
     public new Lib.Scene.NodeScriptCreateDesc createDesc{get; private set;} = null;
 
     private int _openType = 0;
-    private int _openedType = 0;
     private bool _openFlag = false;
     private bool _openedFlag = false;
     private int _closeType = 0;
-    private int _closedType = 0;
     private bool _closeFlag = false;
     private bool _closedFlag = true;
     private List<Sequence> _openCloseSequenceContainer = new List<Sequence>();
     private List<System.Func<Lib.Scene.NodeScript, bool>> _openCloseCheckerContainer = new List<System.Func<Lib.Scene.NodeScript, bool>>();
+    private System.Action<Lib.Scene.NodeScript> _onOpened = null;
+    private System.Action<Lib.Scene.NodeScript> _onClosed = null;
 
     /**
      * @brief _OnGetScriptIndex関数
@@ -188,9 +188,9 @@ public abstract class NodeScript : Lib.Scene.Script
     /**
      * @brief Open関数
      * @param open_type (open_type)
-     * @param opened_type (opened_type)
+     * @param on_opened (on_opened)
      */
-    public void Open(int open_type = 0, int opened_type = 0)
+    public void Open(int open_type = 0, System.Action<Lib.Scene.NodeScript> on_opened = null)
     {
         if (!this.GetCreatedFlag()) {
             return;
@@ -201,11 +201,11 @@ public abstract class NodeScript : Lib.Scene.Script
         }
 
         this._openType = open_type;
-        this._openedType = opened_type;
         this._openFlag = true;
         this._openedFlag = false;
         this._closeFlag = false;
         this._closedFlag = false;
+        this._onOpened = on_opened;
         this.RemoveOpenCloseSequence();
         this.RemoveOpenCloseChecker();
 
@@ -233,6 +233,7 @@ public abstract class NodeScript : Lib.Scene.Script
         this._openedFlag = true;
 
         this._OnOpened();
+        this._onOpened?.Invoke(this);
 
         return;
     }
@@ -256,20 +257,20 @@ public abstract class NodeScript : Lib.Scene.Script
     /**
      * @brief Close関数
      * @param close_type (close_type)
-     * @param closed_type (closed_type)
+     * @param on_closed (on_closed)
      */
-    public void Close(int close_type = 0, int closed_type = 0)
+    public void Close(int close_type = 0, System.Action<Lib.Scene.NodeScript> on_closed = null)
     {
         if (!this.GetCreatedFlag()) {
             return;
         }
 
         this._closeType = close_type;
-        this._closedType = closed_type;
         this._openFlag = false;
         this._openedFlag = false;
         this._closeFlag = true;
         this._closedFlag = false;
+        this._onClosed = on_closed;
         this.RemoveOpenCloseSequence();
         this.RemoveOpenCloseChecker();
 
@@ -297,6 +298,7 @@ public abstract class NodeScript : Lib.Scene.Script
         this._closedFlag = true;
 
         this._OnClosed();
+        this._onClosed?.Invoke(this);
 
         if (this.GetActiveAutoFlag()) {
             this.gameObject.SetActive(false);
@@ -331,15 +333,6 @@ public abstract class NodeScript : Lib.Scene.Script
     }
 
     /**
-     * @brief GetOpenedType関数
-     * @return opened_type (opened_type)
-     */
-    public int GetOpenedType()
-    {
-        return (this._openedType);
-    }
-
-    /**
      * @brief GetOpenFlag関数
      * @return open_flg (open_flag)
      */
@@ -364,15 +357,6 @@ public abstract class NodeScript : Lib.Scene.Script
     public int GetCloseType()
     {
         return (this._closeType);
-    }
-
-    /**
-     * @brief GetClosedType関数
-     * @return closed_type (closed_type)
-     */
-    public int GetClosedType()
-    {
-        return (this._closedType);
     }
 
     /**

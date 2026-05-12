@@ -11,18 +11,18 @@ using TMPro;
 
 
 namespace ToffMonaka {
-namespace UnityBase.Scene.Ui.Menu.Main {
+namespace UnityBase.Scene.Ui.Menu.Side {
 /**
  * @brief EndStageNodeScriptCreateDescクラス
  */
-public class EndStageNodeScriptCreateDesc : UnityBase.Scene.Ui.Menu.Main.StageNodeScriptCreateDesc
+public class EndStageNodeScriptCreateDesc : UnityBase.Scene.Ui.Menu.Side.StageNodeScriptCreateDesc
 {
 }
 
 /**
  * @brief EndStageNodeScriptクラス
  */
-public class EndStageNodeScript : UnityBase.Scene.Ui.Menu.Main.StageNodeScript
+public class EndStageNodeScript : UnityBase.Scene.Ui.Menu.Side.StageNodeScript
 {
     [SerializeField] private ScrollRect _scrollRect = null;
     [SerializeField] private TMP_Text _restartNameText = null;
@@ -32,7 +32,7 @@ public class EndStageNodeScript : UnityBase.Scene.Ui.Menu.Main.StageNodeScript
     [SerializeField] private TMP_Text _okButtonNameText = null;
     [SerializeField] private TMP_Text _cancelButtonNameText = null;
 
-    public new UnityBase.Scene.Ui.Menu.Main.EndStageNodeScriptCreateDesc createDesc{get; private set;} = null;
+    public new UnityBase.Scene.Ui.Menu.Side.EndStageNodeScriptCreateDesc createDesc{get; private set;} = null;
 
     /**
      * @brief _OnGetScriptIndex関数
@@ -40,16 +40,16 @@ public class EndStageNodeScript : UnityBase.Scene.Ui.Menu.Main.StageNodeScript
      */
     protected override int _OnGetScriptIndex()
     {
-        return ((int)UnityBase.Util.SCENE.SCRIPT_INDEX.MENU_END_STAGE_NODE);
+        return ((int)UnityBase.Util.SCENE.SCRIPT_INDEX.SIDE_MENU_END_STAGE_NODE);
     }
 
     /**
      * @brief _OnGetStageType関数
      * @return stage_type (stage_type)
      */
-    protected override UnityBase.Util.SCENE.MENU_STAGE_TYPE _OnGetStageType()
+    protected override UnityBase.Util.SCENE.SIDE_MENU_STAGE_TYPE _OnGetStageType()
     {
-        return (UnityBase.Util.SCENE.MENU_STAGE_TYPE.END);
+        return (UnityBase.Util.SCENE.SIDE_MENU_STAGE_TYPE.END);
     }
 
     /**
@@ -98,12 +98,12 @@ public class EndStageNodeScript : UnityBase.Scene.Ui.Menu.Main.StageNodeScript
     public override void SetCreateDesc(Lib.Scene.ScriptCreateDesc create_desc = null)
     {
         if (create_desc == null) {
-            this.SetCreateDesc(new UnityBase.Scene.Ui.Menu.Main.EndStageNodeScriptCreateDesc());
+            this.SetCreateDesc(new UnityBase.Scene.Ui.Menu.Side.EndStageNodeScriptCreateDesc());
 
             return;
         }
 
-	    this.createDesc = create_desc as UnityBase.Scene.Ui.Menu.Main.EndStageNodeScriptCreateDesc;
+	    this.createDesc = create_desc as UnityBase.Scene.Ui.Menu.Side.EndStageNodeScriptCreateDesc;
 
         base.SetCreateDesc(this.createDesc);
 

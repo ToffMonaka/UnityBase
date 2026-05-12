@@ -1,6 +1,6 @@
 ﻿/**
  * @file
- * @brief SelectItemNodeScriptファイル
+ * @brief CheatStageItemNodeScriptファイル
  */
 
 
@@ -11,27 +11,28 @@ using TMPro;
 
 
 namespace ToffMonaka {
-namespace UnityBase.Scene.Ui.Menu.Main {
+namespace UnityBase.Scene.Ui.Menu.Side {
 /**
- * @brief SelectItemNodeScriptCreateDescクラス
+ * @brief CheatStageItemNodeScriptCreateDescクラス
  */
-public class SelectItemNodeScriptCreateDesc : Lib.Scene.ObjectNodeScriptCreateDesc
+public class CheatStageItemNodeScriptCreateDesc : Lib.Scene.ObjectNodeScriptCreateDesc
 {
-    public UnityBase.Util.SCENE.MENU_STAGE_TYPE stageType = UnityBase.Util.SCENE.MENU_STAGE_TYPE.NONE;
-    public System.Action<UnityBase.Scene.Ui.Menu.Main.SelectItemNodeScript> onClick = null;
+    public UnityBase.Scene.Ui.Menu.Side.CheatCommandUtil.ADD_CODE_TYPE addCodeType = UnityBase.Scene.Ui.Menu.Side.CheatCommandUtil.ADD_CODE_TYPE.NONE;
+    public System.Action<UnityBase.Scene.Ui.Menu.Side.CheatStageItemNodeScript> onClick = null;
 }
 
 /**
- * @brief SelectItemNodeScriptクラス
+ * @brief CheatStageItemNodeScriptクラス
  */
-public class SelectItemNodeScript : Lib.Scene.ObjectNodeScript
+public class CheatStageItemNodeScript : Lib.Scene.ObjectNodeScript
 {
     [SerializeField] private TMP_Text _nameText = null;
+    [SerializeField] private TMP_Text _detailText = null;
 
-    public new UnityBase.Scene.Ui.Menu.Main.SelectItemNodeScriptCreateDesc createDesc{get; private set;} = null;
+    public new UnityBase.Scene.Ui.Menu.Side.CheatStageItemNodeScriptCreateDesc createDesc{get; private set;} = null;
 
-    private UnityBase.Util.SCENE.MENU_STAGE_TYPE _stageType = UnityBase.Util.SCENE.MENU_STAGE_TYPE.NONE;
-    private System.Action<UnityBase.Scene.Ui.Menu.Main.SelectItemNodeScript> _onClick = null;
+    private UnityBase.Scene.Ui.Menu.Side.CheatCommandUtil.ADD_CODE_TYPE _addCodeType = UnityBase.Scene.Ui.Menu.Side.CheatCommandUtil.ADD_CODE_TYPE.NONE;
+    private System.Action<UnityBase.Scene.Ui.Menu.Side.CheatStageItemNodeScript> _onClick = null;
 
     /**
      * @brief _OnGetScriptIndex関数
@@ -39,7 +40,7 @@ public class SelectItemNodeScript : Lib.Scene.ObjectNodeScript
      */
     protected override int _OnGetScriptIndex()
     {
-        return ((int)UnityBase.Util.SCENE.SCRIPT_INDEX.MENU_SELECT_ITEM_NODE);
+        return ((int)UnityBase.Util.SCENE.SCRIPT_INDEX.SIDE_MENU_CHEAT_STAGE_ITEM_NODE);
     }
 
     /**
@@ -65,10 +66,11 @@ public class SelectItemNodeScript : Lib.Scene.ObjectNodeScript
      */
     protected override int _OnCreate()
     {
-        this._stageType = this.createDesc.stageType;
+        this._addCodeType = this.createDesc.addCodeType;
         this._onClick = this.createDesc.onClick;
 
-        this._nameText.SetText(UnityBase.Global.GetText(UnityBase.Util.SCENE.MENU_STAGE_NAME_MST_TEXT_ID_ARRAY[(int)this._stageType]));
+        this._nameText.SetText(UnityBase.Scene.Ui.Menu.Side.CheatCommandUtil.ADD_CODE_NAME_ARRAY[(int)this._addCodeType]);
+        this._detailText.SetText(UnityBase.Scene.Ui.Menu.Side.CheatCommandUtil.ADD_CODE_TEXT_ARRAY[(int)this._addCodeType]);
 
         return (0);
     }
@@ -80,12 +82,12 @@ public class SelectItemNodeScript : Lib.Scene.ObjectNodeScript
     public override void SetCreateDesc(Lib.Scene.ScriptCreateDesc create_desc = null)
     {
         if (create_desc == null) {
-            this.SetCreateDesc(new UnityBase.Scene.Ui.Menu.Main.SelectItemNodeScriptCreateDesc());
+            this.SetCreateDesc(new UnityBase.Scene.Ui.Menu.Side.CheatStageItemNodeScriptCreateDesc());
 
             return;
         }
 
-	    this.createDesc = create_desc as UnityBase.Scene.Ui.Menu.Main.SelectItemNodeScriptCreateDesc;
+	    this.createDesc = create_desc as UnityBase.Scene.Ui.Menu.Side.CheatStageItemNodeScriptCreateDesc;
 
         base.SetCreateDesc(this.createDesc);
 
@@ -166,12 +168,12 @@ public class SelectItemNodeScript : Lib.Scene.ObjectNodeScript
     }
 
     /**
-     * @brief GetStageType関数
-     * @return stage_type (stage_type)
+     * @brief GetAddCodeType関数
+     * @return add_code_type (add_code_type)
      */
-    public UnityBase.Util.SCENE.MENU_STAGE_TYPE GetStageType()
+    public UnityBase.Scene.Ui.Menu.Side.CheatCommandUtil.ADD_CODE_TYPE GetAddCodeType()
     {
-        return (this._stageType);
+        return (this._addCodeType);
     }
 }
 }

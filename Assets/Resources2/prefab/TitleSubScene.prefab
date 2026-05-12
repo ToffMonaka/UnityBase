@@ -1164,7 +1164,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 479e5d1da1e25514f8dd688a12047d49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ToffMonaka.UnityBase.Scene.TitleSubSceneNodeScript
-  _mainMenuNode: {fileID: 2251914612250524295}
+  _sideMenuNode: {fileID: 1905184799815327753}
   _dialogSystemNode: {fileID: 7272213755963861280}
   _coverSystemNode: {fileID: 3461184819905961165}
   _startButtonNameText: {fileID: 6115790907380713227}
@@ -1317,7 +1317,7 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 3330594815608741054}
+  - {fileID: 3100830894594623024}
   - {fileID: 9182026928483204773}
   - {fileID: 2998651364287143484}
   m_Father: {fileID: 6425721195003778462}
@@ -1390,7 +1390,7 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!1001 &1579198817493685086
+--- !u!1001 &1214436871731333584
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -1400,7 +1400,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 768453752194181593, guid: 35b6299e7944f134793ab3fad0776c69, type: 3}
       propertyPath: m_Name
-      value: MainMenu
+      value: SideMenu
       objectReference: {fileID: 0}
     - target: {fileID: 4310743791220838368, guid: 35b6299e7944f134793ab3fad0776c69, type: 3}
       propertyPath: m_Pivot.x
@@ -1482,24 +1482,20 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 9041566714285367433, guid: 35b6299e7944f134793ab3fad0776c69, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 35b6299e7944f134793ab3fad0776c69, type: 3}
---- !u!1 &2251914612250524295 stripped
+--- !u!1 &1905184799815327753 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 768453752194181593, guid: 35b6299e7944f134793ab3fad0776c69, type: 3}
-  m_PrefabInstance: {fileID: 1579198817493685086}
+  m_PrefabInstance: {fileID: 1214436871731333584}
   m_PrefabAsset: {fileID: 0}
---- !u!224 &3330594815608741054 stripped
+--- !u!224 &3100830894594623024 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4310743791220838368, guid: 35b6299e7944f134793ab3fad0776c69, type: 3}
-  m_PrefabInstance: {fileID: 1579198817493685086}
+  m_PrefabInstance: {fileID: 1214436871731333584}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6683633108128372254
 PrefabInstance:

@@ -22,13 +22,13 @@ public class SubSceneNodeScriptCreateDesc : Lib.Scene.SubSceneNodeScriptCreateDe
  */
 public abstract class SubSceneNodeScript : Lib.Scene.SubSceneNodeScript
 {
-    [SerializeField] private GameObject _mainMenuNode = null;
+    [SerializeField] private GameObject _sideMenuNode = null;
     [SerializeField] private GameObject _dialogSystemNode = null;
     [SerializeField] private GameObject _coverSystemNode = null;
 
     public new UnityBase.Scene.SubSceneNodeScriptCreateDesc createDesc{get; private set;} = null;
 
-    private UnityBase.Scene.Ui.Menu.Main.NodeScript _mainMenuNodeScript = null;
+    private UnityBase.Scene.Ui.Menu.Side.NodeScript _sideMenuNodeScript = null;
     private UnityBase.Scene.Ui.Dialog.SystemNodeScript _dialogSystemNodeScript = null;
     private UnityBase.Scene.Ui.Cover.SystemNodeScript _coverSystemNodeScript = null;
 
@@ -64,15 +64,15 @@ public abstract class SubSceneNodeScript : Lib.Scene.SubSceneNodeScript
      */
     protected override int _OnCreate()
     {
-        // MainMenuNodeScript Create
-        if (this._mainMenuNode != null) {
-            var script = this._mainMenuNode.GetComponent<UnityBase.Scene.Ui.Menu.Main.NodeScript>();
-            var script_create_desc = new UnityBase.Scene.Ui.Menu.Main.NodeScriptCreateDesc();
+        // SideMenuNodeScript Create
+        if (this._sideMenuNode != null) {
+            var script = this._sideMenuNode.GetComponent<UnityBase.Scene.Ui.Menu.Side.NodeScript>();
+            var script_create_desc = new UnityBase.Scene.Ui.Menu.Side.NodeScriptCreateDesc();
 
             script.Create(script_create_desc);
             script.Open(0);
 
-            this._mainMenuNodeScript = script;
+            this._sideMenuNodeScript = script;
         }
 
         // DialogSystemNodeScript Create
@@ -196,12 +196,12 @@ public abstract class SubSceneNodeScript : Lib.Scene.SubSceneNodeScript
     }
 
     /**
-     * @brief GetMainMenuNodeScript関数
-     * @return main_menu_node_script (main_menu_node_script)
+     * @brief GetSideMenuNodeScript関数
+     * @return side_menu_node_script (side_menu_node_script)
      */
-    public UnityBase.Scene.Ui.Menu.Main.NodeScript GetMainMenuNodeScript()
+    public UnityBase.Scene.Ui.Menu.Side.NodeScript GetSideMenuNodeScript()
     {
-        return (this._mainMenuNodeScript);
+        return (this._sideMenuNodeScript);
     }
 
     /**

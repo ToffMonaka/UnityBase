@@ -11,25 +11,25 @@ using TMPro;
 
 
 namespace ToffMonaka {
-namespace UnityBase.Scene.Ui.Menu.Main {
+namespace UnityBase.Scene.Ui.Menu.Side {
 /**
  * @brief PrivacyPolicyStageNodeScriptCreateDescクラス
  */
-public class PrivacyPolicyStageNodeScriptCreateDesc : UnityBase.Scene.Ui.Menu.Main.StageNodeScriptCreateDesc
+public class PrivacyPolicyStageNodeScriptCreateDesc : UnityBase.Scene.Ui.Menu.Side.StageNodeScriptCreateDesc
 {
 }
 
 /**
  * @brief PrivacyPolicyStageNodeScriptクラス
  */
-public class PrivacyPolicyStageNodeScript : UnityBase.Scene.Ui.Menu.Main.StageNodeScript
+public class PrivacyPolicyStageNodeScript : UnityBase.Scene.Ui.Menu.Side.StageNodeScript
 {
     [SerializeField] private ScrollRect _scrollRect = null;
     [SerializeField] private float _scrollBarMinSize = 64.0f;
     [SerializeField] private GameObject _messageNode = null;
     [SerializeField] private TMP_Text _cancelButtonNameText = null;
 
-    public new UnityBase.Scene.Ui.Menu.Main.PrivacyPolicyStageNodeScriptCreateDesc createDesc{get; private set;} = null;
+    public new UnityBase.Scene.Ui.Menu.Side.PrivacyPolicyStageNodeScriptCreateDesc createDesc{get; private set;} = null;
 
     /**
      * @brief _OnGetScriptIndex関数
@@ -37,16 +37,16 @@ public class PrivacyPolicyStageNodeScript : UnityBase.Scene.Ui.Menu.Main.StageNo
      */
     protected override int _OnGetScriptIndex()
     {
-        return ((int)UnityBase.Util.SCENE.SCRIPT_INDEX.MENU_PRIVACY_POLICY_STAGE_NODE);
+        return ((int)UnityBase.Util.SCENE.SCRIPT_INDEX.SIDE_MENU_PRIVACY_POLICY_STAGE_NODE);
     }
 
     /**
      * @brief _OnGetStageType関数
      * @return stage_type (stage_type)
      */
-    protected override UnityBase.Util.SCENE.MENU_STAGE_TYPE _OnGetStageType()
+    protected override UnityBase.Util.SCENE.SIDE_MENU_STAGE_TYPE _OnGetStageType()
     {
-        return (UnityBase.Util.SCENE.MENU_STAGE_TYPE.PRIVACY_POLICY);
+        return (UnityBase.Util.SCENE.SIDE_MENU_STAGE_TYPE.PRIVACY_POLICY);
     }
 
     /**
@@ -89,12 +89,12 @@ public class PrivacyPolicyStageNodeScript : UnityBase.Scene.Ui.Menu.Main.StageNo
 
 		    switch (UnityBase.Global.systemConfigFile.data.systemLanguageType) {
 		    case UnityBase.Util.LANGUAGE_TYPE.JAPANESE: {
-                txt_ary = UnityBase.Scene.Ui.Menu.Main.PrivacyPolicyMessageUtil.JAPANESE_TEXT_ARRAY;
+                txt_ary = UnityBase.Scene.Ui.Menu.Side.PrivacyPolicyMessageUtil.JAPANESE_TEXT_ARRAY;
 
 			    break;
 		    }
 		    default: {
-                txt_ary = UnityBase.Scene.Ui.Menu.Main.PrivacyPolicyMessageUtil.ENGLISH_TEXT_ARRAY;
+                txt_ary = UnityBase.Scene.Ui.Menu.Side.PrivacyPolicyMessageUtil.ENGLISH_TEXT_ARRAY;
 
 			    break;
 		    }
@@ -119,12 +119,12 @@ public class PrivacyPolicyStageNodeScript : UnityBase.Scene.Ui.Menu.Main.StageNo
     public override void SetCreateDesc(Lib.Scene.ScriptCreateDesc create_desc = null)
     {
         if (create_desc == null) {
-            this.SetCreateDesc(new UnityBase.Scene.Ui.Menu.Main.PrivacyPolicyStageNodeScriptCreateDesc());
+            this.SetCreateDesc(new UnityBase.Scene.Ui.Menu.Side.PrivacyPolicyStageNodeScriptCreateDesc());
 
             return;
         }
 
-	    this.createDesc = create_desc as UnityBase.Scene.Ui.Menu.Main.PrivacyPolicyStageNodeScriptCreateDesc;
+	    this.createDesc = create_desc as UnityBase.Scene.Ui.Menu.Side.PrivacyPolicyStageNodeScriptCreateDesc;
 
         base.SetCreateDesc(this.createDesc);
 

@@ -10,13 +10,13 @@ using DG.Tweening;
 
 
 namespace ToffMonaka {
-namespace UnityBase.Scene.Ui.Menu.Main {
+namespace UnityBase.Scene.Ui.Menu.Side {
 /**
  * @brief StageNodeScriptCreateDescクラス
  */
 public class StageNodeScriptCreateDesc : Lib.Scene.ObjectNodeScriptCreateDesc
 {
-    public System.Action<UnityBase.Scene.Ui.Menu.Main.StageNodeScript> onCloseStage = null;
+    public System.Action<UnityBase.Scene.Ui.Menu.Side.StageNodeScript> onCloseStage = null;
 }
 
 /**
@@ -26,10 +26,10 @@ public abstract class StageNodeScript : Lib.Scene.ObjectNodeScript
 {
     [SerializeField] private TMP_Text _nameText = null;
 
-    public new UnityBase.Scene.Ui.Menu.Main.StageNodeScriptCreateDesc createDesc{get; private set;} = null;
+    public new UnityBase.Scene.Ui.Menu.Side.StageNodeScriptCreateDesc createDesc{get; private set;} = null;
 
-    private UnityBase.Util.SCENE.MENU_STAGE_TYPE _stageType = UnityBase.Util.SCENE.MENU_STAGE_TYPE.NONE;
-    protected System.Action<UnityBase.Scene.Ui.Menu.Main.StageNodeScript> _onCloseStage = null;
+    private UnityBase.Util.SCENE.SIDE_MENU_STAGE_TYPE _stageType = UnityBase.Util.SCENE.SIDE_MENU_STAGE_TYPE.NONE;
+    protected System.Action<UnityBase.Scene.Ui.Menu.Side.StageNodeScript> _onCloseStage = null;
 
     /**
      * @brief _OnGetScriptIndex関数
@@ -37,16 +37,16 @@ public abstract class StageNodeScript : Lib.Scene.ObjectNodeScript
      */
     protected override int _OnGetScriptIndex()
     {
-        return ((int)UnityBase.Util.SCENE.SCRIPT_INDEX.MENU_STAGE_NODE);
+        return ((int)UnityBase.Util.SCENE.SCRIPT_INDEX.SIDE_MENU_STAGE_NODE);
     }
 
     /**
      * @brief _OnGetStageType関数
      * @return stage_type (stage_type)
      */
-    protected virtual UnityBase.Util.SCENE.MENU_STAGE_TYPE _OnGetStageType()
+    protected virtual UnityBase.Util.SCENE.SIDE_MENU_STAGE_TYPE _OnGetStageType()
     {
-        return (UnityBase.Util.SCENE.MENU_STAGE_TYPE.NONE);
+        return (UnityBase.Util.SCENE.SIDE_MENU_STAGE_TYPE.NONE);
     }
 
     /**
@@ -76,7 +76,7 @@ public abstract class StageNodeScript : Lib.Scene.ObjectNodeScript
     {
         this._onCloseStage = this.createDesc.onCloseStage;
 
-        this._nameText.SetText(UnityBase.Global.GetText(UnityBase.Util.SCENE.MENU_STAGE_NAME_MST_TEXT_ID_ARRAY[(int)this._stageType]));
+        this._nameText.SetText(UnityBase.Global.GetText(UnityBase.Util.SCENE.SIDE_MENU_STAGE_NAME_MST_TEXT_ID_ARRAY[(int)this._stageType]));
 
         return (0);
     }
@@ -88,12 +88,12 @@ public abstract class StageNodeScript : Lib.Scene.ObjectNodeScript
     public override void SetCreateDesc(Lib.Scene.ScriptCreateDesc create_desc = null)
     {
         if (create_desc == null) {
-            this.SetCreateDesc(new UnityBase.Scene.Ui.Menu.Main.StageNodeScriptCreateDesc());
+            this.SetCreateDesc(new UnityBase.Scene.Ui.Menu.Side.StageNodeScriptCreateDesc());
 
             return;
         }
 
-	    this.createDesc = create_desc as UnityBase.Scene.Ui.Menu.Main.StageNodeScriptCreateDesc;
+	    this.createDesc = create_desc as UnityBase.Scene.Ui.Menu.Side.StageNodeScriptCreateDesc;
 
         base.SetCreateDesc(this.createDesc);
 
@@ -204,7 +204,7 @@ public abstract class StageNodeScript : Lib.Scene.ObjectNodeScript
      * @brief GetStageType関数
      * @return stage_type (stage_type)
      */
-    public UnityBase.Util.SCENE.MENU_STAGE_TYPE GetStageType()
+    public UnityBase.Util.SCENE.SIDE_MENU_STAGE_TYPE GetStageType()
     {
         return (this._stageType);
     }

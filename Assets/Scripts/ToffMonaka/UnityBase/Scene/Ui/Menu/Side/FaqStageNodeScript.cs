@@ -1,6 +1,6 @@
 ﻿/**
  * @file
- * @brief StaffStageNodeScriptファイル
+ * @brief FaqStageNodeScriptファイル
  */
 
 
@@ -11,25 +11,25 @@ using TMPro;
 
 
 namespace ToffMonaka {
-namespace UnityBase.Scene.Ui.Menu.Main {
+namespace UnityBase.Scene.Ui.Menu.Side {
 /**
- * @brief StaffStageNodeScriptCreateDescクラス
+ * @brief FaqStageNodeScriptCreateDescクラス
  */
-public class StaffStageNodeScriptCreateDesc : UnityBase.Scene.Ui.Menu.Main.StageNodeScriptCreateDesc
+public class FaqStageNodeScriptCreateDesc : UnityBase.Scene.Ui.Menu.Side.StageNodeScriptCreateDesc
 {
 }
 
 /**
- * @brief StaffStageNodeScriptクラス
+ * @brief FaqStageNodeScriptクラス
  */
-public class StaffStageNodeScript : UnityBase.Scene.Ui.Menu.Main.StageNodeScript
+public class FaqStageNodeScript : UnityBase.Scene.Ui.Menu.Side.StageNodeScript
 {
     [SerializeField] private ScrollRect _scrollRect = null;
     [SerializeField] private float _scrollBarMinSize = 64.0f;
     [SerializeField] private GameObject _messageNode = null;
     [SerializeField] private TMP_Text _cancelButtonNameText = null;
 
-    public new UnityBase.Scene.Ui.Menu.Main.StaffStageNodeScriptCreateDesc createDesc{get; private set;} = null;
+    public new UnityBase.Scene.Ui.Menu.Side.FaqStageNodeScriptCreateDesc createDesc{get; private set;} = null;
 
     /**
      * @brief _OnGetScriptIndex関数
@@ -37,16 +37,16 @@ public class StaffStageNodeScript : UnityBase.Scene.Ui.Menu.Main.StageNodeScript
      */
     protected override int _OnGetScriptIndex()
     {
-        return ((int)UnityBase.Util.SCENE.SCRIPT_INDEX.MENU_STAFF_STAGE_NODE);
+        return ((int)UnityBase.Util.SCENE.SCRIPT_INDEX.SIDE_MENU_FAQ_STAGE_NODE);
     }
 
     /**
      * @brief _OnGetStageType関数
      * @return stage_type (stage_type)
      */
-    protected override UnityBase.Util.SCENE.MENU_STAGE_TYPE _OnGetStageType()
+    protected override UnityBase.Util.SCENE.SIDE_MENU_STAGE_TYPE _OnGetStageType()
     {
-        return (UnityBase.Util.SCENE.MENU_STAGE_TYPE.STAFF);
+        return (UnityBase.Util.SCENE.SIDE_MENU_STAGE_TYPE.FAQ);
     }
 
     /**
@@ -89,12 +89,12 @@ public class StaffStageNodeScript : UnityBase.Scene.Ui.Menu.Main.StageNodeScript
 
 		    switch (UnityBase.Global.systemConfigFile.data.systemLanguageType) {
 		    case UnityBase.Util.LANGUAGE_TYPE.JAPANESE: {
-                txt_ary = UnityBase.Scene.Ui.Menu.Main.StaffMessageUtil.JAPANESE_TEXT_ARRAY;
+                txt_ary = UnityBase.Scene.Ui.Menu.Side.FaqMessageUtil.JAPANESE_TEXT_ARRAY;
 
 			    break;
 		    }
 		    default: {
-                txt_ary = UnityBase.Scene.Ui.Menu.Main.StaffMessageUtil.ENGLISH_TEXT_ARRAY;
+                txt_ary = UnityBase.Scene.Ui.Menu.Side.FaqMessageUtil.ENGLISH_TEXT_ARRAY;
 
 			    break;
 		    }
@@ -119,12 +119,12 @@ public class StaffStageNodeScript : UnityBase.Scene.Ui.Menu.Main.StageNodeScript
     public override void SetCreateDesc(Lib.Scene.ScriptCreateDesc create_desc = null)
     {
         if (create_desc == null) {
-            this.SetCreateDesc(new UnityBase.Scene.Ui.Menu.Main.StaffStageNodeScriptCreateDesc());
+            this.SetCreateDesc(new UnityBase.Scene.Ui.Menu.Side.FaqStageNodeScriptCreateDesc());
 
             return;
         }
 
-	    this.createDesc = create_desc as UnityBase.Scene.Ui.Menu.Main.StaffStageNodeScriptCreateDesc;
+	    this.createDesc = create_desc as UnityBase.Scene.Ui.Menu.Side.FaqStageNodeScriptCreateDesc;
 
         base.SetCreateDesc(this.createDesc);
 

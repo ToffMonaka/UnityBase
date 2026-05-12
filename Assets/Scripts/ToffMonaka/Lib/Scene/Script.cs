@@ -468,6 +468,22 @@ public abstract class Script : MonoBehaviour
             return (false);
         }
 
+        if (Lib.Global.GetSceneManager() != null) {
+            var main_scene_node_script = Lib.Global.GetSceneManager().GetMainSceneNodeScript();
+
+            if ((main_scene_node_script != null)
+            && (!main_scene_node_script.GetOpenedFlag())) {
+                return (false);
+            }
+
+            var sub_scene_node_script = Lib.Global.GetSceneManager().GetSubSceneNodeScript();
+
+            if ((sub_scene_node_script != null)
+            && (!sub_scene_node_script.GetOpenedFlag())) {
+                return (false);
+            }
+        }
+
         return (true);
     }
 }

@@ -12,13 +12,13 @@ using DG.Tweening;
 
 
 namespace ToffMonaka {
-namespace UnityBase.Scene.Ui.Menu.Main {
+namespace UnityBase.Scene.Ui.Menu.Side {
 /**
  * @brief SelectNodeScriptCreateDescクラス
  */
 public class SelectNodeScriptCreateDesc : Lib.Scene.ObjectNodeScriptCreateDesc
 {
-    public System.Action<UnityBase.Scene.Ui.Menu.Main.SelectNodeScript, UnityBase.Util.SCENE.MENU_STAGE_TYPE> onOpenStage = null;
+    public System.Action<UnityBase.Scene.Ui.Menu.Side.SelectNodeScript, UnityBase.Util.SCENE.SIDE_MENU_STAGE_TYPE> onOpenStage = null;
 }
 
 /**
@@ -30,10 +30,10 @@ public class SelectNodeScript : Lib.Scene.ObjectNodeScript
     [SerializeField] private ScrollRect _scrollRect = null;
     [SerializeField] private GameObject _itemNode = null;
 
-    public new UnityBase.Scene.Ui.Menu.Main.SelectNodeScriptCreateDesc createDesc{get; private set;} = null;
+    public new UnityBase.Scene.Ui.Menu.Side.SelectNodeScriptCreateDesc createDesc{get; private set;} = null;
 
-    private List<UnityBase.Scene.Ui.Menu.Main.SelectItemNodeScript> _itemNodeScriptContainer = new List<UnityBase.Scene.Ui.Menu.Main.SelectItemNodeScript>();
-    private System.Action<UnityBase.Scene.Ui.Menu.Main.SelectNodeScript, UnityBase.Util.SCENE.MENU_STAGE_TYPE> _onOpenStage = null;
+    private List<UnityBase.Scene.Ui.Menu.Side.SelectItemNodeScript> _itemNodeScriptContainer = new List<UnityBase.Scene.Ui.Menu.Side.SelectItemNodeScript>();
+    private System.Action<UnityBase.Scene.Ui.Menu.Side.SelectNodeScript, UnityBase.Util.SCENE.SIDE_MENU_STAGE_TYPE> _onOpenStage = null;
 
     /**
      * @brief _OnGetScriptIndex関数
@@ -41,7 +41,7 @@ public class SelectNodeScript : Lib.Scene.ObjectNodeScript
      */
     protected override int _OnGetScriptIndex()
     {
-        return ((int)UnityBase.Util.SCENE.SCRIPT_INDEX.MENU_SELECT_NODE);
+        return ((int)UnityBase.Util.SCENE.SCRIPT_INDEX.SIDE_MENU_SELECT_NODE);
     }
 
     /**
@@ -74,16 +74,16 @@ public class SelectNodeScript : Lib.Scene.ObjectNodeScript
         this._itemNode.SetActive(false);
 
         {// ItemNodeScript Create
-            UnityBase.Util.SCENE.MENU_STAGE_TYPE[] stage_type_ary = {
-                UnityBase.Util.SCENE.MENU_STAGE_TYPE.OPTION,
-                UnityBase.Util.SCENE.MENU_STAGE_TYPE.FAQ,
-                UnityBase.Util.SCENE.MENU_STAGE_TYPE.STAFF,
-                UnityBase.Util.SCENE.MENU_STAGE_TYPE.LICENSE,
-                UnityBase.Util.SCENE.MENU_STAGE_TYPE.PRIVACY_POLICY,
-                UnityBase.Util.SCENE.MENU_STAGE_TYPE.END
+            UnityBase.Util.SCENE.SIDE_MENU_STAGE_TYPE[] stage_type_ary = {
+                UnityBase.Util.SCENE.SIDE_MENU_STAGE_TYPE.OPTION,
+                UnityBase.Util.SCENE.SIDE_MENU_STAGE_TYPE.FAQ,
+                UnityBase.Util.SCENE.SIDE_MENU_STAGE_TYPE.STAFF,
+                UnityBase.Util.SCENE.SIDE_MENU_STAGE_TYPE.LICENSE,
+                UnityBase.Util.SCENE.SIDE_MENU_STAGE_TYPE.PRIVACY_POLICY,
+                UnityBase.Util.SCENE.SIDE_MENU_STAGE_TYPE.END
             };
 
-            void on_click(UnityBase.Scene.Ui.Menu.Main.SelectItemNodeScript owner)
+            void on_click(UnityBase.Scene.Ui.Menu.Side.SelectItemNodeScript owner)
             {
                 this._onOpenStage(this, owner.GetStageType());
 
@@ -91,8 +91,8 @@ public class SelectNodeScript : Lib.Scene.ObjectNodeScript
             }
 
             foreach (var stage_type in stage_type_ary) {
-                var script = GameObject.Instantiate(this._itemNode, this._itemNode.transform.parent).GetComponent<UnityBase.Scene.Ui.Menu.Main.SelectItemNodeScript>();
-                var script_create_desc = new UnityBase.Scene.Ui.Menu.Main.SelectItemNodeScriptCreateDesc();
+                var script = GameObject.Instantiate(this._itemNode, this._itemNode.transform.parent).GetComponent<UnityBase.Scene.Ui.Menu.Side.SelectItemNodeScript>();
+                var script_create_desc = new UnityBase.Scene.Ui.Menu.Side.SelectItemNodeScriptCreateDesc();
 
                 script_create_desc.stageType = stage_type;
                 script_create_desc.onClick = on_click;
@@ -105,10 +105,10 @@ public class SelectNodeScript : Lib.Scene.ObjectNodeScript
 
             if (UnityBase.Util.GetDebugFlag()) {
 #pragma warning disable CS0162
-                var script = GameObject.Instantiate(this._itemNode, this._itemNode.transform.parent).GetComponent<UnityBase.Scene.Ui.Menu.Main.SelectItemNodeScript>();
-                var script_create_desc = new UnityBase.Scene.Ui.Menu.Main.SelectItemNodeScriptCreateDesc();
+                var script = GameObject.Instantiate(this._itemNode, this._itemNode.transform.parent).GetComponent<UnityBase.Scene.Ui.Menu.Side.SelectItemNodeScript>();
+                var script_create_desc = new UnityBase.Scene.Ui.Menu.Side.SelectItemNodeScriptCreateDesc();
 
-                script_create_desc.stageType = UnityBase.Util.SCENE.MENU_STAGE_TYPE.CHEAT;
+                script_create_desc.stageType = UnityBase.Util.SCENE.SIDE_MENU_STAGE_TYPE.CHEAT;
                 script_create_desc.onClick = on_click;
 
                 script.Create(script_create_desc);
@@ -129,12 +129,12 @@ public class SelectNodeScript : Lib.Scene.ObjectNodeScript
     public override void SetCreateDesc(Lib.Scene.ScriptCreateDesc create_desc = null)
     {
         if (create_desc == null) {
-            this.SetCreateDesc(new UnityBase.Scene.Ui.Menu.Main.SelectNodeScriptCreateDesc());
+            this.SetCreateDesc(new UnityBase.Scene.Ui.Menu.Side.SelectNodeScriptCreateDesc());
 
             return;
         }
 
-	    this.createDesc = create_desc as UnityBase.Scene.Ui.Menu.Main.SelectNodeScriptCreateDesc;
+	    this.createDesc = create_desc as UnityBase.Scene.Ui.Menu.Side.SelectNodeScriptCreateDesc;
 
         base.SetCreateDesc(this.createDesc);
 

@@ -11,13 +11,13 @@ using DG.Tweening;
 
 
 namespace ToffMonaka {
-namespace UnityBase.Scene.Ui.Menu.Main {
+namespace UnityBase.Scene.Ui.Menu.Side {
 /**
  * @brief OpenCloseButtonNodeScriptCreateDescクラス
  */
 public class OpenCloseButtonNodeScriptCreateDesc : Lib.Scene.ObjectNodeScriptCreateDesc
 {
-    public System.Action<UnityBase.Scene.Ui.Menu.Main.OpenCloseButtonNodeScript> onClick = null;
+    public System.Action<UnityBase.Scene.Ui.Menu.Side.OpenCloseButtonNodeScript> onClick = null;
 }
 
 /**
@@ -25,9 +25,9 @@ public class OpenCloseButtonNodeScriptCreateDesc : Lib.Scene.ObjectNodeScriptCre
  */
 public class OpenCloseButtonNodeScript : Lib.Scene.ObjectNodeScript
 {
-    public new UnityBase.Scene.Ui.Menu.Main.OpenCloseButtonNodeScriptCreateDesc createDesc{get; private set;} = null;
+    public new UnityBase.Scene.Ui.Menu.Side.OpenCloseButtonNodeScriptCreateDesc createDesc{get; private set;} = null;
 
-    private System.Action<UnityBase.Scene.Ui.Menu.Main.OpenCloseButtonNodeScript> _onClick = null;
+    private System.Action<UnityBase.Scene.Ui.Menu.Side.OpenCloseButtonNodeScript> _onClick = null;
 
     /**
      * @brief _OnGetScriptIndex関数
@@ -35,7 +35,7 @@ public class OpenCloseButtonNodeScript : Lib.Scene.ObjectNodeScript
      */
     protected override int _OnGetScriptIndex()
     {
-        return ((int)UnityBase.Util.SCENE.SCRIPT_INDEX.MENU_OPEN_CLOSE_BUTTON_NODE);
+        return ((int)UnityBase.Util.SCENE.SCRIPT_INDEX.SIDE_MENU_OPEN_CLOSE_BUTTON_NODE);
     }
 
     /**
@@ -73,12 +73,12 @@ public class OpenCloseButtonNodeScript : Lib.Scene.ObjectNodeScript
     public override void SetCreateDesc(Lib.Scene.ScriptCreateDesc create_desc = null)
     {
         if (create_desc == null) {
-            this.SetCreateDesc(new UnityBase.Scene.Ui.Menu.Main.OpenCloseButtonNodeScriptCreateDesc());
+            this.SetCreateDesc(new UnityBase.Scene.Ui.Menu.Side.OpenCloseButtonNodeScriptCreateDesc());
 
             return;
         }
 
-	    this.createDesc = create_desc as UnityBase.Scene.Ui.Menu.Main.OpenCloseButtonNodeScriptCreateDesc;
+	    this.createDesc = create_desc as UnityBase.Scene.Ui.Menu.Side.OpenCloseButtonNodeScriptCreateDesc;
 
         base.SetCreateDesc(this.createDesc);
 

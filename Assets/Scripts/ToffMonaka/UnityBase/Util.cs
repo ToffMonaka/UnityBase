@@ -93,19 +93,19 @@ public static class Util
             STAGE_BACK_BUTTON_NODE,
             TEST_2D_STAGE_SUB_SCENE_NODE,
             TEST_3D_STAGE_SUB_SCENE_NODE,
-            MENU_SYSTEM_NODE,
-            MENU_OPEN_CLOSE_BUTTON_NODE,
-            MENU_SELECT_NODE,
-            MENU_SELECT_ITEM_NODE,
-            MENU_STAGE_NODE,
-            MENU_OPTION_STAGE_NODE,
-            MENU_FAQ_STAGE_NODE,
-            MENU_STAFF_STAGE_NODE,
-            MENU_LICENSE_STAGE_NODE,
-            MENU_PRIVACY_POLICY_STAGE_NODE,
-            MENU_END_STAGE_NODE,
-            MENU_CHEAT_STAGE_NODE,
-            MENU_CHEAT_STAGE_ITEM_NODE,
+            SIDE_MENU_NODE,
+            SIDE_MENU_OPEN_CLOSE_BUTTON_NODE,
+            SIDE_MENU_SELECT_NODE,
+            SIDE_MENU_SELECT_ITEM_NODE,
+            SIDE_MENU_STAGE_NODE,
+            SIDE_MENU_OPTION_STAGE_NODE,
+            SIDE_MENU_FAQ_STAGE_NODE,
+            SIDE_MENU_STAFF_STAGE_NODE,
+            SIDE_MENU_LICENSE_STAGE_NODE,
+            SIDE_MENU_PRIVACY_POLICY_STAGE_NODE,
+            SIDE_MENU_END_STAGE_NODE,
+            SIDE_MENU_CHEAT_STAGE_NODE,
+            SIDE_MENU_CHEAT_STAGE_ITEM_NODE,
             DIALOG_SYSTEM_NODE,
             DIALOG_NODE,
             SELECT_DIALOG_NODE,
@@ -146,7 +146,7 @@ public static class Util
             UnityBase.Util.MST_TEXT_ID.TEST_3D
         };
 
-        public enum MENU_STAGE_TYPE : int
+        public enum SIDE_MENU_STAGE_TYPE : int
         {
             NONE = 0,
             OPTION,
@@ -158,9 +158,9 @@ public static class Util
             CHEAT,
 		    COUNT
         }
-        public static readonly int MENU_STAGE_TYPE_COUNT = (int)UnityBase.Util.SCENE.MENU_STAGE_TYPE.COUNT;
+        public static readonly int SIDE_MENU_STAGE_TYPE_COUNT = (int)UnityBase.Util.SCENE.SIDE_MENU_STAGE_TYPE.COUNT;
 
-        public static readonly UnityBase.Util.MST_TEXT_ID[] MENU_STAGE_NAME_MST_TEXT_ID_ARRAY = {
+        public static readonly UnityBase.Util.MST_TEXT_ID[] SIDE_MENU_STAGE_NAME_MST_TEXT_ID_ARRAY = {
             UnityBase.Util.MST_TEXT_ID.NONE,
             UnityBase.Util.MST_TEXT_ID.OPTION,
             UnityBase.Util.MST_TEXT_ID.FAQ,
@@ -176,25 +176,27 @@ public static class Util
     {
         NONE = 0,
         OK,
-        OK_RESTART,
 		CANCEL,
         MENU,
         OPTION,
+        INFO,
         FAQ,
         STAFF,
         LICENSE,
         PRIVACY_POLICY,
+        BACK_TO_TITLE,
+        RESTART,
         EXIT,
-        CHEAT,
         LANGUAGE,
         ENGLISH,
         JAPANESE,
+        GRAPHIC,
         SOUND,
         BGM_VOLUME,
         BGM_MUTE,
         SE_VOLUME,
         SE_MUTE,
-        RESTART,
+        CHEAT,
         COMMAND,
         DELETE_DATA,
         STAGE,
