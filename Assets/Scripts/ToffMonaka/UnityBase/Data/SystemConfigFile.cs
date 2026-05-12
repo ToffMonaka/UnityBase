@@ -137,6 +137,13 @@ public class SystemConfigFile : Lib.Data.File
 	        }
         }
 
+        {// Input Section Read
+	        key_cont = ini_file.data.GetKeyContainer("INPUT");
+
+	        if (key_cont != null) {
+	        }
+        }
+
         {// Graphic Section Read
 	        key_cont = ini_file.data.GetKeyContainer("GRAPHIC");
 
@@ -198,6 +205,11 @@ public class SystemConfigFile : Lib.Data.File
         {// System Section Write
 	        txt_file.data.lineTextContainer.Add(Lib.Data.IniFileUtil.SECTION_START_CODE + "SYS" + Lib.Data.IniFileUtil.SECTION_END_CODE);
 	        txt_file.data.lineTextContainer.Add("LANGUAGE_TYPE" + Lib.Data.IniFileUtil.EQUAL_CODE + ((int)this.data.systemLanguageType).ToString());
+	        txt_file.data.lineTextContainer.Add(System.String.Empty);
+        }
+
+        {// Input Section Write
+	        txt_file.data.lineTextContainer.Add(Lib.Data.IniFileUtil.SECTION_START_CODE + "INPUT" + Lib.Data.IniFileUtil.SECTION_END_CODE);
 	        txt_file.data.lineTextContainer.Add(System.String.Empty);
         }
 

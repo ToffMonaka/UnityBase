@@ -190,6 +190,8 @@ public static class Util
         LANGUAGE,
         ENGLISH,
         JAPANESE,
+        SYSTEM,
+        INPUT,
         GRAPHIC,
         SOUND,
         BGM_VOLUME,
