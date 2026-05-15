@@ -43,7 +43,7 @@ public static class Util
         public static readonly string TEST_3D_STAGE_SUB_SCENE_PREFAB = "Assets/Resources2/prefab/Test3DStageSubScene.prefab";
         public static readonly string SELECT_DIALOG_PREFAB = "Assets/Resources2/prefab/SelectDialog.prefab";
         public static readonly string INPUT_DIALOG_PREFAB = "Assets/Resources2/prefab/InputDialog.prefab";
-        public static readonly string DEFAULT_COVER_PREFAB = "Assets/Resources2/prefab/DefaultCover.prefab";
+        public static readonly string SIMPLE_COVER_PREFAB = "Assets/Resources2/prefab/SimpleCover.prefab";
     }
 
     public static class INPUT
@@ -95,17 +95,24 @@ public static class Util
             TEST_3D_STAGE_SUB_SCENE_NODE,
             SIDE_MENU_NODE,
             SIDE_MENU_OPEN_CLOSE_BUTTON_NODE,
-            SIDE_MENU_SELECT_NODE,
-            SIDE_MENU_SELECT_ITEM_NODE,
-            SIDE_MENU_STAGE_NODE,
-            SIDE_MENU_OPTION_STAGE_NODE,
-            SIDE_MENU_FAQ_STAGE_NODE,
-            SIDE_MENU_STAFF_STAGE_NODE,
-            SIDE_MENU_LICENSE_STAGE_NODE,
-            SIDE_MENU_PRIVACY_POLICY_STAGE_NODE,
-            SIDE_MENU_END_STAGE_NODE,
-            SIDE_MENU_CHEAT_STAGE_NODE,
-            SIDE_MENU_CHEAT_STAGE_ITEM_NODE,
+            SIDE_MENU_BOARD_NODE,
+            SIDE_MENU_SELECT_BOARD_NODE,
+            SIDE_MENU_SELECT_BOARD_ITEM_NODE,
+            SIDE_MENU_SELECT2_BOARD_NODE,
+            SIDE_MENU_OPTION_SELECT2_BOARD_NODE,
+            SIDE_MENU_INFO_SELECT2_BOARD_NODE,
+            SIDE_MENU_STAGE_BOARD_NODE,
+            SIDE_MENU_OPTION_SYSTEM_STAGE_BOARD_NODE,
+            SIDE_MENU_OPTION_INPUT_STAGE_BOARD_NODE,
+            SIDE_MENU_OPTION_GRAPHIC_STAGE_BOARD_NODE,
+            SIDE_MENU_OPTION_SOUND_STAGE_BOARD_NODE,
+            SIDE_MENU_INFO_FAQ_STAGE_BOARD_NODE,
+            SIDE_MENU_INFO_STAFF_STAGE_BOARD_NODE,
+            SIDE_MENU_INFO_LICENSE_STAGE_BOARD_NODE,
+            SIDE_MENU_INFO_PRIVACY_POLICY_STAGE_BOARD_NODE,
+            SIDE_MENU_EXIT_STAGE_BOARD_NODE,
+            SIDE_MENU_CHEAT_STAGE_BOARD_NODE,
+            SIDE_MENU_CHEAT_STAGE_BOARD_ITEM_NODE,
             DIALOG_SYSTEM_NODE,
             DIALOG_NODE,
             SELECT_DIALOG_NODE,
@@ -113,7 +120,7 @@ public static class Util
             INPUT_DIALOG_NODE,
             COVER_SYSTEM_NODE,
             COVER_NODE,
-            DEFAULT_COVER_NODE,
+            SIMPLE_COVER_NODE,
 		    COUNT
         }
         public static readonly int SCRIPT_INDEX_COUNT = (int)UnityBase.Util.SCENE.SCRIPT_INDEX.COUNT;
@@ -146,30 +153,51 @@ public static class Util
             UnityBase.Util.MST_TEXT_ID.TEST_3D
         };
 
-        public enum SIDE_MENU_STAGE_TYPE : int
+        public enum SIDE_MENU_BOARD_TYPE : int
+        {
+            NONE = 0,
+            SELECT,
+            OPTION_SELECT2,
+            INFO_SELECT2,
+            OPTION_SYSTEM_STAGE,
+            OPTION_INPUT_STAGE,
+            OPTION_GRAPHIC_STAGE,
+            OPTION_SOUND_STAGE,
+            INFO_FAQ_STAGE,
+            INFO_STAFF_STAGE,
+            INFO_LICENSE_STAGE,
+            INFO_PRIVACY_POLICY_STAGE,
+            EXIT_STAGE,
+            CHEAT_STAGE,
+		    COUNT
+        }
+        public static readonly int SIDE_MENU_BOARD_TYPE_COUNT = (int)UnityBase.Util.SCENE.SIDE_MENU_BOARD_TYPE.COUNT;
+
+        public enum SIDE_MENU_SELECT2_BOARD_TYPE : int
         {
             NONE = 0,
             OPTION,
-            FAQ,
-            STAFF,
-            LICENSE,
-            PRIVACY_POLICY,
-            END,
+            INFO,
+		    COUNT
+        }
+        public static readonly int SIDE_MENU_SELECT2_BOARD_TYPE_COUNT = (int)UnityBase.Util.SCENE.SIDE_MENU_SELECT2_BOARD_TYPE.COUNT;
+
+        public enum SIDE_MENU_STAGE_BOARD_TYPE : int
+        {
+            NONE = 0,
+            OPTION_SYSTEM,
+            OPTION_INPUT,
+            OPTION_GRAPHIC,
+            OPTION_SOUND,
+            INFO_FAQ,
+            INFO_STAFF,
+            INFO_LICENSE,
+            INFO_PRIVACY_POLICY,
+            EXIT,
             CHEAT,
 		    COUNT
         }
-        public static readonly int SIDE_MENU_STAGE_TYPE_COUNT = (int)UnityBase.Util.SCENE.SIDE_MENU_STAGE_TYPE.COUNT;
-
-        public static readonly UnityBase.Util.MST_TEXT_ID[] SIDE_MENU_STAGE_NAME_MST_TEXT_ID_ARRAY = {
-            UnityBase.Util.MST_TEXT_ID.NONE,
-            UnityBase.Util.MST_TEXT_ID.OPTION,
-            UnityBase.Util.MST_TEXT_ID.FAQ,
-            UnityBase.Util.MST_TEXT_ID.STAFF,
-            UnityBase.Util.MST_TEXT_ID.LICENSE,
-            UnityBase.Util.MST_TEXT_ID.PRIVACY_POLICY,
-            UnityBase.Util.MST_TEXT_ID.EXIT,
-            UnityBase.Util.MST_TEXT_ID.CHEAT
-        };
+        public static readonly int SIDE_MENU_STAGE_BOARD_TYPE_COUNT = (int)UnityBase.Util.SCENE.SIDE_MENU_STAGE_BOARD_TYPE.COUNT;
     }
 
     public enum MST_TEXT_ID : int
@@ -177,6 +205,8 @@ public static class Util
         NONE = 0,
         OK,
 		CANCEL,
+        FORWARD,
+        BACK,
         MENU,
         OPTION,
         INFO,

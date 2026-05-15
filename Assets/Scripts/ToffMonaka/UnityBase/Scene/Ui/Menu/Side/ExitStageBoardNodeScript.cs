@@ -1,6 +1,6 @@
 ﻿/**
  * @file
- * @brief EndStageNodeScriptファイル
+ * @brief ExitStageBoardNodeScriptファイル
  */
 
 
@@ -13,26 +13,26 @@ using TMPro;
 namespace ToffMonaka {
 namespace UnityBase.Scene.Ui.Menu.Side {
 /**
- * @brief EndStageNodeScriptCreateDescクラス
+ * @brief ExitStageBoardNodeScriptCreateDescクラス
  */
-public class EndStageNodeScriptCreateDesc : UnityBase.Scene.Ui.Menu.Side.StageNodeScriptCreateDesc
+public class ExitStageBoardNodeScriptCreateDesc : UnityBase.Scene.Ui.Menu.Side.StageBoardNodeScriptCreateDesc
 {
 }
 
 /**
- * @brief EndStageNodeScriptクラス
+ * @brief ExitStageBoardNodeScriptクラス
  */
-public class EndStageNodeScript : UnityBase.Scene.Ui.Menu.Side.StageNodeScript
+public class ExitStageBoardNodeScript : UnityBase.Scene.Ui.Menu.Side.StageBoardNodeScript
 {
     [SerializeField] private ScrollRect _scrollRect = null;
     [SerializeField] private TMP_Text _restartNameText = null;
     [SerializeField] private Toggle _restartToggle = null;
-    [SerializeField] private TMP_Text _endNameText = null;
-    [SerializeField] private Toggle _endToggle = null;
+    [SerializeField] private TMP_Text _exitNameText = null;
+    [SerializeField] private Toggle _exitToggle = null;
     [SerializeField] private TMP_Text _okButtonNameText = null;
     [SerializeField] private TMP_Text _cancelButtonNameText = null;
 
-    public new UnityBase.Scene.Ui.Menu.Side.EndStageNodeScriptCreateDesc createDesc{get; private set;} = null;
+    public new UnityBase.Scene.Ui.Menu.Side.ExitStageBoardNodeScriptCreateDesc createDesc{get; private set;} = null;
 
     /**
      * @brief _OnGetScriptIndex関数
@@ -40,16 +40,34 @@ public class EndStageNodeScript : UnityBase.Scene.Ui.Menu.Side.StageNodeScript
      */
     protected override int _OnGetScriptIndex()
     {
-        return ((int)UnityBase.Util.SCENE.SCRIPT_INDEX.SIDE_MENU_END_STAGE_NODE);
+        return ((int)UnityBase.Util.SCENE.SCRIPT_INDEX.SIDE_MENU_EXIT_STAGE_BOARD_NODE);
     }
 
     /**
-     * @brief _OnGetStageType関数
-     * @return stage_type (stage_type)
+     * @brief _OnGetBoardType関数
+     * @return board_type (board_type)
      */
-    protected override UnityBase.Util.SCENE.SIDE_MENU_STAGE_TYPE _OnGetStageType()
+    protected override UnityBase.Util.SCENE.SIDE_MENU_BOARD_TYPE _OnGetBoardType()
     {
-        return (UnityBase.Util.SCENE.SIDE_MENU_STAGE_TYPE.END);
+        return (UnityBase.Util.SCENE.SIDE_MENU_BOARD_TYPE.EXIT_STAGE);
+    }
+
+    /**
+     * @brief _OnGetSelect2BoardType関数
+     * @return select2_board_type (select2_board_type)
+     */
+    protected override UnityBase.Util.SCENE.SIDE_MENU_SELECT2_BOARD_TYPE _OnGetSelect2BoardType()
+    {
+        return (UnityBase.Util.SCENE.SIDE_MENU_SELECT2_BOARD_TYPE.NONE);
+    }
+
+    /**
+     * @brief _OnGetStageBoardType関数
+     * @return stage_board_type (stage_board_type)
+     */
+    protected override UnityBase.Util.SCENE.SIDE_MENU_STAGE_BOARD_TYPE _OnGetStageBoardType()
+    {
+        return (UnityBase.Util.SCENE.SIDE_MENU_STAGE_BOARD_TYPE.EXIT);
     }
 
     /**
@@ -83,8 +101,10 @@ public class EndStageNodeScript : UnityBase.Scene.Ui.Menu.Side.StageNodeScript
             return (-1);
         }
 
+        this._nameText.SetText(UnityBase.Global.GetText(UnityBase.Util.MST_TEXT_ID.EXIT));
+
         this._restartNameText.SetText(UnityBase.Global.GetText(UnityBase.Util.MST_TEXT_ID.RESTART));
-        this._endNameText.SetText(UnityBase.Global.GetText(UnityBase.Util.MST_TEXT_ID.EXIT));
+        this._exitNameText.SetText(UnityBase.Global.GetText(UnityBase.Util.MST_TEXT_ID.EXIT));
         this._okButtonNameText.SetText(UnityBase.Global.GetText(UnityBase.Util.MST_TEXT_ID.OK));
         this._cancelButtonNameText.SetText(UnityBase.Global.GetText(UnityBase.Util.MST_TEXT_ID.CANCEL));
 
@@ -98,12 +118,12 @@ public class EndStageNodeScript : UnityBase.Scene.Ui.Menu.Side.StageNodeScript
     public override void SetCreateDesc(Lib.Scene.ScriptCreateDesc create_desc = null)
     {
         if (create_desc == null) {
-            this.SetCreateDesc(new UnityBase.Scene.Ui.Menu.Side.EndStageNodeScriptCreateDesc());
+            this.SetCreateDesc(new UnityBase.Scene.Ui.Menu.Side.ExitStageBoardNodeScriptCreateDesc());
 
             return;
         }
 
-	    this.createDesc = create_desc as UnityBase.Scene.Ui.Menu.Side.EndStageNodeScriptCreateDesc;
+	    this.createDesc = create_desc as UnityBase.Scene.Ui.Menu.Side.ExitStageBoardNodeScriptCreateDesc;
 
         base.SetCreateDesc(this.createDesc);
 
@@ -119,7 +139,7 @@ public class EndStageNodeScript : UnityBase.Scene.Ui.Menu.Side.StageNodeScript
 
         this._scrollRect.verticalNormalizedPosition = 1.0f;
         this._restartToggle.SetIsOnWithoutNotify(false);
-        this._endToggle.SetIsOnWithoutNotify(false);
+        this._exitToggle.SetIsOnWithoutNotify(false);
 
         return;
     }
@@ -155,31 +175,11 @@ public class EndStageNodeScript : UnityBase.Scene.Ui.Menu.Side.StageNodeScript
     }
 
     /**
-     * @brief _OnOpened関数
-     */
-    protected override void _OnOpened()
-    {
-        base._OnOpened();
-
-        return;
-    }
-
-    /**
      * @brief _OnClose関数
      */
     protected override void _OnClose()
     {
         base._OnClose();
-
-        return;
-    }
-
-    /**
-     * @brief _OnClosed関数
-     */
-    protected override void _OnClosed()
-    {
-        base._OnClosed();
 
         return;
     }
@@ -191,7 +191,7 @@ public class EndStageNodeScript : UnityBase.Scene.Ui.Menu.Side.StageNodeScript
     public void OnRestartToggleValueChanged(bool event_val)
     {
         if (this._restartToggle.isOn) {
-            this._endToggle.SetIsOnWithoutNotify(false);
+            this._exitToggle.SetIsOnWithoutNotify(false);
         }
 
         if (!this.IsControllable()) {
@@ -208,12 +208,12 @@ public class EndStageNodeScript : UnityBase.Scene.Ui.Menu.Side.StageNodeScript
     }
 
     /**
-     * @brief OnEndToggleValueChanged関数
+     * @brief OnExitToggleValueChanged関数
      * @param event_val (event_value)
      */
-    public void OnEndToggleValueChanged(bool event_val)
+    public void OnExitToggleValueChanged(bool event_val)
     {
-        if (this._endToggle.isOn) {
+        if (this._exitToggle.isOn) {
             this._restartToggle.SetIsOnWithoutNotify(false);
         }
 
@@ -221,7 +221,7 @@ public class EndStageNodeScript : UnityBase.Scene.Ui.Menu.Side.StageNodeScript
             return;
         }
 
-        if (this._endToggle.isOn) {
+        if (this._exitToggle.isOn) {
             UnityBase.Global.GetSceneManager().PlaySoundSe((int)UnityBase.Util.SOUND.SE_INDEX.OK2);
         } else {
             UnityBase.Global.GetSceneManager().PlaySoundSe((int)UnityBase.Util.SOUND.SE_INDEX.CANCEL);
@@ -244,11 +244,11 @@ public class EndStageNodeScript : UnityBase.Scene.Ui.Menu.Side.StageNodeScript
 
         if (this._restartToggle.isOn) {
             UnityBase.Global.GetSceneManager().StartMainScene();
-        } else if (this._endToggle.isOn) {
+        } else if (this._exitToggle.isOn) {
             UnityBase.Global.GetSceneManager().EndMainScene();
         }
 
-        this._onCloseStage(this);
+        this._onCloseStageBoard(this);
 
         return;
     }
@@ -265,7 +265,7 @@ public class EndStageNodeScript : UnityBase.Scene.Ui.Menu.Side.StageNodeScript
 
         UnityBase.Global.GetSceneManager().PlaySoundSe((int)UnityBase.Util.SOUND.SE_INDEX.CANCEL);
 
-        this._onCloseStage(this);
+        this._onCloseStageBoard(this);
 
         return;
     }

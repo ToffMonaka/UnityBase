@@ -1,6 +1,6 @@
 ﻿/**
  * @file
- * @brief DefaultCoverNodeScriptファイル
+ * @brief SimpleCoverNodeScriptファイル
  */
 
 
@@ -12,9 +12,9 @@ using DG.Tweening;
 namespace ToffMonaka {
 namespace UnityBase.Scene.Ui.Cover {
 /**
- * @brief DefaultCoverNodeScriptCreateDescクラス
+ * @brief SimpleCoverNodeScriptCreateDescクラス
  */
-public class DefaultCoverNodeScriptCreateDesc : UnityBase.Scene.Ui.Cover.CoverNodeScriptCreateDesc
+public class SimpleCoverNodeScriptCreateDesc : UnityBase.Scene.Ui.Cover.CoverNodeScriptCreateDesc
 {
     public Color32 color = new Color32(0, 0, 0, 255);
     public float playTime = 1.0f;
@@ -27,7 +27,7 @@ public class DefaultCoverNodeScriptCreateDesc : UnityBase.Scene.Ui.Cover.CoverNo
      */
     public override string GetPrefabFilePath()
     {
-        return (UnityBase.Util.FILE_PATH.DEFAULT_COVER_PREFAB);
+        return (UnityBase.Util.FILE_PATH.SIMPLE_COVER_PREFAB);
     }
 
     /**
@@ -39,18 +39,18 @@ public class DefaultCoverNodeScriptCreateDesc : UnityBase.Scene.Ui.Cover.CoverNo
     {
         var node = Lib.Scene.Util.GetPrefabNode(prefab_file_path);
 
-        return (node.GetComponent<UnityBase.Scene.Ui.Cover.DefaultCoverNodeScript>());
+        return (node.GetComponent<UnityBase.Scene.Ui.Cover.SimpleCoverNodeScript>());
     }
 }
 
 /**
- * @brief DefaultCoverNodeScriptクラス
+ * @brief SimpleCoverNodeScriptクラス
  */
-public class DefaultCoverNodeScript : UnityBase.Scene.Ui.Cover.CoverNodeScript
+public class SimpleCoverNodeScript : UnityBase.Scene.Ui.Cover.CoverNodeScript
 {
     [SerializeField] private Image _coverImage = null;
 
-    public new UnityBase.Scene.Ui.Cover.DefaultCoverNodeScriptCreateDesc createDesc{get; private set;} = null;
+    public new UnityBase.Scene.Ui.Cover.SimpleCoverNodeScriptCreateDesc createDesc{get; private set;} = null;
 
     private Color32 _color = new Color32(0, 0, 0, 255);
     private float _playTime = 1.0f;
@@ -64,7 +64,7 @@ public class DefaultCoverNodeScript : UnityBase.Scene.Ui.Cover.CoverNodeScript
      */
     protected override int _OnGetScriptIndex()
     {
-        return ((int)UnityBase.Util.SCENE.SCRIPT_INDEX.DEFAULT_COVER_NODE);
+        return ((int)UnityBase.Util.SCENE.SCRIPT_INDEX.SIMPLE_COVER_NODE);
     }
 
     /**
@@ -113,12 +113,12 @@ public class DefaultCoverNodeScript : UnityBase.Scene.Ui.Cover.CoverNodeScript
     public override void SetCreateDesc(Lib.Scene.ScriptCreateDesc create_desc = null)
     {
         if (create_desc == null) {
-            this.SetCreateDesc(new UnityBase.Scene.Ui.Cover.DefaultCoverNodeScriptCreateDesc());
+            this.SetCreateDesc(new UnityBase.Scene.Ui.Cover.SimpleCoverNodeScriptCreateDesc());
 
             return;
         }
 
-	    this.createDesc = create_desc as UnityBase.Scene.Ui.Cover.DefaultCoverNodeScriptCreateDesc;
+	    this.createDesc = create_desc as UnityBase.Scene.Ui.Cover.SimpleCoverNodeScriptCreateDesc;
 
         base.SetCreateDesc(this.createDesc);
 

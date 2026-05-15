@@ -81,7 +81,8 @@ public class SubSceneNodeScript : UnityBase.Scene.SubSceneNodeScript
             {
                 this._stageType = item_node_script.GetStageType();
 
-                this.Close(1, (owner) => {
+                this.Close(1, (owner) =>
+                {
 		            switch (this._stageType) {
 		            case UnityBase.Util.SCENE.STAGE_TYPE.TEST_2D: {
                         {// Test2DStageSubSceneNodeScript Create
@@ -124,10 +125,12 @@ public class SubSceneNodeScript : UnityBase.Scene.SubSceneNodeScript
             var script = this._backButtonNode.GetComponent<UnityBase.Scene.Ui.BackButtonNodeScript>();
             var script_create_desc = new UnityBase.Scene.Ui.BackButtonNodeScriptCreateDesc();
 
-            script_create_desc.onClick = (UnityBase.Scene.Ui.BackButtonNodeScript owner) => {
+            script_create_desc.onClick = (UnityBase.Scene.Ui.BackButtonNodeScript owner) =>
+            {
 		        switch (this._openBoardNodeScript.GetBoardType()) {
 		        case UnityBase.Util.SCENE.SELECT_BOARD_TYPE.STAGE: {
-                    this.Close(1, (owner) => {
+                    this.Close(1, (owner) =>
+                    {
                         {// TitleSubSceneNodeScript Create
                             var script = UnityBase.Global.GetSceneManager().ChangeSubScene(UnityBase.Util.FILE_PATH.TITLE_SUB_SCENE_PREFAB) as UnityBase.Scene.TitleSubSceneNodeScript;
                             var script_create_desc = new UnityBase.Scene.TitleSubSceneNodeScriptCreateDesc();
@@ -219,8 +222,8 @@ public class SubSceneNodeScript : UnityBase.Scene.SubSceneNodeScript
 
 		switch (this.GetOpenType()) {
 		case 1: {
-            {// DefaultCover Add
-                var script_create_desc = new UnityBase.Scene.Ui.Cover.DefaultCoverNodeScriptCreateDesc();
+            {// SimpleCover Add
+                var script_create_desc = new UnityBase.Scene.Ui.Cover.SimpleCoverNodeScriptCreateDesc();
 
                 script_create_desc.color = new Color32(8, 8, 8, 255);
                 script_create_desc.playTime = 0.2f;
@@ -264,8 +267,8 @@ public class SubSceneNodeScript : UnityBase.Scene.SubSceneNodeScript
 
 		switch (this.GetCloseType()) {
 		case 1: {
-            {// DefaultCover Add
-                var script_create_desc = new UnityBase.Scene.Ui.Cover.DefaultCoverNodeScriptCreateDesc();
+            {// SimpleCover Add
+                var script_create_desc = new UnityBase.Scene.Ui.Cover.SimpleCoverNodeScriptCreateDesc();
 
                 script_create_desc.color = new Color32(8, 8, 8, 255);
                 script_create_desc.playTime = 0.2f;

@@ -1,6 +1,6 @@
 ﻿/**
  * @file
- * @brief OptionStageNodeScriptファイル
+ * @brief OptionSoundStageBoardNodeScriptファイル
  */
 
 
@@ -13,21 +13,18 @@ using TMPro;
 namespace ToffMonaka {
 namespace UnityBase.Scene.Ui.Menu.Side {
 /**
- * @brief OptionStageNodeScriptCreateDescクラス
+ * @brief OptionSoundStageBoardNodeScriptCreateDescクラス
  */
-public class OptionStageNodeScriptCreateDesc : UnityBase.Scene.Ui.Menu.Side.StageNodeScriptCreateDesc
+public class OptionSoundStageBoardNodeScriptCreateDesc : UnityBase.Scene.Ui.Menu.Side.StageBoardNodeScriptCreateDesc
 {
 }
 
 /**
- * @brief OptionStageNodeScriptクラス
+ * @brief OptionSoundStageBoardNodeScriptクラス
  */
-public class OptionStageNodeScript : UnityBase.Scene.Ui.Menu.Side.StageNodeScript
+public class OptionSoundStageBoardNodeScript : UnityBase.Scene.Ui.Menu.Side.StageBoardNodeScript
 {
     [SerializeField] private ScrollRect _scrollRect = null;
-    [SerializeField] private TMP_Text _languageNameText = null;
-    [SerializeField] private TMP_Text _languageButtonNameText = null;
-    [SerializeField] private TMP_Text _soundNameText = null;
     [SerializeField] private TMP_Text _soundBgmVolumeNameText = null;
     [SerializeField] private Slider _soundBgmVolumeSlider = null;
     [SerializeField] private TMP_Text _soundBgmMuteNameText = null;
@@ -39,9 +36,8 @@ public class OptionStageNodeScript : UnityBase.Scene.Ui.Menu.Side.StageNodeScrip
     [SerializeField] private TMP_Text _okButtonNameText = null;
     [SerializeField] private TMP_Text _cancelButtonNameText = null;
 
-    public new UnityBase.Scene.Ui.Menu.Side.OptionStageNodeScriptCreateDesc createDesc{get; private set;} = null;
+    public new UnityBase.Scene.Ui.Menu.Side.OptionSoundStageBoardNodeScriptCreateDesc createDesc{get; private set;} = null;
 
-    private UnityBase.Util.LANGUAGE_TYPE _languageType = UnityBase.Util.LANGUAGE_TYPE.NONE;
     private float _soundBgmVolume = 1.0f;
     private bool _soundBgmMuteFlag = false;
     private float _soundSeVolume = 1.0f;
@@ -54,16 +50,34 @@ public class OptionStageNodeScript : UnityBase.Scene.Ui.Menu.Side.StageNodeScrip
      */
     protected override int _OnGetScriptIndex()
     {
-        return ((int)UnityBase.Util.SCENE.SCRIPT_INDEX.SIDE_MENU_OPTION_STAGE_NODE);
+        return ((int)UnityBase.Util.SCENE.SCRIPT_INDEX.SIDE_MENU_OPTION_SOUND_STAGE_BOARD_NODE);
     }
 
     /**
-     * @brief _OnGetStageType関数
-     * @return stage_type (stage_type)
+     * @brief _OnGetBoardType関数
+     * @return board_type (board_type)
      */
-    protected override UnityBase.Util.SCENE.SIDE_MENU_STAGE_TYPE _OnGetStageType()
+    protected override UnityBase.Util.SCENE.SIDE_MENU_BOARD_TYPE _OnGetBoardType()
     {
-        return (UnityBase.Util.SCENE.SIDE_MENU_STAGE_TYPE.OPTION);
+        return (UnityBase.Util.SCENE.SIDE_MENU_BOARD_TYPE.OPTION_SOUND_STAGE);
+    }
+
+    /**
+     * @brief _OnGetSelect2BoardType関数
+     * @return select2_board_type (select2_board_type)
+     */
+    protected override UnityBase.Util.SCENE.SIDE_MENU_SELECT2_BOARD_TYPE _OnGetSelect2BoardType()
+    {
+        return (UnityBase.Util.SCENE.SIDE_MENU_SELECT2_BOARD_TYPE.NONE);
+    }
+
+    /**
+     * @brief _OnGetStageBoardType関数
+     * @return stage_board_type (stage_board_type)
+     */
+    protected override UnityBase.Util.SCENE.SIDE_MENU_STAGE_BOARD_TYPE _OnGetStageBoardType()
+    {
+        return (UnityBase.Util.SCENE.SIDE_MENU_STAGE_BOARD_TYPE.OPTION_SOUND);
     }
 
     /**
@@ -97,8 +111,8 @@ public class OptionStageNodeScript : UnityBase.Scene.Ui.Menu.Side.StageNodeScrip
             return (-1);
         }
 
-        this._languageNameText.SetText(UnityBase.Global.GetText(UnityBase.Util.MST_TEXT_ID.LANGUAGE));
-        this._soundNameText.SetText(UnityBase.Global.GetText(UnityBase.Util.MST_TEXT_ID.SOUND));
+        this._nameText.SetText(UnityBase.Global.GetText(UnityBase.Util.MST_TEXT_ID.OPTION) + " > " + UnityBase.Global.GetText(UnityBase.Util.MST_TEXT_ID.SOUND));
+
         this._soundBgmMuteNameText.SetText(UnityBase.Global.GetText(UnityBase.Util.MST_TEXT_ID.BGM_MUTE));
         this._soundSeMuteNameText.SetText(UnityBase.Global.GetText(UnityBase.Util.MST_TEXT_ID.SE_MUTE));
         this._okButtonNameText.SetText(UnityBase.Global.GetText(UnityBase.Util.MST_TEXT_ID.OK));
@@ -114,12 +128,12 @@ public class OptionStageNodeScript : UnityBase.Scene.Ui.Menu.Side.StageNodeScrip
     public override void SetCreateDesc(Lib.Scene.ScriptCreateDesc create_desc = null)
     {
         if (create_desc == null) {
-            this.SetCreateDesc(new UnityBase.Scene.Ui.Menu.Side.OptionStageNodeScriptCreateDesc());
+            this.SetCreateDesc(new UnityBase.Scene.Ui.Menu.Side.OptionSoundStageBoardNodeScriptCreateDesc());
 
             return;
         }
 
-	    this.createDesc = create_desc as UnityBase.Scene.Ui.Menu.Side.OptionStageNodeScriptCreateDesc;
+	    this.createDesc = create_desc as UnityBase.Scene.Ui.Menu.Side.OptionSoundStageBoardNodeScriptCreateDesc;
 
         base.SetCreateDesc(this.createDesc);
 
@@ -169,67 +183,11 @@ public class OptionStageNodeScript : UnityBase.Scene.Ui.Menu.Side.StageNodeScrip
     }
 
     /**
-     * @brief _OnOpened関数
-     */
-    protected override void _OnOpened()
-    {
-        base._OnOpened();
-
-        return;
-    }
-
-    /**
      * @brief _OnClose関数
      */
     protected override void _OnClose()
     {
         base._OnClose();
-
-        return;
-    }
-
-    /**
-     * @brief _OnClosed関数
-     */
-    protected override void _OnClosed()
-    {
-        base._OnClosed();
-
-        return;
-    }
-
-    /**
-     * @brief OnLanguageButtonPointerClick関数
-     * @param event_dat (event_data)
-     */
-    public void OnLanguageButtonPointerClick(PointerEventData event_dat)
-    {
-        if (!this.IsControllable()) {
-            return;
-        }
-
-        UnityBase.Global.GetSceneManager().PlaySoundSe((int)UnityBase.Util.SOUND.SE_INDEX.OK2);
-
-        {// LanguageSelectDialog Add
-            var script_create_desc = new UnityBase.Scene.Ui.Dialog.SelectDialogNodeScriptCreateDesc();
-
-            void on_click_item(UnityBase.Scene.Ui.Dialog.SelectDialogNodeScript owner, UnityBase.Scene.Ui.Dialog.SelectDialogItemNodeScript item_node_script)
-            {
-                var item_node_script_engine = item_node_script.GetEngine() as UnityBase.Scene.Ui.Dialog.LanguageSelectDialogItemEngine;
-
-                this.SetLanguageType(item_node_script_engine.GetLanguageType());
-
-                return;
-            }
-
-            script_create_desc.engine = new UnityBase.Scene.Ui.Dialog.LanguageSelectDialogEngine();
-            script_create_desc.onClickItem = on_click_item;
-
-            var script = UnityBase.Global.GetSubSceneNodeScript().GetDialogSystemNodeScript().AddDialog(script_create_desc) as UnityBase.Scene.Ui.Dialog.SelectDialogNodeScript;
-
-            script.AddItem(new UnityBase.Scene.Ui.Dialog.LanguageSelectDialogItemEngine(UnityBase.Util.LANGUAGE_TYPE.ENGLISH));
-            script.AddItem(new UnityBase.Scene.Ui.Dialog.LanguageSelectDialogItemEngine(UnityBase.Util.LANGUAGE_TYPE.JAPANESE));
-        }
 
         return;
     }
@@ -414,7 +372,6 @@ public class OptionStageNodeScript : UnityBase.Scene.Ui.Menu.Side.StageNodeScrip
 
         UnityBase.Global.GetSceneManager().PlaySoundSe((int)UnityBase.Util.SOUND.SE_INDEX.OK2);
 
-        UnityBase.Global.systemConfigFile.data.systemLanguageType = this._languageType;
         UnityBase.Global.systemConfigFile.data.soundBgmVolume = this._soundBgmVolume;
         UnityBase.Global.systemConfigFile.data.soundBgmMuteFlag = this._soundBgmMuteFlag;
         UnityBase.Global.systemConfigFile.data.soundSeVolume = this._soundSeVolume;
@@ -426,7 +383,7 @@ public class OptionStageNodeScript : UnityBase.Scene.Ui.Menu.Side.StageNodeScrip
             UnityBase.Global.GetSceneManager().StartMainScene();
         }
 
-        this._onCloseStage(this);
+        this._onCloseStageBoard(this);
 
         return;
     }
@@ -448,31 +405,7 @@ public class OptionStageNodeScript : UnityBase.Scene.Ui.Menu.Side.StageNodeScrip
         UnityBase.Global.GetSceneManager().SetSoundSeVolume(UnityBase.Global.systemConfigFile.data.soundSeVolume);
         UnityBase.Global.GetSceneManager().SetSoundSeMuteFlag(UnityBase.Global.systemConfigFile.data.soundSeMuteFlag);
 
-        this._onCloseStage(this);
-
-        return;
-    }
-
-    /**
-     * @brief GetLanguageType関数
-     * @return language_type (language_type)
-     */
-    public UnityBase.Util.LANGUAGE_TYPE GetLanguageType()
-    {
-        return (this._languageType);
-    }
-
-    /**
-     * @brief SetLanguageType関数
-     * @param language_type (language_type)
-     */
-    public void SetLanguageType(UnityBase.Util.LANGUAGE_TYPE language_type)
-    {
-        this._languageType = language_type;
-
-        this._languageButtonNameText.SetText(UnityBase.Global.GetText(UnityBase.Util.LANGUAGE_NAME_MST_TEXT_ID_ARRAY[(int)this._languageType]));
-
-        this._SetRestartFlag((this._languageType != UnityBase.Global.systemConfigFile.data.systemLanguageType) ? (this._restartFlag | 0x0001U) : (this._restartFlag & ~0x0001U));
+        this._onCloseStageBoard(this);
 
         return;
     }

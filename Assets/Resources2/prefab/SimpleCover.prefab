@@ -86,7 +86,7 @@ GameObject:
   - component: {fileID: 5911863290898286269}
   - component: {fileID: 4763572678428498301}
   m_Layer: 5
-  m_Name: DefaultCover
+  m_Name: SimpleCover
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

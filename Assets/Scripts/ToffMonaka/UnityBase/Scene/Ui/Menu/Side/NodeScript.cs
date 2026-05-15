@@ -24,28 +24,37 @@ public class NodeScript : Lib.Scene.ObjectNodeScript
 {
     [SerializeField] private Image _backgroundImage = null;
     [SerializeField] private GameObject _openCloseButtonNode = null;
-    [SerializeField] private GameObject _selectNode = null;
-    [SerializeField] private GameObject _optionStageNode = null;
-    [SerializeField] private GameObject _faqStageNode = null;
-    [SerializeField] private GameObject _staffStageNode = null;
-    [SerializeField] private GameObject _licenseStageNode = null;
-    [SerializeField] private GameObject _privacyPolicyStageNode = null;
-    [SerializeField] private GameObject _endStageNode = null;
-    [SerializeField] private GameObject _cheatStageNode = null;
+    [SerializeField] private GameObject _selectBoardNode = null;
+    [SerializeField] private GameObject _optionSelect2BoardNode = null;
+    [SerializeField] private GameObject _infoSelect2BoardNode = null;
+    [SerializeField] private GameObject _optionSystemStageBoardNode = null;
+    [SerializeField] private GameObject _optionInputStageBoardNode = null;
+    [SerializeField] private GameObject _optionGraphicStageBoardNode = null;
+    [SerializeField] private GameObject _optionSoundStageBoardNode = null;
+    [SerializeField] private GameObject _infoFaqStageBoardNode = null;
+    [SerializeField] private GameObject _infoStaffStageBoardNode = null;
+    [SerializeField] private GameObject _infoLicenseStageBoardNode = null;
+    [SerializeField] private GameObject _infoPrivacyPolicyStageBoardNode = null;
+    [SerializeField] private GameObject _exitStageBoardNode = null;
+    [SerializeField] private GameObject _cheatStageBoardNode = null;
 
     public new UnityBase.Scene.Ui.Menu.Side.NodeScriptCreateDesc createDesc{get; private set;} = null;
 
     private UnityBase.Scene.Ui.Menu.Side.OpenCloseButtonNodeScript _openCloseButtonNodeScript = null;
-    private UnityBase.Scene.Ui.Menu.Side.SelectNodeScript _selectNodeScript = null;
-    private UnityBase.Scene.Ui.Menu.Side.SelectNodeScript _openSelectNodeScript = null;
-    private UnityBase.Scene.Ui.Menu.Side.OptionStageNodeScript _optionStageNodeScript = null;
-    private UnityBase.Scene.Ui.Menu.Side.FaqStageNodeScript _faqStageNodeScript = null;
-    private UnityBase.Scene.Ui.Menu.Side.StaffStageNodeScript _staffStageNodeScript = null;
-    private UnityBase.Scene.Ui.Menu.Side.LicenseStageNodeScript _licenseStageNodeScript = null;
-    private UnityBase.Scene.Ui.Menu.Side.PrivacyPolicyStageNodeScript _privacyPolicyStageNodeScript = null;
-    private UnityBase.Scene.Ui.Menu.Side.EndStageNodeScript _endStageNodeScript = null;
-    private UnityBase.Scene.Ui.Menu.Side.CheatStageNodeScript _cheatStageNodeScript = null;
-    private UnityBase.Scene.Ui.Menu.Side.StageNodeScript _openStageNodeScript = null;
+    private UnityBase.Scene.Ui.Menu.Side.SelectBoardNodeScript _selectBoardNodeScript = null;
+    private UnityBase.Scene.Ui.Menu.Side.OptionSelect2BoardNodeScript _optionSelect2BoardNodeScript = null;
+    private UnityBase.Scene.Ui.Menu.Side.InfoSelect2BoardNodeScript _infoSelect2BoardNodeScript = null;
+    private UnityBase.Scene.Ui.Menu.Side.OptionSystemStageBoardNodeScript _optionSystemStageBoardNodeScript = null;
+    private UnityBase.Scene.Ui.Menu.Side.OptionInputStageBoardNodeScript _optionInputStageBoardNodeScript = null;
+    private UnityBase.Scene.Ui.Menu.Side.OptionGraphicStageBoardNodeScript _optionGraphicStageBoardNodeScript = null;
+    private UnityBase.Scene.Ui.Menu.Side.OptionSoundStageBoardNodeScript _optionSoundStageBoardNodeScript = null;
+    private UnityBase.Scene.Ui.Menu.Side.InfoFaqStageBoardNodeScript _infoFaqStageBoardNodeScript = null;
+    private UnityBase.Scene.Ui.Menu.Side.InfoStaffStageBoardNodeScript _infoStaffStageBoardNodeScript = null;
+    private UnityBase.Scene.Ui.Menu.Side.InfoLicenseStageBoardNodeScript _infoLicenseStageBoardNodeScript = null;
+    private UnityBase.Scene.Ui.Menu.Side.InfoPrivacyPolicyStageBoardNodeScript _infoPrivacyPolicyStageBoardNodeScript = null;
+    private UnityBase.Scene.Ui.Menu.Side.ExitStageBoardNodeScript _exitStageBoardNodeScript = null;
+    private UnityBase.Scene.Ui.Menu.Side.CheatStageBoardNodeScript _cheatStageBoardNodeScript = null;
+    private UnityBase.Scene.Ui.Menu.Side.BoardNodeScript _openBoardNodeScript = null;
 
     /**
      * @brief _OnGetScriptIndex関数
@@ -61,6 +70,8 @@ public class NodeScript : Lib.Scene.ObjectNodeScript
      */
     protected override void _OnAwake()
     {
+        base._OnAwake();
+
         return;
     }
 
@@ -69,6 +80,8 @@ public class NodeScript : Lib.Scene.ObjectNodeScript
      */
     protected override void _OnDestroy()
     {
+        base._OnDestroy();
+
         return;
     }
 
@@ -79,46 +92,34 @@ public class NodeScript : Lib.Scene.ObjectNodeScript
      */
     protected override int _OnCreate()
     {
+        if (base._OnCreate() < 0) {
+            return (-1);
+        }
+
         this._backgroundImage.gameObject.SetActive(false);
 
         {// OpenCloseButtonNodeScript Create
             var script = this._openCloseButtonNode.GetComponent<UnityBase.Scene.Ui.Menu.Side.OpenCloseButtonNodeScript>();
             var script_create_desc = new UnityBase.Scene.Ui.Menu.Side.OpenCloseButtonNodeScriptCreateDesc();
 
-            void on_click(UnityBase.Scene.Ui.Menu.Side.OpenCloseButtonNodeScript owner)
+            script_create_desc.onClick = (owner) =>
             {
                 if (!this._backgroundImage.gameObject.activeSelf) {
                     this._backgroundImage.gameObject.SetActive(true);
 
-                    this._openSelectNodeScript = this._selectNodeScript;
+                    this.OpenBoard(UnityBase.Util.SCENE.SIDE_MENU_BOARD_TYPE.SELECT);
 
-                    this._openSelectNodeScript.Open(1);
+                    UnityBase.Global.GetSceneManager().PlaySoundSe((int)UnityBase.Util.SOUND.SE_INDEX.OK2);
                 } else {
                     this._backgroundImage.gameObject.SetActive(false);
 
-                    if (this._openSelectNodeScript != null) {
-                        this._openSelectNodeScript.Close(1);
+                    this.CloseBoard();
 
-                        this._openSelectNodeScript = null;
-                    }
-                }
-
-                if (this._openSelectNodeScript != null) {
-                    UnityBase.Global.GetSceneManager().PlaySoundSe((int)UnityBase.Util.SOUND.SE_INDEX.OK2);
-                } else {
                     UnityBase.Global.GetSceneManager().PlaySoundSe((int)UnityBase.Util.SOUND.SE_INDEX.CANCEL);
                 }
 
-                if (this._openStageNodeScript != null) {
-                    this._openStageNodeScript.Close(1);
-
-                    this._openStageNodeScript = null;
-                }
-
                 return;
-            }
-
-            script_create_desc.onClick = on_click;
+            };
 
             script.Create(script_create_desc);
             script.Open(1);
@@ -126,148 +127,230 @@ public class NodeScript : Lib.Scene.ObjectNodeScript
             this._openCloseButtonNodeScript = script;
         }
 
-        {// SelectNodeScript Create
-            var script = this._selectNode.GetComponent<UnityBase.Scene.Ui.Menu.Side.SelectNodeScript>();
-            var script_create_desc = new UnityBase.Scene.Ui.Menu.Side.SelectNodeScriptCreateDesc();
+        {// SelectBoardNodeScript Create
+            var script = this._selectBoardNode.GetComponent<UnityBase.Scene.Ui.Menu.Side.SelectBoardNodeScript>();
+            var script_create_desc = new UnityBase.Scene.Ui.Menu.Side.SelectBoardNodeScriptCreateDesc();
 
-            void on_open_stage(UnityBase.Scene.Ui.Menu.Side.SelectNodeScript owner, UnityBase.Util.SCENE.SIDE_MENU_STAGE_TYPE stage_type)
+            script_create_desc.onOpenSelect2Board = (owner, select2_board_type) =>
             {
-                this.ChangeStage(stage_type);
+                this.OpenBoard(select2_board_type);
 
                 return;
-            }
+            };
+            script_create_desc.onOpenStageBoard = (owner, stage_board_type) =>
+            {
+                this.OpenBoard(stage_board_type);
 
-            script_create_desc.onOpenStage = on_open_stage;
+                return;
+            };
 
             script.Create(script_create_desc);
 
-            this._selectNodeScript = script;
+            this._selectBoardNodeScript = script;
         }
 
-        {// OptionStageNodeScript Create
-            var script = this._optionStageNode.GetComponent<UnityBase.Scene.Ui.Menu.Side.OptionStageNodeScript>();
-            var script_create_desc = new UnityBase.Scene.Ui.Menu.Side.OptionStageNodeScriptCreateDesc();
+        {// OptionSelect2BoardNodeScript Create
+            var script = this._optionSelect2BoardNode.GetComponent<UnityBase.Scene.Ui.Menu.Side.OptionSelect2BoardNodeScript>();
+            var script_create_desc = new UnityBase.Scene.Ui.Menu.Side.OptionSelect2BoardNodeScriptCreateDesc();
 
-            void on_close_stage(UnityBase.Scene.Ui.Menu.Side.StageNodeScript owner)
+            script_create_desc.onOpenStageBoard = (owner, stage_board_type) =>
             {
-                this.ChangeStage(UnityBase.Util.SCENE.SIDE_MENU_STAGE_TYPE.NONE);
+                this.OpenBoard(stage_board_type);
 
                 return;
-            }
+            };
+            script_create_desc.onCloseSelect2Board = (owner) =>
+            {
+                this.OpenBoard(UnityBase.Util.SCENE.SIDE_MENU_BOARD_TYPE.SELECT);
 
-            script_create_desc.onCloseStage = on_close_stage;
+                return;
+            };
 
             script.Create(script_create_desc);
 
-            this._optionStageNodeScript = script;
+            this._optionSelect2BoardNodeScript = script;
         }
 
-        {// FaqStageNodeScript Create
-            var script = this._faqStageNode.GetComponent<UnityBase.Scene.Ui.Menu.Side.FaqStageNodeScript>();
-            var script_create_desc = new UnityBase.Scene.Ui.Menu.Side.FaqStageNodeScriptCreateDesc();
+        {// InfoSelect2BoardNodeScript Create
+            var script = this._infoSelect2BoardNode.GetComponent<UnityBase.Scene.Ui.Menu.Side.InfoSelect2BoardNodeScript>();
+            var script_create_desc = new UnityBase.Scene.Ui.Menu.Side.InfoSelect2BoardNodeScriptCreateDesc();
 
-            void on_close_stage(UnityBase.Scene.Ui.Menu.Side.StageNodeScript owner)
+            script_create_desc.onOpenStageBoard = (owner, stage_board_type) =>
             {
-                this.ChangeStage(UnityBase.Util.SCENE.SIDE_MENU_STAGE_TYPE.NONE);
+                this.OpenBoard(stage_board_type);
 
                 return;
-            }
+            };
+            script_create_desc.onCloseSelect2Board = (owner) =>
+            {
+                this.OpenBoard(UnityBase.Util.SCENE.SIDE_MENU_BOARD_TYPE.SELECT);
 
-            script_create_desc.onCloseStage = on_close_stage;
+                return;
+            };
 
             script.Create(script_create_desc);
 
-            this._faqStageNodeScript = script;
+            this._infoSelect2BoardNodeScript = script;
         }
 
-        {// StaffStageNodeScript Create
-            var script = this._staffStageNode.GetComponent<UnityBase.Scene.Ui.Menu.Side.StaffStageNodeScript>();
-            var script_create_desc = new UnityBase.Scene.Ui.Menu.Side.StaffStageNodeScriptCreateDesc();
+        {// OptionSystemStageBoardNodeScript Create
+            var script = this._optionSystemStageBoardNode.GetComponent<UnityBase.Scene.Ui.Menu.Side.OptionSystemStageBoardNodeScript>();
+            var script_create_desc = new UnityBase.Scene.Ui.Menu.Side.OptionSystemStageBoardNodeScriptCreateDesc();
 
-            void on_close_stage(UnityBase.Scene.Ui.Menu.Side.StageNodeScript owner)
+            script_create_desc.onCloseStageBoard = (owner) =>
             {
-                this.ChangeStage(UnityBase.Util.SCENE.SIDE_MENU_STAGE_TYPE.NONE);
+                this.OpenBoard(UnityBase.Util.SCENE.SIDE_MENU_SELECT2_BOARD_TYPE.OPTION);
 
                 return;
-            }
-
-            script_create_desc.onCloseStage = on_close_stage;
+            };
 
             script.Create(script_create_desc);
 
-            this._staffStageNodeScript = script;
+            this._optionSystemStageBoardNodeScript = script;
         }
 
-        {// LicenseStageNodeScript Create
-            var script = this._licenseStageNode.GetComponent<UnityBase.Scene.Ui.Menu.Side.LicenseStageNodeScript>();
-            var script_create_desc = new UnityBase.Scene.Ui.Menu.Side.LicenseStageNodeScriptCreateDesc();
+        {// OptionInputStageBoardNodeScript Create
+            var script = this._optionInputStageBoardNode.GetComponent<UnityBase.Scene.Ui.Menu.Side.OptionInputStageBoardNodeScript>();
+            var script_create_desc = new UnityBase.Scene.Ui.Menu.Side.OptionInputStageBoardNodeScriptCreateDesc();
 
-            void on_close_stage(UnityBase.Scene.Ui.Menu.Side.StageNodeScript owner)
+            script_create_desc.onCloseStageBoard = (owner) =>
             {
-                this.ChangeStage(UnityBase.Util.SCENE.SIDE_MENU_STAGE_TYPE.NONE);
+                this.OpenBoard(UnityBase.Util.SCENE.SIDE_MENU_SELECT2_BOARD_TYPE.OPTION);
 
                 return;
-            }
-
-            script_create_desc.onCloseStage = on_close_stage;
+            };
 
             script.Create(script_create_desc);
 
-            this._licenseStageNodeScript = script;
+            this._optionInputStageBoardNodeScript = script;
         }
 
-        {// PrivacyPolicyStageNodeScript Create
-            var script = this._privacyPolicyStageNode.GetComponent<UnityBase.Scene.Ui.Menu.Side.PrivacyPolicyStageNodeScript>();
-            var script_create_desc = new UnityBase.Scene.Ui.Menu.Side.PrivacyPolicyStageNodeScriptCreateDesc();
+        {// OptionGraphicStageBoardNodeScript Create
+            var script = this._optionGraphicStageBoardNode.GetComponent<UnityBase.Scene.Ui.Menu.Side.OptionGraphicStageBoardNodeScript>();
+            var script_create_desc = new UnityBase.Scene.Ui.Menu.Side.OptionGraphicStageBoardNodeScriptCreateDesc();
 
-            void on_close_stage(UnityBase.Scene.Ui.Menu.Side.StageNodeScript owner)
+            script_create_desc.onCloseStageBoard = (owner) =>
             {
-                this.ChangeStage(UnityBase.Util.SCENE.SIDE_MENU_STAGE_TYPE.NONE);
+                this.OpenBoard(UnityBase.Util.SCENE.SIDE_MENU_SELECT2_BOARD_TYPE.OPTION);
 
                 return;
-            }
-
-            script_create_desc.onCloseStage = on_close_stage;
+            };
 
             script.Create(script_create_desc);
 
-            this._privacyPolicyStageNodeScript = script;
+            this._optionGraphicStageBoardNodeScript = script;
         }
 
-        {// EndStageNodeScript Create
-            var script = this._endStageNode.GetComponent<UnityBase.Scene.Ui.Menu.Side.EndStageNodeScript>();
-            var script_create_desc = new UnityBase.Scene.Ui.Menu.Side.EndStageNodeScriptCreateDesc();
+        {// OptionSoundStageBoardNodeScript Create
+            var script = this._optionSoundStageBoardNode.GetComponent<UnityBase.Scene.Ui.Menu.Side.OptionSoundStageBoardNodeScript>();
+            var script_create_desc = new UnityBase.Scene.Ui.Menu.Side.OptionSoundStageBoardNodeScriptCreateDesc();
 
-            void on_close_stage(UnityBase.Scene.Ui.Menu.Side.StageNodeScript owner)
+            script_create_desc.onCloseStageBoard = (owner) =>
             {
-                this.ChangeStage(UnityBase.Util.SCENE.SIDE_MENU_STAGE_TYPE.NONE);
+                this.OpenBoard(UnityBase.Util.SCENE.SIDE_MENU_SELECT2_BOARD_TYPE.OPTION);
 
                 return;
-            }
-
-            script_create_desc.onCloseStage = on_close_stage;
+            };
 
             script.Create(script_create_desc);
 
-            this._endStageNodeScript = script;
+            this._optionSoundStageBoardNodeScript = script;
         }
 
-        {// CheatStageNodeScript Create
-            var script = this._cheatStageNode.GetComponent<UnityBase.Scene.Ui.Menu.Side.CheatStageNodeScript>();
-            var script_create_desc = new UnityBase.Scene.Ui.Menu.Side.CheatStageNodeScriptCreateDesc();
+        {// InfoFaqStageBoardNodeScript Create
+            var script = this._infoFaqStageBoardNode.GetComponent<UnityBase.Scene.Ui.Menu.Side.InfoFaqStageBoardNodeScript>();
+            var script_create_desc = new UnityBase.Scene.Ui.Menu.Side.InfoFaqStageBoardNodeScriptCreateDesc();
 
-            void on_close_stage(UnityBase.Scene.Ui.Menu.Side.StageNodeScript owner)
+            script_create_desc.onCloseStageBoard = (owner) =>
             {
-                this.ChangeStage(UnityBase.Util.SCENE.SIDE_MENU_STAGE_TYPE.NONE);
+                this.OpenBoard(UnityBase.Util.SCENE.SIDE_MENU_SELECT2_BOARD_TYPE.INFO);
 
                 return;
-            }
-
-            script_create_desc.onCloseStage = on_close_stage;
+            };
 
             script.Create(script_create_desc);
 
-            this._cheatStageNodeScript = script;
+            this._infoFaqStageBoardNodeScript = script;
+        }
+
+        {// InfoStaffStageBoardNodeScript Create
+            var script = this._infoStaffStageBoardNode.GetComponent<UnityBase.Scene.Ui.Menu.Side.InfoStaffStageBoardNodeScript>();
+            var script_create_desc = new UnityBase.Scene.Ui.Menu.Side.InfoStaffStageBoardNodeScriptCreateDesc();
+
+            script_create_desc.onCloseStageBoard = (owner) =>
+            {
+                this.OpenBoard(UnityBase.Util.SCENE.SIDE_MENU_SELECT2_BOARD_TYPE.INFO);
+
+                return;
+            };
+
+            script.Create(script_create_desc);
+
+            this._infoStaffStageBoardNodeScript = script;
+        }
+
+        {// InfoLicenseStageBoardNodeScript Create
+            var script = this._infoLicenseStageBoardNode.GetComponent<UnityBase.Scene.Ui.Menu.Side.InfoLicenseStageBoardNodeScript>();
+            var script_create_desc = new UnityBase.Scene.Ui.Menu.Side.InfoLicenseStageBoardNodeScriptCreateDesc();
+
+            script_create_desc.onCloseStageBoard = (owner) =>
+            {
+                this.OpenBoard(UnityBase.Util.SCENE.SIDE_MENU_SELECT2_BOARD_TYPE.INFO);
+
+                return;
+            };
+
+            script.Create(script_create_desc);
+
+            this._infoLicenseStageBoardNodeScript = script;
+        }
+
+        {// InfoPrivacyPolicyStageBoardNodeScript Create
+            var script = this._infoPrivacyPolicyStageBoardNode.GetComponent<UnityBase.Scene.Ui.Menu.Side.InfoPrivacyPolicyStageBoardNodeScript>();
+            var script_create_desc = new UnityBase.Scene.Ui.Menu.Side.InfoPrivacyPolicyStageBoardNodeScriptCreateDesc();
+
+            script_create_desc.onCloseStageBoard = (owner) =>
+            {
+                this.OpenBoard(UnityBase.Util.SCENE.SIDE_MENU_SELECT2_BOARD_TYPE.INFO);
+
+                return;
+            };
+
+            script.Create(script_create_desc);
+
+            this._infoPrivacyPolicyStageBoardNodeScript = script;
+        }
+
+        {// ExitStageBoardNodeScript Create
+            var script = this._exitStageBoardNode.GetComponent<UnityBase.Scene.Ui.Menu.Side.ExitStageBoardNodeScript>();
+            var script_create_desc = new UnityBase.Scene.Ui.Menu.Side.ExitStageBoardNodeScriptCreateDesc();
+
+            script_create_desc.onCloseStageBoard = (owner) =>
+            {
+                this.OpenBoard(UnityBase.Util.SCENE.SIDE_MENU_BOARD_TYPE.SELECT);
+
+                return;
+            };
+
+            script.Create(script_create_desc);
+
+            this._exitStageBoardNodeScript = script;
+        }
+
+        {// CheatStageBoardNodeScript Create
+            var script = this._cheatStageBoardNode.GetComponent<UnityBase.Scene.Ui.Menu.Side.CheatStageBoardNodeScript>();
+            var script_create_desc = new UnityBase.Scene.Ui.Menu.Side.CheatStageBoardNodeScriptCreateDesc();
+
+            script_create_desc.onCloseStageBoard = (owner) =>
+            {
+                this.OpenBoard(UnityBase.Util.SCENE.SIDE_MENU_BOARD_TYPE.SELECT);
+
+                return;
+            };
+
+            script.Create(script_create_desc);
+
+            this._cheatStageBoardNodeScript = script;
         }
 
         return (0);
@@ -297,6 +380,8 @@ public class NodeScript : Lib.Scene.ObjectNodeScript
      */
     protected override void _OnActive()
     {
+        base._OnActive();
+
         return;
     }
 
@@ -305,6 +390,8 @@ public class NodeScript : Lib.Scene.ObjectNodeScript
      */
     protected override void _OnDeactive()
     {
+        base._OnDeactive();
+
         return;
     }
 
@@ -313,6 +400,8 @@ public class NodeScript : Lib.Scene.ObjectNodeScript
      */
     protected override void _OnUpdate()
     {
+        base._OnUpdate();
+
         return;
     }
 
@@ -321,14 +410,8 @@ public class NodeScript : Lib.Scene.ObjectNodeScript
      */
     protected override void _OnOpen()
     {
-        return;
-    }
+        base._OnOpen();
 
-    /**
-     * @brief _OnOpened関数
-     */
-    protected override void _OnOpened()
-    {
         return;
     }
 
@@ -337,14 +420,198 @@ public class NodeScript : Lib.Scene.ObjectNodeScript
      */
     protected override void _OnClose()
     {
+        base._OnClose();
+
         return;
     }
 
     /**
-     * @brief _OnClosed関数
+     * @brief OpenBoard関数
+     * @param board_type (board_type)
      */
-    protected override void _OnClosed()
+    public void OpenBoard(UnityBase.Util.SCENE.SIDE_MENU_BOARD_TYPE board_type)
     {
+        this.CloseBoard();
+
+		switch (board_type) {
+		case UnityBase.Util.SCENE.SIDE_MENU_BOARD_TYPE.SELECT: {
+            this._openBoardNodeScript = this._selectBoardNodeScript;
+
+			break;
+		}
+		case UnityBase.Util.SCENE.SIDE_MENU_BOARD_TYPE.OPTION_SELECT2: {
+            this._openBoardNodeScript = this._optionSelect2BoardNodeScript;
+
+			break;
+		}
+		case UnityBase.Util.SCENE.SIDE_MENU_BOARD_TYPE.INFO_SELECT2: {
+            this._openBoardNodeScript = this._infoSelect2BoardNodeScript;
+
+			break;
+		}
+		case UnityBase.Util.SCENE.SIDE_MENU_BOARD_TYPE.OPTION_SYSTEM_STAGE: {
+            this._optionSystemStageBoardNodeScript.SetLanguageType(UnityBase.Global.systemConfigFile.data.systemLanguageType);
+
+            this._openBoardNodeScript = this._optionSystemStageBoardNodeScript;
+
+			break;
+		}
+		case UnityBase.Util.SCENE.SIDE_MENU_BOARD_TYPE.OPTION_INPUT_STAGE: {
+            this._openBoardNodeScript = this._optionInputStageBoardNodeScript;
+
+			break;
+		}
+		case UnityBase.Util.SCENE.SIDE_MENU_BOARD_TYPE.OPTION_GRAPHIC_STAGE: {
+            this._openBoardNodeScript = this._optionGraphicStageBoardNodeScript;
+
+			break;
+		}
+		case UnityBase.Util.SCENE.SIDE_MENU_BOARD_TYPE.OPTION_SOUND_STAGE: {
+            this._optionSoundStageBoardNodeScript.SetSoundBgmVolume(UnityBase.Global.systemConfigFile.data.soundBgmVolume);
+            this._optionSoundStageBoardNodeScript.SetSoundBgmMuteFlag(UnityBase.Global.systemConfigFile.data.soundBgmMuteFlag);
+            this._optionSoundStageBoardNodeScript.SetSoundSeVolume(UnityBase.Global.systemConfigFile.data.soundSeVolume);
+            this._optionSoundStageBoardNodeScript.SetSoundSeMuteFlag(UnityBase.Global.systemConfigFile.data.soundSeMuteFlag);
+
+            this._openBoardNodeScript = this._optionSoundStageBoardNodeScript;
+
+			break;
+		}
+		case UnityBase.Util.SCENE.SIDE_MENU_BOARD_TYPE.INFO_FAQ_STAGE: {
+            this._openBoardNodeScript = this._infoFaqStageBoardNodeScript;
+
+			break;
+		}
+		case UnityBase.Util.SCENE.SIDE_MENU_BOARD_TYPE.INFO_STAFF_STAGE: {
+            this._openBoardNodeScript = this._infoStaffStageBoardNodeScript;
+
+			break;
+		}
+		case UnityBase.Util.SCENE.SIDE_MENU_BOARD_TYPE.INFO_LICENSE_STAGE: {
+            this._openBoardNodeScript = this._infoLicenseStageBoardNodeScript;
+
+			break;
+		}
+		case UnityBase.Util.SCENE.SIDE_MENU_BOARD_TYPE.INFO_PRIVACY_POLICY_STAGE: {
+            this._openBoardNodeScript = this._infoPrivacyPolicyStageBoardNodeScript;
+
+			break;
+		}
+		case UnityBase.Util.SCENE.SIDE_MENU_BOARD_TYPE.EXIT_STAGE: {
+            this._openBoardNodeScript = this._exitStageBoardNodeScript;
+
+			break;
+		}
+		case UnityBase.Util.SCENE.SIDE_MENU_BOARD_TYPE.CHEAT_STAGE: {
+            this._openBoardNodeScript = this._cheatStageBoardNodeScript;
+
+			break;
+		}
+		}
+
+        if (this._openBoardNodeScript != null) {
+            this._openBoardNodeScript.Open(1);
+        }
+
+        return;
+    }
+
+    /**
+     * @brief OpenBoard関数
+     * @param select2_board_type (select2_board_type)
+     */
+    public void OpenBoard(UnityBase.Util.SCENE.SIDE_MENU_SELECT2_BOARD_TYPE select2_board_type)
+    {
+		switch (select2_board_type) {
+		case UnityBase.Util.SCENE.SIDE_MENU_SELECT2_BOARD_TYPE.OPTION: {
+            this.OpenBoard(UnityBase.Util.SCENE.SIDE_MENU_BOARD_TYPE.OPTION_SELECT2);
+
+			break;
+		}
+		case UnityBase.Util.SCENE.SIDE_MENU_SELECT2_BOARD_TYPE.INFO: {
+            this.OpenBoard(UnityBase.Util.SCENE.SIDE_MENU_BOARD_TYPE.INFO_SELECT2);
+
+			break;
+		}
+		}
+
+        return;
+    }
+
+    /**
+     * @brief OpenBoard関数
+     * @param stage_board_type (stage_board_type)
+     */
+    public void OpenBoard(UnityBase.Util.SCENE.SIDE_MENU_STAGE_BOARD_TYPE stage_board_type)
+    {
+		switch (stage_board_type) {
+		case UnityBase.Util.SCENE.SIDE_MENU_STAGE_BOARD_TYPE.OPTION_SYSTEM: {
+            this.OpenBoard(UnityBase.Util.SCENE.SIDE_MENU_BOARD_TYPE.OPTION_SYSTEM_STAGE);
+
+			break;
+		}
+		case UnityBase.Util.SCENE.SIDE_MENU_STAGE_BOARD_TYPE.OPTION_INPUT: {
+            this.OpenBoard(UnityBase.Util.SCENE.SIDE_MENU_BOARD_TYPE.OPTION_INPUT_STAGE);
+
+			break;
+		}
+		case UnityBase.Util.SCENE.SIDE_MENU_STAGE_BOARD_TYPE.OPTION_GRAPHIC: {
+            this.OpenBoard(UnityBase.Util.SCENE.SIDE_MENU_BOARD_TYPE.OPTION_GRAPHIC_STAGE);
+
+			break;
+		}
+		case UnityBase.Util.SCENE.SIDE_MENU_STAGE_BOARD_TYPE.OPTION_SOUND: {
+            this.OpenBoard(UnityBase.Util.SCENE.SIDE_MENU_BOARD_TYPE.OPTION_SOUND_STAGE);
+
+			break;
+		}
+		case UnityBase.Util.SCENE.SIDE_MENU_STAGE_BOARD_TYPE.INFO_FAQ: {
+            this.OpenBoard(UnityBase.Util.SCENE.SIDE_MENU_BOARD_TYPE.INFO_FAQ_STAGE);
+
+			break;
+		}
+		case UnityBase.Util.SCENE.SIDE_MENU_STAGE_BOARD_TYPE.INFO_STAFF: {
+            this.OpenBoard(UnityBase.Util.SCENE.SIDE_MENU_BOARD_TYPE.INFO_STAFF_STAGE);
+
+			break;
+		}
+		case UnityBase.Util.SCENE.SIDE_MENU_STAGE_BOARD_TYPE.INFO_LICENSE: {
+            this.OpenBoard(UnityBase.Util.SCENE.SIDE_MENU_BOARD_TYPE.INFO_LICENSE_STAGE);
+
+			break;
+		}
+		case UnityBase.Util.SCENE.SIDE_MENU_STAGE_BOARD_TYPE.INFO_PRIVACY_POLICY: {
+            this.OpenBoard(UnityBase.Util.SCENE.SIDE_MENU_BOARD_TYPE.INFO_PRIVACY_POLICY_STAGE);
+
+			break;
+		}
+		case UnityBase.Util.SCENE.SIDE_MENU_STAGE_BOARD_TYPE.EXIT: {
+            this.OpenBoard(UnityBase.Util.SCENE.SIDE_MENU_BOARD_TYPE.EXIT_STAGE);
+
+			break;
+		}
+		case UnityBase.Util.SCENE.SIDE_MENU_STAGE_BOARD_TYPE.CHEAT: {
+            this.OpenBoard(UnityBase.Util.SCENE.SIDE_MENU_BOARD_TYPE.CHEAT_STAGE);
+
+			break;
+		}
+		}
+
+        return;
+    }
+
+    /**
+     * @brief CloseBoard関数
+     */
+    public void CloseBoard()
+    {
+        if (this._openBoardNodeScript == null) {
+            return;
+        }
+
+        this._openBoardNodeScript.Close(1);
+
+        this._openBoardNodeScript = null;
+
         return;
     }
 
@@ -352,6 +619,7 @@ public class NodeScript : Lib.Scene.ObjectNodeScript
      * @brief ChangeStage関数
      * @param stage_type (stage_type)
      */
+    /*
     public void ChangeStage(UnityBase.Util.SCENE.SIDE_MENU_STAGE_TYPE stage_type)
     {
         if (this._openStageNodeScript != null) {
@@ -361,7 +629,7 @@ public class NodeScript : Lib.Scene.ObjectNodeScript
         }
 
 		switch (stage_type) {
-		case UnityBase.Util.SCENE.SIDE_MENU_STAGE_TYPE.OPTION: {
+		case UnityBase.Util.SCENE.SIDE_MENU_STAGE_TYPE.OPTION_SYSTEM: {
             this._optionStageNodeScript.SetLanguageType(UnityBase.Global.systemConfigFile.data.systemLanguageType);
             this._optionStageNodeScript.SetSoundBgmVolume(UnityBase.Global.systemConfigFile.data.soundBgmVolume);
             this._optionStageNodeScript.SetSoundBgmMuteFlag(UnityBase.Global.systemConfigFile.data.soundBgmMuteFlag);
@@ -372,28 +640,28 @@ public class NodeScript : Lib.Scene.ObjectNodeScript
 
 			break;
 		}
-		case UnityBase.Util.SCENE.SIDE_MENU_STAGE_TYPE.FAQ: {
+		case UnityBase.Util.SCENE.SIDE_MENU_STAGE_TYPE.INFO_FAQ: {
             this._openStageNodeScript = this._faqStageNodeScript;
 
 			break;
 		}
-		case UnityBase.Util.SCENE.SIDE_MENU_STAGE_TYPE.STAFF: {
+		case UnityBase.Util.SCENE.SIDE_MENU_STAGE_TYPE.INFO_STAFF: {
             this._openStageNodeScript = this._staffStageNodeScript;
 
 			break;
 		}
-		case UnityBase.Util.SCENE.SIDE_MENU_STAGE_TYPE.LICENSE: {
+		case UnityBase.Util.SCENE.SIDE_MENU_STAGE_TYPE.INFO_LICENSE: {
             this._openStageNodeScript = this._licenseStageNodeScript;
 
 			break;
 		}
-		case UnityBase.Util.SCENE.SIDE_MENU_STAGE_TYPE.PRIVACY_POLICY: {
+		case UnityBase.Util.SCENE.SIDE_MENU_STAGE_TYPE.INFO_PRIVACY_POLICY: {
             this._openStageNodeScript = this._privacyPolicyStageNodeScript;
 
 			break;
 		}
-		case UnityBase.Util.SCENE.SIDE_MENU_STAGE_TYPE.END: {
-            this._openStageNodeScript = this._endStageNodeScript;
+		case UnityBase.Util.SCENE.SIDE_MENU_STAGE_TYPE.EXIT: {
+            this._openStageNodeScript = this._exitStageNodeScript;
 
 			break;
 		}
@@ -422,6 +690,7 @@ public class NodeScript : Lib.Scene.ObjectNodeScript
 
         return;
     }
+    */
 }
 }
 }

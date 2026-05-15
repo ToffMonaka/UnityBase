@@ -1,6 +1,6 @@
 ﻿/**
  * @file
- * @brief StageNodeScriptファイル
+ * @brief BoardNodeScriptファイル
  */
 
 
@@ -12,24 +12,24 @@ using DG.Tweening;
 namespace ToffMonaka {
 namespace UnityBase.Scene.Ui.Menu.Side {
 /**
- * @brief StageNodeScriptCreateDescクラス
+ * @brief BoardNodeScriptCreateDescクラス
  */
-public class StageNodeScriptCreateDesc : Lib.Scene.ObjectNodeScriptCreateDesc
+public class BoardNodeScriptCreateDesc : Lib.Scene.ObjectNodeScriptCreateDesc
 {
-    public System.Action<UnityBase.Scene.Ui.Menu.Side.StageNodeScript> onCloseStage = null;
 }
 
 /**
- * @brief StageNodeScriptクラス
+ * @brief BoardNodeScriptクラス
  */
-public abstract class StageNodeScript : Lib.Scene.ObjectNodeScript
+public abstract class BoardNodeScript : Lib.Scene.ObjectNodeScript
 {
-    [SerializeField] private TMP_Text _nameText = null;
+    [SerializeField] protected TMP_Text _nameText = null;
 
-    public new UnityBase.Scene.Ui.Menu.Side.StageNodeScriptCreateDesc createDesc{get; private set;} = null;
+    public new UnityBase.Scene.Ui.Menu.Side.BoardNodeScriptCreateDesc createDesc{get; private set;} = null;
 
-    private UnityBase.Util.SCENE.SIDE_MENU_STAGE_TYPE _stageType = UnityBase.Util.SCENE.SIDE_MENU_STAGE_TYPE.NONE;
-    protected System.Action<UnityBase.Scene.Ui.Menu.Side.StageNodeScript> _onCloseStage = null;
+    private UnityBase.Util.SCENE.SIDE_MENU_BOARD_TYPE _boardType = UnityBase.Util.SCENE.SIDE_MENU_BOARD_TYPE.NONE;
+    private UnityBase.Util.SCENE.SIDE_MENU_SELECT2_BOARD_TYPE _select2BoardType = UnityBase.Util.SCENE.SIDE_MENU_SELECT2_BOARD_TYPE.NONE;
+    private UnityBase.Util.SCENE.SIDE_MENU_STAGE_BOARD_TYPE _stageBoardType = UnityBase.Util.SCENE.SIDE_MENU_STAGE_BOARD_TYPE.NONE;
 
     /**
      * @brief _OnGetScriptIndex関数
@@ -37,16 +37,34 @@ public abstract class StageNodeScript : Lib.Scene.ObjectNodeScript
      */
     protected override int _OnGetScriptIndex()
     {
-        return ((int)UnityBase.Util.SCENE.SCRIPT_INDEX.SIDE_MENU_STAGE_NODE);
+        return ((int)UnityBase.Util.SCENE.SCRIPT_INDEX.SIDE_MENU_BOARD_NODE);
     }
 
     /**
-     * @brief _OnGetStageType関数
-     * @return stage_type (stage_type)
+     * @brief _OnGetBoardType関数
+     * @return board_type (board_type)
      */
-    protected virtual UnityBase.Util.SCENE.SIDE_MENU_STAGE_TYPE _OnGetStageType()
+    protected virtual UnityBase.Util.SCENE.SIDE_MENU_BOARD_TYPE _OnGetBoardType()
     {
-        return (UnityBase.Util.SCENE.SIDE_MENU_STAGE_TYPE.NONE);
+        return (UnityBase.Util.SCENE.SIDE_MENU_BOARD_TYPE.NONE);
+    }
+
+    /**
+     * @brief _OnGetSelect2BoardType関数
+     * @return select2_board_type (select2_board_type)
+     */
+    protected virtual UnityBase.Util.SCENE.SIDE_MENU_SELECT2_BOARD_TYPE _OnGetSelect2BoardType()
+    {
+        return (UnityBase.Util.SCENE.SIDE_MENU_SELECT2_BOARD_TYPE.NONE);
+    }
+
+    /**
+     * @brief _OnGetStageBoardType関数
+     * @return stage_board_type (stage_board_type)
+     */
+    protected virtual UnityBase.Util.SCENE.SIDE_MENU_STAGE_BOARD_TYPE _OnGetStageBoardType()
+    {
+        return (UnityBase.Util.SCENE.SIDE_MENU_STAGE_BOARD_TYPE.NONE);
     }
 
     /**
@@ -54,7 +72,11 @@ public abstract class StageNodeScript : Lib.Scene.ObjectNodeScript
      */
     protected override void _OnAwake()
     {
-        this._stageType = this._OnGetStageType();
+        base._OnAwake();
+
+        this._boardType = this._OnGetBoardType();
+        this._select2BoardType = this._OnGetSelect2BoardType();
+        this._stageBoardType = this._OnGetStageBoardType();
 
         return;
     }
@@ -64,6 +86,8 @@ public abstract class StageNodeScript : Lib.Scene.ObjectNodeScript
      */
     protected override void _OnDestroy()
     {
+        base._OnDestroy();
+
         return;
     }
 
@@ -74,9 +98,9 @@ public abstract class StageNodeScript : Lib.Scene.ObjectNodeScript
      */
     protected override int _OnCreate()
     {
-        this._onCloseStage = this.createDesc.onCloseStage;
-
-        this._nameText.SetText(UnityBase.Global.GetText(UnityBase.Util.SCENE.SIDE_MENU_STAGE_NAME_MST_TEXT_ID_ARRAY[(int)this._stageType]));
+        if (base._OnCreate() < 0) {
+            return (-1);
+        }
 
         return (0);
     }
@@ -88,12 +112,12 @@ public abstract class StageNodeScript : Lib.Scene.ObjectNodeScript
     public override void SetCreateDesc(Lib.Scene.ScriptCreateDesc create_desc = null)
     {
         if (create_desc == null) {
-            this.SetCreateDesc(new UnityBase.Scene.Ui.Menu.Side.StageNodeScriptCreateDesc());
+            this.SetCreateDesc(new UnityBase.Scene.Ui.Menu.Side.BoardNodeScriptCreateDesc());
 
             return;
         }
 
-	    this.createDesc = create_desc as UnityBase.Scene.Ui.Menu.Side.StageNodeScriptCreateDesc;
+	    this.createDesc = create_desc as UnityBase.Scene.Ui.Menu.Side.BoardNodeScriptCreateDesc;
 
         base.SetCreateDesc(this.createDesc);
 
@@ -105,6 +129,8 @@ public abstract class StageNodeScript : Lib.Scene.ObjectNodeScript
      */
     protected override void _OnActive()
     {
+        base._OnActive();
+
         return;
     }
 
@@ -113,6 +139,8 @@ public abstract class StageNodeScript : Lib.Scene.ObjectNodeScript
      */
     protected override void _OnDeactive()
     {
+        base._OnDeactive();
+
         return;
     }
 
@@ -121,6 +149,8 @@ public abstract class StageNodeScript : Lib.Scene.ObjectNodeScript
      */
     protected override void _OnUpdate()
     {
+        base._OnUpdate();
+
         return;
     }
 
@@ -129,6 +159,8 @@ public abstract class StageNodeScript : Lib.Scene.ObjectNodeScript
      */
     protected override void _OnOpen()
     {
+        base._OnOpen();
+
         var rect_transform = this.gameObject.GetComponent<RectTransform>();
 
 		switch (this.GetOpenType()) {
@@ -155,18 +187,12 @@ public abstract class StageNodeScript : Lib.Scene.ObjectNodeScript
     }
 
     /**
-     * @brief _OnOpened関数
-     */
-    protected override void _OnOpened()
-    {
-        return;
-    }
-
-    /**
      * @brief _OnClose関数
      */
     protected override void _OnClose()
     {
+        base._OnClose();
+
         var rect_transform = this.gameObject.GetComponent<RectTransform>();
 
 		switch (this.GetCloseType()) {
@@ -193,20 +219,30 @@ public abstract class StageNodeScript : Lib.Scene.ObjectNodeScript
     }
 
     /**
-     * @brief _OnClosed関数
+     * @brief GetBoardType関数
+     * @return board_type (board_type)
      */
-    protected override void _OnClosed()
+    public UnityBase.Util.SCENE.SIDE_MENU_BOARD_TYPE GetBoardType()
     {
-        return;
+        return (this._boardType);
     }
 
     /**
-     * @brief GetStageType関数
-     * @return stage_type (stage_type)
+     * @brief GetSelect2BoardType関数
+     * @return select2_board_type (select2_board_type)
      */
-    public UnityBase.Util.SCENE.SIDE_MENU_STAGE_TYPE GetStageType()
+    public UnityBase.Util.SCENE.SIDE_MENU_SELECT2_BOARD_TYPE GetSelect2BoardType()
     {
-        return (this._stageType);
+        return (this._select2BoardType);
+    }
+
+    /**
+     * @brief GetStageBoardType関数
+     * @return stage_board_type (stage_board_type)
+     */
+    public UnityBase.Util.SCENE.SIDE_MENU_STAGE_BOARD_TYPE GetStageBoardType()
+    {
+        return (this._stageBoardType);
     }
 }
 }

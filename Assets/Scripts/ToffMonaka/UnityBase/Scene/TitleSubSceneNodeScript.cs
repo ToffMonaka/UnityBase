@@ -141,8 +141,8 @@ public class TitleSubSceneNodeScript : UnityBase.Scene.SubSceneNodeScript
 
 		switch (this.GetOpenType()) {
 		case 1: {
-            {// DefaultCover Add
-                var script_create_desc = new UnityBase.Scene.Ui.Cover.DefaultCoverNodeScriptCreateDesc();
+            {// SimpleCover Add
+                var script_create_desc = new UnityBase.Scene.Ui.Cover.SimpleCoverNodeScriptCreateDesc();
 
                 script_create_desc.color = new Color32(8, 8, 8, 255);
                 script_create_desc.playTime = 0.2f;
@@ -186,8 +186,8 @@ public class TitleSubSceneNodeScript : UnityBase.Scene.SubSceneNodeScript
 
 		switch (this.GetCloseType()) {
 		case 1: {
-            {// DefaultCover Add
-                var script_create_desc = new UnityBase.Scene.Ui.Cover.DefaultCoverNodeScriptCreateDesc();
+            {// SimpleCover Add
+                var script_create_desc = new UnityBase.Scene.Ui.Cover.SimpleCoverNodeScriptCreateDesc();
 
                 script_create_desc.color = new Color32(8, 8, 8, 255);
                 script_create_desc.playTime = 0.2f;
@@ -234,7 +234,8 @@ public class TitleSubSceneNodeScript : UnityBase.Scene.SubSceneNodeScript
 
         UnityBase.Global.GetSceneManager().PlaySoundSe((int)UnityBase.Util.SOUND.SE_INDEX.OK);
 
-        this.Close(1, (owner) => {
+        this.Close(1, (owner) =>
+        {
             {// SelectSubSceneNodeScript Create
                 var script = UnityBase.Global.GetSceneManager().ChangeSubScene(UnityBase.Util.FILE_PATH.SELECT_SUB_SCENE_PREFAB) as UnityBase.Scene.Select.SubSceneNodeScript;
                 var script_create_desc = new UnityBase.Scene.Select.SubSceneNodeScriptCreateDesc();
