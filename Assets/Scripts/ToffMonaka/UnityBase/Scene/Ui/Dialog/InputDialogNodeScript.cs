@@ -106,14 +106,9 @@ public class InputDialogNodeScript : UnityBase.Scene.Ui.Dialog.DialogNodeScript
         this._onClickOkButton = this.createDesc.onClickOkButton;
 
         this._nameText.SetText(this._engine.OnGetName());
+        this._okButtonNameText.transform.parent.gameObject.SetActive((this._onClickOkButton != null));
         this._okButtonNameText.SetText(UnityBase.Global.GetText(UnityBase.Util.MST_TEXT_ID.OK));
         this._cancelButtonNameText.SetText(UnityBase.Global.GetText(UnityBase.Util.MST_TEXT_ID.CANCEL));
-
-        if (this._onClickOkButton != null) {
-            this._okButtonNameText.transform.parent.gameObject.SetActive(true);
-        } else {
-            this._okButtonNameText.transform.parent.gameObject.SetActive(false);
-        }
 
         return (0);
     }
@@ -182,31 +177,11 @@ public class InputDialogNodeScript : UnityBase.Scene.Ui.Dialog.DialogNodeScript
     }
 
     /**
-     * @brief _OnOpened関数
-     */
-    protected override void _OnOpened()
-    {
-        base._OnOpened();
-
-        return;
-    }
-
-    /**
      * @brief _OnClose関数
      */
     protected override void _OnClose()
     {
         base._OnClose();
-
-        return;
-    }
-
-    /**
-     * @brief _OnClosed関数
-     */
-    protected override void _OnClosed()
-    {
-        base._OnClosed();
 
         return;
     }

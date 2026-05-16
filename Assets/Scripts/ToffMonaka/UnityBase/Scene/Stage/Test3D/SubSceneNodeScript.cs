@@ -7,7 +7,6 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using DG.Tweening;
 
 
 namespace ToffMonaka {
@@ -169,16 +168,6 @@ public class SubSceneNodeScript : UnityBase.Scene.Stage.SubSceneNodeScript
     }
 
     /**
-     * @brief _OnOpened関数
-     */
-    protected override void _OnOpened()
-    {
-        base._OnOpened();
-
-        return;
-    }
-
-    /**
      * @brief _OnClose関数
      */
     protected override void _OnClose()
@@ -209,16 +198,6 @@ public class SubSceneNodeScript : UnityBase.Scene.Stage.SubSceneNodeScript
 			break;
 		}
 		}
-
-        return;
-    }
-
-    /**
-     * @brief _OnClosed関数
-     */
-    protected override void _OnClosed()
-    {
-        base._OnClosed();
 
         return;
     }

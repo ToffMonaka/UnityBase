@@ -33,7 +33,7 @@ public class OptionSystemStageBoardNodeScript : UnityBase.Scene.Ui.Menu.Side.Sta
     public new UnityBase.Scene.Ui.Menu.Side.OptionSystemStageBoardNodeScriptCreateDesc createDesc{get; private set;} = null;
 
     private UnityBase.Util.LANGUAGE_TYPE _languageType = UnityBase.Util.LANGUAGE_TYPE.NONE;
-    private uint _restartFlag = 0U;
+    private bool _restartFlag = false;
 
     /**
      * @brief _OnGetScriptIndex関数
@@ -169,6 +169,8 @@ public class OptionSystemStageBoardNodeScript : UnityBase.Scene.Ui.Menu.Side.Sta
     {
         base._OnOpen();
 
+        this.SetLanguageType(UnityBase.Global.systemConfigFile.data.systemLanguageType);
+
         return;
     }
 
@@ -232,11 +234,11 @@ public class OptionSystemStageBoardNodeScript : UnityBase.Scene.Ui.Menu.Side.Sta
 
         UnityBase.Global.systemConfigFile.Write(true);
 
-        if (this._restartFlag != 0U) {
+        if (this._restartFlag) {
             UnityBase.Global.GetSceneManager().StartMainScene();
+        } else {
+            this._onCloseStageBoard(this);
         }
-
-        this._onCloseStageBoard(this);
 
         return;
     }
@@ -277,7 +279,7 @@ public class OptionSystemStageBoardNodeScript : UnityBase.Scene.Ui.Menu.Side.Sta
 
         this._languageButtonNameText.SetText(UnityBase.Global.GetText(UnityBase.Util.LANGUAGE_NAME_MST_TEXT_ID_ARRAY[(int)this._languageType]));
 
-        this._SetRestartFlag((this._languageType != UnityBase.Global.systemConfigFile.data.systemLanguageType) ? (this._restartFlag | 0x0001U) : (this._restartFlag & ~0x0001U));
+        this._SetRestartFlag((this._languageType != UnityBase.Global.systemConfigFile.data.systemLanguageType));
 
         return;
     }
@@ -286,11 +288,11 @@ public class OptionSystemStageBoardNodeScript : UnityBase.Scene.Ui.Menu.Side.Sta
      * @brief _SetRestartFlag関数
      * @param restart_flg (restart_flag)
      */
-    private void _SetRestartFlag(uint restart_flg)
+    private void _SetRestartFlag(bool restart_flg)
     {
         this._restartFlag = restart_flg;
 
-        if (this._restartFlag != 0U) {
+        if (this._restartFlag) {
             this._okButtonNameText.SetText(UnityBase.Global.GetText(UnityBase.Util.MST_TEXT_ID.OK) + "\n" + UnityBase.Global.GetText(UnityBase.Util.MST_TEXT_ID.RESTART));
             this._okButtonNameText.fontSize = 20.0f;
         } else {

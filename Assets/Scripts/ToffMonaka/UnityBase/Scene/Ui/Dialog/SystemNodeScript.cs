@@ -1,6 +1,6 @@
 ﻿/**
  * @file
- * @brief NodeScriptファイル
+ * @brief SystemNodeScriptファイル
  */
 
 
@@ -40,6 +40,8 @@ public class SystemNodeScript : Lib.Scene.ObjectNodeScript
      */
     protected override void _OnAwake()
     {
+        base._OnAwake();
+
         return;
     }
 
@@ -49,6 +51,8 @@ public class SystemNodeScript : Lib.Scene.ObjectNodeScript
     protected override void _OnDestroy()
     {
         this._RemoveDialog();
+
+        base._OnDestroy();
 
         return;
     }
@@ -60,6 +64,10 @@ public class SystemNodeScript : Lib.Scene.ObjectNodeScript
      */
     protected override int _OnCreate()
     {
+        if (base._OnCreate() < 0) {
+            return (-1);
+        }
+
         return (0);
     }
 
@@ -87,6 +95,8 @@ public class SystemNodeScript : Lib.Scene.ObjectNodeScript
      */
     protected override void _OnActive()
     {
+        base._OnActive();
+
         return;
     }
 
@@ -95,6 +105,8 @@ public class SystemNodeScript : Lib.Scene.ObjectNodeScript
      */
     protected override void _OnDeactive()
     {
+        base._OnDeactive();
+
         return;
     }
 
@@ -103,6 +115,8 @@ public class SystemNodeScript : Lib.Scene.ObjectNodeScript
      */
     protected override void _OnUpdate()
     {
+        base._OnUpdate();
+
         this._UpdateDialog();
 
         return;
@@ -113,14 +127,8 @@ public class SystemNodeScript : Lib.Scene.ObjectNodeScript
      */
     protected override void _OnOpen()
     {
-        return;
-    }
+        base._OnOpen();
 
-    /**
-     * @brief _OnOpened関数
-     */
-    protected override void _OnOpened()
-    {
         return;
     }
 
@@ -129,14 +137,8 @@ public class SystemNodeScript : Lib.Scene.ObjectNodeScript
      */
     protected override void _OnClose()
     {
-        return;
-    }
+        base._OnClose();
 
-    /**
-     * @brief _OnClosed関数
-     */
-    protected override void _OnClosed()
-    {
         return;
     }
 

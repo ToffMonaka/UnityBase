@@ -182,31 +182,11 @@ public class SimpleCoverNodeScript : UnityBase.Scene.Ui.Cover.CoverNodeScript
     }
 
     /**
-     * @brief _OnOpened関数
-     */
-    protected override void _OnOpened()
-    {
-        base._OnOpened();
-
-        return;
-    }
-
-    /**
      * @brief _OnClose関数
      */
     protected override void _OnClose()
     {
         base._OnClose();
-
-        return;
-    }
-
-    /**
-     * @brief _OnClosed関数
-     */
-    protected override void _OnClosed()
-    {
-        base._OnClosed();
 
         return;
     }
@@ -218,7 +198,7 @@ public class SimpleCoverNodeScript : UnityBase.Scene.Ui.Cover.CoverNodeScript
      */
     public override bool IsPlay()
     {
-        return ((this._sequence != null) ? this._sequence.IsActive() : false);
+        return ((this._sequence != null) && (this._sequence.IsActive()));
     }
 }
 }

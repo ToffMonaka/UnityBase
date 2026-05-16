@@ -121,23 +121,21 @@ public class CheatStageBoardNodeScript : UnityBase.Scene.Ui.Menu.Side.StageBoard
                 UnityBase.Scene.Ui.Menu.Side.CheatCommandUtil.ADD_CODE_TYPE.FUNCTION_DELETE_DATA
             };
 
-            void on_click(UnityBase.Scene.Ui.Menu.Side.CheatStageBoardItemNodeScript owner)
-            {
-                if (this._cheatCommand.GetCode().Length <= 0) {
-                    this.SetCheatCommand(UnityBase.Scene.Ui.Menu.Side.CheatCommandUtil.ADD_CODE_TEXT_ARRAY[(int)owner.GetAddCodeType()] + ";");
-                } else {
-                    this.SetCheatCommand(this._cheatCommand.GetCode() + " " + UnityBase.Scene.Ui.Menu.Side.CheatCommandUtil.ADD_CODE_TEXT_ARRAY[(int)owner.GetAddCodeType()] + ";");
-                }
-
-                return;
-            }
-
             foreach (var add_code_type in add_code_type_ary) {
                 var script = GameObject.Instantiate(this._itemNode, this._itemNode.transform.parent).GetComponent<UnityBase.Scene.Ui.Menu.Side.CheatStageBoardItemNodeScript>();
                 var script_create_desc = new UnityBase.Scene.Ui.Menu.Side.CheatStageBoardItemNodeScriptCreateDesc();
 
                 script_create_desc.addCodeType = add_code_type;
-                script_create_desc.onClick = on_click;
+                script_create_desc.onClick = (owner) =>
+                {
+                    if (this._cheatCommand.GetCode().Length <= 0) {
+                        this.SetCheatCommand(UnityBase.Scene.Ui.Menu.Side.CheatCommandUtil.ADD_CODE_TEXT_ARRAY[(int)owner.GetAddCodeType()] + ";");
+                    } else {
+                        this.SetCheatCommand(this._cheatCommand.GetCode() + " " + UnityBase.Scene.Ui.Menu.Side.CheatCommandUtil.ADD_CODE_TEXT_ARRAY[(int)owner.GetAddCodeType()] + ";");
+                    }
+
+                    return;
+                };
 
                 script.Create(script_create_desc);
                 script.Open(0);

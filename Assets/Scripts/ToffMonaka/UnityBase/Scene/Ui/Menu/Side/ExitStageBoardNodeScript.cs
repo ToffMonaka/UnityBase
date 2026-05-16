@@ -25,8 +25,8 @@ public class ExitStageBoardNodeScriptCreateDesc : UnityBase.Scene.Ui.Menu.Side.S
 public class ExitStageBoardNodeScript : UnityBase.Scene.Ui.Menu.Side.StageBoardNodeScript
 {
     [SerializeField] private ScrollRect _scrollRect = null;
-    [SerializeField] private TMP_Text _restartNameText = null;
-    [SerializeField] private Toggle _restartToggle = null;
+    [SerializeField] private TMP_Text _backToTitleNameText = null;
+    [SerializeField] private Toggle _backToTitleToggle = null;
     [SerializeField] private TMP_Text _exitNameText = null;
     [SerializeField] private Toggle _exitToggle = null;
     [SerializeField] private TMP_Text _okButtonNameText = null;
@@ -103,7 +103,7 @@ public class ExitStageBoardNodeScript : UnityBase.Scene.Ui.Menu.Side.StageBoardN
 
         this._nameText.SetText(UnityBase.Global.GetText(UnityBase.Util.MST_TEXT_ID.EXIT));
 
-        this._restartNameText.SetText(UnityBase.Global.GetText(UnityBase.Util.MST_TEXT_ID.RESTART));
+        this._backToTitleNameText.SetText(UnityBase.Global.GetText(UnityBase.Util.MST_TEXT_ID.BACK_TO_TITLE));
         this._exitNameText.SetText(UnityBase.Global.GetText(UnityBase.Util.MST_TEXT_ID.EXIT));
         this._okButtonNameText.SetText(UnityBase.Global.GetText(UnityBase.Util.MST_TEXT_ID.OK));
         this._cancelButtonNameText.SetText(UnityBase.Global.GetText(UnityBase.Util.MST_TEXT_ID.CANCEL));
@@ -138,7 +138,7 @@ public class ExitStageBoardNodeScript : UnityBase.Scene.Ui.Menu.Side.StageBoardN
         base._OnActive();
 
         this._scrollRect.verticalNormalizedPosition = 1.0f;
-        this._restartToggle.SetIsOnWithoutNotify(false);
+        this._backToTitleToggle.SetIsOnWithoutNotify(false);
         this._exitToggle.SetIsOnWithoutNotify(false);
 
         return;
@@ -185,12 +185,12 @@ public class ExitStageBoardNodeScript : UnityBase.Scene.Ui.Menu.Side.StageBoardN
     }
 
     /**
-     * @brief OnRestartToggleValueChanged関数
+     * @brief OnBackToTitleToggleValueChanged関数
      * @param event_val (event_value)
      */
-    public void OnRestartToggleValueChanged(bool event_val)
+    public void OnBackToTitleToggleValueChanged(bool event_val)
     {
-        if (this._restartToggle.isOn) {
+        if (this._backToTitleToggle.isOn) {
             this._exitToggle.SetIsOnWithoutNotify(false);
         }
 
@@ -198,7 +198,7 @@ public class ExitStageBoardNodeScript : UnityBase.Scene.Ui.Menu.Side.StageBoardN
             return;
         }
 
-        if (this._restartToggle.isOn) {
+        if (this._backToTitleToggle.isOn) {
             UnityBase.Global.GetSceneManager().PlaySoundSe((int)UnityBase.Util.SOUND.SE_INDEX.OK2);
         } else {
             UnityBase.Global.GetSceneManager().PlaySoundSe((int)UnityBase.Util.SOUND.SE_INDEX.CANCEL);
@@ -214,7 +214,7 @@ public class ExitStageBoardNodeScript : UnityBase.Scene.Ui.Menu.Side.StageBoardN
     public void OnExitToggleValueChanged(bool event_val)
     {
         if (this._exitToggle.isOn) {
-            this._restartToggle.SetIsOnWithoutNotify(false);
+            this._backToTitleToggle.SetIsOnWithoutNotify(false);
         }
 
         if (!this.IsControllable()) {
@@ -242,13 +242,24 @@ public class ExitStageBoardNodeScript : UnityBase.Scene.Ui.Menu.Side.StageBoardN
 
         UnityBase.Global.GetSceneManager().PlaySoundSe((int)UnityBase.Util.SOUND.SE_INDEX.OK2);
 
-        if (this._restartToggle.isOn) {
-            UnityBase.Global.GetSceneManager().StartMainScene();
+        if (this._backToTitleToggle.isOn) {
+            UnityBase.Global.GetSceneManager().GetSubSceneNodeScript().Close(1, (owner) =>
+            {
+                {// TitleSubSceneNodeScript Create
+                    var script = UnityBase.Global.GetSceneManager().ChangeSubScene(UnityBase.Util.FILE_PATH.TITLE_SUB_SCENE_PREFAB) as UnityBase.Scene.TitleSubSceneNodeScript;
+                    var script_create_desc = new UnityBase.Scene.TitleSubSceneNodeScriptCreateDesc();
+
+                    script.Create(script_create_desc);
+                    script.Open(1);
+                }
+
+                return;
+            });
         } else if (this._exitToggle.isOn) {
             UnityBase.Global.GetSceneManager().EndMainScene();
+        } else {
+            this._onCloseStageBoard(this);
         }
-
-        this._onCloseStageBoard(this);
 
         return;
     }

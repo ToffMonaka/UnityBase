@@ -46,6 +46,8 @@ public abstract class SubSceneNodeScript : Lib.Scene.SubSceneNodeScript
      */
     protected override void _OnAwake()
     {
+        base._OnAwake();
+
         return;
     }
 
@@ -54,6 +56,8 @@ public abstract class SubSceneNodeScript : Lib.Scene.SubSceneNodeScript
      */
     protected override void _OnDestroy()
     {
+        base._OnDestroy();
+
         return;
     }
 
@@ -64,6 +68,10 @@ public abstract class SubSceneNodeScript : Lib.Scene.SubSceneNodeScript
      */
     protected override int _OnCreate()
     {
+        if (base._OnCreate() < 0) {
+            return (-1);
+        }
+
         // SideMenuNodeScript Create
         if (this._sideMenuNode != null) {
             var script = this._sideMenuNode.GetComponent<UnityBase.Scene.Ui.Menu.Side.NodeScript>();
@@ -124,6 +132,8 @@ public abstract class SubSceneNodeScript : Lib.Scene.SubSceneNodeScript
      */
     protected override void _OnActive()
     {
+        base._OnActive();
+
         return;
     }
 
@@ -132,6 +142,8 @@ public abstract class SubSceneNodeScript : Lib.Scene.SubSceneNodeScript
      */
     protected override void _OnDeactive()
     {
+        base._OnDeactive();
+
         return;
     }
 
@@ -140,6 +152,8 @@ public abstract class SubSceneNodeScript : Lib.Scene.SubSceneNodeScript
      */
     protected override void _OnUpdate()
     {
+        base._OnUpdate();
+
         return;
     }
 
@@ -148,6 +162,8 @@ public abstract class SubSceneNodeScript : Lib.Scene.SubSceneNodeScript
      */
     protected override void _OnOpen()
     {
+        base._OnOpen();
+
         if (this._coverSystemNodeScript != null) {
             this._coverSystemNodeScript.CloseCover();
         }
@@ -160,6 +176,8 @@ public abstract class SubSceneNodeScript : Lib.Scene.SubSceneNodeScript
      */
     protected override void _OnOpened()
     {
+        base._OnOpened();
+
         UnityBase.Global.GetSceneManager().EnableInputEventSystem();
 
         if (this._coverSystemNodeScript != null) {
@@ -174,6 +192,8 @@ public abstract class SubSceneNodeScript : Lib.Scene.SubSceneNodeScript
      */
     protected override void _OnClose()
     {
+        base._OnClose();
+
         UnityBase.Global.GetSceneManager().DisableInputEventSystem();
 
         if (this._coverSystemNodeScript != null) {
@@ -188,6 +208,8 @@ public abstract class SubSceneNodeScript : Lib.Scene.SubSceneNodeScript
      */
     protected override void _OnClosed()
     {
+        base._OnClosed();
+
         if (this._coverSystemNodeScript != null) {
             this._coverSystemNodeScript.CloseCover();
         }

@@ -16,7 +16,6 @@ public class LanguageSelectDialogEngine : UnityBase.Scene.Ui.Dialog.SelectDialog
 {
     /**
      * @brief コンストラクタ
-     * @param on_click_item (on_click_item)
      */
     public LanguageSelectDialogEngine()
     {

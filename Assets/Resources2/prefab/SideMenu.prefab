@@ -7049,9 +7049,9 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 8902267072120178467}
-        m_TargetAssemblyTypeName: ToffMonaka.UnityBase.Scene.Ui.Menu.EndStageNodeScript,
+        m_TargetAssemblyTypeName: ToffMonaka.UnityBase.Scene.Ui.Menu.Side.ExitStageBoardNodeScript,
           Assembly-CSharp
-        m_MethodName: OnRestartToggleValueChanged
+        m_MethodName: OnBackToTitleToggleValueChanged
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -12279,7 +12279,7 @@ GameObject:
   - component: {fileID: 2803135236641216821}
   - component: {fileID: 2287505437470931869}
   m_Layer: 5
-  m_Name: RestartToggle
+  m_Name: BackToTitleToggle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -27104,8 +27104,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ToffMonaka.UnityBase.Scene.Ui.Menu.EndStageNodeScript
   _nameText: {fileID: 4453761373202931486}
   _scrollRect: {fileID: 2061909373023698274}
-  _restartNameText: {fileID: 6197147810404834117}
-  _restartToggle: {fileID: 5712340652282580313}
+  _backToTitleNameText: {fileID: 6197147810404834117}
+  _backToTitleToggle: {fileID: 5712340652282580313}
   _exitNameText: {fileID: 3822950649127261860}
   _exitToggle: {fileID: 8899550937061560318}
   _okButtonNameText: {fileID: 4908074594860608703}

@@ -42,7 +42,7 @@ public class OptionSoundStageBoardNodeScript : UnityBase.Scene.Ui.Menu.Side.Stag
     private bool _soundBgmMuteFlag = false;
     private float _soundSeVolume = 1.0f;
     private bool _soundSeMuteFlag = false;
-    private uint _restartFlag = 0U;
+    private bool _restartFlag = false;
 
     /**
      * @brief _OnGetScriptIndex関数
@@ -178,6 +178,11 @@ public class OptionSoundStageBoardNodeScript : UnityBase.Scene.Ui.Menu.Side.Stag
     protected override void _OnOpen()
     {
         base._OnOpen();
+
+        this.SetSoundBgmVolume(UnityBase.Global.systemConfigFile.data.soundBgmVolume);
+        this.SetSoundBgmMuteFlag(UnityBase.Global.systemConfigFile.data.soundBgmMuteFlag);
+        this.SetSoundSeVolume(UnityBase.Global.systemConfigFile.data.soundSeVolume);
+        this.SetSoundSeMuteFlag(UnityBase.Global.systemConfigFile.data.soundSeMuteFlag);
 
         return;
     }
@@ -379,11 +384,11 @@ public class OptionSoundStageBoardNodeScript : UnityBase.Scene.Ui.Menu.Side.Stag
 
         UnityBase.Global.systemConfigFile.Write(true);
 
-        if (this._restartFlag != 0U) {
+        if (this._restartFlag) {
             UnityBase.Global.GetSceneManager().StartMainScene();
+        } else {
+            this._onCloseStageBoard(this);
         }
-
-        this._onCloseStageBoard(this);
 
         return;
     }
@@ -504,11 +509,11 @@ public class OptionSoundStageBoardNodeScript : UnityBase.Scene.Ui.Menu.Side.Stag
      * @brief _SetRestartFlag関数
      * @param restart_flg (restart_flag)
      */
-    private void _SetRestartFlag(uint restart_flg)
+    private void _SetRestartFlag(bool restart_flg)
     {
         this._restartFlag = restart_flg;
 
-        if (this._restartFlag != 0U) {
+        if (this._restartFlag) {
             this._okButtonNameText.SetText(UnityBase.Global.GetText(UnityBase.Util.MST_TEXT_ID.OK) + "\n" + UnityBase.Global.GetText(UnityBase.Util.MST_TEXT_ID.RESTART));
             this._okButtonNameText.fontSize = 20.0f;
         } else {

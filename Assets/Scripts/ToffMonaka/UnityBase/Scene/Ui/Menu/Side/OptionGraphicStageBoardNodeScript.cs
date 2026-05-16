@@ -30,7 +30,7 @@ public class OptionGraphicStageBoardNodeScript : UnityBase.Scene.Ui.Menu.Side.St
 
     public new UnityBase.Scene.Ui.Menu.Side.OptionGraphicStageBoardNodeScriptCreateDesc createDesc{get; private set;} = null;
 
-    private uint _restartFlag = 0U;
+    private bool _restartFlag = false;
 
     /**
      * @brief _OnGetScriptIndex関数
@@ -192,11 +192,11 @@ public class OptionGraphicStageBoardNodeScript : UnityBase.Scene.Ui.Menu.Side.St
 
         //UnityBase.Global.systemConfigFile.Write(true);
 
-        if (this._restartFlag != 0U) {
+        if (this._restartFlag) {
             UnityBase.Global.GetSceneManager().StartMainScene();
+        } else {
+            this._onCloseStageBoard(this);
         }
-
-        this._onCloseStageBoard(this);
 
         return;
     }
@@ -222,11 +222,11 @@ public class OptionGraphicStageBoardNodeScript : UnityBase.Scene.Ui.Menu.Side.St
      * @brief _SetRestartFlag関数
      * @param restart_flg (restart_flag)
      */
-    private void _SetRestartFlag(uint restart_flg)
+    private void _SetRestartFlag(bool restart_flg)
     {
         this._restartFlag = restart_flg;
 
-        if (this._restartFlag != 0U) {
+        if (this._restartFlag) {
             this._okButtonNameText.SetText(UnityBase.Global.GetText(UnityBase.Util.MST_TEXT_ID.OK) + "\n" + UnityBase.Global.GetText(UnityBase.Util.MST_TEXT_ID.RESTART));
             this._okButtonNameText.fontSize = 20.0f;
         } else {

@@ -75,12 +75,7 @@ public static class PrivacyPolicyMessageUtil
         "\n" +
         "Your Consent\n" +
         "\n" +
-        "By using the Application, you are consenting to the processing of your information as set forth in this Privacy Policy now and as amended by us.\n" +
-        "\n" +
-        "\n" +
-        "Contact Us\n" +
-        "\n" +
-        "If you have any questions regarding privacy while using the Application, or have questions about the practices, please contact the Service Provider via email at toff.monaka@gmail.com."
+        "By using the Application, you are consenting to the processing of your information as set forth in this Privacy Policy now and as amended by us."
     };
     public static readonly string[] JAPANESE_TEXT_ARRAY = {
         "プライバシーポリシー\n" +
@@ -143,12 +138,7 @@ public static class PrivacyPolicyMessageUtil
         "\n" +
         "お客様の同意\n" +
         "\n" +
-        "アプリケーションを使用することにより、お客様は、このプライバシーポリシーに現在規定されている通り、および当社によって修正された通りに、お客様の情報が処理されることに同意したものとみなされます。\n" +
-        "\n" +
-        "\n" +
-        "お問い合わせ\n" +
-        "\n" +
-        "アプリケーションの使用中にプライバシーに関するご質問がある場合、またはその慣行についてご質問がある場合は、電子メール(toff.monaka@gmail.com)でサービスプロバイダーにお問い合わせください。"
+        "アプリケーションを使用することにより、お客様は、このプライバシーポリシーに現在規定されている通り、および当社によって修正された通りに、お客様の情報が処理されることに同意したものとみなされます。"
     };
 }
 }

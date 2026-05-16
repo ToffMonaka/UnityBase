@@ -173,31 +173,11 @@ public class SelectDialogNodeScript : UnityBase.Scene.Ui.Dialog.DialogNodeScript
     }
 
     /**
-     * @brief _OnOpened関数
-     */
-    protected override void _OnOpened()
-    {
-        base._OnOpened();
-
-        return;
-    }
-
-    /**
      * @brief _OnClose関数
      */
     protected override void _OnClose()
     {
         base._OnClose();
-
-        return;
-    }
-
-    /**
-     * @brief _OnClosed関数
-     */
-    protected override void _OnClosed()
-    {
-        base._OnClosed();
 
         return;
     }
@@ -244,17 +224,15 @@ public class SelectDialogNodeScript : UnityBase.Scene.Ui.Dialog.DialogNodeScript
             var script = GameObject.Instantiate(this._itemNode, this._itemNode.transform.parent).GetComponent<UnityBase.Scene.Ui.Dialog.SelectDialogItemNodeScript>();
             var script_create_desc = new UnityBase.Scene.Ui.Dialog.SelectDialogItemNodeScriptCreateDesc();
 
-            void on_click(UnityBase.Scene.Ui.Dialog.SelectDialogItemNodeScript owner)
+            script_create_desc.engine = item_engine;
+            script_create_desc.onClick = (owner) =>
             {
                 this._onClickItem?.Invoke(this, owner);
 
                 this.Close(1);
 
                 return;
-            }
-
-            script_create_desc.engine = item_engine;
-            script_create_desc.onClick = on_click;
+            };
 
             script.Create(script_create_desc);
             script.Open(0);

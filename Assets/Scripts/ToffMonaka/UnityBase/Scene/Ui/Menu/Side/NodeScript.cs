@@ -433,80 +433,24 @@ public class NodeScript : Lib.Scene.ObjectNodeScript
     {
         this.CloseBoard();
 
-		switch (board_type) {
-		case UnityBase.Util.SCENE.SIDE_MENU_BOARD_TYPE.SELECT: {
-            this._openBoardNodeScript = this._selectBoardNodeScript;
+        UnityBase.Scene.Ui.Menu.Side.BoardNodeScript[] board_node_script_ary = {
+            null,
+            this._selectBoardNodeScript,
+            this._optionSelect2BoardNodeScript,
+            this._infoSelect2BoardNodeScript,
+            this._optionSystemStageBoardNodeScript,
+            this._optionInputStageBoardNodeScript,
+            this._optionGraphicStageBoardNodeScript,
+            this._optionSoundStageBoardNodeScript,
+            this._infoFaqStageBoardNodeScript,
+            this._infoStaffStageBoardNodeScript,
+            this._infoLicenseStageBoardNodeScript,
+            this._infoPrivacyPolicyStageBoardNodeScript,
+            this._exitStageBoardNodeScript,
+            this._cheatStageBoardNodeScript
+        };
 
-			break;
-		}
-		case UnityBase.Util.SCENE.SIDE_MENU_BOARD_TYPE.OPTION_SELECT2: {
-            this._openBoardNodeScript = this._optionSelect2BoardNodeScript;
-
-			break;
-		}
-		case UnityBase.Util.SCENE.SIDE_MENU_BOARD_TYPE.INFO_SELECT2: {
-            this._openBoardNodeScript = this._infoSelect2BoardNodeScript;
-
-			break;
-		}
-		case UnityBase.Util.SCENE.SIDE_MENU_BOARD_TYPE.OPTION_SYSTEM_STAGE: {
-            this._optionSystemStageBoardNodeScript.SetLanguageType(UnityBase.Global.systemConfigFile.data.systemLanguageType);
-
-            this._openBoardNodeScript = this._optionSystemStageBoardNodeScript;
-
-			break;
-		}
-		case UnityBase.Util.SCENE.SIDE_MENU_BOARD_TYPE.OPTION_INPUT_STAGE: {
-            this._openBoardNodeScript = this._optionInputStageBoardNodeScript;
-
-			break;
-		}
-		case UnityBase.Util.SCENE.SIDE_MENU_BOARD_TYPE.OPTION_GRAPHIC_STAGE: {
-            this._openBoardNodeScript = this._optionGraphicStageBoardNodeScript;
-
-			break;
-		}
-		case UnityBase.Util.SCENE.SIDE_MENU_BOARD_TYPE.OPTION_SOUND_STAGE: {
-            this._optionSoundStageBoardNodeScript.SetSoundBgmVolume(UnityBase.Global.systemConfigFile.data.soundBgmVolume);
-            this._optionSoundStageBoardNodeScript.SetSoundBgmMuteFlag(UnityBase.Global.systemConfigFile.data.soundBgmMuteFlag);
-            this._optionSoundStageBoardNodeScript.SetSoundSeVolume(UnityBase.Global.systemConfigFile.data.soundSeVolume);
-            this._optionSoundStageBoardNodeScript.SetSoundSeMuteFlag(UnityBase.Global.systemConfigFile.data.soundSeMuteFlag);
-
-            this._openBoardNodeScript = this._optionSoundStageBoardNodeScript;
-
-			break;
-		}
-		case UnityBase.Util.SCENE.SIDE_MENU_BOARD_TYPE.INFO_FAQ_STAGE: {
-            this._openBoardNodeScript = this._infoFaqStageBoardNodeScript;
-
-			break;
-		}
-		case UnityBase.Util.SCENE.SIDE_MENU_BOARD_TYPE.INFO_STAFF_STAGE: {
-            this._openBoardNodeScript = this._infoStaffStageBoardNodeScript;
-
-			break;
-		}
-		case UnityBase.Util.SCENE.SIDE_MENU_BOARD_TYPE.INFO_LICENSE_STAGE: {
-            this._openBoardNodeScript = this._infoLicenseStageBoardNodeScript;
-
-			break;
-		}
-		case UnityBase.Util.SCENE.SIDE_MENU_BOARD_TYPE.INFO_PRIVACY_POLICY_STAGE: {
-            this._openBoardNodeScript = this._infoPrivacyPolicyStageBoardNodeScript;
-
-			break;
-		}
-		case UnityBase.Util.SCENE.SIDE_MENU_BOARD_TYPE.EXIT_STAGE: {
-            this._openBoardNodeScript = this._exitStageBoardNodeScript;
-
-			break;
-		}
-		case UnityBase.Util.SCENE.SIDE_MENU_BOARD_TYPE.CHEAT_STAGE: {
-            this._openBoardNodeScript = this._cheatStageBoardNodeScript;
-
-			break;
-		}
-		}
+        this._openBoardNodeScript = board_node_script_ary[(int)board_type];
 
         if (this._openBoardNodeScript != null) {
             this._openBoardNodeScript.Open(1);
@@ -521,18 +465,13 @@ public class NodeScript : Lib.Scene.ObjectNodeScript
      */
     public void OpenBoard(UnityBase.Util.SCENE.SIDE_MENU_SELECT2_BOARD_TYPE select2_board_type)
     {
-		switch (select2_board_type) {
-		case UnityBase.Util.SCENE.SIDE_MENU_SELECT2_BOARD_TYPE.OPTION: {
-            this.OpenBoard(UnityBase.Util.SCENE.SIDE_MENU_BOARD_TYPE.OPTION_SELECT2);
+        UnityBase.Util.SCENE.SIDE_MENU_BOARD_TYPE[] board_type_ary = {
+            UnityBase.Util.SCENE.SIDE_MENU_BOARD_TYPE.NONE,
+            UnityBase.Util.SCENE.SIDE_MENU_BOARD_TYPE.OPTION_SELECT2,
+            UnityBase.Util.SCENE.SIDE_MENU_BOARD_TYPE.INFO_SELECT2
+        };
 
-			break;
-		}
-		case UnityBase.Util.SCENE.SIDE_MENU_SELECT2_BOARD_TYPE.INFO: {
-            this.OpenBoard(UnityBase.Util.SCENE.SIDE_MENU_BOARD_TYPE.INFO_SELECT2);
-
-			break;
-		}
-		}
+        this.OpenBoard(board_type_ary[(int)select2_board_type]);
 
         return;
     }
@@ -543,58 +482,21 @@ public class NodeScript : Lib.Scene.ObjectNodeScript
      */
     public void OpenBoard(UnityBase.Util.SCENE.SIDE_MENU_STAGE_BOARD_TYPE stage_board_type)
     {
-		switch (stage_board_type) {
-		case UnityBase.Util.SCENE.SIDE_MENU_STAGE_BOARD_TYPE.OPTION_SYSTEM: {
-            this.OpenBoard(UnityBase.Util.SCENE.SIDE_MENU_BOARD_TYPE.OPTION_SYSTEM_STAGE);
+        UnityBase.Util.SCENE.SIDE_MENU_BOARD_TYPE[] board_type_ary = {
+            UnityBase.Util.SCENE.SIDE_MENU_BOARD_TYPE.NONE,
+		    UnityBase.Util.SCENE.SIDE_MENU_BOARD_TYPE.OPTION_SYSTEM_STAGE,
+		    UnityBase.Util.SCENE.SIDE_MENU_BOARD_TYPE.OPTION_INPUT_STAGE,
+		    UnityBase.Util.SCENE.SIDE_MENU_BOARD_TYPE.OPTION_GRAPHIC_STAGE,
+		    UnityBase.Util.SCENE.SIDE_MENU_BOARD_TYPE.OPTION_SOUND_STAGE,
+		    UnityBase.Util.SCENE.SIDE_MENU_BOARD_TYPE.INFO_FAQ_STAGE,
+		    UnityBase.Util.SCENE.SIDE_MENU_BOARD_TYPE.INFO_STAFF_STAGE,
+		    UnityBase.Util.SCENE.SIDE_MENU_BOARD_TYPE.INFO_LICENSE_STAGE,
+		    UnityBase.Util.SCENE.SIDE_MENU_BOARD_TYPE.INFO_PRIVACY_POLICY_STAGE,
+		    UnityBase.Util.SCENE.SIDE_MENU_BOARD_TYPE.EXIT_STAGE,
+		    UnityBase.Util.SCENE.SIDE_MENU_BOARD_TYPE.CHEAT_STAGE
+        };
 
-			break;
-		}
-		case UnityBase.Util.SCENE.SIDE_MENU_STAGE_BOARD_TYPE.OPTION_INPUT: {
-            this.OpenBoard(UnityBase.Util.SCENE.SIDE_MENU_BOARD_TYPE.OPTION_INPUT_STAGE);
-
-			break;
-		}
-		case UnityBase.Util.SCENE.SIDE_MENU_STAGE_BOARD_TYPE.OPTION_GRAPHIC: {
-            this.OpenBoard(UnityBase.Util.SCENE.SIDE_MENU_BOARD_TYPE.OPTION_GRAPHIC_STAGE);
-
-			break;
-		}
-		case UnityBase.Util.SCENE.SIDE_MENU_STAGE_BOARD_TYPE.OPTION_SOUND: {
-            this.OpenBoard(UnityBase.Util.SCENE.SIDE_MENU_BOARD_TYPE.OPTION_SOUND_STAGE);
-
-			break;
-		}
-		case UnityBase.Util.SCENE.SIDE_MENU_STAGE_BOARD_TYPE.INFO_FAQ: {
-            this.OpenBoard(UnityBase.Util.SCENE.SIDE_MENU_BOARD_TYPE.INFO_FAQ_STAGE);
-
-			break;
-		}
-		case UnityBase.Util.SCENE.SIDE_MENU_STAGE_BOARD_TYPE.INFO_STAFF: {
-            this.OpenBoard(UnityBase.Util.SCENE.SIDE_MENU_BOARD_TYPE.INFO_STAFF_STAGE);
-
-			break;
-		}
-		case UnityBase.Util.SCENE.SIDE_MENU_STAGE_BOARD_TYPE.INFO_LICENSE: {
-            this.OpenBoard(UnityBase.Util.SCENE.SIDE_MENU_BOARD_TYPE.INFO_LICENSE_STAGE);
-
-			break;
-		}
-		case UnityBase.Util.SCENE.SIDE_MENU_STAGE_BOARD_TYPE.INFO_PRIVACY_POLICY: {
-            this.OpenBoard(UnityBase.Util.SCENE.SIDE_MENU_BOARD_TYPE.INFO_PRIVACY_POLICY_STAGE);
-
-			break;
-		}
-		case UnityBase.Util.SCENE.SIDE_MENU_STAGE_BOARD_TYPE.EXIT: {
-            this.OpenBoard(UnityBase.Util.SCENE.SIDE_MENU_BOARD_TYPE.EXIT_STAGE);
-
-			break;
-		}
-		case UnityBase.Util.SCENE.SIDE_MENU_STAGE_BOARD_TYPE.CHEAT: {
-            this.OpenBoard(UnityBase.Util.SCENE.SIDE_MENU_BOARD_TYPE.CHEAT_STAGE);
-
-			break;
-		}
-		}
+        this.OpenBoard(board_type_ary[(int)stage_board_type]);
 
         return;
     }

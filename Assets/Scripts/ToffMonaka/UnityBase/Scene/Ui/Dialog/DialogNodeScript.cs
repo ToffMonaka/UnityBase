@@ -58,6 +58,8 @@ public abstract class DialogNodeScript : Lib.Scene.ObjectNodeScript
      */
     protected override void _OnAwake()
     {
+        base._OnAwake();
+
         return;
     }
 
@@ -66,6 +68,8 @@ public abstract class DialogNodeScript : Lib.Scene.ObjectNodeScript
      */
     protected override void _OnDestroy()
     {
+        base._OnDestroy();
+
         return;
     }
 
@@ -76,6 +80,10 @@ public abstract class DialogNodeScript : Lib.Scene.ObjectNodeScript
      */
     protected override int _OnCreate()
     {
+        if (base._OnCreate() < 0) {
+            return (-1);
+        }
+
         return (0);
     }
 
@@ -103,6 +111,8 @@ public abstract class DialogNodeScript : Lib.Scene.ObjectNodeScript
      */
     protected override void _OnActive()
     {
+        base._OnActive();
+
         return;
     }
 
@@ -111,6 +121,8 @@ public abstract class DialogNodeScript : Lib.Scene.ObjectNodeScript
      */
     protected override void _OnDeactive()
     {
+        base._OnDeactive();
+
         return;
     }
 
@@ -119,6 +131,8 @@ public abstract class DialogNodeScript : Lib.Scene.ObjectNodeScript
      */
     protected override void _OnUpdate()
     {
+        base._OnUpdate();
+
         return;
     }
 
@@ -127,6 +141,8 @@ public abstract class DialogNodeScript : Lib.Scene.ObjectNodeScript
      */
     protected override void _OnOpen()
     {
+        base._OnOpen();
+
 		switch (this.GetOpenType()) {
 		case 1: {
             this._canvasGroup.alpha = 0.0f;
@@ -151,18 +167,12 @@ public abstract class DialogNodeScript : Lib.Scene.ObjectNodeScript
     }
 
     /**
-     * @brief _OnOpened関数
-     */
-    protected override void _OnOpened()
-    {
-        return;
-    }
-
-    /**
      * @brief _OnClose関数
      */
     protected override void _OnClose()
     {
+        base._OnClose();
+
 		switch (this.GetCloseType()) {
 		case 1: {
             this._canvasGroup.alpha = 1.0f;
@@ -183,14 +193,6 @@ public abstract class DialogNodeScript : Lib.Scene.ObjectNodeScript
 		}
 		}
 
-        return;
-    }
-
-    /**
-     * @brief _OnClosed関数
-     */
-    protected override void _OnClosed()
-    {
         return;
     }
 }

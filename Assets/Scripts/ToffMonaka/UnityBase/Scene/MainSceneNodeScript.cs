@@ -37,6 +37,8 @@ public class MainSceneNodeScript : Lib.Scene.MainSceneNodeScript
      */
     protected override void _OnAwake()
     {
+        base._OnAwake();
+
         return;
     }
 
@@ -45,6 +47,8 @@ public class MainSceneNodeScript : Lib.Scene.MainSceneNodeScript
      */
     protected override void _OnDestroy()
     {
+        base._OnDestroy();
+
         return;
     }
 
@@ -55,6 +59,10 @@ public class MainSceneNodeScript : Lib.Scene.MainSceneNodeScript
      */
     protected override int _OnCreate()
     {
+        if (base._OnCreate() < 0) {
+            return (-1);
+        }
+
         return (0);
     }
 
@@ -82,6 +90,8 @@ public class MainSceneNodeScript : Lib.Scene.MainSceneNodeScript
      */
     protected override void _OnActive()
     {
+        base._OnActive();
+
         return;
     }
 
@@ -90,6 +100,8 @@ public class MainSceneNodeScript : Lib.Scene.MainSceneNodeScript
      */
     protected override void _OnDeactive()
     {
+        base._OnDeactive();
+
         return;
     }
 
@@ -98,7 +110,29 @@ public class MainSceneNodeScript : Lib.Scene.MainSceneNodeScript
      */
     protected override void _OnUpdate()
     {
+        base._OnUpdate();
+
         this._UpdateDataFile();
+
+        return;
+    }
+
+    /**
+     * @brief _OnOpen関数
+     */
+    protected override void _OnOpen()
+    {
+        base._OnOpen();
+
+        return;
+    }
+
+    /**
+     * @brief _OnClose関数
+     */
+    protected override void _OnClose()
+    {
+        base._OnClose();
 
         return;
     }
