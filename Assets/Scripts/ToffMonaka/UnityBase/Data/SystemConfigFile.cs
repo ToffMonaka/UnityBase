@@ -15,11 +15,11 @@ namespace UnityBase.Data {
  */
 public class SystemConfigFileData
 {
-    public UnityBase.Util.LANGUAGE_TYPE systemLanguageType;
-    public float soundBgmVolume;
-    public bool soundBgmMuteFlag;
-    public float soundSeVolume;
-    public bool soundSeMuteFlag;
+    public UnityBase.Util.LANGUAGE_TYPE systemLanguageType = UnityBase.Util.LANGUAGE_TYPE.NONE;
+    public float soundBgmVolume = 0.5f;
+    public bool soundBgmMuteFlag = false;
+    public float soundSeVolume = 0.5f;
+    public bool soundSeMuteFlag = false;
 
     /**
      * @brief コンストラクタ
@@ -67,8 +67,8 @@ public class SystemConfigFile : Lib.Data.File
 	public Lib.Data.FileReadDesc<Lib.Data.IniFileReadDescData> readDesc = new();
 	public Lib.Data.FileWriteDesc<Lib.Data.IniFileWriteDescData> writeDesc = new();
 
-    private bool _writeFlag;
-    private bool _deleteFlag;
+    private bool _writeFlag = false;
+    private bool _deleteFlag = false;
 
     /**
      * @brief コンストラクタ

@@ -42,8 +42,8 @@ public class UserDataFile : Lib.Data.File
 	public Lib.Data.FileReadDesc<Lib.Data.BinaryFileReadDescData> readDesc = new();
 	public Lib.Data.FileWriteDesc<Lib.Data.BinaryFileWriteDescData> writeDesc = new();
 
-    private bool _writeFlag;
-    private bool _deleteFlag;
+    private bool _writeFlag = false;
+    private bool _deleteFlag = false;
 
     /**
      * @brief コンストラクタ

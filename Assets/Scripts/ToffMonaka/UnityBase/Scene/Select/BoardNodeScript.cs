@@ -23,7 +23,7 @@ public class BoardNodeScriptCreateDesc : Lib.Scene.ObjectNodeScriptCreateDesc
  */
 public abstract class BoardNodeScript : Lib.Scene.ObjectNodeScript
 {
-    [SerializeField] private TMP_Text _nameText = null;
+    [SerializeField] protected TMP_Text _nameText = null;
 
     public new UnityBase.Scene.Select.BoardNodeScriptCreateDesc createDesc{get; private set;} = null;
 
@@ -52,6 +52,8 @@ public abstract class BoardNodeScript : Lib.Scene.ObjectNodeScript
      */
     protected override void _OnAwake()
     {
+        base._OnAwake();
+
         this._boardType = this._OnGetBoardType();
 
         return;
@@ -62,6 +64,8 @@ public abstract class BoardNodeScript : Lib.Scene.ObjectNodeScript
      */
     protected override void _OnDestroy()
     {
+        base._OnDestroy();
+
         return;
     }
 
@@ -72,7 +76,9 @@ public abstract class BoardNodeScript : Lib.Scene.ObjectNodeScript
      */
     protected override int _OnCreate()
     {
-        this._nameText.SetText(UnityBase.Global.GetText(UnityBase.Util.SCENE.SELECT_BOARD_NAME_MST_TEXT_ID_ARRAY[(int)this._boardType]));
+        if (base._OnCreate() < 0) {
+            return (-1);
+        }
 
         return (0);
     }
@@ -97,26 +103,12 @@ public abstract class BoardNodeScript : Lib.Scene.ObjectNodeScript
     }
 
     /**
-     * @brief _OnActive関数
-     */
-    protected override void _OnActive()
-    {
-        return;
-    }
-
-    /**
-     * @brief _OnDeactive関数
-     */
-    protected override void _OnDeactive()
-    {
-        return;
-    }
-
-    /**
      * @brief _OnUpdate関数
      */
     protected override void _OnUpdate()
     {
+        base._OnUpdate();
+
         return;
     }
 
@@ -125,6 +117,8 @@ public abstract class BoardNodeScript : Lib.Scene.ObjectNodeScript
      */
     protected override void _OnOpen()
     {
+        base._OnOpen();
+
         var rect_transform = this.gameObject.GetComponent<RectTransform>();
 
 		switch (this.GetOpenType()) {
@@ -151,18 +145,12 @@ public abstract class BoardNodeScript : Lib.Scene.ObjectNodeScript
     }
 
     /**
-     * @brief _OnOpened関数
-     */
-    protected override void _OnOpened()
-    {
-        return;
-    }
-
-    /**
      * @brief _OnClose関数
      */
     protected override void _OnClose()
     {
+        base._OnClose();
+
         var rect_transform = this.gameObject.GetComponent<RectTransform>();
 
 		switch (this.GetCloseType()) {
@@ -185,14 +173,6 @@ public abstract class BoardNodeScript : Lib.Scene.ObjectNodeScript
 		}
 		}
 
-        return;
-    }
-
-    /**
-     * @brief _OnClosed関数
-     */
-    protected override void _OnClosed()
-    {
         return;
     }
 

@@ -99,30 +99,6 @@ public class TitleSubSceneNodeScript : UnityBase.Scene.SubSceneNodeScript
     }
 
     /**
-     * @brief _OnActive関数
-     */
-    protected override void _OnActive()
-    {
-        base._OnActive();
-
-        UnityBase.Global.GetSceneManager().PlaySoundBgm((int)UnityBase.Util.SOUND.BGM_INDEX.TITLE);
-
-        this._startButtonNameText.DOFade(0.0f, 1.0f).SetEase(Ease.InCubic).SetLoops(-1, LoopType.Yoyo).SetDelay(1.0f).SetLink(this._startButtonNameText.gameObject);
-
-        return;
-    }
-
-    /**
-     * @brief _OnDeactive関数
-     */
-    protected override void _OnDeactive()
-    {
-        base._OnDeactive();
-
-        return;
-    }
-
-    /**
      * @brief _OnUpdate関数
      */
     protected override void _OnUpdate()
@@ -138,6 +114,8 @@ public class TitleSubSceneNodeScript : UnityBase.Scene.SubSceneNodeScript
     protected override void _OnOpen()
     {
         base._OnOpen();
+
+        this._startButtonNameText.DOFade(0.0f, 1.0f).SetEase(Ease.InCubic).SetLoops(-1, LoopType.Yoyo).SetDelay(1.0f).SetLink(this._startButtonNameText.gameObject);
 
 		switch (this.GetOpenType()) {
 		case 1: {
@@ -163,6 +141,8 @@ public class TitleSubSceneNodeScript : UnityBase.Scene.SubSceneNodeScript
 			break;
 		}
 		}
+
+        UnityBase.Global.GetSceneManager().PlaySoundBgm((int)UnityBase.Util.SOUND.BGM_INDEX.TITLE);
 
         return;
     }

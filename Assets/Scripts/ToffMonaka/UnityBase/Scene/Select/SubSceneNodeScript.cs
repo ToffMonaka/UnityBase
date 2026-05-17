@@ -29,7 +29,6 @@ public class SubSceneNodeScript : UnityBase.Scene.SubSceneNodeScript
 
     private UnityBase.Scene.Select.StageBoardNodeScript _stageBoardNodeScript = null;
     private UnityBase.Scene.Select.BoardNodeScript _openBoardNodeScript = null;
-    private UnityBase.Util.SCENE.STAGE_TYPE _stageType = UnityBase.Util.SCENE.STAGE_TYPE.NONE;
     private UnityBase.Scene.Ui.BackButtonNodeScript _backButtonNodeScript = null;
 
     /**
@@ -76,13 +75,13 @@ public class SubSceneNodeScript : UnityBase.Scene.SubSceneNodeScript
             var script = this._stageBoardNode.GetComponent<UnityBase.Scene.Select.StageBoardNodeScript>();
             var script_create_desc = new UnityBase.Scene.Select.StageBoardNodeScriptCreateDesc();
 
-            void on_click_item(UnityBase.Scene.Select.StageBoardNodeScript owner, UnityBase.Scene.Select.StageBoardItemNodeScript item_node_script)
+            script_create_desc.onOpenStage = (owner, stage_type) =>
             {
-                this._stageType = item_node_script.GetStageType();
+                var tmp_stage_type = stage_type;
 
                 this.Close(1, (owner) =>
                 {
-		            switch (this._stageType) {
+		            switch (tmp_stage_type) {
 		            case UnityBase.Util.SCENE.STAGE_TYPE.TEST_2D: {
                         {// Test2DStageSubSceneNodeScript Create
                             var script = UnityBase.Global.GetSceneManager().ChangeSubScene(UnityBase.Util.FILE_PATH.TEST_2D_STAGE_SUB_SCENE_PREFAB) as UnityBase.Scene.Stage.Test2D.SubSceneNodeScript;
@@ -109,11 +108,7 @@ public class SubSceneNodeScript : UnityBase.Scene.SubSceneNodeScript
 
 			        return;
                 });
-
-                return;
-            }
-
-            script_create_desc.onClickItem = on_click_item;
+            };
 
             script.Create(script_create_desc);
 
@@ -177,32 +172,6 @@ public class SubSceneNodeScript : UnityBase.Scene.SubSceneNodeScript
     }
 
     /**
-     * @brief _OnActive関数
-     */
-    protected override void _OnActive()
-    {
-        base._OnActive();
-
-        UnityBase.Global.GetSceneManager().PlaySoundBgm((int)UnityBase.Util.SOUND.BGM_INDEX.SELECT);
-
-        this._stageType = UnityBase.Util.SCENE.STAGE_TYPE.NONE;
-
-        this.ChangeBoard(UnityBase.Util.SCENE.SELECT_BOARD_TYPE.STAGE, 0);
-
-        return;
-    }
-
-    /**
-     * @brief _OnDeactive関数
-     */
-    protected override void _OnDeactive()
-    {
-        base._OnDeactive();
-
-        return;
-    }
-
-    /**
      * @brief _OnUpdate関数
      */
     protected override void _OnUpdate()
@@ -218,6 +187,8 @@ public class SubSceneNodeScript : UnityBase.Scene.SubSceneNodeScript
     protected override void _OnOpen()
     {
         base._OnOpen();
+
+        this.OpenBoard(UnityBase.Util.SCENE.SELECT_BOARD_TYPE.STAGE);
 
 		switch (this.GetOpenType()) {
 		case 1: {
@@ -243,6 +214,8 @@ public class SubSceneNodeScript : UnityBase.Scene.SubSceneNodeScript
 			break;
 		}
 		}
+
+        UnityBase.Global.GetSceneManager().PlaySoundBgm((int)UnityBase.Util.SOUND.BGM_INDEX.SELECT);
 
         return;
     }
@@ -283,40 +256,39 @@ public class SubSceneNodeScript : UnityBase.Scene.SubSceneNodeScript
     }
 
     /**
-     * @brief GetStageType関数
-     * @return stage_type (stage_type)
+     * @brief OpenBoard関数
+     * @param board_type (board_type)
      */
-    public UnityBase.Util.SCENE.STAGE_TYPE GetStageType()
+    public void OpenBoard(UnityBase.Util.SCENE.SELECT_BOARD_TYPE board_type)
     {
-        return (this._stageType);
+        this.CloseBoard();
+
+        UnityBase.Scene.Select.BoardNodeScript[] board_node_script_ary = {
+            null,
+            this._stageBoardNodeScript
+        };
+
+        this._openBoardNodeScript = board_node_script_ary[(int)board_type];
+
+        if (this._openBoardNodeScript != null) {
+            this._openBoardNodeScript.Open(1);
+        }
+
+        return;
     }
 
     /**
-     * @brief ChangeBoard関数
-     * @param board_type (board_type)
-     * @param open_type (open_type)
+     * @brief CloseBoard関数
      */
-    public void ChangeBoard(UnityBase.Util.SCENE.SELECT_BOARD_TYPE board_type, int open_type)
+    public void CloseBoard()
     {
-        if (this._openBoardNodeScript != null) {
-            this._openBoardNodeScript.Close(0);
-
-            this._openBoardNodeScript = null;
-        }
-
-		switch (board_type) {
-		case UnityBase.Util.SCENE.SELECT_BOARD_TYPE.STAGE: {
-            this._openBoardNodeScript = this._stageBoardNodeScript;
-
-			break;
-		}
-		}
-
         if (this._openBoardNodeScript == null) {
             return;
         }
 
-        this._openBoardNodeScript.Open(open_type);
+        this._openBoardNodeScript.Close(1);
+
+        this._openBoardNodeScript = null;
 
         return;
     }

@@ -37,7 +37,7 @@ public class LanguageSelectDialogEngine : UnityBase.Scene.Ui.Dialog.SelectDialog
  */
 public class LanguageSelectDialogItemEngine : UnityBase.Scene.Ui.Dialog.SelectDialogItemEngine
 {
-    private UnityBase.Util.LANGUAGE_TYPE _languageType;
+    private UnityBase.Util.LANGUAGE_TYPE _languageType = UnityBase.Util.LANGUAGE_TYPE.NONE;
 
     /**
      * @brief コンストラクタ

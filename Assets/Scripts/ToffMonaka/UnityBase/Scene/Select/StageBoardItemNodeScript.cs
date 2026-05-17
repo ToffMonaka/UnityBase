@@ -5,7 +5,6 @@
 
 
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using TMPro;
 
@@ -17,7 +16,7 @@ namespace UnityBase.Scene.Select {
  */
 public class StageBoardItemNodeScriptCreateDesc : Lib.Scene.ObjectNodeScriptCreateDesc
 {
-    public UnityBase.Util.SCENE.STAGE_TYPE stageType = UnityBase.Util.SCENE.STAGE_TYPE.NONE;
+    public string name = "";
     public System.Action<UnityBase.Scene.Select.StageBoardItemNodeScript> onClick = null;
 }
 
@@ -30,7 +29,6 @@ public class StageBoardItemNodeScript : Lib.Scene.ObjectNodeScript
 
     public new UnityBase.Scene.Select.StageBoardItemNodeScriptCreateDesc createDesc{get; private set;} = null;
 
-    private UnityBase.Util.SCENE.STAGE_TYPE _stageType = UnityBase.Util.SCENE.STAGE_TYPE.NONE;
     private System.Action<UnityBase.Scene.Select.StageBoardItemNodeScript> _onClick = null;
 
     /**
@@ -47,6 +45,8 @@ public class StageBoardItemNodeScript : Lib.Scene.ObjectNodeScript
      */
     protected override void _OnAwake()
     {
+        base._OnAwake();
+
         return;
     }
 
@@ -55,6 +55,8 @@ public class StageBoardItemNodeScript : Lib.Scene.ObjectNodeScript
      */
     protected override void _OnDestroy()
     {
+        base._OnDestroy();
+
         return;
     }
 
@@ -65,9 +67,13 @@ public class StageBoardItemNodeScript : Lib.Scene.ObjectNodeScript
      */
     protected override int _OnCreate()
     {
+        if (base._OnCreate() < 0) {
+            return (-1);
+        }
+
         this._onClick = this.createDesc.onClick;
 
-        this.SetStageType(this.createDesc.stageType);
+        this._nameText.SetText(this.createDesc.name);
 
         return (0);
     }
@@ -92,26 +98,12 @@ public class StageBoardItemNodeScript : Lib.Scene.ObjectNodeScript
     }
 
     /**
-     * @brief _OnActive関数
-     */
-    protected override void _OnActive()
-    {
-        return;
-    }
-
-    /**
-     * @brief _OnDeactive関数
-     */
-    protected override void _OnDeactive()
-    {
-        return;
-    }
-
-    /**
      * @brief _OnUpdate関数
      */
     protected override void _OnUpdate()
     {
+        base._OnUpdate();
+
         return;
     }
 
@@ -120,14 +112,8 @@ public class StageBoardItemNodeScript : Lib.Scene.ObjectNodeScript
      */
     protected override void _OnOpen()
     {
-        return;
-    }
+        base._OnOpen();
 
-    /**
-     * @brief _OnOpened関数
-     */
-    protected override void _OnOpened()
-    {
         return;
     }
 
@@ -136,14 +122,8 @@ public class StageBoardItemNodeScript : Lib.Scene.ObjectNodeScript
      */
     protected override void _OnClose()
     {
-        return;
-    }
+        base._OnClose();
 
-    /**
-     * @brief _OnClosed関数
-     */
-    protected override void _OnClosed()
-    {
         return;
     }
 
@@ -160,28 +140,6 @@ public class StageBoardItemNodeScript : Lib.Scene.ObjectNodeScript
         UnityBase.Global.GetSceneManager().PlaySoundSe((int)UnityBase.Util.SOUND.SE_INDEX.OK2);
 
         this._onClick?.Invoke(this);
-
-        return;
-    }
-
-    /**
-     * @brief GetStageType関数
-     * @return stage_type (stage_type)
-     */
-    public UnityBase.Util.SCENE.STAGE_TYPE GetStageType()
-    {
-        return (this._stageType);
-    }
-
-    /**
-     * @brief SetStageType関数
-     * @param stage_type (stage_type)
-     */
-    public void SetStageType(UnityBase.Util.SCENE.STAGE_TYPE stage_type)
-    {
-        this._stageType = stage_type;
-
-        this._nameText.SetText(UnityBase.Global.GetText(UnityBase.Util.SCENE.STAGE_NAME_MST_TEXT_ID_ARRAY[(int)this._stageType]));
 
         return;
     }

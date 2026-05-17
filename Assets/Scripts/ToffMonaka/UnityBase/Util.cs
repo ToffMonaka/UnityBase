@@ -133,11 +133,6 @@ public static class Util
         }
         public static readonly int SELECT_BOARD_TYPE_COUNT = (int)UnityBase.Util.SCENE.SELECT_BOARD_TYPE.COUNT;
 
-        public static readonly UnityBase.Util.MST_TEXT_ID[] SELECT_BOARD_NAME_MST_TEXT_ID_ARRAY = {
-            UnityBase.Util.MST_TEXT_ID.NONE,
-            UnityBase.Util.MST_TEXT_ID.STAGE
-        };
-
         public enum STAGE_TYPE : int
         {
             NONE = 0,
@@ -146,12 +141,6 @@ public static class Util
 		    COUNT
         }
         public static readonly int STAGE_TYPE_COUNT = (int)UnityBase.Util.SCENE.STAGE_TYPE.COUNT;
-
-        public static readonly UnityBase.Util.MST_TEXT_ID[] STAGE_NAME_MST_TEXT_ID_ARRAY = {
-            UnityBase.Util.MST_TEXT_ID.NONE,
-            UnityBase.Util.MST_TEXT_ID.TEST_2D,
-            UnityBase.Util.MST_TEXT_ID.TEST_3D
-        };
 
         public enum SIDE_MENU_BOARD_TYPE : int
         {

@@ -77,7 +77,7 @@ public class SubSceneNodeScript : UnityBase.Scene.Stage.SubSceneNodeScript
             return (-1);
         }
 
-        this._nameText.SetText(UnityBase.Global.GetText(UnityBase.Util.SCENE.STAGE_NAME_MST_TEXT_ID_ARRAY[(int)this.GetStageType()]));
+        this._nameText.SetText(UnityBase.Global.GetText(UnityBase.Util.MST_TEXT_ID.TEST_2D));
         this._messageText.SetText(UnityBase.Global.GetText(UnityBase.Util.MST_TEXT_ID.IN_PREPARATION));
 
         return (0);
@@ -98,26 +98,6 @@ public class SubSceneNodeScript : UnityBase.Scene.Stage.SubSceneNodeScript
 	    this.createDesc = create_desc as UnityBase.Scene.Stage.Test2D.SubSceneNodeScriptCreateDesc;
 
         base.SetCreateDesc(this.createDesc);
-
-        return;
-    }
-
-    /**
-     * @brief _OnActive関数
-     */
-    protected override void _OnActive()
-    {
-        base._OnActive();
-
-        return;
-    }
-
-    /**
-     * @brief _OnDeactive関数
-     */
-    protected override void _OnDeactive()
-    {
-        base._OnDeactive();
 
         return;
     }

@@ -14,8 +14,8 @@ namespace UnityBase.Data {
  */
 public class MstTextEntity
 {
-	public int mstTextId;
-	public string text;
+	public int mstTextId = 0;
+	public string text = "";
 
     /**
      * @brief コンストラクタ
@@ -44,8 +44,8 @@ public class MstTextEntity
  */
 public class MstTextTableFileData
 {
-	public UnityBase.Data.MstTextEntity[] entityArray;
-	public UnityBase.Data.MstTextEntity[] entityArrayByMstTextId;
+	public UnityBase.Data.MstTextEntity[] entityArray = null;
+	public UnityBase.Data.MstTextEntity[] entityArrayByMstTextId = null;
 
     /**
      * @brief コンストラクタ
