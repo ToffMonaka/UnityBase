@@ -37,6 +37,8 @@ public class SliderPartsScript : Lib.Scene.PartsScript
      */
     protected override void _OnAwake()
     {
+        base._OnAwake();
+
         return;
     }
 
@@ -45,6 +47,8 @@ public class SliderPartsScript : Lib.Scene.PartsScript
      */
     protected override void _OnDestroy()
     {
+        base._OnDestroy();
+
         return;
     }
 
@@ -55,6 +59,10 @@ public class SliderPartsScript : Lib.Scene.PartsScript
      */
     protected override int _OnCreate()
     {
+        if (base._OnCreate() < 0) {
+            return (-1);
+        }
+
         return (0);
     }
 
@@ -82,6 +90,8 @@ public class SliderPartsScript : Lib.Scene.PartsScript
      */
     protected override void _OnActive()
     {
+        base._OnActive();
+
         return;
     }
 
@@ -90,6 +100,8 @@ public class SliderPartsScript : Lib.Scene.PartsScript
      */
     protected override void _OnDeactive()
     {
+        base._OnDeactive();
+
         return;
     }
 
@@ -98,6 +110,8 @@ public class SliderPartsScript : Lib.Scene.PartsScript
      */
     protected override void _OnUpdate()
     {
+        base._OnUpdate();
+
         return;
     }
 }

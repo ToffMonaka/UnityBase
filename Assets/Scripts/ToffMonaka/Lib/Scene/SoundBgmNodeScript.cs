@@ -39,6 +39,8 @@ public class SoundBgmNodeScript : Lib.Scene.ObjectNodeScript
      */
     protected override void _OnAwake()
     {
+        base._OnAwake();
+
         return;
     }
 
@@ -47,6 +49,8 @@ public class SoundBgmNodeScript : Lib.Scene.ObjectNodeScript
      */
     protected override void _OnDestroy()
     {
+        base._OnDestroy();
+
         return;
     }
 
@@ -57,6 +61,10 @@ public class SoundBgmNodeScript : Lib.Scene.ObjectNodeScript
      */
     protected override int _OnCreate()
     {
+        if (base._OnCreate() < 0) {
+            return (-1);
+        }
+
         return (0);
     }
 
@@ -80,29 +88,35 @@ public class SoundBgmNodeScript : Lib.Scene.ObjectNodeScript
     }
 
     /**
-     * @brief _OnActive関数
-     */
-    protected override void _OnActive()
-    {
-        return;
-    }
-
-    /**
-     * @brief _OnDeactive関数
-     */
-    protected override void _OnDeactive()
-    {
-        return;
-    }
-
-    /**
      * @brief _OnUpdate関数
      */
     protected override void _OnUpdate()
     {
+        base._OnUpdate();
+
         if (this._audioSource.isPlaying == false) {
             this.Close(0);
         }
+
+        return;
+    }
+
+    /**
+     * @brief _OnOpen関数
+     */
+    protected override void _OnOpen()
+    {
+        base._OnOpen();
+
+        return;
+    }
+
+    /**
+     * @brief _OnClose関数
+     */
+    protected override void _OnClose()
+    {
+        base._OnClose();
 
         return;
     }

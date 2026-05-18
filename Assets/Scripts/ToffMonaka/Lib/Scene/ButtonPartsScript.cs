@@ -48,6 +48,8 @@ public class ButtonPartsScript : Lib.Scene.PartsScript, IPointerDownHandler, IPo
      */
     protected override void _OnAwake()
     {
+        base._OnAwake();
+
         return;
     }
 
@@ -56,6 +58,8 @@ public class ButtonPartsScript : Lib.Scene.PartsScript, IPointerDownHandler, IPo
      */
     protected override void _OnDestroy()
     {
+        base._OnDestroy();
+
         return;
     }
 
@@ -66,6 +70,10 @@ public class ButtonPartsScript : Lib.Scene.PartsScript, IPointerDownHandler, IPo
      */
     protected override int _OnCreate()
     {
+        if (base._OnCreate() < 0) {
+            return (-1);
+        }
+
         return (0);
     }
 
@@ -93,6 +101,8 @@ public class ButtonPartsScript : Lib.Scene.PartsScript, IPointerDownHandler, IPo
      */
     protected override void _OnActive()
     {
+        base._OnActive();
+
         this._coverImage?.gameObject.SetActive(false);
 
         return;
@@ -103,6 +113,8 @@ public class ButtonPartsScript : Lib.Scene.PartsScript, IPointerDownHandler, IPo
      */
     protected override void _OnDeactive()
     {
+        base._OnDeactive();
+
         return;
     }
 
@@ -111,6 +123,8 @@ public class ButtonPartsScript : Lib.Scene.PartsScript, IPointerDownHandler, IPo
      */
     protected override void _OnUpdate()
     {
+        base._OnUpdate();
+
         return;
     }
 

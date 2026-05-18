@@ -61,6 +61,8 @@ public class ScrollViewPartsScript : Lib.Scene.PartsScript
      */
     protected override void _OnAwake()
     {
+        base._OnAwake();
+
         return;
     }
 
@@ -69,6 +71,8 @@ public class ScrollViewPartsScript : Lib.Scene.PartsScript
      */
     protected override void _OnDestroy()
     {
+        base._OnDestroy();
+
         return;
     }
 
@@ -79,6 +83,10 @@ public class ScrollViewPartsScript : Lib.Scene.PartsScript
      */
     protected override int _OnCreate()
     {
+        if (base._OnCreate() < 0) {
+            return (-1);
+        }
+
         this._mainContentRectTransform = this._mainContentNode.GetComponent<RectTransform>();
         this._subContentRectTransform = this._subContentNode.GetComponent<RectTransform>();
         this._subContentHorizontalLayoutGroup = this._subContentNode.GetComponent<HorizontalLayoutGroup>();
@@ -119,6 +127,8 @@ public class ScrollViewPartsScript : Lib.Scene.PartsScript
      */
     protected override void _OnActive()
     {
+        base._OnActive();
+
         return;
     }
 
@@ -127,6 +137,8 @@ public class ScrollViewPartsScript : Lib.Scene.PartsScript
      */
     protected override void _OnDeactive()
     {
+        base._OnDeactive();
+
         return;
     }
 
@@ -135,6 +147,8 @@ public class ScrollViewPartsScript : Lib.Scene.PartsScript
      */
     protected override void _OnUpdate()
     {
+        base._OnUpdate();
+
         this._UpdateScrollBarSize();
 
         return;

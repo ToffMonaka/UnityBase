@@ -133,30 +133,6 @@ public class InputDialogNodeScript : UnityBase.Scene.Ui.Dialog.DialogNodeScript
     }
 
     /**
-     * @brief _OnActive関数
-     */
-    protected override void _OnActive()
-    {
-        base._OnActive();
-
-        this._inputField.textComponent.rectTransform.localPosition = Vector3.zero;
-        this._inputField.GetComponentInChildren<TMP_SelectionCaret>().rectTransform.localPosition = Vector3.zero;
-        this._inputFieldScrollbar.SetValueWithoutNotify(0.0f);
-
-        return;
-    }
-
-    /**
-     * @brief _OnDeactive関数
-     */
-    protected override void _OnDeactive()
-    {
-        base._OnDeactive();
-
-        return;
-    }
-
-    /**
      * @brief _OnUpdate関数
      */
     protected override void _OnUpdate()
@@ -172,6 +148,10 @@ public class InputDialogNodeScript : UnityBase.Scene.Ui.Dialog.DialogNodeScript
     protected override void _OnOpen()
     {
         base._OnOpen();
+
+        this._inputField.textComponent.rectTransform.localPosition = Vector3.zero;
+        this._inputField.GetComponentInChildren<TMP_SelectionCaret>().rectTransform.localPosition = Vector3.zero;
+        this._inputFieldScrollbar.SetValueWithoutNotify(0.0f);
 
         return;
     }

@@ -152,28 +152,6 @@ public class InfoStaffStageBoardNodeScript : UnityBase.Scene.Ui.Menu.Side.StageB
     }
 
     /**
-     * @brief _OnActive関数
-     */
-    protected override void _OnActive()
-    {
-        base._OnActive();
-
-        this._scrollRect.verticalNormalizedPosition = 1.0f;
-
-        return;
-    }
-
-    /**
-     * @brief _OnDeactive関数
-     */
-    protected override void _OnDeactive()
-    {
-        base._OnDeactive();
-
-        return;
-    }
-
-    /**
      * @brief _OnUpdate関数
      */
     protected override void _OnUpdate()
@@ -191,6 +169,8 @@ public class InfoStaffStageBoardNodeScript : UnityBase.Scene.Ui.Menu.Side.StageB
     protected override void _OnOpen()
     {
         base._OnOpen();
+
+        this._scrollRect.verticalNormalizedPosition = 1.0f;
 
         return;
     }

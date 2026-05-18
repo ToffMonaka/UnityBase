@@ -207,7 +207,7 @@ public class CheatCommand
 
     /**
      * @brief GetCalculateOption関数
-     * @param calc_option (calculate_option)
+     * @return calc_option (calculate_option)
      */
     public UnityBase.Scene.Ui.Menu.Side.CheatCommandCalculateOption GetCalculateOption()
     {
@@ -216,7 +216,7 @@ public class CheatCommand
 
     /**
      * @brief GetCalculateTestFlag関数
-     * @param calc_test_flg (calculate_test_flag)
+     * @return calc_test_flg (calculate_test_flag)
      */
     public bool GetCalculateTestFlag()
     {
