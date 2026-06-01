@@ -13,14 +13,14 @@ namespace UnityBase.Scene.Ui.Menu.Side {
 /**
  * @brief NodeScriptCreateDescクラス
  */
-public class NodeScriptCreateDesc : Lib.Scene.ObjectNodeScriptCreateDesc
+public class NodeScriptCreateDesc : ToffMonaka.Tml.Scene.ObjectNodeScriptCreateDesc
 {
 }
 
 /**
  * @brief NodeScriptクラス
  */
-public class NodeScript : Lib.Scene.ObjectNodeScript
+public class NodeScript : ToffMonaka.Tml.Scene.ObjectNodeScript
 {
     [SerializeField] private Image _backgroundImage = null;
     [SerializeField] private GameObject _openCloseButtonNode = null;
@@ -360,7 +360,7 @@ public class NodeScript : Lib.Scene.ObjectNodeScript
      * @brief SetCreateDesc関数
      * @param create_desc (create_desc)
      */
-    public override void SetCreateDesc(Lib.Scene.ScriptCreateDesc create_desc = null)
+    public override void SetCreateDesc(ToffMonaka.Tml.Scene.ScriptCreateDesc create_desc = null)
     {
         if (create_desc == null) {
             this.SetCreateDesc(new UnityBase.Scene.Ui.Menu.Side.NodeScriptCreateDesc());

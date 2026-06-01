@@ -3,23 +3,21 @@
  * @brief MainSceneNodeScriptファイル
  */
 
-
 using UnityEngine;
-
 
 namespace ToffMonaka {
 namespace UnityBase.Scene {
 /**
  * @brief MainSceneNodeScriptCreateDescクラス
  */
-public class MainSceneNodeScriptCreateDesc : Lib.Scene.MainSceneNodeScriptCreateDesc
+public class MainSceneNodeScriptCreateDesc : ToffMonaka.Tml.Scene.MainSceneNodeScriptCreateDesc
 {
 }
 
 /**
  * @brief MainSceneNodeScriptクラス
  */
-public class MainSceneNodeScript : Lib.Scene.MainSceneNodeScript
+public class MainSceneNodeScript : ToffMonaka.Tml.Scene.MainSceneNodeScript
 {
     public new UnityBase.Scene.MainSceneNodeScriptCreateDesc createDesc{get; private set;} = null;
 
@@ -70,7 +68,7 @@ public class MainSceneNodeScript : Lib.Scene.MainSceneNodeScript
      * @brief SetCreateDesc関数
      * @param create_desc (create_desc)
      */
-    public override void SetCreateDesc(Lib.Scene.ScriptCreateDesc create_desc = null)
+    public override void SetCreateDesc(ToffMonaka.Tml.Scene.ScriptCreateDesc create_desc = null)
     {
         if (create_desc == null) {
             this.SetCreateDesc(new UnityBase.Scene.MainSceneNodeScriptCreateDesc());
@@ -169,7 +167,7 @@ public class MainSceneNodeScript : Lib.Scene.MainSceneNodeScript
             UnityBase.Global.systemConfigFile.readDesc.data.filePath = Application.persistentDataPath + "/" + UnityBase.Util.FILE_PATH.SYSTEM_CONFIG;
             UnityBase.Global.systemConfigFile.writeDesc.data.filePath = UnityBase.Global.systemConfigFile.readDesc.data.filePath;
 
-            if (Lib.Data.Util.IsExistFile(UnityBase.Global.systemConfigFile.readDesc.data.filePath)) {
+            if (ToffMonaka.Tml.Data.DataUtil.IsExistFile(UnityBase.Global.systemConfigFile.readDesc.data.filePath)) {
                 UnityBase.Global.systemConfigFile.Read();
             } else {
                 UnityBase.Global.systemConfigFile.Write();
@@ -180,7 +178,7 @@ public class MainSceneNodeScript : Lib.Scene.MainSceneNodeScript
             UnityBase.Global.userDataFile.readDesc.data.filePath = Application.persistentDataPath + "/" + UnityBase.Util.FILE_PATH.USER_DATA;
             UnityBase.Global.userDataFile.writeDesc.data.filePath = UnityBase.Global.userDataFile.readDesc.data.filePath;
 
-            if (Lib.Data.Util.IsExistFile(UnityBase.Global.userDataFile.readDesc.data.filePath)) {
+            if (ToffMonaka.Tml.Data.DataUtil.IsExistFile(UnityBase.Global.userDataFile.readDesc.data.filePath)) {
                 UnityBase.Global.userDataFile.Read();
             } else {
                 UnityBase.Global.userDataFile.Write();
@@ -240,8 +238,8 @@ public class MainSceneNodeScript : Lib.Scene.MainSceneNodeScript
         this._ReleaseManager();
 
         {// InputManager Create
-            var manager = new Lib.Input.Manager();
-            var manager_create_desc = new Lib.Input.ManagerCreateDesc();
+            var manager = new ToffMonaka.Tml.Input.InputManager();
+            var manager_create_desc = new ToffMonaka.Tml.Input.InputManagerCreateDesc();
 
             if (manager.Create(manager_create_desc) < 0) {
                 this._ReleaseManager();
@@ -253,8 +251,8 @@ public class MainSceneNodeScript : Lib.Scene.MainSceneNodeScript
         }
 
         {// GraphicManager Create
-            var manager = new Lib.Graphic.Manager();
-            var manager_create_desc = new Lib.Graphic.ManagerCreateDesc();
+            var manager = new ToffMonaka.Tml.Graphic.GraphicManager();
+            var manager_create_desc = new ToffMonaka.Tml.Graphic.GraphicManagerCreateDesc();
 
             if (manager.Create(manager_create_desc) < 0) {
                 this._ReleaseManager();
@@ -266,8 +264,8 @@ public class MainSceneNodeScript : Lib.Scene.MainSceneNodeScript
         }
 
         {// SoundManager Create
-            var manager = new Lib.Sound.Manager();
-            var manager_create_desc = new Lib.Sound.ManagerCreateDesc();
+            var manager = new ToffMonaka.Tml.Sound.SoundManager();
+            var manager_create_desc = new ToffMonaka.Tml.Sound.SoundManagerCreateDesc();
 
             if (manager.Create(manager_create_desc) < 0) {
                 this._ReleaseManager();
@@ -279,8 +277,8 @@ public class MainSceneNodeScript : Lib.Scene.MainSceneNodeScript
         }
 
         {// SceneManager Create
-            var manager = new Lib.Scene.Manager();
-            var manager_create_desc = new Lib.Scene.ManagerCreateDesc();
+            var manager = new ToffMonaka.Tml.Scene.SceneManager();
+            var manager_create_desc = new ToffMonaka.Tml.Scene.SceneManagerCreateDesc();
 
             manager_create_desc.mainSceneNode = this.gameObject;
             manager_create_desc.inputNode = this.GetInputNode();

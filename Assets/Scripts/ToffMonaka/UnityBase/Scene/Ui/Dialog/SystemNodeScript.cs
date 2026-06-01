@@ -13,14 +13,14 @@ namespace UnityBase.Scene.Ui.Dialog {
 /**
  * @brief SystemNodeScriptCreateDescクラス
  */
-public class SystemNodeScriptCreateDesc : Lib.Scene.ObjectNodeScriptCreateDesc
+public class SystemNodeScriptCreateDesc : ToffMonaka.Tml.Scene.ObjectNodeScriptCreateDesc
 {
 }
 
 /**
  * @brief SystemNodeScriptクラス
  */
-public class SystemNodeScript : Lib.Scene.ObjectNodeScript
+public class SystemNodeScript : ToffMonaka.Tml.Scene.ObjectNodeScript
 {
     public new UnityBase.Scene.Ui.Dialog.SystemNodeScriptCreateDesc createDesc{get; private set;} = null;
 
@@ -75,7 +75,7 @@ public class SystemNodeScript : Lib.Scene.ObjectNodeScript
      * @brief SetCreateDesc関数
      * @param create_desc (create_desc)
      */
-    public override void SetCreateDesc(Lib.Scene.ScriptCreateDesc create_desc = null)
+    public override void SetCreateDesc(ToffMonaka.Tml.Scene.ScriptCreateDesc create_desc = null)
     {
         if (create_desc == null) {
             this.SetCreateDesc(new UnityBase.Scene.Ui.Dialog.SystemNodeScriptCreateDesc());
@@ -158,7 +158,7 @@ public class SystemNodeScript : Lib.Scene.ObjectNodeScript
         foreach (var dialog_node_script in this._dialogNodeScriptContainer) {
             var node = dialog_node_script.gameObject;
 
-            Lib.Scene.Util.ReleasePrefabNode(ref node);
+            ToffMonaka.Tml.Scene.SceneUtil.ReleasePrefabNode(ref node);
         }
 
         this._dialogNodeScriptContainer.Clear();
@@ -180,7 +180,7 @@ public class SystemNodeScript : Lib.Scene.ObjectNodeScript
 
             var dialog_node = dialog_node_script.gameObject;
 
-            Lib.Scene.Util.ReleasePrefabNode(ref dialog_node);
+            ToffMonaka.Tml.Scene.SceneUtil.ReleasePrefabNode(ref dialog_node);
 
             this._dialogNodeScriptContainer.RemoveAt(dialog_node_script_i);
 

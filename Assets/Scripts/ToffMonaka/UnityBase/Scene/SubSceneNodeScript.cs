@@ -3,24 +3,21 @@
  * @brief SubSceneNodeScriptファイル
  */
 
-
 using UnityEngine;
-using UnityEngine.UI;
-
 
 namespace ToffMonaka {
 namespace UnityBase.Scene {
 /**
  * @brief SubSceneNodeScriptCreateDescクラス
  */
-public class SubSceneNodeScriptCreateDesc : Lib.Scene.SubSceneNodeScriptCreateDesc
+public class SubSceneNodeScriptCreateDesc : ToffMonaka.Tml.Scene.SubSceneNodeScriptCreateDesc
 {
 }
 
 /**
  * @brief SubSceneNodeScriptクラス
  */
-public abstract class SubSceneNodeScript : Lib.Scene.SubSceneNodeScript
+public abstract class SubSceneNodeScript : ToffMonaka.Tml.Scene.SubSceneNodeScript
 {
     [SerializeField] private GameObject _sideMenuNode = null;
     [SerializeField] private GameObject _dialogSystemNode = null;
@@ -112,7 +109,7 @@ public abstract class SubSceneNodeScript : Lib.Scene.SubSceneNodeScript
      * @brief SetCreateDesc関数
      * @param create_desc (create_desc)
      */
-    public override void SetCreateDesc(Lib.Scene.ScriptCreateDesc create_desc = null)
+    public override void SetCreateDesc(ToffMonaka.Tml.Scene.ScriptCreateDesc create_desc = null)
     {
         if (create_desc == null) {
             this.SetCreateDesc(new UnityBase.Scene.SubSceneNodeScriptCreateDesc());

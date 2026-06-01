@@ -14,7 +14,7 @@ namespace UnityBase.Scene.Ui.Menu.Side {
 /**
  * @brief CheatStageBoardItemNodeScriptCreateDescクラス
  */
-public class CheatStageBoardItemNodeScriptCreateDesc : Lib.Scene.ObjectNodeScriptCreateDesc
+public class CheatStageBoardItemNodeScriptCreateDesc : ToffMonaka.Tml.Scene.ObjectNodeScriptCreateDesc
 {
     public UnityBase.Scene.Ui.Menu.Side.CheatCommandUtil.ADD_CODE_TYPE addCodeType = UnityBase.Scene.Ui.Menu.Side.CheatCommandUtil.ADD_CODE_TYPE.NONE;
     public System.Action<UnityBase.Scene.Ui.Menu.Side.CheatStageBoardItemNodeScript> onClick = null;
@@ -23,7 +23,7 @@ public class CheatStageBoardItemNodeScriptCreateDesc : Lib.Scene.ObjectNodeScrip
 /**
  * @brief CheatStageBoardItemNodeScriptクラス
  */
-public class CheatStageBoardItemNodeScript : Lib.Scene.ObjectNodeScript
+public class CheatStageBoardItemNodeScript : ToffMonaka.Tml.Scene.ObjectNodeScript
 {
     [SerializeField] private TMP_Text _nameText = null;
     [SerializeField] private TMP_Text _detailText = null;
@@ -86,7 +86,7 @@ public class CheatStageBoardItemNodeScript : Lib.Scene.ObjectNodeScript
      * @brief SetCreateDesc関数
      * @param create_desc (create_desc)
      */
-    public override void SetCreateDesc(Lib.Scene.ScriptCreateDesc create_desc = null)
+    public override void SetCreateDesc(ToffMonaka.Tml.Scene.ScriptCreateDesc create_desc = null)
     {
         if (create_desc == null) {
             this.SetCreateDesc(new UnityBase.Scene.Ui.Menu.Side.CheatStageBoardItemNodeScriptCreateDesc());

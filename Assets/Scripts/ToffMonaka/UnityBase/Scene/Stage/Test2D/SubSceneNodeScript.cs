@@ -87,7 +87,7 @@ public class SubSceneNodeScript : UnityBase.Scene.Stage.SubSceneNodeScript
      * @brief SetCreateDesc関数
      * @param create_desc (create_desc)
      */
-    public override void SetCreateDesc(Lib.Scene.ScriptCreateDesc create_desc = null)
+    public override void SetCreateDesc(ToffMonaka.Tml.Scene.ScriptCreateDesc create_desc = null)
     {
         if (create_desc == null) {
             this.SetCreateDesc(new UnityBase.Scene.Stage.Test2D.SubSceneNodeScriptCreateDesc());

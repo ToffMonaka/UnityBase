@@ -14,14 +14,14 @@ namespace UnityBase.Scene.Ui.Menu.Side {
 /**
  * @brief BoardNodeScriptCreateDescクラス
  */
-public class BoardNodeScriptCreateDesc : Lib.Scene.ObjectNodeScriptCreateDesc
+public class BoardNodeScriptCreateDesc : ToffMonaka.Tml.Scene.ObjectNodeScriptCreateDesc
 {
 }
 
 /**
  * @brief BoardNodeScriptクラス
  */
-public abstract class BoardNodeScript : Lib.Scene.ObjectNodeScript
+public abstract class BoardNodeScript : ToffMonaka.Tml.Scene.ObjectNodeScript
 {
     [SerializeField] protected TMP_Text _nameText = null;
 
@@ -109,7 +109,7 @@ public abstract class BoardNodeScript : Lib.Scene.ObjectNodeScript
      * @brief SetCreateDesc関数
      * @param create_desc (create_desc)
      */
-    public override void SetCreateDesc(Lib.Scene.ScriptCreateDesc create_desc = null)
+    public override void SetCreateDesc(ToffMonaka.Tml.Scene.ScriptCreateDesc create_desc = null)
     {
         if (create_desc == null) {
             this.SetCreateDesc(new UnityBase.Scene.Ui.Menu.Side.BoardNodeScriptCreateDesc());

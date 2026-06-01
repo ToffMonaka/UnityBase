@@ -13,7 +13,7 @@ namespace UnityBase.Scene.Ui.Dialog {
 /**
  * @brief DialogNodeScriptCreateDescクラス
  */
-public class DialogNodeScriptCreateDesc : Lib.Scene.ObjectNodeScriptCreateDesc
+public class DialogNodeScriptCreateDesc : ToffMonaka.Tml.Scene.ObjectNodeScriptCreateDesc
 {
     /**
      * @brief GetPrefabFilePath関数
@@ -38,7 +38,7 @@ public class DialogNodeScriptCreateDesc : Lib.Scene.ObjectNodeScriptCreateDesc
 /**
  * @brief DialogNodeScriptクラス
  */
-public abstract class DialogNodeScript : Lib.Scene.ObjectNodeScript
+public abstract class DialogNodeScript : ToffMonaka.Tml.Scene.ObjectNodeScript
 {
     [SerializeField] private CanvasGroup _canvasGroup = null;
 
@@ -91,7 +91,7 @@ public abstract class DialogNodeScript : Lib.Scene.ObjectNodeScript
      * @brief SetCreateDesc関数
      * @param create_desc (create_desc)
      */
-    public override void SetCreateDesc(Lib.Scene.ScriptCreateDesc create_desc = null)
+    public override void SetCreateDesc(ToffMonaka.Tml.Scene.ScriptCreateDesc create_desc = null)
     {
         if (create_desc == null) {
             this.SetCreateDesc(new UnityBase.Scene.Ui.Dialog.DialogNodeScriptCreateDesc());

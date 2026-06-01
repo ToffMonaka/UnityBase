@@ -37,7 +37,7 @@ public class SelectDialogNodeScriptCreateDesc : UnityBase.Scene.Ui.Dialog.Dialog
      */
     public override UnityBase.Scene.Ui.Dialog.DialogNodeScript GetNewScript(string prefab_file_path)
     {
-        var node = Lib.Scene.Util.GetPrefabNode(prefab_file_path);
+        var node = ToffMonaka.Tml.Scene.SceneUtil.GetPrefabNode(prefab_file_path);
 
         return (node.GetComponent<UnityBase.Scene.Ui.Dialog.SelectDialogNodeScript>());
     }
@@ -115,7 +115,7 @@ public class SelectDialogNodeScript : UnityBase.Scene.Ui.Dialog.DialogNodeScript
      * @brief SetCreateDesc関数
      * @param create_desc (create_desc)
      */
-    public override void SetCreateDesc(Lib.Scene.ScriptCreateDesc create_desc = null)
+    public override void SetCreateDesc(ToffMonaka.Tml.Scene.ScriptCreateDesc create_desc = null)
     {
         if (create_desc == null) {
             this.SetCreateDesc(new UnityBase.Scene.Ui.Dialog.SelectDialogNodeScriptCreateDesc());

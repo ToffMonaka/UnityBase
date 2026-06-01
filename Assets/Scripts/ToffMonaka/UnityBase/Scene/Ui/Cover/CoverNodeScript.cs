@@ -12,7 +12,7 @@ namespace UnityBase.Scene.Ui.Cover {
 /**
  * @brief CoverNodeScriptCreateDescクラス
  */
-public class CoverNodeScriptCreateDesc : Lib.Scene.ObjectNodeScriptCreateDesc
+public class CoverNodeScriptCreateDesc : ToffMonaka.Tml.Scene.ObjectNodeScriptCreateDesc
 {
     /**
      * @brief GetPrefabFilePath関数
@@ -37,7 +37,7 @@ public class CoverNodeScriptCreateDesc : Lib.Scene.ObjectNodeScriptCreateDesc
 /**
  * @brief CoverNodeScriptクラス
  */
-public abstract class CoverNodeScript : Lib.Scene.ObjectNodeScript
+public abstract class CoverNodeScript : ToffMonaka.Tml.Scene.ObjectNodeScript
 {
     public new UnityBase.Scene.Ui.Cover.CoverNodeScriptCreateDesc createDesc{get; private set;} = null;
 
@@ -88,7 +88,7 @@ public abstract class CoverNodeScript : Lib.Scene.ObjectNodeScript
      * @brief SetCreateDesc関数
      * @param create_desc (create_desc)
      */
-    public override void SetCreateDesc(Lib.Scene.ScriptCreateDesc create_desc = null)
+    public override void SetCreateDesc(ToffMonaka.Tml.Scene.ScriptCreateDesc create_desc = null)
     {
         if (create_desc == null) {
             this.SetCreateDesc(new UnityBase.Scene.Ui.Cover.CoverNodeScriptCreateDesc());

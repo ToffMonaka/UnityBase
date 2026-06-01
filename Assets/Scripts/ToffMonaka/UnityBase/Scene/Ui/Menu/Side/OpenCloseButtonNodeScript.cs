@@ -15,7 +15,7 @@ namespace UnityBase.Scene.Ui.Menu.Side {
 /**
  * @brief OpenCloseButtonNodeScriptCreateDescクラス
  */
-public class OpenCloseButtonNodeScriptCreateDesc : Lib.Scene.ObjectNodeScriptCreateDesc
+public class OpenCloseButtonNodeScriptCreateDesc : ToffMonaka.Tml.Scene.ObjectNodeScriptCreateDesc
 {
     public System.Action<UnityBase.Scene.Ui.Menu.Side.OpenCloseButtonNodeScript> onClick = null;
 }
@@ -23,7 +23,7 @@ public class OpenCloseButtonNodeScriptCreateDesc : Lib.Scene.ObjectNodeScriptCre
 /**
  * @brief OpenCloseButtonNodeScriptクラス
  */
-public class OpenCloseButtonNodeScript : Lib.Scene.ObjectNodeScript
+public class OpenCloseButtonNodeScript : ToffMonaka.Tml.Scene.ObjectNodeScript
 {
     public new UnityBase.Scene.Ui.Menu.Side.OpenCloseButtonNodeScriptCreateDesc createDesc{get; private set;} = null;
 
@@ -78,7 +78,7 @@ public class OpenCloseButtonNodeScript : Lib.Scene.ObjectNodeScript
      * @brief SetCreateDesc関数
      * @param create_desc (create_desc)
      */
-    public override void SetCreateDesc(Lib.Scene.ScriptCreateDesc create_desc = null)
+    public override void SetCreateDesc(ToffMonaka.Tml.Scene.ScriptCreateDesc create_desc = null)
     {
         if (create_desc == null) {
             this.SetCreateDesc(new UnityBase.Scene.Ui.Menu.Side.OpenCloseButtonNodeScriptCreateDesc());

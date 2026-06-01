@@ -3,9 +3,7 @@
  * @brief MstTextTableFileファイル
  */
 
-
-using UnityEngine;
-
+using ToffMonaka.Tml.Array;
 
 namespace ToffMonaka {
 namespace UnityBase.Data {
@@ -72,11 +70,11 @@ public class MstTextTableFileData
 /**
  * @brief MstTextTableFileクラス
  */
-public class MstTextTableFile : Lib.Data.File
+public class MstTextTableFile : ToffMonaka.Tml.Data.File
 {
 	public UnityBase.Data.MstTextTableFileData data = new();
-	public Lib.Data.FileReadDesc<Lib.Data.CsvFileReadDescData> readDesc = new();
-	public Lib.Data.FileWriteDesc<Lib.Data.CsvFileWriteDescData> writeDesc = new();
+	public ToffMonaka.Tml.Data.FileReadDesc<ToffMonaka.Tml.Data.CsvFileReadDescData> readDesc = new();
+	public ToffMonaka.Tml.Data.FileWriteDesc<ToffMonaka.Tml.Data.CsvFileWriteDescData> writeDesc = new();
 
     /**
      * @brief コンストラクタ
@@ -109,7 +107,7 @@ public class MstTextTableFile : Lib.Data.File
     {
 	    var desc_dat = this.readDesc.GetDataByParent();
 
-        var csv_file = new Lib.Data.CsvFile();
+        var csv_file = new ToffMonaka.Tml.Data.CsvFile();
         int csv_file_read_result_val;
 
         csv_file.readDesc.parentData = desc_dat;
@@ -140,7 +138,7 @@ public class MstTextTableFile : Lib.Data.File
             this.data.entityArray[val_i] = entity;
 
             if (this.data.entityArrayByMstTextId.Length <= entity.mstTextId) {
-                Lib.Array.Util.Resize(ref this.data.entityArrayByMstTextId, entity.mstTextId + 128);
+                ArrayUtil.Resize(ref this.data.entityArrayByMstTextId, entity.mstTextId + 128);
             }
 
             this.data.entityArrayByMstTextId[entity.mstTextId] = entity;

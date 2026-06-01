@@ -3,10 +3,6 @@
  * @brief UserDataFileファイル
  */
 
-
-using UnityEngine;
-
-
 namespace ToffMonaka {
 namespace UnityBase.Data {
 /**
@@ -36,11 +32,11 @@ public class UserDataFileData
 /**
  * @brief UserDataFileクラス
  */
-public class UserDataFile : Lib.Data.File
+public class UserDataFile : ToffMonaka.Tml.Data.File
 {
 	public UnityBase.Data.UserDataFileData data = new();
-	public Lib.Data.FileReadDesc<Lib.Data.BinaryFileReadDescData> readDesc = new();
-	public Lib.Data.FileWriteDesc<Lib.Data.BinaryFileWriteDescData> writeDesc = new();
+	public ToffMonaka.Tml.Data.FileReadDesc<ToffMonaka.Tml.Data.BinaryFileReadDescData> readDesc = new();
+	public ToffMonaka.Tml.Data.FileWriteDesc<ToffMonaka.Tml.Data.BinaryFileWriteDescData> writeDesc = new();
 
     private bool _writeFlag = false;
     private bool _deleteFlag = false;
@@ -82,7 +78,7 @@ public class UserDataFile : Lib.Data.File
 
 	    var desc_dat = this.readDesc.GetDataByParent();
 
-        var bin_file = new Lib.Data.BinaryFile();
+        var bin_file = new ToffMonaka.Tml.Data.BinaryFile();
         int bin_file_read_result_val;
 
         bin_file.readDesc.parentData = desc_dat;
@@ -135,7 +131,7 @@ public class UserDataFile : Lib.Data.File
 		    return (-1);
 	    }
 
-        var bin_file = new Lib.Data.BinaryFile();
+        var bin_file = new ToffMonaka.Tml.Data.BinaryFile();
         int bin_file_write_result_val;
 
         int section_cnt = 0;

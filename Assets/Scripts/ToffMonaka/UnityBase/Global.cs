@@ -3,10 +3,6 @@
  * @brief Globalファイル
  */
 
-
-using UnityEngine;
-
-
 namespace ToffMonaka {
 namespace UnityBase {
 /**
@@ -25,18 +21,18 @@ public static class Global
      * @brief GetInputManager関数
      * @return input_manager (input_manager)
      */
-    public static Lib.Input.Manager GetInputManager()
+    public static ToffMonaka.Tml.Input.InputManager GetInputManager()
     {
-        return (Lib.Global.GetInputManager());
+        return (ToffMonaka.Tml.Global.GetInputManager());
     }
 
     /**
      * @brief SetInputManager関数
      * @param input_manager (input_manager)
      */
-    public static void SetInputManager(Lib.Input.Manager input_manager)
+    public static void SetInputManager(ToffMonaka.Tml.Input.InputManager input_manager)
     {
-        Lib.Global.SetInputManager(input_manager);
+        ToffMonaka.Tml.Global.SetInputManager(input_manager);
 
         return;
     }
@@ -45,18 +41,18 @@ public static class Global
      * @brief GetGraphicManager関数
      * @return graphic_manager (graphic_manager)
      */
-    public static Lib.Graphic.Manager GetGraphicManager()
+    public static ToffMonaka.Tml.Graphic.GraphicManager GetGraphicManager()
     {
-        return (Lib.Global.GetGraphicManager());
+        return (ToffMonaka.Tml.Global.GetGraphicManager());
     }
 
     /**
      * @brief SetGraphicManager関数
      * @param graphic_manager (graphic_manager)
      */
-    public static void SetGraphicManager(Lib.Graphic.Manager graphic_manager)
+    public static void SetGraphicManager(ToffMonaka.Tml.Graphic.GraphicManager graphic_manager)
     {
-        Lib.Global.SetGraphicManager(graphic_manager);
+        ToffMonaka.Tml.Global.SetGraphicManager(graphic_manager);
 
         return;
     }
@@ -65,18 +61,18 @@ public static class Global
      * @brief GetSoundManager関数
      * @return sound_manager (sound_manager)
      */
-    public static Lib.Sound.Manager GetSoundManager()
+    public static ToffMonaka.Tml.Sound.SoundManager GetSoundManager()
     {
-        return (Lib.Global.GetSoundManager());
+        return (ToffMonaka.Tml.Global.GetSoundManager());
     }
 
     /**
      * @brief SetSoundManager関数
      * @param sound_manager (sound_manager)
      */
-    public static void SetSoundManager(Lib.Sound.Manager sound_manager)
+    public static void SetSoundManager(ToffMonaka.Tml.Sound.SoundManager sound_manager)
     {
-        Lib.Global.SetSoundManager(sound_manager);
+        ToffMonaka.Tml.Global.SetSoundManager(sound_manager);
 
         return;
     }
@@ -85,18 +81,18 @@ public static class Global
      * @brief GetSceneManager関数
      * @return scene_manager (scene_manager)
      */
-    public static Lib.Scene.Manager GetSceneManager()
+    public static ToffMonaka.Tml.Scene.SceneManager GetSceneManager()
     {
-        return (Lib.Global.GetSceneManager());
+        return (ToffMonaka.Tml.Global.GetSceneManager());
     }
 
     /**
      * @brief SetSceneManager関数
      * @param scene_manager (scene_manager)
      */
-    public static void SetSceneManager(Lib.Scene.Manager scene_manager)
+    public static void SetSceneManager(ToffMonaka.Tml.Scene.SceneManager scene_manager)
     {
-        Lib.Global.SetSceneManager(scene_manager);
+        ToffMonaka.Tml.Global.SetSceneManager(scene_manager);
 
         return;
     }

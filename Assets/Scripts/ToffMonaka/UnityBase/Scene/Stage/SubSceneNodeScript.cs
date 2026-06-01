@@ -84,7 +84,7 @@ public abstract class SubSceneNodeScript : UnityBase.Scene.SubSceneNodeScript
             var script = this._backButtonNode.GetComponent<UnityBase.Scene.Ui.BackButtonNodeScript>();
             var script_create_desc = new UnityBase.Scene.Ui.BackButtonNodeScriptCreateDesc();
 
-            script_create_desc.onClick = (UnityBase.Scene.Ui.BackButtonNodeScript owner) =>
+            script_create_desc.onClick = (owner) =>
             {
                 this.Close(1, (owner) =>
                 {
@@ -115,7 +115,7 @@ public abstract class SubSceneNodeScript : UnityBase.Scene.SubSceneNodeScript
      * @brief SetCreateDesc関数
      * @param create_desc (create_desc)
      */
-    public override void SetCreateDesc(Lib.Scene.ScriptCreateDesc create_desc = null)
+    public override void SetCreateDesc(ToffMonaka.Tml.Scene.ScriptCreateDesc create_desc = null)
     {
         if (create_desc == null) {
             this.SetCreateDesc(new UnityBase.Scene.Stage.SubSceneNodeScriptCreateDesc());

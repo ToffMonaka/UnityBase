@@ -14,7 +14,7 @@ namespace UnityBase.Scene.Ui {
 /**
  * @brief BackButtonNodeScriptCreateDescクラス
  */
-public class BackButtonNodeScriptCreateDesc : Lib.Scene.ObjectNodeScriptCreateDesc
+public class BackButtonNodeScriptCreateDesc : ToffMonaka.Tml.Scene.ObjectNodeScriptCreateDesc
 {
     public System.Action<UnityBase.Scene.Ui.BackButtonNodeScript> onClick = null;
 }
@@ -22,7 +22,7 @@ public class BackButtonNodeScriptCreateDesc : Lib.Scene.ObjectNodeScriptCreateDe
 /**
  * @brief BackButtonNodeScriptクラス
  */
-public class BackButtonNodeScript : Lib.Scene.ObjectNodeScript
+public class BackButtonNodeScript : ToffMonaka.Tml.Scene.ObjectNodeScript
 {
     public new UnityBase.Scene.Ui.BackButtonNodeScriptCreateDesc createDesc{get; private set;} = null;
 
@@ -77,7 +77,7 @@ public class BackButtonNodeScript : Lib.Scene.ObjectNodeScript
      * @brief SetCreateDesc関数
      * @param create_desc (create_desc)
      */
-    public override void SetCreateDesc(Lib.Scene.ScriptCreateDesc create_desc = null)
+    public override void SetCreateDesc(ToffMonaka.Tml.Scene.ScriptCreateDesc create_desc = null)
     {
         if (create_desc == null) {
             this.SetCreateDesc(new UnityBase.Scene.Ui.BackButtonNodeScriptCreateDesc());

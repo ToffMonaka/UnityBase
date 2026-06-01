@@ -4,7 +4,7 @@
 
 開発環境<br>
 Unity 6.3 LTS (6000.3.13f1)<br>
-<details><summary>追加モジュール (クリックで展開)</summary>
+<details><summary>追加したモジュール (クリックで展開)</summary>
 
     Android Build Support
     OpenJDK
@@ -13,7 +13,7 @@ Unity 6.3 LTS (6000.3.13f1)<br>
 </details><br>
 
 Visual Studio 2026<br>
-<details><summary>追加ワークロード (クリックで展開)</summary>
+<details><summary>追加したワークロード (クリックで展開)</summary>
 
     C++によるデスクトップ開発
     .NETデスクトップ開発

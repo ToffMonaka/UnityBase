@@ -3,10 +3,8 @@
  * @brief SystemConfigFileファイル
  */
 
-
 using System.Collections.Generic;
 using UnityEngine;
-
 
 namespace ToffMonaka {
 namespace UnityBase.Data {
@@ -61,11 +59,11 @@ public class SystemConfigFileData
 /**
  * @brief SystemConfigFileクラス
  */
-public class SystemConfigFile : Lib.Data.File
+public class SystemConfigFile : ToffMonaka.Tml.Data.File
 {
 	public UnityBase.Data.SystemConfigFileData data = new();
-	public Lib.Data.FileReadDesc<Lib.Data.IniFileReadDescData> readDesc = new();
-	public Lib.Data.FileWriteDesc<Lib.Data.IniFileWriteDescData> writeDesc = new();
+	public ToffMonaka.Tml.Data.FileReadDesc<ToffMonaka.Tml.Data.IniFileReadDescData> readDesc = new();
+	public ToffMonaka.Tml.Data.FileWriteDesc<ToffMonaka.Tml.Data.IniFileWriteDescData> writeDesc = new();
 
     private bool _writeFlag = false;
     private bool _deleteFlag = false;
@@ -107,7 +105,7 @@ public class SystemConfigFile : Lib.Data.File
 
 	    var desc_dat = this.readDesc.GetDataByParent();
 
-        var ini_file = new Lib.Data.IniFile();
+        var ini_file = new ToffMonaka.Tml.Data.IniFile();
         int ini_file_read_result_val;
 
         ini_file.readDesc.parentData = desc_dat;
@@ -199,31 +197,31 @@ public class SystemConfigFile : Lib.Data.File
 		    return (-1);
 	    }
 
-        var txt_file = new Lib.Data.TextFile();
+        var txt_file = new ToffMonaka.Tml.Data.TextFile();
         int txt_file_write_result_val;
 
         {// System Section Write
-	        txt_file.data.lineTextContainer.Add(Lib.Data.IniFileUtil.SECTION_START_CODE + "SYS" + Lib.Data.IniFileUtil.SECTION_END_CODE);
-	        txt_file.data.lineTextContainer.Add("LANGUAGE_TYPE" + Lib.Data.IniFileUtil.EQUAL_CODE + ((int)this.data.systemLanguageType).ToString());
+	        txt_file.data.lineTextContainer.Add(ToffMonaka.Tml.Data.IniFileUtil.SECTION_START_CODE + "SYS" + ToffMonaka.Tml.Data.IniFileUtil.SECTION_END_CODE);
+	        txt_file.data.lineTextContainer.Add("LANGUAGE_TYPE" + ToffMonaka.Tml.Data.IniFileUtil.EQUAL_CODE + ((int)this.data.systemLanguageType).ToString());
 	        txt_file.data.lineTextContainer.Add(System.String.Empty);
         }
 
         {// Input Section Write
-	        txt_file.data.lineTextContainer.Add(Lib.Data.IniFileUtil.SECTION_START_CODE + "INPUT" + Lib.Data.IniFileUtil.SECTION_END_CODE);
+	        txt_file.data.lineTextContainer.Add(ToffMonaka.Tml.Data.IniFileUtil.SECTION_START_CODE + "INPUT" + ToffMonaka.Tml.Data.IniFileUtil.SECTION_END_CODE);
 	        txt_file.data.lineTextContainer.Add(System.String.Empty);
         }
 
         {// Graphic Section Write
-	        txt_file.data.lineTextContainer.Add(Lib.Data.IniFileUtil.SECTION_START_CODE + "GRAPHIC" + Lib.Data.IniFileUtil.SECTION_END_CODE);
+	        txt_file.data.lineTextContainer.Add(ToffMonaka.Tml.Data.IniFileUtil.SECTION_START_CODE + "GRAPHIC" + ToffMonaka.Tml.Data.IniFileUtil.SECTION_END_CODE);
 	        txt_file.data.lineTextContainer.Add(System.String.Empty);
         }
 
         {// Sound Section Write
-	        txt_file.data.lineTextContainer.Add(Lib.Data.IniFileUtil.SECTION_START_CODE + "SOUND" + Lib.Data.IniFileUtil.SECTION_END_CODE);
-	        txt_file.data.lineTextContainer.Add("BGM_VOL" + Lib.Data.IniFileUtil.EQUAL_CODE + this.data.soundBgmVolume.ToString());
-	        txt_file.data.lineTextContainer.Add("BGM_MUTE_FLG" + Lib.Data.IniFileUtil.EQUAL_CODE + System.Convert.ToInt32(this.data.soundBgmMuteFlag).ToString());
-	        txt_file.data.lineTextContainer.Add("SE_VOL" + Lib.Data.IniFileUtil.EQUAL_CODE + this.data.soundSeVolume.ToString());
-	        txt_file.data.lineTextContainer.Add("SE_MUTE_FLG" + Lib.Data.IniFileUtil.EQUAL_CODE + System.Convert.ToInt32(this.data.soundSeMuteFlag).ToString());
+	        txt_file.data.lineTextContainer.Add(ToffMonaka.Tml.Data.IniFileUtil.SECTION_START_CODE + "SOUND" + ToffMonaka.Tml.Data.IniFileUtil.SECTION_END_CODE);
+	        txt_file.data.lineTextContainer.Add("BGM_VOL" + ToffMonaka.Tml.Data.IniFileUtil.EQUAL_CODE + this.data.soundBgmVolume.ToString());
+	        txt_file.data.lineTextContainer.Add("BGM_MUTE_FLG" + ToffMonaka.Tml.Data.IniFileUtil.EQUAL_CODE + System.Convert.ToInt32(this.data.soundBgmMuteFlag).ToString());
+	        txt_file.data.lineTextContainer.Add("SE_VOL" + ToffMonaka.Tml.Data.IniFileUtil.EQUAL_CODE + this.data.soundSeVolume.ToString());
+	        txt_file.data.lineTextContainer.Add("SE_MUTE_FLG" + ToffMonaka.Tml.Data.IniFileUtil.EQUAL_CODE + System.Convert.ToInt32(this.data.soundSeMuteFlag).ToString());
 	        txt_file.data.lineTextContainer.Add(System.String.Empty);
         }
 

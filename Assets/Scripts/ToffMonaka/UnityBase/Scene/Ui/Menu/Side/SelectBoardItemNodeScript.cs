@@ -14,7 +14,7 @@ namespace UnityBase.Scene.Ui.Menu.Side {
 /**
  * @brief SelectBoardItemNodeScriptCreateDescクラス
  */
-public class SelectBoardItemNodeScriptCreateDesc : Lib.Scene.ObjectNodeScriptCreateDesc
+public class SelectBoardItemNodeScriptCreateDesc : ToffMonaka.Tml.Scene.ObjectNodeScriptCreateDesc
 {
     public string name = "";
     public System.Action<UnityBase.Scene.Ui.Menu.Side.SelectBoardItemNodeScript> onClick = null;
@@ -23,7 +23,7 @@ public class SelectBoardItemNodeScriptCreateDesc : Lib.Scene.ObjectNodeScriptCre
 /**
  * @brief SelectBoardItemNodeScriptクラス
  */
-public class SelectBoardItemNodeScript : Lib.Scene.ObjectNodeScript
+public class SelectBoardItemNodeScript : ToffMonaka.Tml.Scene.ObjectNodeScript
 {
     [SerializeField] private TMP_Text _nameText = null;
 
@@ -82,7 +82,7 @@ public class SelectBoardItemNodeScript : Lib.Scene.ObjectNodeScript
      * @brief SetCreateDesc関数
      * @param create_desc (create_desc)
      */
-    public override void SetCreateDesc(Lib.Scene.ScriptCreateDesc create_desc = null)
+    public override void SetCreateDesc(ToffMonaka.Tml.Scene.ScriptCreateDesc create_desc = null)
     {
         if (create_desc == null) {
             this.SetCreateDesc(new UnityBase.Scene.Ui.Menu.Side.SelectBoardItemNodeScriptCreateDesc());

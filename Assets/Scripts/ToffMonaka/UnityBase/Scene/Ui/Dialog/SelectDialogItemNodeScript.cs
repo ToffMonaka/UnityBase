@@ -14,7 +14,7 @@ namespace UnityBase.Scene.Ui.Dialog {
 /**
  * @brief SelectDialogItemNodeScriptCreateDescクラス
  */
-public class SelectDialogItemNodeScriptCreateDesc : Lib.Scene.ObjectNodeScriptCreateDesc
+public class SelectDialogItemNodeScriptCreateDesc : ToffMonaka.Tml.Scene.ObjectNodeScriptCreateDesc
 {
     public UnityBase.Scene.Ui.Dialog.SelectDialogItemEngine engine = null;
     public System.Action<UnityBase.Scene.Ui.Dialog.SelectDialogItemNodeScript> onClick = null;
@@ -23,7 +23,7 @@ public class SelectDialogItemNodeScriptCreateDesc : Lib.Scene.ObjectNodeScriptCr
 /**
  * @brief SelectDialogItemNodeScriptクラス
  */
-public class SelectDialogItemNodeScript : Lib.Scene.ObjectNodeScript
+public class SelectDialogItemNodeScript : ToffMonaka.Tml.Scene.ObjectNodeScript
 {
     [SerializeField] private TMP_Text _nameText = null;
 
@@ -88,7 +88,7 @@ public class SelectDialogItemNodeScript : Lib.Scene.ObjectNodeScript
      * @brief SetCreateDesc関数
      * @param create_desc (create_desc)
      */
-    public override void SetCreateDesc(Lib.Scene.ScriptCreateDesc create_desc = null)
+    public override void SetCreateDesc(ToffMonaka.Tml.Scene.ScriptCreateDesc create_desc = null)
     {
         if (create_desc == null) {
             this.SetCreateDesc(new UnityBase.Scene.Ui.Dialog.SelectDialogItemNodeScriptCreateDesc());

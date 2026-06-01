@@ -13,14 +13,14 @@ namespace UnityBase.Scene.Ui.Cover {
 /**
  * @brief SystemNodeScriptCreateDescクラス
  */
-public class SystemNodeScriptCreateDesc : Lib.Scene.ObjectNodeScriptCreateDesc
+public class SystemNodeScriptCreateDesc : ToffMonaka.Tml.Scene.ObjectNodeScriptCreateDesc
 {
 }
 
 /**
  * @brief SystemNodeScriptクラス
  */
-public class SystemNodeScript : Lib.Scene.ObjectNodeScript
+public class SystemNodeScript : ToffMonaka.Tml.Scene.ObjectNodeScript
 {
     public new UnityBase.Scene.Ui.Cover.SystemNodeScriptCreateDesc createDesc{get; private set;} = null;
 
@@ -75,7 +75,7 @@ public class SystemNodeScript : Lib.Scene.ObjectNodeScript
      * @brief SetCreateDesc関数
      * @param create_desc (create_desc)
      */
-    public override void SetCreateDesc(Lib.Scene.ScriptCreateDesc create_desc = null)
+    public override void SetCreateDesc(ToffMonaka.Tml.Scene.ScriptCreateDesc create_desc = null)
     {
         if (create_desc == null) {
             this.SetCreateDesc(new UnityBase.Scene.Ui.Cover.SystemNodeScriptCreateDesc());
@@ -158,7 +158,7 @@ public class SystemNodeScript : Lib.Scene.ObjectNodeScript
         foreach (var cover_node_script in this._coverNodeScriptContainer) {
             var node = cover_node_script.gameObject;
 
-            Lib.Scene.Util.ReleasePrefabNode(ref node);
+            ToffMonaka.Tml.Scene.SceneUtil.ReleasePrefabNode(ref node);
         }
 
         this._coverNodeScriptContainer.Clear();
@@ -180,7 +180,7 @@ public class SystemNodeScript : Lib.Scene.ObjectNodeScript
 
             var cover_node = cover_node_script.gameObject;
 
-            Lib.Scene.Util.ReleasePrefabNode(ref cover_node);
+            ToffMonaka.Tml.Scene.SceneUtil.ReleasePrefabNode(ref cover_node);
 
             this._coverNodeScriptContainer.RemoveAt(cover_node_script_i);
 

@@ -14,7 +14,7 @@ namespace UnityBase.Scene.Select {
 /**
  * @brief StageBoardItemNodeScriptCreateDescクラス
  */
-public class StageBoardItemNodeScriptCreateDesc : Lib.Scene.ObjectNodeScriptCreateDesc
+public class StageBoardItemNodeScriptCreateDesc : ToffMonaka.Tml.Scene.ObjectNodeScriptCreateDesc
 {
     public string name = "";
     public System.Action<UnityBase.Scene.Select.StageBoardItemNodeScript> onClick = null;
@@ -23,7 +23,7 @@ public class StageBoardItemNodeScriptCreateDesc : Lib.Scene.ObjectNodeScriptCrea
 /**
  * @brief StageBoardItemNodeScriptクラス
  */
-public class StageBoardItemNodeScript : Lib.Scene.ObjectNodeScript
+public class StageBoardItemNodeScript : ToffMonaka.Tml.Scene.ObjectNodeScript
 {
     [SerializeField] private TMP_Text _nameText = null;
 
@@ -82,7 +82,7 @@ public class StageBoardItemNodeScript : Lib.Scene.ObjectNodeScript
      * @brief SetCreateDesc関数
      * @param create_desc (create_desc)
      */
-    public override void SetCreateDesc(Lib.Scene.ScriptCreateDesc create_desc = null)
+    public override void SetCreateDesc(ToffMonaka.Tml.Scene.ScriptCreateDesc create_desc = null)
     {
         if (create_desc == null) {
             this.SetCreateDesc(new UnityBase.Scene.Select.StageBoardItemNodeScriptCreateDesc());

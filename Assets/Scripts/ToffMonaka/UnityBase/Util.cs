@@ -3,9 +3,7 @@
  * @brief Utilファイル
  */
 
-
 using UnityEngine;
-
 
 namespace ToffMonaka {
 namespace UnityBase {
@@ -23,8 +21,8 @@ public static class Util
     public static class PROJECT
     {
         public static readonly string NAME = "Unity Base";
-        public static readonly string COMPANY_NAME = "Toff Monaka Project";
         public static readonly string VERSION_NAME = "1.0.0";
+        public static readonly string COMPANY_NAME = "Toff Monaka Project";
     }
 
     public static class FILE_PATH
@@ -80,7 +78,7 @@ public static class Util
     {
         public enum SCRIPT_INDEX : int
         {
-            MAIN_SCENE_NODE = Lib.Util.SCENE.SCRIPT_INDEX.COUNT,
+            MAIN_SCENE_NODE = ToffMonaka.Tml.Util.SCENE.SCRIPT_INDEX.COUNT,
             SUB_SCENE_NODE,
             INIT_SUB_SCENE_NODE,
             TITLE_SUB_SCENE_NODE,
