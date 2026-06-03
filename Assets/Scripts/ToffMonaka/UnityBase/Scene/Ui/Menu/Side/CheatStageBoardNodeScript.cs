@@ -9,6 +9,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using TMPro;
+using ToffMonaka.UnityBase.Data;
 
 
 namespace ToffMonaka {
@@ -108,11 +109,11 @@ public class CheatStageBoardNodeScript : UnityBase.Scene.Ui.Menu.Side.StageBoard
             return (-1);
         }
 
-        this._nameText.SetText(UnityBase.Global.GetText(UnityBase.Util.MST_TEXT_ID.CHEAT));
+        this._nameText.SetText(DataUtil.GetText(UnityBase.Util.MST_TEXT_ID.CHEAT));
 
-        this._commandNameText.SetText(UnityBase.Global.GetText(UnityBase.Util.MST_TEXT_ID.COMMAND));
-        this._okButtonNameText.SetText(UnityBase.Global.GetText(UnityBase.Util.MST_TEXT_ID.OK));
-        this._cancelButtonNameText.SetText(UnityBase.Global.GetText(UnityBase.Util.MST_TEXT_ID.CANCEL));
+        this._commandNameText.SetText(DataUtil.GetText(UnityBase.Util.MST_TEXT_ID.COMMAND));
+        this._okButtonNameText.SetText(DataUtil.GetText(UnityBase.Util.MST_TEXT_ID.OK));
+        this._cancelButtonNameText.SetText(DataUtil.GetText(UnityBase.Util.MST_TEXT_ID.CANCEL));
 
         this._itemNode.SetActive(false);
 

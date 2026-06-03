@@ -4,7 +4,7 @@
  */
 
 
-using UnityEngine;
+using ToffMonaka.UnityBase.Data;
 
 
 namespace ToffMonaka {
@@ -58,7 +58,7 @@ public static class CheatCommandUtil
             return (0.0);
         }
 
-        UnityBase.Global.DeleteDataFile();
+        DataUtil.DeleteDataFile();
 
         return (0.0);
     }

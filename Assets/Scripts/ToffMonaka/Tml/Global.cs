@@ -20,9 +20,6 @@ public static class Global
     private static SoundManager _soundManager = null;
     private static SceneManager _sceneManager = null;
 
-    // Change Property Name
-    // [UnityEngine.Serialization.FormerlySerializedAs("_propertyName")]
-
     /**
      * @brief GetInputManager関数
      * @return input_manager (input_manager)

@@ -4,6 +4,7 @@
  */
 
 using UnityEngine;
+using ToffMonaka.UnityBase.Data;
 
 namespace ToffMonaka {
 namespace UnityBase.Scene {
@@ -164,24 +165,24 @@ public class MainSceneNodeScript : ToffMonaka.Tml.Scene.MainSceneNodeScript
     private void _StartDataFile()
     {
         {// SystemConfigFile Create
-            UnityBase.Global.systemConfigFile.readDesc.data.filePath = Application.persistentDataPath + "/" + UnityBase.Util.FILE_PATH.SYSTEM_CONFIG;
-            UnityBase.Global.systemConfigFile.writeDesc.data.filePath = UnityBase.Global.systemConfigFile.readDesc.data.filePath;
+            DataUtil.systemConfigFile.readDesc.data.filePath = Application.persistentDataPath + "/" + UnityBase.Util.FILE_PATH.SYSTEM_CONFIG;
+            DataUtil.systemConfigFile.writeDesc.data.filePath = DataUtil.systemConfigFile.readDesc.data.filePath;
 
-            if (ToffMonaka.Tml.Data.DataUtil.IsExistFile(UnityBase.Global.systemConfigFile.readDesc.data.filePath)) {
-                UnityBase.Global.systemConfigFile.Read();
+            if (ToffMonaka.Tml.FileUtil.IsExistFile(DataUtil.systemConfigFile.readDesc.data.filePath)) {
+                DataUtil.systemConfigFile.Read();
             } else {
-                UnityBase.Global.systemConfigFile.Write();
+                DataUtil.systemConfigFile.Write();
             }
         }
 
         {// UserDataFile Create
-            UnityBase.Global.userDataFile.readDesc.data.filePath = Application.persistentDataPath + "/" + UnityBase.Util.FILE_PATH.USER_DATA;
-            UnityBase.Global.userDataFile.writeDesc.data.filePath = UnityBase.Global.userDataFile.readDesc.data.filePath;
+            DataUtil.userDataFile.readDesc.data.filePath = Application.persistentDataPath + "/" + UnityBase.Util.FILE_PATH.USER_DATA;
+            DataUtil.userDataFile.writeDesc.data.filePath = DataUtil.userDataFile.readDesc.data.filePath;
 
-            if (ToffMonaka.Tml.Data.DataUtil.IsExistFile(UnityBase.Global.userDataFile.readDesc.data.filePath)) {
-                UnityBase.Global.userDataFile.Read();
+            if (ToffMonaka.Tml.FileUtil.IsExistFile(DataUtil.userDataFile.readDesc.data.filePath)) {
+                DataUtil.userDataFile.Read();
             } else {
-                UnityBase.Global.userDataFile.Write();
+                DataUtil.userDataFile.Write();
             }
         }
 
@@ -193,20 +194,20 @@ public class MainSceneNodeScript : ToffMonaka.Tml.Scene.MainSceneNodeScript
      */
     private void _EndDataFile()
     {
-        if (UnityBase.Global.systemConfigFile.GetDeleteFlag()) {
-            UnityBase.Global.systemConfigFile.Delete();
+        if (DataUtil.systemConfigFile.GetDeleteFlag()) {
+            DataUtil.systemConfigFile.Delete();
         }
 
-        if (UnityBase.Global.userDataFile.GetDeleteFlag()) {
-            UnityBase.Global.userDataFile.Delete();
+        if (DataUtil.userDataFile.GetDeleteFlag()) {
+            DataUtil.userDataFile.Delete();
         }
 
-        if (UnityBase.Global.systemConfigFile.GetWriteFlag()) {
-            UnityBase.Global.systemConfigFile.Write();
+        if (DataUtil.systemConfigFile.GetWriteFlag()) {
+            DataUtil.systemConfigFile.Write();
         }
 
-        if (UnityBase.Global.userDataFile.GetWriteFlag()) {
-            UnityBase.Global.userDataFile.Write();
+        if (DataUtil.userDataFile.GetWriteFlag()) {
+            DataUtil.userDataFile.Write();
         }
 
         return;
@@ -217,12 +218,12 @@ public class MainSceneNodeScript : ToffMonaka.Tml.Scene.MainSceneNodeScript
      */
     private void _UpdateDataFile()
     {
-        if (UnityBase.Global.systemConfigFile.GetWriteFlag()) {
-            UnityBase.Global.systemConfigFile.Write();
+        if (DataUtil.systemConfigFile.GetWriteFlag()) {
+            DataUtil.systemConfigFile.Write();
         }
 
-        if (UnityBase.Global.userDataFile.GetWriteFlag()) {
-            UnityBase.Global.userDataFile.Write();
+        if (DataUtil.userDataFile.GetWriteFlag()) {
+            DataUtil.userDataFile.Write();
         }
 
         return;
@@ -286,12 +287,12 @@ public class MainSceneNodeScript : ToffMonaka.Tml.Scene.MainSceneNodeScript
             manager_create_desc.soundNode = this.GetSoundNode();
             manager_create_desc.soundBgmPrefabFilePath = UnityBase.Util.FILE_PATH.SOUND_BGM_PREFAB;
             manager_create_desc.soundBgmAudioClipArray = this.GetSoundBgmAudioClipArray();
-            manager_create_desc.soundBgmVolume = UnityBase.Global.systemConfigFile.data.soundBgmVolume;
-            manager_create_desc.soundBgmMuteFlag = UnityBase.Global.systemConfigFile.data.soundBgmMuteFlag;
+            manager_create_desc.soundBgmVolume = DataUtil.systemConfigFile.data.soundBgmVolume;
+            manager_create_desc.soundBgmMuteFlag = DataUtil.systemConfigFile.data.soundBgmMuteFlag;
             manager_create_desc.soundSePrefabFilePath = UnityBase.Util.FILE_PATH.SOUND_SE_PREFAB;
             manager_create_desc.soundSeAudioClipArray = this.GetSoundSeAudioClipArray();
-            manager_create_desc.soundSeVolume = UnityBase.Global.systemConfigFile.data.soundSeVolume;
-            manager_create_desc.soundSeMuteFlag = UnityBase.Global.systemConfigFile.data.soundSeMuteFlag;
+            manager_create_desc.soundSeVolume = DataUtil.systemConfigFile.data.soundSeVolume;
+            manager_create_desc.soundSeMuteFlag = DataUtil.systemConfigFile.data.soundSeMuteFlag;
             manager_create_desc.scriptCount = (int)UnityBase.Util.SCENE.SCRIPT_INDEX_COUNT;
 
             if (manager.Create(manager_create_desc) < 0) {

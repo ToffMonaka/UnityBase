@@ -21,7 +21,7 @@ public static class BinaryFileUtil
  */
 public class BinaryFileData
 {
-    public ToffMonaka.Tml.Buffer.Buffer buffer = new();
+    public Buffer buffer = new();
 
     /**
      * @brief コンストラクタ
@@ -49,7 +49,7 @@ public class BinaryFileData
  */
 public class BinaryFileReadDescData : FileReadDescData
 {
-    public ToffMonaka.Tml.Buffer.Buffer buffer = new();
+    public Buffer buffer = new();
 
     /**
      * @brief コンストラクタ

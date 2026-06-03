@@ -8,6 +8,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using TMPro;
+using ToffMonaka.UnityBase.Data;
 
 
 namespace ToffMonaka {
@@ -102,11 +103,11 @@ public class OptionSystemStageBoardNodeScript : UnityBase.Scene.Ui.Menu.Side.Sta
             return (-1);
         }
 
-        this._nameText.SetText(UnityBase.Global.GetText(UnityBase.Util.MST_TEXT_ID.OPTION) + " > " + UnityBase.Global.GetText(UnityBase.Util.MST_TEXT_ID.SYSTEM));
+        this._nameText.SetText(DataUtil.GetText(UnityBase.Util.MST_TEXT_ID.OPTION) + " > " + DataUtil.GetText(UnityBase.Util.MST_TEXT_ID.SYSTEM));
 
-        this._languageNameText.SetText(UnityBase.Global.GetText(UnityBase.Util.MST_TEXT_ID.LANGUAGE));
-        this._okButtonNameText.SetText(UnityBase.Global.GetText(UnityBase.Util.MST_TEXT_ID.OK));
-        this._cancelButtonNameText.SetText(UnityBase.Global.GetText(UnityBase.Util.MST_TEXT_ID.CANCEL));
+        this._languageNameText.SetText(DataUtil.GetText(UnityBase.Util.MST_TEXT_ID.LANGUAGE));
+        this._okButtonNameText.SetText(DataUtil.GetText(UnityBase.Util.MST_TEXT_ID.OK));
+        this._cancelButtonNameText.SetText(DataUtil.GetText(UnityBase.Util.MST_TEXT_ID.CANCEL));
 
         return (0);
     }
@@ -149,7 +150,7 @@ public class OptionSystemStageBoardNodeScript : UnityBase.Scene.Ui.Menu.Side.Sta
 
         this._scrollRect.verticalNormalizedPosition = 1.0f;
 
-        this.SetLanguageType(UnityBase.Global.systemConfigFile.data.systemLanguageType);
+        this.SetLanguageType(DataUtil.systemConfigFile.data.systemLanguageType);
 
         return;
     }
@@ -210,9 +211,9 @@ public class OptionSystemStageBoardNodeScript : UnityBase.Scene.Ui.Menu.Side.Sta
 
         UnityBase.Global.GetSceneManager().PlaySoundSe((int)UnityBase.Util.SOUND.SE_INDEX.OK2);
 
-        UnityBase.Global.systemConfigFile.data.systemLanguageType = this._languageType;
+        DataUtil.systemConfigFile.data.systemLanguageType = this._languageType;
 
-        UnityBase.Global.systemConfigFile.Write(true);
+        DataUtil.systemConfigFile.Write(true);
 
         if (this._restartFlag) {
             UnityBase.Global.GetSceneManager().StartMainScene();
@@ -257,9 +258,9 @@ public class OptionSystemStageBoardNodeScript : UnityBase.Scene.Ui.Menu.Side.Sta
     {
         this._languageType = language_type;
 
-        this._languageButtonNameText.SetText(UnityBase.Global.GetText(UnityBase.Util.LANGUAGE_NAME_MST_TEXT_ID_ARRAY[(int)this._languageType]));
+        this._languageButtonNameText.SetText(DataUtil.GetText(UnityBase.Util.LANGUAGE_NAME_MST_TEXT_ID_ARRAY[(int)this._languageType]));
 
-        this._SetRestartFlag((this._languageType != UnityBase.Global.systemConfigFile.data.systemLanguageType));
+        this._SetRestartFlag((this._languageType != DataUtil.systemConfigFile.data.systemLanguageType));
 
         return;
     }
@@ -273,10 +274,10 @@ public class OptionSystemStageBoardNodeScript : UnityBase.Scene.Ui.Menu.Side.Sta
         this._restartFlag = restart_flg;
 
         if (this._restartFlag) {
-            this._okButtonNameText.SetText(UnityBase.Global.GetText(UnityBase.Util.MST_TEXT_ID.OK) + "\n" + UnityBase.Global.GetText(UnityBase.Util.MST_TEXT_ID.RESTART));
+            this._okButtonNameText.SetText(DataUtil.GetText(UnityBase.Util.MST_TEXT_ID.OK) + "\n" + DataUtil.GetText(UnityBase.Util.MST_TEXT_ID.RESTART));
             this._okButtonNameText.fontSize = 20.0f;
         } else {
-            this._okButtonNameText.SetText(UnityBase.Global.GetText(UnityBase.Util.MST_TEXT_ID.OK));
+            this._okButtonNameText.SetText(DataUtil.GetText(UnityBase.Util.MST_TEXT_ID.OK));
             this._okButtonNameText.fontSize = 32.0f;
         }
 

@@ -3,7 +3,7 @@
  * @brief MstTextTableFileファイル
  */
 
-using ToffMonaka.Tml.Array;
+using ToffMonaka.Tml;
 
 namespace ToffMonaka {
 namespace UnityBase.Data {
@@ -12,8 +12,8 @@ namespace UnityBase.Data {
  */
 public class MstTextEntity
 {
-	public int mstTextId = 0;
-	public string text = "";
+	public int mstTextId;
+	public string text;
 
     /**
      * @brief コンストラクタ
@@ -42,8 +42,8 @@ public class MstTextEntity
  */
 public class MstTextTableFileData
 {
-	public UnityBase.Data.MstTextEntity[] entityArray = null;
-	public UnityBase.Data.MstTextEntity[] entityArrayByMstTextId = null;
+	public UnityBase.Data.MstTextEntity[] entityArray;
+	public UnityBase.Data.MstTextEntity[] entityArrayByMstTextId;
 
     /**
      * @brief コンストラクタ
@@ -70,11 +70,11 @@ public class MstTextTableFileData
 /**
  * @brief MstTextTableFileクラス
  */
-public class MstTextTableFile : ToffMonaka.Tml.Data.File
+public class MstTextTableFile : ToffMonaka.Tml.File
 {
 	public UnityBase.Data.MstTextTableFileData data = new();
-	public ToffMonaka.Tml.Data.FileReadDesc<ToffMonaka.Tml.Data.CsvFileReadDescData> readDesc = new();
-	public ToffMonaka.Tml.Data.FileWriteDesc<ToffMonaka.Tml.Data.CsvFileWriteDescData> writeDesc = new();
+	public ToffMonaka.Tml.FileReadDesc<ToffMonaka.Tml.Data.CsvFileReadDescData> readDesc = new();
+	public ToffMonaka.Tml.FileWriteDesc<ToffMonaka.Tml.Data.CsvFileWriteDescData> writeDesc = new();
 
     /**
      * @brief コンストラクタ

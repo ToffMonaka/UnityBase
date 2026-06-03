@@ -5,8 +5,8 @@
 
 
 using UnityEngine;
-using UnityEngine.UI;
 using TMPro;
+using ToffMonaka.UnityBase.Data;
 
 
 namespace ToffMonaka {
@@ -77,8 +77,8 @@ public class SubSceneNodeScript : UnityBase.Scene.Stage.SubSceneNodeScript
             return (-1);
         }
 
-        this._nameText.SetText(UnityBase.Global.GetText(UnityBase.Util.MST_TEXT_ID.TEST_3D));
-        this._messageText.SetText(UnityBase.Global.GetText(UnityBase.Util.MST_TEXT_ID.IN_PREPARATION));
+        this._nameText.SetText(DataUtil.GetText(UnityBase.Util.MST_TEXT_ID.TEST_3D));
+        this._messageText.SetText(DataUtil.GetText(UnityBase.Util.MST_TEXT_ID.IN_PREPARATION));
 
         return (0);
     }

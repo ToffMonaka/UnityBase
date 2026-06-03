@@ -4,7 +4,7 @@
  */
 
 namespace ToffMonaka {
-namespace Tml.Array {
+namespace Tml {
 /**
  * @brief ArrayUtilクラス
  */

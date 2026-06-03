@@ -6,7 +6,7 @@
 using System.Text;
 
 namespace ToffMonaka {
-namespace Tml.Buffer {
+namespace Tml {
 /**
  * @brief BufferUtilクラス
  */
@@ -523,7 +523,7 @@ public static class BufferUtil
 
     /**
      * @brief ReadStringB関数
-     * @param charset (charset)
+     * @param charset_name (charset_name)
      * @param buf (buffer)
      * @param buf_size (buffer_size)
      * @param buf_index (buffer_index)
@@ -531,7 +531,7 @@ public static class BufferUtil
      * 0未満=失敗
      * @return str (string)
      */
-    public static string ReadStringB(string charset, byte[] buf, int buf_size, ref int buf_index, ref int dst_result_val)
+    public static string ReadStringB(string charset_name, byte[] buf, int buf_size, ref int buf_index, ref int dst_result_val)
     {
         string str = "";
 
@@ -551,7 +551,7 @@ public static class BufferUtil
             return (str);
         }
 
-        str = Encoding.GetEncoding(charset).GetString(buf, buf_index, str_size);
+        str = Encoding.GetEncoding(charset_name).GetString(buf, buf_index, str_size);
         buf_index += str_size;
 
         dst_result_val = 0;
@@ -561,7 +561,7 @@ public static class BufferUtil
 
     /**
      * @brief ReadStringL関数
-     * @param charset (charset)
+     * @param charset_name (charset_name)
      * @param buf (buffer)
      * @param buf_size (buffer_size)
      * @param buf_index (buffer_index)
@@ -569,7 +569,7 @@ public static class BufferUtil
      * 0未満=失敗
      * @return str (string)
      */
-    public static string ReadStringL(string charset, byte[] buf, int buf_size, ref int buf_index, ref int dst_result_val)
+    public static string ReadStringL(string charset_name, byte[] buf, int buf_size, ref int buf_index, ref int dst_result_val)
     {
         string str = "";
 
@@ -589,7 +589,7 @@ public static class BufferUtil
             return (str);
         }
 
-        str = Encoding.GetEncoding(charset).GetString(buf, buf_index, str_size);
+        str = Encoding.GetEncoding(charset_name).GetString(buf, buf_index, str_size);
         buf_index += str_size;
 
         dst_result_val = 0;
@@ -1025,20 +1025,20 @@ public static class BufferUtil
     /**
      * @brief WriteStringB関数
      * @param str (string)
-     * @param charset (charset)
+     * @param charset_name (charset_name)
      * @param buf (buffer)
      * @param buf_size (buffer_size)
      * @param buf_index (buffer_index)
      * @param dst_result_val (dst_result_value)<br>
      * 0未満=失敗
      */
-    public static void WriteStringB(string str, string charset, byte[] buf, int buf_size, ref int buf_index, ref int dst_result_val)
+    public static void WriteStringB(string str, string charset_name, byte[] buf, int buf_size, ref int buf_index, ref int dst_result_val)
     {
         if (dst_result_val < 0) {
             return;
         }
 
-        var str_buf = Encoding.GetEncoding(charset).GetBytes(str);
+        var str_buf = Encoding.GetEncoding(charset_name).GetBytes(str);
 
     	BufferUtil.WriteIntB(str_buf.Length, buf, buf_size, ref buf_index, ref dst_result_val);
     	BufferUtil.WriteArray(str_buf, str_buf.Length, buf, buf_size, ref buf_index, ref dst_result_val);
@@ -1070,20 +1070,20 @@ public static class BufferUtil
     /**
      * @brief WriteStringL関数
      * @param str (string)
-     * @param charset (charset)
+     * @param charset_name (charset_name)
      * @param buf (buffer)
      * @param buf_size (buffer_size)
      * @param buf_index (buffer_index)
      * @param dst_result_val (dst_result_value)<br>
      * 0未満=失敗
      */
-    public static void WriteStringL(string str, string charset, byte[] buf, int buf_size, ref int buf_index, ref int dst_result_val)
+    public static void WriteStringL(string str, string charset_name, byte[] buf, int buf_size, ref int buf_index, ref int dst_result_val)
     {
         if (dst_result_val < 0) {
             return;
         }
 
-        var str_buf = Encoding.GetEncoding(charset).GetBytes(str);
+        var str_buf = Encoding.GetEncoding(charset_name).GetBytes(str);
 
     	BufferUtil.WriteShortL((short)str_buf.Length, buf, buf_size, ref buf_index, ref dst_result_val);
     	BufferUtil.WriteArray(str_buf, str_buf.Length, buf, buf_size, ref buf_index, ref dst_result_val);

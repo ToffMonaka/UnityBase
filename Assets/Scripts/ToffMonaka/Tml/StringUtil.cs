@@ -4,7 +4,7 @@
  */
 
 namespace ToffMonaka {
-namespace Tml.String {
+namespace Tml {
 /**
  * @brief StringUtilクラス
  */
@@ -14,27 +14,49 @@ public static class StringUtil
     {
         NONE = 0,
 		CRLF,
-		CR,
 		LF,
 		COUNT
     }
     public static readonly int NEWLINE_TYPE_COUNT = (int)StringUtil.NEWLINE_TYPE.COUNT;
 
+    public static readonly string[] NEWLINE_NAME_ARRAY = {
+        "",
+        "CRLF",
+        "LF"
+    };
+
     public static readonly string[] NEWLINE_CODE_ARRAY = {
         "",
         "\r\n",
-        "\r",
         "\n"
     };
 
     /**
      * @brief GetNewlineCode関数
      * @param newline_type (newline_type)
-     * @return newline_code (newline_code)
+     * @return newline_code (newline_code)<br>
+     * null=失敗
      */
     public static string GetNewlineCode(StringUtil.NEWLINE_TYPE newline_type)
     {
         return (StringUtil.NEWLINE_CODE_ARRAY[(int)newline_type]);
+    }
+
+    /**
+     * @brief GetNewlineCode関数
+     * @param newline_name (newline_name)
+     * @return newline_code (newline_code)<br>
+     * null=失敗
+     */
+    public static string GetNewlineCode(string newline_name)
+    {
+        if (newline_name == StringUtil.NEWLINE_NAME_ARRAY[(int)StringUtil.NEWLINE_TYPE.CRLF]) {
+            return (StringUtil.NEWLINE_CODE_ARRAY[(int)StringUtil.NEWLINE_TYPE.CRLF]);
+        } else if (newline_name == StringUtil.NEWLINE_NAME_ARRAY[(int)StringUtil.NEWLINE_TYPE.LF]) {
+            return (StringUtil.NEWLINE_CODE_ARRAY[(int)StringUtil.NEWLINE_TYPE.LF]);
+        }
+
+        return (null);
     }
 
     /**

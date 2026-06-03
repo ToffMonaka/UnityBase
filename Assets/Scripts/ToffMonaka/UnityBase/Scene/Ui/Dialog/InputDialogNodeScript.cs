@@ -8,6 +8,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using TMPro;
+using ToffMonaka.UnityBase.Data;
 
 
 namespace ToffMonaka {
@@ -107,8 +108,8 @@ public class InputDialogNodeScript : UnityBase.Scene.Ui.Dialog.DialogNodeScript
 
         this._nameText.SetText(this._engine.OnGetName());
         this._okButtonNameText.transform.parent.gameObject.SetActive((this._onClickOkButton != null));
-        this._okButtonNameText.SetText(UnityBase.Global.GetText(UnityBase.Util.MST_TEXT_ID.OK));
-        this._cancelButtonNameText.SetText(UnityBase.Global.GetText(UnityBase.Util.MST_TEXT_ID.CANCEL));
+        this._okButtonNameText.SetText(DataUtil.GetText(UnityBase.Util.MST_TEXT_ID.OK));
+        this._cancelButtonNameText.SetText(DataUtil.GetText(UnityBase.Util.MST_TEXT_ID.CANCEL));
 
         return (0);
     }

@@ -4,7 +4,7 @@
  */
 
 
-using UnityEngine;
+using ToffMonaka.UnityBase.Data;
 
 
 namespace ToffMonaka {
@@ -28,7 +28,7 @@ public class LanguageSelectDialogEngine : UnityBase.Scene.Ui.Dialog.SelectDialog
      */
     public override string OnGetName()
     {
-        return (UnityBase.Global.GetText(UnityBase.Util.MST_TEXT_ID.LANGUAGE));
+        return (DataUtil.GetText(UnityBase.Util.MST_TEXT_ID.LANGUAGE));
     }
 }
 
@@ -56,7 +56,7 @@ public class LanguageSelectDialogItemEngine : UnityBase.Scene.Ui.Dialog.SelectDi
      */
     public override string OnGetName()
     {
-        return (UnityBase.Global.GetText(UnityBase.Util.LANGUAGE_NAME_MST_TEXT_ID_ARRAY[(int)this._languageType]));
+        return (DataUtil.GetText(UnityBase.Util.LANGUAGE_NAME_MST_TEXT_ID_ARRAY[(int)this._languageType]));
     }
 
     /**

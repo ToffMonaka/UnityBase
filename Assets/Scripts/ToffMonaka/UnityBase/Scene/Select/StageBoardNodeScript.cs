@@ -6,6 +6,7 @@
 
 using System.Collections.Generic;
 using UnityEngine;
+using ToffMonaka.UnityBase.Data;
 
 
 namespace ToffMonaka {
@@ -81,7 +82,7 @@ public class StageBoardNodeScript : UnityBase.Scene.Select.BoardNodeScript
 
         this._onOpenStage = this.createDesc.onOpenStage;
 
-        this._nameText.SetText(UnityBase.Global.GetText(UnityBase.Util.MST_TEXT_ID.STAGE));
+        this._nameText.SetText(DataUtil.GetText(UnityBase.Util.MST_TEXT_ID.STAGE));
 
         this._itemNode.SetActive(false);
 
@@ -89,7 +90,7 @@ public class StageBoardNodeScript : UnityBase.Scene.Select.BoardNodeScript
             var script = GameObject.Instantiate(this._itemNode, this._itemNode.transform.parent).GetComponent<UnityBase.Scene.Select.StageBoardItemNodeScript>();
             var script_create_desc = new UnityBase.Scene.Select.StageBoardItemNodeScriptCreateDesc();
 
-            script_create_desc.name = UnityBase.Global.GetText(UnityBase.Util.MST_TEXT_ID.TEST_2D);
+            script_create_desc.name = DataUtil.GetText(UnityBase.Util.MST_TEXT_ID.TEST_2D);
             script_create_desc.onClick = (owner) =>
             {
                 this._onOpenStage(this, UnityBase.Util.SCENE.STAGE_TYPE.TEST_2D);
@@ -107,7 +108,7 @@ public class StageBoardNodeScript : UnityBase.Scene.Select.BoardNodeScript
             var script = GameObject.Instantiate(this._itemNode, this._itemNode.transform.parent).GetComponent<UnityBase.Scene.Select.StageBoardItemNodeScript>();
             var script_create_desc = new UnityBase.Scene.Select.StageBoardItemNodeScriptCreateDesc();
 
-            script_create_desc.name = UnityBase.Global.GetText(UnityBase.Util.MST_TEXT_ID.TEST_3D);
+            script_create_desc.name = DataUtil.GetText(UnityBase.Util.MST_TEXT_ID.TEST_3D);
             script_create_desc.onClick = (owner) =>
             {
                 this._onOpenStage(this, UnityBase.Util.SCENE.STAGE_TYPE.TEST_3D);

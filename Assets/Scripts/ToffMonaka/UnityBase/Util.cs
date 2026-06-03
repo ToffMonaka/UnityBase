@@ -18,6 +18,9 @@ public static class Util
     private static bool _debugFlag = false;
 #endif
 
+    // Change Property Name
+    // [UnityEngine.Serialization.FormerlySerializedAs("_propertyName")]
+
     public static class PROJECT
     {
         public static readonly string NAME = "Unity Base";

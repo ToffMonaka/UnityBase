@@ -8,6 +8,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using TMPro;
+using ToffMonaka.UnityBase.Data;
 
 
 namespace ToffMonaka {
@@ -98,16 +99,16 @@ public class InfoFaqStageBoardNodeScript : UnityBase.Scene.Ui.Menu.Side.StageBoa
             return (-1);
         }
 
-        this._nameText.SetText(UnityBase.Global.GetText(UnityBase.Util.MST_TEXT_ID.INFO) + " > " + UnityBase.Global.GetText(UnityBase.Util.MST_TEXT_ID.FAQ));
+        this._nameText.SetText(DataUtil.GetText(UnityBase.Util.MST_TEXT_ID.INFO) + " > " + DataUtil.GetText(UnityBase.Util.MST_TEXT_ID.FAQ));
 
-        this._cancelButtonNameText.SetText(UnityBase.Global.GetText(UnityBase.Util.MST_TEXT_ID.CANCEL));
+        this._cancelButtonNameText.SetText(DataUtil.GetText(UnityBase.Util.MST_TEXT_ID.CANCEL));
 
         this._messageNode.SetActive(false);
 
         {// MessageNode Create
             string[] txt_ary;
 
-		    switch (UnityBase.Global.systemConfigFile.data.systemLanguageType) {
+		    switch (DataUtil.systemConfigFile.data.systemLanguageType) {
 		    case UnityBase.Util.LANGUAGE_TYPE.JAPANESE: {
                 txt_ary = UnityBase.Scene.Ui.Menu.Side.FaqMessageUtil.JAPANESE_TEXT_ARRAY;
 

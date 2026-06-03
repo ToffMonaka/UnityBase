@@ -6,7 +6,7 @@
 using System.Text;
 
 namespace ToffMonaka {
-namespace Tml.Buffer {
+namespace Tml {
 /**
  * @brief Bufferクラス
  */
@@ -19,7 +19,7 @@ public class Buffer
     private int _readResultValue;
     private int _writeIndex;
     private int _writeResultValue;
-    private string _charset;
+    private string _charsetName;
     private bool _autoSizeFlag;
 
     /**
@@ -78,7 +78,7 @@ public class Buffer
         this._readResultValue = 0;
         this._writeIndex = 0;
         this._writeResultValue = 0;
-        this._charset = "utf-8";
+        this._charsetName = "utf-8";
         this._autoSizeFlag = true;
 
         return;
@@ -100,7 +100,7 @@ public class Buffer
         this._readResultValue = 0;
         this._writeIndex = 0;
         this._writeResultValue = 0;
-        this._charset = "utf-8";
+        this._charsetName = "utf-8";
         this._autoSizeFlag = true;
 
         return;
@@ -130,7 +130,7 @@ public class Buffer
         this._readResultValue = 0;
         this._writeIndex = buf_size;
         this._writeResultValue = 0;
-        this._charset = "utf-8";
+        this._charsetName = "utf-8";
         this._autoSizeFlag = true;
 
         return;
@@ -158,7 +158,7 @@ public class Buffer
         this._readResultValue = other._readResultValue;
         this._writeIndex = other._writeIndex;
         this._writeResultValue = other._writeResultValue;
-        this._charset = other._charset;
+        this._charsetName = other._charsetName;
         this._autoSizeFlag = other._autoSizeFlag;
 
         return;
@@ -309,21 +309,21 @@ public class Buffer
     }
 
     /**
-     * @brief GetCharset関数
-     * @return charset (charset)
+     * @brief GetCharsetName関数
+     * @return charset_name (charset_name)
      */
-    public string GetCharset()
+    public string GetCharsetName()
     {
-        return (this._charset);
+        return (this._charsetName);
     }
 
     /**
-     * @brief SetCharset
-     * @param charset (charset)
+     * @brief SetCharsetName関数
+     * @param charset_name (charset_name)
      */
-    public void SetCharset(string charset)
+    public void SetCharsetName(string charset_name)
     {
-        this._charset = charset;
+        this._charsetName = charset_name;
 
         return;
     }
@@ -481,7 +481,7 @@ public class Buffer
      */
     public string ReadStringB()
     {
-        return (BufferUtil.ReadStringB(this._charset, this._array, this._length, ref this._readIndex, ref this._readResultValue));
+        return (BufferUtil.ReadStringB(this._charsetName, this._array, this._length, ref this._readIndex, ref this._readResultValue));
     }
 
     /**
@@ -490,7 +490,7 @@ public class Buffer
      */
     public string ReadStringL()
     {
-        return (BufferUtil.ReadStringL(this._charset, this._array, this._length, ref this._readIndex, ref this._readResultValue));
+        return (BufferUtil.ReadStringL(this._charsetName, this._array, this._length, ref this._readIndex, ref this._readResultValue));
     }
 
     /**
@@ -691,7 +691,7 @@ public class Buffer
      */
     public void WriteStringB(string str)
     {
-        var str_buf = Encoding.GetEncoding(this._charset).GetBytes(str);
+        var str_buf = Encoding.GetEncoding(this._charsetName).GetBytes(str);
 
         this._RunAutoSize(sizeof(int) + str_buf.Length);
         BufferUtil.WriteStringB(str_buf, this._array, this._size, ref this._writeIndex, ref this._writeResultValue);
@@ -706,7 +706,7 @@ public class Buffer
      */
     public void WriteStringL(string str)
     {
-        var str_buf = Encoding.GetEncoding(this._charset).GetBytes(str);
+        var str_buf = Encoding.GetEncoding(this._charsetName).GetBytes(str);
 
         this._RunAutoSize(sizeof(int) + str_buf.Length);
         BufferUtil.WriteStringL(str_buf, this._array, this._size, ref this._writeIndex, ref this._writeResultValue);

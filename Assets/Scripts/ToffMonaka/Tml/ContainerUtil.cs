@@ -4,7 +4,7 @@
  */
 
 namespace ToffMonaka {
-namespace Tml.Container {
+namespace Tml {
 /**
  * @brief ContainerUtilクラス
  */

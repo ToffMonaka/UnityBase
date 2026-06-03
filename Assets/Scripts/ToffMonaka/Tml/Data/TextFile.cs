@@ -5,7 +5,6 @@
 
 using System.Collections.Generic;
 using System.Text;
-using ToffMonaka.Tml.String;
 
 namespace ToffMonaka {
 namespace Tml.Data {
@@ -50,7 +49,7 @@ public class TextFileData
 public class TextFileReadDescData : BinaryFileReadDescData
 {
     public string text;
-    public string charset;
+    public string charsetName;
     public StringUtil.NEWLINE_TYPE newlineType;
 
     /**
@@ -69,7 +68,7 @@ public class TextFileReadDescData : BinaryFileReadDescData
         base.Init();
 
         this.text = "";
-        this.charset = "utf-8";
+        this.charsetName = "utf-8";
         this.newlineType = StringUtil.NEWLINE_TYPE.CRLF;
 
         return;
@@ -96,7 +95,7 @@ public class TextFileReadDescData : BinaryFileReadDescData
 public class TextFileWriteDescData : BinaryFileWriteDescData
 {
 	public int appendNewlineCount;
-    public string charset;
+    public string charsetName;
     public StringUtil.NEWLINE_TYPE newlineType;
 
     /**
@@ -113,7 +112,7 @@ public class TextFileWriteDescData : BinaryFileWriteDescData
     public override void Init()
     {
         this.appendNewlineCount = 1;
-        this.charset = "utf-8";
+        this.charsetName = "utf-8";
         this.newlineType = StringUtil.NEWLINE_TYPE.CRLF;
 
         base.Init();
@@ -201,7 +200,7 @@ public class TextFile : File
 
         byte[] buf = bin_file.data.buffer.GetArray();
         int buf_size = bin_file.data.buffer.GetLength();
-        string buf_str = Encoding.GetEncoding(desc_dat.charset).GetString(buf, 0, buf_size);
+        string buf_str = Encoding.GetEncoding(desc_dat.charsetName).GetString(buf, 0, buf_size);
 
         this.data.lineTextContainer = new List<string>(buf_str.Split(StringUtil.GetNewlineCode(desc_dat.newlineType)));
 
@@ -237,7 +236,7 @@ public class TextFile : File
 		        buf_str = buf_str.Insert(0, newline_code);
 	        }
 
-            buf = Encoding.GetEncoding(desc_dat.charset).GetBytes(buf_str);
+            buf = Encoding.GetEncoding(desc_dat.charsetName).GetBytes(buf_str);
             buf_size = buf.Length;
         }
 

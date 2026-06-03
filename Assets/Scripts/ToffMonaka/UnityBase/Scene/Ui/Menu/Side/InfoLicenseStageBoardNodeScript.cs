@@ -8,6 +8,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using TMPro;
+using ToffMonaka.UnityBase.Data;
 
 
 namespace ToffMonaka {
@@ -98,9 +99,9 @@ public class InfoLicenseStageBoardNodeScript : UnityBase.Scene.Ui.Menu.Side.Stag
             return (-1);
         }
 
-        this._nameText.SetText(UnityBase.Global.GetText(UnityBase.Util.MST_TEXT_ID.INFO) + " > " + UnityBase.Global.GetText(UnityBase.Util.MST_TEXT_ID.LICENSE));
+        this._nameText.SetText(DataUtil.GetText(UnityBase.Util.MST_TEXT_ID.INFO) + " > " + DataUtil.GetText(UnityBase.Util.MST_TEXT_ID.LICENSE));
 
-        this._cancelButtonNameText.SetText(UnityBase.Global.GetText(UnityBase.Util.MST_TEXT_ID.CANCEL));
+        this._cancelButtonNameText.SetText(DataUtil.GetText(UnityBase.Util.MST_TEXT_ID.CANCEL));
 
         this._messageNode.SetActive(false);
 

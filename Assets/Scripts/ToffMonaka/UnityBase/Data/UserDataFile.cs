@@ -32,14 +32,14 @@ public class UserDataFileData
 /**
  * @brief UserDataFileクラス
  */
-public class UserDataFile : ToffMonaka.Tml.Data.File
+public class UserDataFile : ToffMonaka.Tml.File
 {
 	public UnityBase.Data.UserDataFileData data = new();
-	public ToffMonaka.Tml.Data.FileReadDesc<ToffMonaka.Tml.Data.BinaryFileReadDescData> readDesc = new();
-	public ToffMonaka.Tml.Data.FileWriteDesc<ToffMonaka.Tml.Data.BinaryFileWriteDescData> writeDesc = new();
+	public ToffMonaka.Tml.FileReadDesc<ToffMonaka.Tml.Data.BinaryFileReadDescData> readDesc = new();
+	public ToffMonaka.Tml.FileWriteDesc<ToffMonaka.Tml.Data.BinaryFileWriteDescData> writeDesc = new();
 
-    private bool _writeFlag = false;
-    private bool _deleteFlag = false;
+    private bool _writeFlag;
+    private bool _deleteFlag;
 
     /**
      * @brief コンストラクタ

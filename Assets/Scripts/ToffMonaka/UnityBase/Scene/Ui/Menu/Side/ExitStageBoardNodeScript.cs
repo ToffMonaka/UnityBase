@@ -8,6 +8,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using TMPro;
+using ToffMonaka.UnityBase.Data;
 
 
 namespace ToffMonaka {
@@ -101,12 +102,12 @@ public class ExitStageBoardNodeScript : UnityBase.Scene.Ui.Menu.Side.StageBoardN
             return (-1);
         }
 
-        this._nameText.SetText(UnityBase.Global.GetText(UnityBase.Util.MST_TEXT_ID.EXIT));
+        this._nameText.SetText(DataUtil.GetText(UnityBase.Util.MST_TEXT_ID.EXIT));
 
-        this._backToTitleNameText.SetText(UnityBase.Global.GetText(UnityBase.Util.MST_TEXT_ID.BACK_TO_TITLE));
-        this._exitNameText.SetText(UnityBase.Global.GetText(UnityBase.Util.MST_TEXT_ID.EXIT));
-        this._okButtonNameText.SetText(UnityBase.Global.GetText(UnityBase.Util.MST_TEXT_ID.OK));
-        this._cancelButtonNameText.SetText(UnityBase.Global.GetText(UnityBase.Util.MST_TEXT_ID.CANCEL));
+        this._backToTitleNameText.SetText(DataUtil.GetText(UnityBase.Util.MST_TEXT_ID.BACK_TO_TITLE));
+        this._exitNameText.SetText(DataUtil.GetText(UnityBase.Util.MST_TEXT_ID.EXIT));
+        this._okButtonNameText.SetText(DataUtil.GetText(UnityBase.Util.MST_TEXT_ID.OK));
+        this._cancelButtonNameText.SetText(DataUtil.GetText(UnityBase.Util.MST_TEXT_ID.CANCEL));
 
         return (0);
     }

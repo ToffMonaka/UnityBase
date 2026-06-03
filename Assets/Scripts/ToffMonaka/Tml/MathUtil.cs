@@ -4,7 +4,7 @@
  */
 
 namespace ToffMonaka {
-namespace Tml.Math {
+namespace Tml {
 /**
  * @brief MathUtilクラス
  */

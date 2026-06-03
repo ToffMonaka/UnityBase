@@ -7,6 +7,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using ToffMonaka.UnityBase.Data;
 
 
 namespace ToffMonaka {
@@ -104,7 +105,7 @@ public class SelectBoardNodeScript : UnityBase.Scene.Ui.Menu.Side.BoardNodeScrip
         this._onOpenSelect2Board = this.createDesc.onOpenSelect2Board;
         this._onOpenStageBoard = this.createDesc.onOpenStageBoard;
 
-        this._nameText.SetText(UnityBase.Global.GetText(UnityBase.Util.MST_TEXT_ID.MENU));
+        this._nameText.SetText(DataUtil.GetText(UnityBase.Util.MST_TEXT_ID.MENU));
 
         this._itemNode.SetActive(false);
 
@@ -112,7 +113,7 @@ public class SelectBoardNodeScript : UnityBase.Scene.Ui.Menu.Side.BoardNodeScrip
             var script = GameObject.Instantiate(this._itemNode, this._itemNode.transform.parent).GetComponent<UnityBase.Scene.Ui.Menu.Side.SelectBoardItemNodeScript>();
             var script_create_desc = new UnityBase.Scene.Ui.Menu.Side.SelectBoardItemNodeScriptCreateDesc();
 
-            script_create_desc.name = UnityBase.Global.GetText(UnityBase.Util.MST_TEXT_ID.OPTION);
+            script_create_desc.name = DataUtil.GetText(UnityBase.Util.MST_TEXT_ID.OPTION);
             script_create_desc.onClick = (owner) =>
             {
                 this._onOpenSelect2Board(this, UnityBase.Util.SCENE.SIDE_MENU_SELECT2_BOARD_TYPE.OPTION);
@@ -130,7 +131,7 @@ public class SelectBoardNodeScript : UnityBase.Scene.Ui.Menu.Side.BoardNodeScrip
             var script = GameObject.Instantiate(this._itemNode, this._itemNode.transform.parent).GetComponent<UnityBase.Scene.Ui.Menu.Side.SelectBoardItemNodeScript>();
             var script_create_desc = new UnityBase.Scene.Ui.Menu.Side.SelectBoardItemNodeScriptCreateDesc();
 
-            script_create_desc.name = UnityBase.Global.GetText(UnityBase.Util.MST_TEXT_ID.INFO);
+            script_create_desc.name = DataUtil.GetText(UnityBase.Util.MST_TEXT_ID.INFO);
             script_create_desc.onClick = (owner) =>
             {
                 this._onOpenSelect2Board(this, UnityBase.Util.SCENE.SIDE_MENU_SELECT2_BOARD_TYPE.INFO);
@@ -148,7 +149,7 @@ public class SelectBoardNodeScript : UnityBase.Scene.Ui.Menu.Side.BoardNodeScrip
             var script = GameObject.Instantiate(this._itemNode, this._itemNode.transform.parent).GetComponent<UnityBase.Scene.Ui.Menu.Side.SelectBoardItemNodeScript>();
             var script_create_desc = new UnityBase.Scene.Ui.Menu.Side.SelectBoardItemNodeScriptCreateDesc();
 
-            script_create_desc.name = UnityBase.Global.GetText(UnityBase.Util.MST_TEXT_ID.EXIT);
+            script_create_desc.name = DataUtil.GetText(UnityBase.Util.MST_TEXT_ID.EXIT);
             script_create_desc.onClick = (owner) =>
             {
                 this._onOpenStageBoard(this, UnityBase.Util.SCENE.SIDE_MENU_STAGE_BOARD_TYPE.EXIT);
@@ -167,7 +168,7 @@ public class SelectBoardNodeScript : UnityBase.Scene.Ui.Menu.Side.BoardNodeScrip
             var script = GameObject.Instantiate(this._itemNode, this._itemNode.transform.parent).GetComponent<UnityBase.Scene.Ui.Menu.Side.SelectBoardItemNodeScript>();
             var script_create_desc = new UnityBase.Scene.Ui.Menu.Side.SelectBoardItemNodeScriptCreateDesc();
 
-            script_create_desc.name = UnityBase.Global.GetText(UnityBase.Util.MST_TEXT_ID.CHEAT);
+            script_create_desc.name = DataUtil.GetText(UnityBase.Util.MST_TEXT_ID.CHEAT);
             script_create_desc.onClick = (owner) =>
             {
                 this._onOpenStageBoard(this, UnityBase.Util.SCENE.SIDE_MENU_STAGE_BOARD_TYPE.CHEAT);

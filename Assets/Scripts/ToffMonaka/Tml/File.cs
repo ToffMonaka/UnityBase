@@ -4,7 +4,7 @@
  */
 
 namespace ToffMonaka {
-namespace Tml.Data {
+namespace Tml {
 /**
  * @brief FileReadDescDataクラス
  */
