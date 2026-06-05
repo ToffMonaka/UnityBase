@@ -7,6 +7,7 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 using TMPro;
+using ToffMonaka.UnityBase.Sound;
 
 
 namespace ToffMonaka {
@@ -39,7 +40,7 @@ public class CheatStageBoardItemNodeScript : ToffMonaka.Tml.Scene.ObjectNodeScri
      */
     protected override int _OnGetScriptIndex()
     {
-        return ((int)UnityBase.Util.SCENE.SCRIPT_INDEX.SIDE_MENU_CHEAT_STAGE_BOARD_ITEM_NODE);
+        return ((int)SceneUtil.SCRIPT_INDEX.SIDE_MENU_CHEAT_STAGE_BOARD_ITEM_NODE);
     }
 
     /**
@@ -141,7 +142,7 @@ public class CheatStageBoardItemNodeScript : ToffMonaka.Tml.Scene.ObjectNodeScri
             return;
         }
 
-        UnityBase.Global.GetSceneManager().PlaySoundSe((int)UnityBase.Util.SOUND.SE_INDEX.OK2);
+        SceneUtil.GetManager().PlaySoundSe((int)SoundUtil.SE_SOUND_INDEX.OK2);
 
         this._onClick?.Invoke(this);
 

@@ -5,10 +5,10 @@
 
 
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using TMPro;
 using DG.Tweening;
+using ToffMonaka.UnityBase.Sound;
 
 
 namespace ToffMonaka {
@@ -38,7 +38,7 @@ public class TitleSubSceneNodeScript : UnityBase.Scene.SubSceneNodeScript
      */
     protected override int _OnGetScriptIndex()
     {
-        return ((int)UnityBase.Util.SCENE.SCRIPT_INDEX.TITLE_SUB_SCENE_NODE);
+        return ((int)SceneUtil.SCRIPT_INDEX.TITLE_SUB_SCENE_NODE);
     }
 
     /**
@@ -72,9 +72,9 @@ public class TitleSubSceneNodeScript : UnityBase.Scene.SubSceneNodeScript
             return (-1);
         }
 
-        this._debugNameText.gameObject.SetActive(UnityBase.Util.GetDebugFlag());
-        this._companyNameText.SetText(UnityBase.Util.PROJECT.COMPANY_NAME);
-        this._versionNameText.SetText("Version " + UnityBase.Util.PROJECT.VERSION_NAME);
+        this._debugNameText.gameObject.SetActive(Util.GetDebugFlag());
+        this._companyNameText.SetText(Util.PROJECT.COMPANY_NAME);
+        this._versionNameText.SetText("Version " + Util.PROJECT.VERSION_NAME);
 
         return (0);
     }
@@ -142,7 +142,7 @@ public class TitleSubSceneNodeScript : UnityBase.Scene.SubSceneNodeScript
 		}
 		}
 
-        UnityBase.Global.GetSceneManager().PlaySoundBgm((int)UnityBase.Util.SOUND.BGM_INDEX.TITLE);
+        SceneUtil.GetManager().PlaySoundBgm((int)SoundUtil.BGM_SOUND_INDEX.TITLE);
 
         return;
     }
@@ -192,12 +192,12 @@ public class TitleSubSceneNodeScript : UnityBase.Scene.SubSceneNodeScript
             return;
         }
 
-        UnityBase.Global.GetSceneManager().PlaySoundSe((int)UnityBase.Util.SOUND.SE_INDEX.OK);
+        SceneUtil.GetManager().PlaySoundSe((int)SoundUtil.SE_SOUND_INDEX.OK);
 
         this.Close(1, (owner) =>
         {
             {// SelectSubSceneNodeScript Create
-                var script = UnityBase.Global.GetSceneManager().ChangeSubScene(UnityBase.Util.FILE_PATH.SELECT_SUB_SCENE_PREFAB) as UnityBase.Scene.Select.SubSceneNodeScript;
+                var script = SceneUtil.GetManager().ChangeSubScene(Util.FILE_PATH.SELECT_SUB_SCENE_PREFAB) as UnityBase.Scene.Select.SubSceneNodeScript;
                 var script_create_desc = new UnityBase.Scene.Select.SubSceneNodeScriptCreateDesc();
 
                 script.Create(script_create_desc);

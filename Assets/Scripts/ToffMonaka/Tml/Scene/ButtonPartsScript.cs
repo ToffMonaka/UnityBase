@@ -25,10 +25,10 @@ public class ButtonPartsScript : PartsScript, IPointerDownHandler, IPointerClick
     [System.Serializable] public class PointerEvent : UnityEvent<PointerEventData> {}
 
     [SerializeField] private Image _coverImage = null;
-    [SerializeField] private PointerEvent _pointerDownEvent = new PointerEvent();
-    [SerializeField] private PointerEvent _pointerClickEvent = new PointerEvent();
-    [SerializeField] private PointerEvent _pointerEnterEvent = new PointerEvent();
-    [SerializeField] private PointerEvent _pointerExitEvent = new PointerEvent();
+    [SerializeField] private PointerEvent _pointerDownEvent = new();
+    [SerializeField] private PointerEvent _pointerClickEvent = new();
+    [SerializeField] private PointerEvent _pointerEnterEvent = new();
+    [SerializeField] private PointerEvent _pointerExitEvent = new();
 
     public new ButtonPartsScriptCreateDesc createDesc{get; private set;} = null;
 
@@ -38,7 +38,7 @@ public class ButtonPartsScript : PartsScript, IPointerDownHandler, IPointerClick
      */
     protected override int _OnGetScriptIndex()
     {
-        return ((int)Util.SCENE.SCRIPT_INDEX.BUTTON_PARTS);
+        return ((int)SceneUtil.SCRIPT_INDEX.BUTTON_PARTS);
     }
 
     /**

@@ -28,7 +28,7 @@ public class LanguageSelectDialogEngine : UnityBase.Scene.Ui.Dialog.SelectDialog
      */
     public override string OnGetName()
     {
-        return (DataUtil.GetText(UnityBase.Util.MST_TEXT_ID.LANGUAGE));
+        return (DataUtil.GetText(DataUtil.MST_TEXT_ID.LANGUAGE));
     }
 }
 
@@ -37,13 +37,13 @@ public class LanguageSelectDialogEngine : UnityBase.Scene.Ui.Dialog.SelectDialog
  */
 public class LanguageSelectDialogItemEngine : UnityBase.Scene.Ui.Dialog.SelectDialogItemEngine
 {
-    private UnityBase.Util.LANGUAGE_TYPE _languageType = UnityBase.Util.LANGUAGE_TYPE.NONE;
+    private Util.LANGUAGE_TYPE _languageType = Util.LANGUAGE_TYPE.NONE;
 
     /**
      * @brief コンストラクタ
      * @param language_type (language_type)
      */
-    public LanguageSelectDialogItemEngine(UnityBase.Util.LANGUAGE_TYPE language_type)
+    public LanguageSelectDialogItemEngine(Util.LANGUAGE_TYPE language_type)
     {
         this._languageType = language_type;
 
@@ -56,14 +56,14 @@ public class LanguageSelectDialogItemEngine : UnityBase.Scene.Ui.Dialog.SelectDi
      */
     public override string OnGetName()
     {
-        return (DataUtil.GetText(UnityBase.Util.LANGUAGE_NAME_MST_TEXT_ID_ARRAY[(int)this._languageType]));
+        return (DataUtil.GetText(Util.LANGUAGE_NAME_MST_TEXT_ID_ARRAY[(int)this._languageType]));
     }
 
     /**
      * @brief GetLanguageType関数
      * @return language_type (language_type)
      */
-    public UnityBase.Util.LANGUAGE_TYPE GetLanguageType()
+    public Util.LANGUAGE_TYPE GetLanguageType()
     {
         return (this._languageType);
     }

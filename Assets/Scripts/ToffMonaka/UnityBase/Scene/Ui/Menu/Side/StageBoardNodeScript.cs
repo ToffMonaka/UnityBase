@@ -32,7 +32,7 @@ public abstract class StageBoardNodeScript : UnityBase.Scene.Ui.Menu.Side.BoardN
      */
     protected override int _OnGetScriptIndex()
     {
-        return ((int)UnityBase.Util.SCENE.SCRIPT_INDEX.SIDE_MENU_STAGE_BOARD_NODE);
+        return ((int)SceneUtil.SCRIPT_INDEX.SIDE_MENU_STAGE_BOARD_NODE);
     }
 
     /**

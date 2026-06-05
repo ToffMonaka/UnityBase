@@ -17,8 +17,8 @@ namespace UnityBase.Scene.Ui.Menu.Side {
  */
 public class SelectBoardNodeScriptCreateDesc : UnityBase.Scene.Ui.Menu.Side.BoardNodeScriptCreateDesc
 {
-    public System.Action<UnityBase.Scene.Ui.Menu.Side.SelectBoardNodeScript, UnityBase.Util.SCENE.SIDE_MENU_SELECT2_BOARD_TYPE> onOpenSelect2Board = null;
-    public System.Action<UnityBase.Scene.Ui.Menu.Side.SelectBoardNodeScript, UnityBase.Util.SCENE.SIDE_MENU_STAGE_BOARD_TYPE> onOpenStageBoard = null;
+    public System.Action<UnityBase.Scene.Ui.Menu.Side.SelectBoardNodeScript, SceneUtil.SIDE_MENU_SELECT2_BOARD_TYPE> onOpenSelect2Board = null;
+    public System.Action<UnityBase.Scene.Ui.Menu.Side.SelectBoardNodeScript, SceneUtil.SIDE_MENU_STAGE_BOARD_TYPE> onOpenStageBoard = null;
 }
 
 /**
@@ -31,9 +31,9 @@ public class SelectBoardNodeScript : UnityBase.Scene.Ui.Menu.Side.BoardNodeScrip
 
     public new UnityBase.Scene.Ui.Menu.Side.SelectBoardNodeScriptCreateDesc createDesc{get; private set;} = null;
 
-    private List<UnityBase.Scene.Ui.Menu.Side.SelectBoardItemNodeScript> _itemNodeScriptContainer = new List<UnityBase.Scene.Ui.Menu.Side.SelectBoardItemNodeScript>();
-    private System.Action<UnityBase.Scene.Ui.Menu.Side.SelectBoardNodeScript, UnityBase.Util.SCENE.SIDE_MENU_SELECT2_BOARD_TYPE> _onOpenSelect2Board = null;
-    private System.Action<UnityBase.Scene.Ui.Menu.Side.SelectBoardNodeScript, UnityBase.Util.SCENE.SIDE_MENU_STAGE_BOARD_TYPE> _onOpenStageBoard = null;
+    private List<UnityBase.Scene.Ui.Menu.Side.SelectBoardItemNodeScript> _itemNodeScriptContainer = new();
+    private System.Action<UnityBase.Scene.Ui.Menu.Side.SelectBoardNodeScript, SceneUtil.SIDE_MENU_SELECT2_BOARD_TYPE> _onOpenSelect2Board = null;
+    private System.Action<UnityBase.Scene.Ui.Menu.Side.SelectBoardNodeScript, SceneUtil.SIDE_MENU_STAGE_BOARD_TYPE> _onOpenStageBoard = null;
 
     /**
      * @brief _OnGetScriptIndex関数
@@ -41,34 +41,34 @@ public class SelectBoardNodeScript : UnityBase.Scene.Ui.Menu.Side.BoardNodeScrip
      */
     protected override int _OnGetScriptIndex()
     {
-        return ((int)UnityBase.Util.SCENE.SCRIPT_INDEX.SIDE_MENU_SELECT_BOARD_NODE);
+        return ((int)SceneUtil.SCRIPT_INDEX.SIDE_MENU_SELECT_BOARD_NODE);
     }
 
     /**
      * @brief _OnGetBoardType関数
      * @return board_type (board_type)
      */
-    protected override UnityBase.Util.SCENE.SIDE_MENU_BOARD_TYPE _OnGetBoardType()
+    protected override SceneUtil.SIDE_MENU_BOARD_TYPE _OnGetBoardType()
     {
-        return (UnityBase.Util.SCENE.SIDE_MENU_BOARD_TYPE.SELECT);
+        return (SceneUtil.SIDE_MENU_BOARD_TYPE.SELECT);
     }
 
     /**
      * @brief _OnGetSelect2BoardType関数
      * @return select2_board_type (select2_board_type)
      */
-    protected override UnityBase.Util.SCENE.SIDE_MENU_SELECT2_BOARD_TYPE _OnGetSelect2BoardType()
+    protected override SceneUtil.SIDE_MENU_SELECT2_BOARD_TYPE _OnGetSelect2BoardType()
     {
-        return (UnityBase.Util.SCENE.SIDE_MENU_SELECT2_BOARD_TYPE.NONE);
+        return (SceneUtil.SIDE_MENU_SELECT2_BOARD_TYPE.NONE);
     }
 
     /**
      * @brief _OnGetStageBoardType関数
      * @return stage_board_type (stage_board_type)
      */
-    protected override UnityBase.Util.SCENE.SIDE_MENU_STAGE_BOARD_TYPE _OnGetStageBoardType()
+    protected override SceneUtil.SIDE_MENU_STAGE_BOARD_TYPE _OnGetStageBoardType()
     {
-        return (UnityBase.Util.SCENE.SIDE_MENU_STAGE_BOARD_TYPE.NONE);
+        return (SceneUtil.SIDE_MENU_STAGE_BOARD_TYPE.NONE);
     }
 
     /**
@@ -105,7 +105,7 @@ public class SelectBoardNodeScript : UnityBase.Scene.Ui.Menu.Side.BoardNodeScrip
         this._onOpenSelect2Board = this.createDesc.onOpenSelect2Board;
         this._onOpenStageBoard = this.createDesc.onOpenStageBoard;
 
-        this._nameText.SetText(DataUtil.GetText(UnityBase.Util.MST_TEXT_ID.MENU));
+        this._nameText.SetText(DataUtil.GetText(DataUtil.MST_TEXT_ID.MENU));
 
         this._itemNode.SetActive(false);
 
@@ -113,10 +113,10 @@ public class SelectBoardNodeScript : UnityBase.Scene.Ui.Menu.Side.BoardNodeScrip
             var script = GameObject.Instantiate(this._itemNode, this._itemNode.transform.parent).GetComponent<UnityBase.Scene.Ui.Menu.Side.SelectBoardItemNodeScript>();
             var script_create_desc = new UnityBase.Scene.Ui.Menu.Side.SelectBoardItemNodeScriptCreateDesc();
 
-            script_create_desc.name = DataUtil.GetText(UnityBase.Util.MST_TEXT_ID.OPTION);
+            script_create_desc.name = DataUtil.GetText(DataUtil.MST_TEXT_ID.OPTION);
             script_create_desc.onClick = (owner) =>
             {
-                this._onOpenSelect2Board(this, UnityBase.Util.SCENE.SIDE_MENU_SELECT2_BOARD_TYPE.OPTION);
+                this._onOpenSelect2Board(this, SceneUtil.SIDE_MENU_SELECT2_BOARD_TYPE.OPTION);
 
                 return;
             };
@@ -131,10 +131,10 @@ public class SelectBoardNodeScript : UnityBase.Scene.Ui.Menu.Side.BoardNodeScrip
             var script = GameObject.Instantiate(this._itemNode, this._itemNode.transform.parent).GetComponent<UnityBase.Scene.Ui.Menu.Side.SelectBoardItemNodeScript>();
             var script_create_desc = new UnityBase.Scene.Ui.Menu.Side.SelectBoardItemNodeScriptCreateDesc();
 
-            script_create_desc.name = DataUtil.GetText(UnityBase.Util.MST_TEXT_ID.INFO);
+            script_create_desc.name = DataUtil.GetText(DataUtil.MST_TEXT_ID.INFO);
             script_create_desc.onClick = (owner) =>
             {
-                this._onOpenSelect2Board(this, UnityBase.Util.SCENE.SIDE_MENU_SELECT2_BOARD_TYPE.INFO);
+                this._onOpenSelect2Board(this, SceneUtil.SIDE_MENU_SELECT2_BOARD_TYPE.INFO);
 
                 return;
             };
@@ -149,10 +149,10 @@ public class SelectBoardNodeScript : UnityBase.Scene.Ui.Menu.Side.BoardNodeScrip
             var script = GameObject.Instantiate(this._itemNode, this._itemNode.transform.parent).GetComponent<UnityBase.Scene.Ui.Menu.Side.SelectBoardItemNodeScript>();
             var script_create_desc = new UnityBase.Scene.Ui.Menu.Side.SelectBoardItemNodeScriptCreateDesc();
 
-            script_create_desc.name = DataUtil.GetText(UnityBase.Util.MST_TEXT_ID.EXIT);
+            script_create_desc.name = DataUtil.GetText(DataUtil.MST_TEXT_ID.EXIT);
             script_create_desc.onClick = (owner) =>
             {
-                this._onOpenStageBoard(this, UnityBase.Util.SCENE.SIDE_MENU_STAGE_BOARD_TYPE.EXIT);
+                this._onOpenStageBoard(this, SceneUtil.SIDE_MENU_STAGE_BOARD_TYPE.EXIT);
 
                 return;
             };
@@ -164,14 +164,14 @@ public class SelectBoardNodeScript : UnityBase.Scene.Ui.Menu.Side.BoardNodeScrip
         }
 
         // Cheat ItemNodeScript Create
-        if (UnityBase.Util.GetDebugFlag()) {
+        if (Util.GetDebugFlag()) {
             var script = GameObject.Instantiate(this._itemNode, this._itemNode.transform.parent).GetComponent<UnityBase.Scene.Ui.Menu.Side.SelectBoardItemNodeScript>();
             var script_create_desc = new UnityBase.Scene.Ui.Menu.Side.SelectBoardItemNodeScriptCreateDesc();
 
-            script_create_desc.name = DataUtil.GetText(UnityBase.Util.MST_TEXT_ID.CHEAT);
+            script_create_desc.name = DataUtil.GetText(DataUtil.MST_TEXT_ID.CHEAT);
             script_create_desc.onClick = (owner) =>
             {
-                this._onOpenStageBoard(this, UnityBase.Util.SCENE.SIDE_MENU_STAGE_BOARD_TYPE.CHEAT);
+                this._onOpenStageBoard(this, SceneUtil.SIDE_MENU_STAGE_BOARD_TYPE.CHEAT);
 
                 return;
             };

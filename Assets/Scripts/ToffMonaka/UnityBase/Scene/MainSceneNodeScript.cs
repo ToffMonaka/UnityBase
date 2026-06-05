@@ -5,6 +5,9 @@
 
 using UnityEngine;
 using ToffMonaka.UnityBase.Data;
+using ToffMonaka.UnityBase.Input;
+using ToffMonaka.UnityBase.Graphic;
+using ToffMonaka.UnityBase.Sound;
 
 namespace ToffMonaka {
 namespace UnityBase.Scene {
@@ -28,7 +31,7 @@ public class MainSceneNodeScript : ToffMonaka.Tml.Scene.MainSceneNodeScript
      */
     protected override int _OnGetScriptIndex()
     {
-        return ((int)UnityBase.Util.SCENE.SCRIPT_INDEX.MAIN_SCENE_NODE);
+        return ((int)SceneUtil.SCRIPT_INDEX.MAIN_SCENE_NODE);
     }
 
     /**
@@ -134,7 +137,7 @@ public class MainSceneNodeScript : ToffMonaka.Tml.Scene.MainSceneNodeScript
         }
         
         {// InitSubSceneNodeScript Create
-            var script = UnityBase.Global.GetSceneManager().ChangeSubScene(UnityBase.Util.FILE_PATH.INIT_SUB_SCENE_PREFAB) as UnityBase.Scene.InitSubSceneNodeScript;
+            var script = SceneUtil.GetManager().ChangeSubScene(Util.FILE_PATH.INIT_SUB_SCENE_PREFAB) as UnityBase.Scene.InitSubSceneNodeScript;
             var script_create_desc = new UnityBase.Scene.InitSubSceneNodeScriptCreateDesc();
 
             script.Create(script_create_desc);
@@ -165,7 +168,7 @@ public class MainSceneNodeScript : ToffMonaka.Tml.Scene.MainSceneNodeScript
     private void _StartDataFile()
     {
         {// SystemConfigFile Create
-            DataUtil.systemConfigFile.readDesc.data.filePath = Application.persistentDataPath + "/" + UnityBase.Util.FILE_PATH.SYSTEM_CONFIG;
+            DataUtil.systemConfigFile.readDesc.data.filePath = Application.persistentDataPath + "/" + Util.FILE_PATH.SYSTEM_CONFIG;
             DataUtil.systemConfigFile.writeDesc.data.filePath = DataUtil.systemConfigFile.readDesc.data.filePath;
 
             if (ToffMonaka.Tml.FileUtil.IsExistFile(DataUtil.systemConfigFile.readDesc.data.filePath)) {
@@ -176,7 +179,7 @@ public class MainSceneNodeScript : ToffMonaka.Tml.Scene.MainSceneNodeScript
         }
 
         {// UserDataFile Create
-            DataUtil.userDataFile.readDesc.data.filePath = Application.persistentDataPath + "/" + UnityBase.Util.FILE_PATH.USER_DATA;
+            DataUtil.userDataFile.readDesc.data.filePath = Application.persistentDataPath + "/" + Util.FILE_PATH.USER_DATA;
             DataUtil.userDataFile.writeDesc.data.filePath = DataUtil.userDataFile.readDesc.data.filePath;
 
             if (ToffMonaka.Tml.FileUtil.IsExistFile(DataUtil.userDataFile.readDesc.data.filePath)) {
@@ -248,7 +251,7 @@ public class MainSceneNodeScript : ToffMonaka.Tml.Scene.MainSceneNodeScript
                 return (-1);
             }
 
-            UnityBase.Global.SetInputManager(manager);
+            InputUtil.SetManager(manager);
         }
 
         {// GraphicManager Create
@@ -261,7 +264,7 @@ public class MainSceneNodeScript : ToffMonaka.Tml.Scene.MainSceneNodeScript
                 return (-1);
             }
 
-            UnityBase.Global.SetGraphicManager(manager);
+            GraphicUtil.SetManager(manager);
         }
 
         {// SoundManager Create
@@ -274,7 +277,7 @@ public class MainSceneNodeScript : ToffMonaka.Tml.Scene.MainSceneNodeScript
                 return (-1);
             }
 
-            UnityBase.Global.SetSoundManager(manager);
+            SoundUtil.SetManager(manager);
         }
 
         {// SceneManager Create
@@ -285,15 +288,15 @@ public class MainSceneNodeScript : ToffMonaka.Tml.Scene.MainSceneNodeScript
             manager_create_desc.inputNode = this.GetInputNode();
             manager_create_desc.graphicNode = this.GetGraphicNode();
             manager_create_desc.soundNode = this.GetSoundNode();
-            manager_create_desc.soundBgmPrefabFilePath = UnityBase.Util.FILE_PATH.SOUND_BGM_PREFAB;
+            manager_create_desc.soundBgmPrefabFilePath = Util.FILE_PATH.SOUND_BGM_PREFAB;
             manager_create_desc.soundBgmAudioClipArray = this.GetSoundBgmAudioClipArray();
             manager_create_desc.soundBgmVolume = DataUtil.systemConfigFile.data.soundBgmVolume;
             manager_create_desc.soundBgmMuteFlag = DataUtil.systemConfigFile.data.soundBgmMuteFlag;
-            manager_create_desc.soundSePrefabFilePath = UnityBase.Util.FILE_PATH.SOUND_SE_PREFAB;
+            manager_create_desc.soundSePrefabFilePath = Util.FILE_PATH.SOUND_SE_PREFAB;
             manager_create_desc.soundSeAudioClipArray = this.GetSoundSeAudioClipArray();
             manager_create_desc.soundSeVolume = DataUtil.systemConfigFile.data.soundSeVolume;
             manager_create_desc.soundSeMuteFlag = DataUtil.systemConfigFile.data.soundSeMuteFlag;
-            manager_create_desc.scriptCount = (int)UnityBase.Util.SCENE.SCRIPT_INDEX_COUNT;
+            manager_create_desc.scriptCount = (int)SceneUtil.SCRIPT_INDEX_COUNT;
 
             if (manager.Create(manager_create_desc) < 0) {
                 this._ReleaseManager();
@@ -301,7 +304,7 @@ public class MainSceneNodeScript : ToffMonaka.Tml.Scene.MainSceneNodeScript
                 return (-1);
             }
 
-            UnityBase.Global.SetSceneManager(manager);
+            SceneUtil.SetManager(manager);
         }
 
         return (0);
@@ -312,10 +315,10 @@ public class MainSceneNodeScript : ToffMonaka.Tml.Scene.MainSceneNodeScript
      */
     private void _ReleaseManager()
     {
-        UnityBase.Global.SetSceneManager(null);
-        UnityBase.Global.SetSoundManager(null);
-        UnityBase.Global.SetGraphicManager(null);
-        UnityBase.Global.SetInputManager(null);
+        SceneUtil.SetManager(null);
+        SoundUtil.SetManager(null);
+        GraphicUtil.SetManager(null);
+        InputUtil.SetManager(null);
 
         return;
     }

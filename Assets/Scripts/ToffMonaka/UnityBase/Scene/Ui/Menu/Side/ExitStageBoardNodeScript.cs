@@ -9,6 +9,7 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using TMPro;
 using ToffMonaka.UnityBase.Data;
+using ToffMonaka.UnityBase.Sound;
 
 
 namespace ToffMonaka {
@@ -41,34 +42,34 @@ public class ExitStageBoardNodeScript : UnityBase.Scene.Ui.Menu.Side.StageBoardN
      */
     protected override int _OnGetScriptIndex()
     {
-        return ((int)UnityBase.Util.SCENE.SCRIPT_INDEX.SIDE_MENU_EXIT_STAGE_BOARD_NODE);
+        return ((int)SceneUtil.SCRIPT_INDEX.SIDE_MENU_EXIT_STAGE_BOARD_NODE);
     }
 
     /**
      * @brief _OnGetBoardType関数
      * @return board_type (board_type)
      */
-    protected override UnityBase.Util.SCENE.SIDE_MENU_BOARD_TYPE _OnGetBoardType()
+    protected override SceneUtil.SIDE_MENU_BOARD_TYPE _OnGetBoardType()
     {
-        return (UnityBase.Util.SCENE.SIDE_MENU_BOARD_TYPE.EXIT_STAGE);
+        return (SceneUtil.SIDE_MENU_BOARD_TYPE.EXIT_STAGE);
     }
 
     /**
      * @brief _OnGetSelect2BoardType関数
      * @return select2_board_type (select2_board_type)
      */
-    protected override UnityBase.Util.SCENE.SIDE_MENU_SELECT2_BOARD_TYPE _OnGetSelect2BoardType()
+    protected override SceneUtil.SIDE_MENU_SELECT2_BOARD_TYPE _OnGetSelect2BoardType()
     {
-        return (UnityBase.Util.SCENE.SIDE_MENU_SELECT2_BOARD_TYPE.NONE);
+        return (SceneUtil.SIDE_MENU_SELECT2_BOARD_TYPE.NONE);
     }
 
     /**
      * @brief _OnGetStageBoardType関数
      * @return stage_board_type (stage_board_type)
      */
-    protected override UnityBase.Util.SCENE.SIDE_MENU_STAGE_BOARD_TYPE _OnGetStageBoardType()
+    protected override SceneUtil.SIDE_MENU_STAGE_BOARD_TYPE _OnGetStageBoardType()
     {
-        return (UnityBase.Util.SCENE.SIDE_MENU_STAGE_BOARD_TYPE.EXIT);
+        return (SceneUtil.SIDE_MENU_STAGE_BOARD_TYPE.EXIT);
     }
 
     /**
@@ -102,12 +103,12 @@ public class ExitStageBoardNodeScript : UnityBase.Scene.Ui.Menu.Side.StageBoardN
             return (-1);
         }
 
-        this._nameText.SetText(DataUtil.GetText(UnityBase.Util.MST_TEXT_ID.EXIT));
+        this._nameText.SetText(DataUtil.GetText(DataUtil.MST_TEXT_ID.EXIT));
 
-        this._backToTitleNameText.SetText(DataUtil.GetText(UnityBase.Util.MST_TEXT_ID.BACK_TO_TITLE));
-        this._exitNameText.SetText(DataUtil.GetText(UnityBase.Util.MST_TEXT_ID.EXIT));
-        this._okButtonNameText.SetText(DataUtil.GetText(UnityBase.Util.MST_TEXT_ID.OK));
-        this._cancelButtonNameText.SetText(DataUtil.GetText(UnityBase.Util.MST_TEXT_ID.CANCEL));
+        this._backToTitleNameText.SetText(DataUtil.GetText(DataUtil.MST_TEXT_ID.BACK_TO_TITLE));
+        this._exitNameText.SetText(DataUtil.GetText(DataUtil.MST_TEXT_ID.EXIT));
+        this._okButtonNameText.SetText(DataUtil.GetText(DataUtil.MST_TEXT_ID.OK));
+        this._cancelButtonNameText.SetText(DataUtil.GetText(DataUtil.MST_TEXT_ID.CANCEL));
 
         return (0);
     }
@@ -180,9 +181,9 @@ public class ExitStageBoardNodeScript : UnityBase.Scene.Ui.Menu.Side.StageBoardN
         }
 
         if (this._backToTitleToggle.isOn) {
-            UnityBase.Global.GetSceneManager().PlaySoundSe((int)UnityBase.Util.SOUND.SE_INDEX.OK2);
+            SceneUtil.GetManager().PlaySoundSe((int)SoundUtil.SE_SOUND_INDEX.OK2);
         } else {
-            UnityBase.Global.GetSceneManager().PlaySoundSe((int)UnityBase.Util.SOUND.SE_INDEX.CANCEL);
+            SceneUtil.GetManager().PlaySoundSe((int)SoundUtil.SE_SOUND_INDEX.CANCEL);
         }
 
         return;
@@ -203,9 +204,9 @@ public class ExitStageBoardNodeScript : UnityBase.Scene.Ui.Menu.Side.StageBoardN
         }
 
         if (this._exitToggle.isOn) {
-            UnityBase.Global.GetSceneManager().PlaySoundSe((int)UnityBase.Util.SOUND.SE_INDEX.OK2);
+            SceneUtil.GetManager().PlaySoundSe((int)SoundUtil.SE_SOUND_INDEX.OK2);
         } else {
-            UnityBase.Global.GetSceneManager().PlaySoundSe((int)UnityBase.Util.SOUND.SE_INDEX.CANCEL);
+            SceneUtil.GetManager().PlaySoundSe((int)SoundUtil.SE_SOUND_INDEX.CANCEL);
         }
 
         return;
@@ -221,13 +222,13 @@ public class ExitStageBoardNodeScript : UnityBase.Scene.Ui.Menu.Side.StageBoardN
             return;
         }
 
-        UnityBase.Global.GetSceneManager().PlaySoundSe((int)UnityBase.Util.SOUND.SE_INDEX.OK2);
+        SceneUtil.GetManager().PlaySoundSe((int)SoundUtil.SE_SOUND_INDEX.OK2);
 
         if (this._backToTitleToggle.isOn) {
-            UnityBase.Global.GetSceneManager().GetSubSceneNodeScript().Close(1, (owner) =>
+            SceneUtil.GetManager().GetSubSceneNodeScript().Close(1, (owner) =>
             {
                 {// TitleSubSceneNodeScript Create
-                    var script = UnityBase.Global.GetSceneManager().ChangeSubScene(UnityBase.Util.FILE_PATH.TITLE_SUB_SCENE_PREFAB) as UnityBase.Scene.TitleSubSceneNodeScript;
+                    var script = SceneUtil.GetManager().ChangeSubScene(Util.FILE_PATH.TITLE_SUB_SCENE_PREFAB) as UnityBase.Scene.TitleSubSceneNodeScript;
                     var script_create_desc = new UnityBase.Scene.TitleSubSceneNodeScriptCreateDesc();
 
                     script.Create(script_create_desc);
@@ -237,7 +238,7 @@ public class ExitStageBoardNodeScript : UnityBase.Scene.Ui.Menu.Side.StageBoardN
                 return;
             });
         } else if (this._exitToggle.isOn) {
-            UnityBase.Global.GetSceneManager().EndMainScene();
+            SceneUtil.GetManager().EndMainScene();
         } else {
             this._onCloseStageBoard(this);
         }
@@ -255,7 +256,7 @@ public class ExitStageBoardNodeScript : UnityBase.Scene.Ui.Menu.Side.StageBoardN
             return;
         }
 
-        UnityBase.Global.GetSceneManager().PlaySoundSe((int)UnityBase.Util.SOUND.SE_INDEX.CANCEL);
+        SceneUtil.GetManager().PlaySoundSe((int)SoundUtil.SE_SOUND_INDEX.CANCEL);
 
         this._onCloseStageBoard(this);
 

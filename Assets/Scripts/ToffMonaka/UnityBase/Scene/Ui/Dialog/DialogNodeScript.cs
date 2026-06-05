@@ -50,7 +50,7 @@ public abstract class DialogNodeScript : ToffMonaka.Tml.Scene.ObjectNodeScript
      */
     protected override int _OnGetScriptIndex()
     {
-        return ((int)UnityBase.Util.SCENE.SCRIPT_INDEX.DIALOG_NODE);
+        return ((int)SceneUtil.SCRIPT_INDEX.DIALOG_NODE);
     }
 
     /**

@@ -23,9 +23,9 @@ public abstract class ObjectNodeScript : NodeScript
      * @brief _OnGetScriptType関数
      * @return script_type (script_type)
      */
-    protected override sealed Util.SCENE.SCRIPT_TYPE _OnGetScriptType()
+    protected override sealed SceneUtil.SCRIPT_TYPE _OnGetScriptType()
     {
-        return (Util.SCENE.SCRIPT_TYPE.OBJECT_NODE);
+        return (SceneUtil.SCRIPT_TYPE.OBJECT_NODE);
     }
 
     /**
@@ -34,7 +34,7 @@ public abstract class ObjectNodeScript : NodeScript
      */
     protected override int _OnGetScriptIndex()
     {
-        return ((int)Util.SCENE.SCRIPT_INDEX.OBJECT_NODE);
+        return ((int)SceneUtil.SCRIPT_INDEX.OBJECT_NODE);
     }
 
     /**

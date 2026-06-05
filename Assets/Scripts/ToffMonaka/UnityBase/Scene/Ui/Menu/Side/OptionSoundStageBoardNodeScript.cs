@@ -9,6 +9,7 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using TMPro;
 using ToffMonaka.UnityBase.Data;
+using ToffMonaka.UnityBase.Sound;
 
 
 namespace ToffMonaka {
@@ -51,34 +52,34 @@ public class OptionSoundStageBoardNodeScript : UnityBase.Scene.Ui.Menu.Side.Stag
      */
     protected override int _OnGetScriptIndex()
     {
-        return ((int)UnityBase.Util.SCENE.SCRIPT_INDEX.SIDE_MENU_OPTION_SOUND_STAGE_BOARD_NODE);
+        return ((int)SceneUtil.SCRIPT_INDEX.SIDE_MENU_OPTION_SOUND_STAGE_BOARD_NODE);
     }
 
     /**
      * @brief _OnGetBoardType関数
      * @return board_type (board_type)
      */
-    protected override UnityBase.Util.SCENE.SIDE_MENU_BOARD_TYPE _OnGetBoardType()
+    protected override SceneUtil.SIDE_MENU_BOARD_TYPE _OnGetBoardType()
     {
-        return (UnityBase.Util.SCENE.SIDE_MENU_BOARD_TYPE.OPTION_SOUND_STAGE);
+        return (SceneUtil.SIDE_MENU_BOARD_TYPE.OPTION_SOUND_STAGE);
     }
 
     /**
      * @brief _OnGetSelect2BoardType関数
      * @return select2_board_type (select2_board_type)
      */
-    protected override UnityBase.Util.SCENE.SIDE_MENU_SELECT2_BOARD_TYPE _OnGetSelect2BoardType()
+    protected override SceneUtil.SIDE_MENU_SELECT2_BOARD_TYPE _OnGetSelect2BoardType()
     {
-        return (UnityBase.Util.SCENE.SIDE_MENU_SELECT2_BOARD_TYPE.NONE);
+        return (SceneUtil.SIDE_MENU_SELECT2_BOARD_TYPE.NONE);
     }
 
     /**
      * @brief _OnGetStageBoardType関数
      * @return stage_board_type (stage_board_type)
      */
-    protected override UnityBase.Util.SCENE.SIDE_MENU_STAGE_BOARD_TYPE _OnGetStageBoardType()
+    protected override SceneUtil.SIDE_MENU_STAGE_BOARD_TYPE _OnGetStageBoardType()
     {
-        return (UnityBase.Util.SCENE.SIDE_MENU_STAGE_BOARD_TYPE.OPTION_SOUND);
+        return (SceneUtil.SIDE_MENU_STAGE_BOARD_TYPE.OPTION_SOUND);
     }
 
     /**
@@ -112,12 +113,12 @@ public class OptionSoundStageBoardNodeScript : UnityBase.Scene.Ui.Menu.Side.Stag
             return (-1);
         }
 
-        this._nameText.SetText(DataUtil.GetText(UnityBase.Util.MST_TEXT_ID.OPTION) + " > " + DataUtil.GetText(UnityBase.Util.MST_TEXT_ID.SOUND));
+        this._nameText.SetText(DataUtil.GetText(DataUtil.MST_TEXT_ID.OPTION) + " > " + DataUtil.GetText(DataUtil.MST_TEXT_ID.SOUND));
 
-        this._soundBgmMuteNameText.SetText(DataUtil.GetText(UnityBase.Util.MST_TEXT_ID.BGM_MUTE));
-        this._soundSeMuteNameText.SetText(DataUtil.GetText(UnityBase.Util.MST_TEXT_ID.SE_MUTE));
-        this._okButtonNameText.SetText(DataUtil.GetText(UnityBase.Util.MST_TEXT_ID.OK));
-        this._cancelButtonNameText.SetText(DataUtil.GetText(UnityBase.Util.MST_TEXT_ID.CANCEL));
+        this._soundBgmMuteNameText.SetText(DataUtil.GetText(DataUtil.MST_TEXT_ID.BGM_MUTE));
+        this._soundSeMuteNameText.SetText(DataUtil.GetText(DataUtil.MST_TEXT_ID.SE_MUTE));
+        this._okButtonNameText.SetText(DataUtil.GetText(DataUtil.MST_TEXT_ID.OK));
+        this._cancelButtonNameText.SetText(DataUtil.GetText(DataUtil.MST_TEXT_ID.CANCEL));
 
         return (0);
     }
@@ -192,10 +193,10 @@ public class OptionSoundStageBoardNodeScript : UnityBase.Scene.Ui.Menu.Side.Stag
 
         this.SetSoundBgmVolume(this._soundBgmVolumeSlider.value / 10.0f);
 
-        UnityBase.Global.GetSceneManager().SetSoundBgmVolume(this._soundBgmVolume);
+        SceneUtil.GetManager().SetSoundBgmVolume(this._soundBgmVolume);
 
         if (this._soundBgmVolume != old_val) {
-            UnityBase.Global.GetSceneManager().PlaySoundSe((int)UnityBase.Util.SOUND.SE_INDEX.OK2);
+            SceneUtil.GetManager().PlaySoundSe((int)SoundUtil.SE_SOUND_INDEX.OK2);
         }
 
         return;
@@ -211,11 +212,11 @@ public class OptionSoundStageBoardNodeScript : UnityBase.Scene.Ui.Menu.Side.Stag
             return;
         }
 
-        UnityBase.Global.GetSceneManager().PlaySoundSe((int)UnityBase.Util.SOUND.SE_INDEX.OK2);
+        SceneUtil.GetManager().PlaySoundSe((int)SoundUtil.SE_SOUND_INDEX.OK2);
 
         this.SetSoundBgmVolume(System.Math.Max(this._soundBgmVolume - 0.1f, 0.0f));
 
-        UnityBase.Global.GetSceneManager().SetSoundBgmVolume(this._soundBgmVolume);
+        SceneUtil.GetManager().SetSoundBgmVolume(this._soundBgmVolume);
 
         return;
     }
@@ -230,11 +231,11 @@ public class OptionSoundStageBoardNodeScript : UnityBase.Scene.Ui.Menu.Side.Stag
             return;
         }
 
-        UnityBase.Global.GetSceneManager().PlaySoundSe((int)UnityBase.Util.SOUND.SE_INDEX.OK2);
+        SceneUtil.GetManager().PlaySoundSe((int)SoundUtil.SE_SOUND_INDEX.OK2);
 
         this.SetSoundBgmVolume(System.Math.Min(this._soundBgmVolume + 0.1f, 1.0f));
 
-        UnityBase.Global.GetSceneManager().SetSoundBgmVolume(this._soundBgmVolume);
+        SceneUtil.GetManager().SetSoundBgmVolume(this._soundBgmVolume);
 
         return;
     }
@@ -249,12 +250,12 @@ public class OptionSoundStageBoardNodeScript : UnityBase.Scene.Ui.Menu.Side.Stag
             return;
         }
 
-        UnityBase.Global.GetSceneManager().SetSoundBgmMuteFlag(this._soundBgmMuteToggle.isOn);
+        SceneUtil.GetManager().SetSoundBgmMuteFlag(this._soundBgmMuteToggle.isOn);
 
         if (this._soundBgmMuteToggle.isOn) {
-            UnityBase.Global.GetSceneManager().PlaySoundSe((int)UnityBase.Util.SOUND.SE_INDEX.OK2);
+            SceneUtil.GetManager().PlaySoundSe((int)SoundUtil.SE_SOUND_INDEX.OK2);
         } else {
-            UnityBase.Global.GetSceneManager().PlaySoundSe((int)UnityBase.Util.SOUND.SE_INDEX.CANCEL);
+            SceneUtil.GetManager().PlaySoundSe((int)SoundUtil.SE_SOUND_INDEX.CANCEL);
         }
 
         this.SetSoundBgmMuteFlag(this._soundBgmMuteToggle.isOn);
@@ -276,10 +277,10 @@ public class OptionSoundStageBoardNodeScript : UnityBase.Scene.Ui.Menu.Side.Stag
 
         this.SetSoundSeVolume(this._soundSeVolumeSlider.value / 10.0f);
      
-        UnityBase.Global.GetSceneManager().SetSoundSeVolume(this._soundSeVolume);
+        SceneUtil.GetManager().SetSoundSeVolume(this._soundSeVolume);
 
         if (this._soundSeVolume != old_val) {
-            UnityBase.Global.GetSceneManager().PlaySoundSe((int)UnityBase.Util.SOUND.SE_INDEX.OK2);
+            SceneUtil.GetManager().PlaySoundSe((int)SoundUtil.SE_SOUND_INDEX.OK2);
         }
 
         return;
@@ -295,11 +296,11 @@ public class OptionSoundStageBoardNodeScript : UnityBase.Scene.Ui.Menu.Side.Stag
             return;
         }
 
-        UnityBase.Global.GetSceneManager().PlaySoundSe((int)UnityBase.Util.SOUND.SE_INDEX.OK2);
+        SceneUtil.GetManager().PlaySoundSe((int)SoundUtil.SE_SOUND_INDEX.OK2);
 
         this.SetSoundSeVolume(System.Math.Max(this._soundSeVolume - 0.1f, 0.0f));
 
-        UnityBase.Global.GetSceneManager().SetSoundSeVolume(this._soundSeVolume);
+        SceneUtil.GetManager().SetSoundSeVolume(this._soundSeVolume);
 
         return;
     }
@@ -314,11 +315,11 @@ public class OptionSoundStageBoardNodeScript : UnityBase.Scene.Ui.Menu.Side.Stag
             return;
         }
 
-        UnityBase.Global.GetSceneManager().PlaySoundSe((int)UnityBase.Util.SOUND.SE_INDEX.OK2);
+        SceneUtil.GetManager().PlaySoundSe((int)SoundUtil.SE_SOUND_INDEX.OK2);
 
         this.SetSoundSeVolume(System.Math.Min(this._soundSeVolume + 0.1f, 1.0f));
 
-        UnityBase.Global.GetSceneManager().SetSoundSeVolume(this._soundSeVolume);
+        SceneUtil.GetManager().SetSoundSeVolume(this._soundSeVolume);
 
         return;
     }
@@ -333,12 +334,12 @@ public class OptionSoundStageBoardNodeScript : UnityBase.Scene.Ui.Menu.Side.Stag
             return;
         }
 
-        UnityBase.Global.GetSceneManager().SetSoundSeMuteFlag(this._soundSeMuteToggle.isOn);
+        SceneUtil.GetManager().SetSoundSeMuteFlag(this._soundSeMuteToggle.isOn);
 
         if (this._soundSeMuteToggle.isOn) {
-            UnityBase.Global.GetSceneManager().PlaySoundSe((int)UnityBase.Util.SOUND.SE_INDEX.OK2);
+            SceneUtil.GetManager().PlaySoundSe((int)SoundUtil.SE_SOUND_INDEX.OK2);
         } else {
-            UnityBase.Global.GetSceneManager().PlaySoundSe((int)UnityBase.Util.SOUND.SE_INDEX.CANCEL);
+            SceneUtil.GetManager().PlaySoundSe((int)SoundUtil.SE_SOUND_INDEX.CANCEL);
         }
 
         this.SetSoundSeMuteFlag(this._soundSeMuteToggle.isOn);
@@ -356,7 +357,7 @@ public class OptionSoundStageBoardNodeScript : UnityBase.Scene.Ui.Menu.Side.Stag
             return;
         }
 
-        UnityBase.Global.GetSceneManager().PlaySoundSe((int)UnityBase.Util.SOUND.SE_INDEX.OK2);
+        SceneUtil.GetManager().PlaySoundSe((int)SoundUtil.SE_SOUND_INDEX.OK2);
 
         DataUtil.systemConfigFile.data.soundBgmVolume = this._soundBgmVolume;
         DataUtil.systemConfigFile.data.soundBgmMuteFlag = this._soundBgmMuteFlag;
@@ -366,7 +367,7 @@ public class OptionSoundStageBoardNodeScript : UnityBase.Scene.Ui.Menu.Side.Stag
         DataUtil.systemConfigFile.Write(true);
 
         if (this._restartFlag) {
-            UnityBase.Global.GetSceneManager().StartMainScene();
+            SceneUtil.GetManager().StartMainScene();
         } else {
             this._onCloseStageBoard(this);
         }
@@ -384,12 +385,12 @@ public class OptionSoundStageBoardNodeScript : UnityBase.Scene.Ui.Menu.Side.Stag
             return;
         }
 
-        UnityBase.Global.GetSceneManager().PlaySoundSe((int)UnityBase.Util.SOUND.SE_INDEX.CANCEL);
+        SceneUtil.GetManager().PlaySoundSe((int)SoundUtil.SE_SOUND_INDEX.CANCEL);
 
-        UnityBase.Global.GetSceneManager().SetSoundBgmVolume(DataUtil.systemConfigFile.data.soundBgmVolume);
-        UnityBase.Global.GetSceneManager().SetSoundBgmMuteFlag(DataUtil.systemConfigFile.data.soundBgmMuteFlag);
-        UnityBase.Global.GetSceneManager().SetSoundSeVolume(DataUtil.systemConfigFile.data.soundSeVolume);
-        UnityBase.Global.GetSceneManager().SetSoundSeMuteFlag(DataUtil.systemConfigFile.data.soundSeMuteFlag);
+        SceneUtil.GetManager().SetSoundBgmVolume(DataUtil.systemConfigFile.data.soundBgmVolume);
+        SceneUtil.GetManager().SetSoundBgmMuteFlag(DataUtil.systemConfigFile.data.soundBgmMuteFlag);
+        SceneUtil.GetManager().SetSoundSeVolume(DataUtil.systemConfigFile.data.soundSeVolume);
+        SceneUtil.GetManager().SetSoundSeMuteFlag(DataUtil.systemConfigFile.data.soundSeMuteFlag);
 
         this._onCloseStageBoard(this);
 
@@ -413,7 +414,7 @@ public class OptionSoundStageBoardNodeScript : UnityBase.Scene.Ui.Menu.Side.Stag
     {
         this._soundBgmVolume = (float)System.Math.Clamp(System.Math.Round(sound_bgm_vol, 1, System.MidpointRounding.AwayFromZero), 0.0, 1.0);
 
-        this._soundBgmVolumeNameText.SetText(DataUtil.GetText(UnityBase.Util.MST_TEXT_ID.BGM_VOLUME) + " " + (this._soundBgmVolume * 10.0f).ToString());
+        this._soundBgmVolumeNameText.SetText(DataUtil.GetText(DataUtil.MST_TEXT_ID.BGM_VOLUME) + " " + (this._soundBgmVolume * 10.0f).ToString());
         this._soundBgmVolumeSlider.SetValueWithoutNotify(this._soundBgmVolume * 10.0f);
 
         return;
@@ -458,7 +459,7 @@ public class OptionSoundStageBoardNodeScript : UnityBase.Scene.Ui.Menu.Side.Stag
     {
         this._soundSeVolume = (float)System.Math.Clamp(System.Math.Round(sound_se_vol, 1, System.MidpointRounding.AwayFromZero), 0.0, 1.0);
 
-        this._soundSeVolumeNameText.SetText(DataUtil.GetText(UnityBase.Util.MST_TEXT_ID.SE_VOLUME) + " " + (this._soundSeVolume * 10.0f).ToString());
+        this._soundSeVolumeNameText.SetText(DataUtil.GetText(DataUtil.MST_TEXT_ID.SE_VOLUME) + " " + (this._soundSeVolume * 10.0f).ToString());
         this._soundSeVolumeSlider.SetValueWithoutNotify(this._soundSeVolume * 10.0f);
 
         return;
@@ -495,10 +496,10 @@ public class OptionSoundStageBoardNodeScript : UnityBase.Scene.Ui.Menu.Side.Stag
         this._restartFlag = restart_flg;
 
         if (this._restartFlag) {
-            this._okButtonNameText.SetText(DataUtil.GetText(UnityBase.Util.MST_TEXT_ID.OK) + "\n" + DataUtil.GetText(UnityBase.Util.MST_TEXT_ID.RESTART));
+            this._okButtonNameText.SetText(DataUtil.GetText(DataUtil.MST_TEXT_ID.OK) + "\n" + DataUtil.GetText(DataUtil.MST_TEXT_ID.RESTART));
             this._okButtonNameText.fontSize = 20.0f;
         } else {
-            this._okButtonNameText.SetText(DataUtil.GetText(UnityBase.Util.MST_TEXT_ID.OK));
+            this._okButtonNameText.SetText(DataUtil.GetText(DataUtil.MST_TEXT_ID.OK));
             this._okButtonNameText.fontSize = 32.0f;
         }
 

@@ -51,7 +51,7 @@ public class SceneManager
 	private float _soundBgmVolume = 1.0f;
 	private bool _soundBgmMuteFlag = false;
     public string _soundSePrefabFilePath = "";
-    private List<System.Tuple<GameObject, SoundSeNodeScript>> _soundSeNodeScriptContainer = new List<System.Tuple<GameObject, SoundSeNodeScript>>();
+    private List<System.Tuple<GameObject, SoundSeNodeScript>> _soundSeNodeScriptContainer = new();
     private AudioClip[] _soundSeAudioClipArray = null;
 	private float _soundSeVolume = 1.0f;
 	private bool _soundSeMuteFlag = false;
@@ -743,22 +743,22 @@ public class SceneManager
             this._scriptArray[script.GetScriptIndex()].Add(script);
 
 		    switch (script.GetScriptType()) {
-		    case Util.SCENE.SCRIPT_TYPE.MAIN_SCENE_NODE: {
+		    case SceneUtil.SCRIPT_TYPE.MAIN_SCENE_NODE: {
                 this._mainSceneNodeScript = (MainSceneNodeScript)script;
 
 			    break;
 		    }
-		    case Util.SCENE.SCRIPT_TYPE.SUB_SCENE_NODE: {
+		    case SceneUtil.SCRIPT_TYPE.SUB_SCENE_NODE: {
                 this._subSceneNodeScript = (SubSceneNodeScript)script;
 
 			    break;
 		    }
-		    case Util.SCENE.SCRIPT_TYPE.OBJECT_NODE: {
+		    case SceneUtil.SCRIPT_TYPE.OBJECT_NODE: {
                 this._objectNodeScriptArray[script.GetScriptIndex()].Add((ObjectNodeScript)script);
 
 			    break;
 		    }
-		    case Util.SCENE.SCRIPT_TYPE.PARTS: {
+		    case SceneUtil.SCRIPT_TYPE.PARTS: {
                 this._partsScriptArray[script.GetScriptIndex()].Add((PartsScript)script);
 
 			    break;
@@ -787,26 +787,26 @@ public class SceneManager
             this._scriptArray[script.GetScriptIndex()].Remove(script);
 
 		    switch (script.GetScriptType()) {
-		    case Util.SCENE.SCRIPT_TYPE.MAIN_SCENE_NODE: {
+		    case SceneUtil.SCRIPT_TYPE.MAIN_SCENE_NODE: {
                 if (this._mainSceneNodeScript == (MainSceneNodeScript)script) {
                     this._mainSceneNodeScript = null;
                 }
 
 			    break;
 		    }
-		    case Util.SCENE.SCRIPT_TYPE.SUB_SCENE_NODE: {
+		    case SceneUtil.SCRIPT_TYPE.SUB_SCENE_NODE: {
                 if (this._subSceneNodeScript == (SubSceneNodeScript)script) {
                     this._subSceneNodeScript = null;
                 }
 
 			    break;
 		    }
-		    case Util.SCENE.SCRIPT_TYPE.OBJECT_NODE: {
+		    case SceneUtil.SCRIPT_TYPE.OBJECT_NODE: {
                 this._objectNodeScriptArray[script.GetScriptIndex()].Remove((ObjectNodeScript)script);
 
 			    break;
 		    }
-		    case Util.SCENE.SCRIPT_TYPE.PARTS: {
+		    case SceneUtil.SCRIPT_TYPE.PARTS: {
                 this._partsScriptArray[script.GetScriptIndex()].Remove((PartsScript)script);
 
 			    break;

@@ -27,7 +27,7 @@ public abstract class BoardNodeScript : ToffMonaka.Tml.Scene.ObjectNodeScript
 
     public new UnityBase.Scene.Select.BoardNodeScriptCreateDesc createDesc{get; private set;} = null;
 
-    private UnityBase.Util.SCENE.SELECT_BOARD_TYPE _boardType = UnityBase.Util.SCENE.SELECT_BOARD_TYPE.NONE;
+    private SceneUtil.SELECT_BOARD_TYPE _boardType = SceneUtil.SELECT_BOARD_TYPE.NONE;
 
     /**
      * @brief _OnGetScriptIndex関数
@@ -35,16 +35,16 @@ public abstract class BoardNodeScript : ToffMonaka.Tml.Scene.ObjectNodeScript
      */
     protected override int _OnGetScriptIndex()
     {
-        return ((int)UnityBase.Util.SCENE.SCRIPT_INDEX.SELECT_BOARD_NODE);
+        return ((int)SceneUtil.SCRIPT_INDEX.SELECT_BOARD_NODE);
     }
 
     /**
      * @brief _OnGetBoardType関数
      * @return board_type (board_type)
      */
-    protected virtual UnityBase.Util.SCENE.SELECT_BOARD_TYPE _OnGetBoardType()
+    protected virtual SceneUtil.SELECT_BOARD_TYPE _OnGetBoardType()
     {
-        return (UnityBase.Util.SCENE.SELECT_BOARD_TYPE.NONE);
+        return (SceneUtil.SELECT_BOARD_TYPE.NONE);
     }
 
     /**
@@ -180,7 +180,7 @@ public abstract class BoardNodeScript : ToffMonaka.Tml.Scene.ObjectNodeScript
      * @brief GetBoardType関数
      * @return board_type (board_type)
      */
-    public UnityBase.Util.SCENE.SELECT_BOARD_TYPE GetBoardType()
+    public SceneUtil.SELECT_BOARD_TYPE GetBoardType()
     {
         return (this._boardType);
     }

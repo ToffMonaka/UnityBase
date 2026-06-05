@@ -21,8 +21,8 @@ public abstract class Script : MonoBehaviour
 {
     public ScriptCreateDesc createDesc{get; private set;} = null;
 
-    private Util.SCENE.SCRIPT_TYPE _scriptType = Util.SCENE.SCRIPT_TYPE.NONE;
-    private int _scriptIndex = (int)Util.SCENE.SCRIPT_INDEX.NONE;
+    private SceneUtil.SCRIPT_TYPE _scriptType = SceneUtil.SCRIPT_TYPE.NONE;
+    private int _scriptIndex = (int)SceneUtil.SCRIPT_INDEX.NONE;
     private bool _activeAutoFlag = true;
     private bool _managerAddedFlag = false;
     private bool _awakedFlag = false;
@@ -33,9 +33,9 @@ public abstract class Script : MonoBehaviour
      * @brief _OnGetScriptType関数
      * @return script_type (script_type)
      */
-    protected virtual Util.SCENE.SCRIPT_TYPE _OnGetScriptType()
+    protected virtual SceneUtil.SCRIPT_TYPE _OnGetScriptType()
     {
-        return (Util.SCENE.SCRIPT_TYPE.NONE);
+        return (SceneUtil.SCRIPT_TYPE.NONE);
     }
 
     /**
@@ -44,7 +44,7 @@ public abstract class Script : MonoBehaviour
      */
     protected virtual int _OnGetScriptIndex()
     {
-        return ((int)Util.SCENE.SCRIPT_INDEX.NONE);
+        return ((int)SceneUtil.SCRIPT_INDEX.NONE);
     }
 
     /**
@@ -171,7 +171,7 @@ public abstract class Script : MonoBehaviour
     {
         this._OnDestroy();
 
-        Global.GetSceneManager()?.RemoveScript(this);
+        SceneUtil.GetManager()?.RemoveScript(this);
 
         return;
     }
@@ -232,8 +232,8 @@ public abstract class Script : MonoBehaviour
         {// This Create
             this.SetCreateDesc(desc);
 
-            if ((Global.GetSceneManager() == null)
-            || (Global.GetSceneManager().AddScript(this) < 0)) {
+            if ((SceneUtil.GetManager() == null)
+            || (SceneUtil.GetManager().AddScript(this) < 0)) {
                 return (-1);
             }
         }
@@ -365,7 +365,7 @@ public abstract class Script : MonoBehaviour
      * @brief GetScriptType関数
      * @return script_type (script_type)
      */
-    public Util.SCENE.SCRIPT_TYPE GetScriptType()
+    public SceneUtil.SCRIPT_TYPE GetScriptType()
     {
         return (this._scriptType);
     }
@@ -461,15 +461,15 @@ public abstract class Script : MonoBehaviour
             return (false);
         }
 
-        if (Global.GetSceneManager() != null) {
-            var main_scene_node_script = Global.GetSceneManager().GetMainSceneNodeScript();
+        if (SceneUtil.GetManager() != null) {
+            var main_scene_node_script = SceneUtil.GetManager().GetMainSceneNodeScript();
 
             if ((main_scene_node_script != null)
             && (!main_scene_node_script.GetOpenedFlag())) {
                 return (false);
             }
 
-            var sub_scene_node_script = Global.GetSceneManager().GetSubSceneNodeScript();
+            var sub_scene_node_script = SceneUtil.GetManager().GetSubSceneNodeScript();
 
             if ((sub_scene_node_script != null)
             && (!sub_scene_node_script.GetOpenedFlag())) {

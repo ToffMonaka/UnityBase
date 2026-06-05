@@ -16,7 +16,7 @@ namespace UnityBase.Scene.Ui.Menu.Side {
  */
 public class Select2BoardNodeScriptCreateDesc : UnityBase.Scene.Ui.Menu.Side.BoardNodeScriptCreateDesc
 {
-    public System.Action<UnityBase.Scene.Ui.Menu.Side.Select2BoardNodeScript, UnityBase.Util.SCENE.SIDE_MENU_STAGE_BOARD_TYPE> onOpenStageBoard = null;
+    public System.Action<UnityBase.Scene.Ui.Menu.Side.Select2BoardNodeScript, SceneUtil.SIDE_MENU_STAGE_BOARD_TYPE> onOpenStageBoard = null;
     public System.Action<UnityBase.Scene.Ui.Menu.Side.Select2BoardNodeScript> onCloseSelect2Board = null;
 }
 
@@ -30,8 +30,8 @@ public abstract class Select2BoardNodeScript : UnityBase.Scene.Ui.Menu.Side.Boar
 
     public new UnityBase.Scene.Ui.Menu.Side.Select2BoardNodeScriptCreateDesc createDesc{get; private set;} = null;
 
-    protected List<UnityBase.Scene.Ui.Menu.Side.SelectBoardItemNodeScript> _itemNodeScriptContainer = new List<UnityBase.Scene.Ui.Menu.Side.SelectBoardItemNodeScript>();
-    protected System.Action<UnityBase.Scene.Ui.Menu.Side.Select2BoardNodeScript, UnityBase.Util.SCENE.SIDE_MENU_STAGE_BOARD_TYPE> _onOpenStageBoard = null;
+    protected List<UnityBase.Scene.Ui.Menu.Side.SelectBoardItemNodeScript> _itemNodeScriptContainer = new();
+    protected System.Action<UnityBase.Scene.Ui.Menu.Side.Select2BoardNodeScript, SceneUtil.SIDE_MENU_STAGE_BOARD_TYPE> _onOpenStageBoard = null;
     protected System.Action<UnityBase.Scene.Ui.Menu.Side.Select2BoardNodeScript> _onCloseSelect2Board = null;
 
     /**
@@ -40,7 +40,7 @@ public abstract class Select2BoardNodeScript : UnityBase.Scene.Ui.Menu.Side.Boar
      */
     protected override int _OnGetScriptIndex()
     {
-        return ((int)UnityBase.Util.SCENE.SCRIPT_INDEX.SIDE_MENU_SELECT2_BOARD_NODE);
+        return ((int)SceneUtil.SCRIPT_INDEX.SIDE_MENU_SELECT2_BOARD_NODE);
     }
 
     /**

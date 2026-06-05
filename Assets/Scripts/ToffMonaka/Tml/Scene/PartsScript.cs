@@ -23,9 +23,9 @@ public abstract class PartsScript : Script
      * @brief _OnGetScriptType関数
      * @return script_type (script_type)
      */
-    protected override sealed Util.SCENE.SCRIPT_TYPE _OnGetScriptType()
+    protected override sealed SceneUtil.SCRIPT_TYPE _OnGetScriptType()
     {
-        return (Util.SCENE.SCRIPT_TYPE.PARTS);
+        return (SceneUtil.SCRIPT_TYPE.PARTS);
     }
 
     /**
@@ -34,7 +34,7 @@ public abstract class PartsScript : Script
      */
     protected override int _OnGetScriptIndex()
     {
-        return ((int)Util.SCENE.SCRIPT_INDEX.PARTS);
+        return ((int)SceneUtil.SCRIPT_INDEX.PARTS);
     }
 
     /**

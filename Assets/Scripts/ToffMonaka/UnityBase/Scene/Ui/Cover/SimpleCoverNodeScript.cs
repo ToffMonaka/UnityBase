@@ -16,7 +16,7 @@ namespace UnityBase.Scene.Ui.Cover {
  */
 public class SimpleCoverNodeScriptCreateDesc : UnityBase.Scene.Ui.Cover.CoverNodeScriptCreateDesc
 {
-    public Color32 color = new Color32(0, 0, 0, 255);
+    public Color32 color = new(0, 0, 0, 255);
     public float playTime = 1.0f;
     public float waitTime = 1.0f;
     public bool reverseFlag = false;
@@ -27,7 +27,7 @@ public class SimpleCoverNodeScriptCreateDesc : UnityBase.Scene.Ui.Cover.CoverNod
      */
     public override string GetPrefabFilePath()
     {
-        return (UnityBase.Util.FILE_PATH.SIMPLE_COVER_PREFAB);
+        return (Util.FILE_PATH.SIMPLE_COVER_PREFAB);
     }
 
     /**
@@ -52,7 +52,7 @@ public class SimpleCoverNodeScript : UnityBase.Scene.Ui.Cover.CoverNodeScript
 
     public new UnityBase.Scene.Ui.Cover.SimpleCoverNodeScriptCreateDesc createDesc{get; private set;} = null;
 
-    private Color32 _color = new Color32(0, 0, 0, 255);
+    private Color32 _color = new(0, 0, 0, 255);
     private float _playTime = 1.0f;
     private float _waitTime = 1.0f;
     private bool _reverseFlag = false;
@@ -64,7 +64,7 @@ public class SimpleCoverNodeScript : UnityBase.Scene.Ui.Cover.CoverNodeScript
      */
     protected override int _OnGetScriptIndex()
     {
-        return ((int)UnityBase.Util.SCENE.SCRIPT_INDEX.SIMPLE_COVER_NODE);
+        return ((int)SceneUtil.SCRIPT_INDEX.SIMPLE_COVER_NODE);
     }
 
     /**

@@ -41,7 +41,7 @@ public class ScrollViewPartsScript : PartsScript
     private RectTransform _itemRectTransform = null;
     private int _itemCount = 0;
     private int _itemIndex = 0;
-    private List<ObjectNodeScript> _itemNodeScriptContainer = new List<ObjectNodeScript>();
+    private List<ObjectNodeScript> _itemNodeScriptContainer = new();
     private System.Func<GameObject, ObjectNodeScript> _onGetItemNodeScript = null;
     private System.Action<ObjectNodeScript, int> _onSetItemNodeScript = null;
 
@@ -51,7 +51,7 @@ public class ScrollViewPartsScript : PartsScript
      */
     protected override int _OnGetScriptIndex()
     {
-        return ((int)Util.SCENE.SCRIPT_INDEX.SCROLL_VIEW_PARTS);
+        return ((int)SceneUtil.SCRIPT_INDEX.SCROLL_VIEW_PARTS);
     }
 
     /**

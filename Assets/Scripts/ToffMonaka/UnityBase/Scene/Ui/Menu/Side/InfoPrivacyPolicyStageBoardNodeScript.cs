@@ -9,6 +9,7 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using TMPro;
 using ToffMonaka.UnityBase.Data;
+using ToffMonaka.UnityBase.Sound;
 
 
 namespace ToffMonaka {
@@ -38,34 +39,34 @@ public class InfoPrivacyPolicyStageBoardNodeScript : UnityBase.Scene.Ui.Menu.Sid
      */
     protected override int _OnGetScriptIndex()
     {
-        return ((int)UnityBase.Util.SCENE.SCRIPT_INDEX.SIDE_MENU_INFO_PRIVACY_POLICY_STAGE_BOARD_NODE);
+        return ((int)SceneUtil.SCRIPT_INDEX.SIDE_MENU_INFO_PRIVACY_POLICY_STAGE_BOARD_NODE);
     }
 
     /**
      * @brief _OnGetBoardType関数
      * @return board_type (board_type)
      */
-    protected override UnityBase.Util.SCENE.SIDE_MENU_BOARD_TYPE _OnGetBoardType()
+    protected override SceneUtil.SIDE_MENU_BOARD_TYPE _OnGetBoardType()
     {
-        return (UnityBase.Util.SCENE.SIDE_MENU_BOARD_TYPE.INFO_PRIVACY_POLICY_STAGE);
+        return (SceneUtil.SIDE_MENU_BOARD_TYPE.INFO_PRIVACY_POLICY_STAGE);
     }
 
     /**
      * @brief _OnGetSelect2BoardType関数
      * @return select2_board_type (select2_board_type)
      */
-    protected override UnityBase.Util.SCENE.SIDE_MENU_SELECT2_BOARD_TYPE _OnGetSelect2BoardType()
+    protected override SceneUtil.SIDE_MENU_SELECT2_BOARD_TYPE _OnGetSelect2BoardType()
     {
-        return (UnityBase.Util.SCENE.SIDE_MENU_SELECT2_BOARD_TYPE.NONE);
+        return (SceneUtil.SIDE_MENU_SELECT2_BOARD_TYPE.NONE);
     }
 
     /**
      * @brief _OnGetStageBoardType関数
      * @return stage_board_type (stage_board_type)
      */
-    protected override UnityBase.Util.SCENE.SIDE_MENU_STAGE_BOARD_TYPE _OnGetStageBoardType()
+    protected override SceneUtil.SIDE_MENU_STAGE_BOARD_TYPE _OnGetStageBoardType()
     {
-        return (UnityBase.Util.SCENE.SIDE_MENU_STAGE_BOARD_TYPE.INFO_PRIVACY_POLICY);
+        return (SceneUtil.SIDE_MENU_STAGE_BOARD_TYPE.INFO_PRIVACY_POLICY);
     }
 
     /**
@@ -99,9 +100,9 @@ public class InfoPrivacyPolicyStageBoardNodeScript : UnityBase.Scene.Ui.Menu.Sid
             return (-1);
         }
 
-        this._nameText.SetText(DataUtil.GetText(UnityBase.Util.MST_TEXT_ID.INFO) + " > " + DataUtil.GetText(UnityBase.Util.MST_TEXT_ID.PRIVACY_POLICY));
+        this._nameText.SetText(DataUtil.GetText(DataUtil.MST_TEXT_ID.INFO) + " > " + DataUtil.GetText(DataUtil.MST_TEXT_ID.PRIVACY_POLICY));
 
-        this._cancelButtonNameText.SetText(DataUtil.GetText(UnityBase.Util.MST_TEXT_ID.CANCEL));
+        this._cancelButtonNameText.SetText(DataUtil.GetText(DataUtil.MST_TEXT_ID.CANCEL));
 
         this._messageNode.SetActive(false);
 
@@ -109,7 +110,7 @@ public class InfoPrivacyPolicyStageBoardNodeScript : UnityBase.Scene.Ui.Menu.Sid
             string[] txt_ary;
 
 		    switch (DataUtil.systemConfigFile.data.systemLanguageType) {
-		    case UnityBase.Util.LANGUAGE_TYPE.JAPANESE: {
+		    case Util.LANGUAGE_TYPE.JAPANESE: {
                 txt_ary = UnityBase.Scene.Ui.Menu.Side.PrivacyPolicyMessageUtil.JAPANESE_TEXT_ARRAY;
 
 			    break;
@@ -207,7 +208,7 @@ public class InfoPrivacyPolicyStageBoardNodeScript : UnityBase.Scene.Ui.Menu.Sid
             return;
         }
 
-        UnityBase.Global.GetSceneManager().PlaySoundSe((int)UnityBase.Util.SOUND.SE_INDEX.CANCEL);
+        SceneUtil.GetManager().PlaySoundSe((int)SoundUtil.SE_SOUND_INDEX.CANCEL);
 
         this._onCloseStageBoard(this);
 

@@ -9,6 +9,7 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using TMPro;
 using ToffMonaka.UnityBase.Data;
+using ToffMonaka.UnityBase.Sound;
 
 
 namespace ToffMonaka {
@@ -33,7 +34,7 @@ public class OptionSystemStageBoardNodeScript : UnityBase.Scene.Ui.Menu.Side.Sta
 
     public new UnityBase.Scene.Ui.Menu.Side.OptionSystemStageBoardNodeScriptCreateDesc createDesc{get; private set;} = null;
 
-    private UnityBase.Util.LANGUAGE_TYPE _languageType = UnityBase.Util.LANGUAGE_TYPE.NONE;
+    private Util.LANGUAGE_TYPE _languageType = Util.LANGUAGE_TYPE.NONE;
     private bool _restartFlag = false;
 
     /**
@@ -42,34 +43,34 @@ public class OptionSystemStageBoardNodeScript : UnityBase.Scene.Ui.Menu.Side.Sta
      */
     protected override int _OnGetScriptIndex()
     {
-        return ((int)UnityBase.Util.SCENE.SCRIPT_INDEX.SIDE_MENU_OPTION_SYSTEM_STAGE_BOARD_NODE);
+        return ((int)SceneUtil.SCRIPT_INDEX.SIDE_MENU_OPTION_SYSTEM_STAGE_BOARD_NODE);
     }
 
     /**
      * @brief _OnGetBoardType関数
      * @return board_type (board_type)
      */
-    protected override UnityBase.Util.SCENE.SIDE_MENU_BOARD_TYPE _OnGetBoardType()
+    protected override SceneUtil.SIDE_MENU_BOARD_TYPE _OnGetBoardType()
     {
-        return (UnityBase.Util.SCENE.SIDE_MENU_BOARD_TYPE.OPTION_SYSTEM_STAGE);
+        return (SceneUtil.SIDE_MENU_BOARD_TYPE.OPTION_SYSTEM_STAGE);
     }
 
     /**
      * @brief _OnGetSelect2BoardType関数
      * @return select2_board_type (select2_board_type)
      */
-    protected override UnityBase.Util.SCENE.SIDE_MENU_SELECT2_BOARD_TYPE _OnGetSelect2BoardType()
+    protected override SceneUtil.SIDE_MENU_SELECT2_BOARD_TYPE _OnGetSelect2BoardType()
     {
-        return (UnityBase.Util.SCENE.SIDE_MENU_SELECT2_BOARD_TYPE.NONE);
+        return (SceneUtil.SIDE_MENU_SELECT2_BOARD_TYPE.NONE);
     }
 
     /**
      * @brief _OnGetStageBoardType関数
      * @return stage_board_type (stage_board_type)
      */
-    protected override UnityBase.Util.SCENE.SIDE_MENU_STAGE_BOARD_TYPE _OnGetStageBoardType()
+    protected override SceneUtil.SIDE_MENU_STAGE_BOARD_TYPE _OnGetStageBoardType()
     {
-        return (UnityBase.Util.SCENE.SIDE_MENU_STAGE_BOARD_TYPE.OPTION_SYSTEM);
+        return (SceneUtil.SIDE_MENU_STAGE_BOARD_TYPE.OPTION_SYSTEM);
     }
 
     /**
@@ -103,11 +104,11 @@ public class OptionSystemStageBoardNodeScript : UnityBase.Scene.Ui.Menu.Side.Sta
             return (-1);
         }
 
-        this._nameText.SetText(DataUtil.GetText(UnityBase.Util.MST_TEXT_ID.OPTION) + " > " + DataUtil.GetText(UnityBase.Util.MST_TEXT_ID.SYSTEM));
+        this._nameText.SetText(DataUtil.GetText(DataUtil.MST_TEXT_ID.OPTION) + " > " + DataUtil.GetText(DataUtil.MST_TEXT_ID.SYSTEM));
 
-        this._languageNameText.SetText(DataUtil.GetText(UnityBase.Util.MST_TEXT_ID.LANGUAGE));
-        this._okButtonNameText.SetText(DataUtil.GetText(UnityBase.Util.MST_TEXT_ID.OK));
-        this._cancelButtonNameText.SetText(DataUtil.GetText(UnityBase.Util.MST_TEXT_ID.CANCEL));
+        this._languageNameText.SetText(DataUtil.GetText(DataUtil.MST_TEXT_ID.LANGUAGE));
+        this._okButtonNameText.SetText(DataUtil.GetText(DataUtil.MST_TEXT_ID.OK));
+        this._cancelButtonNameText.SetText(DataUtil.GetText(DataUtil.MST_TEXT_ID.CANCEL));
 
         return (0);
     }
@@ -175,7 +176,7 @@ public class OptionSystemStageBoardNodeScript : UnityBase.Scene.Ui.Menu.Side.Sta
             return;
         }
 
-        UnityBase.Global.GetSceneManager().PlaySoundSe((int)UnityBase.Util.SOUND.SE_INDEX.OK2);
+        SceneUtil.GetManager().PlaySoundSe((int)SoundUtil.SE_SOUND_INDEX.OK2);
 
         {// LanguageSelectDialog Add
             var script_create_desc = new UnityBase.Scene.Ui.Dialog.SelectDialogNodeScriptCreateDesc();
@@ -190,10 +191,10 @@ public class OptionSystemStageBoardNodeScript : UnityBase.Scene.Ui.Menu.Side.Sta
                 return;
             };
 
-            var script = UnityBase.Global.GetSubSceneNodeScript().GetDialogSystemNodeScript().AddDialog(script_create_desc) as UnityBase.Scene.Ui.Dialog.SelectDialogNodeScript;
+            var script = SceneUtil.GetSubSceneNodeScript().GetDialogSystemNodeScript().AddDialog(script_create_desc) as UnityBase.Scene.Ui.Dialog.SelectDialogNodeScript;
 
-            script.AddItem(new UnityBase.Scene.Ui.Dialog.LanguageSelectDialogItemEngine(UnityBase.Util.LANGUAGE_TYPE.ENGLISH));
-            script.AddItem(new UnityBase.Scene.Ui.Dialog.LanguageSelectDialogItemEngine(UnityBase.Util.LANGUAGE_TYPE.JAPANESE));
+            script.AddItem(new UnityBase.Scene.Ui.Dialog.LanguageSelectDialogItemEngine(Util.LANGUAGE_TYPE.ENGLISH));
+            script.AddItem(new UnityBase.Scene.Ui.Dialog.LanguageSelectDialogItemEngine(Util.LANGUAGE_TYPE.JAPANESE));
         }
 
         return;
@@ -209,14 +210,14 @@ public class OptionSystemStageBoardNodeScript : UnityBase.Scene.Ui.Menu.Side.Sta
             return;
         }
 
-        UnityBase.Global.GetSceneManager().PlaySoundSe((int)UnityBase.Util.SOUND.SE_INDEX.OK2);
+        SceneUtil.GetManager().PlaySoundSe((int)SoundUtil.SE_SOUND_INDEX.OK2);
 
         DataUtil.systemConfigFile.data.systemLanguageType = this._languageType;
 
         DataUtil.systemConfigFile.Write(true);
 
         if (this._restartFlag) {
-            UnityBase.Global.GetSceneManager().StartMainScene();
+            SceneUtil.GetManager().StartMainScene();
         } else {
             this._onCloseStageBoard(this);
         }
@@ -234,7 +235,7 @@ public class OptionSystemStageBoardNodeScript : UnityBase.Scene.Ui.Menu.Side.Sta
             return;
         }
 
-        UnityBase.Global.GetSceneManager().PlaySoundSe((int)UnityBase.Util.SOUND.SE_INDEX.CANCEL);
+        SceneUtil.GetManager().PlaySoundSe((int)SoundUtil.SE_SOUND_INDEX.CANCEL);
 
         this._onCloseStageBoard(this);
 
@@ -245,7 +246,7 @@ public class OptionSystemStageBoardNodeScript : UnityBase.Scene.Ui.Menu.Side.Sta
      * @brief GetLanguageType関数
      * @return language_type (language_type)
      */
-    public UnityBase.Util.LANGUAGE_TYPE GetLanguageType()
+    public Util.LANGUAGE_TYPE GetLanguageType()
     {
         return (this._languageType);
     }
@@ -254,11 +255,11 @@ public class OptionSystemStageBoardNodeScript : UnityBase.Scene.Ui.Menu.Side.Sta
      * @brief SetLanguageType関数
      * @param language_type (language_type)
      */
-    public void SetLanguageType(UnityBase.Util.LANGUAGE_TYPE language_type)
+    public void SetLanguageType(Util.LANGUAGE_TYPE language_type)
     {
         this._languageType = language_type;
 
-        this._languageButtonNameText.SetText(DataUtil.GetText(UnityBase.Util.LANGUAGE_NAME_MST_TEXT_ID_ARRAY[(int)this._languageType]));
+        this._languageButtonNameText.SetText(DataUtil.GetText(Util.LANGUAGE_NAME_MST_TEXT_ID_ARRAY[(int)this._languageType]));
 
         this._SetRestartFlag((this._languageType != DataUtil.systemConfigFile.data.systemLanguageType));
 
@@ -274,10 +275,10 @@ public class OptionSystemStageBoardNodeScript : UnityBase.Scene.Ui.Menu.Side.Sta
         this._restartFlag = restart_flg;
 
         if (this._restartFlag) {
-            this._okButtonNameText.SetText(DataUtil.GetText(UnityBase.Util.MST_TEXT_ID.OK) + "\n" + DataUtil.GetText(UnityBase.Util.MST_TEXT_ID.RESTART));
+            this._okButtonNameText.SetText(DataUtil.GetText(DataUtil.MST_TEXT_ID.OK) + "\n" + DataUtil.GetText(DataUtil.MST_TEXT_ID.RESTART));
             this._okButtonNameText.fontSize = 20.0f;
         } else {
-            this._okButtonNameText.SetText(DataUtil.GetText(UnityBase.Util.MST_TEXT_ID.OK));
+            this._okButtonNameText.SetText(DataUtil.GetText(DataUtil.MST_TEXT_ID.OK));
             this._okButtonNameText.fontSize = 32.0f;
         }
 

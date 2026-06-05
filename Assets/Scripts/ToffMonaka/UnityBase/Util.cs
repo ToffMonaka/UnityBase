@@ -4,6 +4,7 @@
  */
 
 using UnityEngine;
+using ToffMonaka.UnityBase.Data;
 
 namespace ToffMonaka {
 namespace UnityBase {
@@ -47,186 +48,6 @@ public static class Util
         public static readonly string SIMPLE_COVER_PREFAB = "Assets/Resources2/prefab/SimpleCover.prefab";
     }
 
-    public static class INPUT
-    {
-    }
-
-    public static class GRAPHIC
-    {
-    }
-
-    public static class SOUND
-    {
-        public enum BGM_INDEX : int
-        {
-            NONE = -1,
-            TITLE,
-            SELECT,
-		    COUNT
-        }
-        public static readonly int BGM_INDEX_COUNT = (int)UnityBase.Util.SOUND.BGM_INDEX.COUNT;
-
-        public enum SE_INDEX : int
-        {
-            NONE = -1,
-            OK,
-            OK2,
-            CANCEL,
-		    COUNT
-        }
-        public static readonly int SE_INDEX_COUNT = (int)UnityBase.Util.SOUND.SE_INDEX.COUNT;
-    }
-
-    public static class SCENE
-    {
-        public enum SCRIPT_INDEX : int
-        {
-            MAIN_SCENE_NODE = ToffMonaka.Tml.Util.SCENE.SCRIPT_INDEX.COUNT,
-            SUB_SCENE_NODE,
-            INIT_SUB_SCENE_NODE,
-            TITLE_SUB_SCENE_NODE,
-            SELECT_SUB_SCENE_NODE,
-            SELECT_BACK_BUTTON_NODE,
-            SELECT_BOARD_NODE,
-            SELECT_STAGE_BOARD_NODE,
-            SELECT_STAGE_BOARD_ITEM_NODE,
-            STAGE_SUB_SCENE_NODE,
-            STAGE_BACK_BUTTON_NODE,
-            TEST_2D_STAGE_SUB_SCENE_NODE,
-            TEST_3D_STAGE_SUB_SCENE_NODE,
-            SIDE_MENU_NODE,
-            SIDE_MENU_OPEN_CLOSE_BUTTON_NODE,
-            SIDE_MENU_BOARD_NODE,
-            SIDE_MENU_SELECT_BOARD_NODE,
-            SIDE_MENU_SELECT_BOARD_ITEM_NODE,
-            SIDE_MENU_SELECT2_BOARD_NODE,
-            SIDE_MENU_OPTION_SELECT2_BOARD_NODE,
-            SIDE_MENU_INFO_SELECT2_BOARD_NODE,
-            SIDE_MENU_STAGE_BOARD_NODE,
-            SIDE_MENU_OPTION_SYSTEM_STAGE_BOARD_NODE,
-            SIDE_MENU_OPTION_INPUT_STAGE_BOARD_NODE,
-            SIDE_MENU_OPTION_GRAPHIC_STAGE_BOARD_NODE,
-            SIDE_MENU_OPTION_SOUND_STAGE_BOARD_NODE,
-            SIDE_MENU_INFO_FAQ_STAGE_BOARD_NODE,
-            SIDE_MENU_INFO_STAFF_STAGE_BOARD_NODE,
-            SIDE_MENU_INFO_LICENSE_STAGE_BOARD_NODE,
-            SIDE_MENU_INFO_PRIVACY_POLICY_STAGE_BOARD_NODE,
-            SIDE_MENU_EXIT_STAGE_BOARD_NODE,
-            SIDE_MENU_CHEAT_STAGE_BOARD_NODE,
-            SIDE_MENU_CHEAT_STAGE_BOARD_ITEM_NODE,
-            DIALOG_SYSTEM_NODE,
-            DIALOG_NODE,
-            SELECT_DIALOG_NODE,
-            SELECT_DIALOG_ITEM_NODE,
-            INPUT_DIALOG_NODE,
-            COVER_SYSTEM_NODE,
-            COVER_NODE,
-            SIMPLE_COVER_NODE,
-		    COUNT
-        }
-        public static readonly int SCRIPT_INDEX_COUNT = (int)UnityBase.Util.SCENE.SCRIPT_INDEX.COUNT;
-
-        public enum SELECT_BOARD_TYPE : int
-        {
-            NONE = 0,
-            STAGE,
-		    COUNT
-        }
-        public static readonly int SELECT_BOARD_TYPE_COUNT = (int)UnityBase.Util.SCENE.SELECT_BOARD_TYPE.COUNT;
-
-        public enum STAGE_TYPE : int
-        {
-            NONE = 0,
-            TEST_2D,
-            TEST_3D,
-		    COUNT
-        }
-        public static readonly int STAGE_TYPE_COUNT = (int)UnityBase.Util.SCENE.STAGE_TYPE.COUNT;
-
-        public enum SIDE_MENU_BOARD_TYPE : int
-        {
-            NONE = 0,
-            SELECT,
-            OPTION_SELECT2,
-            INFO_SELECT2,
-            OPTION_SYSTEM_STAGE,
-            OPTION_INPUT_STAGE,
-            OPTION_GRAPHIC_STAGE,
-            OPTION_SOUND_STAGE,
-            INFO_FAQ_STAGE,
-            INFO_STAFF_STAGE,
-            INFO_LICENSE_STAGE,
-            INFO_PRIVACY_POLICY_STAGE,
-            EXIT_STAGE,
-            CHEAT_STAGE,
-		    COUNT
-        }
-        public static readonly int SIDE_MENU_BOARD_TYPE_COUNT = (int)UnityBase.Util.SCENE.SIDE_MENU_BOARD_TYPE.COUNT;
-
-        public enum SIDE_MENU_SELECT2_BOARD_TYPE : int
-        {
-            NONE = 0,
-            OPTION,
-            INFO,
-		    COUNT
-        }
-        public static readonly int SIDE_MENU_SELECT2_BOARD_TYPE_COUNT = (int)UnityBase.Util.SCENE.SIDE_MENU_SELECT2_BOARD_TYPE.COUNT;
-
-        public enum SIDE_MENU_STAGE_BOARD_TYPE : int
-        {
-            NONE = 0,
-            OPTION_SYSTEM,
-            OPTION_INPUT,
-            OPTION_GRAPHIC,
-            OPTION_SOUND,
-            INFO_FAQ,
-            INFO_STAFF,
-            INFO_LICENSE,
-            INFO_PRIVACY_POLICY,
-            EXIT,
-            CHEAT,
-		    COUNT
-        }
-        public static readonly int SIDE_MENU_STAGE_BOARD_TYPE_COUNT = (int)UnityBase.Util.SCENE.SIDE_MENU_STAGE_BOARD_TYPE.COUNT;
-    }
-
-    public enum MST_TEXT_ID : int
-    {
-        NONE = 0,
-        OK,
-		CANCEL,
-        FORWARD,
-        BACK,
-        MENU,
-        OPTION,
-        INFO,
-        FAQ,
-        STAFF,
-        LICENSE,
-        PRIVACY_POLICY,
-        BACK_TO_TITLE,
-        RESTART,
-        EXIT,
-        LANGUAGE,
-        ENGLISH,
-        JAPANESE,
-        SYSTEM,
-        INPUT,
-        GRAPHIC,
-        SOUND,
-        BGM_VOLUME,
-        BGM_MUTE,
-        SE_VOLUME,
-        SE_MUTE,
-        CHEAT,
-        COMMAND,
-        DELETE_DATA,
-        STAGE,
-        TEST_2D,
-        TEST_3D,
-        IN_PREPARATION
-    }
-
     public enum LANGUAGE_TYPE : int
     {
         NONE = 0,
@@ -234,12 +55,12 @@ public static class Util
         JAPANESE,
 		COUNT
     }
-    public static readonly int LANGUAGE_TYPE_COUNT = (int)UnityBase.Util.LANGUAGE_TYPE.COUNT;
+    public static readonly int LANGUAGE_TYPE_COUNT = (int)Util.LANGUAGE_TYPE.COUNT;
 
-    public static readonly UnityBase.Util.MST_TEXT_ID[] LANGUAGE_NAME_MST_TEXT_ID_ARRAY = {
-        UnityBase.Util.MST_TEXT_ID.NONE,
-        UnityBase.Util.MST_TEXT_ID.ENGLISH,
-        UnityBase.Util.MST_TEXT_ID.JAPANESE
+    public static readonly DataUtil.MST_TEXT_ID[] LANGUAGE_NAME_MST_TEXT_ID_ARRAY = {
+        DataUtil.MST_TEXT_ID.NONE,
+        DataUtil.MST_TEXT_ID.ENGLISH,
+        DataUtil.MST_TEXT_ID.JAPANESE
     };
 
     /**
@@ -248,7 +69,7 @@ public static class Util
      */
     public static bool GetDebugFlag()
     {
-        return (UnityBase.Util._debugFlag);
+        return (Util._debugFlag);
     }
     
     /**
@@ -259,7 +80,7 @@ public static class Util
     {
         Debug.Log("Warning: ToffMonaka.UnityBase.Util.SetDebugFlag: " + debug_flg);
 
-        UnityBase.Util._debugFlag = debug_flg;
+        Util._debugFlag = debug_flg;
 
         return;
     }

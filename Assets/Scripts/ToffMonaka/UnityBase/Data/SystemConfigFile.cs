@@ -13,7 +13,7 @@ namespace UnityBase.Data {
  */
 public class SystemConfigFileData
 {
-    public UnityBase.Util.LANGUAGE_TYPE systemLanguageType;
+    public Util.LANGUAGE_TYPE systemLanguageType;
     public float soundBgmVolume;
     public bool soundBgmMuteFlag;
     public float soundSeVolume;
@@ -36,12 +36,12 @@ public class SystemConfigFileData
     {
 		switch (Application.systemLanguage) {
 		case SystemLanguage.Japanese: {
-            this.systemLanguageType = UnityBase.Util.LANGUAGE_TYPE.JAPANESE;
+            this.systemLanguageType = Util.LANGUAGE_TYPE.JAPANESE;
 
 			break;
 		}
 		default: {
-            this.systemLanguageType = UnityBase.Util.LANGUAGE_TYPE.ENGLISH;
+            this.systemLanguageType = Util.LANGUAGE_TYPE.ENGLISH;
 
 			break;
 		}
@@ -130,7 +130,7 @@ public class SystemConfigFile : ToffMonaka.Tml.File
 		        val = ini_file.data.GetValue(key_cont, "LANGUAGE_TYPE");
 
 		        if (val != null) {
-                    this.data.systemLanguageType = (UnityBase.Util.LANGUAGE_TYPE)(int.Parse(val));
+                    this.data.systemLanguageType = (Util.LANGUAGE_TYPE)(int.Parse(val));
 		        }
 	        }
         }

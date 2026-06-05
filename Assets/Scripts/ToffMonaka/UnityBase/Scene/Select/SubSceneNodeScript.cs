@@ -5,7 +5,7 @@
 
 
 using UnityEngine;
-using UnityEngine.UI;
+using ToffMonaka.UnityBase.Sound;
 
 
 namespace ToffMonaka {
@@ -37,7 +37,7 @@ public class SubSceneNodeScript : UnityBase.Scene.SubSceneNodeScript
      */
     protected override int _OnGetScriptIndex()
     {
-        return ((int)UnityBase.Util.SCENE.SCRIPT_INDEX.SELECT_SUB_SCENE_NODE);
+        return ((int)SceneUtil.SCRIPT_INDEX.SELECT_SUB_SCENE_NODE);
     }
 
     /**
@@ -82,9 +82,9 @@ public class SubSceneNodeScript : UnityBase.Scene.SubSceneNodeScript
                 this.Close(1, (owner) =>
                 {
 		            switch (tmp_stage_type) {
-		            case UnityBase.Util.SCENE.STAGE_TYPE.TEST_2D: {
+		            case SceneUtil.STAGE_TYPE.TEST_2D: {
                         {// Test2DStageSubSceneNodeScript Create
-                            var script = UnityBase.Global.GetSceneManager().ChangeSubScene(UnityBase.Util.FILE_PATH.TEST_2D_STAGE_SUB_SCENE_PREFAB) as UnityBase.Scene.Stage.Test2D.SubSceneNodeScript;
+                            var script = SceneUtil.GetManager().ChangeSubScene(Util.FILE_PATH.TEST_2D_STAGE_SUB_SCENE_PREFAB) as UnityBase.Scene.Stage.Test2D.SubSceneNodeScript;
                             var script_create_desc = new UnityBase.Scene.Stage.Test2D.SubSceneNodeScriptCreateDesc();
 
                             script.Create(script_create_desc);
@@ -93,9 +93,9 @@ public class SubSceneNodeScript : UnityBase.Scene.SubSceneNodeScript
 
 			            break;
 		            }
-		            case UnityBase.Util.SCENE.STAGE_TYPE.TEST_3D: {
+		            case SceneUtil.STAGE_TYPE.TEST_3D: {
                         {// Test3DStageSubSceneNodeScript Create
-                            var script = UnityBase.Global.GetSceneManager().ChangeSubScene(UnityBase.Util.FILE_PATH.TEST_3D_STAGE_SUB_SCENE_PREFAB) as UnityBase.Scene.Stage.Test3D.SubSceneNodeScript;
+                            var script = SceneUtil.GetManager().ChangeSubScene(Util.FILE_PATH.TEST_3D_STAGE_SUB_SCENE_PREFAB) as UnityBase.Scene.Stage.Test3D.SubSceneNodeScript;
                             var script_create_desc = new UnityBase.Scene.Stage.Test3D.SubSceneNodeScriptCreateDesc();
 
                             script.Create(script_create_desc);
@@ -122,11 +122,11 @@ public class SubSceneNodeScript : UnityBase.Scene.SubSceneNodeScript
             script_create_desc.onClick = (owner) =>
             {
 		        switch (this._openBoardNodeScript.GetBoardType()) {
-		        case UnityBase.Util.SCENE.SELECT_BOARD_TYPE.STAGE: {
+		        case SceneUtil.SELECT_BOARD_TYPE.STAGE: {
                     this.Close(1, (owner) =>
                     {
                         {// TitleSubSceneNodeScript Create
-                            var script = UnityBase.Global.GetSceneManager().ChangeSubScene(UnityBase.Util.FILE_PATH.TITLE_SUB_SCENE_PREFAB) as UnityBase.Scene.TitleSubSceneNodeScript;
+                            var script = SceneUtil.GetManager().ChangeSubScene(Util.FILE_PATH.TITLE_SUB_SCENE_PREFAB) as UnityBase.Scene.TitleSubSceneNodeScript;
                             var script_create_desc = new UnityBase.Scene.TitleSubSceneNodeScriptCreateDesc();
 
                             script.Create(script_create_desc);
@@ -188,7 +188,7 @@ public class SubSceneNodeScript : UnityBase.Scene.SubSceneNodeScript
     {
         base._OnOpen();
 
-        this.OpenBoard(UnityBase.Util.SCENE.SELECT_BOARD_TYPE.STAGE);
+        this.OpenBoard(SceneUtil.SELECT_BOARD_TYPE.STAGE);
 
 		switch (this.GetOpenType()) {
 		case 1: {
@@ -215,7 +215,7 @@ public class SubSceneNodeScript : UnityBase.Scene.SubSceneNodeScript
 		}
 		}
 
-        UnityBase.Global.GetSceneManager().PlaySoundBgm((int)UnityBase.Util.SOUND.BGM_INDEX.SELECT);
+        SceneUtil.GetManager().PlaySoundBgm((int)SoundUtil.BGM_SOUND_INDEX.SELECT);
 
         return;
     }
@@ -259,7 +259,7 @@ public class SubSceneNodeScript : UnityBase.Scene.SubSceneNodeScript
      * @brief OpenBoard関数
      * @param board_type (board_type)
      */
-    public void OpenBoard(UnityBase.Util.SCENE.SELECT_BOARD_TYPE board_type)
+    public void OpenBoard(SceneUtil.SELECT_BOARD_TYPE board_type)
     {
         this.CloseBoard();
 

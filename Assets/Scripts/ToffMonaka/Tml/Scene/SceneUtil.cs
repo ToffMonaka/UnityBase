@@ -13,6 +13,58 @@ namespace Tml.Scene {
  */
 public static class SceneUtil
 {
+    private static SceneManager _manager = null;
+
+    public enum SCRIPT_TYPE : int
+    {
+        NONE = 0,
+        MAIN_SCENE_NODE,
+        SUB_SCENE_NODE,
+        OBJECT_NODE,
+        PARTS,
+		COUNT
+    }
+    public static readonly int SCRIPT_TYPE_COUNT = (int)SceneUtil.SCRIPT_TYPE.COUNT;
+
+    public enum SCRIPT_INDEX : int
+    {
+        NONE = -1,
+        NODE,
+        MAIN_SCENE_NODE,
+        SUB_SCENE_NODE,
+        OBJECT_NODE,
+        SOUND_BGM_NODE,
+        SOUND_SE_NODE,
+        PARTS,
+        BUTTON_PARTS,
+        SCROLL_VIEW_PARTS,
+        SLIDER_PARTS,
+		COUNT
+    }
+    public static readonly int SCRIPT_INDEX_COUNT = (int)SceneUtil.SCRIPT_INDEX.COUNT;
+
+    /**
+     * @brief GetManager関数
+     * @return manager (manager)
+     */
+    public static SceneManager GetManager()
+    {
+        return (SceneUtil._manager);
+    }
+
+    /**
+     * @brief SetManager関数
+     * @param manager (manager)
+     */
+    public static void SetManager(SceneManager manager)
+    {
+        SceneUtil._manager?.Init();
+
+        SceneUtil._manager = manager;
+
+        return;
+    }
+
     /**
      * @brief GetPrefabNode関数
      * @param prefab_file_path (prefab_file_path)

@@ -3,8 +3,6 @@
  * @brief MstTextTableFileファイル
  */
 
-using ToffMonaka.Tml;
-
 namespace ToffMonaka {
 namespace UnityBase.Data {
 /**
@@ -138,7 +136,7 @@ public class MstTextTableFile : ToffMonaka.Tml.File
             this.data.entityArray[val_i] = entity;
 
             if (this.data.entityArrayByMstTextId.Length <= entity.mstTextId) {
-                ArrayUtil.Resize(ref this.data.entityArrayByMstTextId, entity.mstTextId + 128);
+                ToffMonaka.Tml.ArrayUtil.Resize(ref this.data.entityArrayByMstTextId, entity.mstTextId + 128);
             }
 
             this.data.entityArrayByMstTextId[entity.mstTextId] = entity;

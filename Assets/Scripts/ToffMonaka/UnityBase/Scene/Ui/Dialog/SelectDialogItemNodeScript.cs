@@ -7,6 +7,7 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 using TMPro;
+using ToffMonaka.UnityBase.Sound;
 
 
 namespace ToffMonaka {
@@ -38,7 +39,7 @@ public class SelectDialogItemNodeScript : ToffMonaka.Tml.Scene.ObjectNodeScript
      */
     protected override int _OnGetScriptIndex()
     {
-        return ((int)UnityBase.Util.SCENE.SCRIPT_INDEX.SELECT_DIALOG_ITEM_NODE);
+        return ((int)SceneUtil.SCRIPT_INDEX.SELECT_DIALOG_ITEM_NODE);
     }
 
     /**
@@ -143,7 +144,7 @@ public class SelectDialogItemNodeScript : ToffMonaka.Tml.Scene.ObjectNodeScript
             return;
         }
 
-        UnityBase.Global.GetSceneManager().PlaySoundSe((int)UnityBase.Util.SOUND.SE_INDEX.OK2);
+        SceneUtil.GetManager().PlaySoundSe((int)SoundUtil.SE_SOUND_INDEX.OK2);
 
         this._onClick?.Invoke(this);
 

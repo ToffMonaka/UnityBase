@@ -6,6 +6,7 @@
 
 using UnityEngine;
 using UnityEngine.UI;
+using ToffMonaka.UnityBase.Sound;
 
 
 namespace ToffMonaka {
@@ -62,7 +63,7 @@ public class NodeScript : ToffMonaka.Tml.Scene.ObjectNodeScript
      */
     protected override int _OnGetScriptIndex()
     {
-        return ((int)UnityBase.Util.SCENE.SCRIPT_INDEX.SIDE_MENU_NODE);
+        return ((int)SceneUtil.SCRIPT_INDEX.SIDE_MENU_NODE);
     }
 
     /**
@@ -107,15 +108,15 @@ public class NodeScript : ToffMonaka.Tml.Scene.ObjectNodeScript
                 if (!this._backgroundImage.gameObject.activeSelf) {
                     this._backgroundImage.gameObject.SetActive(true);
 
-                    this.OpenBoard(UnityBase.Util.SCENE.SIDE_MENU_BOARD_TYPE.SELECT);
+                    this.OpenBoard(SceneUtil.SIDE_MENU_BOARD_TYPE.SELECT);
 
-                    UnityBase.Global.GetSceneManager().PlaySoundSe((int)UnityBase.Util.SOUND.SE_INDEX.OK2);
+                    SceneUtil.GetManager().PlaySoundSe((int)SoundUtil.SE_SOUND_INDEX.OK2);
                 } else {
                     this._backgroundImage.gameObject.SetActive(false);
 
                     this.CloseBoard();
 
-                    UnityBase.Global.GetSceneManager().PlaySoundSe((int)UnityBase.Util.SOUND.SE_INDEX.CANCEL);
+                    SceneUtil.GetManager().PlaySoundSe((int)SoundUtil.SE_SOUND_INDEX.CANCEL);
                 }
 
                 return;
@@ -161,7 +162,7 @@ public class NodeScript : ToffMonaka.Tml.Scene.ObjectNodeScript
             };
             script_create_desc.onCloseSelect2Board = (owner) =>
             {
-                this.OpenBoard(UnityBase.Util.SCENE.SIDE_MENU_BOARD_TYPE.SELECT);
+                this.OpenBoard(SceneUtil.SIDE_MENU_BOARD_TYPE.SELECT);
 
                 return;
             };
@@ -183,7 +184,7 @@ public class NodeScript : ToffMonaka.Tml.Scene.ObjectNodeScript
             };
             script_create_desc.onCloseSelect2Board = (owner) =>
             {
-                this.OpenBoard(UnityBase.Util.SCENE.SIDE_MENU_BOARD_TYPE.SELECT);
+                this.OpenBoard(SceneUtil.SIDE_MENU_BOARD_TYPE.SELECT);
 
                 return;
             };
@@ -199,7 +200,7 @@ public class NodeScript : ToffMonaka.Tml.Scene.ObjectNodeScript
 
             script_create_desc.onCloseStageBoard = (owner) =>
             {
-                this.OpenBoard(UnityBase.Util.SCENE.SIDE_MENU_SELECT2_BOARD_TYPE.OPTION);
+                this.OpenBoard(SceneUtil.SIDE_MENU_SELECT2_BOARD_TYPE.OPTION);
 
                 return;
             };
@@ -215,7 +216,7 @@ public class NodeScript : ToffMonaka.Tml.Scene.ObjectNodeScript
 
             script_create_desc.onCloseStageBoard = (owner) =>
             {
-                this.OpenBoard(UnityBase.Util.SCENE.SIDE_MENU_SELECT2_BOARD_TYPE.OPTION);
+                this.OpenBoard(SceneUtil.SIDE_MENU_SELECT2_BOARD_TYPE.OPTION);
 
                 return;
             };
@@ -231,7 +232,7 @@ public class NodeScript : ToffMonaka.Tml.Scene.ObjectNodeScript
 
             script_create_desc.onCloseStageBoard = (owner) =>
             {
-                this.OpenBoard(UnityBase.Util.SCENE.SIDE_MENU_SELECT2_BOARD_TYPE.OPTION);
+                this.OpenBoard(SceneUtil.SIDE_MENU_SELECT2_BOARD_TYPE.OPTION);
 
                 return;
             };
@@ -247,7 +248,7 @@ public class NodeScript : ToffMonaka.Tml.Scene.ObjectNodeScript
 
             script_create_desc.onCloseStageBoard = (owner) =>
             {
-                this.OpenBoard(UnityBase.Util.SCENE.SIDE_MENU_SELECT2_BOARD_TYPE.OPTION);
+                this.OpenBoard(SceneUtil.SIDE_MENU_SELECT2_BOARD_TYPE.OPTION);
 
                 return;
             };
@@ -263,7 +264,7 @@ public class NodeScript : ToffMonaka.Tml.Scene.ObjectNodeScript
 
             script_create_desc.onCloseStageBoard = (owner) =>
             {
-                this.OpenBoard(UnityBase.Util.SCENE.SIDE_MENU_SELECT2_BOARD_TYPE.INFO);
+                this.OpenBoard(SceneUtil.SIDE_MENU_SELECT2_BOARD_TYPE.INFO);
 
                 return;
             };
@@ -279,7 +280,7 @@ public class NodeScript : ToffMonaka.Tml.Scene.ObjectNodeScript
 
             script_create_desc.onCloseStageBoard = (owner) =>
             {
-                this.OpenBoard(UnityBase.Util.SCENE.SIDE_MENU_SELECT2_BOARD_TYPE.INFO);
+                this.OpenBoard(SceneUtil.SIDE_MENU_SELECT2_BOARD_TYPE.INFO);
 
                 return;
             };
@@ -295,7 +296,7 @@ public class NodeScript : ToffMonaka.Tml.Scene.ObjectNodeScript
 
             script_create_desc.onCloseStageBoard = (owner) =>
             {
-                this.OpenBoard(UnityBase.Util.SCENE.SIDE_MENU_SELECT2_BOARD_TYPE.INFO);
+                this.OpenBoard(SceneUtil.SIDE_MENU_SELECT2_BOARD_TYPE.INFO);
 
                 return;
             };
@@ -311,7 +312,7 @@ public class NodeScript : ToffMonaka.Tml.Scene.ObjectNodeScript
 
             script_create_desc.onCloseStageBoard = (owner) =>
             {
-                this.OpenBoard(UnityBase.Util.SCENE.SIDE_MENU_SELECT2_BOARD_TYPE.INFO);
+                this.OpenBoard(SceneUtil.SIDE_MENU_SELECT2_BOARD_TYPE.INFO);
 
                 return;
             };
@@ -327,7 +328,7 @@ public class NodeScript : ToffMonaka.Tml.Scene.ObjectNodeScript
 
             script_create_desc.onCloseStageBoard = (owner) =>
             {
-                this.OpenBoard(UnityBase.Util.SCENE.SIDE_MENU_BOARD_TYPE.SELECT);
+                this.OpenBoard(SceneUtil.SIDE_MENU_BOARD_TYPE.SELECT);
 
                 return;
             };
@@ -343,7 +344,7 @@ public class NodeScript : ToffMonaka.Tml.Scene.ObjectNodeScript
 
             script_create_desc.onCloseStageBoard = (owner) =>
             {
-                this.OpenBoard(UnityBase.Util.SCENE.SIDE_MENU_BOARD_TYPE.SELECT);
+                this.OpenBoard(SceneUtil.SIDE_MENU_BOARD_TYPE.SELECT);
 
                 return;
             };
@@ -409,7 +410,7 @@ public class NodeScript : ToffMonaka.Tml.Scene.ObjectNodeScript
      * @brief OpenBoard関数
      * @param board_type (board_type)
      */
-    public void OpenBoard(UnityBase.Util.SCENE.SIDE_MENU_BOARD_TYPE board_type)
+    public void OpenBoard(SceneUtil.SIDE_MENU_BOARD_TYPE board_type)
     {
         this.CloseBoard();
 
@@ -443,12 +444,12 @@ public class NodeScript : ToffMonaka.Tml.Scene.ObjectNodeScript
      * @brief OpenBoard関数
      * @param select2_board_type (select2_board_type)
      */
-    public void OpenBoard(UnityBase.Util.SCENE.SIDE_MENU_SELECT2_BOARD_TYPE select2_board_type)
+    public void OpenBoard(SceneUtil.SIDE_MENU_SELECT2_BOARD_TYPE select2_board_type)
     {
-        UnityBase.Util.SCENE.SIDE_MENU_BOARD_TYPE[] board_type_ary = {
-            UnityBase.Util.SCENE.SIDE_MENU_BOARD_TYPE.NONE,
-            UnityBase.Util.SCENE.SIDE_MENU_BOARD_TYPE.OPTION_SELECT2,
-            UnityBase.Util.SCENE.SIDE_MENU_BOARD_TYPE.INFO_SELECT2
+        SceneUtil.SIDE_MENU_BOARD_TYPE[] board_type_ary = {
+            SceneUtil.SIDE_MENU_BOARD_TYPE.NONE,
+            SceneUtil.SIDE_MENU_BOARD_TYPE.OPTION_SELECT2,
+            SceneUtil.SIDE_MENU_BOARD_TYPE.INFO_SELECT2
         };
 
         this.OpenBoard(board_type_ary[(int)select2_board_type]);
@@ -460,20 +461,20 @@ public class NodeScript : ToffMonaka.Tml.Scene.ObjectNodeScript
      * @brief OpenBoard関数
      * @param stage_board_type (stage_board_type)
      */
-    public void OpenBoard(UnityBase.Util.SCENE.SIDE_MENU_STAGE_BOARD_TYPE stage_board_type)
+    public void OpenBoard(SceneUtil.SIDE_MENU_STAGE_BOARD_TYPE stage_board_type)
     {
-        UnityBase.Util.SCENE.SIDE_MENU_BOARD_TYPE[] board_type_ary = {
-            UnityBase.Util.SCENE.SIDE_MENU_BOARD_TYPE.NONE,
-		    UnityBase.Util.SCENE.SIDE_MENU_BOARD_TYPE.OPTION_SYSTEM_STAGE,
-		    UnityBase.Util.SCENE.SIDE_MENU_BOARD_TYPE.OPTION_INPUT_STAGE,
-		    UnityBase.Util.SCENE.SIDE_MENU_BOARD_TYPE.OPTION_GRAPHIC_STAGE,
-		    UnityBase.Util.SCENE.SIDE_MENU_BOARD_TYPE.OPTION_SOUND_STAGE,
-		    UnityBase.Util.SCENE.SIDE_MENU_BOARD_TYPE.INFO_FAQ_STAGE,
-		    UnityBase.Util.SCENE.SIDE_MENU_BOARD_TYPE.INFO_STAFF_STAGE,
-		    UnityBase.Util.SCENE.SIDE_MENU_BOARD_TYPE.INFO_LICENSE_STAGE,
-		    UnityBase.Util.SCENE.SIDE_MENU_BOARD_TYPE.INFO_PRIVACY_POLICY_STAGE,
-		    UnityBase.Util.SCENE.SIDE_MENU_BOARD_TYPE.EXIT_STAGE,
-		    UnityBase.Util.SCENE.SIDE_MENU_BOARD_TYPE.CHEAT_STAGE
+        SceneUtil.SIDE_MENU_BOARD_TYPE[] board_type_ary = {
+            SceneUtil.SIDE_MENU_BOARD_TYPE.NONE,
+		    SceneUtil.SIDE_MENU_BOARD_TYPE.OPTION_SYSTEM_STAGE,
+		    SceneUtil.SIDE_MENU_BOARD_TYPE.OPTION_INPUT_STAGE,
+		    SceneUtil.SIDE_MENU_BOARD_TYPE.OPTION_GRAPHIC_STAGE,
+		    SceneUtil.SIDE_MENU_BOARD_TYPE.OPTION_SOUND_STAGE,
+		    SceneUtil.SIDE_MENU_BOARD_TYPE.INFO_FAQ_STAGE,
+		    SceneUtil.SIDE_MENU_BOARD_TYPE.INFO_STAFF_STAGE,
+		    SceneUtil.SIDE_MENU_BOARD_TYPE.INFO_LICENSE_STAGE,
+		    SceneUtil.SIDE_MENU_BOARD_TYPE.INFO_PRIVACY_POLICY_STAGE,
+		    SceneUtil.SIDE_MENU_BOARD_TYPE.EXIT_STAGE,
+		    SceneUtil.SIDE_MENU_BOARD_TYPE.CHEAT_STAGE
         };
 
         this.OpenBoard(board_type_ary[(int)stage_board_type]);

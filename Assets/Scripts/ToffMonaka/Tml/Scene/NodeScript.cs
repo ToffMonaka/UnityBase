@@ -28,8 +28,8 @@ public abstract class NodeScript : Script
     private int _closeType = 0;
     private bool _closeFlag = false;
     private bool _closedFlag = true;
-    private List<Sequence> _openCloseSequenceContainer = new List<Sequence>();
-    private List<System.Func<NodeScript, bool>> _openCloseCheckerContainer = new List<System.Func<NodeScript, bool>>();
+    private List<Sequence> _openCloseSequenceContainer = new();
+    private List<System.Func<NodeScript, bool>> _openCloseCheckerContainer = new();
     private System.Action<NodeScript> _onOpened = null;
     private System.Action<NodeScript> _onClosed = null;
 
@@ -39,7 +39,7 @@ public abstract class NodeScript : Script
      */
     protected override int _OnGetScriptIndex()
     {
-        return ((int)Util.SCENE.SCRIPT_INDEX.NODE);
+        return ((int)SceneUtil.SCRIPT_INDEX.NODE);
     }
 
     /**

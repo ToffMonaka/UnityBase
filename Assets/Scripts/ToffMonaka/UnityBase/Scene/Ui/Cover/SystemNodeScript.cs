@@ -24,7 +24,7 @@ public class SystemNodeScript : ToffMonaka.Tml.Scene.ObjectNodeScript
 {
     public new UnityBase.Scene.Ui.Cover.SystemNodeScriptCreateDesc createDesc{get; private set;} = null;
 
-    private List<UnityBase.Scene.Ui.Cover.CoverNodeScript> _coverNodeScriptContainer = new List<UnityBase.Scene.Ui.Cover.CoverNodeScript>();
+    private List<UnityBase.Scene.Ui.Cover.CoverNodeScript> _coverNodeScriptContainer = new();
 
     /**
      * @brief _OnGetScriptIndex関数
@@ -32,7 +32,7 @@ public class SystemNodeScript : ToffMonaka.Tml.Scene.ObjectNodeScript
      */
     protected override int _OnGetScriptIndex()
     {
-        return ((int)UnityBase.Util.SCENE.SCRIPT_INDEX.COVER_SYSTEM_NODE);
+        return ((int)SceneUtil.SCRIPT_INDEX.COVER_SYSTEM_NODE);
     }
 
     /**

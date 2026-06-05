@@ -34,16 +34,16 @@ public class SubSceneNodeScript : UnityBase.Scene.Stage.SubSceneNodeScript
      */
     protected override int _OnGetScriptIndex()
     {
-        return ((int)UnityBase.Util.SCENE.SCRIPT_INDEX.TEST_3D_STAGE_SUB_SCENE_NODE);
+        return ((int)SceneUtil.SCRIPT_INDEX.TEST_3D_STAGE_SUB_SCENE_NODE);
     }
 
     /**
      * @brief _OnGetStageType関数
      * @return stage_type (stage_type)
      */
-    protected override UnityBase.Util.SCENE.STAGE_TYPE _OnGetStageType()
+    protected override SceneUtil.STAGE_TYPE _OnGetStageType()
     {
-        return (UnityBase.Util.SCENE.STAGE_TYPE.TEST_3D);
+        return (SceneUtil.STAGE_TYPE.TEST_3D);
     }
 
     /**
@@ -77,8 +77,8 @@ public class SubSceneNodeScript : UnityBase.Scene.Stage.SubSceneNodeScript
             return (-1);
         }
 
-        this._nameText.SetText(DataUtil.GetText(UnityBase.Util.MST_TEXT_ID.TEST_3D));
-        this._messageText.SetText(DataUtil.GetText(UnityBase.Util.MST_TEXT_ID.IN_PREPARATION));
+        this._nameText.SetText(DataUtil.GetText(DataUtil.MST_TEXT_ID.TEST_3D));
+        this._messageText.SetText(DataUtil.GetText(DataUtil.MST_TEXT_ID.IN_PREPARATION));
 
         return (0);
     }

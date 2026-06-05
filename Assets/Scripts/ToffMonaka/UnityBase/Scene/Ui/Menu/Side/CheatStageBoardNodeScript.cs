@@ -10,6 +10,7 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using TMPro;
 using ToffMonaka.UnityBase.Data;
+using ToffMonaka.UnityBase.Sound;
 
 
 namespace ToffMonaka {
@@ -36,11 +37,11 @@ public class CheatStageBoardNodeScript : UnityBase.Scene.Ui.Menu.Side.StageBoard
 
     public new UnityBase.Scene.Ui.Menu.Side.CheatStageBoardNodeScriptCreateDesc createDesc{get; private set;} = null;
 
-    private UnityBase.Scene.Ui.Menu.Side.CheatCommand _cheatCommand = new UnityBase.Scene.Ui.Menu.Side.CheatCommand("");
-    private UnityBase.Scene.Ui.Menu.Side.CheatCommandCalculateOption _cheatCommandCalculateOption = new UnityBase.Scene.Ui.Menu.Side.CheatCommandCalculateOption();
+    private UnityBase.Scene.Ui.Menu.Side.CheatCommand _cheatCommand = new("");
+    private UnityBase.Scene.Ui.Menu.Side.CheatCommandCalculateOption _cheatCommandCalculateOption = new();
     private double _calculateValue = 0.0;
     private int _calculateResultValue = 0;
-    private List<UnityBase.Scene.Ui.Menu.Side.CheatStageBoardItemNodeScript> _itemNodeScriptContainer = new List<UnityBase.Scene.Ui.Menu.Side.CheatStageBoardItemNodeScript>();
+    private List<UnityBase.Scene.Ui.Menu.Side.CheatStageBoardItemNodeScript> _itemNodeScriptContainer = new();
 
     /**
      * @brief _OnGetScriptIndex関数
@@ -48,34 +49,34 @@ public class CheatStageBoardNodeScript : UnityBase.Scene.Ui.Menu.Side.StageBoard
      */
     protected override int _OnGetScriptIndex()
     {
-        return ((int)UnityBase.Util.SCENE.SCRIPT_INDEX.SIDE_MENU_CHEAT_STAGE_BOARD_NODE);
+        return ((int)SceneUtil.SCRIPT_INDEX.SIDE_MENU_CHEAT_STAGE_BOARD_NODE);
     }
 
     /**
      * @brief _OnGetBoardType関数
      * @return board_type (board_type)
      */
-    protected override UnityBase.Util.SCENE.SIDE_MENU_BOARD_TYPE _OnGetBoardType()
+    protected override SceneUtil.SIDE_MENU_BOARD_TYPE _OnGetBoardType()
     {
-        return (UnityBase.Util.SCENE.SIDE_MENU_BOARD_TYPE.CHEAT_STAGE);
+        return (SceneUtil.SIDE_MENU_BOARD_TYPE.CHEAT_STAGE);
     }
 
     /**
      * @brief _OnGetSelect2BoardType関数
      * @return select2_board_type (select2_board_type)
      */
-    protected override UnityBase.Util.SCENE.SIDE_MENU_SELECT2_BOARD_TYPE _OnGetSelect2BoardType()
+    protected override SceneUtil.SIDE_MENU_SELECT2_BOARD_TYPE _OnGetSelect2BoardType()
     {
-        return (UnityBase.Util.SCENE.SIDE_MENU_SELECT2_BOARD_TYPE.NONE);
+        return (SceneUtil.SIDE_MENU_SELECT2_BOARD_TYPE.NONE);
     }
 
     /**
      * @brief _OnGetStageBoardType関数
      * @return stage_board_type (stage_board_type)
      */
-    protected override UnityBase.Util.SCENE.SIDE_MENU_STAGE_BOARD_TYPE _OnGetStageBoardType()
+    protected override SceneUtil.SIDE_MENU_STAGE_BOARD_TYPE _OnGetStageBoardType()
     {
-        return (UnityBase.Util.SCENE.SIDE_MENU_STAGE_BOARD_TYPE.CHEAT);
+        return (SceneUtil.SIDE_MENU_STAGE_BOARD_TYPE.CHEAT);
     }
 
     /**
@@ -109,11 +110,11 @@ public class CheatStageBoardNodeScript : UnityBase.Scene.Ui.Menu.Side.StageBoard
             return (-1);
         }
 
-        this._nameText.SetText(DataUtil.GetText(UnityBase.Util.MST_TEXT_ID.CHEAT));
+        this._nameText.SetText(DataUtil.GetText(DataUtil.MST_TEXT_ID.CHEAT));
 
-        this._commandNameText.SetText(DataUtil.GetText(UnityBase.Util.MST_TEXT_ID.COMMAND));
-        this._okButtonNameText.SetText(DataUtil.GetText(UnityBase.Util.MST_TEXT_ID.OK));
-        this._cancelButtonNameText.SetText(DataUtil.GetText(UnityBase.Util.MST_TEXT_ID.CANCEL));
+        this._commandNameText.SetText(DataUtil.GetText(DataUtil.MST_TEXT_ID.COMMAND));
+        this._okButtonNameText.SetText(DataUtil.GetText(DataUtil.MST_TEXT_ID.OK));
+        this._cancelButtonNameText.SetText(DataUtil.GetText(DataUtil.MST_TEXT_ID.CANCEL));
 
         this._itemNode.SetActive(false);
 
@@ -225,7 +226,7 @@ public class CheatStageBoardNodeScript : UnityBase.Scene.Ui.Menu.Side.StageBoard
             return;
         }
 
-        UnityBase.Global.GetSceneManager().PlaySoundSe((int)UnityBase.Util.SOUND.SE_INDEX.OK2);
+        SceneUtil.GetManager().PlaySoundSe((int)SoundUtil.SE_SOUND_INDEX.OK2);
 
         this._cheatCommand.Calculate(out this._calculateValue, this._cheatCommandCalculateOption, false);
 
@@ -244,7 +245,7 @@ public class CheatStageBoardNodeScript : UnityBase.Scene.Ui.Menu.Side.StageBoard
             return;
         }
 
-        UnityBase.Global.GetSceneManager().PlaySoundSe((int)UnityBase.Util.SOUND.SE_INDEX.CANCEL);
+        SceneUtil.GetManager().PlaySoundSe((int)SoundUtil.SE_SOUND_INDEX.CANCEL);
 
         this._onCloseStageBoard(this);
 

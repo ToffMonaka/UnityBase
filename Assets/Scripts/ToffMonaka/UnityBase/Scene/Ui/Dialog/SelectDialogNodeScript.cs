@@ -9,6 +9,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using TMPro;
+using ToffMonaka.UnityBase.Sound;
 
 
 namespace ToffMonaka {
@@ -27,7 +28,7 @@ public class SelectDialogNodeScriptCreateDesc : UnityBase.Scene.Ui.Dialog.Dialog
      */
     public override string GetPrefabFilePath()
     {
-        return (UnityBase.Util.FILE_PATH.SELECT_DIALOG_PREFAB);
+        return (Util.FILE_PATH.SELECT_DIALOG_PREFAB);
     }
 
     /**
@@ -55,7 +56,7 @@ public class SelectDialogNodeScript : UnityBase.Scene.Ui.Dialog.DialogNodeScript
     public new UnityBase.Scene.Ui.Dialog.SelectDialogNodeScriptCreateDesc createDesc{get; private set;} = null;
 
     private UnityBase.Scene.Ui.Dialog.SelectDialogEngine _engine = null;
-    private List<UnityBase.Scene.Ui.Dialog.SelectDialogItemNodeScript> _itemNodeScriptContainer = new List<UnityBase.Scene.Ui.Dialog.SelectDialogItemNodeScript>();
+    private List<UnityBase.Scene.Ui.Dialog.SelectDialogItemNodeScript> _itemNodeScriptContainer = new();
     private System.Action<UnityBase.Scene.Ui.Dialog.SelectDialogNodeScript, UnityBase.Scene.Ui.Dialog.SelectDialogItemNodeScript> _onClickItem = null;
 
     /**
@@ -64,7 +65,7 @@ public class SelectDialogNodeScript : UnityBase.Scene.Ui.Dialog.DialogNodeScript
      */
     protected override int _OnGetScriptIndex()
     {
-        return ((int)UnityBase.Util.SCENE.SCRIPT_INDEX.SELECT_DIALOG_NODE);
+        return ((int)SceneUtil.SCRIPT_INDEX.SELECT_DIALOG_NODE);
     }
 
     /**
@@ -172,7 +173,7 @@ public class SelectDialogNodeScript : UnityBase.Scene.Ui.Dialog.DialogNodeScript
             return;
         }
 
-        UnityBase.Global.GetSceneManager().PlaySoundSe((int)UnityBase.Util.SOUND.SE_INDEX.CANCEL);
+        SceneUtil.GetManager().PlaySoundSe((int)SoundUtil.SE_SOUND_INDEX.CANCEL);
 
         this.Close(1);
 

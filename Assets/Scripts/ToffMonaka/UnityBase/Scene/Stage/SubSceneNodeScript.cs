@@ -26,7 +26,7 @@ public abstract class SubSceneNodeScript : UnityBase.Scene.SubSceneNodeScript
 
     public new UnityBase.Scene.Stage.SubSceneNodeScriptCreateDesc createDesc{get; private set;} = null;
 
-    private UnityBase.Util.SCENE.STAGE_TYPE _stageType = UnityBase.Util.SCENE.STAGE_TYPE.NONE;
+    private SceneUtil.STAGE_TYPE _stageType = SceneUtil.STAGE_TYPE.NONE;
     protected UnityBase.Scene.Ui.BackButtonNodeScript _backButtonNodeScript = null;
 
     /**
@@ -35,16 +35,16 @@ public abstract class SubSceneNodeScript : UnityBase.Scene.SubSceneNodeScript
      */
     protected override int _OnGetScriptIndex()
     {
-        return ((int)UnityBase.Util.SCENE.SCRIPT_INDEX.STAGE_SUB_SCENE_NODE);
+        return ((int)SceneUtil.SCRIPT_INDEX.STAGE_SUB_SCENE_NODE);
     }
 
     /**
      * @brief _OnGetStageType関数
      * @return stage_type (stage_type)
      */
-    protected virtual UnityBase.Util.SCENE.STAGE_TYPE _OnGetStageType()
+    protected virtual SceneUtil.STAGE_TYPE _OnGetStageType()
     {
-        return (UnityBase.Util.SCENE.STAGE_TYPE.NONE);
+        return (SceneUtil.STAGE_TYPE.NONE);
     }
 
     /**
@@ -89,7 +89,7 @@ public abstract class SubSceneNodeScript : UnityBase.Scene.SubSceneNodeScript
                 this.Close(1, (owner) =>
                 {
                     {// SelectSubSceneNodeScript Create
-                        var script = UnityBase.Global.GetSceneManager().ChangeSubScene(UnityBase.Util.FILE_PATH.SELECT_SUB_SCENE_PREFAB) as UnityBase.Scene.Select.SubSceneNodeScript;
+                        var script = SceneUtil.GetManager().ChangeSubScene(Util.FILE_PATH.SELECT_SUB_SCENE_PREFAB) as UnityBase.Scene.Select.SubSceneNodeScript;
                         var script_create_desc = new UnityBase.Scene.Select.SubSceneNodeScriptCreateDesc();
 
                         script.Create(script_create_desc);
@@ -164,7 +164,7 @@ public abstract class SubSceneNodeScript : UnityBase.Scene.SubSceneNodeScript
      * @brief GetStageType関数
      * @return stage_type (stage_type)
      */
-    public UnityBase.Util.SCENE.STAGE_TYPE GetStageType()
+    public SceneUtil.STAGE_TYPE GetStageType()
     {
         return (this._stageType);
     }

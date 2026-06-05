@@ -8,6 +8,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using TMPro;
 using ToffMonaka.UnityBase.Data;
+using ToffMonaka.UnityBase.Sound;
 
 
 namespace ToffMonaka {
@@ -34,34 +35,34 @@ public class OptionSelect2BoardNodeScript : UnityBase.Scene.Ui.Menu.Side.Select2
      */
     protected override int _OnGetScriptIndex()
     {
-        return ((int)UnityBase.Util.SCENE.SCRIPT_INDEX.SIDE_MENU_OPTION_SELECT2_BOARD_NODE);
+        return ((int)SceneUtil.SCRIPT_INDEX.SIDE_MENU_OPTION_SELECT2_BOARD_NODE);
     }
 
     /**
      * @brief _OnGetBoardType関数
      * @return board_type (board_type)
      */
-    protected override UnityBase.Util.SCENE.SIDE_MENU_BOARD_TYPE _OnGetBoardType()
+    protected override SceneUtil.SIDE_MENU_BOARD_TYPE _OnGetBoardType()
     {
-        return (UnityBase.Util.SCENE.SIDE_MENU_BOARD_TYPE.OPTION_SELECT2);
+        return (SceneUtil.SIDE_MENU_BOARD_TYPE.OPTION_SELECT2);
     }
 
     /**
      * @brief _OnGetSelect2BoardType関数
      * @return select2_board_type (select2_board_type)
      */
-    protected override UnityBase.Util.SCENE.SIDE_MENU_SELECT2_BOARD_TYPE _OnGetSelect2BoardType()
+    protected override SceneUtil.SIDE_MENU_SELECT2_BOARD_TYPE _OnGetSelect2BoardType()
     {
-        return (UnityBase.Util.SCENE.SIDE_MENU_SELECT2_BOARD_TYPE.OPTION);
+        return (SceneUtil.SIDE_MENU_SELECT2_BOARD_TYPE.OPTION);
     }
 
     /**
      * @brief _OnGetStageBoardType関数
      * @return stage_board_type (stage_board_type)
      */
-    protected override UnityBase.Util.SCENE.SIDE_MENU_STAGE_BOARD_TYPE _OnGetStageBoardType()
+    protected override SceneUtil.SIDE_MENU_STAGE_BOARD_TYPE _OnGetStageBoardType()
     {
-        return (UnityBase.Util.SCENE.SIDE_MENU_STAGE_BOARD_TYPE.NONE);
+        return (SceneUtil.SIDE_MENU_STAGE_BOARD_TYPE.NONE);
     }
 
     /**
@@ -95,17 +96,17 @@ public class OptionSelect2BoardNodeScript : UnityBase.Scene.Ui.Menu.Side.Select2
             return (-1);
         }
 
-        this._nameText.SetText(DataUtil.GetText(UnityBase.Util.MST_TEXT_ID.MENU) + " > " + DataUtil.GetText(UnityBase.Util.MST_TEXT_ID.OPTION));
-        this._backButtonNameText.SetText(DataUtil.GetText(UnityBase.Util.MST_TEXT_ID.BACK));
+        this._nameText.SetText(DataUtil.GetText(DataUtil.MST_TEXT_ID.MENU) + " > " + DataUtil.GetText(DataUtil.MST_TEXT_ID.OPTION));
+        this._backButtonNameText.SetText(DataUtil.GetText(DataUtil.MST_TEXT_ID.BACK));
 
         {// System ItemNodeScript Create
             var script = GameObject.Instantiate(this._itemNode, this._itemNode.transform.parent).GetComponent<UnityBase.Scene.Ui.Menu.Side.SelectBoardItemNodeScript>();
             var script_create_desc = new UnityBase.Scene.Ui.Menu.Side.SelectBoardItemNodeScriptCreateDesc();
 
-            script_create_desc.name = DataUtil.GetText(UnityBase.Util.MST_TEXT_ID.SYSTEM);
+            script_create_desc.name = DataUtil.GetText(DataUtil.MST_TEXT_ID.SYSTEM);
             script_create_desc.onClick = (owner) =>
             {
-                this._onOpenStageBoard(this, UnityBase.Util.SCENE.SIDE_MENU_STAGE_BOARD_TYPE.OPTION_SYSTEM);
+                this._onOpenStageBoard(this, SceneUtil.SIDE_MENU_STAGE_BOARD_TYPE.OPTION_SYSTEM);
 
                 return;
             };
@@ -120,10 +121,10 @@ public class OptionSelect2BoardNodeScript : UnityBase.Scene.Ui.Menu.Side.Select2
             var script = GameObject.Instantiate(this._itemNode, this._itemNode.transform.parent).GetComponent<UnityBase.Scene.Ui.Menu.Side.SelectBoardItemNodeScript>();
             var script_create_desc = new UnityBase.Scene.Ui.Menu.Side.SelectBoardItemNodeScriptCreateDesc();
 
-            script_create_desc.name = DataUtil.GetText(UnityBase.Util.MST_TEXT_ID.INPUT);
+            script_create_desc.name = DataUtil.GetText(DataUtil.MST_TEXT_ID.INPUT);
             script_create_desc.onClick = (owner) =>
             {
-                this._onOpenStageBoard(this, UnityBase.Util.SCENE.SIDE_MENU_STAGE_BOARD_TYPE.OPTION_INPUT);
+                this._onOpenStageBoard(this, SceneUtil.SIDE_MENU_STAGE_BOARD_TYPE.OPTION_INPUT);
 
                 return;
             };
@@ -138,10 +139,10 @@ public class OptionSelect2BoardNodeScript : UnityBase.Scene.Ui.Menu.Side.Select2
             var script = GameObject.Instantiate(this._itemNode, this._itemNode.transform.parent).GetComponent<UnityBase.Scene.Ui.Menu.Side.SelectBoardItemNodeScript>();
             var script_create_desc = new UnityBase.Scene.Ui.Menu.Side.SelectBoardItemNodeScriptCreateDesc();
 
-            script_create_desc.name = DataUtil.GetText(UnityBase.Util.MST_TEXT_ID.GRAPHIC);
+            script_create_desc.name = DataUtil.GetText(DataUtil.MST_TEXT_ID.GRAPHIC);
             script_create_desc.onClick = (owner) =>
             {
-                this._onOpenStageBoard(this, UnityBase.Util.SCENE.SIDE_MENU_STAGE_BOARD_TYPE.OPTION_GRAPHIC);
+                this._onOpenStageBoard(this, SceneUtil.SIDE_MENU_STAGE_BOARD_TYPE.OPTION_GRAPHIC);
 
                 return;
             };
@@ -156,10 +157,10 @@ public class OptionSelect2BoardNodeScript : UnityBase.Scene.Ui.Menu.Side.Select2
             var script = GameObject.Instantiate(this._itemNode, this._itemNode.transform.parent).GetComponent<UnityBase.Scene.Ui.Menu.Side.SelectBoardItemNodeScript>();
             var script_create_desc = new UnityBase.Scene.Ui.Menu.Side.SelectBoardItemNodeScriptCreateDesc();
 
-            script_create_desc.name = DataUtil.GetText(UnityBase.Util.MST_TEXT_ID.SOUND);
+            script_create_desc.name = DataUtil.GetText(DataUtil.MST_TEXT_ID.SOUND);
             script_create_desc.onClick = (owner) =>
             {
-                this._onOpenStageBoard(this, UnityBase.Util.SCENE.SIDE_MENU_STAGE_BOARD_TYPE.OPTION_SOUND);
+                this._onOpenStageBoard(this, SceneUtil.SIDE_MENU_STAGE_BOARD_TYPE.OPTION_SOUND);
 
                 return;
             };
@@ -232,7 +233,7 @@ public class OptionSelect2BoardNodeScript : UnityBase.Scene.Ui.Menu.Side.Select2
             return;
         }
 
-        UnityBase.Global.GetSceneManager().PlaySoundSe((int)UnityBase.Util.SOUND.SE_INDEX.CANCEL);
+        SceneUtil.GetManager().PlaySoundSe((int)SoundUtil.SE_SOUND_INDEX.CANCEL);
 
         this._onCloseSelect2Board(this);
 

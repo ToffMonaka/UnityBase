@@ -27,9 +27,9 @@ public abstract class BoardNodeScript : ToffMonaka.Tml.Scene.ObjectNodeScript
 
     public new UnityBase.Scene.Ui.Menu.Side.BoardNodeScriptCreateDesc createDesc{get; private set;} = null;
 
-    private UnityBase.Util.SCENE.SIDE_MENU_BOARD_TYPE _boardType = UnityBase.Util.SCENE.SIDE_MENU_BOARD_TYPE.NONE;
-    private UnityBase.Util.SCENE.SIDE_MENU_SELECT2_BOARD_TYPE _select2BoardType = UnityBase.Util.SCENE.SIDE_MENU_SELECT2_BOARD_TYPE.NONE;
-    private UnityBase.Util.SCENE.SIDE_MENU_STAGE_BOARD_TYPE _stageBoardType = UnityBase.Util.SCENE.SIDE_MENU_STAGE_BOARD_TYPE.NONE;
+    private SceneUtil.SIDE_MENU_BOARD_TYPE _boardType = SceneUtil.SIDE_MENU_BOARD_TYPE.NONE;
+    private SceneUtil.SIDE_MENU_SELECT2_BOARD_TYPE _select2BoardType = SceneUtil.SIDE_MENU_SELECT2_BOARD_TYPE.NONE;
+    private SceneUtil.SIDE_MENU_STAGE_BOARD_TYPE _stageBoardType = SceneUtil.SIDE_MENU_STAGE_BOARD_TYPE.NONE;
 
     /**
      * @brief _OnGetScriptIndex関数
@@ -37,34 +37,34 @@ public abstract class BoardNodeScript : ToffMonaka.Tml.Scene.ObjectNodeScript
      */
     protected override int _OnGetScriptIndex()
     {
-        return ((int)UnityBase.Util.SCENE.SCRIPT_INDEX.SIDE_MENU_BOARD_NODE);
+        return ((int)SceneUtil.SCRIPT_INDEX.SIDE_MENU_BOARD_NODE);
     }
 
     /**
      * @brief _OnGetBoardType関数
      * @return board_type (board_type)
      */
-    protected virtual UnityBase.Util.SCENE.SIDE_MENU_BOARD_TYPE _OnGetBoardType()
+    protected virtual SceneUtil.SIDE_MENU_BOARD_TYPE _OnGetBoardType()
     {
-        return (UnityBase.Util.SCENE.SIDE_MENU_BOARD_TYPE.NONE);
+        return (SceneUtil.SIDE_MENU_BOARD_TYPE.NONE);
     }
 
     /**
      * @brief _OnGetSelect2BoardType関数
      * @return select2_board_type (select2_board_type)
      */
-    protected virtual UnityBase.Util.SCENE.SIDE_MENU_SELECT2_BOARD_TYPE _OnGetSelect2BoardType()
+    protected virtual SceneUtil.SIDE_MENU_SELECT2_BOARD_TYPE _OnGetSelect2BoardType()
     {
-        return (UnityBase.Util.SCENE.SIDE_MENU_SELECT2_BOARD_TYPE.NONE);
+        return (SceneUtil.SIDE_MENU_SELECT2_BOARD_TYPE.NONE);
     }
 
     /**
      * @brief _OnGetStageBoardType関数
      * @return stage_board_type (stage_board_type)
      */
-    protected virtual UnityBase.Util.SCENE.SIDE_MENU_STAGE_BOARD_TYPE _OnGetStageBoardType()
+    protected virtual SceneUtil.SIDE_MENU_STAGE_BOARD_TYPE _OnGetStageBoardType()
     {
-        return (UnityBase.Util.SCENE.SIDE_MENU_STAGE_BOARD_TYPE.NONE);
+        return (SceneUtil.SIDE_MENU_STAGE_BOARD_TYPE.NONE);
     }
 
     /**
@@ -202,7 +202,7 @@ public abstract class BoardNodeScript : ToffMonaka.Tml.Scene.ObjectNodeScript
      * @brief GetBoardType関数
      * @return board_type (board_type)
      */
-    public UnityBase.Util.SCENE.SIDE_MENU_BOARD_TYPE GetBoardType()
+    public SceneUtil.SIDE_MENU_BOARD_TYPE GetBoardType()
     {
         return (this._boardType);
     }
@@ -211,7 +211,7 @@ public abstract class BoardNodeScript : ToffMonaka.Tml.Scene.ObjectNodeScript
      * @brief GetSelect2BoardType関数
      * @return select2_board_type (select2_board_type)
      */
-    public UnityBase.Util.SCENE.SIDE_MENU_SELECT2_BOARD_TYPE GetSelect2BoardType()
+    public SceneUtil.SIDE_MENU_SELECT2_BOARD_TYPE GetSelect2BoardType()
     {
         return (this._select2BoardType);
     }
@@ -220,7 +220,7 @@ public abstract class BoardNodeScript : ToffMonaka.Tml.Scene.ObjectNodeScript
      * @brief GetStageBoardType関数
      * @return stage_board_type (stage_board_type)
      */
-    public UnityBase.Util.SCENE.SIDE_MENU_STAGE_BOARD_TYPE GetStageBoardType()
+    public SceneUtil.SIDE_MENU_STAGE_BOARD_TYPE GetStageBoardType()
     {
         return (this._stageBoardType);
     }

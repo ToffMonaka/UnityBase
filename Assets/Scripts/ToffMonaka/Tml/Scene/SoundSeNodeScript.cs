@@ -29,7 +29,7 @@ public class SoundSeNodeScript : ObjectNodeScript
      */
     protected override int _OnGetScriptIndex()
     {
-        return ((int)Util.SCENE.SCRIPT_INDEX.SOUND_SE_NODE);
+        return ((int)SceneUtil.SCRIPT_INDEX.SOUND_SE_NODE);
     }
 
     /**

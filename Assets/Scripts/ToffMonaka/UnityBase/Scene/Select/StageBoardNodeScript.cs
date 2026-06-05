@@ -16,7 +16,7 @@ namespace UnityBase.Scene.Select {
  */
 public class StageBoardNodeScriptCreateDesc : UnityBase.Scene.Select.BoardNodeScriptCreateDesc
 {
-    public System.Action<UnityBase.Scene.Select.StageBoardNodeScript, UnityBase.Util.SCENE.STAGE_TYPE> onOpenStage = null;
+    public System.Action<UnityBase.Scene.Select.StageBoardNodeScript, SceneUtil.STAGE_TYPE> onOpenStage = null;
 }
 
 /**
@@ -28,8 +28,8 @@ public class StageBoardNodeScript : UnityBase.Scene.Select.BoardNodeScript
 
     public new UnityBase.Scene.Select.StageBoardNodeScriptCreateDesc createDesc{get; private set;} = null;
 
-    private List<UnityBase.Scene.Select.StageBoardItemNodeScript> _itemNodeScriptContainer = new List<UnityBase.Scene.Select.StageBoardItemNodeScript>();
-    private System.Action<UnityBase.Scene.Select.StageBoardNodeScript, UnityBase.Util.SCENE.STAGE_TYPE> _onOpenStage = null;
+    private List<UnityBase.Scene.Select.StageBoardItemNodeScript> _itemNodeScriptContainer = new();
+    private System.Action<UnityBase.Scene.Select.StageBoardNodeScript, SceneUtil.STAGE_TYPE> _onOpenStage = null;
 
     /**
      * @brief _OnGetScriptIndex関数
@@ -37,16 +37,16 @@ public class StageBoardNodeScript : UnityBase.Scene.Select.BoardNodeScript
      */
     protected override int _OnGetScriptIndex()
     {
-        return ((int)UnityBase.Util.SCENE.SCRIPT_INDEX.SELECT_STAGE_BOARD_ITEM_NODE);
+        return ((int)SceneUtil.SCRIPT_INDEX.SELECT_STAGE_BOARD_ITEM_NODE);
     }
 
     /**
      * @brief _OnGetBoardType関数
      * @return board_type (board_type)
      */
-    protected override UnityBase.Util.SCENE.SELECT_BOARD_TYPE _OnGetBoardType()
+    protected override SceneUtil.SELECT_BOARD_TYPE _OnGetBoardType()
     {
-        return (UnityBase.Util.SCENE.SELECT_BOARD_TYPE.STAGE);
+        return (SceneUtil.SELECT_BOARD_TYPE.STAGE);
     }
 
     /**
@@ -82,7 +82,7 @@ public class StageBoardNodeScript : UnityBase.Scene.Select.BoardNodeScript
 
         this._onOpenStage = this.createDesc.onOpenStage;
 
-        this._nameText.SetText(DataUtil.GetText(UnityBase.Util.MST_TEXT_ID.STAGE));
+        this._nameText.SetText(DataUtil.GetText(DataUtil.MST_TEXT_ID.STAGE));
 
         this._itemNode.SetActive(false);
 
@@ -90,10 +90,10 @@ public class StageBoardNodeScript : UnityBase.Scene.Select.BoardNodeScript
             var script = GameObject.Instantiate(this._itemNode, this._itemNode.transform.parent).GetComponent<UnityBase.Scene.Select.StageBoardItemNodeScript>();
             var script_create_desc = new UnityBase.Scene.Select.StageBoardItemNodeScriptCreateDesc();
 
-            script_create_desc.name = DataUtil.GetText(UnityBase.Util.MST_TEXT_ID.TEST_2D);
+            script_create_desc.name = DataUtil.GetText(DataUtil.MST_TEXT_ID.TEST_2D);
             script_create_desc.onClick = (owner) =>
             {
-                this._onOpenStage(this, UnityBase.Util.SCENE.STAGE_TYPE.TEST_2D);
+                this._onOpenStage(this, SceneUtil.STAGE_TYPE.TEST_2D);
 
                 return;
             };
@@ -108,10 +108,10 @@ public class StageBoardNodeScript : UnityBase.Scene.Select.BoardNodeScript
             var script = GameObject.Instantiate(this._itemNode, this._itemNode.transform.parent).GetComponent<UnityBase.Scene.Select.StageBoardItemNodeScript>();
             var script_create_desc = new UnityBase.Scene.Select.StageBoardItemNodeScriptCreateDesc();
 
-            script_create_desc.name = DataUtil.GetText(UnityBase.Util.MST_TEXT_ID.TEST_3D);
+            script_create_desc.name = DataUtil.GetText(DataUtil.MST_TEXT_ID.TEST_3D);
             script_create_desc.onClick = (owner) =>
             {
-                this._onOpenStage(this, UnityBase.Util.SCENE.STAGE_TYPE.TEST_3D);
+                this._onOpenStage(this, SceneUtil.STAGE_TYPE.TEST_3D);
 
                 return;
             };

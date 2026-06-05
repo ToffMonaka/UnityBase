@@ -35,7 +35,7 @@ public abstract class SubSceneNodeScript : ToffMonaka.Tml.Scene.SubSceneNodeScri
      */
     protected override int _OnGetScriptIndex()
     {
-        return ((int)UnityBase.Util.SCENE.SCRIPT_INDEX.SUB_SCENE_NODE);
+        return ((int)SceneUtil.SCRIPT_INDEX.SUB_SCENE_NODE);
     }
 
     /**
@@ -155,7 +155,7 @@ public abstract class SubSceneNodeScript : ToffMonaka.Tml.Scene.SubSceneNodeScri
     {
         base._OnOpened();
 
-        UnityBase.Global.GetSceneManager().EnableInputEventSystem();
+        SceneUtil.GetManager().EnableInputEventSystem();
 
         if (this._coverSystemNodeScript != null) {
             this._coverSystemNodeScript.CloseCover();
@@ -171,7 +171,7 @@ public abstract class SubSceneNodeScript : ToffMonaka.Tml.Scene.SubSceneNodeScri
     {
         base._OnClose();
 
-        UnityBase.Global.GetSceneManager().DisableInputEventSystem();
+        SceneUtil.GetManager().DisableInputEventSystem();
 
         if (this._coverSystemNodeScript != null) {
             this._coverSystemNodeScript.CloseCover();

@@ -7,6 +7,7 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 using DG.Tweening;
+using ToffMonaka.UnityBase.Sound;
 
 
 namespace ToffMonaka {
@@ -34,7 +35,7 @@ public class BackButtonNodeScript : ToffMonaka.Tml.Scene.ObjectNodeScript
      */
     protected override int _OnGetScriptIndex()
     {
-        return ((int)UnityBase.Util.SCENE.SCRIPT_INDEX.STAGE_BACK_BUTTON_NODE);
+        return ((int)SceneUtil.SCRIPT_INDEX.STAGE_BACK_BUTTON_NODE);
     }
 
     /**
@@ -176,7 +177,7 @@ public class BackButtonNodeScript : ToffMonaka.Tml.Scene.ObjectNodeScript
             return;
         }
 
-        UnityBase.Global.GetSceneManager().PlaySoundSe((int)UnityBase.Util.SOUND.SE_INDEX.CANCEL);
+        SceneUtil.GetManager().PlaySoundSe((int)SoundUtil.SE_SOUND_INDEX.CANCEL);
 
         this._onClick?.Invoke(this);
 
