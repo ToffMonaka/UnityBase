@@ -144,18 +144,18 @@ public static class SceneUtil
      * @brief GetMainSceneNodeScript関数
      * @return main_scene_node_script (main_scene_node_script)
      */
-    public static UnityBase.Scene.MainSceneNodeScript GetMainSceneNodeScript()
+    public static MainSceneNodeScript GetMainSceneNodeScript()
     {
-        return (SceneUtil.GetManager().GetMainSceneNodeScript() as UnityBase.Scene.MainSceneNodeScript);
+        return (SceneUtil.GetManager().GetMainSceneNodeScript() as MainSceneNodeScript);
     }
 
     /**
      * @brief GetSubSceneNodeScript関数
      * @return sub_scene_node_script (sub_scene_node_script)
      */
-    public static UnityBase.Scene.SubSceneNodeScript GetSubSceneNodeScript()
+    public static SubSceneNodeScript GetSubSceneNodeScript()
     {
-        return (SceneUtil.GetManager().GetSubSceneNodeScript() as UnityBase.Scene.SubSceneNodeScript);
+        return (SceneUtil.GetManager().GetSubSceneNodeScript() as SubSceneNodeScript);
     }
 }
 }

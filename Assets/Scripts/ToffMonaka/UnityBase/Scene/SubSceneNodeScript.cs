@@ -4,6 +4,9 @@
  */
 
 using UnityEngine;
+using ToffMonaka.UnityBase.Scene.SideMenu;
+using ToffMonaka.UnityBase.Scene.CoverSystem;
+using ToffMonaka.UnityBase.Scene.DialogSystem;
 
 namespace ToffMonaka {
 namespace UnityBase.Scene {
@@ -23,11 +26,11 @@ public abstract class SubSceneNodeScript : ToffMonaka.Tml.Scene.SubSceneNodeScri
     [SerializeField] private GameObject _dialogSystemNode = null;
     [SerializeField] private GameObject _coverSystemNode = null;
 
-    public new UnityBase.Scene.SubSceneNodeScriptCreateDesc createDesc{get; private set;} = null;
+    public new SubSceneNodeScriptCreateDesc createDesc{get; private set;} = null;
 
-    private UnityBase.Scene.Ui.Menu.Side.NodeScript _sideMenuNodeScript = null;
-    private UnityBase.Scene.Ui.Dialog.SystemNodeScript _dialogSystemNodeScript = null;
-    private UnityBase.Scene.Ui.Cover.SystemNodeScript _coverSystemNodeScript = null;
+    private SideMenuNodeScript _sideMenuNodeScript = null;
+    private DialogSystemNodeScript _dialogSystemNodeScript = null;
+    private CoverSystemNodeScript _coverSystemNodeScript = null;
 
     /**
      * @brief _OnGetScriptIndex関数
@@ -71,8 +74,8 @@ public abstract class SubSceneNodeScript : ToffMonaka.Tml.Scene.SubSceneNodeScri
 
         // SideMenuNodeScript Create
         if (this._sideMenuNode != null) {
-            var script = this._sideMenuNode.GetComponent<UnityBase.Scene.Ui.Menu.Side.NodeScript>();
-            var script_create_desc = new UnityBase.Scene.Ui.Menu.Side.NodeScriptCreateDesc();
+            var script = this._sideMenuNode.GetComponent<SideMenuNodeScript>();
+            var script_create_desc = new SideMenuNodeScriptCreateDesc();
 
             script.Create(script_create_desc);
             script.Open(0);
@@ -82,8 +85,8 @@ public abstract class SubSceneNodeScript : ToffMonaka.Tml.Scene.SubSceneNodeScri
 
         // DialogSystemNodeScript Create
         if (this._dialogSystemNode != null) {
-            var script = this._dialogSystemNode.GetComponent<UnityBase.Scene.Ui.Dialog.SystemNodeScript>();
-            var script_create_desc = new UnityBase.Scene.Ui.Dialog.SystemNodeScriptCreateDesc();
+            var script = this._dialogSystemNode.GetComponent<DialogSystemNodeScript>();
+            var script_create_desc = new DialogSystemNodeScriptCreateDesc();
 
             script.Create(script_create_desc);
             script.Open(0);
@@ -93,8 +96,8 @@ public abstract class SubSceneNodeScript : ToffMonaka.Tml.Scene.SubSceneNodeScri
 
         // CoverSystemNodeScript Create
         if (this._coverSystemNode != null) {
-            var script = this._coverSystemNode.GetComponent<UnityBase.Scene.Ui.Cover.SystemNodeScript>();
-            var script_create_desc = new UnityBase.Scene.Ui.Cover.SystemNodeScriptCreateDesc();
+            var script = this._coverSystemNode.GetComponent<CoverSystemNodeScript>();
+            var script_create_desc = new CoverSystemNodeScriptCreateDesc();
 
             script.Create(script_create_desc);
             script.Open(0);
@@ -112,12 +115,12 @@ public abstract class SubSceneNodeScript : ToffMonaka.Tml.Scene.SubSceneNodeScri
     public override void SetCreateDesc(ToffMonaka.Tml.Scene.ScriptCreateDesc create_desc = null)
     {
         if (create_desc == null) {
-            this.SetCreateDesc(new UnityBase.Scene.SubSceneNodeScriptCreateDesc());
+            this.SetCreateDesc(new SubSceneNodeScriptCreateDesc());
 
             return;
         }
 
-	    this.createDesc = create_desc as UnityBase.Scene.SubSceneNodeScriptCreateDesc;
+	    this.createDesc = create_desc as SubSceneNodeScriptCreateDesc;
 
         base.SetCreateDesc(this.createDesc);
 
@@ -198,7 +201,7 @@ public abstract class SubSceneNodeScript : ToffMonaka.Tml.Scene.SubSceneNodeScri
      * @brief GetSideMenuNodeScript関数
      * @return side_menu_node_script (side_menu_node_script)
      */
-    public UnityBase.Scene.Ui.Menu.Side.NodeScript GetSideMenuNodeScript()
+    public SideMenuNodeScript GetSideMenuNodeScript()
     {
         return (this._sideMenuNodeScript);
     }
@@ -207,7 +210,7 @@ public abstract class SubSceneNodeScript : ToffMonaka.Tml.Scene.SubSceneNodeScri
      * @brief GetDialogSystemNodeScript関数
      * @return dialog_sys_node_script (dialog_system_node_script)
      */
-    public UnityBase.Scene.Ui.Dialog.SystemNodeScript GetDialogSystemNodeScript()
+    public DialogSystemNodeScript GetDialogSystemNodeScript()
     {
         return (this._dialogSystemNodeScript);
     }
@@ -216,7 +219,7 @@ public abstract class SubSceneNodeScript : ToffMonaka.Tml.Scene.SubSceneNodeScri
      * @brief GetCoverSystemNodeScript関数
      * @return cover_sys_node_script (cover_system_node_script)
      */
-    public UnityBase.Scene.Ui.Cover.SystemNodeScript GetCoverSystemNodeScript()
+    public CoverSystemNodeScript GetCoverSystemNodeScript()
     {
         return (this._coverSystemNodeScript);
     }

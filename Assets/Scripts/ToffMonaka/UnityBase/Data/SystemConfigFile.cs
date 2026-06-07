@@ -61,7 +61,7 @@ public class SystemConfigFileData
  */
 public class SystemConfigFile : ToffMonaka.Tml.File
 {
-	public UnityBase.Data.SystemConfigFileData data = new();
+	public SystemConfigFileData data = new();
 	public ToffMonaka.Tml.FileReadDesc<ToffMonaka.Tml.Data.IniFileReadDescData> readDesc = new();
 	public ToffMonaka.Tml.FileWriteDesc<ToffMonaka.Tml.Data.IniFileWriteDescData> writeDesc = new();
 

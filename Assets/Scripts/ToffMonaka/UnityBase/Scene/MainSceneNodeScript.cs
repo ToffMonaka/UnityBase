@@ -8,6 +8,7 @@ using ToffMonaka.UnityBase.Data;
 using ToffMonaka.UnityBase.Input;
 using ToffMonaka.UnityBase.Graphic;
 using ToffMonaka.UnityBase.Sound;
+using ToffMonaka.UnityBase.Scene.InitSubScene;
 
 namespace ToffMonaka {
 namespace UnityBase.Scene {
@@ -23,7 +24,7 @@ public class MainSceneNodeScriptCreateDesc : ToffMonaka.Tml.Scene.MainSceneNodeS
  */
 public class MainSceneNodeScript : ToffMonaka.Tml.Scene.MainSceneNodeScript
 {
-    public new UnityBase.Scene.MainSceneNodeScriptCreateDesc createDesc{get; private set;} = null;
+    public new MainSceneNodeScriptCreateDesc createDesc{get; private set;} = null;
 
     /**
      * @brief _OnGetScriptIndex関数
@@ -75,12 +76,12 @@ public class MainSceneNodeScript : ToffMonaka.Tml.Scene.MainSceneNodeScript
     public override void SetCreateDesc(ToffMonaka.Tml.Scene.ScriptCreateDesc create_desc = null)
     {
         if (create_desc == null) {
-            this.SetCreateDesc(new UnityBase.Scene.MainSceneNodeScriptCreateDesc());
+            this.SetCreateDesc(new MainSceneNodeScriptCreateDesc());
 
             return;
         }
 
-	    this.createDesc = create_desc as UnityBase.Scene.MainSceneNodeScriptCreateDesc;
+	    this.createDesc = create_desc as MainSceneNodeScriptCreateDesc;
 
         base.SetCreateDesc(this.createDesc);
 
@@ -130,15 +131,15 @@ public class MainSceneNodeScript : ToffMonaka.Tml.Scene.MainSceneNodeScript
 
         {// MainSceneNodeScript Create
             var script = this;
-            var script_create_desc = new UnityBase.Scene.MainSceneNodeScriptCreateDesc();
+            var script_create_desc = new MainSceneNodeScriptCreateDesc();
 
             script.Create(script_create_desc);
             script.Open(0);
         }
         
         {// InitSubSceneNodeScript Create
-            var script = SceneUtil.GetManager().ChangeSubScene(Util.FILE_PATH.INIT_SUB_SCENE_PREFAB) as UnityBase.Scene.InitSubSceneNodeScript;
-            var script_create_desc = new UnityBase.Scene.InitSubSceneNodeScriptCreateDesc();
+            var script = SceneUtil.GetManager().ChangeSubScene(Util.FILE_PATH.INIT_SUB_SCENE_PREFAB) as InitSubSceneNodeScript;
+            var script_create_desc = new InitSubSceneNodeScriptCreateDesc();
 
             script.Create(script_create_desc);
             script.Open(0);

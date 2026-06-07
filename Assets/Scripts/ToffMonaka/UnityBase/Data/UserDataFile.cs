@@ -34,7 +34,7 @@ public class UserDataFileData
  */
 public class UserDataFile : ToffMonaka.Tml.File
 {
-	public UnityBase.Data.UserDataFileData data = new();
+	public UserDataFileData data = new();
 	public ToffMonaka.Tml.FileReadDesc<ToffMonaka.Tml.Data.BinaryFileReadDescData> readDesc = new();
 	public ToffMonaka.Tml.FileWriteDesc<ToffMonaka.Tml.Data.BinaryFileWriteDescData> writeDesc = new();
 

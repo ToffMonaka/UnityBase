@@ -40,8 +40,8 @@ public class MstTextEntity
  */
 public class MstTextTableFileData
 {
-	public UnityBase.Data.MstTextEntity[] entityArray;
-	public UnityBase.Data.MstTextEntity[] entityArrayByMstTextId;
+	public MstTextEntity[] entityArray;
+	public MstTextEntity[] entityArrayByMstTextId;
 
     /**
      * @brief コンストラクタ
@@ -58,8 +58,8 @@ public class MstTextTableFileData
      */
     public virtual void Init()
     {
-    	this.entityArray = System.Array.Empty<UnityBase.Data.MstTextEntity>();
-    	this.entityArrayByMstTextId = System.Array.Empty<UnityBase.Data.MstTextEntity>();
+    	this.entityArray = System.Array.Empty<MstTextEntity>();
+    	this.entityArrayByMstTextId = System.Array.Empty<MstTextEntity>();
 
         return;
     }
@@ -70,7 +70,7 @@ public class MstTextTableFileData
  */
 public class MstTextTableFile : ToffMonaka.Tml.File
 {
-	public UnityBase.Data.MstTextTableFileData data = new();
+	public MstTextTableFileData data = new();
 	public ToffMonaka.Tml.FileReadDesc<ToffMonaka.Tml.Data.CsvFileReadDescData> readDesc = new();
 	public ToffMonaka.Tml.FileWriteDesc<ToffMonaka.Tml.Data.CsvFileWriteDescData> writeDesc = new();
 
@@ -124,11 +124,11 @@ public class MstTextTableFile : ToffMonaka.Tml.File
 	        return (-1);
         }
 
-        this.data.entityArray = new UnityBase.Data.MstTextEntity[csv_file.data.GetRowCount()];
-        this.data.entityArrayByMstTextId = new UnityBase.Data.MstTextEntity[csv_file.data.GetRowCount()];
+        this.data.entityArray = new MstTextEntity[csv_file.data.GetRowCount()];
+        this.data.entityArrayByMstTextId = new MstTextEntity[csv_file.data.GetRowCount()];
 
         for (int val_i = 0; val_i < csv_file.data.GetRowCount(); ++val_i) {
-            var entity = new UnityBase.Data.MstTextEntity();
+            var entity = new MstTextEntity();
 
             entity.mstTextId = int.Parse(csv_file.data.GetValueFast(val_i, 0));
             entity.text = csv_file.data.GetValueFast(val_i, 1);
