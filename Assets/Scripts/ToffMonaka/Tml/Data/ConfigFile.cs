@@ -67,7 +67,7 @@ public class ConfigFileReadDescData : TextFileReadDescData
     /**
      * @brief コンストラクタ
      */
-    public ConfigFileReadDescData() : base()
+    public ConfigFileReadDescData()
     {
         return;
     }
@@ -101,7 +101,7 @@ public class ConfigFileWriteDescData : TextFileWriteDescData
     /**
      * @brief コンストラクタ
      */
-    public ConfigFileWriteDescData() : base()
+    public ConfigFileWriteDescData()
     {
         return;
     }
@@ -139,7 +139,7 @@ public class ConfigFile : File
     /**
      * @brief コンストラクタ
      */
-    public ConfigFile() : base()
+    public ConfigFile()
     {
         return;
     }

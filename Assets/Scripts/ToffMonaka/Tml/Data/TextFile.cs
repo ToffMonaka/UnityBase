@@ -55,7 +55,7 @@ public class TextFileReadDescData : BinaryFileReadDescData
     /**
      * @brief コンストラクタ
      */
-    public TextFileReadDescData() : base()
+    public TextFileReadDescData()
     {
         return;
     }
@@ -101,7 +101,7 @@ public class TextFileWriteDescData : BinaryFileWriteDescData
     /**
      * @brief コンストラクタ
      */
-    public TextFileWriteDescData() : base()
+    public TextFileWriteDescData()
     {
         return;
     }
@@ -143,7 +143,7 @@ public class TextFile : File
     /**
      * @brief コンストラクタ
      */
-    public TextFile() : base()
+    public TextFile()
     {
         return;
     }

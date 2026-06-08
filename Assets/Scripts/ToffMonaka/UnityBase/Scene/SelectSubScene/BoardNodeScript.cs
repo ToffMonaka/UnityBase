@@ -6,10 +6,9 @@
 using UnityEngine;
 using TMPro;
 using DG.Tweening;
-using ToffMonaka.UnityBase.Scene;
 
 namespace ToffMonaka {
-namespace UnityBase.SelectSubScene {
+namespace UnityBase.Scene.SelectSubScene {
 /**
  * @brief BoardNodeScriptCreateDescクラス
  */

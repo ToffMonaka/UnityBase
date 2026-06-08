@@ -38,34 +38,36 @@ public class SceneManager
     public SceneManagerCreateDesc createDesc{get; private set;} = null;
 
     private GameObject _mainSceneNode = null;
-    private bool _mainSceneStartedFlag = false;
-    private bool _mainSceneEndedFlag = false;
+    private bool _mainSceneStartedFlag;
+    private bool _mainSceneEndedFlag;
     private GameObject _subSceneNode = null;
-    private GameObject _inputNode = null;
-    private EventSystem _inputEventSystem = null;
-    private GameObject _graphicNode = null;
-    private GameObject _soundNode = null;
-    public string _soundBgmPrefabFilePath = "";
+    private GameObject _inputNode;
+    private EventSystem _inputEventSystem;
+    private GameObject _graphicNode;
+    private GameObject _soundNode;
+    private string _soundBgmPrefabFilePath;
     private System.Tuple<GameObject, SoundBgmNodeScript> _soundBgmNodeScript = null;
-    private AudioClip[] _soundBgmAudioClipArray = null;
-	private float _soundBgmVolume = 1.0f;
-	private bool _soundBgmMuteFlag = false;
-    public string _soundSePrefabFilePath = "";
+    private AudioClip[] _soundBgmAudioClipArray;
+	private float _soundBgmVolume;
+	private bool _soundBgmMuteFlag;
+    private string _soundSePrefabFilePath;
     private List<System.Tuple<GameObject, SoundSeNodeScript>> _soundSeNodeScriptContainer = new();
-    private AudioClip[] _soundSeAudioClipArray = null;
-	private float _soundSeVolume = 1.0f;
-	private bool _soundSeMuteFlag = false;
+    private AudioClip[] _soundSeAudioClipArray;
+	private float _soundSeVolume;
+	private bool _soundSeMuteFlag;
     private List<Script>[] _scriptArray = null;
-    private MainSceneNodeScript _mainSceneNodeScript = null;
-    private SubSceneNodeScript _subSceneNodeScript = null;
-    private List<ObjectNodeScript>[]  _objectNodeScriptArray = null;
-    private List<PartsScript>[]  _partsScriptArray = null;
+    private MainSceneNodeScript _mainSceneNodeScript;
+    private SubSceneNodeScript _subSceneNodeScript;
+    private List<ObjectNodeScript>[]  _objectNodeScriptArray;
+    private List<PartsScript>[]  _partsScriptArray;
 
     /**
      * @brief コンストラクタ
      */
     public SceneManager()
     {
+        this.Init();
+
         return;
     }
 
@@ -106,10 +108,8 @@ public class SceneManager
             this._scriptArray = null;
         }
 
-        this._mainSceneNodeScript = null;
-        this._subSceneNodeScript = null;
-        this._objectNodeScriptArray = null;
-        this._partsScriptArray = null;
+        this._subSceneNode = null;
+        this._mainSceneNode = null;
 
         return;
     }
@@ -121,10 +121,8 @@ public class SceneManager
     {
         this._Release();
 
-        this._mainSceneNode = null;
         this._mainSceneStartedFlag = false;
         this._mainSceneEndedFlag = false;
-        this._subSceneNode = null;
         this._inputNode = null;
         this._inputEventSystem = null;
         this._graphicNode = null;
@@ -137,6 +135,10 @@ public class SceneManager
         this._soundSeAudioClipArray = null;
 	    this._soundSeVolume = 1.0f;
 	    this._soundSeMuteFlag = false;
+        this._mainSceneNodeScript = null;
+        this._subSceneNodeScript = null;
+        this._objectNodeScriptArray = null;
+        this._partsScriptArray = null;
 
         return;
     }

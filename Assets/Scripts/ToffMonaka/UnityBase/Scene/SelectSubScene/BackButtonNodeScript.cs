@@ -9,7 +9,7 @@ using DG.Tweening;
 using ToffMonaka.UnityBase.Sound;
 
 namespace ToffMonaka {
-namespace UnityBase.Scene {
+namespace UnityBase.Scene.SelectSubScene {
 /**
  * @brief BackButtonNodeScriptCreateDescクラス
  */
@@ -33,7 +33,7 @@ public class BackButtonNodeScript : ToffMonaka.Tml.Scene.ObjectNodeScript
      */
     protected override int _OnGetScriptIndex()
     {
-        return ((int)SceneUtil.SCRIPT_INDEX.STAGE_BACK_BUTTON_NODE);
+        return ((int)SceneUtil.SCRIPT_INDEX.SELECT_BACK_BUTTON_NODE);
     }
 
     /**

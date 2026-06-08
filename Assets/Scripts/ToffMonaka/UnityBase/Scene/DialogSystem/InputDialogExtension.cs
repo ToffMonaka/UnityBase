@@ -1,19 +1,19 @@
 ﻿/**
  * @file
- * @brief InputDialogEngineファイル
+ * @brief InputDialogExtensionファイル
  */
 
 namespace ToffMonaka {
 namespace UnityBase.Scene.DialogSystem {
 /**
- * @brief InputDialogEngineクラス
+ * @brief InputDialogExtensionクラス
  */
-public abstract class InputDialogEngine
+public abstract class InputDialogExtension
 {
     /**
      * @brief コンストラクタ
      */
-    public InputDialogEngine()
+    public InputDialogExtension()
     {
         return;
     }

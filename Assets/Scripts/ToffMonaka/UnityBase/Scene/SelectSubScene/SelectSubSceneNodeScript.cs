@@ -5,14 +5,13 @@
 
 using UnityEngine;
 using ToffMonaka.UnityBase.Sound;
-using ToffMonaka.UnityBase.Scene;
 using ToffMonaka.UnityBase.Scene.TitleSubScene;
 using ToffMonaka.UnityBase.Scene.Test2DStageSubScene;
 using ToffMonaka.UnityBase.Scene.Test3DStageSubScene;
 using ToffMonaka.UnityBase.Scene.CoverSystem;
 
 namespace ToffMonaka {
-namespace UnityBase.SelectSubScene {
+namespace UnityBase.Scene.SelectSubScene {
 /**
  * @brief SelectSubSceneNodeScriptCreateDescクラス
  */

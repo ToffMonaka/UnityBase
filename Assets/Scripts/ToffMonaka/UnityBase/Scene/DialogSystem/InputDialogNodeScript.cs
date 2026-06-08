@@ -17,7 +17,7 @@ namespace UnityBase.Scene.DialogSystem {
  */
 public class InputDialogNodeScriptCreateDesc : DialogNodeScriptCreateDesc
 {
-    public InputDialogEngine engine = null;
+    public InputDialogExtension extension = null;
     public System.Action<InputDialogNodeScript> onClickOkButton = null;
 
     /**
@@ -55,7 +55,7 @@ public class InputDialogNodeScript : DialogNodeScript
 
     public new InputDialogNodeScriptCreateDesc createDesc{get; private set;} = null;
 
-    private InputDialogEngine _engine = null;
+    private InputDialogExtension _extension = null;
     private System.Action<InputDialogNodeScript> _onClickOkButton = null;
 
     /**
@@ -98,14 +98,14 @@ public class InputDialogNodeScript : DialogNodeScript
             return (-1);
         }
 
-        if (this.createDesc.engine == null) {
+        if (this.createDesc.extension == null) {
             return (-1);
         }
 
-        this._engine = this.createDesc.engine;
+        this._extension = this.createDesc.extension;
         this._onClickOkButton = this.createDesc.onClickOkButton;
 
-        this._nameText.SetText(this._engine.OnGetName());
+        this._nameText.SetText(this._extension.OnGetName());
         this._okButtonNameText.transform.parent.gameObject.SetActive((this._onClickOkButton != null));
         this._okButtonNameText.SetText(DataUtil.GetText(DataUtil.MST_TEXT_ID.OK));
         this._cancelButtonNameText.SetText(DataUtil.GetText(DataUtil.MST_TEXT_ID.CANCEL));
@@ -220,12 +220,12 @@ public class InputDialogNodeScript : DialogNodeScript
     }
 
     /**
-     * @brief GetEngine関数
-     * @return engine (engine)
+     * @brief GetExtension関数
+     * @return ext (extension)
      */
-    public InputDialogEngine GetEngine()
+    public InputDialogExtension GetExtension()
     {
-        return (this._engine);
+        return (this._extension);
     }
 
     /**

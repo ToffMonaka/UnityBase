@@ -180,20 +180,20 @@ public class OptionSystemStageBoardNodeScript : StageBoardNodeScript
         {// LanguageSelectDialog Add
             var script_create_desc = new SelectDialogNodeScriptCreateDesc();
 
-            script_create_desc.engine = new LanguageSelectDialogEngine();
+            script_create_desc.extension = new LanguageSelectDialogExtension();
             script_create_desc.onClickItem = (owner, item_node_script) =>
             {
-                var item_node_script_engine = item_node_script.GetEngine() as LanguageSelectDialogItemEngine;
+                var item_node_script_extension = item_node_script.GetExtension() as LanguageSelectDialogItemExtension;
 
-                this.SetLanguageType(item_node_script_engine.GetLanguageType());
+                this.SetLanguageType(item_node_script_extension.GetLanguageType());
 
                 return;
             };
 
             var script = SceneUtil.GetSubSceneNodeScript().GetDialogSystemNodeScript().AddDialog(script_create_desc) as SelectDialogNodeScript;
 
-            script.AddItem(new LanguageSelectDialogItemEngine(Util.LANGUAGE_TYPE.ENGLISH));
-            script.AddItem(new LanguageSelectDialogItemEngine(Util.LANGUAGE_TYPE.JAPANESE));
+            script.AddItem(new LanguageSelectDialogItemExtension(Util.LANGUAGE_TYPE.ENGLISH));
+            script.AddItem(new LanguageSelectDialogItemExtension(Util.LANGUAGE_TYPE.JAPANESE));
         }
 
         return;

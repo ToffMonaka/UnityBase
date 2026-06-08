@@ -7,10 +7,9 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using TMPro;
 using ToffMonaka.UnityBase.Sound;
-using ToffMonaka.UnityBase.Scene;
 
 namespace ToffMonaka {
-namespace UnityBase.SelectSubScene {
+namespace UnityBase.Scene.SelectSubScene {
 /**
  * @brief StageBoardItemNodeScriptCreateDescクラス
  */

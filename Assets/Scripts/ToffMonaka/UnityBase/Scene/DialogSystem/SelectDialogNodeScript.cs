@@ -17,7 +17,7 @@ namespace UnityBase.Scene.DialogSystem {
  */
 public class SelectDialogNodeScriptCreateDesc : DialogNodeScriptCreateDesc
 {
-    public SelectDialogEngine engine = null;
+    public SelectDialogExtension extension = null;
     public System.Action<SelectDialogNodeScript, SelectDialogItemNodeScript> onClickItem = null;
 
     /**
@@ -53,7 +53,7 @@ public class SelectDialogNodeScript : DialogNodeScript
 
     public new SelectDialogNodeScriptCreateDesc createDesc{get; private set;} = null;
 
-    private SelectDialogEngine _engine = null;
+    private SelectDialogExtension _extension = null;
     private List<SelectDialogItemNodeScript> _itemNodeScriptContainer = new();
     private System.Action<SelectDialogNodeScript, SelectDialogItemNodeScript> _onClickItem = null;
 
@@ -97,14 +97,14 @@ public class SelectDialogNodeScript : DialogNodeScript
             return (-1);
         }
 
-        if (this.createDesc.engine == null) {
+        if (this.createDesc.extension == null) {
             return (-1);
         }
 
-        this._engine = this.createDesc.engine;
+        this._extension = this.createDesc.extension;
         this._onClickItem = this.createDesc.onClickItem;
 
-        this._nameText.SetText(this._engine.OnGetName());
+        this._nameText.SetText(this._extension.OnGetName());
         this._itemNode.SetActive(false);
 
         return (0);
@@ -179,23 +179,23 @@ public class SelectDialogNodeScript : DialogNodeScript
     }
 
     /**
-     * @brief GetEngine関数
-     * @return engine (engine)
+     * @brief GetExtension関数
+     * @return ext (extension)
      */
-    public SelectDialogEngine GetEngine()
+    public SelectDialogExtension GetExtension()
     {
-        return (this._engine);
+        return (this._extension);
     }
 
     /**
      * @brief AddItem関数
-     * @param item_engine (item_engine)
+     * @param item_ext (item_extension)
      * @return result_val (result_value)<br>
      * 0未満=失敗
      */
-    public int AddItem(SelectDialogItemEngine item_engine)
+    public int AddItem(SelectDialogItemExtension item_ext)
     {
-        if (item_engine == null) {
+        if (item_ext == null) {
             return (-1);
         }
 
@@ -203,7 +203,7 @@ public class SelectDialogNodeScript : DialogNodeScript
             var script = GameObject.Instantiate(this._itemNode, this._itemNode.transform.parent).GetComponent<SelectDialogItemNodeScript>();
             var script_create_desc = new SelectDialogItemNodeScriptCreateDesc();
 
-            script_create_desc.engine = item_engine;
+            script_create_desc.extension = item_ext;
             script_create_desc.onClick = (owner) =>
             {
                 this._onClickItem?.Invoke(this, owner);

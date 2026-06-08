@@ -15,8 +15,6 @@ public class UserDataFileData
      */
     public UserDataFileData()
     {
-        this.Init();
-
         return;
     }
 
@@ -44,7 +42,7 @@ public class UserDataFile : ToffMonaka.Tml.File
     /**
      * @brief コンストラクタ
      */
-    public UserDataFile() : base()
+    public UserDataFile()
     {
         return;
     }

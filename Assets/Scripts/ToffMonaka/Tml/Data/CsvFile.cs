@@ -99,7 +99,7 @@ public class CsvFileReadDescData : TextFileReadDescData
     /**
      * @brief コンストラクタ
      */
-    public CsvFileReadDescData() : base()
+    public CsvFileReadDescData()
     {
         return;
     }
@@ -133,7 +133,7 @@ public class CsvFileWriteDescData : TextFileWriteDescData
     /**
      * @brief コンストラクタ
      */
-    public CsvFileWriteDescData() : base()
+    public CsvFileWriteDescData()
     {
         return;
     }
@@ -171,7 +171,7 @@ public class CsvFile : File
     /**
      * @brief コンストラクタ
      */
-    public CsvFile() : base()
+    public CsvFile()
     {
         return;
     }

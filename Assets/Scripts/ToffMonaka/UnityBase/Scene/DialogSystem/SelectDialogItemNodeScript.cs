@@ -15,7 +15,7 @@ namespace UnityBase.Scene.DialogSystem {
  */
 public class SelectDialogItemNodeScriptCreateDesc : ToffMonaka.Tml.Scene.ObjectNodeScriptCreateDesc
 {
-    public SelectDialogItemEngine engine = null;
+    public SelectDialogItemExtension extension = null;
     public System.Action<SelectDialogItemNodeScript> onClick = null;
 }
 
@@ -28,7 +28,7 @@ public class SelectDialogItemNodeScript : ToffMonaka.Tml.Scene.ObjectNodeScript
 
     public new SelectDialogItemNodeScriptCreateDesc createDesc{get; private set;} = null;
 
-    private SelectDialogItemEngine _engine = null;
+    private SelectDialogItemExtension _extension = null;
     private System.Action<SelectDialogItemNodeScript> _onClick = null;
 
     /**
@@ -71,14 +71,14 @@ public class SelectDialogItemNodeScript : ToffMonaka.Tml.Scene.ObjectNodeScript
             return (-1);
         }
 
-        if (this.createDesc.engine == null) {
+        if (this.createDesc.extension == null) {
             return (-1);
         }
 
-        this._engine = this.createDesc.engine;
+        this._extension = this.createDesc.extension;
         this._onClick = this.createDesc.onClick;
 
-        this._nameText.SetText(this._engine.OnGetName());
+        this._nameText.SetText(this._extension.OnGetName());
 
         return (0);
     }
@@ -150,12 +150,12 @@ public class SelectDialogItemNodeScript : ToffMonaka.Tml.Scene.ObjectNodeScript
     }
 
     /**
-     * @brief GetEngine関数
-     * @return engine (engine)
+     * @brief GetExtension関数
+     * @return ext (extension)
      */
-    public SelectDialogItemEngine GetEngine()
+    public SelectDialogItemExtension GetExtension()
     {
-        return (this._engine);
+        return (this._extension);
     }
 }
 }

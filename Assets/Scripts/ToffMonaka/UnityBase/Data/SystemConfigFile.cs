@@ -24,8 +24,6 @@ public class SystemConfigFileData
      */
     public SystemConfigFileData()
     {
-        this.Init();
-
         return;
     }
 
@@ -71,7 +69,7 @@ public class SystemConfigFile : ToffMonaka.Tml.File
     /**
      * @brief コンストラクタ
      */
-    public SystemConfigFile() : base()
+    public SystemConfigFile()
     {
         return;
     }

@@ -1,6 +1,6 @@
 ﻿/**
  * @file
- * @brief LanguageSelectDialogEngineファイル
+ * @brief LanguageSelectDialogExtensionファイル
  */
 
 using ToffMonaka.UnityBase.Data;
@@ -8,14 +8,14 @@ using ToffMonaka.UnityBase.Data;
 namespace ToffMonaka {
 namespace UnityBase.Scene.DialogSystem {
 /**
- * @brief LanguageSelectDialogEngineクラス
+ * @brief LanguageSelectDialogExtensionクラス
  */
-public class LanguageSelectDialogEngine : SelectDialogEngine
+public class LanguageSelectDialogExtension : SelectDialogExtension
 {
     /**
      * @brief コンストラクタ
      */
-    public LanguageSelectDialogEngine()
+    public LanguageSelectDialogExtension()
     {
         return;
     }
@@ -31,17 +31,17 @@ public class LanguageSelectDialogEngine : SelectDialogEngine
 }
 
 /**
- * @brief LanguageSelectDialogItemEngineクラス
+ * @brief LanguageSelectDialogItemExtensionクラス
  */
-public class LanguageSelectDialogItemEngine : SelectDialogItemEngine
+public class LanguageSelectDialogItemExtension : SelectDialogItemExtension
 {
-    private Util.LANGUAGE_TYPE _languageType = Util.LANGUAGE_TYPE.NONE;
+    private Util.LANGUAGE_TYPE _languageType;
 
     /**
      * @brief コンストラクタ
      * @param language_type (language_type)
      */
-    public LanguageSelectDialogItemEngine(Util.LANGUAGE_TYPE language_type)
+    public LanguageSelectDialogItemExtension(Util.LANGUAGE_TYPE language_type)
     {
         this._languageType = language_type;
 

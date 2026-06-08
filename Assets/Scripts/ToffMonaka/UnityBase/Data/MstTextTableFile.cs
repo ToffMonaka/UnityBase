@@ -18,8 +18,6 @@ public class MstTextEntity
      */
     public MstTextEntity()
     {
-        this.Init();
-
         return;
     }
 
@@ -48,8 +46,6 @@ public class MstTextTableFileData
      */
     public MstTextTableFileData()
     {
-        this.Init();
-
         return;
     }
 
@@ -77,7 +73,7 @@ public class MstTextTableFile : ToffMonaka.Tml.File
     /**
      * @brief コンストラクタ
      */
-    public MstTextTableFile() : base()
+    public MstTextTableFile()
     {
         return;
     }

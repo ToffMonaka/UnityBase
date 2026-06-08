@@ -6,10 +6,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 using ToffMonaka.UnityBase.Data;
-using ToffMonaka.UnityBase.Scene;
 
 namespace ToffMonaka {
-namespace UnityBase.SelectSubScene {
+namespace UnityBase.Scene.SelectSubScene {
 /**
  * @brief StageBoardNodeScriptCreateDescクラス
  */

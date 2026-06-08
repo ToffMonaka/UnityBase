@@ -105,7 +105,7 @@ public class IniFileReadDescData : TextFileReadDescData
     /**
      * @brief コンストラクタ
      */
-    public IniFileReadDescData() : base()
+    public IniFileReadDescData()
     {
         return;
     }
@@ -139,7 +139,7 @@ public class IniFileWriteDescData : TextFileWriteDescData
     /**
      * @brief コンストラクタ
      */
-    public IniFileWriteDescData() : base()
+    public IniFileWriteDescData()
     {
         return;
     }
@@ -177,7 +177,7 @@ public class IniFile : File
     /**
      * @brief コンストラクタ
      */
-    public IniFile() : base()
+    public IniFile()
     {
         return;
     }

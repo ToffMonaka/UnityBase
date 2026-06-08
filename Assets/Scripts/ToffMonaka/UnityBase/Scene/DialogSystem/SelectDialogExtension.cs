@@ -1,19 +1,19 @@
 ﻿/**
  * @file
- * @brief SelectDialogEngineファイル
+ * @brief SelectDialogExtensionファイル
  */
 
 namespace ToffMonaka {
 namespace UnityBase.Scene.DialogSystem {
 /**
- * @brief SelectDialogEngineクラス
+ * @brief SelectDialogExtensionクラス
  */
-public abstract class SelectDialogEngine
+public abstract class SelectDialogExtension
 {
     /**
      * @brief コンストラクタ
      */
-    public SelectDialogEngine()
+    public SelectDialogExtension()
     {
         return;
     }
@@ -29,14 +29,14 @@ public abstract class SelectDialogEngine
 }
 
 /**
- * @brief SelectDialogItemEngineクラス
+ * @brief SelectDialogItemExtensionクラス
  */
-public abstract class SelectDialogItemEngine
+public abstract class SelectDialogItemExtension
 {
     /**
      * @brief コンストラクタ
      */
-    public SelectDialogItemEngine()
+    public SelectDialogItemExtension()
     {
         return;
     }
