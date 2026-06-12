@@ -155,7 +155,6 @@ MonoBehaviour:
   _sideMenuNode: {fileID: 3325477528043551081}
   _dialogSystemNode: {fileID: 2070502008531703582}
   _coverSystemNode: {fileID: 5216769178044874682}
-  _backButtonNode: {fileID: 0}
   _nameText: {fileID: 6349480083341717489}
   _messageText: {fileID: 7444193111028721119}
 --- !u!1 &6234500265013576458
@@ -569,7 +568,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!114 &3263812151888048594
 MonoBehaviour:

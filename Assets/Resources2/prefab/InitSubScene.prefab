@@ -60,7 +60,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!114 &4682695929648675902
 MonoBehaviour:
@@ -746,7 +746,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 779f5a4b72fd74a4cbcf8f0426d6a39c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ToffMonaka.UnityBase.Scene.InitSubSceneNodeScript
-  _mainMenuNode: {fileID: 0}
+  _sideMenuNode: {fileID: 0}
   _dialogSystemNode: {fileID: 0}
   _coverSystemNode: {fileID: 8847935367100909556}
   _messageText: {fileID: 3741505704045232267}

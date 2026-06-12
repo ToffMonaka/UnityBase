@@ -456,7 +456,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3946417981149148132}
   m_Layer: 0
-  m_Name: BoardGroup
+  m_Name: BoardLayout
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1624,7 +1624,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!114 &1945103478516154023
 MonoBehaviour:

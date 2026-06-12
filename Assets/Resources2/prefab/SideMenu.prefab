@@ -565,7 +565,7 @@ MonoBehaviour:
   m_Content: {fileID: 5332951049477120636}
   m_Horizontal: 0
   m_Vertical: 1
-  m_MovementType: 1
+  m_MovementType: 2
   m_Elasticity: 0.1
   m_Inertia: 1
   m_DecelerationRate: 0.135
@@ -4378,7 +4378,7 @@ MonoBehaviour:
   m_Content: {fileID: 4327310200290766835}
   m_Horizontal: 0
   m_Vertical: 1
-  m_MovementType: 1
+  m_MovementType: 2
   m_Elasticity: 0.1
   m_Inertia: 1
   m_DecelerationRate: 0.135
@@ -6436,7 +6436,7 @@ MonoBehaviour:
   m_Content: {fileID: 5957435845526087980}
   m_Horizontal: 0
   m_Vertical: 1
-  m_MovementType: 1
+  m_MovementType: 2
   m_Elasticity: 0.1
   m_Inertia: 1
   m_DecelerationRate: 0.135
@@ -9205,7 +9205,7 @@ MonoBehaviour:
   m_Content: {fileID: 6322692023875270013}
   m_Horizontal: 0
   m_Vertical: 1
-  m_MovementType: 1
+  m_MovementType: 2
   m_Elasticity: 0.1
   m_Inertia: 1
   m_DecelerationRate: 0.135
@@ -9384,7 +9384,7 @@ MonoBehaviour:
   m_Content: {fileID: 806176638679861567}
   m_Horizontal: 0
   m_Vertical: 1
-  m_MovementType: 1
+  m_MovementType: 2
   m_Elasticity: 0.1
   m_Inertia: 1
   m_DecelerationRate: 0.135
@@ -14174,7 +14174,7 @@ MonoBehaviour:
   m_Content: {fileID: 7070796604186643490}
   m_Horizontal: 0
   m_Vertical: 1
-  m_MovementType: 1
+  m_MovementType: 2
   m_Elasticity: 0.1
   m_Inertia: 1
   m_DecelerationRate: 0.135
@@ -15234,7 +15234,7 @@ MonoBehaviour:
   m_Content: {fileID: 6524722453022679949}
   m_Horizontal: 0
   m_Vertical: 1
-  m_MovementType: 1
+  m_MovementType: 2
   m_Elasticity: 0.1
   m_Inertia: 1
   m_DecelerationRate: 0.135
@@ -15715,7 +15715,7 @@ MonoBehaviour:
   m_Content: {fileID: 8281433033018491085}
   m_Horizontal: 0
   m_Vertical: 1
-  m_MovementType: 1
+  m_MovementType: 2
   m_Elasticity: 0.1
   m_Inertia: 1
   m_DecelerationRate: 0.135
@@ -15796,7 +15796,7 @@ MonoBehaviour:
   m_Content: {fileID: 7319149759537855607}
   m_Horizontal: 0
   m_Vertical: 1
-  m_MovementType: 1
+  m_MovementType: 2
   m_Elasticity: 0.1
   m_Inertia: 1
   m_DecelerationRate: 0.135
@@ -17638,7 +17638,7 @@ MonoBehaviour:
   m_Content: {fileID: 2510604624263753404}
   m_Horizontal: 0
   m_Vertical: 1
-  m_MovementType: 1
+  m_MovementType: 2
   m_Elasticity: 0.1
   m_Inertia: 1
   m_DecelerationRate: 0.135
@@ -19785,7 +19785,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3063986073987680765}
   m_Layer: 5
-  m_Name: BoardGroup
+  m_Name: BoardLayout
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -20201,7 +20201,7 @@ MonoBehaviour:
   m_Content: {fileID: 2781148936223699067}
   m_Horizontal: 0
   m_Vertical: 1
-  m_MovementType: 1
+  m_MovementType: 2
   m_Elasticity: 0.1
   m_Inertia: 1
   m_DecelerationRate: 0.135
@@ -26336,7 +26336,7 @@ MonoBehaviour:
   m_Content: {fileID: 4883715300851378011}
   m_Horizontal: 0
   m_Vertical: 1
-  m_MovementType: 1
+  m_MovementType: 2
   m_Elasticity: 0.1
   m_Inertia: 1
   m_DecelerationRate: 0.135
@@ -28123,7 +28123,7 @@ MonoBehaviour:
   m_Content: {fileID: 2328904840954355506}
   m_Horizontal: 0
   m_Vertical: 1
-  m_MovementType: 1
+  m_MovementType: 2
   m_Elasticity: 0.1
   m_Inertia: 1
   m_DecelerationRate: 0.135
