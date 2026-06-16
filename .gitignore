@@ -6,6 +6,12 @@ ehthumbs.db
 .DS_Store
 *.log
 
+/[Aa]ssets/AddressableAssetsData*
+/[Aa]ssets/TextMesh Pro*
+/[Aa]ssets/codeandweb.com*
+/[Aa]ssets/Plugins/Demigiant*
+/[Aa]ssets/Resources/DOTweenSettings*
+
 
 # This .gitignore file should be placed at the root of your Unity project directory
 #
