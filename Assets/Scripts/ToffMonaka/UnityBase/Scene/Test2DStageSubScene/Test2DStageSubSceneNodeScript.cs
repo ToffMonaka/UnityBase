@@ -4,8 +4,6 @@
  */
 
 using UnityEngine;
-using TMPro;
-using ToffMonaka.UnityBase.Data;
 using ToffMonaka.UnityBase.Scene.Stage;
 using ToffMonaka.UnityBase.Scene.CoverSystem;
 
@@ -23,10 +21,13 @@ public class Test2DStageSubSceneNodeScriptCreateDesc : StageSubSceneNodeScriptCr
  */
 public class Test2DStageSubSceneNodeScript : StageSubSceneNodeScript
 {
-    [SerializeField] private TMP_Text _nameText = null;
-    [SerializeField] private TMP_Text _messageText = null;
+    [SerializeField] private GameObject _fieldNode = null;
+    [SerializeField] private GameObject _playerNode = null;
 
     public new Test2DStageSubSceneNodeScriptCreateDesc createDesc{get; private set;} = null;
+
+    private FieldNodeScript _fieldNodeScript = null;
+    private PlayerNodeScript _playerNodeScript = null;
 
     /**
      * @brief _OnGetScriptIndex関数
@@ -77,8 +78,25 @@ public class Test2DStageSubSceneNodeScript : StageSubSceneNodeScript
             return (-1);
         }
 
-        this._nameText.SetText(DataUtil.GetText(DataUtil.MST_TEXT_ID.TEST_2D));
-        this._messageText.SetText(DataUtil.GetText(DataUtil.MST_TEXT_ID.IN_PREPARATION));
+        {// FieldNodeScript Create
+            var script = this._fieldNode.GetComponent<FieldNodeScript>();
+            var script_create_desc = new FieldNodeScriptCreateDesc();
+
+            script.Create(script_create_desc);
+            script.Open(0);
+
+            this._fieldNodeScript = script;
+        }
+
+        {// PlayerNodeScript Create
+            var script = this._playerNode.GetComponent<PlayerNodeScript>();
+            var script_create_desc = new PlayerNodeScriptCreateDesc();
+
+            script.Create(script_create_desc);
+            script.Open(0);
+
+            this._playerNodeScript = script;
+        }
 
         return (0);
     }
