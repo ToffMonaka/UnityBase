@@ -13,7 +13,7 @@ namespace UnityBase.Scene.SideMenu {
 /**
  * @brief CheatStageBoardItemNodeScriptCreateDescクラス
  */
-public class CheatStageBoardItemNodeScriptCreateDesc : ToffMonaka.Tml.Scene.ObjectNodeScriptCreateDesc
+public class CheatStageBoardItemNodeScriptCreateDesc : ToffMonaka.Tml.Scene.NodeScriptCreateDesc
 {
     public CheatCommandUtil.ADD_CODE_TYPE addCodeType = CheatCommandUtil.ADD_CODE_TYPE.NONE;
     public System.Action<CheatStageBoardItemNodeScript> onClick = null;
@@ -22,7 +22,7 @@ public class CheatStageBoardItemNodeScriptCreateDesc : ToffMonaka.Tml.Scene.Obje
 /**
  * @brief CheatStageBoardItemNodeScriptクラス
  */
-public class CheatStageBoardItemNodeScript : ToffMonaka.Tml.Scene.ObjectNodeScript
+public class CheatStageBoardItemNodeScript : ToffMonaka.Tml.Scene.NodeScript
 {
     [SerializeField] private TMP_Text _nameText = null;
     [SerializeField] private TMP_Text _detailText = null;

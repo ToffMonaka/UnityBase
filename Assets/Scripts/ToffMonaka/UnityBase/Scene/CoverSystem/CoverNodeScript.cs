@@ -8,7 +8,7 @@ namespace UnityBase.Scene.CoverSystem {
 /**
  * @brief CoverNodeScriptCreateDescクラス
  */
-public class CoverNodeScriptCreateDesc : ToffMonaka.Tml.Scene.ObjectNodeScriptCreateDesc
+public class CoverNodeScriptCreateDesc : ToffMonaka.Tml.Scene.NodeScriptCreateDesc
 {
     /**
      * @brief GetPrefabFilePath関数
@@ -33,7 +33,7 @@ public class CoverNodeScriptCreateDesc : ToffMonaka.Tml.Scene.ObjectNodeScriptCr
 /**
  * @brief CoverNodeScriptクラス
  */
-public abstract class CoverNodeScript : ToffMonaka.Tml.Scene.ObjectNodeScript
+public abstract class CoverNodeScript : ToffMonaka.Tml.Scene.NodeScript
 {
     public new CoverNodeScriptCreateDesc createDesc{get; private set;} = null;
 

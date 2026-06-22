@@ -12,7 +12,7 @@ namespace UnityBase.Scene.SideMenu {
 /**
  * @brief OpenCloseButtonNodeScriptCreateDescクラス
  */
-public class OpenCloseButtonNodeScriptCreateDesc : ToffMonaka.Tml.Scene.ObjectNodeScriptCreateDesc
+public class OpenCloseButtonNodeScriptCreateDesc : ToffMonaka.Tml.Scene.NodeScriptCreateDesc
 {
     public System.Action<OpenCloseButtonNodeScript> onClick = null;
 }
@@ -20,7 +20,7 @@ public class OpenCloseButtonNodeScriptCreateDesc : ToffMonaka.Tml.Scene.ObjectNo
 /**
  * @brief OpenCloseButtonNodeScriptクラス
  */
-public class OpenCloseButtonNodeScript : ToffMonaka.Tml.Scene.ObjectNodeScript
+public class OpenCloseButtonNodeScript : ToffMonaka.Tml.Scene.NodeScript
 {
     public new OpenCloseButtonNodeScriptCreateDesc createDesc{get; private set;} = null;
 

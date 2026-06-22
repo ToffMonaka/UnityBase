@@ -13,7 +13,7 @@ namespace UnityBase.Scene.SelectSubScene {
 /**
  * @brief BackButtonNodeScriptCreateDescクラス
  */
-public class BackButtonNodeScriptCreateDesc : ToffMonaka.Tml.Scene.ObjectNodeScriptCreateDesc
+public class BackButtonNodeScriptCreateDesc : ToffMonaka.Tml.Scene.NodeScriptCreateDesc
 {
     public System.Action<BackButtonNodeScript> onClick = null;
 }
@@ -21,7 +21,7 @@ public class BackButtonNodeScriptCreateDesc : ToffMonaka.Tml.Scene.ObjectNodeScr
 /**
  * @brief BackButtonNodeScriptクラス
  */
-public class BackButtonNodeScript : ToffMonaka.Tml.Scene.ObjectNodeScript
+public class BackButtonNodeScript : ToffMonaka.Tml.Scene.NodeScript
 {
     public new BackButtonNodeScriptCreateDesc createDesc{get; private set;} = null;
 

@@ -23,7 +23,7 @@ public abstract class PartsScript : Script
      * @brief _OnGetScriptType関数
      * @return script_type (script_type)
      */
-    protected override sealed SceneUtil.SCRIPT_TYPE _OnGetScriptType()
+    protected override SceneUtil.SCRIPT_TYPE _OnGetScriptType()
     {
         return (SceneUtil.SCRIPT_TYPE.PARTS);
     }
@@ -41,7 +41,7 @@ public abstract class PartsScript : Script
      * @brief _OnGetActiveAutoFlag関数
      * @return active_auto_flg (active_auto_flag)
      */
-    protected override sealed bool _OnGetActiveAutoFlag()
+    protected override bool _OnGetActiveAutoFlag()
     {
         return (false);
     }

@@ -10,14 +10,14 @@ namespace UnityBase.Scene.DialogSystem {
 /**
  * @brief DialogSystemNodeScriptCreateDescクラス
  */
-public class DialogSystemNodeScriptCreateDesc : ToffMonaka.Tml.Scene.ObjectNodeScriptCreateDesc
+public class DialogSystemNodeScriptCreateDesc : ToffMonaka.Tml.Scene.NodeScriptCreateDesc
 {
 }
 
 /**
  * @brief DialogSystemNodeScriptクラス
  */
-public class DialogSystemNodeScript : ToffMonaka.Tml.Scene.ObjectNodeScript
+public class DialogSystemNodeScript : ToffMonaka.Tml.Scene.NodeScript
 {
     public new DialogSystemNodeScriptCreateDesc createDesc{get; private set;} = null;
 

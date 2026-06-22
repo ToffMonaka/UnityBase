@@ -11,14 +11,14 @@ namespace UnityBase.Scene.Test2DStageSubScene {
 /**
  * @brief PlayerNodeScriptCreateDescクラス
  */
-public class PlayerNodeScriptCreateDesc : ToffMonaka.Tml.Scene.ObjectNodeScriptCreateDesc
+public class PlayerNodeScriptCreateDesc : ToffMonaka.Tml.Scene.NodeScriptCreateDesc
 {
 }
 
 /**
  * @brief PlayerNodeScriptクラス
  */
-public class PlayerNodeScript : ToffMonaka.Tml.Scene.ObjectNodeScript
+public class PlayerNodeScript : ToffMonaka.Tml.Scene.NodeScript
 {
     [SerializeField] private float _moveSpeed = 3.0f;
     [SerializeField] private float _jumpPower = 5.0f;

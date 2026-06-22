@@ -14,8 +14,8 @@ namespace Tml.Scene {
  */
 public class ScrollViewPartsScriptCreateDesc : PartsScriptCreateDesc
 {
-    public System.Func<GameObject, ObjectNodeScript> onGetItemNodeScript = null;
-    public System.Action<ObjectNodeScript, int> onSetItemNodeScript = null;
+    public System.Func<GameObject, NodeScript> onGetItemNodeScript = null;
+    public System.Action<NodeScript, int> onSetItemNodeScript = null;
 }
 
 /**
@@ -41,9 +41,9 @@ public class ScrollViewPartsScript : PartsScript
     private RectTransform _itemRectTransform = null;
     private int _itemCount = 0;
     private int _itemIndex = 0;
-    private List<ObjectNodeScript> _itemNodeScriptContainer = new();
-    private System.Func<GameObject, ObjectNodeScript> _onGetItemNodeScript = null;
-    private System.Action<ObjectNodeScript, int> _onSetItemNodeScript = null;
+    private List<NodeScript> _itemNodeScriptContainer = new();
+    private System.Func<GameObject, NodeScript> _onGetItemNodeScript = null;
+    private System.Action<NodeScript, int> _onSetItemNodeScript = null;
 
     /**
      * @brief _OnGetScriptIndex関数

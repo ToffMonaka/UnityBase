@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4333621326426243663}
   - component: {fileID: 6856940417780117399}
   m_Layer: 0
-  m_Name: SpritePreview
+  m_Name: PreviewSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

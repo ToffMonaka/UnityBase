@@ -13,7 +13,7 @@ namespace UnityBase.Scene.SelectSubScene {
 /**
  * @brief StageBoardItemNodeScriptCreateDescクラス
  */
-public class StageBoardItemNodeScriptCreateDesc : ToffMonaka.Tml.Scene.ObjectNodeScriptCreateDesc
+public class StageBoardItemNodeScriptCreateDesc : ToffMonaka.Tml.Scene.NodeScriptCreateDesc
 {
     public string name = "";
     public System.Action<StageBoardItemNodeScript> onClick = null;
@@ -22,7 +22,7 @@ public class StageBoardItemNodeScriptCreateDesc : ToffMonaka.Tml.Scene.ObjectNod
 /**
  * @brief StageBoardItemNodeScriptクラス
  */
-public class StageBoardItemNodeScript : ToffMonaka.Tml.Scene.ObjectNodeScript
+public class StageBoardItemNodeScript : ToffMonaka.Tml.Scene.NodeScript
 {
     [SerializeField] private TMP_Text _nameText = null;
 

@@ -11,7 +11,7 @@ namespace UnityBase.Scene.DialogSystem {
 /**
  * @brief DialogNodeScriptCreateDescクラス
  */
-public class DialogNodeScriptCreateDesc : ToffMonaka.Tml.Scene.ObjectNodeScriptCreateDesc
+public class DialogNodeScriptCreateDesc : ToffMonaka.Tml.Scene.NodeScriptCreateDesc
 {
     /**
      * @brief GetPrefabFilePath関数
@@ -36,7 +36,7 @@ public class DialogNodeScriptCreateDesc : ToffMonaka.Tml.Scene.ObjectNodeScriptC
 /**
  * @brief DialogNodeScriptクラス
  */
-public abstract class DialogNodeScript : ToffMonaka.Tml.Scene.ObjectNodeScript
+public abstract class DialogNodeScript : ToffMonaka.Tml.Scene.NodeScript
 {
     [SerializeField] private CanvasGroup _canvasGroup = null;
 

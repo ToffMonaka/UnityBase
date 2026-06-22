@@ -10,14 +10,14 @@ namespace Tml.Scene {
 /**
  * @brief SoundSeNodeScriptCreateDescクラス
  */
-public class SoundSeNodeScriptCreateDesc : ObjectNodeScriptCreateDesc
+public class SoundSeNodeScriptCreateDesc : NodeScriptCreateDesc
 {
 }
 
 /**
  * @brief SoundSeNodeScriptクラス
  */
-public class SoundSeNodeScript : ObjectNodeScript
+public class SoundSeNodeScript : NodeScript
 {
     [SerializeField] private AudioSource _audioSource = null;
 

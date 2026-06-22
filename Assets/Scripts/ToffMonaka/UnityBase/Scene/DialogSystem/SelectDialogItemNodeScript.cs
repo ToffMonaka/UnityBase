@@ -13,7 +13,7 @@ namespace UnityBase.Scene.DialogSystem {
 /**
  * @brief SelectDialogItemNodeScriptCreateDescクラス
  */
-public class SelectDialogItemNodeScriptCreateDesc : ToffMonaka.Tml.Scene.ObjectNodeScriptCreateDesc
+public class SelectDialogItemNodeScriptCreateDesc : ToffMonaka.Tml.Scene.NodeScriptCreateDesc
 {
     public SelectDialogItemExtension extension = null;
     public System.Action<SelectDialogItemNodeScript> onClick = null;
@@ -22,7 +22,7 @@ public class SelectDialogItemNodeScriptCreateDesc : ToffMonaka.Tml.Scene.ObjectN
 /**
  * @brief SelectDialogItemNodeScriptクラス
  */
-public class SelectDialogItemNodeScript : ToffMonaka.Tml.Scene.ObjectNodeScript
+public class SelectDialogItemNodeScript : ToffMonaka.Tml.Scene.NodeScript
 {
     [SerializeField] private TMP_Text _nameText = null;
 

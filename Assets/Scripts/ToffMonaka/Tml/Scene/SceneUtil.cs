@@ -18,9 +18,9 @@ public static class SceneUtil
     public enum SCRIPT_TYPE : int
     {
         NONE = 0,
+        NODE,
         MAIN_SCENE_NODE,
         SUB_SCENE_NODE,
-        OBJECT_NODE,
         PARTS,
 		COUNT
     }
@@ -32,7 +32,6 @@ public static class SceneUtil
         NODE,
         MAIN_SCENE_NODE,
         SUB_SCENE_NODE,
-        OBJECT_NODE,
         SOUND_BGM_NODE,
         SOUND_SE_NODE,
         PARTS,

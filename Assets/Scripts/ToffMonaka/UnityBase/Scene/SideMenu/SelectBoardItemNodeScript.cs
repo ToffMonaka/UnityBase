@@ -13,7 +13,7 @@ namespace UnityBase.Scene.SideMenu {
 /**
  * @brief SelectBoardItemNodeScriptCreateDescクラス
  */
-public class SelectBoardItemNodeScriptCreateDesc : ToffMonaka.Tml.Scene.ObjectNodeScriptCreateDesc
+public class SelectBoardItemNodeScriptCreateDesc : ToffMonaka.Tml.Scene.NodeScriptCreateDesc
 {
     public string name = "";
     public System.Action<SelectBoardItemNodeScript> onClick = null;
@@ -22,7 +22,7 @@ public class SelectBoardItemNodeScriptCreateDesc : ToffMonaka.Tml.Scene.ObjectNo
 /**
  * @brief SelectBoardItemNodeScriptクラス
  */
-public class SelectBoardItemNodeScript : ToffMonaka.Tml.Scene.ObjectNodeScript
+public class SelectBoardItemNodeScript : ToffMonaka.Tml.Scene.NodeScript
 {
     [SerializeField] private TMP_Text _nameText = null;
 

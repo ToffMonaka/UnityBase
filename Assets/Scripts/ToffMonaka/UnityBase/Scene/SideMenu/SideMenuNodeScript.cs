@@ -12,14 +12,14 @@ namespace UnityBase.Scene.SideMenu {
 /**
  * @brief SideMenuNodeScriptCreateDescクラス
  */
-public class SideMenuNodeScriptCreateDesc : ToffMonaka.Tml.Scene.ObjectNodeScriptCreateDesc
+public class SideMenuNodeScriptCreateDesc : ToffMonaka.Tml.Scene.NodeScriptCreateDesc
 {
 }
 
 /**
  * @brief SideMenuNodeScriptクラス
  */
-public class SideMenuNodeScript : ToffMonaka.Tml.Scene.ObjectNodeScript
+public class SideMenuNodeScript : ToffMonaka.Tml.Scene.NodeScript
 {
     [SerializeField] private Image _backgroundImage = null;
     [SerializeField] private GameObject _openCloseButtonNode = null;

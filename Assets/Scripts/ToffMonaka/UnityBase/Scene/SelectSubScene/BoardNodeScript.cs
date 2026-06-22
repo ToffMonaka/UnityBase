@@ -12,14 +12,14 @@ namespace UnityBase.Scene.SelectSubScene {
 /**
  * @brief BoardNodeScriptCreateDescクラス
  */
-public class BoardNodeScriptCreateDesc : ToffMonaka.Tml.Scene.ObjectNodeScriptCreateDesc
+public class BoardNodeScriptCreateDesc : ToffMonaka.Tml.Scene.NodeScriptCreateDesc
 {
 }
 
 /**
  * @brief BoardNodeScriptクラス
  */
-public abstract class BoardNodeScript : ToffMonaka.Tml.Scene.ObjectNodeScript
+public abstract class BoardNodeScript : ToffMonaka.Tml.Scene.NodeScript
 {
     [SerializeField] protected TMP_Text _nameText = null;
 

@@ -56,9 +56,9 @@ public class SceneManager
 	private float _soundSeVolume;
 	private bool _soundSeMuteFlag;
     private List<Script>[] _scriptArray = null;
+    private List<NodeScript>[]  _nodeScriptArray;
     private MainSceneNodeScript _mainSceneNodeScript;
     private SubSceneNodeScript _subSceneNodeScript;
-    private List<ObjectNodeScript>[]  _objectNodeScriptArray;
     private List<PartsScript>[]  _partsScriptArray;
 
     /**
@@ -135,9 +135,9 @@ public class SceneManager
         this._soundSeAudioClipArray = null;
 	    this._soundSeVolume = 1.0f;
 	    this._soundSeMuteFlag = false;
+        this._nodeScriptArray = null;
         this._mainSceneNodeScript = null;
         this._subSceneNodeScript = null;
-        this._objectNodeScriptArray = null;
         this._partsScriptArray = null;
 
         return;
@@ -177,10 +177,10 @@ public class SceneManager
                 this._scriptArray[script_i] = new List<Script>();
             }
 
-            this._objectNodeScriptArray = new List<ObjectNodeScript>[this.createDesc.scriptCount];
+            this._nodeScriptArray = new List<NodeScript>[this.createDesc.scriptCount];
 
-            for (int obj_node_script_i = 0; obj_node_script_i < this._objectNodeScriptArray.Length; ++obj_node_script_i) {
-                this._objectNodeScriptArray[obj_node_script_i] = new List<ObjectNodeScript>();
+            for (int node_script_i = 0; node_script_i < this._nodeScriptArray.Length; ++node_script_i) {
+                this._nodeScriptArray[node_script_i] = new List<NodeScript>();
             }
 
             this._partsScriptArray = new List<PartsScript>[this.createDesc.scriptCount];
@@ -690,6 +690,16 @@ public class SceneManager
     }
 
     /**
+     * @brief GetNodeScriptContainer関数
+     * @param script_inex (script_inex)
+     * @return node_script_cont (node_script_container)
+     */
+    public List<NodeScript> GetNodeScriptContainer(int script_inex)
+    {
+        return (this._nodeScriptArray[script_inex]);
+    }
+
+    /**
      * @brief GetMainSceneNodeScript関数
      * @return main_scene_node_script (main_scene_node_script)
      */
@@ -705,16 +715,6 @@ public class SceneManager
     public SubSceneNodeScript GetSubSceneNodeScript()
     {
         return (this._subSceneNodeScript);
-    }
-
-    /**
-     * @brief GetObjectNodeScriptContainer関数
-     * @param script_inex (script_inex)
-     * @return obj_node_script_cont (object_node_script_container)
-     */
-    public List<ObjectNodeScript> GetObjectNodeScriptContainer(int script_inex)
-    {
-        return (this._objectNodeScriptArray[script_inex]);
     }
 
     /**
@@ -745,6 +745,11 @@ public class SceneManager
             this._scriptArray[script.GetScriptIndex()].Add(script);
 
 		    switch (script.GetScriptType()) {
+		    case SceneUtil.SCRIPT_TYPE.NODE: {
+                this._nodeScriptArray[script.GetScriptIndex()].Add((NodeScript)script);
+
+			    break;
+		    }
 		    case SceneUtil.SCRIPT_TYPE.MAIN_SCENE_NODE: {
                 this._mainSceneNodeScript = (MainSceneNodeScript)script;
 
@@ -752,11 +757,6 @@ public class SceneManager
 		    }
 		    case SceneUtil.SCRIPT_TYPE.SUB_SCENE_NODE: {
                 this._subSceneNodeScript = (SubSceneNodeScript)script;
-
-			    break;
-		    }
-		    case SceneUtil.SCRIPT_TYPE.OBJECT_NODE: {
-                this._objectNodeScriptArray[script.GetScriptIndex()].Add((ObjectNodeScript)script);
 
 			    break;
 		    }
@@ -789,6 +789,11 @@ public class SceneManager
             this._scriptArray[script.GetScriptIndex()].Remove(script);
 
 		    switch (script.GetScriptType()) {
+		    case SceneUtil.SCRIPT_TYPE.NODE: {
+                this._nodeScriptArray[script.GetScriptIndex()].Remove((NodeScript)script);
+
+			    break;
+		    }
 		    case SceneUtil.SCRIPT_TYPE.MAIN_SCENE_NODE: {
                 if (this._mainSceneNodeScript == (MainSceneNodeScript)script) {
                     this._mainSceneNodeScript = null;
@@ -800,11 +805,6 @@ public class SceneManager
                 if (this._subSceneNodeScript == (SubSceneNodeScript)script) {
                     this._subSceneNodeScript = null;
                 }
-
-			    break;
-		    }
-		    case SceneUtil.SCRIPT_TYPE.OBJECT_NODE: {
-                this._objectNodeScriptArray[script.GetScriptIndex()].Remove((ObjectNodeScript)script);
 
 			    break;
 		    }

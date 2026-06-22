@@ -8,14 +8,14 @@ namespace UnityBase.Scene.Test2DStageSubScene {
 /**
  * @brief FieldNodeScriptCreateDescクラス
  */
-public class FieldNodeScriptCreateDesc : ToffMonaka.Tml.Scene.ObjectNodeScriptCreateDesc
+public class FieldNodeScriptCreateDesc : ToffMonaka.Tml.Scene.NodeScriptCreateDesc
 {
 }
 
 /**
  * @brief FieldNodeScriptクラス
  */
-public class FieldNodeScript : ToffMonaka.Tml.Scene.ObjectNodeScript
+public class FieldNodeScript : ToffMonaka.Tml.Scene.NodeScript
 {
     public new FieldNodeScriptCreateDesc createDesc{get; private set;} = null;
 

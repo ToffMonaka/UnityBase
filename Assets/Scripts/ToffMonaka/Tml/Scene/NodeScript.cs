@@ -34,12 +34,30 @@ public abstract class NodeScript : Script
     private System.Action<NodeScript> _onClosed = null;
 
     /**
+     * @brief _OnGetScriptType関数
+     * @return script_type (script_type)
+     */
+    protected override SceneUtil.SCRIPT_TYPE _OnGetScriptType()
+    {
+        return (SceneUtil.SCRIPT_TYPE.NODE);
+    }
+
+    /**
      * @brief _OnGetScriptIndex関数
      * @return script_index (script_index)
      */
     protected override int _OnGetScriptIndex()
     {
         return ((int)SceneUtil.SCRIPT_INDEX.NODE);
+    }
+
+    /**
+     * @brief _OnGetActiveAutoFlag関数
+     * @return active_auto_flg (active_auto_flag)
+     */
+    protected override bool _OnGetActiveAutoFlag()
+    {
+        return (true);
     }
 
     /**

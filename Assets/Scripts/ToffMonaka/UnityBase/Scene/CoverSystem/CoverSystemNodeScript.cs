@@ -10,14 +10,14 @@ namespace UnityBase.Scene.CoverSystem {
 /**
  * @brief CoverSystemNodeScriptCreateDescクラス
  */
-public class CoverSystemNodeScriptCreateDesc : ToffMonaka.Tml.Scene.ObjectNodeScriptCreateDesc
+public class CoverSystemNodeScriptCreateDesc : ToffMonaka.Tml.Scene.NodeScriptCreateDesc
 {
 }
 
 /**
  * @brief CoverSystemNodeScriptクラス
  */
-public class CoverSystemNodeScript : ToffMonaka.Tml.Scene.ObjectNodeScript
+public class CoverSystemNodeScript : ToffMonaka.Tml.Scene.NodeScript
 {
     public new CoverSystemNodeScriptCreateDesc createDesc{get; private set;} = null;
 
