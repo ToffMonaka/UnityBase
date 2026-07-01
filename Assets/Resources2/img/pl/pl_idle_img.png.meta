@@ -175,28 +175,6 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
-    - serializedVersion: 2
-      name: pl_idle_img_3
-      rect:
-        serializedVersion: 2
-        x: 192
-        y: 0
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 873be289916903247b4fd9e900d4473d
-      internalID: -1643189006
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
     outline: []
     customData: 
     physicsShape: []
@@ -216,7 +194,6 @@ TextureImporter:
       pl_idle_img_0: -584363526
       pl_idle_img_1: -2103607622
       pl_idle_img_2: -1437616957
-      pl_idle_img_3: -1643189006
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
