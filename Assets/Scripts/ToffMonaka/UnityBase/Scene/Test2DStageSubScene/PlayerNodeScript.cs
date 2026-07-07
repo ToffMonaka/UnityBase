@@ -25,12 +25,12 @@ public class PlayerNodeScript : ToffMonaka.Tml.Scene.NodeScript
 
     public new PlayerNodeScriptCreateDesc createDesc{get; private set;} = null;
 
-    private Vector2 _moveVelocity = Vector2.zero;
     private Rigidbody2D _rigidbody;
-    private ContactFilter2D _contactFilter;
-    private RaycastHit2D[] _raycastHitArray = new RaycastHit2D[16];
+    private Rigidbody2D.SlideMovement _slideMovement;
+    private RaycastHit2D[] _raycastHitArray = new RaycastHit2D[8];
     private bool _groundFlag = false;
-    private Vector2 _groundNormal = Vector2.zero;
+    private ContactFilter2D _groundContactFilter;
+    private Vector2 _moveVelocity = Vector2.zero;
 
     private InputAction _moveInputAction = null;
     private InputAction _jumpInputAction = null;
@@ -53,15 +53,26 @@ public class PlayerNodeScript : ToffMonaka.Tml.Scene.NodeScript
 
         this._rigidbody = this.gameObject.GetComponent<Rigidbody2D>();
 
-        this._contactFilter = new ContactFilter2D();
-
-        this._contactFilter.useLayerMask = true;
-        this._contactFilter.SetLayerMask(Physics2D.GetLayerCollisionMask(this.gameObject.layer));
-        this._contactFilter.useTriggers = false;
+        this._slideMovement = new Rigidbody2D.SlideMovement {
+            maxIterations = 3,
+            surfaceSlideAngle = 90.0f,
+            surfaceUp = Vector2.up,
+            surfaceAnchor = Vector2.down,
+            useLayerMask = true,
+            layerMask = LayerMask.GetMask("Ground"),
+            gravity = Vector2.zero,
+            gravitySlipAngle = 0.0f
+        };
 
         for (int raycast_hit_i = 0; raycast_hit_i < this._raycastHitArray.Length; ++raycast_hit_i) {
             this._raycastHitArray[raycast_hit_i] = new RaycastHit2D();
         }
+
+        this._groundContactFilter = new ContactFilter2D();
+
+        this._groundContactFilter.useLayerMask = true;
+        this._groundContactFilter.layerMask = LayerMask.GetMask("Ground");
+        this._groundContactFilter.useTriggers = false;
 
         this._moveInputAction = InputSystem.actions.FindAction("Player/Move");
         this._moveInputAction.Enable();
@@ -126,10 +137,6 @@ public class PlayerNodeScript : ToffMonaka.Tml.Scene.NodeScript
             if (this._groundFlag) {
                 this._moveVelocity.y = this._jumpPower;
             }
-        } else if (this._jumpInputAction.WasReleasedThisFrame()) {
-            if (this._moveVelocity.y > (this._jumpPower * 0.5f)) {
-                this._moveVelocity.y *= 0.5f;
-            }
         }
 
         base._OnUpdate();
@@ -142,14 +149,121 @@ public class PlayerNodeScript : ToffMonaka.Tml.Scene.NodeScript
      */
     protected override void _OnFixedUpdate()
     {
-        this._moveVelocity.y += Physics2D.gravity.y * Time.deltaTime;
+        this._UpdateGroundFlag();
 
-        this._groundFlag = false;
+        if ((this._groundFlag) && (this._moveVelocity.y == 0.0f)) {
+            this._rigidbody.Slide(this._moveVelocity, Time.deltaTime, this._slideMovement);
+        } else {
+            this._moveVelocity.y += Physics2D.gravity.y * Time.deltaTime;
 
-        this._UpdatePosition(new Vector2(this._groundNormal.y, -this._groundNormal.x) * (this._moveVelocity.x * Time.deltaTime), false);
-        this._UpdatePosition(Vector2.up * (this._moveVelocity.y * Time.deltaTime), true);
+            var velocity = this._moveVelocity * Time.deltaTime;
+            var velocity_normal = velocity.normalized;
+            var distance = velocity.magnitude;
+
+            if (distance > 0.0f) {
+                var hit_cnt = this._rigidbody.Cast(velocity_normal, this._groundContactFilter, this._raycastHitArray, distance + 0.01f);
+
+                if (hit_cnt > 0) {
+                    var hit_normal = this._raycastHitArray[0].normal;
+
+                    if ((hit_normal.y > 0.5f) && (velocity_normal.y < 0.0f)) {
+                        velocity = velocity_normal * (this._raycastHitArray[0].distance - 0.01f);
+
+                        this._moveVelocity.y = 0.0f;
+                    } else if ((hit_normal.y < -0.5f) && (velocity_normal.y > 0.0f)) {
+                        velocity = velocity_normal * (this._raycastHitArray[0].distance - 0.01f);
+
+                        this._moveVelocity.y = 0.0f;
+                    } else if ((hit_normal.x < -0.5f) && (velocity_normal.x > 0.0f)) {
+                        velocity = new Vector2(velocity_normal.x * (this._raycastHitArray[0].distance - 0.01f), velocity.y);
+
+                        this._moveVelocity.x = 0.0f;
+
+                        var velocity2 = new Vector2(0.0f, velocity.y);
+                        var velocity_normal2 = new Vector2(0.0f, (velocity.y < 0.0f) ? -1.0f : ((velocity.y > 0.0f) ? 1.0f : 0.0f));
+                        var distance2 = (velocity.y < 0.0f) ? -velocity.y : velocity.y;
+
+                        if (distance2 > 0.0f) {
+                            var hit_cnt2 = this._rigidbody.Cast(velocity_normal2, this._groundContactFilter, this._raycastHitArray, distance2 + 0.01f);
+
+                            if (hit_cnt2 > 0) {
+                                var hit_normal2 = this._raycastHitArray[0].normal;
+
+                                if ((hit_normal2.y > 0.5f) && (velocity_normal2.y < 0.0f)) {
+                                    velocity2 = velocity_normal2 * (this._raycastHitArray[0].distance - 0.01f);
+
+                                    this._moveVelocity.y = 0.0f;
+                                } else if ((hit_normal2.y < -0.5f) && (velocity_normal2.y > 0.0f)) {
+                                    velocity2 = velocity_normal2 * (this._raycastHitArray[0].distance - 0.01f);
+
+                                    this._moveVelocity.y = 0.0f;
+                                }
+                            }
+                        }
+
+                        velocity = new Vector2(velocity.x, velocity2.y);
+                    } else if ((hit_normal.x > 0.5f) && (velocity_normal.x < 0.0f)) {
+                        velocity = new Vector2(velocity_normal.x * (this._raycastHitArray[0].distance - 0.01f), velocity.y);
+
+                        this._moveVelocity.x = 0.0f;
+
+                        var velocity2 = new Vector2(0.0f, velocity.y);
+                        var velocity_normal2 = new Vector2(0.0f, (velocity.y < 0.0f) ? -1.0f : ((velocity.y > 0.0f) ? 1.0f : 0.0f));
+                        var distance2 = (velocity.y < 0.0f) ? -velocity.y : velocity.y;
+
+                        if (distance2 > 0.0f) {
+                            var hit_cnt2 = this._rigidbody.Cast(velocity_normal2, this._groundContactFilter, this._raycastHitArray, distance2 + 0.01f);
+
+                            if (hit_cnt2 > 0) {
+                                var hit_normal2 = this._raycastHitArray[0].normal;
+
+                                if ((hit_normal2.y > 0.5f) && (velocity_normal2.y < 0.0f)) {
+                                    velocity2 = velocity_normal2 * (this._raycastHitArray[0].distance - 0.01f);
+
+                                    this._moveVelocity.y = 0.0f;
+                                } else if ((hit_normal2.y < -0.5f) && (velocity_normal2.y > 0.0f)) {
+                                    velocity2 = velocity_normal2 * (this._raycastHitArray[0].distance - 0.01f);
+
+                                    this._moveVelocity.y = 0.0f;
+                                }
+                            }
+                        }
+
+                        velocity = new Vector2(velocity.x, velocity2.y);
+                    }
+
+                }
+
+                this._rigidbody.position += velocity;
+            }
+        }
+
+        this._UpdateGroundFlag();
 
         base._OnFixedUpdate();
+
+        return;
+    }
+
+
+    /**
+     * @brief _UpdateGroundFlag関数
+     */
+    private void _UpdateGroundFlag()
+    {
+        this._groundFlag = false;
+
+        var hit_cnt = this._rigidbody.Cast(Vector2.down, this._groundContactFilter, this._raycastHitArray, 0.01f);
+
+        if (hit_cnt > 0) {
+            var hit_normal = this._raycastHitArray[0].normal;
+
+            if (hit_normal.y > 0.5f) {
+                this._groundFlag = true;
+
+                this._rigidbody.position += Vector2.down * (this._raycastHitArray[0].distance - 0.01f);
+            }
+        }
 
         return;
     }
@@ -159,6 +273,7 @@ public class PlayerNodeScript : ToffMonaka.Tml.Scene.NodeScript
      * @param move_velocity (move_velocity)
      * @param y_flg (y_flag)
      */
+    /*
     private void _UpdatePosition(Vector2 move_velocity, bool y_flg)
     {
         var distance = move_velocity.magnitude;
@@ -167,7 +282,7 @@ public class PlayerNodeScript : ToffMonaka.Tml.Scene.NodeScript
             return;
         }
 
-        var hit_cnt = this._rigidbody.Cast(move_velocity, this._contactFilter, this._raycastHitArray, distance + 0.01f);
+        var hit_cnt = this._rigidbody.Cast(move_velocity.normalized, this._groundContactFilter, this._raycastHitArray, distance + 0.01f);
 
         for (var hit_i = 0; hit_i < hit_cnt; ++hit_i) {
             var hit_normal = this._raycastHitArray[hit_i].normal;
@@ -202,6 +317,7 @@ public class PlayerNodeScript : ToffMonaka.Tml.Scene.NodeScript
 
         return;
     }
+    */
 
     /**
      * @brief _OnOpen関数
