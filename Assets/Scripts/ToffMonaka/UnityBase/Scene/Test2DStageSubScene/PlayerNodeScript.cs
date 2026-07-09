@@ -22,6 +22,8 @@ public class PlayerNodeScript : ToffMonaka.Tml.Scene.NodeScript
 {
     [SerializeField] private float _moveSpeed = 3.0f;
     [SerializeField] private float _jumpPower = 6.5f;
+    [SerializeField] private SpriteRenderer _spriteRenderer;
+    [SerializeField] private Animator _animator;
 
     public new PlayerNodeScriptCreateDesc createDesc{get; private set;} = null;
 
@@ -131,12 +133,10 @@ public class PlayerNodeScript : ToffMonaka.Tml.Scene.NodeScript
      */
     protected override void _OnUpdate()
     {
-        this._moveVelocity.x = this._moveInputAction.ReadValue<Vector2>().x * this._moveSpeed;
+        this.RunMoveAction(this._moveInputAction.ReadValue<Vector2>().x);
 
         if (this._jumpInputAction.WasPressedThisFrame()) {
-            if (this._groundFlag) {
-                this._moveVelocity.y = this._jumpPower;
-            }
+            this.RunJumpAction(1.0f);
         }
 
         base._OnUpdate();
@@ -149,8 +149,6 @@ public class PlayerNodeScript : ToffMonaka.Tml.Scene.NodeScript
      */
     protected override void _OnFixedUpdate()
     {
-        this._UpdateGroundFlag();
-
         if ((this._groundFlag) && (this._moveVelocity.y == 0.0f)) {
             this._rigidbody.Slide(this._moveVelocity, Time.deltaTime, this._slideMovement);
         } else {
@@ -166,15 +164,13 @@ public class PlayerNodeScript : ToffMonaka.Tml.Scene.NodeScript
                 if (hit_cnt > 0) {
                     var hit_normal = this._raycastHitArray[0].normal;
 
-                    if ((hit_normal.y > 0.5f) && (velocity_normal.y < 0.0f)) {
+                    if (((hit_normal.y > 0.5f) && (velocity_normal.y < 0.0f))
+                    || ((hit_normal.y < -0.5f) && (velocity_normal.y > 0.0f))) {
                         velocity = velocity_normal * (this._raycastHitArray[0].distance - 0.01f);
 
                         this._moveVelocity.y = 0.0f;
-                    } else if ((hit_normal.y < -0.5f) && (velocity_normal.y > 0.0f)) {
-                        velocity = velocity_normal * (this._raycastHitArray[0].distance - 0.01f);
-
-                        this._moveVelocity.y = 0.0f;
-                    } else if ((hit_normal.x < -0.5f) && (velocity_normal.x > 0.0f)) {
+                    } else if (((hit_normal.x < -0.5f) && (velocity_normal.x > 0.0f))
+                           || ((hit_normal.x > 0.5f) && (velocity_normal.x < 0.0f))) {
                         velocity = new Vector2(velocity_normal.x * (this._raycastHitArray[0].distance - 0.01f), velocity.y);
 
                         this._moveVelocity.x = 0.0f;
@@ -189,39 +185,8 @@ public class PlayerNodeScript : ToffMonaka.Tml.Scene.NodeScript
                             if (hit_cnt2 > 0) {
                                 var hit_normal2 = this._raycastHitArray[0].normal;
 
-                                if ((hit_normal2.y > 0.5f) && (velocity_normal2.y < 0.0f)) {
-                                    velocity2 = velocity_normal2 * (this._raycastHitArray[0].distance - 0.01f);
-
-                                    this._moveVelocity.y = 0.0f;
-                                } else if ((hit_normal2.y < -0.5f) && (velocity_normal2.y > 0.0f)) {
-                                    velocity2 = velocity_normal2 * (this._raycastHitArray[0].distance - 0.01f);
-
-                                    this._moveVelocity.y = 0.0f;
-                                }
-                            }
-                        }
-
-                        velocity = new Vector2(velocity.x, velocity2.y);
-                    } else if ((hit_normal.x > 0.5f) && (velocity_normal.x < 0.0f)) {
-                        velocity = new Vector2(velocity_normal.x * (this._raycastHitArray[0].distance - 0.01f), velocity.y);
-
-                        this._moveVelocity.x = 0.0f;
-
-                        var velocity2 = new Vector2(0.0f, velocity.y);
-                        var velocity_normal2 = new Vector2(0.0f, (velocity.y < 0.0f) ? -1.0f : ((velocity.y > 0.0f) ? 1.0f : 0.0f));
-                        var distance2 = (velocity.y < 0.0f) ? -velocity.y : velocity.y;
-
-                        if (distance2 > 0.0f) {
-                            var hit_cnt2 = this._rigidbody.Cast(velocity_normal2, this._groundContactFilter, this._raycastHitArray, distance2 + 0.01f);
-
-                            if (hit_cnt2 > 0) {
-                                var hit_normal2 = this._raycastHitArray[0].normal;
-
-                                if ((hit_normal2.y > 0.5f) && (velocity_normal2.y < 0.0f)) {
-                                    velocity2 = velocity_normal2 * (this._raycastHitArray[0].distance - 0.01f);
-
-                                    this._moveVelocity.y = 0.0f;
-                                } else if ((hit_normal2.y < -0.5f) && (velocity_normal2.y > 0.0f)) {
+                                if (((hit_normal2.y > 0.5f) && (velocity_normal2.y < 0.0f))
+                                || ((hit_normal2.y < -0.5f) && (velocity_normal2.y > 0.0f))) {
                                     velocity2 = velocity_normal2 * (this._raycastHitArray[0].distance - 0.01f);
 
                                     this._moveVelocity.y = 0.0f;
@@ -244,7 +209,6 @@ public class PlayerNodeScript : ToffMonaka.Tml.Scene.NodeScript
 
         return;
     }
-
 
     /**
      * @brief _UpdateGroundFlag関数
@@ -269,57 +233,6 @@ public class PlayerNodeScript : ToffMonaka.Tml.Scene.NodeScript
     }
 
     /**
-     * @brief _UpdatePositiont関数
-     * @param move_velocity (move_velocity)
-     * @param y_flg (y_flag)
-     */
-    /*
-    private void _UpdatePosition(Vector2 move_velocity, bool y_flg)
-    {
-        var distance = move_velocity.magnitude;
-
-        if (distance <= 0.0f) {
-            return;
-        }
-
-        var hit_cnt = this._rigidbody.Cast(move_velocity.normalized, this._groundContactFilter, this._raycastHitArray, distance + 0.01f);
-
-        for (var hit_i = 0; hit_i < hit_cnt; ++hit_i) {
-            var hit_normal = this._raycastHitArray[hit_i].normal;
-
-            if (hit_normal.y > 0.65f) {
-                this._groundFlag = true;
-
-                if (y_flg) {
-                    this._groundNormal = hit_normal;
-
-                    hit_normal.x = 0.0f;
-                }
-            }
-
-            if (this._groundFlag) {
-                var projection = Vector2.Dot(this._moveVelocity, hit_normal);
-
-                if (projection < 0.0f) {
-                    this._moveVelocity -= projection * hit_normal;
-                }
-            } else {
-                this._moveVelocity.x = 0.0f;
-                this._moveVelocity.y = Mathf.Min(this._moveVelocity.y, 0.0f);
-            }
-
-            var hit_distance = this._raycastHitArray[hit_i].distance - 0.01f;
-
-            distance = (hit_distance < distance) ? hit_distance : distance;
-        }
-
-        this._rigidbody.position += move_velocity.normalized * distance;
-
-        return;
-    }
-    */
-
-    /**
      * @brief _OnOpen関数
      */
     protected override void _OnOpen()
@@ -335,6 +248,50 @@ public class PlayerNodeScript : ToffMonaka.Tml.Scene.NodeScript
     protected override void _OnClose()
     {
         base._OnClose();
+
+        return;
+    }
+
+    /**
+     * @brief RunMoveAction関数
+     * @param x (x)
+     */
+    public void RunMoveAction(float x)
+    {
+        this._moveVelocity.x = x * this._moveSpeed;
+
+        if (this._moveVelocity.x > 0.0f) {
+            this._spriteRenderer.flipX = false;
+
+            this._animator.SetBool("moveXLeftFlag", false);
+            this._animator.SetBool("moveXRightFlag", true);
+        } else if (this._moveVelocity.x < 0.0f) {
+            this._spriteRenderer.flipX = true;
+
+            this._animator.SetBool("moveXLeftFlag", true);
+            this._animator.SetBool("moveXRightFlag", false);
+        } else {
+            this._spriteRenderer.flipX = false;
+
+            this._animator.SetBool("moveXLeftFlag", false);
+            this._animator.SetBool("moveXRightFlag", false);
+        }
+
+        return;
+    }
+
+    /**
+     * @brief RunJumpAction関数
+     * @param y (y)
+     */
+    public void RunJumpAction(float y)
+    {
+        if ((!this._groundFlag)
+        || (y <= 0.0f)) {
+            return;
+        }
+
+        this._moveVelocity.y = y * this._jumpPower;
 
         return;
     }
