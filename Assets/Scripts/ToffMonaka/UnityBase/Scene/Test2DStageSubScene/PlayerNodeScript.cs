@@ -22,6 +22,7 @@ public class PlayerNodeScript : ToffMonaka.Tml.Scene.NodeScript
 {
     [SerializeField] private float _moveSpeed = 3.0f;
     [SerializeField] private float _jumpPower = 6.5f;
+    [SerializeField] private float _jumpDeceleratePower = 0.5f;
     [SerializeField] private SpriteRenderer _spriteRenderer;
     [SerializeField] private Animator _animator;
 
@@ -33,6 +34,8 @@ public class PlayerNodeScript : ToffMonaka.Tml.Scene.NodeScript
     private bool _groundFlag = false;
     private ContactFilter2D _groundContactFilter;
     private Vector2 _moveVelocity = Vector2.zero;
+    private bool _jumpFlag = false;
+    private bool _jumpDecelerateFlag = false;
 
     private InputAction _moveInputAction = null;
     private InputAction _jumpInputAction = null;
@@ -137,6 +140,8 @@ public class PlayerNodeScript : ToffMonaka.Tml.Scene.NodeScript
 
         if (this._jumpInputAction.WasPressedThisFrame()) {
             this.RunJumpAction(1.0f);
+        } else if (this._jumpInputAction.WasReleasedThisFrame()) {
+            this.RunJumpDecelerateAction(1.0f);
         }
 
         base._OnUpdate();
@@ -149,6 +154,8 @@ public class PlayerNodeScript : ToffMonaka.Tml.Scene.NodeScript
      */
     protected override void _OnFixedUpdate()
     {
+        this._UpdateGroundFlag();
+
         if ((this._groundFlag) && (this._moveVelocity.y == 0.0f)) {
             this._rigidbody.Slide(this._moveVelocity, Time.deltaTime, this._slideMovement);
         } else {
@@ -204,6 +211,8 @@ public class PlayerNodeScript : ToffMonaka.Tml.Scene.NodeScript
         }
 
         this._UpdateGroundFlag();
+        this._UpdateJumpFlag();
+        this._UpdateJumpDecelerateFlag();
 
         base._OnFixedUpdate();
 
@@ -226,6 +235,38 @@ public class PlayerNodeScript : ToffMonaka.Tml.Scene.NodeScript
                 this._groundFlag = true;
 
                 this._rigidbody.position += Vector2.down * (this._raycastHitArray[0].distance - 0.01f);
+            }
+        }
+
+        return;
+    }
+
+    /**
+     * @brief _UpdateJumpFlag関数
+     */
+    private void _UpdateJumpFlag()
+    {
+        if (this._jumpFlag) {
+            if (!this._groundFlag) {
+                this._jumpFlag = false;
+            }
+        } else {
+            if (this._groundFlag) {
+                this._jumpFlag = true;
+            }
+        }
+
+        return;
+    }
+
+    /**
+     * @brief _UpdateJumpDecelerateFlag関数
+     */
+    private void _UpdateJumpDecelerateFlag()
+    {
+        if (this._jumpDecelerateFlag) {
+            if (this._moveVelocity.y <= 0.0f) {
+                this._jumpDecelerateFlag = false;
             }
         }
 
@@ -263,18 +304,15 @@ public class PlayerNodeScript : ToffMonaka.Tml.Scene.NodeScript
         if (this._moveVelocity.x > 0.0f) {
             this._spriteRenderer.flipX = false;
 
-            this._animator.SetBool("moveXLeftFlag", false);
-            this._animator.SetBool("moveXRightFlag", true);
+            this._animator.SetBool("moveXFlag", true);
         } else if (this._moveVelocity.x < 0.0f) {
             this._spriteRenderer.flipX = true;
 
-            this._animator.SetBool("moveXLeftFlag", true);
-            this._animator.SetBool("moveXRightFlag", false);
+            this._animator.SetBool("moveXFlag", true);
         } else {
             this._spriteRenderer.flipX = false;
 
-            this._animator.SetBool("moveXLeftFlag", false);
-            this._animator.SetBool("moveXRightFlag", false);
+            this._animator.SetBool("moveXFlag", false);
         }
 
         return;
@@ -286,12 +324,33 @@ public class PlayerNodeScript : ToffMonaka.Tml.Scene.NodeScript
      */
     public void RunJumpAction(float y)
     {
-        if ((!this._groundFlag)
+        if ((!this._jumpFlag)
         || (y <= 0.0f)) {
             return;
         }
 
         this._moveVelocity.y = y * this._jumpPower;
+
+        this._jumpFlag = false;
+        this._jumpDecelerateFlag = true;
+
+        return;
+    }
+
+    /**
+     * @brief RunJumpDecelerateAction関数
+     * @param y (y)
+     */
+    public void RunJumpDecelerateAction(float y)
+    {
+        if ((!this._jumpDecelerateFlag)
+        || (y <= 0.0f)) {
+            return;
+        }
+
+        this._moveVelocity.y *= y * this._jumpDeceleratePower;
+
+        this._jumpDecelerateFlag = false;
 
         return;
     }

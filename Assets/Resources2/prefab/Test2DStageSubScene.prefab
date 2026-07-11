@@ -2513,7 +2513,7 @@ Tilemap:
   m_AnimationFrameRate: 1
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Origin: {x: -4, y: -4, z: 0}
-  m_Size: {x: 64, y: 8, z: 1}
+  m_Size: {x: 91, y: 8, z: 1}
   m_TileAnchor: {x: 0.5, y: 0.5, z: 0}
   m_TileOrientation: 0
   m_TileOrientationMatrix:
@@ -3088,6 +3088,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ToffMonaka.UnityBase.Scene.Test2DStageSubScene.PlayerNodeScript
   _moveSpeed: 3
   _jumpPower: 6.5
+  _jumpDeceleratePower: 0.5
   _spriteRenderer: {fileID: 551190237238786181}
   _animator: {fileID: 4009007720334438090}
 --- !u!50 &3849984591435994462
