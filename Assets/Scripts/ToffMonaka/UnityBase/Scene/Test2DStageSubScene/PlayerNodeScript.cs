@@ -33,6 +33,8 @@ public class PlayerNodeScript : ToffMonaka.Tml.Scene.NodeScript
     private RaycastHit2D[] _raycastHitArray = new RaycastHit2D[8];
     private bool _groundFlag = false;
     private ContactFilter2D _groundContactFilter;
+    private bool _movePositionFlag = false;
+    private Vector2 _movePosition = Vector2.zero;
     private Vector2 _moveVelocity = Vector2.zero;
     private bool _jumpFlag = false;
     private bool _jumpDecelerateFlag = false;
@@ -154,6 +156,12 @@ public class PlayerNodeScript : ToffMonaka.Tml.Scene.NodeScript
      */
     protected override void _OnFixedUpdate()
     {
+        if (this._movePositionFlag) {
+            this._rigidbody.position = this._movePosition;
+
+            this._movePositionFlag = false;
+        }
+
         this._UpdateGroundFlag();
 
         if ((this._groundFlag) && (this._moveVelocity.y == 0.0f)) {
@@ -294,6 +302,22 @@ public class PlayerNodeScript : ToffMonaka.Tml.Scene.NodeScript
     }
 
     /**
+     * @brief RunSpawnAction関数
+     * @param pos (position)
+     */
+    public void RunSpawnAction(Vector2 pos)
+    {
+        this._groundFlag = false;
+        this._movePositionFlag = true;
+        this._movePosition = pos;
+        this._moveVelocity = Vector2.zero;
+        this._jumpFlag = false;
+        this._jumpDecelerateFlag = false;
+
+        return;
+    }
+
+    /**
      * @brief RunMoveAction関数
      * @param x (x)
      */
@@ -351,6 +375,16 @@ public class PlayerNodeScript : ToffMonaka.Tml.Scene.NodeScript
         this._moveVelocity.y *= y * this._jumpDeceleratePower;
 
         this._jumpDecelerateFlag = false;
+
+        return;
+    }
+
+    /**
+     * @brief EnterDeathZone関数
+     */
+    public void EnterDeathZone()
+    {
+        this.RunSpawnAction(new Vector2(0.0f, 2.0f));
 
         return;
     }
