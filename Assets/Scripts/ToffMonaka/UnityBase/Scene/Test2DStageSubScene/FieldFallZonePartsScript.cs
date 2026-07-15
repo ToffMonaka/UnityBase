@@ -1,6 +1,6 @@
 ﻿/**
  * @file
- * @brief FieldDeathZonePartsScriptファイル
+ * @brief FieldFallZonePartsScriptファイル
  */
 
 using UnityEngine;
@@ -9,18 +9,18 @@ using ToffMonaka.Tml.Scene;
 namespace ToffMonaka {
 namespace UnityBase.Scene.Test2DStageSubScene {
 /**
- * @brief FieldDeathZonePartsScriptCreateDescクラス
+ * @brief FieldFallZonePartsScriptCreateDescクラス
  */
-public class FieldDeathZonePartsScriptCreateDesc : PartsScriptCreateDesc
+public class FieldFallZonePartsScriptCreateDesc : PartsScriptCreateDesc
 {
 }
 
 /**
- * @brief FieldDeathZonePartsScriptクラス
+ * @brief FieldFallZonePartsScriptクラス
  */
-public class FieldDeathZonePartsScript : PartsScript
+public class FieldFallZonePartsScript : PartsScript
 {
-    public new FieldDeathZonePartsScriptCreateDesc createDesc{get; private set;} = null;
+    public new FieldFallZonePartsScriptCreateDesc createDesc{get; private set;} = null;
 
     /**
      * @brief _OnGetScriptIndex関数
@@ -28,7 +28,7 @@ public class FieldDeathZonePartsScript : PartsScript
      */
     protected override int _OnGetScriptIndex()
     {
-        return ((int)SceneUtil.SCRIPT_INDEX.TEST_2D_STAGE_FIELD_DEATH_ZONE_PARTS);
+        return ((int)SceneUtil.SCRIPT_INDEX.TEST_2D_STAGE_FIELD_FALL_ZONE_PARTS);
     }
 
     /**
@@ -72,12 +72,12 @@ public class FieldDeathZonePartsScript : PartsScript
     public override void SetCreateDesc(ScriptCreateDesc create_desc = null)
     {
         if (create_desc == null) {
-            this.SetCreateDesc(new FieldDeathZonePartsScriptCreateDesc());
+            this.SetCreateDesc(new FieldFallZonePartsScriptCreateDesc());
 
             return;
         }
 
-	    this.createDesc = create_desc as FieldDeathZonePartsScriptCreateDesc;
+	    this.createDesc = create_desc as FieldFallZonePartsScriptCreateDesc;
 
         base.SetCreateDesc(this.createDesc);
 
@@ -121,7 +121,7 @@ public class FieldDeathZonePartsScript : PartsScript
     public void OnTriggerEnter2D(Collider2D collider)
     {
         if (collider.gameObject.TryGetComponent<PlayerNodeScript>(out var script)) {
-            script.EnterDeathZone();
+            script.EnterFallZone();
         }
 
         return;

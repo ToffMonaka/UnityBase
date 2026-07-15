@@ -142,11 +142,11 @@ public abstract class SubSceneNodeScript : ToffMonaka.Tml.Scene.SubSceneNodeScri
      */
     protected override void _OnOpen()
     {
-        base._OnOpen();
-
         if (this._coverSystemNodeScript != null) {
             this._coverSystemNodeScript.CloseCover();
         }
+
+        base._OnOpen();
 
         return;
     }
@@ -156,13 +156,13 @@ public abstract class SubSceneNodeScript : ToffMonaka.Tml.Scene.SubSceneNodeScri
      */
     protected override void _OnOpened()
     {
-        base._OnOpened();
-
         SceneUtil.GetManager().EnableInputEventSystem();
 
         if (this._coverSystemNodeScript != null) {
             this._coverSystemNodeScript.CloseCover();
         }
+
+        base._OnOpened();
 
         return;
     }
@@ -172,13 +172,13 @@ public abstract class SubSceneNodeScript : ToffMonaka.Tml.Scene.SubSceneNodeScri
      */
     protected override void _OnClose()
     {
-        base._OnClose();
-
         SceneUtil.GetManager().DisableInputEventSystem();
 
         if (this._coverSystemNodeScript != null) {
             this._coverSystemNodeScript.CloseCover();
         }
+
+        base._OnClose();
 
         return;
     }
@@ -188,11 +188,11 @@ public abstract class SubSceneNodeScript : ToffMonaka.Tml.Scene.SubSceneNodeScri
      */
     protected override void _OnClosed()
     {
-        base._OnClosed();
-
         if (this._coverSystemNodeScript != null) {
             this._coverSystemNodeScript.CloseCover();
         }
+
+        base._OnClosed();
 
         return;
     }

@@ -31,13 +31,15 @@ public class PlayerNodeScript : ToffMonaka.Tml.Scene.NodeScript
     private Rigidbody2D _rigidbody;
     private Rigidbody2D.SlideMovement _slideMovement;
     private RaycastHit2D[] _raycastHitArray = new RaycastHit2D[8];
-    private bool _groundFlag = false;
-    private ContactFilter2D _groundContactFilter;
     private bool _movePositionFlag = false;
     private Vector2 _movePosition = Vector2.zero;
     private Vector2 _moveVelocity = Vector2.zero;
     private bool _jumpFlag = false;
     private bool _jumpDecelerateFlag = false;
+    private bool _groundFlag = false;
+    private ContactFilter2D _groundContactFilter;
+    private Vector2 _groundPosition = Vector2.zero;
+    private int _groundPositionIntervalCount = 0;
 
     private InputAction _moveInputAction = null;
     private InputAction _jumpInputAction = null;
@@ -80,6 +82,9 @@ public class PlayerNodeScript : ToffMonaka.Tml.Scene.NodeScript
         this._groundContactFilter.useLayerMask = true;
         this._groundContactFilter.layerMask = LayerMask.GetMask("Ground");
         this._groundContactFilter.useTriggers = false;
+
+        this._groundPosition = this._rigidbody.position;
+        this._groundPositionIntervalCount = 0;
 
         this._moveInputAction = InputSystem.actions.FindAction("Player/Move");
         this._moveInputAction.Enable();
@@ -158,6 +163,7 @@ public class PlayerNodeScript : ToffMonaka.Tml.Scene.NodeScript
     {
         if (this._movePositionFlag) {
             this._rigidbody.position = this._movePosition;
+            this._rigidbody.linearVelocity = Vector2.zero;
 
             this._movePositionFlag = false;
         }
@@ -219,32 +225,20 @@ public class PlayerNodeScript : ToffMonaka.Tml.Scene.NodeScript
         }
 
         this._UpdateGroundFlag();
+
+        if (this._groundFlag) {
+            --this._groundPositionIntervalCount;
+
+            if (this._groundPositionIntervalCount <= 0) {
+                this._groundPosition = this._rigidbody.position;
+                this._groundPositionIntervalCount = 30;
+            }
+        }
+
         this._UpdateJumpFlag();
         this._UpdateJumpDecelerateFlag();
 
         base._OnFixedUpdate();
-
-        return;
-    }
-
-    /**
-     * @brief _UpdateGroundFlag関数
-     */
-    private void _UpdateGroundFlag()
-    {
-        this._groundFlag = false;
-
-        var hit_cnt = this._rigidbody.Cast(Vector2.down, this._groundContactFilter, this._raycastHitArray, 0.01f);
-
-        if (hit_cnt > 0) {
-            var hit_normal = this._raycastHitArray[0].normal;
-
-            if (hit_normal.y > 0.5f) {
-                this._groundFlag = true;
-
-                this._rigidbody.position += Vector2.down * (this._raycastHitArray[0].distance - 0.01f);
-            }
-        }
 
         return;
     }
@@ -282,10 +276,34 @@ public class PlayerNodeScript : ToffMonaka.Tml.Scene.NodeScript
     }
 
     /**
+     * @brief _UpdateGroundFlag関数
+     */
+    private void _UpdateGroundFlag()
+    {
+        this._groundFlag = false;
+
+        var hit_cnt = this._rigidbody.Cast(Vector2.down, this._groundContactFilter, this._raycastHitArray, 0.01f);
+
+        if (hit_cnt > 0) {
+            var hit_normal = this._raycastHitArray[0].normal;
+
+            if (hit_normal.y > 0.5f) {
+                this._groundFlag = true;
+
+                this._rigidbody.position += Vector2.down * (this._raycastHitArray[0].distance - 0.01f);
+            }
+        }
+
+        return;
+    }
+
+    /**
      * @brief _OnOpen関数
      */
     protected override void _OnOpen()
     {
+        this.RunSpawnAction(this._groundPosition);
+
         base._OnOpen();
 
         return;
@@ -307,12 +325,16 @@ public class PlayerNodeScript : ToffMonaka.Tml.Scene.NodeScript
      */
     public void RunSpawnAction(Vector2 pos)
     {
-        this._groundFlag = false;
         this._movePositionFlag = true;
         this._movePosition = pos;
         this._moveVelocity = Vector2.zero;
         this._jumpFlag = false;
         this._jumpDecelerateFlag = false;
+
+        this._groundFlag = false;
+
+        this._animator.SetBool("moveLeftFlag", false);
+        this._animator.SetBool("moveRightFlag", false);
 
         return;
     }
@@ -326,17 +348,14 @@ public class PlayerNodeScript : ToffMonaka.Tml.Scene.NodeScript
         this._moveVelocity.x = x * this._moveSpeed;
 
         if (this._moveVelocity.x > 0.0f) {
-            this._spriteRenderer.flipX = false;
-
-            this._animator.SetBool("moveXFlag", true);
+            this._animator.SetBool("moveLeftFlag", false);
+            this._animator.SetBool("moveRightFlag", true);
         } else if (this._moveVelocity.x < 0.0f) {
-            this._spriteRenderer.flipX = true;
-
-            this._animator.SetBool("moveXFlag", true);
+            this._animator.SetBool("moveLeftFlag", true);
+            this._animator.SetBool("moveRightFlag", false);
         } else {
-            this._spriteRenderer.flipX = false;
-
-            this._animator.SetBool("moveXFlag", false);
+            this._animator.SetBool("moveLeftFlag", false);
+            this._animator.SetBool("moveRightFlag", false);
         }
 
         return;
@@ -380,11 +399,11 @@ public class PlayerNodeScript : ToffMonaka.Tml.Scene.NodeScript
     }
 
     /**
-     * @brief EnterDeathZone関数
+     * @brief EnterFallZone関数
      */
-    public void EnterDeathZone()
+    public void EnterFallZone()
     {
-        this.RunSpawnAction(new Vector2(0.0f, 2.0f));
+        this.RunSpawnAction(this._groundPosition);
 
         return;
     }
