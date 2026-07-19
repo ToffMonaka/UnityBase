@@ -21,13 +21,14 @@ public class Test2DStageSubSceneNodeScriptCreateDesc : StageSubSceneNodeScriptCr
  */
 public class Test2DStageSubSceneNodeScript : StageSubSceneNodeScript
 {
-    [SerializeField] private GameObject _fieldNode = null;
-    [SerializeField] private GameObject _playerNode = null;
+    [SerializeField] private GameObject _fieldLayoutNode = null;
+    [SerializeField] private FieldNodeScript _fieldNodeScript = null;
+    [SerializeField] private GameObject _playerLayoutNode = null;
+    [SerializeField] private PlayerNodeScript _playerNodeScript = null;
+    [SerializeField] private GameObject _enemyLayoutNode = null;
+    [SerializeField] private GameObject _objectLayoutNode = null;
 
     public new Test2DStageSubSceneNodeScriptCreateDesc createDesc{get; private set;} = null;
-
-    private FieldNodeScript _fieldNodeScript = null;
-    private PlayerNodeScript _playerNodeScript = null;
 
     /**
      * @brief _OnGetScriptIndex関数
@@ -79,23 +80,19 @@ public class Test2DStageSubSceneNodeScript : StageSubSceneNodeScript
         }
 
         {// FieldNodeScript Create
-            var script = this._fieldNode.GetComponent<FieldNodeScript>();
+            var script = this._fieldNodeScript;
             var script_create_desc = new FieldNodeScriptCreateDesc();
 
             script.Create(script_create_desc);
             script.Open(0);
-
-            this._fieldNodeScript = script;
         }
 
         {// PlayerNodeScript Create
-            var script = this._playerNode.GetComponent<PlayerNodeScript>();
+            var script = this._playerNodeScript;
             var script_create_desc = new PlayerNodeScriptCreateDesc();
 
             script.Create(script_create_desc);
             script.Open(0);
-
-            this._playerNodeScript = script;
         }
 
         return (0);

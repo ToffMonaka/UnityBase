@@ -20,15 +20,15 @@ public class PlayerNodeScriptCreateDesc : ToffMonaka.Tml.Scene.NodeScriptCreateD
  */
 public class PlayerNodeScript : ToffMonaka.Tml.Scene.NodeScript
 {
+    [SerializeField] private SpriteRenderer _spriteRenderer;
+    [SerializeField] private Animator _animator;
+    [SerializeField] private Rigidbody2D _rigidbody;
     [SerializeField] private float _moveSpeed = 3.0f;
     [SerializeField] private float _jumpPower = 6.5f;
     [SerializeField] private float _jumpDeceleratePower = 0.5f;
-    [SerializeField] private SpriteRenderer _spriteRenderer;
-    [SerializeField] private Animator _animator;
 
     public new PlayerNodeScriptCreateDesc createDesc{get; private set;} = null;
 
-    private Rigidbody2D _rigidbody;
     private Rigidbody2D.SlideMovement _slideMovement;
     private RaycastHit2D[] _raycastHitArray = new RaycastHit2D[8];
     private bool _movePositionFlag = false;
@@ -59,8 +59,6 @@ public class PlayerNodeScript : ToffMonaka.Tml.Scene.NodeScript
     protected override void _OnAwake()
     {
         base._OnAwake();
-
-        this._rigidbody = this.gameObject.GetComponent<Rigidbody2D>();
 
         this._slideMovement = new Rigidbody2D.SlideMovement {
             maxIterations = 3,
@@ -171,7 +169,15 @@ public class PlayerNodeScript : ToffMonaka.Tml.Scene.NodeScript
         this._UpdateGroundFlag();
 
         if ((this._groundFlag) && (this._moveVelocity.y == 0.0f)) {
-            this._rigidbody.Slide(this._moveVelocity, Time.deltaTime, this._slideMovement);
+            this._groundFlag = false;
+
+            var slide_res = this._rigidbody.Slide(this._moveVelocity, Time.deltaTime, this._slideMovement);
+
+            if (slide_res.surfaceHit.collider != null) {
+                if (slide_res.surfaceHit.normal.y > 0.5f) {
+                    this._groundFlag = true;
+                }
+            }
         } else {
             this._moveVelocity.y += Physics2D.gravity.y * Time.deltaTime;
 
@@ -180,9 +186,7 @@ public class PlayerNodeScript : ToffMonaka.Tml.Scene.NodeScript
             var distance = velocity.magnitude;
 
             if (distance > 0.0f) {
-                var hit_cnt = this._rigidbody.Cast(velocity_normal, this._groundContactFilter, this._raycastHitArray, distance + 0.01f);
-
-                if (hit_cnt > 0) {
+                if (this._rigidbody.Cast(velocity_normal, this._groundContactFilter, this._raycastHitArray, distance + 0.01f) > 0) {
                     var hit_normal = this._raycastHitArray[0].normal;
 
                     if (((hit_normal.y > 0.5f) && (velocity_normal.y < 0.0f))
@@ -201,9 +205,7 @@ public class PlayerNodeScript : ToffMonaka.Tml.Scene.NodeScript
                         var distance2 = (velocity.y < 0.0f) ? -velocity.y : velocity.y;
 
                         if (distance2 > 0.0f) {
-                            var hit_cnt2 = this._rigidbody.Cast(velocity_normal2, this._groundContactFilter, this._raycastHitArray, distance2 + 0.01f);
-
-                            if (hit_cnt2 > 0) {
+                            if (this._rigidbody.Cast(velocity_normal2, this._groundContactFilter, this._raycastHitArray, distance2 + 0.01f) > 0) {
                                 var hit_normal2 = this._raycastHitArray[0].normal;
 
                                 if (((hit_normal2.y > 0.5f) && (velocity_normal2.y < 0.0f))
@@ -222,9 +224,9 @@ public class PlayerNodeScript : ToffMonaka.Tml.Scene.NodeScript
 
                 this._rigidbody.position += velocity;
             }
-        }
 
-        this._UpdateGroundFlag();
+            this._UpdateGroundFlag();
+        }
 
         if (this._groundFlag) {
             --this._groundPositionIntervalCount;
@@ -282,9 +284,7 @@ public class PlayerNodeScript : ToffMonaka.Tml.Scene.NodeScript
     {
         this._groundFlag = false;
 
-        var hit_cnt = this._rigidbody.Cast(Vector2.down, this._groundContactFilter, this._raycastHitArray, 0.01f);
-
-        if (hit_cnt > 0) {
+        if (this._rigidbody.Cast(Vector2.down, this._groundContactFilter, this._raycastHitArray, 0.01f) > 0) {
             var hit_normal = this._raycastHitArray[0].normal;
 
             if (hit_normal.y > 0.5f) {

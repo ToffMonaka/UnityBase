@@ -627,8 +627,12 @@ MonoBehaviour:
   _sideMenuNode: {fileID: 6950583318148601022}
   _dialogSystemNode: {fileID: 8035715372331681166}
   _coverSystemNode: {fileID: 6611941517006235068}
-  _fieldNode: {fileID: 8428216182934521443}
-  _playerNode: {fileID: 8894558986268489172}
+  _fieldLayoutNode: {fileID: 3120923570346947313}
+  _fieldNodeScript: {fileID: 2082880428279689680}
+  _playerLayoutNode: {fileID: 2007458270836589000}
+  _playerNodeScript: {fileID: 6635965854694719195}
+  _enemyLayoutNode: {fileID: 5816953788015529731}
+  _objectLayoutNode: {fileID: 1879646117174228356}
 --- !u!1 &4416883066726909687
 GameObject:
   m_ObjectHideFlags: 0
@@ -3299,10 +3303,10 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 222107122204783383}
+  - {fileID: 5101096356941739513}
   - {fileID: 7162145535406926809}
   - {fileID: 8065373416206477990}
   - {fileID: 44415357708715160}
-  - {fileID: 5101096356941739513}
   m_Father: {fileID: 4162704897538887408}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2082880428279689680
@@ -3492,11 +3496,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3f94df6a0d54084ba9fb64dbda58a11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ToffMonaka.UnityBase.Scene.Test2DStageSubScene.PlayerNodeScript
+  _spriteRenderer: {fileID: 551190237238786181}
+  _animator: {fileID: 4009007720334438090}
+  _rigidbody: {fileID: 3849984591435994462}
   _moveSpeed: 3
   _jumpPower: 6.5
   _jumpDeceleratePower: 0.5
-  _spriteRenderer: {fileID: 551190237238786181}
-  _animator: {fileID: 4009007720334438090}
 --- !u!50 &3849984591435994462
 Rigidbody2D:
   serializedVersion: 5
