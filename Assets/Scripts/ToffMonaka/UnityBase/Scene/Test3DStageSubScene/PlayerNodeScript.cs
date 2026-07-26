@@ -26,7 +26,6 @@ public class PlayerNodeScript : ToffMonaka.Tml.Scene.NodeScript
 
     private Vector3 _moveVelocity = Vector3.zero;
 
-    private InputAction _lookInputAction = null;
     private InputAction _moveInputAction = null;
     private InputAction _jumpInputAction = null;
 
@@ -45,9 +44,6 @@ public class PlayerNodeScript : ToffMonaka.Tml.Scene.NodeScript
     protected override void _OnAwake()
     {
         base._OnAwake();
-
-        this._lookInputAction = InputSystem.actions.FindAction("Player/Look");
-        this._lookInputAction.Enable();
 
         this._moveInputAction = InputSystem.actions.FindAction("Player/Move");
         this._moveInputAction.Enable();
@@ -106,12 +102,9 @@ public class PlayerNodeScript : ToffMonaka.Tml.Scene.NodeScript
      */
     protected override void _OnUpdate()
     {
-        this.transform.Rotate(this._lookInputAction.ReadValue<Vector2>().x * 20.0f * Time.deltaTime * Vector3.up);
-
         this._moveVelocity.x = this._moveInputAction.ReadValue<Vector2>().x;
-        this._moveVelocity.z = this._moveInputAction.ReadValue<Vector2>().y;
-
         this._moveVelocity.y += Physics2D.gravity.y * Time.deltaTime;
+        this._moveVelocity.z = this._moveInputAction.ReadValue<Vector2>().y;
 
         this._characterController.Move(this._moveVelocity);
 
@@ -149,6 +142,70 @@ public class PlayerNodeScript : ToffMonaka.Tml.Scene.NodeScript
 
         return;
     }
+
+    /*
+    int maxBounces = 5;
+    float skinWidth = 0.015f;
+    float maxSlopeAngle = 55;
+
+    private Vector3 CollideAndSlide(Vector3 vel, Vector3 pos, int depth, bool gravityPass, Vector3 velInit)
+    {
+        Bounds bounds;
+
+        bounds = collider.bounds;
+        bounds.Expand(-2 * skinWidth);
+
+	    if (depth >= maxBounces) {
+		    return (Vector3.zero);
+	    }
+
+	    float dist = vel.magnitude + skinWidth;
+
+	    RaycastHit hit;
+
+	    if (Physics.SphereCast(pos, bounds.extents.x, vel.normalized, out hit, dist, layerMask)) {
+		    Vector3 snapToSurface = vel.normalized * (hit.distance - skinWidth);
+		    Vector3 leftover = vel - snapToSurface;
+		    float angle = Vector3.Angle(Vector3.up, hit.normal);
+
+		    if (snapToSurface.magnitude <= skinWidth) {
+			    snapToSurface = Vector3.zero;
+		    }
+
+		    if (angle <= maxSlopeAngle) {
+			    if (gravityPass) {
+				    return (snapToSurface);
+			    }
+
+			    leftover = ProjectAndScale(leftover, hit.normal);
+		    } else {
+			    float scale = 1 - Vector3.Dot(new Vector3(hit.normal.x, 0, hit.normal.z).normalized, -new Vector3(velInit.x, 0, velInit.z).normalized);
+
+		        if ((isGrounded) && (!gravityPass)) {
+			        leftover = ProjectAndScale(new Vector3(leftover.x, 0, leftover.z), new Vector3(hit.normal.x, 0, hit.normal.z)).normalized;
+
+			        leftover *= scale;
+		        } else {
+			        leftover = ProjectAndScale(leftover, hit.normal) * scale;
+		        }
+		    }
+
+		    return (snapToSurface + CollideAndSlide(leftover, pos + snapToSurface, depth + 1, gravityPass, velInit));
+	    }
+
+	    return (vel);
+    }
+
+    private Vector3 ProjectAndScale(Vector3 vec, Vector3 normal)
+    {
+	    float mag = vec.mag;
+
+	    vec = Vector3.ProjectOnPlane(vec, normal).normalized;
+	    vec *= mag;
+
+        return (vec);
+    }
+    */
 }
 }
 }
