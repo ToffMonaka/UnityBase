@@ -20,11 +20,23 @@ public class PlayerNodeScriptCreateDesc : ToffMonaka.Tml.Scene.NodeScriptCreateD
  */
 public class PlayerNodeScript : ToffMonaka.Tml.Scene.NodeScript
 {
-    [SerializeField] private CharacterController _characterController;
+    [SerializeField] private Rigidbody _rigidbody;
+    [SerializeField] private CapsuleCollider _collider;
+    [SerializeField] private float _moveSpeed = 3.0f;
+    [SerializeField] private float _jumpPower = 6.5f;
+    [SerializeField] private float _jumpDeceleratePower = 0.5f;
+    [SerializeField] private float _fallLimit = -10.0f;
 
     public new PlayerNodeScriptCreateDesc createDesc{get; private set;} = null;
 
+    private bool _movePositionFlag = false;
+    private Vector3 _movePosition = Vector3.zero;
     private Vector3 _moveVelocity = Vector3.zero;
+    private bool _jumpFlag = false;
+    private bool _jumpDecelerateFlag = false;
+    private bool _groundFlag = false;
+    private Vector3 _groundPosition = Vector3.zero;
+    private int _groundPositionIntervalCount = 0;
 
     private InputAction _moveInputAction = null;
     private InputAction _jumpInputAction = null;
@@ -44,6 +56,9 @@ public class PlayerNodeScript : ToffMonaka.Tml.Scene.NodeScript
     protected override void _OnAwake()
     {
         base._OnAwake();
+
+        this._groundPosition = this._rigidbody.position;
+        this._groundPositionIntervalCount = 0;
 
         this._moveInputAction = InputSystem.actions.FindAction("Player/Move");
         this._moveInputAction.Enable();
@@ -102,11 +117,13 @@ public class PlayerNodeScript : ToffMonaka.Tml.Scene.NodeScript
      */
     protected override void _OnUpdate()
     {
-        this._moveVelocity.x = this._moveInputAction.ReadValue<Vector2>().x;
-        this._moveVelocity.y += Physics2D.gravity.y * Time.deltaTime;
-        this._moveVelocity.z = this._moveInputAction.ReadValue<Vector2>().y;
+        this.RunMoveAction(this._moveInputAction.ReadValue<Vector2>().x, this._moveInputAction.ReadValue<Vector2>().y);
 
-        this._characterController.Move(this._moveVelocity);
+        if (this._jumpInputAction.WasPressedThisFrame()) {
+            this.RunJumpAction(1.0f);
+        } else if (this._jumpInputAction.WasReleasedThisFrame()) {
+            this.RunJumpDecelerateAction(1.0f);
+        }
 
         base._OnUpdate();
 
@@ -118,7 +135,80 @@ public class PlayerNodeScript : ToffMonaka.Tml.Scene.NodeScript
      */
     protected override void _OnFixedUpdate()
     {
+        if (this._movePositionFlag) {
+            this._rigidbody.position = this._movePosition;
+            this._rigidbody.linearVelocity = Vector3.zero;
+
+            this._movePositionFlag = false;
+        }
+
+        this._UpdateGroundFlag();
+
+        if ((this._groundFlag) && (this._moveVelocity.y == 0.0f)) {
+        } else {
+
+            this._UpdateGroundFlag();
+        }
+
+        if (this._groundFlag) {
+            --this._groundPositionIntervalCount;
+
+            if (this._groundPositionIntervalCount <= 0) {
+                this._groundPosition = this._rigidbody.position;
+                this._groundPositionIntervalCount = 30;
+            }
+        }
+
+        if (this._rigidbody.position.y <= this._fallLimit) {
+            this.EnterFallZone();
+        }
+
+        this._UpdateJumpFlag();
+        this._UpdateJumpDecelerateFlag();
+
         base._OnFixedUpdate();
+
+        return;
+    }
+
+    /**
+     * @brief _UpdateJumpFlag関数
+     */
+    private void _UpdateJumpFlag()
+    {
+        if (this._jumpFlag) {
+            if (!this._groundFlag) {
+                this._jumpFlag = false;
+            }
+        } else {
+            if (this._groundFlag) {
+                this._jumpFlag = true;
+            }
+        }
+
+        return;
+    }
+
+    /**
+     * @brief _UpdateJumpDecelerateFlag関数
+     */
+    private void _UpdateJumpDecelerateFlag()
+    {
+        if (this._jumpDecelerateFlag) {
+            if (this._moveVelocity.y <= 0.0f) {
+                this._jumpDecelerateFlag = false;
+            }
+        }
+
+        return;
+    }
+
+    /**
+     * @brief _UpdateGroundFlag関数
+     */
+    private void _UpdateGroundFlag()
+    {
+        this._groundFlag = false;
 
         return;
     }
@@ -128,6 +218,8 @@ public class PlayerNodeScript : ToffMonaka.Tml.Scene.NodeScript
      */
     protected override void _OnOpen()
     {
+        this.RunSpawnAction(this._groundPosition);
+
         base._OnOpen();
 
         return;
@@ -139,6 +231,84 @@ public class PlayerNodeScript : ToffMonaka.Tml.Scene.NodeScript
     protected override void _OnClose()
     {
         base._OnClose();
+
+        return;
+    }
+
+    /**
+     * @brief RunSpawnAction関数
+     * @param pos (position)
+     */
+    public void RunSpawnAction(Vector3 pos)
+    {
+        this._movePositionFlag = true;
+        this._movePosition = pos;
+        this._moveVelocity = Vector3.zero;
+
+        this._jumpFlag = false;
+        this._jumpDecelerateFlag = false;
+
+        this._groundFlag = false;
+
+        return;
+    }
+
+    /**
+     * @brief RunMoveAction関数
+     * @param x (x)
+     * @param z (z)
+     */
+    public void RunMoveAction(float x, float z)
+    {
+        this._moveVelocity.x = x * this._moveSpeed;
+        this._moveVelocity.z = z * this._moveSpeed;
+
+        return;
+    }
+
+    /**
+     * @brief RunJumpAction関数
+     * @param y (y)
+     */
+    public void RunJumpAction(float y)
+    {
+        if ((!this._jumpFlag)
+        || (y <= 0.0f)) {
+            return;
+        }
+
+        this._moveVelocity.y = y * this._jumpPower;
+
+        this._jumpFlag = false;
+        this._jumpDecelerateFlag = true;
+
+        return;
+    }
+
+    /**
+     * @brief RunJumpDecelerateAction関数
+     * @param y (y)
+     */
+    public void RunJumpDecelerateAction(float y)
+    {
+        if ((!this._jumpDecelerateFlag)
+        || (y <= 0.0f)) {
+            return;
+        }
+
+        this._moveVelocity.y *= y * this._jumpDeceleratePower;
+
+        this._jumpDecelerateFlag = false;
+
+        return;
+    }
+
+    /**
+     * @brief EnterFallZone関数
+     */
+    public void EnterFallZone()
+    {
+        this.RunSpawnAction(this._groundPosition);
 
         return;
     }

@@ -23,9 +23,11 @@ public class PlayerNodeScript : ToffMonaka.Tml.Scene.NodeScript
     [SerializeField] private SpriteRenderer _spriteRenderer;
     [SerializeField] private Animator _animator;
     [SerializeField] private Rigidbody2D _rigidbody;
+    [SerializeField] private CapsuleCollider2D _collider;
     [SerializeField] private float _moveSpeed = 3.0f;
     [SerializeField] private float _jumpPower = 6.5f;
     [SerializeField] private float _jumpDeceleratePower = 0.5f;
+    [SerializeField] private float _fallLimit = -10.0f;
 
     public new PlayerNodeScriptCreateDesc createDesc{get; private set;} = null;
 
@@ -37,9 +39,9 @@ public class PlayerNodeScript : ToffMonaka.Tml.Scene.NodeScript
     private bool _jumpFlag = false;
     private bool _jumpDecelerateFlag = false;
     private bool _groundFlag = false;
-    private ContactFilter2D _groundContactFilter;
     private Vector2 _groundPosition = Vector2.zero;
     private int _groundPositionIntervalCount = 0;
+    private ContactFilter2D _groundContactFilter;
 
     private InputAction _moveInputAction = null;
     private InputAction _jumpInputAction = null;
@@ -75,14 +77,13 @@ public class PlayerNodeScript : ToffMonaka.Tml.Scene.NodeScript
             this._raycastHitArray[raycast_hit_i] = new RaycastHit2D();
         }
 
-        this._groundContactFilter = new ContactFilter2D();
+        this._groundPosition = this._rigidbody.position;
+        this._groundPositionIntervalCount = 0;
 
+        this._groundContactFilter = new ContactFilter2D();
         this._groundContactFilter.useLayerMask = true;
         this._groundContactFilter.layerMask = LayerMask.GetMask("Ground");
         this._groundContactFilter.useTriggers = false;
-
-        this._groundPosition = this._rigidbody.position;
-        this._groundPositionIntervalCount = 0;
 
         this._moveInputAction = InputSystem.actions.FindAction("Player/Move");
         this._moveInputAction.Enable();
@@ -237,6 +238,10 @@ public class PlayerNodeScript : ToffMonaka.Tml.Scene.NodeScript
             }
         }
 
+        if (this._rigidbody.position.y <= this._fallLimit) {
+            this.EnterFallZone();
+        }
+
         this._UpdateJumpFlag();
         this._UpdateJumpDecelerateFlag();
 
@@ -328,6 +333,7 @@ public class PlayerNodeScript : ToffMonaka.Tml.Scene.NodeScript
         this._movePositionFlag = true;
         this._movePosition = pos;
         this._moveVelocity = Vector2.zero;
+
         this._jumpFlag = false;
         this._jumpDecelerateFlag = false;
 
