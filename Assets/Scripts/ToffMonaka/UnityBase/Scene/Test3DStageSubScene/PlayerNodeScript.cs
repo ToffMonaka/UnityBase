@@ -176,11 +176,13 @@ public class PlayerNodeScript : ToffMonaka.Tml.Scene.NodeScript
                     }
                     */
 
+                    /*
                     var v2 = vel_normal * (hit.distance - this._skinWidth);
 
                     if (v2.magnitude <= this._skinWidth) {
                         Debug.Log("a=" + v2.magnitude);
                     }
+                    */
 
                     if ((hit_normal.y > 0.5f) || ((hit_normal.y < -0.5f))) {
                         vel = vel_normal * (hit.distance - this._skinWidth);
