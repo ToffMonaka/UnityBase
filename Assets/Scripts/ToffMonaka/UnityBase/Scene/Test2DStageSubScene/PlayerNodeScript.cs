@@ -24,13 +24,16 @@ public class PlayerNodeScript : ToffMonaka.Tml.Scene.NodeScript
     [SerializeField] private Animator _animator;
     [SerializeField] private Rigidbody2D _rigidbody;
     [SerializeField] private CapsuleCollider2D _collider;
+    [SerializeField] private float _skinWidth = 0.015f;
     [SerializeField] private float _moveSpeed = 3.0f;
+    [SerializeField] private float _moveIterationCount = 3;
     [SerializeField] private float _jumpPower = 6.5f;
     [SerializeField] private float _jumpDeceleratePower = 0.5f;
     [SerializeField] private float _fallLimit = -10.0f;
 
     public new PlayerNodeScriptCreateDesc createDesc{get; private set;} = null;
 
+    private Bounds _bounds;
     private Rigidbody2D.SlideMovement _slideMovement;
     private RaycastHit2D[] _raycastHitArray = new RaycastHit2D[8];
     private bool _movePositionFlag = false;
@@ -61,6 +64,9 @@ public class PlayerNodeScript : ToffMonaka.Tml.Scene.NodeScript
     protected override void _OnAwake()
     {
         base._OnAwake();
+
+        this._bounds = this._collider.bounds;
+        this._bounds.Expand(-2.0f * this._skinWidth);
 
         this._slideMovement = new Rigidbody2D.SlideMovement {
             maxIterations = 3,
@@ -162,7 +168,6 @@ public class PlayerNodeScript : ToffMonaka.Tml.Scene.NodeScript
     {
         if (this._movePositionFlag) {
             this._rigidbody.position = this._movePosition;
-            this._rigidbody.linearVelocity = Vector2.zero;
 
             this._movePositionFlag = false;
         }
@@ -182,48 +187,48 @@ public class PlayerNodeScript : ToffMonaka.Tml.Scene.NodeScript
         } else {
             this._moveVelocity.y += Physics2D.gravity.y * Time.deltaTime;
 
-            var velocity = this._moveVelocity * Time.deltaTime;
-            var velocity_normal = velocity.normalized;
-            var distance = velocity.magnitude;
+            var vel = this._moveVelocity * Time.deltaTime;
+            var vel_normal = vel.normalized;
+            var dist = vel.magnitude;
 
-            if (distance > 0.0f) {
-                if (this._rigidbody.Cast(velocity_normal, this._groundContactFilter, this._raycastHitArray, distance + 0.01f) > 0) {
+            if (dist > 0.0f) {
+                if (this._rigidbody.Cast(vel_normal, this._groundContactFilter, this._raycastHitArray, dist + 0.01f) > 0) {
                     var hit_normal = this._raycastHitArray[0].normal;
 
-                    if (((hit_normal.y > 0.5f) && (velocity_normal.y < 0.0f))
-                    || ((hit_normal.y < -0.5f) && (velocity_normal.y > 0.0f))) {
-                        velocity = velocity_normal * (this._raycastHitArray[0].distance - 0.01f);
+                    if (((hit_normal.y > 0.5f) && (vel_normal.y < 0.0f))
+                    || ((hit_normal.y < -0.5f) && (vel_normal.y > 0.0f))) {
+                        vel = vel_normal * (this._raycastHitArray[0].distance - 0.01f);
 
                         this._moveVelocity.y = 0.0f;
-                    } else if (((hit_normal.x < -0.5f) && (velocity_normal.x > 0.0f))
-                           || ((hit_normal.x > 0.5f) && (velocity_normal.x < 0.0f))) {
-                        velocity = new Vector2(velocity_normal.x * (this._raycastHitArray[0].distance - 0.01f), velocity.y);
+                    } else if (((hit_normal.x < -0.5f) && (vel_normal.x > 0.0f))
+                           || ((hit_normal.x > 0.5f) && (vel_normal.x < 0.0f))) {
+                        vel = new Vector2(vel_normal.x * (this._raycastHitArray[0].distance - 0.01f), vel.y);
 
                         this._moveVelocity.x = 0.0f;
 
-                        var velocity2 = new Vector2(0.0f, velocity.y);
-                        var velocity_normal2 = new Vector2(0.0f, (velocity.y < 0.0f) ? -1.0f : ((velocity.y > 0.0f) ? 1.0f : 0.0f));
-                        var distance2 = (velocity.y < 0.0f) ? -velocity.y : velocity.y;
+                        var vel2 = new Vector2(0.0f, vel.y);
+                        var vel_normal2 = new Vector2(0.0f, (vel.y < 0.0f) ? -1.0f : ((vel.y > 0.0f) ? 1.0f : 0.0f));
+                        var dist2 = (vel.y < 0.0f) ? -vel.y : vel.y;
 
-                        if (distance2 > 0.0f) {
-                            if (this._rigidbody.Cast(velocity_normal2, this._groundContactFilter, this._raycastHitArray, distance2 + 0.01f) > 0) {
+                        if (dist2 > 0.0f) {
+                            if (this._rigidbody.Cast(vel_normal2, this._groundContactFilter, this._raycastHitArray, dist2 + 0.01f) > 0) {
                                 var hit_normal2 = this._raycastHitArray[0].normal;
 
-                                if (((hit_normal2.y > 0.5f) && (velocity_normal2.y < 0.0f))
-                                || ((hit_normal2.y < -0.5f) && (velocity_normal2.y > 0.0f))) {
-                                    velocity2 = velocity_normal2 * (this._raycastHitArray[0].distance - 0.01f);
+                                if (((hit_normal2.y > 0.5f) && (vel_normal2.y < 0.0f))
+                                || ((hit_normal2.y < -0.5f) && (vel_normal2.y > 0.0f))) {
+                                    vel2 = vel_normal2 * (this._raycastHitArray[0].distance - 0.01f);
 
                                     this._moveVelocity.y = 0.0f;
                                 }
                             }
                         }
 
-                        velocity = new Vector2(velocity.x, velocity2.y);
+                        vel = new Vector2(vel.x, vel2.y);
                     }
 
                 }
 
-                this._rigidbody.position += velocity;
+                this._rigidbody.position += vel;
             }
 
             this._UpdateGroundFlag();
