@@ -256,6 +256,36 @@ public class PlayerNodeScript : ToffMonaka.Tml.Scene.NodeScript
     }
 
     /**
+     * @brief _GetHitNormalForSurface関数
+     * @param hit (hit)
+     * @param layer_mask (layer_mask)
+     * @return hit_normal (hit_normal)
+     */
+    private Vector2 _GetHitNormalForSurface(RaycastHit2D hit, int layer_mask)
+    {
+        var p = hit.point + hit.normal * 0.01f;
+
+        var hit2 = Physics2D.Raycast(p, -hit.normal, 0.011f, layer_mask);
+
+        if (hit2.collider == null) {
+            return (hit.normal);
+        }
+
+        return (hit2.normal);
+    }
+
+    /**
+     * @brief _GetProjectVelocityOnPlane関数
+     * @param vec (vector)
+     * @param plane_normal (plane_normal)
+     * @param roj_vel (project_velocity)
+     */
+    private Vector2 _GetProjectVelocityOnPlane(Vector2 vec, Vector2 plane_normal)
+    {
+        return ((vec - Vector2.Dot(vec, plane_normal) * plane_normal) * vec.magnitude);
+    }
+
+    /**
      * @brief _UpdateJumpFlag関数
      */
     private void _UpdateJumpFlag()
