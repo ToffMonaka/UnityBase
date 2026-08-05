@@ -1195,7 +1195,7 @@ MonoBehaviour:
   _rigidbody: {fileID: 8018264112206140178}
   _collider: {fileID: 1244132458045031059}
   _skinWidth: 0.015
-  _moveSpeed: 3
+  _moveSpeed: 4
   _moveIterationCount: 3
   _jumpPower: 6.5
   _jumpDeceleratePower: 0.5
