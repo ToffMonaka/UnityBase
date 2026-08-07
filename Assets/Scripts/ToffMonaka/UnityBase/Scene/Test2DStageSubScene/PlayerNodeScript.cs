@@ -20,6 +20,7 @@ public class PlayerNodeScriptCreateDesc : ToffMonaka.Tml.Scene.NodeScriptCreateD
  */
 public class PlayerNodeScript : ToffMonaka.Tml.Scene.NodeScript
 {
+#pragma warning disable 0414
     [SerializeField] private SpriteRenderer _spriteRenderer;
     [SerializeField] private Animator _animator;
     [SerializeField] private Rigidbody2D _rigidbody;
@@ -48,6 +49,7 @@ public class PlayerNodeScript : ToffMonaka.Tml.Scene.NodeScript
 
     private InputAction _moveInputAction = null;
     private InputAction _jumpInputAction = null;
+#pragma warning restore 0414
 
     /**
      * @brief _OnGetScriptIndex関数
@@ -256,33 +258,46 @@ public class PlayerNodeScript : ToffMonaka.Tml.Scene.NodeScript
     }
 
     /**
-     * @brief _GetHitNormalForSurface関数
+     * @brief _CapsuleCast関数
+     * @param dir (direction)
+     * @param dist (distance)
      * @param hit (hit)
-     * @param layer_mask (layer_mask)
-     * @return hit_normal (hit_normal)
+     * @return hit_flg (hit_flag)
      */
-    private Vector2 _GetHitNormalForSurface(RaycastHit2D hit, int layer_mask)
+    private bool _CapsuleCast(Vector2 dir, float dist, out RaycastHit2D hit)
     {
-        var p = hit.point + hit.normal * 0.01f;
+        hit = Physics2D.CapsuleCast(this._rigidbody.position, this._collider.size, this._collider.direction, 0.0f, dir, dist + this._skinWidth, LayerMask.GetMask("Ground"));
 
-        var hit2 = Physics2D.Raycast(p, -hit.normal, 0.011f, layer_mask);
-
-        if (hit2.collider == null) {
-            return (hit.normal);
-        }
-
-        return (hit2.normal);
+        return (hit.collider != null);
     }
 
     /**
-     * @brief _GetProjectVelocityOnPlane関数
-     * @param vec (vector)
-     * @param plane_normal (plane_normal)
-     * @param roj_vel (project_velocity)
+     * @brief _GetSurfaceNormal関数
+     * @param hit (hit)
+     * @return surf_normal (surface_normal)
      */
-    private Vector2 _GetProjectVelocityOnPlane(Vector2 vec, Vector2 plane_normal)
+    private Vector2 _GetSurfaceNormal(RaycastHit2D hit)
     {
-        return ((vec - Vector2.Dot(vec, plane_normal) * plane_normal) * vec.magnitude);
+        var p = hit.point + hit.normal * 0.01f;
+
+        var surf_hit = Physics2D.Raycast(p, -hit.normal, 0.011f, LayerMask.GetMask("Ground"));
+
+        if (surf_hit.collider == null) {
+            return (hit.normal);
+        }
+
+        return (surf_hit.normal);
+    }
+
+    /**
+     * @brief _GetSurfaceVelocity関数
+     * @param vel (velocity)
+     * @param surf_normal (surf_normal)
+     * @param surf_vel (surf_velocity)
+     */
+    private Vector2 _GetSurfaceVelocity(Vector2 vel, Vector2 surf_normal)
+    {
+        return ((vel - Vector2.Dot(vel, surf_normal) * surf_normal) * vel.magnitude);
     }
 
     /**

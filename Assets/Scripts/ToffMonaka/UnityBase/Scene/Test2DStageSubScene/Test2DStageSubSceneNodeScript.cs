@@ -21,6 +21,7 @@ public class Test2DStageSubSceneNodeScriptCreateDesc : StageSubSceneNodeScriptCr
  */
 public class Test2DStageSubSceneNodeScript : StageSubSceneNodeScript
 {
+#pragma warning disable 0414
     [SerializeField] private GameObject _fieldLayoutNode = null;
     [SerializeField] private FieldNodeScript _fieldNodeScript = null;
     [SerializeField] private GameObject _playerLayoutNode = null;
@@ -29,6 +30,7 @@ public class Test2DStageSubSceneNodeScript : StageSubSceneNodeScript
     [SerializeField] private GameObject _objectLayoutNode = null;
 
     public new Test2DStageSubSceneNodeScriptCreateDesc createDesc{get; private set;} = null;
+#pragma warning restore 0414
 
     /**
      * @brief _OnGetScriptIndex関数
