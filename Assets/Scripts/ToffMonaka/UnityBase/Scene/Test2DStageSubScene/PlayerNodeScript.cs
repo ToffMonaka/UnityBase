@@ -26,8 +26,9 @@ public class PlayerNodeScript : ToffMonaka.Tml.Scene.NodeScript
     [SerializeField] private Rigidbody2D _rigidbody;
     [SerializeField] private CapsuleCollider2D _collider;
     [SerializeField] private float _skinWidth = 0.015f;
-    [SerializeField] private float _moveSpeed = 3.0f;
+    [SerializeField] private float _moveSpeed = 4.0f;
     [SerializeField] private float _moveIterationCount = 3;
+    [SerializeField] private float _moveStepHeight = 0.5f;
     [SerializeField] private float _jumpPower = 6.5f;
     [SerializeField] private float _jumpDeceleratePower = 0.5f;
     [SerializeField] private float _fallLimit = -10.0f;
