@@ -25,7 +25,7 @@ public class PlayerNodeScript : ToffMonaka.Tml.Scene.NodeScript
     [SerializeField] private CapsuleCollider _collider;
     [SerializeField] private float _skinWidth = 0.015f;
     [SerializeField] private float _moveSpeed = 4.0f;
-    [SerializeField] private float _moveIterationCount = 3;
+    [SerializeField] private int _moveIterationCount = 3;
     [SerializeField] private float _moveStepHeight = 0.5f;
     [SerializeField] private float _jumpPower = 6.5f;
     [SerializeField] private float _jumpDeceleratePower = 0.5f;
@@ -33,7 +33,8 @@ public class PlayerNodeScript : ToffMonaka.Tml.Scene.NodeScript
 
     public new PlayerNodeScriptCreateDesc createDesc{get; private set;} = null;
 
-    private Bounds _bounds;
+    private Vector3 _colliderTopOffset = Vector3.zero;
+    private Vector3 _colliderBottomOffset = Vector3.zero;
     private bool _movePositionFlag = false;
     private Vector3 _movePosition = Vector3.zero;
     private Vector3 _moveVelocity = Vector3.zero;
@@ -43,6 +44,7 @@ public class PlayerNodeScript : ToffMonaka.Tml.Scene.NodeScript
     private Vector3 _groundNormal = Vector3.up;
     private Vector3 _groundPosition = Vector3.zero;
     private int _groundPositionIntervalCount = 0;
+    private int _groundLayerMask = 0;
 
     private InputAction _moveInputAction = null;
     private InputAction _jumpInputAction = null;
@@ -64,11 +66,12 @@ public class PlayerNodeScript : ToffMonaka.Tml.Scene.NodeScript
     {
         base._OnAwake();
 
-        this._bounds = this._collider.bounds;
-        this._bounds.Expand(-2.0f * this._skinWidth);
+        this._colliderTopOffset = Vector3.up * (this._collider.height * 0.5f - this._collider.radius);
+        this._colliderBottomOffset = Vector3.down * (this._collider.height * 0.5f - this._collider.radius);
 
         this._groundPosition = this._rigidbody.position;
         this._groundPositionIntervalCount = 0;
+        this._groundLayerMask = LayerMask.GetMask("Ground");
 
         this._moveInputAction = InputSystem.actions.FindAction("Player/Move");
         this._moveInputAction.Enable();
@@ -228,11 +231,7 @@ public class PlayerNodeScript : ToffMonaka.Tml.Scene.NodeScript
 
         if (slide_flg) {
             if (this._CapsuleCast(this._rigidbody.position, vel_normal, vel_dist, out RaycastHit hit)) {
-                var hit_vel = vel_normal * (hit.distance - this._skinWidth);
-
-		        if (hit_vel.magnitude <= this._skinWidth) {
-			        hit_vel = Vector3.zero;
-		        }
+                var hit_vel = (hit.distance > this._skinWidth) ? (vel_normal * (hit.distance - this._skinWidth)) : Vector3.zero;
 
                 this._rigidbody.position += hit_vel;
 
@@ -242,26 +241,24 @@ public class PlayerNodeScript : ToffMonaka.Tml.Scene.NodeScript
                     this._UpdateRigidbodyPosition(this._GetSurfaceVelocity(vel - hit_vel, hit.normal), cnt + 1, slide_flg);
                 } else {
                     var leftover_vel = vel - hit_vel;
+                    var leftover_vel_normal = leftover_vel.normalized;
+                    var leftover_vel_dist = leftover_vel.magnitude;
 
-                    if (this._CapsuleCast(this._rigidbody.position + new Vector3(0.0f, this._moveStepHeight, 0.0f), vel_normal, leftover_vel.magnitude, out RaycastHit hit2)) {
-                        this._UpdateRigidbodyPosition(this._GetSurfaceVelocity(vel - hit_vel, hit.normal), cnt + 1, slide_flg);
+                    if (this._CapsuleCast(this._rigidbody.position + new Vector3(0.0f, this._moveStepHeight, 0.0f), leftover_vel_normal, leftover_vel_dist, out RaycastHit hit2)) {
+                        this._UpdateRigidbodyPosition(this._GetSurfaceVelocity(leftover_vel, hit.normal), cnt + 1, slide_flg);
                     } else {
                         if (this._CapsuleCast(this._rigidbody.position + new Vector3(leftover_vel.x, this._moveStepHeight, leftover_vel.z), Vector3.down, this._moveStepHeight, out RaycastHit hit3)) {
                             var hit3_surf_normal = this._GetSurfaceNormal(hit3);
 
                             if (hit3_surf_normal.y > 0.5f) {
-                                var hit3_vel = Vector3.down * (hit3.distance - this._skinWidth);
-
-		                        if (hit3_vel.magnitude <= this._skinWidth) {
-			                        hit3_vel = Vector3.zero;
-		                        }
+                                var hit3_vel = (hit3.distance > this._skinWidth) ? (Vector3.down * (hit3.distance - this._skinWidth)) : Vector3.zero;
 
                                 this._rigidbody.position += (new Vector3(leftover_vel.x, this._moveStepHeight, leftover_vel.z)) + hit3_vel;
                             } else {
-                                this._UpdateRigidbodyPosition(this._GetSurfaceVelocity(vel - hit_vel, hit.normal), cnt + 1, slide_flg);
+                                this._UpdateRigidbodyPosition(this._GetSurfaceVelocity(leftover_vel, hit.normal), cnt + 1, slide_flg);
                             }
                         } else {
-                            this._UpdateRigidbodyPosition(this._GetSurfaceVelocity(vel - hit_vel, hit.normal), cnt + 1, slide_flg);
+                            this._UpdateRigidbodyPosition(this._GetSurfaceVelocity(leftover_vel, hit.normal), cnt + 1, slide_flg);
                         }
                     }
                 }
@@ -272,11 +269,7 @@ public class PlayerNodeScript : ToffMonaka.Tml.Scene.NodeScript
                     var hit2_surf_normal = this._GetSurfaceNormal(hit2);
 
                     if (hit2_surf_normal.y > 0.5f) {
-                        var hit2_vel = Vector3.down * (hit2.distance - this._skinWidth);
-
-		                if (hit2_vel.magnitude <= this._skinWidth) {
-			                hit2_vel = Vector3.zero;
-		                }
+                        var hit2_vel = (hit2.distance > this._skinWidth) ? (Vector3.down * (hit2.distance - this._skinWidth)) : Vector3.zero;
 
                         this._rigidbody.position += hit2_vel;
 
@@ -285,11 +278,7 @@ public class PlayerNodeScript : ToffMonaka.Tml.Scene.NodeScript
             }
         } else {
             if (this._CapsuleCast(this._rigidbody.position, vel_normal, vel_dist, out RaycastHit hit)) {
-                var hit_vel = vel_normal * (hit.distance - this._skinWidth);
-
-		        if (hit_vel.magnitude <= this._skinWidth) {
-			        hit_vel = Vector3.zero;
-		        }
+                var hit_vel = (hit.distance > this._skinWidth) ? (vel_normal * (hit.distance - this._skinWidth)) : Vector3.zero;
 
                 this._rigidbody.position += hit_vel;
 
@@ -318,10 +307,10 @@ public class PlayerNodeScript : ToffMonaka.Tml.Scene.NodeScript
      */
     private bool _CapsuleCast(Vector3 pos, Vector3 dir, float dist, out RaycastHit hit)
     {
-        var top_pos = pos + (Vector3.down * (this._collider.height * 0.5f - this._collider.radius));
-        var bottom_pos = pos + (Vector3.up * (this._collider.height * 0.5f - this._collider.radius));
+        var top_pos = pos + this._colliderTopOffset;
+        var bottom_pos = pos + this._colliderBottomOffset;
 
-        return (Physics.CapsuleCast(bottom_pos, top_pos, this._bounds.extents.x, dir, out hit, dist + this._skinWidth, LayerMask.GetMask("Ground")));
+        return (Physics.CapsuleCast(top_pos, bottom_pos, this._collider.bounds.extents.x, dir, out hit, dist + this._skinWidth, this._groundLayerMask));
     }
 
     /**
@@ -348,7 +337,7 @@ public class PlayerNodeScript : ToffMonaka.Tml.Scene.NodeScript
         
         var p = hit.point + hit.normal * 0.01f;
 
-        if (!Physics.Raycast(p, -hit.normal, out RaycastHit surf_hit, 0.011f, LayerMask.GetMask("Ground"))) {
+        if (!Physics.Raycast(p, -hit.normal, out RaycastHit surf_hit, 0.011f, this._groundLayerMask)) {
             return (hit.normal);
         }
 
@@ -405,10 +394,14 @@ public class PlayerNodeScript : ToffMonaka.Tml.Scene.NodeScript
     {
         this._groundFlag = false;
 
-        if (this._CapsuleCast(this._rigidbody.position, Vector3.down, this._skinWidth, out RaycastHit hit)) {
+        if (this._CapsuleCast(this._rigidbody.position, Vector3.down, 0.01f, out RaycastHit hit)) {
             var hit_surf_normal = this._GetSurfaceNormal(hit);
 
             if (hit_surf_normal.y > 0.5f) {
+                var hit_vel = (hit.distance > this._skinWidth) ? (Vector3.down * (hit.distance - this._skinWidth)) : Vector3.zero;
+
+                this._rigidbody.position += hit_vel;
+
                 this._groundFlag = true;
                 this._groundNormal = hit_surf_normal;
             }
@@ -516,70 +509,6 @@ public class PlayerNodeScript : ToffMonaka.Tml.Scene.NodeScript
 
         return;
     }
-
-    /*
-    int maxBounces = 5;
-    float skinWidth = 0.015f;
-    float maxSlopeAngle = 55;
-
-    private Vector3 CollideAndSlide(Vector3 vel, Vector3 pos, int depth, bool gravityPass, Vector3 velInit)
-    {
-        Bounds bounds;
-
-        bounds = collider.bounds;
-        bounds.Expand(-2 * skinWidth);
-
-	    if (depth >= maxBounces) {
-		    return (Vector3.zero);
-	    }
-
-	    float dist = vel.magnitude + skinWidth;
-
-	    RaycastHit hit;
-
-	    if (Physics.SphereCast(pos, bounds.extents.x, vel.normalized, out hit, dist, layerMask)) {
-		    Vector3 snapToSurface = vel.normalized * (hit.distance - skinWidth);
-		    Vector3 leftover = vel - snapToSurface;
-		    float angle = Vector3.Angle(Vector3.up, hit.normal);
-
-		    if (snapToSurface.magnitude <= skinWidth) {
-			    snapToSurface = Vector3.zero;
-		    }
-
-		    if (angle <= maxSlopeAngle) {
-			    if (gravityPass) {
-				    return (snapToSurface);
-			    }
-
-			    leftover = ProjectAndScale(leftover, hit.normal);
-		    } else {
-			    float scale = 1 - Vector3.Dot(new Vector3(hit.normal.x, 0, hit.normal.z).normalized, -new Vector3(velInit.x, 0, velInit.z).normalized);
-
-		        if ((isGrounded) && (!gravityPass)) {
-			        leftover = ProjectAndScale(new Vector3(leftover.x, 0, leftover.z), new Vector3(hit.normal.x, 0, hit.normal.z)).normalized;
-
-			        leftover *= scale;
-		        } else {
-			        leftover = ProjectAndScale(leftover, hit.normal) * scale;
-		        }
-		    }
-
-		    return (snapToSurface + CollideAndSlide(leftover, pos + snapToSurface, depth + 1, gravityPass, velInit));
-	    }
-
-	    return (vel);
-    }
-
-    private Vector3 ProjectAndScale(Vector3 vec, Vector3 normal)
-    {
-	    float mag = vec.mag;
-
-	    vec = Vector3.ProjectOnPlane(vec, normal).normalized;
-	    vec *= mag;
-
-        return (vec);
-    }
-    */
 }
 }
 }
