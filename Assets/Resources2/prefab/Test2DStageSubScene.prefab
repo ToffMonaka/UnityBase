@@ -4065,7 +4065,10 @@ MonoBehaviour:
   _animator: {fileID: 6370335569904597683}
   _rigidbody: {fileID: 3849984591435994462}
   _collider: {fileID: 5122040517427041940}
-  _moveSpeed: 3
+  _skinWidth: 0.015
+  _moveSpeed: 4
+  _moveIterationCount: 3
+  _moveStepHeight: 0.5
   _jumpPower: 6.5
   _jumpDeceleratePower: 0.5
   _fallLimit: -10
