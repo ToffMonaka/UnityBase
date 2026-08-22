@@ -1195,7 +1195,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ToffMonaka.UnityBase.Scene.Test3DStageSubScene.PlayerNodeScript
   _rigidbody: {fileID: 8018264112206140178}
   _collider: {fileID: 1244132458045031059}
-  _skinWidth: 0.015
+  _skinWidth: 0.02
   _moveSpeed: 4
   _moveIterationCount: 3
   _moveStepHeight: 0.5

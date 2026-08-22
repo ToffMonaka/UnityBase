@@ -23,7 +23,7 @@ public class PlayerNodeScript : ToffMonaka.Tml.Scene.NodeScript
 #pragma warning disable 0414
     [SerializeField] private Rigidbody _rigidbody;
     [SerializeField] private CapsuleCollider _collider;
-    [SerializeField] private float _skinWidth = 0.015f;
+    [SerializeField] private float _skinWidth = 0.02f;
     [SerializeField] private float _moveSpeed = 4.0f;
     [SerializeField] private int _moveIterationCount = 3;
     [SerializeField] private float _moveStepHeight = 0.5f;
@@ -199,7 +199,11 @@ public class PlayerNodeScript : ToffMonaka.Tml.Scene.NodeScript
             this._moveVelocity.y += Physics2D.gravity.y * Time.deltaTime;
         }
 
-        if ((this._groundFlag) && (this._moveVelocity.y == 0.0f)) {
+        if (this._moveVelocity.y != 0.0f) {
+            this._groundFlag = false;
+        }
+
+        if (this._groundFlag) {
             this._UpdateRigidbodyPosition(this._GetSurfaceVelocity(this._moveVelocity, this._groundNormal, true) * Time.deltaTime, 0, true);
         } else {
             this._UpdateRigidbodyPosition(this._moveVelocity * Time.deltaTime, 0, false);
@@ -290,15 +294,13 @@ public class PlayerNodeScript : ToffMonaka.Tml.Scene.NodeScript
 
                 var hit_surf_normal = this._GetSurfaceNormal(hit);
 
-                if (hit_surf_normal.y < -0.5f) {
-                    if (hit.normal.y <= -1.0f) {
+                if (hit_surf_normal.y < 0.0f) {
+                    if (hit.normal.y <= -0.75f) {
                         this._moveVelocity = Vector3.zero;
-                    } else {
-                        this._UpdateRigidbodyPosition(this._GetSurfaceVelocity(vel - hit_vel, hit.normal, false), cnt + 1, slide_flg);
                     }
-                } else {
-                    this._UpdateRigidbodyPosition(this._GetSurfaceVelocity(vel - hit_vel, hit.normal, false), cnt + 1, slide_flg);
                 }
+
+                this._UpdateRigidbodyPosition(this._GetSurfaceVelocity(vel - hit_vel, hit.normal, false), cnt + 1, slide_flg);
             } else {
                 this._rigidbody.position += vel;
             }
