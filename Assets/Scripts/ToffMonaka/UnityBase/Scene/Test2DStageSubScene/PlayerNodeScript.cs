@@ -24,7 +24,7 @@ public class PlayerNodeScript : ToffMonaka.Tml.Scene.NodeScript
     [SerializeField] private SpriteRenderer _spriteRenderer;
     [SerializeField] private Animator _animator;
     [SerializeField] private Rigidbody2D _rigidbody;
-    [SerializeField] private CapsuleCollider2D _collider;
+    [SerializeField] private Collider2D _collider;
     [SerializeField] private float _skinWidth = 0.02f;
     [SerializeField] private float _moveSpeed = 4.0f;
     [SerializeField] private int _moveIterationCount = 3;
@@ -35,6 +35,7 @@ public class PlayerNodeScript : ToffMonaka.Tml.Scene.NodeScript
 
     public new PlayerNodeScriptCreateDesc createDesc{get; private set;} = null;
 
+    private int _colliderType = 0;
     private bool _movePositionFlag = false;
     private Vector2 _movePosition = Vector2.zero;
     private Vector2 _moveVelocity = Vector2.zero;
@@ -65,6 +66,14 @@ public class PlayerNodeScript : ToffMonaka.Tml.Scene.NodeScript
     protected override void _OnAwake()
     {
         base._OnAwake();
+
+        if (this._collider is CapsuleCollider2D) {
+            this._colliderType = 1;
+        } else if (this._collider is CircleCollider2D) {
+            this._colliderType = 2;
+        } else if (this._collider is BoxCollider2D) {
+            this._colliderType = 3;
+        }
 
         this._groundPosition = this._rigidbody.position;
         this._groundPositionIntervalCount = 0;
@@ -339,7 +348,15 @@ public class PlayerNodeScript : ToffMonaka.Tml.Scene.NodeScript
      */
     private bool _ColliderCast(Vector2 pos, Vector2 dir, float dist, out RaycastHit2D hit)
     {
-        hit = Physics2D.CapsuleCast(pos, this._collider.size, this._collider.direction, 0.0f, dir, dist + this._skinWidth, this._groundLayerMask);
+        if (this._colliderType == 1) {
+            hit = Physics2D.CapsuleCast(pos, this._collider.bounds.size, CapsuleDirection2D.Vertical, 0.0f, dir, dist + this._skinWidth, this._groundLayerMask);
+        } else if (this._colliderType == 2) {
+            hit = Physics2D.CircleCast(pos, this._collider.bounds.extents.x, dir, dist + this._skinWidth, this._groundLayerMask);
+        } else if (this._colliderType == 3) {
+            hit = Physics2D.BoxCast(pos, this._collider.bounds.size, 0.0f, dir, dist + this._skinWidth, this._groundLayerMask);
+        } else {
+            hit = default;
+        }
 
         return (hit.collider != null);
     }
@@ -351,6 +368,11 @@ public class PlayerNodeScript : ToffMonaka.Tml.Scene.NodeScript
      */
     private Vector2 _GetSurfaceNormal(RaycastHit2D hit)
     {
+        if ((this._colliderType != 1)
+        && (this._colliderType != 2)) {
+            return (hit.normal);
+        }
+
         var p = hit.point + hit.normal * 0.01f;
 
         var surf_hit = Physics2D.Raycast(p, -hit.normal, 0.02f, this._groundLayerMask);

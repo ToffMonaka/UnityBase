@@ -22,7 +22,7 @@ public class PlayerNodeScript : ToffMonaka.Tml.Scene.NodeScript
 {
 #pragma warning disable 0414
     [SerializeField] private Rigidbody _rigidbody;
-    [SerializeField] private CapsuleCollider _collider;
+    [SerializeField] private Collider _collider;
     [SerializeField] private float _skinWidth = 0.02f;
     [SerializeField] private float _moveSpeed = 4.0f;
     [SerializeField] private int _moveIterationCount = 3;
@@ -33,6 +33,7 @@ public class PlayerNodeScript : ToffMonaka.Tml.Scene.NodeScript
 
     public new PlayerNodeScriptCreateDesc createDesc{get; private set;} = null;
 
+    private int _colliderType = 0;
     private Vector3 _colliderTopOffset = Vector3.zero;
     private Vector3 _colliderBottomOffset = Vector3.zero;
     private bool _movePositionFlag = false;
@@ -66,8 +67,18 @@ public class PlayerNodeScript : ToffMonaka.Tml.Scene.NodeScript
     {
         base._OnAwake();
 
-        this._colliderTopOffset = Vector3.up * (this._collider.height * 0.5f - this._collider.radius);
-        this._colliderBottomOffset = Vector3.down * (this._collider.height * 0.5f - this._collider.radius);
+        if (this._collider is CapsuleCollider) {
+            this._colliderType = 1;
+
+            var collider = this._collider as CapsuleCollider;
+
+            this._colliderTopOffset = Vector3.up * (collider.height * 0.5f - collider.radius);
+            this._colliderBottomOffset = Vector3.down * (collider.height * 0.5f - collider.radius);
+        } else if (this._collider is SphereCollider) {
+            this._colliderType = 2;
+        } else if (this._collider is BoxCollider) {
+            this._colliderType = 3;
+        }
 
         this._groundPosition = this._rigidbody.position;
         this._groundPositionIntervalCount = 0;
@@ -342,7 +353,17 @@ public class PlayerNodeScript : ToffMonaka.Tml.Scene.NodeScript
      */
     private bool _ColliderCast(Vector3 pos, Vector3 dir, float dist, out RaycastHit hit)
     {
-        var hit_flg = Physics.CapsuleCast(pos + this._colliderTopOffset, pos + this._colliderBottomOffset, this._collider.bounds.extents.x, dir, out hit, dist + this._skinWidth, this._groundLayerMask);
+        var hit_flg = false;
+
+        if (this._colliderType == 1) {
+            hit_flg = Physics.CapsuleCast(pos + this._colliderTopOffset, pos + this._colliderBottomOffset, this._collider.bounds.extents.x, dir, out hit, dist + this._skinWidth, this._groundLayerMask);
+        } else if (this._colliderType == 2) {
+            hit_flg = Physics.SphereCast(pos, this._collider.bounds.extents.x, dir, out hit, dist + this._skinWidth, this._groundLayerMask);
+        } else if (this._colliderType == 3) {
+            hit_flg = Physics.BoxCast(pos, this._collider.bounds.extents, dir, out hit, Quaternion.identity, dist + this._skinWidth, this._groundLayerMask);
+        } else {
+            hit = default;
+        }
 
         return (hit_flg);
     }
@@ -354,6 +375,11 @@ public class PlayerNodeScript : ToffMonaka.Tml.Scene.NodeScript
      */
     private Vector3 _GetSurfaceNormal(RaycastHit hit)
     {
+        if ((this._colliderType != 1)
+        && (this._colliderType != 2)) {
+            return (hit.normal);
+        }
+
         if (hit.collider is MeshCollider) {
             var collider = hit.collider as MeshCollider;
             var mesh = collider.sharedMesh;
