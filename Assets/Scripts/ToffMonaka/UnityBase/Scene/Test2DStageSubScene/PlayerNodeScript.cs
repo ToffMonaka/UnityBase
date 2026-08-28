@@ -154,12 +154,6 @@ public class PlayerNodeScript : ToffMonaka.Tml.Scene.NodeScript
      */
     protected override void _OnFixedUpdate()
     {
-        if (this._movePositionFlag) {
-            this._SetRigidbodyPosition(this._movePosition);
-
-            this._movePositionFlag = false;
-        }
-
         this._UpdateRigidbodyPosition();
 
         if (this._groundFlag) {
@@ -201,6 +195,12 @@ public class PlayerNodeScript : ToffMonaka.Tml.Scene.NodeScript
      */
     private void _UpdateRigidbodyPosition()
     {
+        if (this._movePositionFlag) {
+            this._SetRigidbodyPosition(this._movePosition);
+
+            this._movePositionFlag = false;
+        }
+
         if (!this._groundFlag) {
             this._moveVelocity.y += Physics2D.gravity.y * Time.deltaTime;
         }
@@ -247,46 +247,36 @@ public class PlayerNodeScript : ToffMonaka.Tml.Scene.NodeScript
 
         if (slide_flg) {
             if (this._ColliderCast(this._rigidbody.position, vel_normal, vel_dist, out RaycastHit2D hit)) {
-                var hit_vel = vel_normal * (hit.distance - this._skinWidth);
-
-                this._rigidbody.position += (hit.distance > this._skinWidth) ? hit_vel : (-vel_normal * (this._skinWidth - hit.distance));
-                /*
                 var hit_vel = (hit.distance > this._skinWidth) ? (vel_normal * (hit.distance - this._skinWidth)) : Vector2.zero;
 
                 this._rigidbody.position += hit_vel;
-                */
+                this._AdjustRigidbodyPosition(-hit.normal);
 
                 var hit_surf_normal = this._GetSurfaceNormal(hit);
 
-                if (hit_surf_normal.y != 0.0f) {
-                    this._UpdateRigidbodyPosition(this._GetSurfaceVelocity(vel - hit_vel, hit.normal, true), cnt + 1, slide_flg);
+                if ((hit_surf_normal.y >= 0.5f) || (hit_surf_normal.y <= -0.5f)) {
+                    this._UpdateRigidbodyPosition(this._GetSurfaceVelocity(vel - hit_vel, hit.normal, slide_flg), cnt + 1, slide_flg);
                 } else {
                     var leftover_vel = vel - hit_vel;
                     var leftover_vel_normal = leftover_vel.normalized;
                     var leftover_vel_dist = leftover_vel.magnitude;
 
                     if (this._ColliderCast(this._rigidbody.position + new Vector2(0.0f, this._moveStepHeight), leftover_vel_normal, leftover_vel_dist, out RaycastHit2D hit2)) {
-                        this._UpdateRigidbodyPosition(this._GetSurfaceVelocity(leftover_vel, hit.normal, true), cnt + 1, slide_flg);
+                        this._UpdateRigidbodyPosition(this._GetSurfaceVelocity(leftover_vel, hit.normal, slide_flg), cnt + 1, slide_flg);
                     } else {
                         if (this._ColliderCast(this._rigidbody.position + new Vector2(leftover_vel.x, this._moveStepHeight), Vector2.down, this._moveStepHeight, out RaycastHit2D hit3)) {
                             var hit3_surf_normal = this._GetSurfaceNormal(hit3);
 
-                            if (hit3_surf_normal.y > 0.0f) {
+                            if (hit3_surf_normal.y >= 0.5f) {
                                 var hit3_vel = Vector2.down * (hit3.distance - this._skinWidth);
 
                                 this._rigidbody.position += new Vector2(leftover_vel.x, this._moveStepHeight);
-                                this._rigidbody.position += (hit3.distance > this._skinWidth) ? hit3_vel : (-Vector2.down * (this._skinWidth - hit3.distance));
-                                /*
-                                var hit3_vel = (hit3.distance > this._skinWidth) ? (Vector2.down * (hit3.distance - this._skinWidth)) : Vector2.zero;
-
-                                this._rigidbody.position += new Vector2(leftover_vel.x, this._moveStepHeight);
-                                this._rigidbody.position += hit3_vel;
-                                */
+                                this._rigidbody.position += (hit3.distance >= this._skinWidth) ? hit3_vel : (-Vector2.down * (this._skinWidth - hit3.distance));
                             } else {
-                                this._UpdateRigidbodyPosition(this._GetSurfaceVelocity(leftover_vel, hit.normal, true), cnt + 1, slide_flg);
+                                this._UpdateRigidbodyPosition(this._GetSurfaceVelocity(leftover_vel, hit.normal, slide_flg), cnt + 1, slide_flg);
                             }
                         } else {
-                            this._UpdateRigidbodyPosition(this._GetSurfaceVelocity(leftover_vel, hit.normal, true), cnt + 1, slide_flg);
+                            this._UpdateRigidbodyPosition(this._GetSurfaceVelocity(leftover_vel, hit.normal, slide_flg), cnt + 1, slide_flg);
                         }
                     }
                 }
@@ -296,28 +286,19 @@ public class PlayerNodeScript : ToffMonaka.Tml.Scene.NodeScript
                 if (this._ColliderCast(this._rigidbody.position, Vector2.down, this._moveStepHeight, out RaycastHit2D hit2)) {
                     var hit2_surf_normal = this._GetSurfaceNormal(hit2);
 
-                    if (hit2_surf_normal.y > 0.0f) {
+                    if (hit2_surf_normal.y >= 0.5f) {
                         var hit2_vel = Vector2.down * (hit2.distance - this._skinWidth);
 
-                        this._rigidbody.position += (hit2.distance > this._skinWidth) ? hit2_vel : (-Vector2.down * (this._skinWidth - hit2.distance));
-                        /*
-                        var hit2_vel = (hit2.distance > this._skinWidth) ? (Vector2.down * (hit2.distance - this._skinWidth)) : Vector2.zero;
-
-                        this._rigidbody.position += hit2_vel;
-                        */
+                        this._rigidbody.position += (hit2.distance >= this._skinWidth) ? hit2_vel : (-Vector2.down * (this._skinWidth - hit2.distance));
                     }
                 }
             }
         } else {
             if (this._ColliderCast(this._rigidbody.position, vel_normal, vel_dist, out RaycastHit2D hit)) {
-                var hit_vel = vel_normal * (hit.distance - this._skinWidth);
-
-                this._rigidbody.position += (hit.distance > this._skinWidth) ? hit_vel : (-vel_normal * (this._skinWidth - hit.distance));
-                /*
                 var hit_vel = (hit.distance > this._skinWidth) ? (vel_normal * (hit.distance - this._skinWidth)) : Vector2.zero;
 
                 this._rigidbody.position += hit_vel;
-                */
+                this._AdjustRigidbodyPosition(-hit.normal);
 
                 var hit_surf_normal = this._GetSurfaceNormal(hit);
 
@@ -337,6 +318,21 @@ public class PlayerNodeScript : ToffMonaka.Tml.Scene.NodeScript
     }
 
     /**
+     * @brief _AdjustRigidbodyPosition関数
+     * @param dir (direction)
+     */
+    private void _AdjustRigidbodyPosition(Vector2 dir)
+    {
+        if (this._ColliderCast(this._rigidbody.position, dir, 0.01f, out RaycastHit2D hit)) {
+            if (hit.distance < this._skinWidth) {
+                this._rigidbody.position += -dir * (this._skinWidth - hit.distance);
+            }
+        }
+
+        return;
+    }
+
+    /**
      * @brief _CheckGround関数
      */
     private void _CheckGround()
@@ -346,15 +342,10 @@ public class PlayerNodeScript : ToffMonaka.Tml.Scene.NodeScript
         if (this._ColliderCast(this._rigidbody.position, Vector2.down, 0.01f, out RaycastHit2D hit)) {
             var hit_surf_normal = this._GetSurfaceNormal(hit);
 
-            if (hit_surf_normal.y > 0.0f) {
+            if (hit_surf_normal.y >= 0.5f) {
                 var hit_vel = Vector2.down * (hit.distance - this._skinWidth);
 
-                this._rigidbody.position += (hit.distance > this._skinWidth) ? hit_vel : (-Vector2.down * (this._skinWidth - hit.distance));
-                /*
-                var hit_vel = (hit.distance > this._skinWidth) ? (Vector2.down * (hit.distance - this._skinWidth)) : Vector2.zero;
-
-                this._rigidbody.position += hit_vel;
-                */
+                this._rigidbody.position += (hit.distance >= this._skinWidth) ? hit_vel : (-Vector2.down * (this._skinWidth - hit.distance));
 
                 this._groundFlag = true;
                 this._groundNormal = hit_surf_normal;
