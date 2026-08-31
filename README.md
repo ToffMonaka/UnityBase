@@ -54,11 +54,3 @@ Assets\Resources2\prefab<br>
 パッケージマネージャー -> マイアセット -> DOTween<br>
 インポートをクリックして下さい。<br>
 </details><br>
-
-<details><summary>Sunny Landのインポート (クリックで展開)</summary>
-
-アセットストア [Sunny Land](https://assetstore.unity.com/packages/2d/characters/sunny-land-103349)<br>
-パッケージマネージャー -> マイアセット -> Sunny Land<br>
-インポートをクリックして下さい。<br>
-Assets/SunnyLand Artwork/Environment/Tileset/Main PaletteをSunnyLandTilePalletに名前を変更して下さい。<br>
-</details><br>
