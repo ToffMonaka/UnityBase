@@ -5,6 +5,7 @@
 
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Unity.Cinemachine;
 
 namespace ToffMonaka {
 namespace UnityBase.Scene.Test3DStageSubScene {
@@ -30,6 +31,7 @@ public class PlayerNodeScript : ToffMonaka.Tml.Scene.NodeScript
     [SerializeField] private float _jumpPower = 6.5f;
     [SerializeField] private float _jumpDeceleratePower = 0.5f;
     [SerializeField] private float _fallLimit = -10.0f;
+    [SerializeField] private CinemachineOrbitalFollow _cinemachineOrbitalFollow;
 
     public new PlayerNodeScriptCreateDesc createDesc{get; private set;} = null;
 
@@ -39,6 +41,9 @@ public class PlayerNodeScript : ToffMonaka.Tml.Scene.NodeScript
     private bool _movePositionFlag = false;
     private Vector3 _movePosition = Vector3.zero;
     private Vector3 _moveVelocity = Vector3.zero;
+    private Vector3 _rightMoveVector = Vector3.zero;
+    private Vector3 _forwardMoveVector = Vector3.zero;
+    private Vector3 _totalMoveVector = Vector3.zero;
     private bool _jumpFlag = false;
     private bool _jumpDecelerateFlag = false;
     private bool _groundFlag = false;
@@ -49,6 +54,7 @@ public class PlayerNodeScript : ToffMonaka.Tml.Scene.NodeScript
 
     private InputAction _moveInputAction = null;
     private InputAction _jumpInputAction = null;
+    private InputAction _lookInputAction = null;
 #pragma warning restore 0414
 
     /**
@@ -89,6 +95,9 @@ public class PlayerNodeScript : ToffMonaka.Tml.Scene.NodeScript
 
         this._jumpInputAction = InputSystem.actions.FindAction("Player/Jump");
         this._jumpInputAction.Enable();
+
+        this._lookInputAction = InputSystem.actions.FindAction("Player/Look");
+        this._lookInputAction.Enable();
 
         return;
     }
@@ -141,7 +150,21 @@ public class PlayerNodeScript : ToffMonaka.Tml.Scene.NodeScript
      */
     protected override void _OnUpdate()
     {
-        this.RunMoveAction(this._moveInputAction.ReadValue<Vector2>().x, this._moveInputAction.ReadValue<Vector2>().y);
+        this._cinemachineOrbitalFollow.HorizontalAxis.Value = this._cinemachineOrbitalFollow.HorizontalAxis.ClampValue(this._cinemachineOrbitalFollow.HorizontalAxis.Value + this._lookInputAction.ReadValue<Vector2>().x * 0.5f);
+        this._cinemachineOrbitalFollow.VerticalAxis.Value = this._cinemachineOrbitalFollow.VerticalAxis.ClampValue(this._cinemachineOrbitalFollow.VerticalAxis.Value - this._lookInputAction.ReadValue<Vector2>().y * 0.5f);
+
+        this._rightMoveVector = this._cinemachineOrbitalFollow.gameObject.transform.right;
+        this._rightMoveVector.y = 0.0f;
+        this._rightMoveVector = this._rightMoveVector.normalized * this._moveInputAction.ReadValue<Vector2>().x;
+
+        this._forwardMoveVector = this._cinemachineOrbitalFollow.gameObject.transform.forward;
+        this._forwardMoveVector.y = 0.0f;
+        this._forwardMoveVector = this._forwardMoveVector.normalized * this._moveInputAction.ReadValue<Vector2>().y;
+
+        this._totalMoveVector = (this._rightMoveVector + this._forwardMoveVector).normalized;
+
+        this.RunMoveAction(this._totalMoveVector.x, this._totalMoveVector.z);
+        //this.RunMoveAction(this._moveInputAction.ReadValue<Vector2>().x, this._moveInputAction.ReadValue<Vector2>().y);
 
         if (this._jumpInputAction.WasPressedThisFrame()) {
             this.RunJumpAction(1.0f);
@@ -159,6 +182,10 @@ public class PlayerNodeScript : ToffMonaka.Tml.Scene.NodeScript
      */
     protected override void _OnFixedUpdate()
     {
+        if (this._totalMoveVector.magnitude > 0.0f) {
+            this._rigidbody.rotation = Quaternion.Euler(0.0f, this._cinemachineOrbitalFollow.gameObject.transform.eulerAngles.y, 0.0f);
+        }
+
         this._UpdateRigidbodyPosition();
 
         if (this._groundFlag) {

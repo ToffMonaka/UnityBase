@@ -49,6 +49,7 @@ public class PlayerNodeScript : ToffMonaka.Tml.Scene.NodeScript
 
     private InputAction _moveInputAction = null;
     private InputAction _jumpInputAction = null;
+    private InputAction _lookInputAction = null;
 #pragma warning restore 0414
 
     /**
@@ -84,6 +85,9 @@ public class PlayerNodeScript : ToffMonaka.Tml.Scene.NodeScript
 
         this._jumpInputAction = InputSystem.actions.FindAction("Player/Jump");
         this._jumpInputAction.Enable();
+
+        this._lookInputAction = InputSystem.actions.FindAction("Player/Look");
+        this._lookInputAction.Enable();
 
         return;
     }
