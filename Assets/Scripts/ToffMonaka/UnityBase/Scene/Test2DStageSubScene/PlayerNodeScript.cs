@@ -136,24 +136,6 @@ public class PlayerNodeScript : ToffMonaka.Tml.Scene.NodeScript
     }
 
     /**
-     * @brief _OnUpdate関数
-     */
-    protected override void _OnUpdate()
-    {
-        this.RunMoveAction(this._moveInputAction.ReadValue<Vector2>().x);
-
-        if (this._jumpInputAction.WasPressedThisFrame()) {
-            this.RunJumpAction(1.0f);
-        } else if (this._jumpInputAction.WasReleasedThisFrame()) {
-            this.RunJumpDecelerateAction(1.0f);
-        }
-
-        base._OnUpdate();
-
-        return;
-    }
-
-    /**
      * @brief _OnFixedUpdate関数
      */
     protected override void _OnFixedUpdate()
@@ -177,6 +159,24 @@ public class PlayerNodeScript : ToffMonaka.Tml.Scene.NodeScript
         this._UpdateJumpDecelerateFlag();
 
         base._OnFixedUpdate();
+
+        return;
+    }
+
+    /**
+     * @brief _OnUpdate関数
+     */
+    protected override void _OnUpdate()
+    {
+        this.RunMoveAction(this._moveInputAction.ReadValue<Vector2>().x);
+
+        if (this._jumpInputAction.WasPressedThisFrame()) {
+            this.RunJumpAction(1.0f);
+        } else if (this._jumpInputAction.WasReleasedThisFrame()) {
+            this.RunJumpDecelerateAction(1.0f);
+        }
+
+        base._OnUpdate();
 
         return;
     }

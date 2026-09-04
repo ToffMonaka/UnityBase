@@ -128,20 +128,6 @@ public abstract class PartsScript : Script
     }
 
     /**
-     * @brief _Update関数
-     */
-    protected override void _Update()
-    {
-        if (!this.GetCreatedFlag()) {
-            return;
-        }
-
-        this._OnUpdate();
-
-        return;
-    }
-
-    /**
      * @brief _FixedUpdate関数
      */
     protected override void _FixedUpdate()
@@ -151,6 +137,20 @@ public abstract class PartsScript : Script
         }
 
         this._OnFixedUpdate();
+
+        return;
+    }
+
+    /**
+     * @brief _Update関数
+     */
+    protected override void _Update()
+    {
+        if (!this.GetCreatedFlag()) {
+            return;
+        }
+
+        this._OnUpdate();
 
         return;
     }

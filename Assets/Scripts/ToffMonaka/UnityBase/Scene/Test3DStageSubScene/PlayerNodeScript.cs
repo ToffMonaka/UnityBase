@@ -97,7 +97,6 @@ public class PlayerNodeScript : ToffMonaka.Tml.Scene.NodeScript
         this._jumpInputAction.Enable();
 
         this._lookInputAction = InputSystem.actions.FindAction("Player/Look");
-        this._lookInputAction.Enable();
 
         return;
     }
@@ -146,38 +145,6 @@ public class PlayerNodeScript : ToffMonaka.Tml.Scene.NodeScript
     }
 
     /**
-     * @brief _OnUpdate関数
-     */
-    protected override void _OnUpdate()
-    {
-        this._cinemachineOrbitalFollow.HorizontalAxis.Value = this._cinemachineOrbitalFollow.HorizontalAxis.ClampValue(this._cinemachineOrbitalFollow.HorizontalAxis.Value + this._lookInputAction.ReadValue<Vector2>().x * 0.5f);
-        this._cinemachineOrbitalFollow.VerticalAxis.Value = this._cinemachineOrbitalFollow.VerticalAxis.ClampValue(this._cinemachineOrbitalFollow.VerticalAxis.Value - this._lookInputAction.ReadValue<Vector2>().y * 0.5f);
-
-        this._rightMoveVector = this._cinemachineOrbitalFollow.gameObject.transform.right;
-        this._rightMoveVector.y = 0.0f;
-        this._rightMoveVector = this._rightMoveVector.normalized * this._moveInputAction.ReadValue<Vector2>().x;
-
-        this._forwardMoveVector = this._cinemachineOrbitalFollow.gameObject.transform.forward;
-        this._forwardMoveVector.y = 0.0f;
-        this._forwardMoveVector = this._forwardMoveVector.normalized * this._moveInputAction.ReadValue<Vector2>().y;
-
-        this._totalMoveVector = (this._rightMoveVector + this._forwardMoveVector).normalized;
-
-        this.RunMoveAction(this._totalMoveVector.x, this._totalMoveVector.z);
-        //this.RunMoveAction(this._moveInputAction.ReadValue<Vector2>().x, this._moveInputAction.ReadValue<Vector2>().y);
-
-        if (this._jumpInputAction.WasPressedThisFrame()) {
-            this.RunJumpAction(1.0f);
-        } else if (this._jumpInputAction.WasReleasedThisFrame()) {
-            this.RunJumpDecelerateAction(1.0f);
-        }
-
-        base._OnUpdate();
-
-        return;
-    }
-
-    /**
      * @brief _OnFixedUpdate関数
      */
     protected override void _OnFixedUpdate()
@@ -205,6 +172,38 @@ public class PlayerNodeScript : ToffMonaka.Tml.Scene.NodeScript
         this._UpdateJumpDecelerateFlag();
 
         base._OnFixedUpdate();
+
+        return;
+    }
+
+    /**
+     * @brief _OnUpdate関数
+     */
+    protected override void _OnUpdate()
+    {
+        this._cinemachineOrbitalFollow.HorizontalAxis.Value = this._cinemachineOrbitalFollow.HorizontalAxis.ClampValue(this._cinemachineOrbitalFollow.HorizontalAxis.Value + this._lookInputAction.ReadValue<Vector2>().x * 0.25f);
+        this._cinemachineOrbitalFollow.VerticalAxis.Value = this._cinemachineOrbitalFollow.VerticalAxis.ClampValue(this._cinemachineOrbitalFollow.VerticalAxis.Value - this._lookInputAction.ReadValue<Vector2>().y * 0.25f);
+
+        this._rightMoveVector = this._cinemachineOrbitalFollow.gameObject.transform.right;
+        this._rightMoveVector.y = 0.0f;
+        this._rightMoveVector = this._rightMoveVector.normalized * this._moveInputAction.ReadValue<Vector2>().x;
+
+        this._forwardMoveVector = this._cinemachineOrbitalFollow.gameObject.transform.forward;
+        this._forwardMoveVector.y = 0.0f;
+        this._forwardMoveVector = this._forwardMoveVector.normalized * this._moveInputAction.ReadValue<Vector2>().y;
+
+        this._totalMoveVector = (this._rightMoveVector + this._forwardMoveVector).normalized;
+
+        this.RunMoveAction(this._totalMoveVector.x, this._totalMoveVector.z);
+        //this.RunMoveAction(this._moveInputAction.ReadValue<Vector2>().x, this._moveInputAction.ReadValue<Vector2>().y);
+
+        if (this._jumpInputAction.WasPressedThisFrame()) {
+            this.RunJumpAction(1.0f);
+        } else if (this._jumpInputAction.WasReleasedThisFrame()) {
+            this.RunJumpDecelerateAction(1.0f);
+        }
+
+        base._OnUpdate();
 
         return;
     }

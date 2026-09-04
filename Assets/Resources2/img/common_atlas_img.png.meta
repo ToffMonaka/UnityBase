@@ -136,7 +136,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 2
-        y: 116
+        y: 50
         width: 64
         height: 64
       alignment: 0
@@ -201,8 +201,8 @@ TextureImporter:
       name: menu_icon_img
       rect:
         serializedVersion: 2
-        x: 2
-        y: 50
+        x: 68
+        y: 182
         width: 64
         height: 64
       alignment: 0
@@ -268,7 +268,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 68
-        y: 148
+        y: 82
         width: 48
         height: 48
       alignment: 0
@@ -290,7 +290,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 68
-        y: 198
+        y: 132
         width: 48
         height: 48
       alignment: 0
@@ -312,7 +312,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 68
-        y: 98
+        y: 32
         width: 48
         height: 48
       alignment: 0
@@ -333,8 +333,8 @@ TextureImporter:
       name: sliced_btn_img
       rect:
         serializedVersion: 2
-        x: 68
-        y: 48
+        x: 118
+        y: 132
         width: 48
         height: 48
       alignment: 0
@@ -395,6 +395,28 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: circle_img
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 116
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e512a96ffdd309a4f9bf6ddaf7ab8593
+      internalID: 717517805
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []
@@ -410,6 +432,7 @@ TextureImporter:
       entries: []
     nameFileIdTable:
       back_icon_img: 1828093758
+      circle_img: 717517805
       close_icon_img: -484489551
       left_btn_cover_img: -357185212
       left_btn_img: 197041024

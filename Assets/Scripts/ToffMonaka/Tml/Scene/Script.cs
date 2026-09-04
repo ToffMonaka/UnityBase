@@ -107,21 +107,21 @@ public abstract class Script : MonoBehaviour
     }
 
     /**
-     * @brief Update関数
-     */
-    private void Update()
-    {
-        this._Update();
-
-        return;
-    }
-
-    /**
      * @brief FixedUpdate関数
      */
     private void FixedUpdate()
     {
         this._FixedUpdate();
+
+        return;
+    }
+
+    /**
+     * @brief Update関数
+     */
+    private void Update()
+    {
+        this._Update();
 
         return;
     }
@@ -314,22 +314,6 @@ public abstract class Script : MonoBehaviour
     }
 
     /**
-     * @brief _Update関数
-     */
-    protected virtual void _Update()
-    {
-        return;
-    }
-
-    /**
-     * @brief _OnUpdate関数
-     */
-    protected virtual void _OnUpdate()
-    {
-        return;
-    }
-
-    /**
      * @brief _FixedUpdate関数
      */
     protected virtual void _FixedUpdate()
@@ -341,6 +325,22 @@ public abstract class Script : MonoBehaviour
      * @brief _OnFixedUpdate関数
      */
     protected virtual void _OnFixedUpdate()
+    {
+        return;
+    }
+
+    /**
+     * @brief _Update関数
+     */
+    protected virtual void _Update()
+    {
+        return;
+    }
+
+    /**
+     * @brief _OnUpdate関数
+     */
+    protected virtual void _OnUpdate()
     {
         return;
     }

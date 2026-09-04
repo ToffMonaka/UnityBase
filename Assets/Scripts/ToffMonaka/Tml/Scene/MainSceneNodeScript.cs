@@ -128,21 +128,21 @@ public abstract class MainSceneNodeScript : NodeScript
     }
 
     /**
-     * @brief _Update関数
-     */
-    protected override void _Update()
-    {
-        base._Update();
-
-        return;
-    }
-
-    /**
      * @brief _FixedUpdate関数
      */
     protected override void _FixedUpdate()
     {
         base._FixedUpdate();
+
+        return;
+    }
+
+    /**
+     * @brief _Update関数
+     */
+    protected override void _Update()
+    {
+        base._Update();
 
         return;
     }

@@ -20,12 +20,13 @@ public class ButtonPartsScriptCreateDesc : PartsScriptCreateDesc
 /**
  * @brief ButtonPartsScriptクラス
  */
-public class ButtonPartsScript : PartsScript, IPointerDownHandler, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
+public class ButtonPartsScript : PartsScript, IPointerDownHandler, IPointerUpHandler, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
 {
     [System.Serializable] public class PointerEvent : UnityEvent<PointerEventData> {}
 
     [SerializeField] private Image _coverImage = null;
     [SerializeField] private PointerEvent _pointerDownEvent = new();
+    [SerializeField] private PointerEvent _pointerUpEvent = new();
     [SerializeField] private PointerEvent _pointerClickEvent = new();
     [SerializeField] private PointerEvent _pointerEnterEvent = new();
     [SerializeField] private PointerEvent _pointerExitEvent = new();
@@ -139,6 +140,21 @@ public class ButtonPartsScript : PartsScript, IPointerDownHandler, IPointerClick
         }
 
         this._pointerDownEvent.Invoke(event_dat);
+
+        return;
+    }
+
+    /**
+     * @brief OnPointerUp関数
+     * @param event_dat (event_data)
+     */
+    public void OnPointerUp(PointerEventData event_dat)
+    {
+        if (!this.IsControllable()) {
+            return;
+        }
+
+        this._pointerUpEvent.Invoke(event_dat);
 
         return;
     }

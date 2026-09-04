@@ -138,6 +138,20 @@ public abstract class NodeScript : Script
     }
 
     /**
+     * @brief _FixedUpdate関数
+     */
+    protected override void _FixedUpdate()
+    {
+        if (!this.GetCreatedFlag()) {
+            return;
+        }
+
+        this._OnFixedUpdate();
+
+        return;
+    }
+
+    /**
      * @brief _Update関数
      */
     protected override void _Update()
@@ -150,20 +164,6 @@ public abstract class NodeScript : Script
         this._UpdateClose();
 
         this._OnUpdate();
-
-        return;
-    }
-
-    /**
-     * @brief _FixedUpdate関数
-     */
-    protected override void _FixedUpdate()
-    {
-        if (!this.GetCreatedFlag()) {
-            return;
-        }
-
-        this._OnFixedUpdate();
 
         return;
     }
