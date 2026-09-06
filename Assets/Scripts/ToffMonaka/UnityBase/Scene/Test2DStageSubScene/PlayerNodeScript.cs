@@ -5,6 +5,7 @@
 
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Unity.Cinemachine;
 
 namespace ToffMonaka {
 namespace UnityBase.Scene.Test2DStageSubScene {
@@ -32,6 +33,7 @@ public class PlayerNodeScript : ToffMonaka.Tml.Scene.NodeScript
     [SerializeField] private float _jumpPower = 6.5f;
     [SerializeField] private float _jumpDeceleratePower = 0.5f;
     [SerializeField] private float _fallLimit = -10.0f;
+    [SerializeField] private CinemachinePositionComposer _cinemachinePositionComposer;
 
     public new PlayerNodeScriptCreateDesc createDesc{get; private set;} = null;
 
@@ -87,7 +89,6 @@ public class PlayerNodeScript : ToffMonaka.Tml.Scene.NodeScript
         this._jumpInputAction.Enable();
 
         this._lookInputAction = InputSystem.actions.FindAction("Player/Look");
-        this._lookInputAction.Enable();
 
         return;
     }
@@ -168,6 +169,12 @@ public class PlayerNodeScript : ToffMonaka.Tml.Scene.NodeScript
      */
     protected override void _OnUpdate()
     {
+        if (this._lookInputAction.enabled) {
+            this._cinemachinePositionComposer.TargetOffset = new Vector3(Mathf.Clamp(this._cinemachinePositionComposer.TargetOffset.x + this._lookInputAction.ReadValue<Vector2>().x * 0.05f, -10.0f, 10.0f), Mathf.Clamp(this._cinemachinePositionComposer.TargetOffset.y + this._lookInputAction.ReadValue<Vector2>().y * 0.05f, -10.0f, 10.0f), 0.0f);
+        } else {
+            this._cinemachinePositionComposer.TargetOffset = Vector3.zero;
+        }
+
         this.RunMoveAction(this._moveInputAction.ReadValue<Vector2>().x);
 
         if (this._jumpInputAction.WasPressedThisFrame()) {

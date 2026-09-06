@@ -181,8 +181,11 @@ public class PlayerNodeScript : ToffMonaka.Tml.Scene.NodeScript
      */
     protected override void _OnUpdate()
     {
-        this._cinemachineOrbitalFollow.HorizontalAxis.Value = this._cinemachineOrbitalFollow.HorizontalAxis.ClampValue(this._cinemachineOrbitalFollow.HorizontalAxis.Value + this._lookInputAction.ReadValue<Vector2>().x * 0.25f);
-        this._cinemachineOrbitalFollow.VerticalAxis.Value = this._cinemachineOrbitalFollow.VerticalAxis.ClampValue(this._cinemachineOrbitalFollow.VerticalAxis.Value - this._lookInputAction.ReadValue<Vector2>().y * 0.25f);
+        if (this._lookInputAction.enabled) {
+            this._cinemachineOrbitalFollow.HorizontalAxis.Value = this._cinemachineOrbitalFollow.HorizontalAxis.ClampValue(this._cinemachineOrbitalFollow.HorizontalAxis.Value + this._lookInputAction.ReadValue<Vector2>().x * 0.25f);
+            this._cinemachineOrbitalFollow.VerticalAxis.Value = this._cinemachineOrbitalFollow.VerticalAxis.ClampValue(this._cinemachineOrbitalFollow.VerticalAxis.Value - this._lookInputAction.ReadValue<Vector2>().y * 0.25f);
+        } else {
+        }
 
         this._rightMoveVector = this._cinemachineOrbitalFollow.gameObject.transform.right;
         this._rightMoveVector.y = 0.0f;

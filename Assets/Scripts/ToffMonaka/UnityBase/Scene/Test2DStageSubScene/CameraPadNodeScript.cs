@@ -8,7 +8,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
 namespace ToffMonaka {
-namespace UnityBase.Scene.Test3DStageSubScene {
+namespace UnityBase.Scene.Test2DStageSubScene {
 /**
  * @brief CameraPadNodeScriptCreateDescクラス
  */
@@ -34,7 +34,7 @@ public class CameraPadNodeScript : ToffMonaka.Tml.Scene.NodeScript
      */
     protected override int _OnGetScriptIndex()
     {
-        return ((int)SceneUtil.SCRIPT_INDEX.TEST_3D_STAGE_CAMEARA_PAD_NODE);
+        return ((int)SceneUtil.SCRIPT_INDEX.TEST_2D_STAGE_CAMEARA_PAD_NODE);
     }
 
     /**
