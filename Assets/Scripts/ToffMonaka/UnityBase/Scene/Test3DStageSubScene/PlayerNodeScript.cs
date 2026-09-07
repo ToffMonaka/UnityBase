@@ -31,7 +31,7 @@ public class PlayerNodeScript : ToffMonaka.Tml.Scene.NodeScript
     [SerializeField] private float _jumpPower = 6.5f;
     [SerializeField] private float _jumpDeceleratePower = 0.5f;
     [SerializeField] private float _fallLimit = -10.0f;
-    [SerializeField] private CinemachineOrbitalFollow _cinemachineOrbitalFollow;
+    [SerializeField] private CinemachinePanTilt _cinemachinePanTilt;
 
     public new PlayerNodeScriptCreateDesc createDesc{get; private set;} = null;
 
@@ -150,7 +150,7 @@ public class PlayerNodeScript : ToffMonaka.Tml.Scene.NodeScript
     protected override void _OnFixedUpdate()
     {
         if (this._totalMoveVector.magnitude > 0.0f) {
-            this._rigidbody.rotation = Quaternion.Euler(0.0f, this._cinemachineOrbitalFollow.gameObject.transform.eulerAngles.y, 0.0f);
+            this._rigidbody.rotation = Quaternion.Euler(0.0f, this._cinemachinePanTilt.gameObject.transform.eulerAngles.y, 0.0f);
         }
 
         this._UpdateRigidbodyPosition();
@@ -182,16 +182,16 @@ public class PlayerNodeScript : ToffMonaka.Tml.Scene.NodeScript
     protected override void _OnUpdate()
     {
         if (this._lookInputAction.enabled) {
-            this._cinemachineOrbitalFollow.HorizontalAxis.Value = this._cinemachineOrbitalFollow.HorizontalAxis.ClampValue(this._cinemachineOrbitalFollow.HorizontalAxis.Value + this._lookInputAction.ReadValue<Vector2>().x * 0.25f);
-            this._cinemachineOrbitalFollow.VerticalAxis.Value = this._cinemachineOrbitalFollow.VerticalAxis.ClampValue(this._cinemachineOrbitalFollow.VerticalAxis.Value - this._lookInputAction.ReadValue<Vector2>().y * 0.25f);
+            this._cinemachinePanTilt.PanAxis.Value = this._cinemachinePanTilt.PanAxis.ClampValue(this._cinemachinePanTilt.PanAxis.Value + this._lookInputAction.ReadValue<Vector2>().x * 0.25f);
+            this._cinemachinePanTilt.TiltAxis.Value = this._cinemachinePanTilt.TiltAxis.ClampValue(this._cinemachinePanTilt.TiltAxis.Value - this._lookInputAction.ReadValue<Vector2>().y * 0.25f);
         } else {
         }
 
-        this._rightMoveVector = this._cinemachineOrbitalFollow.gameObject.transform.right;
+        this._rightMoveVector = this._cinemachinePanTilt.gameObject.transform.right;
         this._rightMoveVector.y = 0.0f;
         this._rightMoveVector = this._rightMoveVector.normalized * this._moveInputAction.ReadValue<Vector2>().x;
 
-        this._forwardMoveVector = this._cinemachineOrbitalFollow.gameObject.transform.forward;
+        this._forwardMoveVector = this._cinemachinePanTilt.gameObject.transform.forward;
         this._forwardMoveVector.y = 0.0f;
         this._forwardMoveVector = this._forwardMoveVector.normalized * this._moveInputAction.ReadValue<Vector2>().y;
 
@@ -207,6 +207,28 @@ public class PlayerNodeScript : ToffMonaka.Tml.Scene.NodeScript
         }
 
         base._OnUpdate();
+
+        return;
+    }
+
+    /**
+     * @brief _OnOpen関数
+     */
+    protected override void _OnOpen()
+    {
+        this.RunSpawnAction(this._groundPosition);
+
+        base._OnOpen();
+
+        return;
+    }
+
+    /**
+     * @brief _OnClose関数
+     */
+    protected override void _OnClose()
+    {
+        base._OnClose();
 
         return;
     }
@@ -496,28 +518,6 @@ public class PlayerNodeScript : ToffMonaka.Tml.Scene.NodeScript
                 this._jumpDecelerateFlag = false;
             }
         }
-
-        return;
-    }
-
-    /**
-     * @brief _OnOpen関数
-     */
-    protected override void _OnOpen()
-    {
-        this.RunSpawnAction(this._groundPosition);
-
-        base._OnOpen();
-
-        return;
-    }
-
-    /**
-     * @brief _OnClose関数
-     */
-    protected override void _OnClose()
-    {
-        base._OnClose();
 
         return;
     }

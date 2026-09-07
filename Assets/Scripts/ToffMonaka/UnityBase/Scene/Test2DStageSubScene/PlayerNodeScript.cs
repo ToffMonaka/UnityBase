@@ -33,7 +33,7 @@ public class PlayerNodeScript : ToffMonaka.Tml.Scene.NodeScript
     [SerializeField] private float _jumpPower = 6.5f;
     [SerializeField] private float _jumpDeceleratePower = 0.5f;
     [SerializeField] private float _fallLimit = -10.0f;
-    [SerializeField] private CinemachinePositionComposer _cinemachinePositionComposer;
+    [SerializeField] private GameObject _cameraTargetNode = null;
 
     public new PlayerNodeScriptCreateDesc createDesc{get; private set;} = null;
 
@@ -170,9 +170,15 @@ public class PlayerNodeScript : ToffMonaka.Tml.Scene.NodeScript
     protected override void _OnUpdate()
     {
         if (this._lookInputAction.enabled) {
-            this._cinemachinePositionComposer.TargetOffset = new Vector3(Mathf.Clamp(this._cinemachinePositionComposer.TargetOffset.x + this._lookInputAction.ReadValue<Vector2>().x * 0.05f, -10.0f, 10.0f), Mathf.Clamp(this._cinemachinePositionComposer.TargetOffset.y + this._lookInputAction.ReadValue<Vector2>().y * 0.05f, -10.0f, 10.0f), 0.0f);
+            this._cameraTargetNode.transform.localPosition = new Vector3(Mathf.Clamp(this._cameraTargetNode.transform.localPosition.x + this._lookInputAction.ReadValue<Vector2>().x * 0.05f, -10.0f, 10.0f), Mathf.Clamp(this._cameraTargetNode.transform.localPosition.y + this._lookInputAction.ReadValue<Vector2>().y * 0.05f, -10.0f, 10.0f), 0.0f);
         } else {
-            this._cinemachinePositionComposer.TargetOffset = Vector3.zero;
+            if (this._cameraTargetNode.transform.localPosition.sqrMagnitude > 0.0f) {
+                this._cameraTargetNode.transform.localPosition = Vector3.Lerp(this._cameraTargetNode.transform.localPosition, Vector3.zero, 0.2f);
+
+                if (this._cameraTargetNode.transform.localPosition.sqrMagnitude < 0.0001f) {
+                    this._cameraTargetNode.transform.localPosition = Vector3.zero;
+                }            
+            }
         }
 
         this.RunMoveAction(this._moveInputAction.ReadValue<Vector2>().x);
@@ -184,6 +190,28 @@ public class PlayerNodeScript : ToffMonaka.Tml.Scene.NodeScript
         }
 
         base._OnUpdate();
+
+        return;
+    }
+
+    /**
+     * @brief _OnOpen関数
+     */
+    protected override void _OnOpen()
+    {
+        this.RunSpawnAction(this._groundPosition);
+
+        base._OnOpen();
+
+        return;
+    }
+
+    /**
+     * @brief _OnClose関数
+     */
+    protected override void _OnClose()
+    {
+        base._OnClose();
 
         return;
     }
@@ -458,28 +486,6 @@ public class PlayerNodeScript : ToffMonaka.Tml.Scene.NodeScript
                 this._jumpDecelerateFlag = false;
             }
         }
-
-        return;
-    }
-
-    /**
-     * @brief _OnOpen関数
-     */
-    protected override void _OnOpen()
-    {
-        this.RunSpawnAction(this._groundPosition);
-
-        base._OnOpen();
-
-        return;
-    }
-
-    /**
-     * @brief _OnClose関数
-     */
-    protected override void _OnClose()
-    {
-        base._OnClose();
 
         return;
     }
