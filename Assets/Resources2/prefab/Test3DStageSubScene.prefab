@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1113361327380048505}
+  - component: {fileID: 8227141830723397168}
   m_Layer: 0
   m_Name: MeshPivot
   m_TagString: Untagged
@@ -32,6 +33,28 @@ Transform:
   - {fileID: 2461963799322133710}
   m_Father: {fileID: 359998958270336288}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &8227141830723397168
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519117933817349607}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 6e4420d791d459a4193c2ceb871699b0, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &528988737783813587
 GameObject:
   m_ObjectHideFlags: 0
@@ -1482,6 +1505,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 091b1006d85a85d4894b277bc3337c6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ToffMonaka.UnityBase.Scene.Test3DStageSubScene.PlayerNodeScript
+  _animator: {fileID: 8227141830723397168}
   _rigidbody: {fileID: 8018264112206140178}
   _collider: {fileID: 5515587774690665966}
   _skinWidth: 0.02

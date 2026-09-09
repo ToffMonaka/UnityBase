@@ -22,7 +22,6 @@ public class PlayerNodeScriptCreateDesc : ToffMonaka.Tml.Scene.NodeScriptCreateD
 public class PlayerNodeScript : ToffMonaka.Tml.Scene.NodeScript
 {
 #pragma warning disable 0414
-    [SerializeField] private SpriteRenderer _spriteRenderer;
     [SerializeField] private Animator _animator;
     [SerializeField] private Rigidbody2D _rigidbody;
     [SerializeField] private Collider2D _collider;
@@ -41,6 +40,8 @@ public class PlayerNodeScript : ToffMonaka.Tml.Scene.NodeScript
     private bool _movePositionFlag = false;
     private Vector2 _movePosition = Vector2.zero;
     private Vector2 _moveVelocity = Vector2.zero;
+    private Vector2 _inputMoveValue= Vector2.zero;
+    private Vector2 _inputMoveVector = Vector2.zero;
     private bool _jumpFlag = false;
     private bool _jumpDecelerateFlag = false;
     private bool _groundFlag = false;
@@ -181,7 +182,22 @@ public class PlayerNodeScript : ToffMonaka.Tml.Scene.NodeScript
             }
         }
 
-        this.RunMoveAction(this._moveInputAction.ReadValue<Vector2>().x);
+        this._inputMoveValue = this._moveInputAction.ReadValue<Vector2>();
+
+        if (this._inputMoveValue.x > 0.0f) {
+            this._animator.SetBool("moveLeftFlag", false);
+            this._animator.SetBool("moveRightFlag", true);
+        } else if (this._inputMoveValue.x < 0.0f) {
+            this._animator.SetBool("moveLeftFlag", true);
+            this._animator.SetBool("moveRightFlag", false);
+        } else {
+            this._animator.SetBool("moveLeftFlag", false);
+            this._animator.SetBool("moveRightFlag", false);
+        }
+
+        this._inputMoveVector = this._inputMoveValue;
+
+        this.RunMoveAction(this._inputMoveVector.x);
 
         if (this._jumpInputAction.WasPressedThisFrame()) {
             this.RunJumpAction(1.0f);
@@ -505,9 +521,6 @@ public class PlayerNodeScript : ToffMonaka.Tml.Scene.NodeScript
 
         this._groundFlag = false;
 
-        this._animator.SetBool("moveLeftFlag", false);
-        this._animator.SetBool("moveRightFlag", false);
-
         return;
     }
 
@@ -518,17 +531,6 @@ public class PlayerNodeScript : ToffMonaka.Tml.Scene.NodeScript
     public void RunMoveAction(float x)
     {
         this._moveVelocity.x = x * this._moveSpeed;
-
-        if (this._moveVelocity.x > 0.0f) {
-            this._animator.SetBool("moveLeftFlag", false);
-            this._animator.SetBool("moveRightFlag", true);
-        } else if (this._moveVelocity.x < 0.0f) {
-            this._animator.SetBool("moveLeftFlag", true);
-            this._animator.SetBool("moveRightFlag", false);
-        } else {
-            this._animator.SetBool("moveLeftFlag", false);
-            this._animator.SetBool("moveRightFlag", false);
-        }
 
         return;
     }

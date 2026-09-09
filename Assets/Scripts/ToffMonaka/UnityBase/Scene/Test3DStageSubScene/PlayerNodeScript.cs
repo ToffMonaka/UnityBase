@@ -22,6 +22,7 @@ public class PlayerNodeScriptCreateDesc : ToffMonaka.Tml.Scene.NodeScriptCreateD
 public class PlayerNodeScript : ToffMonaka.Tml.Scene.NodeScript
 {
 #pragma warning disable 0414
+    [SerializeField] private Animator _animator;
     [SerializeField] private Rigidbody _rigidbody;
     [SerializeField] private Collider _collider;
     [SerializeField] private float _skinWidth = 0.02f;
@@ -41,9 +42,10 @@ public class PlayerNodeScript : ToffMonaka.Tml.Scene.NodeScript
     private bool _movePositionFlag = false;
     private Vector3 _movePosition = Vector3.zero;
     private Vector3 _moveVelocity = Vector3.zero;
-    private Vector3 _rightMoveVector = Vector3.zero;
-    private Vector3 _forwardMoveVector = Vector3.zero;
-    private Vector3 _totalMoveVector = Vector3.zero;
+    private Vector2 _inputMoveValue= Vector2.zero;
+    private Vector3 _inputMoveVector = Vector3.zero;
+    private Vector3 _inputMoveXVector = Vector3.zero;
+    private Vector3 _inputMoveYVector = Vector3.zero;
     private bool _jumpFlag = false;
     private bool _jumpDecelerateFlag = false;
     private bool _groundFlag = false;
@@ -149,7 +151,7 @@ public class PlayerNodeScript : ToffMonaka.Tml.Scene.NodeScript
      */
     protected override void _OnFixedUpdate()
     {
-        if (this._totalMoveVector.magnitude > 0.0f) {
+        if (this._inputMoveValue.sqrMagnitude > 0.0f) {
             this._rigidbody.rotation = Quaternion.Euler(0.0f, this._cinemachinePanTilt.gameObject.transform.eulerAngles.y, 0.0f);
         }
 
@@ -187,18 +189,46 @@ public class PlayerNodeScript : ToffMonaka.Tml.Scene.NodeScript
         } else {
         }
 
-        this._rightMoveVector = this._cinemachinePanTilt.gameObject.transform.right;
-        this._rightMoveVector.y = 0.0f;
-        this._rightMoveVector = this._rightMoveVector.normalized * this._moveInputAction.ReadValue<Vector2>().x;
+        this._inputMoveValue = this._moveInputAction.ReadValue<Vector2>();
 
-        this._forwardMoveVector = this._cinemachinePanTilt.gameObject.transform.forward;
-        this._forwardMoveVector.y = 0.0f;
-        this._forwardMoveVector = this._forwardMoveVector.normalized * this._moveInputAction.ReadValue<Vector2>().y;
+        if (this._inputMoveValue.y > 0.0f) {
+            this._animator.SetBool("moveFrontFlag", true);
+            this._animator.SetBool("moveBackFlag", false);
+            this._animator.SetBool("moveLeftFlag", false);
+            this._animator.SetBool("moveRightFlag", false);
+        } else if (this._inputMoveValue.y < 0.0f) {
+            this._animator.SetBool("moveFrontFlag", false);
+            this._animator.SetBool("moveBackFlag", true);
+            this._animator.SetBool("moveLeftFlag", false);
+            this._animator.SetBool("moveRightFlag", false);
+        } else if (this._inputMoveValue.x > 0.0f) {
+            this._animator.SetBool("moveFrontFlag", false);
+            this._animator.SetBool("moveBackFlag", false);
+            this._animator.SetBool("moveLeftFlag", false);
+            this._animator.SetBool("moveRightFlag", true);
+        } else if (this._inputMoveValue.x < 0.0f) {
+            this._animator.SetBool("moveFrontFlag", false);
+            this._animator.SetBool("moveBackFlag", false);
+            this._animator.SetBool("moveLeftFlag", true);
+            this._animator.SetBool("moveRightFlag", false);
+        } else {
+            this._animator.SetBool("moveFrontFlag", false);
+            this._animator.SetBool("moveBackFlag", false);
+            this._animator.SetBool("moveLeftFlag", false);
+            this._animator.SetBool("moveRightFlag", false);
+        }
 
-        this._totalMoveVector = (this._rightMoveVector + this._forwardMoveVector).normalized;
+        this._inputMoveXVector = this._cinemachinePanTilt.gameObject.transform.right;
+        this._inputMoveXVector.y = 0.0f;
+        this._inputMoveXVector = this._inputMoveXVector.normalized * this._inputMoveValue.x;
 
-        this.RunMoveAction(this._totalMoveVector.x, this._totalMoveVector.z);
-        //this.RunMoveAction(this._moveInputAction.ReadValue<Vector2>().x, this._moveInputAction.ReadValue<Vector2>().y);
+        this._inputMoveYVector = this._cinemachinePanTilt.gameObject.transform.forward;
+        this._inputMoveYVector.y = 0.0f;
+        this._inputMoveYVector = this._inputMoveYVector.normalized * this._inputMoveValue.y;
+
+        this._inputMoveVector = (this._inputMoveXVector + this._inputMoveYVector).normalized;
+
+        this.RunMoveAction(this._inputMoveVector.x, this._inputMoveVector.z);
 
         if (this._jumpInputAction.WasPressedThisFrame()) {
             this.RunJumpAction(1.0f);
