@@ -191,32 +191,10 @@ public class PlayerNodeScript : ToffMonaka.Tml.Scene.NodeScript
 
         this._inputMoveValue = this._moveInputAction.ReadValue<Vector2>();
 
-        if (this._inputMoveValue.y > 0.0f) {
-            this._animator.SetBool("moveFrontFlag", true);
-            this._animator.SetBool("moveBackFlag", false);
-            this._animator.SetBool("moveLeftFlag", false);
-            this._animator.SetBool("moveRightFlag", false);
-        } else if (this._inputMoveValue.y < 0.0f) {
-            this._animator.SetBool("moveFrontFlag", false);
-            this._animator.SetBool("moveBackFlag", true);
-            this._animator.SetBool("moveLeftFlag", false);
-            this._animator.SetBool("moveRightFlag", false);
-        } else if (this._inputMoveValue.x > 0.0f) {
-            this._animator.SetBool("moveFrontFlag", false);
-            this._animator.SetBool("moveBackFlag", false);
-            this._animator.SetBool("moveLeftFlag", false);
-            this._animator.SetBool("moveRightFlag", true);
-        } else if (this._inputMoveValue.x < 0.0f) {
-            this._animator.SetBool("moveFrontFlag", false);
-            this._animator.SetBool("moveBackFlag", false);
-            this._animator.SetBool("moveLeftFlag", true);
-            this._animator.SetBool("moveRightFlag", false);
-        } else {
-            this._animator.SetBool("moveFrontFlag", false);
-            this._animator.SetBool("moveBackFlag", false);
-            this._animator.SetBool("moveLeftFlag", false);
-            this._animator.SetBool("moveRightFlag", false);
-        }
+        this._animator.SetBool("MoveFrontFlag", this._inputMoveValue.y > 0.0f);
+        this._animator.SetBool("MoveBackFlag", this._inputMoveValue.y < 0.0f);
+        this._animator.SetBool("MoveLeftFlag", this._inputMoveValue.x < 0.0f);
+        this._animator.SetBool("MoveRightFlag", this._inputMoveValue.x > 0.0f);
 
         this._inputMoveXVector = this._cinemachinePanTilt.gameObject.transform.right;
         this._inputMoveXVector.y = 0.0f;
