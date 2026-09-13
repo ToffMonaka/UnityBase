@@ -21,6 +21,8 @@ public class PlayerNodeScriptCreateDesc : ToffMonaka.Tml.Scene.NodeScriptCreateD
  */
 public class PlayerNodeScript : ToffMonaka.Tml.Scene.NodeScript
 {
+    private static readonly int AnimatorMoveDirectionTypeHash = Animator.StringToHash("MoveDirectionType");
+
 #pragma warning disable 0414
     [SerializeField] private Animator _animator;
     [SerializeField] private Rigidbody _rigidbody;
@@ -42,7 +44,8 @@ public class PlayerNodeScript : ToffMonaka.Tml.Scene.NodeScript
     private bool _movePositionFlag = false;
     private Vector3 _movePosition = Vector3.zero;
     private Vector3 _moveVelocity = Vector3.zero;
-    private Vector2 _inputMoveValue= Vector2.zero;
+    private Vector2 _inputMoveValue = Vector2.zero;
+    private int _inputMoveDirectionType = 0;
     private Vector3 _inputMoveVector = Vector3.zero;
     private Vector3 _inputMoveXVector = Vector3.zero;
     private Vector3 _inputMoveYVector = Vector3.zero;
@@ -151,7 +154,7 @@ public class PlayerNodeScript : ToffMonaka.Tml.Scene.NodeScript
      */
     protected override void _OnFixedUpdate()
     {
-        if (this._inputMoveValue.sqrMagnitude > 0.0f) {
+        if (this._inputMoveDirectionType != 0) {
             this._rigidbody.rotation = Quaternion.Euler(0.0f, this._cinemachinePanTilt.gameObject.transform.eulerAngles.y, 0.0f);
         }
 
@@ -191,10 +194,31 @@ public class PlayerNodeScript : ToffMonaka.Tml.Scene.NodeScript
 
         this._inputMoveValue = this._moveInputAction.ReadValue<Vector2>();
 
-        this._animator.SetBool("MoveFrontFlag", this._inputMoveValue.y > 0.0f);
-        this._animator.SetBool("MoveBackFlag", this._inputMoveValue.y < 0.0f);
-        this._animator.SetBool("MoveLeftFlag", this._inputMoveValue.x < 0.0f);
-        this._animator.SetBool("MoveRightFlag", this._inputMoveValue.x > 0.0f);
+        if (this._inputMoveValue.y > 0.0f) {
+            if (this._inputMoveValue.x < 0.0f) {
+                this._inputMoveDirectionType = 5;
+            } else if (this._inputMoveValue.x > 0.0f) {
+                this._inputMoveDirectionType = 6;
+            } else {
+                this._inputMoveDirectionType = 3;
+            }
+        } else if (this._inputMoveValue.y < 0.0f) {
+            if (this._inputMoveValue.x < 0.0f) {
+                this._inputMoveDirectionType = 7;
+            } else if (this._inputMoveValue.x > 0.0f) {
+                this._inputMoveDirectionType = 8;
+            } else {
+                this._inputMoveDirectionType = 4;
+            }
+        } else if (this._inputMoveValue.x < 0.0f) {
+            this._inputMoveDirectionType = 1;
+        } else if (this._inputMoveValue.x > 0.0f) {
+            this._inputMoveDirectionType = 2;
+        } else {
+            this._inputMoveDirectionType = 0;
+        }
+
+        this._animator.SetInteger(AnimatorMoveDirectionTypeHash, this._inputMoveDirectionType);
 
         this._inputMoveXVector = this._cinemachinePanTilt.gameObject.transform.right;
         this._inputMoveXVector.y = 0.0f;

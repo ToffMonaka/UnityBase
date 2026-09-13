@@ -5,7 +5,6 @@
 
 using UnityEngine;
 using UnityEngine.InputSystem;
-using Unity.Cinemachine;
 
 namespace ToffMonaka {
 namespace UnityBase.Scene.Test2DStageSubScene {
@@ -21,6 +20,8 @@ public class PlayerNodeScriptCreateDesc : ToffMonaka.Tml.Scene.NodeScriptCreateD
  */
 public class PlayerNodeScript : ToffMonaka.Tml.Scene.NodeScript
 {
+    private static readonly int AnimatorMoveDirectionTypeHash = Animator.StringToHash("MoveDirectionType");
+
 #pragma warning disable 0414
     [SerializeField] private Animator _animator;
     [SerializeField] private Rigidbody2D _rigidbody;
@@ -40,7 +41,8 @@ public class PlayerNodeScript : ToffMonaka.Tml.Scene.NodeScript
     private bool _movePositionFlag = false;
     private Vector2 _movePosition = Vector2.zero;
     private Vector2 _moveVelocity = Vector2.zero;
-    private Vector2 _inputMoveValue= Vector2.zero;
+    private Vector2 _inputMoveValue = Vector2.zero;
+    private int _inputMoveDirectionType = 0;
     private Vector2 _inputMoveVector = Vector2.zero;
     private bool _jumpFlag = false;
     private bool _jumpDecelerateFlag = false;
@@ -184,16 +186,15 @@ public class PlayerNodeScript : ToffMonaka.Tml.Scene.NodeScript
 
         this._inputMoveValue = this._moveInputAction.ReadValue<Vector2>();
 
-        if (this._inputMoveValue.x > 0.0f) {
-            this._animator.SetBool("moveLeftFlag", false);
-            this._animator.SetBool("moveRightFlag", true);
-        } else if (this._inputMoveValue.x < 0.0f) {
-            this._animator.SetBool("moveLeftFlag", true);
-            this._animator.SetBool("moveRightFlag", false);
+        if (this._inputMoveValue.x < 0.0f) {
+            this._inputMoveDirectionType = 1;
+        } else if (this._inputMoveValue.x > 0.0f) {
+            this._inputMoveDirectionType = 2;
         } else {
-            this._animator.SetBool("moveLeftFlag", false);
-            this._animator.SetBool("moveRightFlag", false);
+            this._inputMoveDirectionType = 0;
         }
+
+        this._animator.SetInteger(AnimatorMoveDirectionTypeHash, this._inputMoveDirectionType);
 
         this._inputMoveVector = this._inputMoveValue;
 

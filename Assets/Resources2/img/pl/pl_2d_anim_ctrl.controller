@@ -62,9 +62,9 @@ AnimatorStateTransition:
   m_PrefabAsset: {fileID: 0}
   m_Name: 
   m_Conditions:
-  - m_ConditionMode: 1
-    m_ConditionEvent: moveLeftFlag
-    m_EventTreshold: 0
+  - m_ConditionMode: 6
+    m_ConditionEvent: MoveDirectionType
+    m_EventTreshold: 1
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -8962798645798551383}
   m_Solo: 0
@@ -87,9 +87,9 @@ AnimatorStateTransition:
   m_PrefabAsset: {fileID: 0}
   m_Name: 
   m_Conditions:
-  - m_ConditionMode: 2
-    m_ConditionEvent: moveRightFlag
-    m_EventTreshold: 0
+  - m_ConditionMode: 7
+    m_ConditionEvent: MoveDirectionType
+    m_EventTreshold: 2
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 5046008987445952373}
   m_Solo: 0
@@ -112,9 +112,9 @@ AnimatorStateTransition:
   m_PrefabAsset: {fileID: 0}
   m_Name: 
   m_Conditions:
-  - m_ConditionMode: 2
-    m_ConditionEvent: moveLeftFlag
-    m_EventTreshold: 0
+  - m_ConditionMode: 7
+    m_ConditionEvent: MoveDirectionType
+    m_EventTreshold: 1
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 5046008987445952373}
   m_Solo: 0
@@ -143,10 +143,10 @@ AnimatorStateMachine:
     m_Position: {x: 290, y: 120, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -8962798645798551383}
-    m_Position: {x: 170, y: 240, z: 0}
+    m_Position: {x: 170, y: 200, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -8934925756886949060}
-    m_Position: {x: 410, y: 240, z: 0}
+    m_Position: {x: 410, y: 200, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
   m_EntryTransitions: []
@@ -166,14 +166,8 @@ AnimatorController:
   m_Name: pl_2d_anim_ctrl
   serializedVersion: 5
   m_AnimatorParameters:
-  - m_Name: moveLeftFlag
-    m_Type: 4
-    m_DefaultFloat: 0
-    m_DefaultInt: 0
-    m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
-  - m_Name: moveRightFlag
-    m_Type: 4
+  - m_Name: MoveDirectionType
+    m_Type: 3
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
@@ -199,9 +193,9 @@ AnimatorStateTransition:
   m_PrefabAsset: {fileID: 0}
   m_Name: 
   m_Conditions:
-  - m_ConditionMode: 1
-    m_ConditionEvent: moveRightFlag
-    m_EventTreshold: 0
+  - m_ConditionMode: 6
+    m_ConditionEvent: MoveDirectionType
+    m_EventTreshold: 2
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -8934925756886949060}
   m_Solo: 0
