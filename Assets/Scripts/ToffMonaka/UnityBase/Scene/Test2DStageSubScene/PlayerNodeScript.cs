@@ -20,7 +20,7 @@ public class PlayerNodeScriptCreateDesc : ToffMonaka.Tml.Scene.NodeScriptCreateD
  */
 public class PlayerNodeScript : ToffMonaka.Tml.Scene.NodeScript
 {
-    private static readonly int AnimatorMoveDirectionTypeHash = Animator.StringToHash("MoveDirectionType");
+    private static readonly int ANIMATOR_MOVE_DIRECTION_TYPE_HASH = Animator.StringToHash("MoveDirectionType");
 
 #pragma warning disable 0414
     [SerializeField] private Animator _animator;
@@ -194,7 +194,7 @@ public class PlayerNodeScript : ToffMonaka.Tml.Scene.NodeScript
             this._inputMoveDirectionType = 0;
         }
 
-        this._animator.SetInteger(AnimatorMoveDirectionTypeHash, this._inputMoveDirectionType);
+        this._animator.SetInteger(ANIMATOR_MOVE_DIRECTION_TYPE_HASH, this._inputMoveDirectionType);
 
         this._inputMoveVector = this._inputMoveValue;
 
