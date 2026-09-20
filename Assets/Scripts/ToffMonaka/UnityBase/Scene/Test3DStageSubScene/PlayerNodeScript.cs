@@ -346,7 +346,8 @@ public class PlayerNodeScript : ToffMonaka.Tml.Scene.NodeScript
                 if (hit_surf_normal.y >= 0.5f) {
                     leftover_vel.y = 0.0f;
 
-                    this._UpdateRigidbodyPosition(this._GetSurfaceVelocity(leftover_vel, hit_surf_normal, true), cnt + 1, slide_flg);
+                    this._UpdateRigidbodyPosition(this._GetSurfaceVelocity(leftover_vel, hit.normal, true), cnt + 1, slide_flg);
+                    //this._UpdateRigidbodyPosition(this._GetSurfaceVelocity(leftover_vel, hit_surf_normal, true), cnt + 1, slide_flg);
                 } else if (hit_surf_normal.y <= -0.5f) {
                     if (this._moveVelocity.y > 0.0f) {
                         this._moveVelocity.y = 0.0f;
@@ -401,7 +402,8 @@ public class PlayerNodeScript : ToffMonaka.Tml.Scene.NodeScript
                 if (hit_surf_normal.y >= 0.5f) {
                     leftover_vel.y = 0.0f;
 
-                    this._UpdateRigidbodyPosition(this._GetSurfaceVelocity(leftover_vel, hit_surf_normal, true), cnt + 1, slide_flg);
+                    this._UpdateRigidbodyPosition(this._GetSurfaceVelocity(leftover_vel, hit.normal, true), cnt + 1, slide_flg);
+                    //this._UpdateRigidbodyPosition(this._GetSurfaceVelocity(leftover_vel, hit_surf_normal, true), cnt + 1, slide_flg);
                 } else if (hit_surf_normal.y <= -0.5f) {
                     if (this._moveVelocity.y > 0.0f) {
                         this._moveVelocity.y = 0.0f;
@@ -533,11 +535,21 @@ public class PlayerNodeScript : ToffMonaka.Tml.Scene.NodeScript
             return (vel);
         }
 
+        var tmp_vel = new Vector3(vel.x, 0.0f, vel.z);
+
+        var surf_vel = Vector3.ProjectOnPlane(tmp_vel, surf_normal).normalized * tmp_vel.magnitude;
+
+        if (vel.y != 0.0f) {
+            surf_vel.y = vel.y;
+        }
+
+        /*
         var surf_vel = Vector3.ProjectOnPlane(vel, surf_normal);
 
         if (slide_flg) {
             surf_vel = surf_vel.normalized * vel.magnitude;
         }
+        */
 
         return (surf_vel);
     }
