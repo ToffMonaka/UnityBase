@@ -298,7 +298,7 @@ public class PlayerNodeScript : ToffMonaka.Tml.Scene.NodeScript
         }
 
         if (this._groundFlag) {
-            this._UpdateRigidbodyPosition(this._GetSurfaceVelocity(this._moveVelocity, this._groundNormal, true) * Time.deltaTime, 0, true);
+            this._UpdateRigidbodyPosition(this._GetSurfaceVelocity(this._moveVelocity, this._groundNormal) * Time.deltaTime, 0, true);
         } else {
             this._UpdateRigidbodyPosition(this._moveVelocity * Time.deltaTime, 0, false);
         }
@@ -346,8 +346,7 @@ public class PlayerNodeScript : ToffMonaka.Tml.Scene.NodeScript
                 if (hit_surf_normal.y >= 0.5f) {
                     leftover_vel.y = 0.0f;
 
-                    this._UpdateRigidbodyPosition(this._GetSurfaceVelocity(leftover_vel, hit.normal, true), cnt + 1, slide_flg);
-                    //this._UpdateRigidbodyPosition(this._GetSurfaceVelocity(leftover_vel, hit_surf_normal, true), cnt + 1, slide_flg);
+                    this._UpdateRigidbodyPosition(this._GetSurfaceVelocity(leftover_vel, hit_surf_normal), cnt + 1, true);
                 } else if (hit_surf_normal.y <= -0.5f) {
                     if (this._moveVelocity.y > 0.0f) {
                         this._moveVelocity.y = 0.0f;
@@ -355,10 +354,10 @@ public class PlayerNodeScript : ToffMonaka.Tml.Scene.NodeScript
                         leftover_vel.y = 0.0f;
                     }
 
-                    this._UpdateRigidbodyPosition(this._GetSurfaceVelocity(leftover_vel, hit.normal, false), cnt + 1, slide_flg);
+                    this._UpdateRigidbodyPosition(this._GetSurfaceVelocity(leftover_vel, hit.normal), cnt + 1, false);
                 } else {
                     if (this._ColliderCast(this._rigidbody.position + new Vector3(0.0f, this._moveStepHeight, 0.0f), leftover_vel.normalized, leftover_vel.magnitude, out RaycastHit hit2)) {
-                        this._UpdateRigidbodyPosition(this._GetSurfaceVelocity(leftover_vel, hit_surf_normal, slide_flg), cnt + 1, slide_flg);
+                        this._UpdateRigidbodyPosition(this._GetSurfaceVelocity(leftover_vel, hit.normal), cnt + 1, false);
                     } else {
                         if (this._ColliderCast(this._rigidbody.position + new Vector3(leftover_vel.x, this._moveStepHeight, leftover_vel.z), Vector3.down, this._moveStepHeight, out RaycastHit hit3)) {
                             var hit3_surf_normal = this._GetSurfaceNormal(hit3);
@@ -369,10 +368,10 @@ public class PlayerNodeScript : ToffMonaka.Tml.Scene.NodeScript
                                 this._rigidbody.position += new Vector3(leftover_vel.x, this._moveStepHeight, leftover_vel.z);
                                 this._rigidbody.position += (hit3.distance >= this._skinWidth) ? hit3_vel : (-Vector3.down * (this._skinWidth - hit3.distance));
                             } else {
-                                this._UpdateRigidbodyPosition(this._GetSurfaceVelocity(leftover_vel, hit_surf_normal, slide_flg), cnt + 1, slide_flg);
+                                this._UpdateRigidbodyPosition(this._GetSurfaceVelocity(leftover_vel, hit.normal), cnt + 1, false);
                             }
                         } else {
-                            this._UpdateRigidbodyPosition(this._GetSurfaceVelocity(leftover_vel, hit_surf_normal, slide_flg), cnt + 1, slide_flg);
+                            this._UpdateRigidbodyPosition(this._GetSurfaceVelocity(leftover_vel, hit.normal), cnt + 1, false);
                         }
                     }
                 }
@@ -402,8 +401,7 @@ public class PlayerNodeScript : ToffMonaka.Tml.Scene.NodeScript
                 if (hit_surf_normal.y >= 0.5f) {
                     leftover_vel.y = 0.0f;
 
-                    this._UpdateRigidbodyPosition(this._GetSurfaceVelocity(leftover_vel, hit.normal, true), cnt + 1, slide_flg);
-                    //this._UpdateRigidbodyPosition(this._GetSurfaceVelocity(leftover_vel, hit_surf_normal, true), cnt + 1, slide_flg);
+                    this._UpdateRigidbodyPosition(this._GetSurfaceVelocity(leftover_vel, hit_surf_normal), cnt + 1, true);
                 } else if (hit_surf_normal.y <= -0.5f) {
                     if (this._moveVelocity.y > 0.0f) {
                         this._moveVelocity.y = 0.0f;
@@ -411,9 +409,9 @@ public class PlayerNodeScript : ToffMonaka.Tml.Scene.NodeScript
                         leftover_vel.y = 0.0f;
                     }
 
-                    this._UpdateRigidbodyPosition(this._GetSurfaceVelocity(leftover_vel, hit.normal, false), cnt + 1, slide_flg);
+                    this._UpdateRigidbodyPosition(this._GetSurfaceVelocity(leftover_vel, hit.normal), cnt + 1, false);
                 } else {
-                    this._UpdateRigidbodyPosition(this._GetSurfaceVelocity(leftover_vel, hit.normal, slide_flg), cnt + 1, slide_flg);
+                    this._UpdateRigidbodyPosition(this._GetSurfaceVelocity(leftover_vel, hit.normal), cnt + 1, false);
                 }
             } else {
                 this._rigidbody.position += vel;
@@ -526,10 +524,9 @@ public class PlayerNodeScript : ToffMonaka.Tml.Scene.NodeScript
      * @brief _GetSurfaceVelocity関数
      * @param vel (velocity)
      * @param surf_normal (surf_normal)
-     * @param slide_flg (slide_flag)
      * @return surf_vel (surf_velocity)
      */
-    private Vector3 _GetSurfaceVelocity(Vector3 vel, Vector3 surf_normal, bool slide_flg)
+    private Vector3 _GetSurfaceVelocity(Vector3 vel, Vector3 surf_normal)
     {
         if (Vector3.Dot(vel.normalized, surf_normal) >= 0.0f) {
             return (vel);
@@ -542,14 +539,6 @@ public class PlayerNodeScript : ToffMonaka.Tml.Scene.NodeScript
         if (vel.y != 0.0f) {
             surf_vel.y = vel.y;
         }
-
-        /*
-        var surf_vel = Vector3.ProjectOnPlane(vel, surf_normal);
-
-        if (slide_flg) {
-            surf_vel = surf_vel.normalized * vel.magnitude;
-        }
-        */
 
         return (surf_vel);
     }

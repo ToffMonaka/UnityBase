@@ -4,6 +4,7 @@
  */
 
 using UnityEngine;
+using ToffMonaka.UnityBase.Scene.VirtualGamePad;
 using ToffMonaka.UnityBase.Scene.SideMenu;
 using ToffMonaka.UnityBase.Scene.CoverSystem;
 using ToffMonaka.UnityBase.Scene.DialogSystem;
@@ -22,12 +23,14 @@ public class SubSceneNodeScriptCreateDesc : ToffMonaka.Tml.Scene.SubSceneNodeScr
  */
 public abstract class SubSceneNodeScript : ToffMonaka.Tml.Scene.SubSceneNodeScript
 {
+    [SerializeField] private GameObject _virtualGamePadNode = null;
     [SerializeField] private GameObject _sideMenuNode = null;
     [SerializeField] private GameObject _dialogSystemNode = null;
     [SerializeField] private GameObject _coverSystemNode = null;
 
     public new SubSceneNodeScriptCreateDesc createDesc{get; private set;} = null;
 
+    private VirtualGamePadNodeScript _virtualGamePadNodeScript = null;
     private SideMenuNodeScript _sideMenuNodeScript = null;
     private DialogSystemNodeScript _dialogSystemNodeScript = null;
     private CoverSystemNodeScript _coverSystemNodeScript = null;
@@ -70,6 +73,17 @@ public abstract class SubSceneNodeScript : ToffMonaka.Tml.Scene.SubSceneNodeScri
     {
         if (base._OnCreate() < 0) {
             return (-1);
+        }
+
+        // VirtualGamePadNodeScript Create
+        if (this._virtualGamePadNode != null) {
+            var script = this._virtualGamePadNode.GetComponent<VirtualGamePadNodeScript>();
+            var script_create_desc = new VirtualGamePadNodeScriptCreateDesc();
+
+            script.Create(script_create_desc);
+            script.Open(0);
+
+            this._virtualGamePadNodeScript = script;
         }
 
         // SideMenuNodeScript Create
@@ -195,6 +209,15 @@ public abstract class SubSceneNodeScript : ToffMonaka.Tml.Scene.SubSceneNodeScri
         base._OnClosed();
 
         return;
+    }
+
+    /**
+     * @brief GetVirtualGamePadNodeScript関数
+     * @return virtual_game_pad_node_script (virtual_game_pad_node_script)
+     */
+    public VirtualGamePadNodeScript GetVirtualGamePadNodeScript()
+    {
+        return (this._virtualGamePadNodeScript);
     }
 
     /**
