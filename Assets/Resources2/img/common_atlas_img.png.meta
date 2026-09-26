@@ -113,8 +113,8 @@ TextureImporter:
       name: back_icon_img
       rect:
         serializedVersion: 2
-        x: 2
-        y: 182
+        x: 328
+        y: 188
         width: 64
         height: 64
       alignment: 0
@@ -135,8 +135,8 @@ TextureImporter:
       name: close_icon_img
       rect:
         serializedVersion: 2
-        x: 2
-        y: 50
+        x: 266
+        y: 116
         width: 64
         height: 64
       alignment: 0
@@ -201,8 +201,8 @@ TextureImporter:
       name: menu_icon_img
       rect:
         serializedVersion: 2
-        x: 68
-        y: 182
+        x: 266
+        y: 50
         width: 64
         height: 64
       alignment: 0
@@ -267,8 +267,8 @@ TextureImporter:
       name: sliced_bg_img
       rect:
         serializedVersion: 2
-        x: 68
-        y: 82
+        x: 52
+        y: 2
         width: 48
         height: 48
       alignment: 0
@@ -289,8 +289,8 @@ TextureImporter:
       name: sliced_bg2_img
       rect:
         serializedVersion: 2
-        x: 68
-        y: 132
+        x: 2
+        y: 2
         width: 48
         height: 48
       alignment: 0
@@ -311,8 +311,8 @@ TextureImporter:
       name: sliced_btn_cover_img
       rect:
         serializedVersion: 2
-        x: 68
-        y: 32
+        x: 102
+        y: 2
         width: 48
         height: 48
       alignment: 0
@@ -333,8 +333,8 @@ TextureImporter:
       name: sliced_btn_img
       rect:
         serializedVersion: 2
-        x: 118
-        y: 132
+        x: 152
+        y: 2
         width: 48
         height: 48
       alignment: 0
@@ -377,8 +377,8 @@ TextureImporter:
       name: sliced_bg_cover_img
       rect:
         serializedVersion: 2
-        x: 2
-        y: 16
+        x: 202
+        y: 18
         width: 32
         height: 32
       alignment: 0
@@ -399,8 +399,8 @@ TextureImporter:
       name: circle_img
       rect:
         serializedVersion: 2
-        x: 2
-        y: 116
+        x: 394
+        y: 188
         width: 64
         height: 64
       alignment: 0
@@ -413,6 +413,160 @@ TextureImporter:
       bones: []
       spriteID: e512a96ffdd309a4f9bf6ddaf7ab8593
       internalID: 717517805
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: act_a_btn_icon_img
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 52
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 32e4626d24af73240affed09f5d0bbf0
+      internalID: 1708320050
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: act_b_btn_icon_img
+      rect:
+        serializedVersion: 2
+        x: 68
+        y: 52
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2a69939d8ad46bd40afc2dac7bf9fa1a
+      internalID: -132869643
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: act_btn_img
+      rect:
+        serializedVersion: 2
+        x: 134
+        y: 52
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 462e8037382179647be174f4cf8727ea
+      internalID: -1686968304
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: act_c_btn_icon_img
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 52
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dd0d0da7fffd9354dabca6c4cb412828
+      internalID: 632986875
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: act_d_btn_icon_img
+      rect:
+        serializedVersion: 2
+        x: 262
+        y: 182
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0cddfc6a9d1ed154f86272949fdc0714
+      internalID: 926166075
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: move_stick_icon_img
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 118
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 83aa50d37b2baa74eb4b57909e8b84ce
+      internalID: 1170455952
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: move_stick_img
+      rect:
+        serializedVersion: 2
+        x: 132
+        y: 118
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: add3f6a032572284a85f407a707c41ad
+      internalID: 1095289740
       vertices: []
       indices: 
       edges: []
@@ -431,12 +585,19 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
+      act_a_btn_icon_img: 1708320050
+      act_b_btn_icon_img: -132869643
+      act_btn_img: -1686968304
+      act_c_btn_icon_img: 632986875
+      act_d_btn_icon_img: 926166075
       back_icon_img: 1828093758
       circle_img: 717517805
       close_icon_img: -484489551
       left_btn_cover_img: -357185212
       left_btn_img: 197041024
       menu_icon_img: -949093935
+      move_stick_icon_img: 1170455952
+      move_stick_img: 1095289740
       right_btn_cover_img: 1390778532
       right_btn_img: 346450444
       sliced_bg2_img: -1135536220

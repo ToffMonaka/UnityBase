@@ -4,7 +4,7 @@
 # To import these sprites into your Unity project, download "TexturePackerImporter":
 # https://www.codeandweb.com/texturepacker/unity
 #
-# $TexturePacker:SmartUpdate:44e22e379ccc518a9a183ae4b5984d2e:06966723553b0d18846da43090167903:4f8d4a19b0e7fa0415e4a2acc4ecace8$
+# $TexturePacker:SmartUpdate:37a20dbe73f5dbdfdae4442075b500ce:704910f4fc6eee5006770be7651310f5:4f8d4a19b0e7fa0415e4a2acc4ecace8$
 #
 :format=40300
 :texture=common_atlas_img.png
@@ -13,17 +13,24 @@
 :borders=disabled
 :alphahandling=ClearTransparentPixels
 
-back_icon_img;2;182;64;64; 0.5;0.5; 0;0;0;0
-circle_img;2;116;64;64; 0.5;0.5; 0;0;0;0
-close_icon_img;2;50;64;64; 0.5;0.5; 0;0;0;0
+act_a_btn_icon_img;2;52;64;64; 0.5;0.5; 0;0;0;0
+act_b_btn_icon_img;68;52;64;64; 0.5;0.5; 0;0;0;0
+act_btn_img;134;52;64;64; 0.5;0.5; 0;0;0;0
+act_c_btn_icon_img;200;52;64;64; 0.5;0.5; 0;0;0;0
+act_d_btn_icon_img;262;182;64;64; 0.5;0.5; 0;0;0;0
+back_icon_img;328;188;64;64; 0.5;0.5; 0;0;0;0
+circle_img;394;188;64;64; 0.5;0.5; 0;0;0;0
+close_icon_img;266;116;64;64; 0.5;0.5; 0;0;0;0
 left_btn_cover_img;484;446;24;64; 0.5;0.5; 0;0;0;0
 left_btn_img;484;380;24;64; 0.5;0.5; 0;0;0;0
-menu_icon_img;68;182;64;64; 0.5;0.5; 0;0;0;0
+menu_icon_img;266;50;64;64; 0.5;0.5; 0;0;0;0
+move_stick_icon_img;2;118;128;128; 0.5;0.5; 0;0;0;0
+move_stick_img;132;118;128;128; 0.5;0.5; 0;0;0;0
 right_btn_cover_img;484;314;24;64; 0.5;0.5; 0;0;0;0
 right_btn_img;484;248;24;64; 0.5;0.5; 0;0;0;0
-sliced_bg2_img;68;132;48;48; 0.5;0.5; 0;0;0;0
-sliced_bg_cover_img;2;16;32;32; 0.5;0.5; 0;0;0;0
-sliced_bg_img;68;82;48;48; 0.5;0.5; 0;0;0;0
-sliced_btn_cover_img;68;32;48;48; 0.5;0.5; 0;0;0;0
-sliced_btn_img;118;132;48;48; 0.5;0.5; 0;0;0;0
+sliced_bg2_img;2;2;48;48; 0.5;0.5; 0;0;0;0
+sliced_bg_cover_img;202;18;32;32; 0.5;0.5; 0;0;0;0
+sliced_bg_img;52;2;48;48; 0.5;0.5; 0;0;0;0
+sliced_btn_cover_img;102;2;48;48; 0.5;0.5; 0;0;0;0
+sliced_btn_img;152;2;48;48; 0.5;0.5; 0;0;0;0
 title_name_img;2;254;480;256; 0.5;0.5; 0;0;0;0
