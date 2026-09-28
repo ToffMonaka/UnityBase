@@ -45,6 +45,7 @@ public class PlayerNodeScript : ToffMonaka.Tml.Scene.NodeScript
     private Vector3 _movePosition = Vector3.zero;
     private Vector3 _moveVelocity = Vector3.zero;
     private Vector2 _inputMoveValue = Vector2.zero;
+    private Vector2[] _inputMoveValueTable = null;
     private int _inputMoveDirectionType = 0;
     private Vector3 _inputMoveVector = Vector3.zero;
     private Vector3 _inputMoveXVector = Vector3.zero;
@@ -89,6 +90,22 @@ public class PlayerNodeScript : ToffMonaka.Tml.Scene.NodeScript
             this._colliderType = 2;
         } else if (this._collider is BoxCollider) {
             this._colliderType = 3;
+        }
+
+        this._inputMoveValueTable = new Vector2[] {
+            new( 0.0f, -1.0f),
+            new(-1.0f, -1.0f),
+            new(-1.0f,  0.0f),
+            new(-1.0f,  1.0f),
+            new( 0.0f,  1.0f),
+            new( 1.0f,  1.0f),
+            new( 1.0f,  0.0f),
+            new( 1.0f, -1.0f),
+            new( 0.0f, -1.0f)
+        };
+
+        for (int input_move_val_i = 0; input_move_val_i < this._inputMoveValueTable.Length; ++input_move_val_i) {
+            this._inputMoveValueTable[input_move_val_i] = this._inputMoveValueTable[input_move_val_i].normalized;
         }
 
         this._groundPosition = this._rigidbody.position;
@@ -187,12 +204,20 @@ public class PlayerNodeScript : ToffMonaka.Tml.Scene.NodeScript
     protected override void _OnUpdate()
     {
         if (this._lookInputAction.enabled) {
-            this._cinemachinePanTilt.PanAxis.Value = this._cinemachinePanTilt.PanAxis.ClampValue(this._cinemachinePanTilt.PanAxis.Value + this._lookInputAction.ReadValue<Vector2>().x * 0.25f);
-            this._cinemachinePanTilt.TiltAxis.Value = this._cinemachinePanTilt.TiltAxis.ClampValue(this._cinemachinePanTilt.TiltAxis.Value - this._lookInputAction.ReadValue<Vector2>().y * 0.25f);
+            var input_look_val = this._lookInputAction.ReadValue<Vector2>();
+
+            this._cinemachinePanTilt.PanAxis.Value = this._cinemachinePanTilt.PanAxis.ClampValue(this._cinemachinePanTilt.PanAxis.Value + input_look_val.x * 0.25f);
+            this._cinemachinePanTilt.TiltAxis.Value = this._cinemachinePanTilt.TiltAxis.ClampValue(this._cinemachinePanTilt.TiltAxis.Value - input_look_val.y * 0.25f);
         } else {
         }
 
         this._inputMoveValue = this._moveInputAction.ReadValue<Vector2>();
+
+        if (this._inputMoveValue.sqrMagnitude > 0.0f) {
+            var angle_index = Mathf.RoundToInt(Mathf.Atan2(this._inputMoveValue.x, this._inputMoveValue.y) / (45.0f * Mathf.Deg2Rad)) + 4;
+
+            this._inputMoveValue = this._inputMoveValueTable[angle_index];
+        }
 
         if (this._inputMoveValue.y > 0.0f) {
             if (this._inputMoveValue.x < 0.0f) {

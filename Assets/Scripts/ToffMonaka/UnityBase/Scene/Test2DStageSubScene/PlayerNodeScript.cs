@@ -42,6 +42,7 @@ public class PlayerNodeScript : ToffMonaka.Tml.Scene.NodeScript
     private Vector2 _movePosition = Vector2.zero;
     private Vector2 _moveVelocity = Vector2.zero;
     private Vector2 _inputMoveValue = Vector2.zero;
+    private Vector2[] _inputMoveValueTable = null;
     private int _inputMoveDirectionType = 0;
     private Vector2 _inputMoveVector = Vector2.zero;
     private bool _jumpFlag = false;
@@ -79,6 +80,22 @@ public class PlayerNodeScript : ToffMonaka.Tml.Scene.NodeScript
             this._colliderType = 2;
         } else if (this._collider is BoxCollider2D) {
             this._colliderType = 3;
+        }
+
+        this._inputMoveValueTable = new Vector2[] {
+            new( 0.0f, -1.0f),
+            new(-1.0f, -1.0f),
+            new(-1.0f,  0.0f),
+            new(-1.0f,  1.0f),
+            new( 0.0f,  1.0f),
+            new( 1.0f,  1.0f),
+            new( 1.0f,  0.0f),
+            new( 1.0f, -1.0f),
+            new( 0.0f, -1.0f)
+        };
+
+        for (int input_move_val_i = 0; input_move_val_i < this._inputMoveValueTable.Length; ++input_move_val_i) {
+            this._inputMoveValueTable[input_move_val_i] = this._inputMoveValueTable[input_move_val_i].normalized;
         }
 
         this._groundPosition = this._rigidbody.position;
@@ -173,7 +190,9 @@ public class PlayerNodeScript : ToffMonaka.Tml.Scene.NodeScript
     protected override void _OnUpdate()
     {
         if (this._lookInputAction.enabled) {
-            this._cameraTargetNode.transform.localPosition = new Vector3(Mathf.Clamp(this._cameraTargetNode.transform.localPosition.x + this._lookInputAction.ReadValue<Vector2>().x * 0.05f, -10.0f, 10.0f), Mathf.Clamp(this._cameraTargetNode.transform.localPosition.y + this._lookInputAction.ReadValue<Vector2>().y * 0.05f, -10.0f, 10.0f), 0.0f);
+            var input_look_val = this._lookInputAction.ReadValue<Vector2>();
+
+            this._cameraTargetNode.transform.localPosition = new Vector3(Mathf.Clamp(this._cameraTargetNode.transform.localPosition.x + input_look_val.x * 0.05f, -10.0f, 10.0f), Mathf.Clamp(this._cameraTargetNode.transform.localPosition.y + this._lookInputAction.ReadValue<Vector2>().y * 0.05f, -10.0f, 10.0f), 0.0f);
         } else {
             if (this._cameraTargetNode.transform.localPosition.sqrMagnitude > 0.0f) {
                 this._cameraTargetNode.transform.localPosition = Vector3.Lerp(this._cameraTargetNode.transform.localPosition, Vector3.zero, 0.2f);
@@ -186,6 +205,12 @@ public class PlayerNodeScript : ToffMonaka.Tml.Scene.NodeScript
 
         this._inputMoveValue = this._moveInputAction.ReadValue<Vector2>();
 
+        if (this._inputMoveValue.sqrMagnitude > 0.0f) {
+            var angle_index = Mathf.RoundToInt(Mathf.Atan2(this._inputMoveValue.x, this._inputMoveValue.y) / (45.0f * Mathf.Deg2Rad)) + 4;
+
+            this._inputMoveValue = this._inputMoveValueTable[angle_index];
+        }
+
         if (this._inputMoveValue.x < 0.0f) {
             this._inputMoveDirectionType = 1;
         } else if (this._inputMoveValue.x > 0.0f) {
@@ -196,7 +221,8 @@ public class PlayerNodeScript : ToffMonaka.Tml.Scene.NodeScript
 
         this._animator.SetInteger(ANIMATOR_MOVE_DIRECTION_TYPE_HASH, this._inputMoveDirectionType);
 
-        this._inputMoveVector = this._inputMoveValue;
+        this._inputMoveVector.x = (this._inputMoveValue.x > 0.0f) ? 1.0f : ((this._inputMoveValue.x < 0.0f) ? -1.0f : 0.0f);
+        this._inputMoveVector.y = 0.0f;
 
         this.RunMoveAction(this._inputMoveVector.x);
 

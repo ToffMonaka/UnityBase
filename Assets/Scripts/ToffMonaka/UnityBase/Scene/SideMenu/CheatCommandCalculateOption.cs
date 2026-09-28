@@ -42,7 +42,7 @@ public class CheatCommandCalculateOption
      */
     public void SetFunction()
     {
-	    this._functionArray = new Function[]{
+	    this._functionArray = new Function[] {
             new(CheatCommandUtil.FunctionDeleteData)
         };
 
