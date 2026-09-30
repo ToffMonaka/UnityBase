@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3852917214016859446}
   - component: {fileID: 8115580156527930427}
   m_Layer: 5
-  m_Name: ActionDButton
+  m_Name: DButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -164,6 +164,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 3476443301968164843}
   - {fileID: 4959887550170700828}
   - {fileID: 3032384220915610597}
   m_Father: {fileID: 0}
@@ -185,6 +186,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e60d6816e698810499d8540bc4531b37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ToffMonaka.UnityBase.Scene.VirtualGamePad.VirtualGamePadNodeScript
+  _cameraCursorNode: {fileID: 4469695768742587430}
 --- !u!1 &2582631605817958000
 GameObject:
   m_ObjectHideFlags: 0
@@ -199,7 +201,7 @@ GameObject:
   - component: {fileID: 6704698444989369774}
   - component: {fileID: 8326844130774147157}
   m_Layer: 5
-  m_Name: ActionBButton
+  m_Name: BButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -395,6 +397,81 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!1 &4469695768742587430
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4598882339899234243}
+  - component: {fileID: 5432397857276531335}
+  - component: {fileID: 1940547666669585795}
+  m_Layer: 5
+  m_Name: Cursor
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &4598882339899234243
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4469695768742587430}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3476443301968164843}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 128, y: 128}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &5432397857276531335
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4469695768742587430}
+  m_CullTransparentMesh: 1
+--- !u!114 &1940547666669585795
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4469695768742587430}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.2509804}
+  m_RaycastTarget: 0
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 717517805, guid: 0e8949c9d6a8a734d89d9955fb2b42df, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
 --- !u!1 &4728106335509508869
 GameObject:
   m_ObjectHideFlags: 0
@@ -482,7 +559,7 @@ GameObject:
   - component: {fileID: 1199891082672279556}
   - component: {fileID: 8869033609152855569}
   m_Layer: 5
-  m_Name: MoveStick
+  m_Name: Move
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -622,6 +699,150 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!1 &6719603126768856579
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3476443301968164843}
+  - component: {fileID: 4907133806161499076}
+  - component: {fileID: 5989681277067844740}
+  - component: {fileID: 891378676838231379}
+  m_Layer: 5
+  m_Name: Camera
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &3476443301968164843
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6719603126768856579}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 4598882339899234243}
+  m_Father: {fileID: 6797908627724200617}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &4907133806161499076
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6719603126768856579}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e6c3e733a943304c9c1a2804cdedd34, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ToffMonaka.Tml.Scene.ButtonPartsScript
+  _coverImage: {fileID: 0}
+  _pointerDownEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4565191761226819598}
+        m_TargetAssemblyTypeName: ToffMonaka.UnityBase.Scene.VirtualGamePad.VirtualGamePadNodeScript,
+          Assembly-CSharp
+        m_MethodName: OnCameraCursorPointerDown
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  _pointerUpEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4565191761226819598}
+        m_TargetAssemblyTypeName: ToffMonaka.UnityBase.Scene.VirtualGamePad.VirtualGamePadNodeScript,
+          Assembly-CSharp
+        m_MethodName: OnCameraCursorPointerUp
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  _pointerClickEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  _pointerEnterEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  _pointerExitEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4565191761226819598}
+        m_TargetAssemblyTypeName: ToffMonaka.UnityBase.Scene.VirtualGamePad.VirtualGamePadNodeScript,
+          Assembly-CSharp
+        m_MethodName: OnCameraCursorPointerExit
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!222 &5989681277067844740
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6719603126768856579}
+  m_CullTransparentMesh: 1
+--- !u!114 &891378676838231379
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6719603126768856579}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: e9151bd8323787c45bdc0a50655527e6, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
 --- !u!1 &6719639643344753430
 GameObject:
   m_ObjectHideFlags: 0
@@ -711,7 +932,7 @@ GameObject:
   - component: {fileID: 7033798763221270352}
   - component: {fileID: 6514672704084433698}
   m_Layer: 5
-  m_Name: ActionAButton
+  m_Name: AButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -921,7 +1142,7 @@ GameObject:
   - component: {fileID: 3989412886707294402}
   - component: {fileID: 6161078718580792259}
   m_Layer: 5
-  m_Name: ActionCButton
+  m_Name: CButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1204,7 +1425,7 @@ GameObject:
   - component: {fileID: 4154778984501880539}
   - component: {fileID: 3486779984788568478}
   m_Layer: 5
-  m_Name: ActionButton
+  m_Name: Action
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1286,7 +1507,7 @@ GameObject:
   - component: {fileID: 4823596722297152097}
   - component: {fileID: 1547674008267163636}
   m_Layer: 5
-  m_Name: MoveStick
+  m_Name: Stick
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

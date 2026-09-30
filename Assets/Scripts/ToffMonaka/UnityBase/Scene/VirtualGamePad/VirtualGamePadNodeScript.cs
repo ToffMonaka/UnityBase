@@ -3,6 +3,10 @@
  * @brief VirtualGamePadNodeScriptファイル
  */
 
+using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
+
 namespace ToffMonaka {
 namespace UnityBase.Scene.VirtualGamePad {
 /**
@@ -17,7 +21,12 @@ public class VirtualGamePadNodeScriptCreateDesc : ToffMonaka.Tml.Scene.NodeScrip
  */
 public class VirtualGamePadNodeScript : ToffMonaka.Tml.Scene.NodeScript
 {
+    [SerializeField] private GameObject _cameraCursorNode = null;
+
     public new VirtualGamePadNodeScriptCreateDesc createDesc{get; private set;} = null;
+
+    private InputAction _cameraPointerInputAction = null;
+    private InputAction _cameraCursorInputAction = null;
 
     /**
      * @brief _OnGetScriptIndex関数
@@ -34,6 +43,14 @@ public class VirtualGamePadNodeScript : ToffMonaka.Tml.Scene.NodeScript
     protected override void _OnAwake()
     {
         base._OnAwake();
+
+        this._cameraCursorNode.SetActive(false);
+
+        this._cameraPointerInputAction = InputSystem.actions.FindAction("UI/CameraPointer");
+        this._cameraPointerInputAction.Disable();
+
+        this._cameraCursorInputAction = InputSystem.actions.FindAction("UI/CameraCursor");
+        this._cameraCursorInputAction.Disable();
 
         return;
     }
@@ -86,6 +103,13 @@ public class VirtualGamePadNodeScript : ToffMonaka.Tml.Scene.NodeScript
      */
     protected override void _OnUpdate()
     {
+        if (this._cameraCursorInputAction.phase == InputActionPhase.Started) {
+            this._cameraCursorNode.SetActive(true);
+            this._cameraCursorNode.transform.position = new Vector3(this._cameraCursorInputAction.ReadValue<Vector2>().x, this._cameraCursorInputAction.ReadValue<Vector2>().y, 0.0f);
+        } else {
+            this._cameraCursorNode.SetActive(false);
+        }
+
         base._OnUpdate();
 
         return;
@@ -107,6 +131,66 @@ public class VirtualGamePadNodeScript : ToffMonaka.Tml.Scene.NodeScript
     protected override void _OnClose()
     {
         base._OnClose();
+
+        return;
+    }
+
+    /**
+     * @brief OnCameraCursorPointerDown関数
+     * @param event_dat (event_data)
+     */
+    public void OnCameraCursorPointerDown(PointerEventData event_dat)
+    {
+        if (!this.IsControllable()) {
+            return;
+        }
+
+        if (event_dat.button != PointerEventData.InputButton.Left) {
+            return;
+        }
+
+        this._cameraPointerInputAction.Enable();
+        this._cameraCursorInputAction.Enable();
+
+        return;
+    }
+
+    /**
+     * @brief OnCameraCursorPointerUp関数
+     * @param event_dat (event_data)
+     */
+    public void OnCameraCursorPointerUp(PointerEventData event_dat)
+    {
+        if (!this.IsControllable()) {
+            return;
+        }
+
+        if (event_dat.button != PointerEventData.InputButton.Left) {
+            return;
+        }
+
+        this._cameraPointerInputAction.Disable();
+        this._cameraCursorInputAction.Disable();
+
+        return;
+    }
+
+    /**
+     * @brief OnCameraCursorPointerExit関数
+     * @param event_dat (event_data)
+     */
+    public void OnCameraCursorPointerExit(PointerEventData event_dat)
+    {
+        if (!this.IsControllable()) {
+            return;
+        }
+
+        if (event_dat.button != PointerEventData.InputButton.Left) {
+            return;
+        }
+
+        this._cameraPointerInputAction.Disable();
+        this._cameraCursorInputAction.Disable();
 
         return;
     }

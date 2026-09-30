@@ -28,7 +28,6 @@ public class Test3DStageSubSceneNodeScript : StageSubSceneNodeScript
     [SerializeField] private PlayerNodeScript _playerNodeScript = null;
     [SerializeField] private GameObject _enemyLayoutNode = null;
     [SerializeField] private GameObject _objectLayoutNode = null;
-    [SerializeField] private CameraPadNodeScript _cameraPadNodeScript = null;
 
     public new Test3DStageSubSceneNodeScriptCreateDesc createDesc{get; private set;} = null;
 #pragma warning restore 0414
@@ -93,14 +92,6 @@ public class Test3DStageSubSceneNodeScript : StageSubSceneNodeScript
         {// PlayerNodeScript Create
             var script = this._playerNodeScript;
             var script_create_desc = new PlayerNodeScriptCreateDesc();
-
-            script.Create(script_create_desc);
-            script.Open(0);
-        }
-
-        {// CameraPadNodeScript Create
-            var script = this._cameraPadNodeScript;
-            var script_create_desc = new CameraPadNodeScriptCreateDesc();
 
             script.Create(script_create_desc);
             script.Open(0);

@@ -60,7 +60,8 @@ public class PlayerNodeScript : ToffMonaka.Tml.Scene.NodeScript
 
     private InputAction _moveInputAction = null;
     private InputAction _jumpInputAction = null;
-    private InputAction _lookInputAction = null;
+    private InputAction _cameraInputAction = null;
+    private InputAction _cameraPointerInputAction = null;
 #pragma warning restore 0414
 
     /**
@@ -118,7 +119,10 @@ public class PlayerNodeScript : ToffMonaka.Tml.Scene.NodeScript
         this._jumpInputAction = InputSystem.actions.FindAction("Player/Jump");
         this._jumpInputAction.Enable();
 
-        this._lookInputAction = InputSystem.actions.FindAction("Player/Look");
+        this._cameraInputAction = InputSystem.actions.FindAction("Player/Camera");
+        this._cameraInputAction.Enable();
+
+        this._cameraPointerInputAction = InputSystem.actions.FindAction("UI/CameraPointer");
 
         return;
     }
@@ -203,12 +207,11 @@ public class PlayerNodeScript : ToffMonaka.Tml.Scene.NodeScript
      */
     protected override void _OnUpdate()
     {
-        if (this._lookInputAction.enabled) {
-            var input_look_val = this._lookInputAction.ReadValue<Vector2>();
+        var input_camera_val = (this._cameraPointerInputAction.enabled) ? (this._cameraPointerInputAction.ReadValue<Vector2>() * 0.25f) : (this._cameraInputAction.ReadValue<Vector2>() * 2.0f);
 
-            this._cinemachinePanTilt.PanAxis.Value = this._cinemachinePanTilt.PanAxis.ClampValue(this._cinemachinePanTilt.PanAxis.Value + input_look_val.x * 0.25f);
-            this._cinemachinePanTilt.TiltAxis.Value = this._cinemachinePanTilt.TiltAxis.ClampValue(this._cinemachinePanTilt.TiltAxis.Value - input_look_val.y * 0.25f);
-        } else {
+        if ((this._cameraPointerInputAction.enabled) || (input_camera_val.sqrMagnitude > 0.0f)) {
+            this._cinemachinePanTilt.PanAxis.Value = this._cinemachinePanTilt.PanAxis.ClampValue(this._cinemachinePanTilt.PanAxis.Value + input_camera_val.x);
+            this._cinemachinePanTilt.TiltAxis.Value = this._cinemachinePanTilt.TiltAxis.ClampValue(this._cinemachinePanTilt.TiltAxis.Value - input_camera_val.y);
         }
 
         this._inputMoveValue = this._moveInputAction.ReadValue<Vector2>();
