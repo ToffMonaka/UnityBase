@@ -24,14 +24,12 @@ public class SelectSubSceneNodeScriptCreateDesc : SubSceneNodeScriptCreateDesc
  */
 public class SelectSubSceneNodeScript : SubSceneNodeScript
 {
-    [SerializeField] private GameObject _stageBoardNode = null;
-    [SerializeField] private GameObject _backButtonNode = null;
+    [SerializeField] private StageBoardNodeScript _stageBoardNodeScript = null;
+    [SerializeField] private BackButtonNodeScript _backButtonNodeScript = null;
 
     public new SelectSubSceneNodeScriptCreateDesc createDesc{get; private set;} = null;
 
-    private StageBoardNodeScript _stageBoardNodeScript = null;
     private BoardNodeScript _openBoardNodeScript = null;
-    private BackButtonNodeScript _backButtonNodeScript = null;
 
     /**
      * @brief _OnGetScriptIndex関数
@@ -74,7 +72,7 @@ public class SelectSubSceneNodeScript : SubSceneNodeScript
         }
 
         {// StageBoardNodeScript Create
-            var script = this._stageBoardNode.GetComponent<StageBoardNodeScript>();
+            var script = this._stageBoardNodeScript;
             var script_create_desc = new StageBoardNodeScriptCreateDesc();
 
             script_create_desc.onOpenStage = (owner, stage_type) =>
@@ -113,12 +111,10 @@ public class SelectSubSceneNodeScript : SubSceneNodeScript
             };
 
             script.Create(script_create_desc);
-
-            this._stageBoardNodeScript = script;
         }
 
         {// BackButtonNodeScript Create
-            var script = this._backButtonNode.GetComponent<BackButtonNodeScript>();
+            var script = this._backButtonNodeScript;
             var script_create_desc = new BackButtonNodeScriptCreateDesc();
 
             script_create_desc.onClick = (owner) =>
@@ -147,8 +143,6 @@ public class SelectSubSceneNodeScript : SubSceneNodeScript
 
             script.Create(script_create_desc);
             script.Open(1);
-
-            this._backButtonNodeScript = script;
         }
 
         return (0);

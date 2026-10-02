@@ -98,7 +98,7 @@ public class InfoSelect2BoardNodeScript : Select2BoardNodeScript
         this._backButtonNameText.SetText(DataUtil.GetText(DataUtil.MST_TEXT_ID.BACK));
 
         {// Faq ItemNodeScript Create
-            var script = GameObject.Instantiate(this._itemNode, this._itemNode.transform.parent).GetComponent<SelectBoardItemNodeScript>();
+            var script = GameObject.Instantiate(this._itemNodeScript.gameObject, this._itemNodeScript.gameObject.transform.parent).GetComponent<SelectBoardItemNodeScript>();
             var script_create_desc = new SelectBoardItemNodeScriptCreateDesc();
 
             script_create_desc.name = DataUtil.GetText(DataUtil.MST_TEXT_ID.FAQ);
@@ -116,7 +116,7 @@ public class InfoSelect2BoardNodeScript : Select2BoardNodeScript
         }
 
         {// Staff ItemNodeScript Create
-            var script = GameObject.Instantiate(this._itemNode, this._itemNode.transform.parent).GetComponent<SelectBoardItemNodeScript>();
+            var script = GameObject.Instantiate(this._itemNodeScript.gameObject, this._itemNodeScript.gameObject.transform.parent).GetComponent<SelectBoardItemNodeScript>();
             var script_create_desc = new SelectBoardItemNodeScriptCreateDesc();
 
             script_create_desc.name = DataUtil.GetText(DataUtil.MST_TEXT_ID.STAFF);
@@ -134,7 +134,7 @@ public class InfoSelect2BoardNodeScript : Select2BoardNodeScript
         }
 
         {// License ItemNodeScript Create
-            var script = GameObject.Instantiate(this._itemNode, this._itemNode.transform.parent).GetComponent<SelectBoardItemNodeScript>();
+            var script = GameObject.Instantiate(this._itemNodeScript.gameObject, this._itemNodeScript.gameObject.transform.parent).GetComponent<SelectBoardItemNodeScript>();
             var script_create_desc = new SelectBoardItemNodeScriptCreateDesc();
 
             script_create_desc.name = DataUtil.GetText(DataUtil.MST_TEXT_ID.LICENSE);
@@ -152,7 +152,7 @@ public class InfoSelect2BoardNodeScript : Select2BoardNodeScript
         }
 
         {// PrivacyPolicy ItemNodeScript Create
-            var script = GameObject.Instantiate(this._itemNode, this._itemNode.transform.parent).GetComponent<SelectBoardItemNodeScript>();
+            var script = GameObject.Instantiate(this._itemNodeScript.gameObject, this._itemNodeScript.gameObject.transform.parent).GetComponent<SelectBoardItemNodeScript>();
             var script_create_desc = new SelectBoardItemNodeScriptCreateDesc();
 
             script_create_desc.name = DataUtil.GetText(DataUtil.MST_TEXT_ID.PRIVACY_POLICY);

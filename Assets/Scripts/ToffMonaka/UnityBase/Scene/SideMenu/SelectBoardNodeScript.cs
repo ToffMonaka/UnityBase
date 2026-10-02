@@ -25,7 +25,7 @@ public class SelectBoardNodeScriptCreateDesc : BoardNodeScriptCreateDesc
 public class SelectBoardNodeScript : BoardNodeScript
 {
     [SerializeField] private ScrollRect _scrollRect = null;
-    [SerializeField] private GameObject _itemNode = null;
+    [SerializeField] private SelectBoardItemNodeScript _itemNodeScript = null;
 
     public new SelectBoardNodeScriptCreateDesc createDesc{get; private set;} = null;
 
@@ -105,10 +105,10 @@ public class SelectBoardNodeScript : BoardNodeScript
 
         this._nameText.SetText(DataUtil.GetText(DataUtil.MST_TEXT_ID.MENU));
 
-        this._itemNode.SetActive(false);
+        this._itemNodeScript.gameObject.SetActive(false);
 
         {// Option ItemNodeScript Create
-            var script = GameObject.Instantiate(this._itemNode, this._itemNode.transform.parent).GetComponent<SelectBoardItemNodeScript>();
+            var script = GameObject.Instantiate(this._itemNodeScript.gameObject, this._itemNodeScript.gameObject.transform.parent).GetComponent<SelectBoardItemNodeScript>();
             var script_create_desc = new SelectBoardItemNodeScriptCreateDesc();
 
             script_create_desc.name = DataUtil.GetText(DataUtil.MST_TEXT_ID.OPTION);
@@ -126,7 +126,7 @@ public class SelectBoardNodeScript : BoardNodeScript
         }
 
         {// Info ItemNodeScript Create
-            var script = GameObject.Instantiate(this._itemNode, this._itemNode.transform.parent).GetComponent<SelectBoardItemNodeScript>();
+            var script = GameObject.Instantiate(this._itemNodeScript.gameObject, this._itemNodeScript.gameObject.transform.parent).GetComponent<SelectBoardItemNodeScript>();
             var script_create_desc = new SelectBoardItemNodeScriptCreateDesc();
 
             script_create_desc.name = DataUtil.GetText(DataUtil.MST_TEXT_ID.INFO);
@@ -144,7 +144,7 @@ public class SelectBoardNodeScript : BoardNodeScript
         }
 
         {// Exit ItemNodeScript Create
-            var script = GameObject.Instantiate(this._itemNode, this._itemNode.transform.parent).GetComponent<SelectBoardItemNodeScript>();
+            var script = GameObject.Instantiate(this._itemNodeScript.gameObject, this._itemNodeScript.gameObject.transform.parent).GetComponent<SelectBoardItemNodeScript>();
             var script_create_desc = new SelectBoardItemNodeScriptCreateDesc();
 
             script_create_desc.name = DataUtil.GetText(DataUtil.MST_TEXT_ID.EXIT);
@@ -163,7 +163,7 @@ public class SelectBoardNodeScript : BoardNodeScript
 
         // Cheat ItemNodeScript Create
         if (Util.GetDebugFlag()) {
-            var script = GameObject.Instantiate(this._itemNode, this._itemNode.transform.parent).GetComponent<SelectBoardItemNodeScript>();
+            var script = GameObject.Instantiate(this._itemNodeScript.gameObject, this._itemNodeScript.gameObject.transform.parent).GetComponent<SelectBoardItemNodeScript>();
             var script_create_desc = new SelectBoardItemNodeScriptCreateDesc();
 
             script_create_desc.name = DataUtil.GetText(DataUtil.MST_TEXT_ID.CHEAT);

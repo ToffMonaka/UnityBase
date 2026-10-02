@@ -49,7 +49,7 @@ public class SelectDialogNodeScript : DialogNodeScript
 {
     [SerializeField] private TMP_Text _nameText = null;
     [SerializeField] private ScrollRect _scrollRect = null;
-    [SerializeField] private GameObject _itemNode = null;
+    [SerializeField] private SelectDialogItemNodeScript _itemNodeScript = null;
 
     public new SelectDialogNodeScriptCreateDesc createDesc{get; private set;} = null;
 
@@ -105,7 +105,7 @@ public class SelectDialogNodeScript : DialogNodeScript
         this._onClickItem = this.createDesc.onClickItem;
 
         this._nameText.SetText(this._extension.OnGetName());
-        this._itemNode.SetActive(false);
+        this._itemNodeScript.gameObject.SetActive(false);
 
         return (0);
     }
@@ -200,7 +200,7 @@ public class SelectDialogNodeScript : DialogNodeScript
         }
 
         {// ItemNodeScript Create
-            var script = GameObject.Instantiate(this._itemNode, this._itemNode.transform.parent).GetComponent<SelectDialogItemNodeScript>();
+            var script = GameObject.Instantiate(this._itemNodeScript.gameObject, this._itemNodeScript.gameObject.transform.parent).GetComponent<SelectDialogItemNodeScript>();
             var script_create_desc = new SelectDialogItemNodeScriptCreateDesc();
 
             script_create_desc.extension = item_ext;

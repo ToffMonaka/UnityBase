@@ -24,7 +24,7 @@ public class Select2BoardNodeScriptCreateDesc : BoardNodeScriptCreateDesc
 public abstract class Select2BoardNodeScript : BoardNodeScript
 {
     [SerializeField] protected ScrollRect _scrollRect = null;
-    [SerializeField] protected GameObject _itemNode = null;
+    [SerializeField] protected SelectBoardItemNodeScript _itemNodeScript = null;
 
     public new Select2BoardNodeScriptCreateDesc createDesc{get; private set;} = null;
 
@@ -75,7 +75,7 @@ public abstract class Select2BoardNodeScript : BoardNodeScript
         this._onOpenStageBoard = this.createDesc.onOpenStageBoard;
         this._onCloseSelect2Board = this.createDesc.onCloseSelect2Board;
 
-        this._itemNode.SetActive(false);
+        this._itemNodeScript.gameObject.SetActive(false);
 
         return (0);
     }

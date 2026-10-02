@@ -29,7 +29,7 @@ public class CheatStageBoardNodeScript : StageBoardNodeScript
     [SerializeField] private TMP_Text _commandResultText = null;
     [SerializeField] private TMP_InputField _commandInputField = null;
     [SerializeField] private ScrollRect _scrollRect = null;
-    [SerializeField] private GameObject _itemNode = null;
+    [SerializeField] private CheatStageBoardItemNodeScript _itemNodeScript = null;
     [SerializeField] private TMP_Text _okButtonNameText = null;
     [SerializeField] private TMP_Text _cancelButtonNameText = null;
 
@@ -114,7 +114,7 @@ public class CheatStageBoardNodeScript : StageBoardNodeScript
         this._okButtonNameText.SetText(DataUtil.GetText(DataUtil.MST_TEXT_ID.OK));
         this._cancelButtonNameText.SetText(DataUtil.GetText(DataUtil.MST_TEXT_ID.CANCEL));
 
-        this._itemNode.SetActive(false);
+        this._itemNodeScript.gameObject.SetActive(false);
 
         {// ItemNodeScript Create
             CheatCommandUtil.ADD_CODE_TYPE[] add_code_type_ary = {
@@ -122,7 +122,7 @@ public class CheatStageBoardNodeScript : StageBoardNodeScript
             };
 
             foreach (var add_code_type in add_code_type_ary) {
-                var script = GameObject.Instantiate(this._itemNode, this._itemNode.transform.parent).GetComponent<CheatStageBoardItemNodeScript>();
+                var script = GameObject.Instantiate(this._itemNodeScript.gameObject, this._itemNodeScript.gameObject.transform.parent).GetComponent<CheatStageBoardItemNodeScript>();
                 var script_create_desc = new CheatStageBoardItemNodeScriptCreateDesc();
 
                 script_create_desc.addCodeType = add_code_type;

@@ -22,7 +22,7 @@ public class StageBoardNodeScriptCreateDesc : BoardNodeScriptCreateDesc
  */
 public class StageBoardNodeScript : BoardNodeScript
 {
-    [SerializeField] private GameObject _itemNode = null;
+    [SerializeField] private StageBoardItemNodeScript _itemNodeScript = null;
 
     public new StageBoardNodeScriptCreateDesc createDesc{get; private set;} = null;
 
@@ -82,10 +82,10 @@ public class StageBoardNodeScript : BoardNodeScript
 
         this._nameText.SetText(DataUtil.GetText(DataUtil.MST_TEXT_ID.STAGE));
 
-        this._itemNode.SetActive(false);
+        this._itemNodeScript.gameObject.SetActive(false);
 
         {// Test2D ItemNodeScript Create
-            var script = GameObject.Instantiate(this._itemNode, this._itemNode.transform.parent).GetComponent<StageBoardItemNodeScript>();
+            var script = GameObject.Instantiate(this._itemNodeScript.gameObject, this._itemNodeScript.gameObject.transform.parent).GetComponent<StageBoardItemNodeScript>();
             var script_create_desc = new StageBoardItemNodeScriptCreateDesc();
 
             script_create_desc.name = DataUtil.GetText(DataUtil.MST_TEXT_ID.TEST_2D);
@@ -103,7 +103,7 @@ public class StageBoardNodeScript : BoardNodeScript
         }
 
         {// Test3D ItemNodeScript Create
-            var script = GameObject.Instantiate(this._itemNode, this._itemNode.transform.parent).GetComponent<StageBoardItemNodeScript>();
+            var script = GameObject.Instantiate(this._itemNodeScript.gameObject, this._itemNodeScript.gameObject.transform.parent).GetComponent<StageBoardItemNodeScript>();
             var script_create_desc = new StageBoardItemNodeScriptCreateDesc();
 
             script_create_desc.name = DataUtil.GetText(DataUtil.MST_TEXT_ID.TEST_3D);

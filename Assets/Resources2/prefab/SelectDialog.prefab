@@ -226,6 +226,9 @@ MonoBehaviour:
   _pointerDownEvent:
     m_PersistentCalls:
       m_Calls: []
+  _pointerUpEvent:
+    m_PersistentCalls:
+      m_Calls: []
   _pointerClickEvent:
     m_PersistentCalls:
       m_Calls:
@@ -931,6 +934,7 @@ MonoBehaviour:
   _nameText: {fileID: 8856799941468557326}
   _scrollRect: {fileID: 5814984327629157228}
   _itemNode: {fileID: 1174433939107847729}
+  _itemNodeScript: {fileID: 4378146052156916154}
 --- !u!225 &4773300249126424629
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -1401,6 +1405,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ToffMonaka.Lib.Scene.ButtonComponentScript
   _coverImage: {fileID: 7791873782123199918}
   _pointerDownEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  _pointerUpEvent:
     m_PersistentCalls:
       m_Calls: []
   _pointerClickEvent:

@@ -21,7 +21,7 @@ public class PlayerNodeScriptCreateDesc : ToffMonaka.Tml.Scene.NodeScriptCreateD
  */
 public class PlayerNodeScript : ToffMonaka.Tml.Scene.NodeScript
 {
-    private static readonly int ANIMATOR_MOVE_DIRECTION_TYPE_HASH = Animator.StringToHash("MoveDirectionType");
+    private static readonly int _ANIMATOR_MOVE_DIRECTION_TYPE_HASH = Animator.StringToHash("MoveDirectionType");
 
 #pragma warning disable 0414
     [SerializeField] private Animator _animator;
@@ -34,7 +34,8 @@ public class PlayerNodeScript : ToffMonaka.Tml.Scene.NodeScript
     [SerializeField] private float _jumpPower = 6.5f;
     [SerializeField] private float _jumpDeceleratePower = 0.5f;
     [SerializeField] private float _fallLimit = -10.0f;
-    [SerializeField] private CinemachinePanTilt _cinemachinePanTilt;
+    [SerializeField] private GameObject _cameraTargetNode = null;
+    [SerializeField] private CinemachinePanTilt _cameraPanTilt;
 
     public new PlayerNodeScriptCreateDesc createDesc{get; private set;} = null;
 
@@ -176,7 +177,7 @@ public class PlayerNodeScript : ToffMonaka.Tml.Scene.NodeScript
     protected override void _OnFixedUpdate()
     {
         if (this._inputMoveDirectionType != 0) {
-            this._rigidbody.rotation = Quaternion.Euler(0.0f, this._cinemachinePanTilt.gameObject.transform.eulerAngles.y, 0.0f);
+            this._rigidbody.rotation = Quaternion.Euler(0.0f, this._cameraPanTilt.gameObject.transform.eulerAngles.y, 0.0f);
         }
 
         this._UpdateRigidbodyPosition();
@@ -210,8 +211,8 @@ public class PlayerNodeScript : ToffMonaka.Tml.Scene.NodeScript
         var input_camera_val = (this._cameraPointerInputAction.enabled) ? (this._cameraPointerInputAction.ReadValue<Vector2>() * 0.25f) : (this._cameraInputAction.ReadValue<Vector2>() * 2.0f);
 
         if ((this._cameraPointerInputAction.enabled) || (input_camera_val.sqrMagnitude > 0.0f)) {
-            this._cinemachinePanTilt.PanAxis.Value = this._cinemachinePanTilt.PanAxis.ClampValue(this._cinemachinePanTilt.PanAxis.Value + input_camera_val.x);
-            this._cinemachinePanTilt.TiltAxis.Value = this._cinemachinePanTilt.TiltAxis.ClampValue(this._cinemachinePanTilt.TiltAxis.Value - input_camera_val.y);
+            this._cameraPanTilt.PanAxis.Value = this._cameraPanTilt.PanAxis.ClampValue(this._cameraPanTilt.PanAxis.Value + input_camera_val.x);
+            this._cameraPanTilt.TiltAxis.Value = this._cameraPanTilt.TiltAxis.ClampValue(this._cameraPanTilt.TiltAxis.Value - input_camera_val.y);
         }
 
         this._inputMoveValue = this._moveInputAction.ReadValue<Vector2>();
@@ -246,13 +247,13 @@ public class PlayerNodeScript : ToffMonaka.Tml.Scene.NodeScript
             this._inputMoveDirectionType = 0;
         }
 
-        this._animator.SetInteger(ANIMATOR_MOVE_DIRECTION_TYPE_HASH, this._inputMoveDirectionType);
+        this._animator.SetInteger(_ANIMATOR_MOVE_DIRECTION_TYPE_HASH, this._inputMoveDirectionType);
 
-        this._inputMoveXVector = this._cinemachinePanTilt.gameObject.transform.right;
+        this._inputMoveXVector = this._cameraPanTilt.gameObject.transform.right;
         this._inputMoveXVector.y = 0.0f;
         this._inputMoveXVector = this._inputMoveXVector.normalized * this._inputMoveValue.x;
 
-        this._inputMoveYVector = this._cinemachinePanTilt.gameObject.transform.forward;
+        this._inputMoveYVector = this._cameraPanTilt.gameObject.transform.forward;
         this._inputMoveYVector.y = 0.0f;
         this._inputMoveYVector = this._inputMoveYVector.normalized * this._inputMoveValue.y;
 

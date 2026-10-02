@@ -546,9 +546,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 779f5a4b72fd74a4cbcf8f0426d6a39c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ToffMonaka.UnityBase.Scene.InitSubSceneNodeScript
-  _sideMenuNode: {fileID: 0}
-  _dialogSystemNode: {fileID: 0}
-  _coverSystemNode: {fileID: 8200451340818151577}
+  _virtualGamePadNodeScript: {fileID: 0}
+  _sideMenuNodeScript: {fileID: 0}
+  _dialogSystemNodeScript: {fileID: 0}
+  _coverSystemNodeScript: {fileID: 3052626525106590391}
   _messageText: {fileID: 3741505704045232267}
 --- !u!1001 &3519749849574594799
 PrefabInstance:
@@ -561,10 +562,6 @@ PrefabInstance:
     - target: {fileID: 4689780880849739894, guid: 70e4b130ec7b7804db7ac0ee1723ada4, type: 3}
       propertyPath: m_Name
       value: CoverSystem
-      objectReference: {fileID: 0}
-    - target: {fileID: 4689780880849739894, guid: 70e4b130ec7b7804db7ac0ee1723ada4, type: 3}
-      propertyPath: m_Layer
-      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 6377292902541615751, guid: 70e4b130ec7b7804db7ac0ee1723ada4, type: 3}
       propertyPath: m_Pivot.x
@@ -651,13 +648,19 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 70e4b130ec7b7804db7ac0ee1723ada4, type: 3}
+--- !u!114 &3052626525106590391 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1911129812450740824, guid: 70e4b130ec7b7804db7ac0ee1723ada4, type: 3}
+  m_PrefabInstance: {fileID: 3519749849574594799}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6deb3bc63f23cad4594761f2c7c812e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ToffMonaka.UnityBase.Scene.Ui.FadeSystem.NodeScript
 --- !u!224 &7518790148377295464 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6377292902541615751, guid: 70e4b130ec7b7804db7ac0ee1723ada4, type: 3}
-  m_PrefabInstance: {fileID: 3519749849574594799}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &8200451340818151577 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4689780880849739894, guid: 70e4b130ec7b7804db7ac0ee1723ada4, type: 3}
   m_PrefabInstance: {fileID: 3519749849574594799}
   m_PrefabAsset: {fileID: 0}

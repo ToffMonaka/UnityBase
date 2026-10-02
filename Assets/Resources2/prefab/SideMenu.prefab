@@ -899,6 +899,9 @@ MonoBehaviour:
   _pointerDownEvent:
     m_PersistentCalls:
       m_Calls: []
+  _pointerUpEvent:
+    m_PersistentCalls:
+      m_Calls: []
   _pointerClickEvent:
     m_PersistentCalls:
       m_Calls:
@@ -1091,6 +1094,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ToffMonaka.Lib.Scene.ButtonComponentScript
   _coverImage: {fileID: 8962694589349046544}
   _pointerDownEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  _pointerUpEvent:
     m_PersistentCalls:
       m_Calls: []
   _pointerClickEvent:
@@ -2462,6 +2468,9 @@ MonoBehaviour:
   _pointerDownEvent:
     m_PersistentCalls:
       m_Calls: []
+  _pointerUpEvent:
+    m_PersistentCalls:
+      m_Calls: []
   _pointerClickEvent:
     m_PersistentCalls:
       m_Calls:
@@ -2585,7 +2594,7 @@ MonoBehaviour:
   _commandResultText: {fileID: 7919324716668548761}
   _commandInputField: {fileID: 7858780818812583463}
   _scrollRect: {fileID: 1913017434388946554}
-  _itemNode: {fileID: 7398920999496246259}
+  _itemNodeScript: {fileID: 4472714236728325568}
   _okButtonNameText: {fileID: 5687512724796312469}
   _cancelButtonNameText: {fileID: 5752819876703319881}
 --- !u!114 &5639367858849936635
@@ -2680,20 +2689,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ToffMonaka.UnityBase.Scene.Ui.Menu.NodeScript
   _backgroundImage: {fileID: 2472993354825264631}
-  _openCloseButtonNode: {fileID: 4298790802820591066}
-  _selectBoardNode: {fileID: 5771230940756122428}
-  _optionSelect2BoardNode: {fileID: 7436756632915568712}
-  _infoSelect2BoardNode: {fileID: 2173205148829352864}
-  _optionSystemStageBoardNode: {fileID: 2456234989670759444}
-  _optionInputStageBoardNode: {fileID: 3844127516445106457}
-  _optionGraphicStageBoardNode: {fileID: 7006822376525740523}
-  _optionSoundStageBoardNode: {fileID: 1019900695820355584}
-  _infoFaqStageBoardNode: {fileID: 3012086621803029282}
-  _infoStaffStageBoardNode: {fileID: 6046210804948903574}
-  _infoLicenseStageBoardNode: {fileID: 3123461196191504750}
-  _infoPrivacyPolicyStageBoardNode: {fileID: 4123544798944962245}
-  _exitStageBoardNode: {fileID: 7876540259492288265}
-  _cheatStageBoardNode: {fileID: 759514593024614864}
+  _openCloseButtonNodeScript: {fileID: 3005210006900627422}
+  _selectBoardNodeScript: {fileID: 8961266090062823491}
+  _optionSelect2BoardNodeScript: {fileID: 3641102769179591854}
+  _infoSelect2BoardNodeScript: {fileID: 1155658513440104390}
+  _optionSystemStageBoardNodeScript: {fileID: 8770508437013870645}
+  _optionInputStageBoardNodeScript: {fileID: 1170989930685102339}
+  _optionGraphicStageBoardNodeScript: {fileID: 1957362806378961205}
+  _optionSoundStageBoardNodeScript: {fileID: 7739824859286168047}
+  _infoFaqStageBoardNodeScript: {fileID: 3959215050428306902}
+  _infoStaffStageBoardNodeScript: {fileID: 6949755641856864459}
+  _infoLicenseStageBoardNodeScript: {fileID: 360885297420845200}
+  _infoPrivacyPolicyStageBoardNodeScript: {fileID: 2635189546901986422}
+  _exitStageBoardNodeScript: {fileID: 8902267072120178467}
+  _cheatStageBoardNodeScript: {fileID: 3157886590043718725}
 --- !u!1 &772803714812362562
 GameObject:
   m_ObjectHideFlags: 0
@@ -3328,6 +3337,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ToffMonaka.Lib.Scene.ButtonComponentScript
   _coverImage: {fileID: 8133982497555141049}
   _pointerDownEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  _pointerUpEvent:
     m_PersistentCalls:
       m_Calls: []
   _pointerClickEvent:
@@ -4462,6 +4474,9 @@ MonoBehaviour:
   _pointerDownEvent:
     m_PersistentCalls:
       m_Calls: []
+  _pointerUpEvent:
+    m_PersistentCalls:
+      m_Calls: []
   _pointerClickEvent:
     m_PersistentCalls:
       m_Calls:
@@ -5419,6 +5434,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ToffMonaka.Lib.Scene.ButtonComponentScript
   _coverImage: {fileID: 7951016453600220645}
   _pointerDownEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  _pointerUpEvent:
     m_PersistentCalls:
       m_Calls: []
   _pointerClickEvent:
@@ -6807,6 +6825,9 @@ MonoBehaviour:
   _pointerDownEvent:
     m_PersistentCalls:
       m_Calls: []
+  _pointerUpEvent:
+    m_PersistentCalls:
+      m_Calls: []
   _pointerClickEvent:
     m_PersistentCalls:
       m_Calls:
@@ -7477,6 +7498,9 @@ MonoBehaviour:
   _pointerDownEvent:
     m_PersistentCalls:
       m_Calls: []
+  _pointerUpEvent:
+    m_PersistentCalls:
+      m_Calls: []
   _pointerClickEvent:
     m_PersistentCalls:
       m_Calls:
@@ -7725,6 +7749,9 @@ MonoBehaviour:
   _pointerDownEvent:
     m_PersistentCalls:
       m_Calls: []
+  _pointerUpEvent:
+    m_PersistentCalls:
+      m_Calls: []
   _pointerClickEvent:
     m_PersistentCalls:
       m_Calls:
@@ -7843,7 +7870,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ToffMonaka.UnityBase.Scene.Ui.Menu.Side.InfoSelect2NodeScript
   _nameText: {fileID: 9197568106569777522}
   _scrollRect: {fileID: 8946901343526292250}
-  _itemNode: {fileID: 7099187043295310819}
+  _itemNodeScript: {fileID: 4231421386249083083}
   _backButtonNameText: {fileID: 7806949549896935487}
 --- !u!114 &3673446686811029482
 MonoBehaviour:
@@ -12132,6 +12159,9 @@ MonoBehaviour:
   _pointerDownEvent:
     m_PersistentCalls:
       m_Calls: []
+  _pointerUpEvent:
+    m_PersistentCalls:
+      m_Calls: []
   _pointerClickEvent:
     m_PersistentCalls:
       m_Calls:
@@ -12442,6 +12472,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ToffMonaka.Lib.Scene.ButtonComponentScript
   _coverImage: {fileID: 4913661049893355116}
   _pointerDownEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  _pointerUpEvent:
     m_PersistentCalls:
       m_Calls: []
   _pointerClickEvent:
@@ -14582,6 +14615,9 @@ MonoBehaviour:
   _pointerDownEvent:
     m_PersistentCalls:
       m_Calls: []
+  _pointerUpEvent:
+    m_PersistentCalls:
+      m_Calls: []
   _pointerClickEvent:
     m_PersistentCalls:
       m_Calls:
@@ -15316,6 +15352,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ToffMonaka.Lib.Scene.ButtonPartsScript
   _coverImage: {fileID: 8830467060425720589}
   _pointerDownEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  _pointerUpEvent:
     m_PersistentCalls:
       m_Calls: []
   _pointerClickEvent:
@@ -18641,6 +18680,9 @@ MonoBehaviour:
   _pointerDownEvent:
     m_PersistentCalls:
       m_Calls: []
+  _pointerUpEvent:
+    m_PersistentCalls:
+      m_Calls: []
   _pointerClickEvent:
     m_PersistentCalls:
       m_Calls:
@@ -19426,6 +19468,9 @@ MonoBehaviour:
   _pointerDownEvent:
     m_PersistentCalls:
       m_Calls: []
+  _pointerUpEvent:
+    m_PersistentCalls:
+      m_Calls: []
   _pointerClickEvent:
     m_PersistentCalls:
       m_Calls:
@@ -19576,6 +19621,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ToffMonaka.Lib.Scene.ButtonComponentScript
   _coverImage: {fileID: 4005542976449659268}
   _pointerDownEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  _pointerUpEvent:
     m_PersistentCalls:
       m_Calls: []
   _pointerClickEvent:
@@ -19879,6 +19927,9 @@ MonoBehaviour:
   _pointerDownEvent:
     m_PersistentCalls:
       m_Calls: []
+  _pointerUpEvent:
+    m_PersistentCalls:
+      m_Calls: []
   _pointerClickEvent:
     m_PersistentCalls:
       m_Calls:
@@ -20071,7 +20122,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ToffMonaka.UnityBase.Scene.Ui.Menu.SelectNodeScript
   _nameText: {fileID: 4431595499321213731}
   _scrollRect: {fileID: 8874230223988505652}
-  _itemNode: {fileID: 5888429013058608113}
+  _itemNodeScript: {fileID: 6737205533706300721}
 --- !u!114 &7817086268336949042
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20592,6 +20643,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ToffMonaka.Lib.Scene.ButtonPartsScript
   _coverImage: {fileID: 305433983374858510}
   _pointerDownEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  _pointerUpEvent:
     m_PersistentCalls:
       m_Calls: []
   _pointerClickEvent:
@@ -21520,6 +21574,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ToffMonaka.Lib.Scene.ButtonComponentScript
   _coverImage: {fileID: 7639933634218052471}
   _pointerDownEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  _pointerUpEvent:
     m_PersistentCalls:
       m_Calls: []
   _pointerClickEvent:
@@ -23112,6 +23169,9 @@ MonoBehaviour:
   _pointerDownEvent:
     m_PersistentCalls:
       m_Calls: []
+  _pointerUpEvent:
+    m_PersistentCalls:
+      m_Calls: []
   _pointerClickEvent:
     m_PersistentCalls:
       m_Calls:
@@ -24459,6 +24519,9 @@ MonoBehaviour:
   _pointerDownEvent:
     m_PersistentCalls:
       m_Calls: []
+  _pointerUpEvent:
+    m_PersistentCalls:
+      m_Calls: []
   _pointerClickEvent:
     m_PersistentCalls:
       m_Calls:
@@ -24575,6 +24638,9 @@ MonoBehaviour:
   _pointerDownEvent:
     m_PersistentCalls:
       m_Calls: []
+  _pointerUpEvent:
+    m_PersistentCalls:
+      m_Calls: []
   _pointerClickEvent:
     m_PersistentCalls:
       m_Calls:
@@ -24689,6 +24755,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ToffMonaka.Lib.Scene.ButtonComponentScript
   _coverImage: {fileID: 338372203020431405}
   _pointerDownEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  _pointerUpEvent:
     m_PersistentCalls:
       m_Calls: []
   _pointerClickEvent:
@@ -25082,6 +25151,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ToffMonaka.Lib.Scene.ButtonPartsScript
   _coverImage: {fileID: 5313580785954081233}
   _pointerDownEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  _pointerUpEvent:
     m_PersistentCalls:
       m_Calls: []
   _pointerClickEvent:
@@ -25681,6 +25753,9 @@ MonoBehaviour:
   _pointerDownEvent:
     m_PersistentCalls:
       m_Calls: []
+  _pointerUpEvent:
+    m_PersistentCalls:
+      m_Calls: []
   _pointerClickEvent:
     m_PersistentCalls:
       m_Calls:
@@ -25799,7 +25874,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ToffMonaka.UnityBase.Scene.Ui.Menu.Side.OptionSelect2NodeScript
   _nameText: {fileID: 6447577559326336305}
   _scrollRect: {fileID: 2957813753637931500}
-  _itemNode: {fileID: 7227803355308806183}
+  _itemNodeScript: {fileID: 3687735326442227223}
   _backButtonNameText: {fileID: 1701030158699168051}
 --- !u!114 &7431431120218830215
 MonoBehaviour:
@@ -25930,6 +26005,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ToffMonaka.Lib.Scene.ButtonComponentScript
   _coverImage: {fileID: 619983569160031765}
   _pointerDownEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  _pointerUpEvent:
     m_PersistentCalls:
       m_Calls: []
   _pointerClickEvent:
@@ -29434,6 +29512,9 @@ MonoBehaviour:
   _pointerDownEvent:
     m_PersistentCalls:
       m_Calls: []
+  _pointerUpEvent:
+    m_PersistentCalls:
+      m_Calls: []
   _pointerClickEvent:
     m_PersistentCalls:
       m_Calls:
@@ -29584,6 +29665,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ToffMonaka.Lib.Scene.ButtonComponentScript
   _coverImage: {fileID: 8396376274909916817}
   _pointerDownEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  _pointerUpEvent:
     m_PersistentCalls:
       m_Calls: []
   _pointerClickEvent:

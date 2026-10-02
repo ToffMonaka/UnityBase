@@ -23,17 +23,12 @@ public class SubSceneNodeScriptCreateDesc : ToffMonaka.Tml.Scene.SubSceneNodeScr
  */
 public abstract class SubSceneNodeScript : ToffMonaka.Tml.Scene.SubSceneNodeScript
 {
-    [SerializeField] private GameObject _virtualGamePadNode = null;
-    [SerializeField] private GameObject _sideMenuNode = null;
-    [SerializeField] private GameObject _dialogSystemNode = null;
-    [SerializeField] private GameObject _coverSystemNode = null;
+    [SerializeField] private VirtualGamePadNodeScript _virtualGamePadNodeScript = null;
+    [SerializeField] private SideMenuNodeScript _sideMenuNodeScript = null;
+    [SerializeField] private DialogSystemNodeScript _dialogSystemNodeScript = null;
+    [SerializeField] private CoverSystemNodeScript _coverSystemNodeScript = null;
 
     public new SubSceneNodeScriptCreateDesc createDesc{get; private set;} = null;
-
-    private VirtualGamePadNodeScript _virtualGamePadNodeScript = null;
-    private SideMenuNodeScript _sideMenuNodeScript = null;
-    private DialogSystemNodeScript _dialogSystemNodeScript = null;
-    private CoverSystemNodeScript _coverSystemNodeScript = null;
 
     /**
      * @brief _OnGetScriptIndex関数
@@ -76,47 +71,39 @@ public abstract class SubSceneNodeScript : ToffMonaka.Tml.Scene.SubSceneNodeScri
         }
 
         // VirtualGamePadNodeScript Create
-        if (this._virtualGamePadNode != null) {
-            var script = this._virtualGamePadNode.GetComponent<VirtualGamePadNodeScript>();
+        if (this._virtualGamePadNodeScript != null) {
+            var script = this._virtualGamePadNodeScript;
             var script_create_desc = new VirtualGamePadNodeScriptCreateDesc();
 
             script.Create(script_create_desc);
             script.Open(0);
-
-            this._virtualGamePadNodeScript = script;
         }
 
         // SideMenuNodeScript Create
-        if (this._sideMenuNode != null) {
-            var script = this._sideMenuNode.GetComponent<SideMenuNodeScript>();
+        if (this._sideMenuNodeScript != null) {
+            var script = this._sideMenuNodeScript;
             var script_create_desc = new SideMenuNodeScriptCreateDesc();
 
             script.Create(script_create_desc);
             script.Open(0);
-
-            this._sideMenuNodeScript = script;
         }
 
         // DialogSystemNodeScript Create
-        if (this._dialogSystemNode != null) {
-            var script = this._dialogSystemNode.GetComponent<DialogSystemNodeScript>();
+        if (this._dialogSystemNodeScript != null) {
+            var script = this._dialogSystemNodeScript;
             var script_create_desc = new DialogSystemNodeScriptCreateDesc();
 
             script.Create(script_create_desc);
             script.Open(0);
-
-            this._dialogSystemNodeScript = script;
         }
 
         // CoverSystemNodeScript Create
-        if (this._coverSystemNode != null) {
-            var script = this._coverSystemNode.GetComponent<CoverSystemNodeScript>();
+        if (this._coverSystemNodeScript != null) {
+            var script = this._coverSystemNodeScript;
             var script_create_desc = new CoverSystemNodeScriptCreateDesc();
 
             script.Create(script_create_desc);
             script.Open(0);
-
-            this._coverSystemNodeScript = script;
         }
 
         return (0);

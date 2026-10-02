@@ -98,7 +98,7 @@ public class OptionSelect2BoardNodeScript : Select2BoardNodeScript
         this._backButtonNameText.SetText(DataUtil.GetText(DataUtil.MST_TEXT_ID.BACK));
 
         {// System ItemNodeScript Create
-            var script = GameObject.Instantiate(this._itemNode, this._itemNode.transform.parent).GetComponent<SelectBoardItemNodeScript>();
+            var script = GameObject.Instantiate(this._itemNodeScript.gameObject, this._itemNodeScript.gameObject.transform.parent).GetComponent<SelectBoardItemNodeScript>();
             var script_create_desc = new SelectBoardItemNodeScriptCreateDesc();
 
             script_create_desc.name = DataUtil.GetText(DataUtil.MST_TEXT_ID.SYSTEM);
@@ -116,7 +116,7 @@ public class OptionSelect2BoardNodeScript : Select2BoardNodeScript
         }
 
         {// Input ItemNodeScript Create
-            var script = GameObject.Instantiate(this._itemNode, this._itemNode.transform.parent).GetComponent<SelectBoardItemNodeScript>();
+            var script = GameObject.Instantiate(this._itemNodeScript.gameObject, this._itemNodeScript.gameObject.transform.parent).GetComponent<SelectBoardItemNodeScript>();
             var script_create_desc = new SelectBoardItemNodeScriptCreateDesc();
 
             script_create_desc.name = DataUtil.GetText(DataUtil.MST_TEXT_ID.INPUT);
@@ -134,7 +134,7 @@ public class OptionSelect2BoardNodeScript : Select2BoardNodeScript
         }
 
         {// Graphic ItemNodeScript Create
-            var script = GameObject.Instantiate(this._itemNode, this._itemNode.transform.parent).GetComponent<SelectBoardItemNodeScript>();
+            var script = GameObject.Instantiate(this._itemNodeScript.gameObject, this._itemNodeScript.gameObject.transform.parent).GetComponent<SelectBoardItemNodeScript>();
             var script_create_desc = new SelectBoardItemNodeScriptCreateDesc();
 
             script_create_desc.name = DataUtil.GetText(DataUtil.MST_TEXT_ID.GRAPHIC);
@@ -152,7 +152,7 @@ public class OptionSelect2BoardNodeScript : Select2BoardNodeScript
         }
 
         {// Sound ItemNodeScript Create
-            var script = GameObject.Instantiate(this._itemNode, this._itemNode.transform.parent).GetComponent<SelectBoardItemNodeScript>();
+            var script = GameObject.Instantiate(this._itemNodeScript.gameObject, this._itemNodeScript.gameObject.transform.parent).GetComponent<SelectBoardItemNodeScript>();
             var script_create_desc = new SelectBoardItemNodeScriptCreateDesc();
 
             script_create_desc.name = DataUtil.GetText(DataUtil.MST_TEXT_ID.SOUND);
