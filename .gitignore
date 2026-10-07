@@ -20,8 +20,10 @@ ehthumbs.db
 /[Ll]ibrary/
 /[Tt]emp/
 /[Oo]bj/
-/[Bb]uild/
-/[Bb]uilds/
+/[Bb]uild/*
+!/[Bb]uild/.gitkeep
+/[Bb]uilds/*
+!/[Bb]uilds/.gitkeep
 /[Ll]ogs/
 /[Uu]ser[Ss]ettings/
 

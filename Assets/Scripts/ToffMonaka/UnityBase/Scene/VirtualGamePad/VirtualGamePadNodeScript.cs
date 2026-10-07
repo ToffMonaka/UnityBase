@@ -4,8 +4,10 @@
  */
 
 using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.UI;
+using UnityEngine.EventSystems;
+using EnhancedTouch = UnityEngine.InputSystem.EnhancedTouch;
 
 namespace ToffMonaka {
 namespace UnityBase.Scene.VirtualGamePad {
@@ -25,8 +27,8 @@ public class VirtualGamePadNodeScript : ToffMonaka.Tml.Scene.NodeScript
 
     public new VirtualGamePadNodeScriptCreateDesc createDesc{get; private set;} = null;
 
-    private InputAction _cameraPointerInputAction = null;
-    private InputAction _cameraCursorInputAction = null;
+    private bool _cameraCursorFlag = false;
+    private int _cameraCursorTouchId = 0;
 
     /**
      * @brief _OnGetScriptIndex関数
@@ -45,12 +47,6 @@ public class VirtualGamePadNodeScript : ToffMonaka.Tml.Scene.NodeScript
         base._OnAwake();
 
         this._cameraCursorNode.SetActive(false);
-
-        this._cameraPointerInputAction = InputSystem.actions.FindAction("UI/CameraPointer");
-        this._cameraPointerInputAction.Disable();
-
-        this._cameraCursorInputAction = InputSystem.actions.FindAction("UI/CameraCursor");
-        this._cameraCursorInputAction.Disable();
 
         return;
     }
@@ -103,9 +99,26 @@ public class VirtualGamePadNodeScript : ToffMonaka.Tml.Scene.NodeScript
      */
     protected override void _OnUpdate()
     {
-        if (this._cameraCursorInputAction.phase == InputActionPhase.Started) {
+        if (this._cameraCursorFlag) {
             this._cameraCursorNode.SetActive(true);
-            this._cameraCursorNode.transform.position = new Vector3(this._cameraCursorInputAction.ReadValue<Vector2>().x, this._cameraCursorInputAction.ReadValue<Vector2>().y, 0.0f);
+
+            var touch_pos = Vector2.zero;
+
+            if (EnhancedTouch.Touch.activeTouches.Count > 0) {
+                foreach (var touch in EnhancedTouch.Touch.activeTouches) {
+                    if (touch.touchId != this._cameraCursorTouchId) {
+                        continue;
+                    }
+
+                    touch_pos = touch.screenPosition;
+
+                    break;
+                }
+            } else {
+                touch_pos = Mouse.current.position.ReadValue();
+            }
+
+            this._cameraCursorNode.transform.position = touch_pos;
         } else {
             this._cameraCursorNode.SetActive(false);
         }
@@ -145,12 +158,14 @@ public class VirtualGamePadNodeScript : ToffMonaka.Tml.Scene.NodeScript
             return;
         }
 
-        if (event_dat.button != PointerEventData.InputButton.Left) {
+        var extended_event_dat = event_dat as ExtendedPointerEventData;
+
+        if (extended_event_dat.button != ExtendedPointerEventData.InputButton.Left) {
             return;
         }
 
-        this._cameraPointerInputAction.Enable();
-        this._cameraCursorInputAction.Enable();
+        this._cameraCursorFlag = true;
+        this._cameraCursorTouchId = extended_event_dat.touchId;
 
         return;
     }
@@ -165,12 +180,14 @@ public class VirtualGamePadNodeScript : ToffMonaka.Tml.Scene.NodeScript
             return;
         }
 
-        if (event_dat.button != PointerEventData.InputButton.Left) {
+        var extended_event_dat = event_dat as ExtendedPointerEventData;
+
+        if (extended_event_dat.button != ExtendedPointerEventData.InputButton.Left) {
             return;
         }
 
-        this._cameraPointerInputAction.Disable();
-        this._cameraCursorInputAction.Disable();
+        this._cameraCursorFlag = false;
+        this._cameraCursorTouchId = 0;
 
         return;
     }
@@ -185,14 +202,34 @@ public class VirtualGamePadNodeScript : ToffMonaka.Tml.Scene.NodeScript
             return;
         }
 
-        if (event_dat.button != PointerEventData.InputButton.Left) {
+        var extended_event_dat = event_dat as ExtendedPointerEventData;
+
+        if (extended_event_dat.button != ExtendedPointerEventData.InputButton.Left) {
             return;
         }
 
-        this._cameraPointerInputAction.Disable();
-        this._cameraCursorInputAction.Disable();
+        this._cameraCursorFlag = false;
+        this._cameraCursorTouchId = 0;
 
         return;
+    }
+
+    /**
+     * @brief GetCameraCursorFlag関数
+     * @return camera_cursor_flg (camera_cursor_flag)
+     */
+    public bool GetCameraCursorFlag()
+    {
+        return (this._cameraCursorFlag);
+    }
+
+    /**
+     * @brief GetCameraCursorTouchId関数
+     * @return camera_cursor_touch_id (camera_cursor_touch_id)
+     */
+    public int GetCameraCursorTouchId()
+    {
+        return (this._cameraCursorTouchId);
     }
 }
 }

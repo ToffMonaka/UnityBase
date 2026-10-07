@@ -6,6 +6,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Unity.Cinemachine;
+using EnhancedTouch = UnityEngine.InputSystem.EnhancedTouch;
 
 namespace ToffMonaka {
 namespace UnityBase.Scene.Test3DStageSubScene {
@@ -62,7 +63,6 @@ public class PlayerNodeScript : ToffMonaka.Tml.Scene.NodeScript
     private InputAction _moveInputAction = null;
     private InputAction _jumpInputAction = null;
     private InputAction _cameraInputAction = null;
-    private InputAction _cameraPointerInputAction = null;
 #pragma warning restore 0414
 
     /**
@@ -122,8 +122,6 @@ public class PlayerNodeScript : ToffMonaka.Tml.Scene.NodeScript
 
         this._cameraInputAction = InputSystem.actions.FindAction("Player/Camera");
         this._cameraInputAction.Enable();
-
-        this._cameraPointerInputAction = InputSystem.actions.FindAction("UI/CameraPointer");
 
         return;
     }
@@ -208,9 +206,29 @@ public class PlayerNodeScript : ToffMonaka.Tml.Scene.NodeScript
      */
     protected override void _OnUpdate()
     {
-        var input_camera_val = (this._cameraPointerInputAction.enabled) ? (this._cameraPointerInputAction.ReadValue<Vector2>() * 0.25f) : (this._cameraInputAction.ReadValue<Vector2>() * 2.0f);
+        var virtual_game_pad_node_script = SceneUtil.GetSubSceneNodeScript().GetVirtualGamePadNodeScript();
 
-        if ((this._cameraPointerInputAction.enabled) || (input_camera_val.sqrMagnitude > 0.0f)) {
+        var input_camera_val = Vector2.zero;
+
+        if (virtual_game_pad_node_script.GetCameraCursorFlag()) {
+            if (EnhancedTouch.Touch.activeTouches.Count > 0) {
+                foreach (var touch in EnhancedTouch.Touch.activeTouches) {
+                    if (touch.touchId != virtual_game_pad_node_script.GetCameraCursorTouchId()) {
+                        continue;
+                    }
+
+                    input_camera_val = touch.delta * 0.25f;
+
+                    break;
+                }
+            } else {
+                input_camera_val = Mouse.current.delta.ReadValue() * 0.25f;
+            }
+        } else {
+            input_camera_val = this._cameraInputAction.ReadValue<Vector2>() * 2.0f;
+        }
+
+        if ((virtual_game_pad_node_script.GetCameraCursorFlag()) || (input_camera_val.sqrMagnitude > 0.0f)) {
             this._cameraPanTilt.PanAxis.Value = this._cameraPanTilt.PanAxis.ClampValue(this._cameraPanTilt.PanAxis.Value + input_camera_val.x);
             this._cameraPanTilt.TiltAxis.Value = this._cameraPanTilt.TiltAxis.ClampValue(this._cameraPanTilt.TiltAxis.Value - input_camera_val.y);
         }

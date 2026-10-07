@@ -4,6 +4,7 @@
  */
 
 using UnityEngine;
+using UnityEngine.InputSystem.EnhancedTouch;
 using ToffMonaka.UnityBase.Data;
 using ToffMonaka.UnityBase.Input;
 using ToffMonaka.UnityBase.Graphic;
@@ -125,6 +126,8 @@ public class MainSceneNodeScript : ToffMonaka.Tml.Scene.MainSceneNodeScript
      */
     protected override void _OnStartApplication()
     {
+        EnhancedTouchSupport.Enable();
+
         this._StartDataFile();
 
         this._CreateManager();
@@ -159,6 +162,8 @@ public class MainSceneNodeScript : ToffMonaka.Tml.Scene.MainSceneNodeScript
         this._ReleaseManager();
 
         this._EndDataFile();
+
+        EnhancedTouchSupport.Disable();
 
         return;
     }
