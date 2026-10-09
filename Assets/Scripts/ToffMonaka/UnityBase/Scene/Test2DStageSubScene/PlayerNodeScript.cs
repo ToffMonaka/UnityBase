@@ -75,6 +75,30 @@ public class PlayerNodeScript : ToffMonaka.Tml.Scene.NodeScript
     {
         base._OnAwake();
 
+        return;
+    }
+
+    /**
+     * @brief _OnDestroy関数
+     */
+    protected override void _OnDestroy()
+    {
+        base._OnDestroy();
+
+        return;
+    }
+
+    /**
+     * @brief _OnCreate関数
+     * @return result_val (result_value)<br>
+     * 0未満=失敗
+     */
+    protected override int _OnCreate()
+    {
+        if (base._OnCreate() < 0) {
+            return (-1);
+        }
+
         if (this._collider is CapsuleCollider2D) {
             this._colliderType = 1;
         } else if (this._collider is CircleCollider2D) {
@@ -111,30 +135,6 @@ public class PlayerNodeScript : ToffMonaka.Tml.Scene.NodeScript
 
         this._cameraInputAction = InputSystem.actions.FindAction("Player/Camera");
         this._cameraInputAction.Enable();
-
-        return;
-    }
-
-    /**
-     * @brief _OnDestroy関数
-     */
-    protected override void _OnDestroy()
-    {
-        base._OnDestroy();
-
-        return;
-    }
-
-    /**
-     * @brief _OnCreate関数
-     * @return result_val (result_value)<br>
-     * 0未満=失敗
-     */
-    protected override int _OnCreate()
-    {
-        if (base._OnCreate() < 0) {
-            return (-1);
-        }
 
         return (0);
     }

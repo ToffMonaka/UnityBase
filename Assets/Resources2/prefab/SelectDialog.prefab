@@ -100,7 +100,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 910522511259502307}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -109,7 +109,7 @@ RectTransform:
   - {fileID: 7172471699323213826}
   - {fileID: 4099397519701915974}
   - {fileID: 6357620183956673687}
-  m_Father: {fileID: 8375513417166532058}
+  m_Father: {fileID: 446256535138487793}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -222,7 +222,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e6c3e733a943304c9c1a2804cdedd34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ToffMonaka.Lib.Scene.ButtonPartsScript
-  _coverImage: {fileID: 4762903641599720536}
+  _clickCoverImage: {fileID: 0}
+  _hoverCoverImage: {fileID: 4762903641599720536}
   _pointerDownEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -501,6 +502,43 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!1 &2013572717243737592
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 446256535138487793}
+  m_Layer: 5
+  m_Name: UiMargin
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &446256535138487793
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2013572717243737592}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 4743056046261993134}
+  - {fileID: 7634054007903597993}
+  m_Father: {fileID: 8375513417166532058}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: -160, y: -16}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &2038380608183011673
 GameObject:
   m_ObjectHideFlags: 0
@@ -909,8 +947,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4097946579155069729}
-  - {fileID: 4743056046261993134}
-  - {fileID: 7634054007903597993}
+  - {fileID: 446256535138487793}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -933,7 +970,6 @@ MonoBehaviour:
   _canvasGroup: {fileID: 4773300249126424629}
   _nameText: {fileID: 8856799941468557326}
   _scrollRect: {fileID: 5814984327629157228}
-  _itemNode: {fileID: 1174433939107847729}
   _itemNodeScript: {fileID: 4378146052156916154}
 --- !u!225 &4773300249126424629
 CanvasGroup:
@@ -1377,18 +1413,18 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7826527850192487555}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8133391037261032051}
   - {fileID: 3890530175369561281}
-  m_Father: {fileID: 8375513417166532058}
+  m_Father: {fileID: 446256535138487793}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -8, y: -8}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 80, y: 80}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &7782732482300069089
@@ -1403,7 +1439,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e6c3e733a943304c9c1a2804cdedd34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ToffMonaka.Lib.Scene.ButtonComponentScript
-  _coverImage: {fileID: 7791873782123199918}
+  _clickCoverImage: {fileID: 0}
+  _hoverCoverImage: {fileID: 7791873782123199918}
   _pointerDownEvent:
     m_PersistentCalls:
       m_Calls: []

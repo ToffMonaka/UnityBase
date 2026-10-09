@@ -111,11 +111,11 @@ public class OpenCloseButtonNodeScript : ToffMonaka.Tml.Scene.NodeScript
 
 		switch (this.GetOpenType()) {
 		case 1: {
-            rect_transform.anchoredPosition = new Vector2(-rect_transform.sizeDelta.x - 8.0f, rect_transform.anchoredPosition.y);
+            rect_transform.anchoredPosition = new Vector2(-80.0f + -rect_transform.sizeDelta.x - 8.0f, rect_transform.anchoredPosition.y);
 
             var open_close_sequence = DOTween.Sequence();
 
-            open_close_sequence.Append(rect_transform.DOAnchorPosX(8.0f, 0.1f));
+            open_close_sequence.Append(rect_transform.DOAnchorPosX(0.0f, 0.1f));
             open_close_sequence.SetLink(this.gameObject);
 
             this.AddOpenCloseSequence(open_close_sequence);
@@ -123,7 +123,7 @@ public class OpenCloseButtonNodeScript : ToffMonaka.Tml.Scene.NodeScript
 			break;
 		}
 		default: {
-            rect_transform.anchoredPosition = new Vector2(8.0f, rect_transform.anchoredPosition.y);
+            rect_transform.anchoredPosition = new Vector2(0.0f, rect_transform.anchoredPosition.y);
 
 			break;
 		}
@@ -143,11 +143,11 @@ public class OpenCloseButtonNodeScript : ToffMonaka.Tml.Scene.NodeScript
 
 		switch (this.GetCloseType()) {
 		case 1: {
-            rect_transform.anchoredPosition = new Vector2(8.0f, rect_transform.anchoredPosition.y);
+            rect_transform.anchoredPosition = new Vector2(0.0f, rect_transform.anchoredPosition.y);
 
             var open_close_sequence = DOTween.Sequence();
 
-            open_close_sequence.Append(rect_transform.DOAnchorPosX(-rect_transform.sizeDelta.x - 8.0f, 0.1f));
+            open_close_sequence.Append(rect_transform.DOAnchorPosX(-80.0f + -rect_transform.sizeDelta.x - 8.0f, 0.1f));
             open_close_sequence.SetLink(this.gameObject);
 
             this.AddOpenCloseSequence(open_close_sequence);
@@ -155,7 +155,7 @@ public class OpenCloseButtonNodeScript : ToffMonaka.Tml.Scene.NodeScript
 			break;
 		}
 		default: {
-            rect_transform.anchoredPosition = new Vector2(-rect_transform.sizeDelta.x - 8.0f, rect_transform.anchoredPosition.y);
+            rect_transform.anchoredPosition = new Vector2(-80.0f + -rect_transform.sizeDelta.x - 8.0f, rect_transform.anchoredPosition.y);
 
 			break;
 		}

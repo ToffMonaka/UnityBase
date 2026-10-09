@@ -172,7 +172,7 @@ RectTransform:
   - {fileID: 4018710258940938887}
   - {fileID: 8480700250382328690}
   - {fileID: 2972142164844527176}
-  m_Father: {fileID: 2421656255635654643}
+  m_Father: {fileID: 8673013402051885168}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -436,8 +436,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6772889750785554193}
-  - {fileID: 1848634303643921071}
-  - {fileID: 1440825326318995721}
+  - {fileID: 8673013402051885168}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -475,6 +474,43 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!1 &2797395941001283056
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8673013402051885168}
+  m_Layer: 5
+  m_Name: UiMargin
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &8673013402051885168
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2797395941001283056}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1848634303643921071}
+  - {fileID: 1440825326318995721}
+  m_Father: {fileID: 2421656255635654643}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: -160, y: -16}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &3008948531131050244
 GameObject:
   m_ObjectHideFlags: 0
@@ -508,11 +544,11 @@ RectTransform:
   m_Children:
   - {fileID: 4064939005028976631}
   - {fileID: 8967724049304462585}
-  m_Father: {fileID: 2421656255635654643}
+  m_Father: {fileID: 8673013402051885168}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -8, y: -8}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 80, y: 80}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &7700752456957784601
@@ -527,8 +563,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e6c3e733a943304c9c1a2804cdedd34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ToffMonaka.Lib.Scene.ButtonComponentScript
-  _coverImage: {fileID: 7383765666036992647}
+  _clickCoverImage: {fileID: 0}
+  _hoverCoverImage: {fileID: 7383765666036992647}
   _pointerDownEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  _pointerUpEvent:
     m_PersistentCalls:
       m_Calls: []
   _pointerClickEvent:
@@ -1465,8 +1505,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e6c3e733a943304c9c1a2804cdedd34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ToffMonaka.Lib.Scene.ButtonComponentScript
-  _coverImage: {fileID: 5296405224928439924}
+  _clickCoverImage: {fileID: 0}
+  _hoverCoverImage: {fileID: 5296405224928439924}
   _pointerDownEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  _pointerUpEvent:
     m_PersistentCalls:
       m_Calls: []
   _pointerClickEvent:
@@ -1581,8 +1625,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e6c3e733a943304c9c1a2804cdedd34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ToffMonaka.Lib.Scene.ButtonComponentScript
-  _coverImage: {fileID: 5726852404683164589}
+  _clickCoverImage: {fileID: 0}
+  _hoverCoverImage: {fileID: 5726852404683164589}
   _pointerDownEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  _pointerUpEvent:
     m_PersistentCalls:
       m_Calls: []
   _pointerClickEvent:

@@ -24,7 +24,8 @@ public class ButtonPartsScript : PartsScript, IPointerDownHandler, IPointerUpHan
 {
     [System.Serializable] public class PointerEvent : UnityEvent<PointerEventData> {}
 
-    [SerializeField] private Image _coverImage = null;
+    [SerializeField] private Image _clickCoverImage = null;
+    [SerializeField] private Image _hoverCoverImage = null;
     [SerializeField] private PointerEvent _pointerDownEvent = new();
     [SerializeField] private PointerEvent _pointerUpEvent = new();
     [SerializeField] private PointerEvent _pointerClickEvent = new();
@@ -73,6 +74,14 @@ public class ButtonPartsScript : PartsScript, IPointerDownHandler, IPointerUpHan
             return (-1);
         }
 
+        if (this._clickCoverImage != null) {
+            this._clickCoverImage.gameObject.SetActive(false);
+        }
+
+        if (this._hoverCoverImage != null) {
+            this._hoverCoverImage.gameObject.SetActive(false);
+        }
+
         return (0);
     }
 
@@ -102,8 +111,8 @@ public class ButtonPartsScript : PartsScript, IPointerDownHandler, IPointerUpHan
     {
         base._OnActive();
 
-        if (this._coverImage != null) {
-            this._coverImage.gameObject.SetActive(false);
+        if (this._hoverCoverImage != null) {
+            this._hoverCoverImage.gameObject.SetActive(false);
         }
 
         return;
@@ -135,6 +144,10 @@ public class ButtonPartsScript : PartsScript, IPointerDownHandler, IPointerUpHan
      */
     public void OnPointerDown(PointerEventData event_dat)
     {
+        if (this._clickCoverImage != null) {
+            this._clickCoverImage.gameObject.SetActive(true);
+        }
+
         if (!this.IsControllable()) {
             return;
         }
@@ -150,6 +163,10 @@ public class ButtonPartsScript : PartsScript, IPointerDownHandler, IPointerUpHan
      */
     public void OnPointerUp(PointerEventData event_dat)
     {
+        if (this._clickCoverImage != null) {
+            this._clickCoverImage.gameObject.SetActive(false);
+        }
+
         if (!this.IsControllable()) {
             return;
         }
@@ -180,8 +197,8 @@ public class ButtonPartsScript : PartsScript, IPointerDownHandler, IPointerUpHan
      */
     public void OnPointerEnter(PointerEventData event_dat)
     {
-        if (this._coverImage != null) {
-            this._coverImage.gameObject.SetActive(true);
+        if (this._hoverCoverImage != null) {
+            this._hoverCoverImage.gameObject.SetActive(true);
         }
 
         this._pointerEnterEvent.Invoke(event_dat);
@@ -195,8 +212,8 @@ public class ButtonPartsScript : PartsScript, IPointerDownHandler, IPointerUpHan
      */
     public void OnPointerExit(PointerEventData event_dat)
     {
-        if (this._coverImage != null) {
-            this._coverImage.gameObject.SetActive(false);
+        if (this._hoverCoverImage != null) {
+            this._hoverCoverImage.gameObject.SetActive(false);
         }
 
         this._pointerExitEvent.Invoke(event_dat);

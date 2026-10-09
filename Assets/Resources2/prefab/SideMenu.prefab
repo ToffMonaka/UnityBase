@@ -895,7 +895,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e6c3e733a943304c9c1a2804cdedd34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ToffMonaka.Lib.Scene.ButtonComponentScript
-  _coverImage: {fileID: 928098417733778786}
+  _clickCoverImage: {fileID: 0}
+  _hoverCoverImage: {fileID: 928098417733778786}
   _pointerDownEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -1092,7 +1093,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e6c3e733a943304c9c1a2804cdedd34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ToffMonaka.Lib.Scene.ButtonComponentScript
-  _coverImage: {fileID: 8962694589349046544}
+  _clickCoverImage: {fileID: 0}
+  _hoverCoverImage: {fileID: 8962694589349046544}
   _pointerDownEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -2464,7 +2466,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e6c3e733a943304c9c1a2804cdedd34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ToffMonaka.Lib.Scene.ButtonComponentScript
-  _coverImage: {fileID: 3166056872501323280}
+  _clickCoverImage: {fileID: 0}
+  _hoverCoverImage: {fileID: 3166056872501323280}
   _pointerDownEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -2667,8 +2670,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 240401020280944743}
-  - {fileID: 4138404211649794332}
-  - {fileID: 3063986073987680765}
+  - {fileID: 2039939678793137480}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -3335,7 +3337,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e6c3e733a943304c9c1a2804cdedd34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ToffMonaka.Lib.Scene.ButtonComponentScript
-  _coverImage: {fileID: 8133982497555141049}
+  _clickCoverImage: {fileID: 0}
+  _hoverCoverImage: {fileID: 8133982497555141049}
   _pointerDownEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -4470,7 +4473,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e6c3e733a943304c9c1a2804cdedd34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ToffMonaka.Lib.Scene.ButtonComponentScript
-  _coverImage: {fileID: 7648997427529784147}
+  _clickCoverImage: {fileID: 0}
+  _hoverCoverImage: {fileID: 7648997427529784147}
   _pointerDownEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -5432,7 +5436,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e6c3e733a943304c9c1a2804cdedd34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ToffMonaka.Lib.Scene.ButtonComponentScript
-  _coverImage: {fileID: 7951016453600220645}
+  _clickCoverImage: {fileID: 0}
+  _hoverCoverImage: {fileID: 7951016453600220645}
   _pointerDownEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -6821,7 +6826,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e6c3e733a943304c9c1a2804cdedd34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ToffMonaka.Lib.Scene.ButtonComponentScript
-  _coverImage: {fileID: 3766209058423889962}
+  _clickCoverImage: {fileID: 0}
+  _hoverCoverImage: {fileID: 3766209058423889962}
   _pointerDownEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -7494,7 +7500,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e6c3e733a943304c9c1a2804cdedd34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ToffMonaka.Lib.Scene.ButtonComponentScript
-  _coverImage: {fileID: 3916011044308349293}
+  _clickCoverImage: {fileID: 0}
+  _hoverCoverImage: {fileID: 3916011044308349293}
   _pointerDownEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -7745,7 +7752,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e6c3e733a943304c9c1a2804cdedd34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ToffMonaka.Lib.Scene.ButtonComponentScript
-  _coverImage: {fileID: 4776796783076047025}
+  _clickCoverImage: {fileID: 0}
+  _hoverCoverImage: {fileID: 4776796783076047025}
   _pointerDownEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -12155,7 +12163,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e6c3e733a943304c9c1a2804cdedd34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ToffMonaka.Lib.Scene.ButtonComponentScript
-  _coverImage: {fileID: 4084566189972772142}
+  _clickCoverImage: {fileID: 0}
+  _hoverCoverImage: {fileID: 4084566189972772142}
   _pointerDownEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -12470,7 +12479,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e6c3e733a943304c9c1a2804cdedd34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ToffMonaka.Lib.Scene.ButtonComponentScript
-  _coverImage: {fileID: 4913661049893355116}
+  _clickCoverImage: {fileID: 0}
+  _hoverCoverImage: {fileID: 4913661049893355116}
   _pointerDownEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -14611,7 +14621,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e6c3e733a943304c9c1a2804cdedd34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ToffMonaka.Lib.Scene.ButtonComponentScript
-  _coverImage: {fileID: 2291305358137100357}
+  _clickCoverImage: {fileID: 0}
+  _hoverCoverImage: {fileID: 2291305358137100357}
   _pointerDownEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -15319,11 +15330,11 @@ RectTransform:
   m_Children:
   - {fileID: 5877466920090901055}
   - {fileID: 4686854893294616694}
-  m_Father: {fileID: 4310743791220838368}
+  m_Father: {fileID: 2039939678793137480}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 8, y: -8}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 80, y: 80}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &3005210006900627422
@@ -15350,7 +15361,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e6c3e733a943304c9c1a2804cdedd34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ToffMonaka.Lib.Scene.ButtonPartsScript
-  _coverImage: {fileID: 8830467060425720589}
+  _clickCoverImage: {fileID: 0}
+  _hoverCoverImage: {fileID: 8830467060425720589}
   _pointerDownEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -18676,7 +18688,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e6c3e733a943304c9c1a2804cdedd34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ToffMonaka.Lib.Scene.ButtonComponentScript
-  _coverImage: {fileID: 6107313346735561927}
+  _clickCoverImage: {fileID: 0}
+  _hoverCoverImage: {fileID: 6107313346735561927}
   _pointerDownEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -19464,7 +19477,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e6c3e733a943304c9c1a2804cdedd34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ToffMonaka.Lib.Scene.ButtonComponentScript
-  _coverImage: {fileID: 8938441375387051172}
+  _clickCoverImage: {fileID: 0}
+  _hoverCoverImage: {fileID: 8938441375387051172}
   _pointerDownEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -19619,7 +19633,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e6c3e733a943304c9c1a2804cdedd34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ToffMonaka.Lib.Scene.ButtonComponentScript
-  _coverImage: {fileID: 4005542976449659268}
+  _clickCoverImage: {fileID: 0}
+  _hoverCoverImage: {fileID: 4005542976449659268}
   _pointerDownEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -19846,7 +19861,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5754110584147064714}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -19864,11 +19879,11 @@ RectTransform:
   - {fileID: 6493348202415710288}
   - {fileID: 7575810288338249153}
   - {fileID: 4156700219122012310}
-  m_Father: {fileID: 4310743791220838368}
+  m_Father: {fileID: 2039939678793137480}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 8, y: -88}
+  m_AnchoredPosition: {x: 0, y: -80}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &5756434142725758271
@@ -19923,7 +19938,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e6c3e733a943304c9c1a2804cdedd34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ToffMonaka.Lib.Scene.ButtonComponentScript
-  _coverImage: {fileID: 6886779002165991871}
+  _clickCoverImage: {fileID: 0}
+  _hoverCoverImage: {fileID: 6886779002165991871}
   _pointerDownEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -20641,7 +20657,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e6c3e733a943304c9c1a2804cdedd34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ToffMonaka.Lib.Scene.ButtonPartsScript
-  _coverImage: {fileID: 305433983374858510}
+  _clickCoverImage: {fileID: 0}
+  _hoverCoverImage: {fileID: 305433983374858510}
   _pointerDownEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -21572,7 +21589,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e6c3e733a943304c9c1a2804cdedd34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ToffMonaka.Lib.Scene.ButtonComponentScript
-  _coverImage: {fileID: 7639933634218052471}
+  _clickCoverImage: {fileID: 0}
+  _hoverCoverImage: {fileID: 7639933634218052471}
   _pointerDownEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -22939,6 +22957,43 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &6662850111671995198
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2039939678793137480}
+  m_Layer: 5
+  m_Name: UiMargin
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &2039939678793137480
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6662850111671995198}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 4138404211649794332}
+  - {fileID: 3063986073987680765}
+  m_Father: {fileID: 4310743791220838368}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: -160, y: -16}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &6683363871920074610
 GameObject:
   m_ObjectHideFlags: 0
@@ -23165,7 +23220,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e6c3e733a943304c9c1a2804cdedd34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ToffMonaka.Lib.Scene.ButtonComponentScript
-  _coverImage: {fileID: 1724401182331547176}
+  _clickCoverImage: {fileID: 0}
+  _hoverCoverImage: {fileID: 1724401182331547176}
   _pointerDownEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -24515,7 +24571,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e6c3e733a943304c9c1a2804cdedd34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ToffMonaka.Lib.Scene.ButtonPartsScript
-  _coverImage: {fileID: 1141413664489138030}
+  _clickCoverImage: {fileID: 0}
+  _hoverCoverImage: {fileID: 1141413664489138030}
   _pointerDownEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -24634,7 +24691,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e6c3e733a943304c9c1a2804cdedd34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ToffMonaka.Lib.Scene.ButtonComponentScript
-  _coverImage: {fileID: 6430584424435068020}
+  _clickCoverImage: {fileID: 0}
+  _hoverCoverImage: {fileID: 6430584424435068020}
   _pointerDownEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -24753,7 +24811,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e6c3e733a943304c9c1a2804cdedd34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ToffMonaka.Lib.Scene.ButtonComponentScript
-  _coverImage: {fileID: 338372203020431405}
+  _clickCoverImage: {fileID: 0}
+  _hoverCoverImage: {fileID: 338372203020431405}
   _pointerDownEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -25149,7 +25208,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e6c3e733a943304c9c1a2804cdedd34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ToffMonaka.Lib.Scene.ButtonPartsScript
-  _coverImage: {fileID: 5313580785954081233}
+  _clickCoverImage: {fileID: 0}
+  _hoverCoverImage: {fileID: 5313580785954081233}
   _pointerDownEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -25749,7 +25809,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e6c3e733a943304c9c1a2804cdedd34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ToffMonaka.Lib.Scene.ButtonPartsScript
-  _coverImage: {fileID: 5791983681892754692}
+  _clickCoverImage: {fileID: 0}
+  _hoverCoverImage: {fileID: 5791983681892754692}
   _pointerDownEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -26003,7 +26064,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e6c3e733a943304c9c1a2804cdedd34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ToffMonaka.Lib.Scene.ButtonComponentScript
-  _coverImage: {fileID: 619983569160031765}
+  _clickCoverImage: {fileID: 0}
+  _hoverCoverImage: {fileID: 619983569160031765}
   _pointerDownEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -29508,7 +29570,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e6c3e733a943304c9c1a2804cdedd34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ToffMonaka.Lib.Scene.ButtonComponentScript
-  _coverImage: {fileID: 4935618617890888159}
+  _clickCoverImage: {fileID: 0}
+  _hoverCoverImage: {fileID: 4935618617890888159}
   _pointerDownEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -29663,7 +29726,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e6c3e733a943304c9c1a2804cdedd34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ToffMonaka.Lib.Scene.ButtonComponentScript
-  _coverImage: {fileID: 8396376274909916817}
+  _clickCoverImage: {fileID: 0}
+  _hoverCoverImage: {fileID: 8396376274909916817}
   _pointerDownEvent:
     m_PersistentCalls:
       m_Calls: []

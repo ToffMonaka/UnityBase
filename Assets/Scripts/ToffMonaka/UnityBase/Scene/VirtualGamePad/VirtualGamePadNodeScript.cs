@@ -46,8 +46,6 @@ public class VirtualGamePadNodeScript : ToffMonaka.Tml.Scene.NodeScript
     {
         base._OnAwake();
 
-        this._cameraCursorNode.SetActive(false);
-
         return;
     }
 
@@ -71,6 +69,8 @@ public class VirtualGamePadNodeScript : ToffMonaka.Tml.Scene.NodeScript
         if (base._OnCreate() < 0) {
             return (-1);
         }
+
+        this._cameraCursorNode.SetActive(false);
 
         return (0);
     }
