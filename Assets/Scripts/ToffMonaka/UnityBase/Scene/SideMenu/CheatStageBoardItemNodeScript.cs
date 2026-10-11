@@ -140,7 +140,7 @@ public class CheatStageBoardItemNodeScript : ToffMonaka.Tml.Scene.NodeScript
             return;
         }
 
-        SceneUtil.GetManager().PlaySoundSe((int)SoundUtil.SE_SOUND_INDEX.OK2);
+        SceneUtil.GetManager().PlaySoundSe((int)SceneUtil.SOUND_SE_INDEX.OK2);
 
         this._onClick?.Invoke(this);
 

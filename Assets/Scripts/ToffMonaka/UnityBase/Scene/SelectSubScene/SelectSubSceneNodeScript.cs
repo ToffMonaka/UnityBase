@@ -211,7 +211,7 @@ public class SelectSubSceneNodeScript : SubSceneNodeScript
 		}
 		}
 
-        SceneUtil.GetManager().PlaySoundBgm((int)SoundUtil.BGM_SOUND_INDEX.SELECT);
+        SceneUtil.GetManager().PlaySoundBgm((int)SceneUtil.SOUND_BGM_INDEX.SELECT);
 
         return;
     }

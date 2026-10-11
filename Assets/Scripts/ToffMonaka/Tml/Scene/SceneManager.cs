@@ -37,25 +37,25 @@ public class SceneManager
 {
     public SceneManagerCreateDesc createDesc{get; private set;} = null;
 
-    private GameObject _mainSceneNode = null;
+    private GameObject _mainSceneNode;
     private bool _mainSceneStartedFlag;
     private bool _mainSceneEndedFlag;
-    private GameObject _subSceneNode = null;
+    private GameObject _subSceneNode;
     private GameObject _inputNode;
     private EventSystem _inputEventSystem;
     private GameObject _graphicNode;
     private GameObject _soundNode;
     private string _soundBgmPrefabFilePath;
-    private System.Tuple<GameObject, SoundBgmNodeScript> _soundBgmNodeScript = null;
+    private System.Tuple<GameObject, SoundBgmNodeScript> _soundBgmNodeScript;
     private AudioClip[] _soundBgmAudioClipArray;
 	private float _soundBgmVolume;
 	private bool _soundBgmMuteFlag;
     private string _soundSePrefabFilePath;
-    private List<System.Tuple<GameObject, SoundSeNodeScript>> _soundSeNodeScriptContainer = new();
+    private List<System.Tuple<GameObject, SoundSeNodeScript>> _soundSeNodeScriptContainer;
     private AudioClip[] _soundSeAudioClipArray;
 	private float _soundSeVolume;
 	private bool _soundSeMuteFlag;
-    private List<Script>[] _scriptArray = null;
+    private List<Script>[] _scriptArray;
     private List<NodeScript>[]  _nodeScriptArray;
     private MainSceneNodeScript _mainSceneNodeScript;
     private SubSceneNodeScript _subSceneNodeScript;
@@ -66,15 +66,21 @@ public class SceneManager
      */
     public SceneManager()
     {
+        this._mainSceneNode = null;
+        this._subSceneNode = null;
+        this._soundBgmNodeScript = null;
+        this._soundSeNodeScriptContainer = new();
+        this._scriptArray = null;
+
         this.Init();
 
         return;
     }
 
     /**
-     * @brief _Release関数
+     * @brief Init関数
      */
-    private void _Release()
+    public virtual void Init()
     {
         SceneUtil.ReleasePrefabNode(ref this._subSceneNode);
 
@@ -107,19 +113,6 @@ public class SceneManager
 
             this._scriptArray = null;
         }
-
-        this._subSceneNode = null;
-        this._mainSceneNode = null;
-
-        return;
-    }
-
-    /**
-     * @brief Init関数
-     */
-    public virtual void Init()
-    {
-        this._Release();
 
         this._mainSceneStartedFlag = false;
         this._mainSceneEndedFlag = false;

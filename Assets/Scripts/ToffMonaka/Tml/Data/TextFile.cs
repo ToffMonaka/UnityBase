@@ -65,11 +65,11 @@ public class TextFileReadDescData : BinaryFileReadDescData
      */
     public override void Init()
     {
-        base.Init();
-
         this.text = "";
         this.charsetName = "utf-8";
         this.newlineType = StringUtil.NEWLINE_TYPE.CRLF;
+
+        base.Init();
 
         return;
     }
@@ -153,11 +153,11 @@ public class TextFile : File
      */
     public override void Init()
     {
-        base.Init();
-
 	    this.data.Init();
 	    this.readDesc.Init();
 	    this.writeDesc.Init();
+
+        base.Init();
 
         return;
     }

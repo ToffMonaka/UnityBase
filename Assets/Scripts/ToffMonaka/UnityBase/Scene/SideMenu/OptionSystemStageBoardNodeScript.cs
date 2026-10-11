@@ -175,7 +175,7 @@ public class OptionSystemStageBoardNodeScript : StageBoardNodeScript
             return;
         }
 
-        SceneUtil.GetManager().PlaySoundSe((int)SoundUtil.SE_SOUND_INDEX.OK2);
+        SceneUtil.GetManager().PlaySoundSe((int)SceneUtil.SOUND_SE_INDEX.OK2);
 
         {// LanguageSelectDialog Add
             var script_create_desc = new SelectDialogNodeScriptCreateDesc();
@@ -190,7 +190,7 @@ public class OptionSystemStageBoardNodeScript : StageBoardNodeScript
                 return;
             };
 
-            var script = SceneUtil.GetSubSceneNodeScript().GetDialogSystemNodeScript().AddDialog(script_create_desc) as SelectDialogNodeScript;
+            var script = SceneUtil.GetManager().GetSubSceneNodeScript().GetDialogSystemNodeScript().AddDialog(script_create_desc) as SelectDialogNodeScript;
 
             script.AddItem(new LanguageSelectDialogItemExtension(Util.LANGUAGE_TYPE.ENGLISH));
             script.AddItem(new LanguageSelectDialogItemExtension(Util.LANGUAGE_TYPE.JAPANESE));
@@ -209,7 +209,7 @@ public class OptionSystemStageBoardNodeScript : StageBoardNodeScript
             return;
         }
 
-        SceneUtil.GetManager().PlaySoundSe((int)SoundUtil.SE_SOUND_INDEX.OK2);
+        SceneUtil.GetManager().PlaySoundSe((int)SceneUtil.SOUND_SE_INDEX.OK2);
 
         DataUtil.systemConfigFile.data.systemLanguageType = this._languageType;
 
@@ -234,7 +234,7 @@ public class OptionSystemStageBoardNodeScript : StageBoardNodeScript
             return;
         }
 
-        SceneUtil.GetManager().PlaySoundSe((int)SoundUtil.SE_SOUND_INDEX.CANCEL);
+        SceneUtil.GetManager().PlaySoundSe((int)SceneUtil.SOUND_SE_INDEX.CANCEL);
 
         this._onCloseStageBoard(this);
 

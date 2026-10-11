@@ -149,11 +149,11 @@ public class ConfigFile : File
      */
     public override void Init()
     {
-        base.Init();
-
 	    this.data.Init();
 	    this.readDesc.Init();
 	    this.writeDesc.Init();
+
+        base.Init();
 
         return;
     }

@@ -248,8 +248,8 @@ public class MainSceneNodeScript : ToffMonaka.Tml.Scene.MainSceneNodeScript
         this._ReleaseManager();
 
         {// InputManager Create
-            var manager = new ToffMonaka.Tml.Input.InputManager();
-            var manager_create_desc = new ToffMonaka.Tml.Input.InputManagerCreateDesc();
+            var manager = new InputManager();
+            var manager_create_desc = new InputManagerCreateDesc();
 
             if (manager.Create(manager_create_desc) < 0) {
                 this._ReleaseManager();
@@ -261,8 +261,8 @@ public class MainSceneNodeScript : ToffMonaka.Tml.Scene.MainSceneNodeScript
         }
 
         {// GraphicManager Create
-            var manager = new ToffMonaka.Tml.Graphic.GraphicManager();
-            var manager_create_desc = new ToffMonaka.Tml.Graphic.GraphicManagerCreateDesc();
+            var manager = new GraphicManager();
+            var manager_create_desc = new GraphicManagerCreateDesc();
 
             if (manager.Create(manager_create_desc) < 0) {
                 this._ReleaseManager();
@@ -274,8 +274,8 @@ public class MainSceneNodeScript : ToffMonaka.Tml.Scene.MainSceneNodeScript
         }
 
         {// SoundManager Create
-            var manager = new ToffMonaka.Tml.Sound.SoundManager();
-            var manager_create_desc = new ToffMonaka.Tml.Sound.SoundManagerCreateDesc();
+            var manager = new SoundManager();
+            var manager_create_desc = new SoundManagerCreateDesc();
 
             if (manager.Create(manager_create_desc) < 0) {
                 this._ReleaseManager();
@@ -287,8 +287,8 @@ public class MainSceneNodeScript : ToffMonaka.Tml.Scene.MainSceneNodeScript
         }
 
         {// SceneManager Create
-            var manager = new ToffMonaka.Tml.Scene.SceneManager();
-            var manager_create_desc = new ToffMonaka.Tml.Scene.SceneManagerCreateDesc();
+            var manager = new SceneManager();
+            var manager_create_desc = new SceneManagerCreateDesc();
 
             manager_create_desc.mainSceneNode = this.gameObject;
             manager_create_desc.inputNode = this.GetInputNode();

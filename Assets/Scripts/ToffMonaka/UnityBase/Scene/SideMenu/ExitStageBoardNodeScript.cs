@@ -180,9 +180,9 @@ public class ExitStageBoardNodeScript : StageBoardNodeScript
         }
 
         if (this._backToTitleToggle.isOn) {
-            SceneUtil.GetManager().PlaySoundSe((int)SoundUtil.SE_SOUND_INDEX.OK2);
+            SceneUtil.GetManager().PlaySoundSe((int)SceneUtil.SOUND_SE_INDEX.OK2);
         } else {
-            SceneUtil.GetManager().PlaySoundSe((int)SoundUtil.SE_SOUND_INDEX.CANCEL);
+            SceneUtil.GetManager().PlaySoundSe((int)SceneUtil.SOUND_SE_INDEX.CANCEL);
         }
 
         return;
@@ -203,9 +203,9 @@ public class ExitStageBoardNodeScript : StageBoardNodeScript
         }
 
         if (this._exitToggle.isOn) {
-            SceneUtil.GetManager().PlaySoundSe((int)SoundUtil.SE_SOUND_INDEX.OK2);
+            SceneUtil.GetManager().PlaySoundSe((int)SceneUtil.SOUND_SE_INDEX.OK2);
         } else {
-            SceneUtil.GetManager().PlaySoundSe((int)SoundUtil.SE_SOUND_INDEX.CANCEL);
+            SceneUtil.GetManager().PlaySoundSe((int)SceneUtil.SOUND_SE_INDEX.CANCEL);
         }
 
         return;
@@ -221,7 +221,7 @@ public class ExitStageBoardNodeScript : StageBoardNodeScript
             return;
         }
 
-        SceneUtil.GetManager().PlaySoundSe((int)SoundUtil.SE_SOUND_INDEX.OK2);
+        SceneUtil.GetManager().PlaySoundSe((int)SceneUtil.SOUND_SE_INDEX.OK2);
 
         if (this._backToTitleToggle.isOn) {
             SceneUtil.GetManager().GetSubSceneNodeScript().Close(1, (owner) =>
@@ -255,7 +255,7 @@ public class ExitStageBoardNodeScript : StageBoardNodeScript
             return;
         }
 
-        SceneUtil.GetManager().PlaySoundSe((int)SoundUtil.SE_SOUND_INDEX.CANCEL);
+        SceneUtil.GetManager().PlaySoundSe((int)SceneUtil.SOUND_SE_INDEX.CANCEL);
 
         this._onCloseStageBoard(this);
 

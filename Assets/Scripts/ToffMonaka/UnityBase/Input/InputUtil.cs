@@ -14,16 +14,16 @@ public static class InputUtil
      * @brief GetManager関数
      * @return manager (manager)
      */
-    public static ToffMonaka.Tml.Input.InputManager GetManager()
+    public static InputManager GetManager()
     {
-        return (ToffMonaka.Tml.Input.InputUtil.GetManager());
+        return (ToffMonaka.Tml.Input.InputUtil.GetManager() as InputManager);
     }
 
     /**
      * @brief SetManager関数
      * @param manager (manager)
      */
-    public static void SetManager(ToffMonaka.Tml.Input.InputManager manager)
+    public static void SetManager(InputManager manager)
     {
         ToffMonaka.Tml.Input.InputUtil.SetManager(manager);
 

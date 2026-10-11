@@ -64,9 +64,9 @@ public class BinaryFileReadDescData : FileReadDescData
      */
     public override void Init()
     {
-        base.Init();
-
         this.buffer.Init();
+
+        base.Init();
 
         return;
     }
@@ -142,11 +142,11 @@ public class BinaryFile : File
      */
     public override void Init()
     {
-        base.Init();
-
 	    this.data.Init();
 	    this.readDesc.Init();
 	    this.writeDesc.Init();
+
+        base.Init();
 
         return;
     }

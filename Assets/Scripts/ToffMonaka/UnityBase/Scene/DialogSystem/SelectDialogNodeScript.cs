@@ -171,7 +171,7 @@ public class SelectDialogNodeScript : DialogNodeScript
             return;
         }
 
-        SceneUtil.GetManager().PlaySoundSe((int)SoundUtil.SE_SOUND_INDEX.CANCEL);
+        SceneUtil.GetManager().PlaySoundSe((int)SceneUtil.SOUND_SE_INDEX.CANCEL);
 
         this.Close(1);
 

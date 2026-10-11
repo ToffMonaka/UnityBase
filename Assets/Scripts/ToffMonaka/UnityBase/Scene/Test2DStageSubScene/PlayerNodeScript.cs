@@ -191,7 +191,7 @@ public class PlayerNodeScript : ToffMonaka.Tml.Scene.NodeScript
      */
     protected override void _OnUpdate()
     {
-        var virtual_game_pad_node_script = SceneUtil.GetSubSceneNodeScript().GetVirtualGamePadNodeScript();
+        var virtual_game_pad_node_script = SceneUtil.GetManager().GetSubSceneNodeScript().GetVirtualGamePadNodeScript();
 
         var input_camera_val = Vector2.zero;
 

@@ -65,6 +65,25 @@ public static class SceneUtil
     }
     public static readonly int SCRIPT_INDEX_COUNT = (int)SceneUtil.SCRIPT_INDEX.COUNT;
 
+    public enum SOUND_BGM_INDEX : int
+    {
+        NONE = -1,
+        TITLE,
+        SELECT,
+		COUNT
+    }
+    public static readonly int SOUND_BGM_INDEX_COUNT = (int)SceneUtil.SOUND_BGM_INDEX.COUNT;
+
+    public enum SOUND_SE_INDEX : int
+    {
+        NONE = -1,
+        OK,
+        OK2,
+        CANCEL,
+		COUNT
+    }
+    public static readonly int SOUND_SE_INDEX_COUNT = (int)SceneUtil.SOUND_SE_INDEX.COUNT;
+
     public enum SELECT_BOARD_TYPE : int
     {
         NONE = 0,
@@ -132,38 +151,20 @@ public static class SceneUtil
      * @brief GetManager関数
      * @return manager (manager)
      */
-    public static ToffMonaka.Tml.Scene.SceneManager GetManager()
+    public static SceneManager GetManager()
     {
-        return (ToffMonaka.Tml.Scene.SceneUtil.GetManager());
+        return (ToffMonaka.Tml.Scene.SceneUtil.GetManager() as SceneManager);
     }
 
     /**
      * @brief SetManager関数
      * @param manager (manager)
      */
-    public static void SetManager(ToffMonaka.Tml.Scene.SceneManager manager)
+    public static void SetManager(SceneManager manager)
     {
         ToffMonaka.Tml.Scene.SceneUtil.SetManager(manager);
 
         return;
-    }
-
-    /**
-     * @brief GetMainSceneNodeScript関数
-     * @return main_scene_node_script (main_scene_node_script)
-     */
-    public static MainSceneNodeScript GetMainSceneNodeScript()
-    {
-        return (SceneUtil.GetManager().GetMainSceneNodeScript() as MainSceneNodeScript);
-    }
-
-    /**
-     * @brief GetSubSceneNodeScript関数
-     * @return sub_scene_node_script (sub_scene_node_script)
-     */
-    public static SubSceneNodeScript GetSubSceneNodeScript()
-    {
-        return (SceneUtil.GetManager().GetSubSceneNodeScript() as SubSceneNodeScript);
     }
 }
 }

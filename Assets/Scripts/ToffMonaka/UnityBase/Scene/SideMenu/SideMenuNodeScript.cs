@@ -94,13 +94,13 @@ public class SideMenuNodeScript : ToffMonaka.Tml.Scene.NodeScript
 
                     this.OpenBoard(SceneUtil.SIDE_MENU_BOARD_TYPE.SELECT);
 
-                    SceneUtil.GetManager().PlaySoundSe((int)SoundUtil.SE_SOUND_INDEX.OK2);
+                    SceneUtil.GetManager().PlaySoundSe((int)SceneUtil.SOUND_SE_INDEX.OK2);
                 } else {
                     this._backgroundImage.gameObject.SetActive(false);
 
                     this.CloseBoard();
 
-                    SceneUtil.GetManager().PlaySoundSe((int)SoundUtil.SE_SOUND_INDEX.CANCEL);
+                    SceneUtil.GetManager().PlaySoundSe((int)SceneUtil.SOUND_SE_INDEX.CANCEL);
                 }
 
                 return;

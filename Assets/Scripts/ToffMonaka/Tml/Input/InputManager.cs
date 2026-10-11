@@ -30,20 +30,10 @@ public class InputManager
     }
 
     /**
-     * @brief _Release関数
-     */
-    private void _Release()
-    {
-        return;
-    }
-
-    /**
      * @brief Init関数
      */
     public virtual void Init()
     {
-        this._Release();
-
         return;
     }
 

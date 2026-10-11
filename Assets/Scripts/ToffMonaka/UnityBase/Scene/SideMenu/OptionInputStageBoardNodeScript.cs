@@ -168,7 +168,7 @@ public class OptionInputStageBoardNodeScript : StageBoardNodeScript
             return;
         }
 
-        SceneUtil.GetManager().PlaySoundSe((int)SoundUtil.SE_SOUND_INDEX.OK2);
+        SceneUtil.GetManager().PlaySoundSe((int)SceneUtil.SOUND_SE_INDEX.OK2);
 
         //DataUtil.systemConfigFile.Write(true);
 
@@ -191,7 +191,7 @@ public class OptionInputStageBoardNodeScript : StageBoardNodeScript
             return;
         }
 
-        SceneUtil.GetManager().PlaySoundSe((int)SoundUtil.SE_SOUND_INDEX.CANCEL);
+        SceneUtil.GetManager().PlaySoundSe((int)SceneUtil.SOUND_SE_INDEX.CANCEL);
 
         this._onCloseStageBoard(this);
 

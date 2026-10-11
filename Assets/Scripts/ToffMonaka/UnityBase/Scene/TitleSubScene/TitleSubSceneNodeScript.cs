@@ -142,7 +142,7 @@ public class TitleSubSceneNodeScript : SubSceneNodeScript
 		}
 		}
 
-        SceneUtil.GetManager().PlaySoundBgm((int)SoundUtil.BGM_SOUND_INDEX.TITLE);
+        SceneUtil.GetManager().PlaySoundBgm((int)SceneUtil.SOUND_BGM_INDEX.TITLE);
 
         return;
     }
@@ -192,7 +192,7 @@ public class TitleSubSceneNodeScript : SubSceneNodeScript
             return;
         }
 
-        SceneUtil.GetManager().PlaySoundSe((int)SoundUtil.SE_SOUND_INDEX.OK);
+        SceneUtil.GetManager().PlaySoundSe((int)SceneUtil.SOUND_SE_INDEX.OK);
 
         this.Close(1, (owner) =>
         {

@@ -79,13 +79,13 @@ public class SystemConfigFile : ToffMonaka.Tml.File
      */
     public override void Init()
     {
-        base.Init();
-
 	    this.data.Init();
 	    this.readDesc.Init();
 	    this.writeDesc.Init();
         this._writeFlag = false;
         this._deleteFlag = false;
+
+        base.Init();
 
         return;
     }

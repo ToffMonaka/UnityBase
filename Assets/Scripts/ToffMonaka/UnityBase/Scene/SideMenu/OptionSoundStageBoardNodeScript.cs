@@ -194,7 +194,7 @@ public class OptionSoundStageBoardNodeScript : StageBoardNodeScript
         SceneUtil.GetManager().SetSoundBgmVolume(this._soundBgmVolume);
 
         if (this._soundBgmVolume != old_val) {
-            SceneUtil.GetManager().PlaySoundSe((int)SoundUtil.SE_SOUND_INDEX.OK2);
+            SceneUtil.GetManager().PlaySoundSe((int)SceneUtil.SOUND_SE_INDEX.OK2);
         }
 
         return;
@@ -210,7 +210,7 @@ public class OptionSoundStageBoardNodeScript : StageBoardNodeScript
             return;
         }
 
-        SceneUtil.GetManager().PlaySoundSe((int)SoundUtil.SE_SOUND_INDEX.OK2);
+        SceneUtil.GetManager().PlaySoundSe((int)SceneUtil.SOUND_SE_INDEX.OK2);
 
         this.SetSoundBgmVolume(System.Math.Max(this._soundBgmVolume - 0.1f, 0.0f));
 
@@ -229,7 +229,7 @@ public class OptionSoundStageBoardNodeScript : StageBoardNodeScript
             return;
         }
 
-        SceneUtil.GetManager().PlaySoundSe((int)SoundUtil.SE_SOUND_INDEX.OK2);
+        SceneUtil.GetManager().PlaySoundSe((int)SceneUtil.SOUND_SE_INDEX.OK2);
 
         this.SetSoundBgmVolume(System.Math.Min(this._soundBgmVolume + 0.1f, 1.0f));
 
@@ -251,9 +251,9 @@ public class OptionSoundStageBoardNodeScript : StageBoardNodeScript
         SceneUtil.GetManager().SetSoundBgmMuteFlag(this._soundBgmMuteToggle.isOn);
 
         if (this._soundBgmMuteToggle.isOn) {
-            SceneUtil.GetManager().PlaySoundSe((int)SoundUtil.SE_SOUND_INDEX.OK2);
+            SceneUtil.GetManager().PlaySoundSe((int)SceneUtil.SOUND_SE_INDEX.OK2);
         } else {
-            SceneUtil.GetManager().PlaySoundSe((int)SoundUtil.SE_SOUND_INDEX.CANCEL);
+            SceneUtil.GetManager().PlaySoundSe((int)SceneUtil.SOUND_SE_INDEX.CANCEL);
         }
 
         this.SetSoundBgmMuteFlag(this._soundBgmMuteToggle.isOn);
@@ -278,7 +278,7 @@ public class OptionSoundStageBoardNodeScript : StageBoardNodeScript
         SceneUtil.GetManager().SetSoundSeVolume(this._soundSeVolume);
 
         if (this._soundSeVolume != old_val) {
-            SceneUtil.GetManager().PlaySoundSe((int)SoundUtil.SE_SOUND_INDEX.OK2);
+            SceneUtil.GetManager().PlaySoundSe((int)SceneUtil.SOUND_SE_INDEX.OK2);
         }
 
         return;
@@ -294,7 +294,7 @@ public class OptionSoundStageBoardNodeScript : StageBoardNodeScript
             return;
         }
 
-        SceneUtil.GetManager().PlaySoundSe((int)SoundUtil.SE_SOUND_INDEX.OK2);
+        SceneUtil.GetManager().PlaySoundSe((int)SceneUtil.SOUND_SE_INDEX.OK2);
 
         this.SetSoundSeVolume(System.Math.Max(this._soundSeVolume - 0.1f, 0.0f));
 
@@ -313,7 +313,7 @@ public class OptionSoundStageBoardNodeScript : StageBoardNodeScript
             return;
         }
 
-        SceneUtil.GetManager().PlaySoundSe((int)SoundUtil.SE_SOUND_INDEX.OK2);
+        SceneUtil.GetManager().PlaySoundSe((int)SceneUtil.SOUND_SE_INDEX.OK2);
 
         this.SetSoundSeVolume(System.Math.Min(this._soundSeVolume + 0.1f, 1.0f));
 
@@ -335,9 +335,9 @@ public class OptionSoundStageBoardNodeScript : StageBoardNodeScript
         SceneUtil.GetManager().SetSoundSeMuteFlag(this._soundSeMuteToggle.isOn);
 
         if (this._soundSeMuteToggle.isOn) {
-            SceneUtil.GetManager().PlaySoundSe((int)SoundUtil.SE_SOUND_INDEX.OK2);
+            SceneUtil.GetManager().PlaySoundSe((int)SceneUtil.SOUND_SE_INDEX.OK2);
         } else {
-            SceneUtil.GetManager().PlaySoundSe((int)SoundUtil.SE_SOUND_INDEX.CANCEL);
+            SceneUtil.GetManager().PlaySoundSe((int)SceneUtil.SOUND_SE_INDEX.CANCEL);
         }
 
         this.SetSoundSeMuteFlag(this._soundSeMuteToggle.isOn);
@@ -355,7 +355,7 @@ public class OptionSoundStageBoardNodeScript : StageBoardNodeScript
             return;
         }
 
-        SceneUtil.GetManager().PlaySoundSe((int)SoundUtil.SE_SOUND_INDEX.OK2);
+        SceneUtil.GetManager().PlaySoundSe((int)SceneUtil.SOUND_SE_INDEX.OK2);
 
         DataUtil.systemConfigFile.data.soundBgmVolume = this._soundBgmVolume;
         DataUtil.systemConfigFile.data.soundBgmMuteFlag = this._soundBgmMuteFlag;
@@ -383,7 +383,7 @@ public class OptionSoundStageBoardNodeScript : StageBoardNodeScript
             return;
         }
 
-        SceneUtil.GetManager().PlaySoundSe((int)SoundUtil.SE_SOUND_INDEX.CANCEL);
+        SceneUtil.GetManager().PlaySoundSe((int)SceneUtil.SOUND_SE_INDEX.CANCEL);
 
         SceneUtil.GetManager().SetSoundBgmVolume(DataUtil.systemConfigFile.data.soundBgmVolume);
         SceneUtil.GetManager().SetSoundBgmMuteFlag(DataUtil.systemConfigFile.data.soundBgmMuteFlag);

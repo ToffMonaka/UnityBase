@@ -14,16 +14,16 @@ public static class GraphicUtil
      * @brief GetManager関数
      * @return manager (manager)
      */
-    public static ToffMonaka.Tml.Graphic.GraphicManager GetManager()
+    public static GraphicManager GetManager()
     {
-        return (ToffMonaka.Tml.Graphic.GraphicUtil.GetManager());
+        return (ToffMonaka.Tml.Graphic.GraphicUtil.GetManager() as GraphicManager);
     }
 
     /**
      * @brief SetManager関数
      * @param manager (manager)
      */
-    public static void SetManager(ToffMonaka.Tml.Graphic.GraphicManager manager)
+    public static void SetManager(GraphicManager manager)
     {
         ToffMonaka.Tml.Graphic.GraphicUtil.SetManager(manager);
 

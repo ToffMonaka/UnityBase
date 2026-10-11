@@ -175,7 +175,7 @@ public class BackButtonNodeScript : ToffMonaka.Tml.Scene.NodeScript
             return;
         }
 
-        SceneUtil.GetManager().PlaySoundSe((int)SoundUtil.SE_SOUND_INDEX.CANCEL);
+        SceneUtil.GetManager().PlaySoundSe((int)SceneUtil.SOUND_SE_INDEX.CANCEL);
 
         this._onClick?.Invoke(this);
 
