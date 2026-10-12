@@ -36,8 +36,8 @@ public class UserDataFile : ToffMonaka.Tml.File
 	public ToffMonaka.Tml.FileReadDesc<ToffMonaka.Tml.Data.BinaryFileReadDescData> readDesc = new();
 	public ToffMonaka.Tml.FileWriteDesc<ToffMonaka.Tml.Data.BinaryFileWriteDescData> writeDesc = new();
 
-    private bool _writeFlag;
-    private bool _deleteFlag;
+    private bool _writeFlag = false;
+    private bool _deleteFlag = false;
 
     /**
      * @brief コンストラクタ

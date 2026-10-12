@@ -37,43 +37,35 @@ public class SceneManager
 {
     public SceneManagerCreateDesc createDesc{get; private set;} = null;
 
-    private GameObject _mainSceneNode;
-    private bool _mainSceneStartedFlag;
-    private bool _mainSceneEndedFlag;
-    private GameObject _subSceneNode;
-    private GameObject _inputNode;
-    private EventSystem _inputEventSystem;
-    private GameObject _graphicNode;
-    private GameObject _soundNode;
-    private string _soundBgmPrefabFilePath;
-    private System.Tuple<GameObject, SoundBgmNodeScript> _soundBgmNodeScript;
-    private AudioClip[] _soundBgmAudioClipArray;
-	private float _soundBgmVolume;
-	private bool _soundBgmMuteFlag;
-    private string _soundSePrefabFilePath;
-    private List<System.Tuple<GameObject, SoundSeNodeScript>> _soundSeNodeScriptContainer;
-    private AudioClip[] _soundSeAudioClipArray;
-	private float _soundSeVolume;
-	private bool _soundSeMuteFlag;
-    private List<Script>[] _scriptArray;
-    private List<NodeScript>[]  _nodeScriptArray;
-    private MainSceneNodeScript _mainSceneNodeScript;
-    private SubSceneNodeScript _subSceneNodeScript;
-    private List<PartsScript>[]  _partsScriptArray;
+    private GameObject _mainSceneNode = null;
+    private bool _mainSceneStartedFlag = false;
+    private bool _mainSceneEndedFlag = false;
+    private GameObject _subSceneNode = null;
+    private GameObject _inputNode = null;
+    private EventSystem _inputEventSystem = null;
+    private GameObject _graphicNode = null;
+    private GameObject _soundNode = null;
+    private string _soundBgmPrefabFilePath = "";
+    private System.Tuple<GameObject, SoundBgmNodeScript> _soundBgmNodeScript = null;
+    private AudioClip[] _soundBgmAudioClipArray = null;
+	private float _soundBgmVolume = 0.5f;
+	private bool _soundBgmMuteFlag = false;
+    private string _soundSePrefabFilePath = "";
+    private List<System.Tuple<GameObject, SoundSeNodeScript>> _soundSeNodeScriptContainer = new();
+    private AudioClip[] _soundSeAudioClipArray = null;
+	private float _soundSeVolume = 0.5f;
+	private bool _soundSeMuteFlag = false;
+    private List<Script>[] _scriptArray = null;
+    private List<NodeScript>[]  _nodeScriptArray = null;
+    private MainSceneNodeScript _mainSceneNodeScript = null;
+    private SubSceneNodeScript _subSceneNodeScript = null;
+    private List<PartsScript>[]  _partsScriptArray = null;
 
     /**
      * @brief コンストラクタ
      */
     public SceneManager()
     {
-        this._mainSceneNode = null;
-        this._subSceneNode = null;
-        this._soundBgmNodeScript = null;
-        this._soundSeNodeScriptContainer = new();
-        this._scriptArray = null;
-
-        this.Init();
-
         return;
     }
 
@@ -122,11 +114,11 @@ public class SceneManager
         this._soundNode = null;
         this._soundBgmPrefabFilePath = "";
         this._soundBgmAudioClipArray = null;
-	    this._soundBgmVolume = 1.0f;
+	    this._soundBgmVolume = 0.5f;
 	    this._soundBgmMuteFlag = false;
         this._soundSePrefabFilePath = "";
         this._soundSeAudioClipArray = null;
-	    this._soundSeVolume = 1.0f;
+	    this._soundSeVolume = 0.5f;
 	    this._soundSeMuteFlag = false;
         this._nodeScriptArray = null;
         this._mainSceneNodeScript = null;

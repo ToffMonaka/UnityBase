@@ -14,15 +14,23 @@ public class CheatCommandCalculateOption
 {
     public delegate double Function(CheatCommand owner, double[] arg_val_ary, out int dst_result_val);
 
-	private Function[] _functionArray;
-	private Dictionary<string, int> _functionIndexContainer;
+	private Function[] _functionArray = null;
+	private Dictionary<string, int> _functionIndexContainer = null;
 
     /**
      * @brief コンストラクタ
      */
     public CheatCommandCalculateOption()
     {
-	    this.Init();
+	    this._functionArray = new Function[] {
+            new(CheatCommandUtil.FunctionDeleteData)
+        };
+
+	    this._functionIndexContainer = new();
+
+        for (int add_code_type_i = 0; add_code_type_i < CheatCommandUtil.FUNCTION_ADD_CODE_TYPE_ARRAY.Length; ++add_code_type_i) {
+        	this._functionIndexContainer[CheatCommandUtil.ADD_CODE_NAME_ARRAY[(int)CheatCommandUtil.FUNCTION_ADD_CODE_TYPE_ARRAY[add_code_type_i]]] = add_code_type_i;
+        }
 
         return;
     }
@@ -32,21 +40,11 @@ public class CheatCommandCalculateOption
      */
     public virtual void Init()
     {
-	    this.SetFunction();
-
-        return;
-    }
-
-    /**
-     * @brief SetFunction関数
-     */
-    public void SetFunction()
-    {
 	    this._functionArray = new Function[] {
             new(CheatCommandUtil.FunctionDeleteData)
         };
 
-	    this._functionIndexContainer = new Dictionary<string, int>();
+	    this._functionIndexContainer = new();
 
         for (int add_code_type_i = 0; add_code_type_i < CheatCommandUtil.FUNCTION_ADD_CODE_TYPE_ARRAY.Length; ++add_code_type_i) {
         	this._functionIndexContainer[CheatCommandUtil.ADD_CODE_NAME_ARRAY[(int)CheatCommandUtil.FUNCTION_ADD_CODE_TYPE_ARRAY[add_code_type_i]]] = add_code_type_i;

@@ -13,22 +13,20 @@ namespace Tml {
 public class Buffer
 {
     private byte[] _array = System.Array.Empty<byte>();
-    private int _size;
-    private int _length;
-    private int _readIndex;
-    private int _readResultValue;
-    private int _writeIndex;
-    private int _writeResultValue;
-    private string _charsetName;
-    private bool _autoSizeFlag;
+    private int _size = 0;
+    private int _length = 0;
+    private int _readIndex = 0;
+    private int _readResultValue = 0;
+    private int _writeIndex = 0;
+    private int _writeResultValue = 0;
+    private string _charsetName = "utf-8";
+    private bool _autoSizeFlag = true;
 
     /**
      * @brief コンストラクタ
      */
     public Buffer()
     {
-        this.Init();
-
         return;
     }
 
@@ -38,7 +36,11 @@ public class Buffer
      */
     public Buffer(int size)
     {
-        this.Init(size);
+        if (size > this._array.Length) {
+            this._array = new byte[size];
+        }
+
+        this._size = size;
 
         return;
     }
@@ -51,7 +53,20 @@ public class Buffer
      */
     public Buffer(byte[] buf, int buf_size, bool reference_flg = false)
     {
-        this.Init(buf, buf_size, reference_flg);
+        if (reference_flg) {
+            this._array = buf;
+        } else {
+            if (buf_size > this._array.Length) {
+                this._array = new byte[buf_size];
+            }
+
+            System.Buffer.BlockCopy(buf, 0, this._array, 0, buf_size);
+        }
+
+        this._size = buf_size;
+        this._length = buf_size;
+        this._readIndex = 0;
+        this._writeIndex = buf_size;
 
         return;
     }
@@ -62,7 +77,24 @@ public class Buffer
      */
     public Buffer(Buffer other)
     {
-        this.Init(other);
+        if (other == this) {
+            return;
+        }
+
+        if (other._size > this._array.Length) {
+            this._array = new byte[other._size];
+        }
+
+        System.Buffer.BlockCopy(other._array, 0, this._array, 0, other._size);
+
+        this._size = other._size;
+        this._length = other._length;
+        this._readIndex = other._readIndex;
+        this._readResultValue = other._readResultValue;
+        this._writeIndex = other._writeIndex;
+        this._writeResultValue = other._writeResultValue;
+        this._charsetName = other._charsetName;
+        this._autoSizeFlag = other._autoSizeFlag;
 
         return;
     }
@@ -162,6 +194,15 @@ public class Buffer
         this._autoSizeFlag = other._autoSizeFlag;
 
         return;
+    }
+
+    /**
+     * @brief Clone関数
+     * @return new_this (new_this)
+     */
+    public Buffer Clone()
+    {
+        return (new Buffer(this));
     }
 
     /**

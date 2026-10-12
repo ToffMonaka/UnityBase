@@ -10,8 +10,8 @@ namespace UnityBase.Data {
  */
 public class MstTextEntity
 {
-	public int mstTextId;
-	public string text;
+	public int mstTextId = 0;
+	public string text = "";
 
     /**
      * @brief コンストラクタ
@@ -38,8 +38,8 @@ public class MstTextEntity
  */
 public class MstTextTableFileData
 {
-	public MstTextEntity[] entityArray;
-	public MstTextEntity[] entityArrayByMstTextId;
+	public MstTextEntity[] entityArray = System.Array.Empty<MstTextEntity>();
+	public MstTextEntity[] entityArrayByMstTextId = System.Array.Empty<MstTextEntity>();
 
     /**
      * @brief コンストラクタ

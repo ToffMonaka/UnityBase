@@ -8,7 +8,6 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using TMPro;
-using ToffMonaka.UnityBase.Sound;
 
 namespace ToffMonaka {
 namespace UnityBase.Scene.DialogSystem {

@@ -53,10 +53,6 @@ public class PlayerNodeScript : ToffMonaka.Tml.Scene.NodeScript
     private Vector2 _groundPosition = Vector2.zero;
     private int _groundPositionIntervalCount = 0;
     private int _groundLayerMask = 0;
-
-    private InputAction _moveInputAction = null;
-    private InputAction _jumpInputAction = null;
-    private InputAction _cameraInputAction = null;
 #pragma warning restore 0414
 
     /**
@@ -126,15 +122,6 @@ public class PlayerNodeScript : ToffMonaka.Tml.Scene.NodeScript
         this._groundPosition = this._rigidbody.position;
         this._groundPositionIntervalCount = 0;
         this._groundLayerMask = LayerMask.GetMask("Ground");
-
-        this._moveInputAction = InputSystem.actions.FindAction("Player/Move");
-        this._moveInputAction.Enable();
-
-        this._jumpInputAction = InputSystem.actions.FindAction("Player/Jump");
-        this._jumpInputAction.Enable();
-
-        this._cameraInputAction = InputSystem.actions.FindAction("Player/Camera");
-        this._cameraInputAction.Enable();
 
         return (0);
     }
@@ -210,7 +197,7 @@ public class PlayerNodeScript : ToffMonaka.Tml.Scene.NodeScript
                 input_camera_val = Mouse.current.delta.ReadValue() * 0.1f;
             }
         } else {
-            input_camera_val = this._cameraInputAction.ReadValue<Vector2>() * 0.7f;
+            input_camera_val = SceneUtil.GetManager().GetCameraInputAction().ReadValue<Vector2>() * 0.7f;
         }
 
         if ((virtual_game_pad_node_script.GetCameraCursorFlag()) || (input_camera_val.sqrMagnitude > 0.0f)) {
@@ -225,7 +212,7 @@ public class PlayerNodeScript : ToffMonaka.Tml.Scene.NodeScript
             }
         }
 
-        this._inputMoveValue = this._moveInputAction.ReadValue<Vector2>();
+        this._inputMoveValue = SceneUtil.GetManager().GetMoveInputAction().ReadValue<Vector2>();
 
         if (this._inputMoveValue.sqrMagnitude > 0.0f) {
             var angle_index = Mathf.RoundToInt(Mathf.Atan2(this._inputMoveValue.x, this._inputMoveValue.y) / (45.0f * Mathf.Deg2Rad)) + 4;
@@ -248,9 +235,9 @@ public class PlayerNodeScript : ToffMonaka.Tml.Scene.NodeScript
 
         this.RunMoveAction(this._inputMoveVector.x);
 
-        if (this._jumpInputAction.WasPressedThisFrame()) {
+        if (SceneUtil.GetManager().GetJumpInputAction().WasPressedThisFrame()) {
             this.RunJumpAction(1.0f);
-        } else if (this._jumpInputAction.WasReleasedThisFrame()) {
+        } else if (SceneUtil.GetManager().GetJumpInputAction().WasReleasedThisFrame()) {
             this.RunJumpDecelerateAction(1.0f);
         }
 

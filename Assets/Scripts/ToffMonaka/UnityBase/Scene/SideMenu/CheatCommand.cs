@@ -67,19 +67,17 @@ public static class CheatCommandUtil
  */
 public class CheatCommand
 {
-    private string _code;
-    private int _codeIndex;
-	private CheatCommandCalculateOption _calculateOption;
-	private bool _calculateTestFlag;
-	private CheatCommandParser _parser;
+    private string _code = "";
+    private int _codeIndex = 0;
+	private CheatCommandCalculateOption _calculateOption = null;
+	private bool _calculateTestFlag = false;
+	private CheatCommandParser _parser = null;
 
     /**
      * @brief コンストラクタ
      */
     public CheatCommand()
     {
-        this.Init();
-
         return;
     }
 
@@ -89,7 +87,8 @@ public class CheatCommand
      */
     public CheatCommand(string code)
     {
-        this.Init(code);
+        this._code = code;
+        this._codeIndex = this._code.Length;
 
         return;
     }
@@ -100,7 +99,12 @@ public class CheatCommand
      */
     public CheatCommand(CheatCommand other)
     {
-        this.Init(other);
+        if (other == this) {
+            return;
+        }
+
+        this._code = other._code;
+        this._codeIndex = other._codeIndex;
 
         return;
     }

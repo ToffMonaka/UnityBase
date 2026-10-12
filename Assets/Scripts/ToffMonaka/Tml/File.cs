@@ -10,16 +10,14 @@ namespace Tml {
  */
 public abstract class FileReadDescData
 {
-    public string filePath;
-    public bool addressablesFlag;
+    public string filePath = "";
+    public bool addressablesFlag = false;
 
     /**
      * @brief コンストラクタ
      */
     public FileReadDescData()
     {
-        this.Init();
-
         return;
     }
 
@@ -51,15 +49,13 @@ public abstract class FileReadDescData
 public class FileReadDesc<T> where T : FileReadDescData, new()
 {
     public T data = new();
-    public T parentData;
+    public T parentData = null;
 
     /**
      * @brief コンストラクタ
      */
     public FileReadDesc()
     {
-        this.Init();
-
         return;
     }
 
@@ -69,7 +65,7 @@ public class FileReadDesc<T> where T : FileReadDescData, new()
      */
     public FileReadDesc(string file_path)
     {
-        this.Init(file_path);
+        this.data.filePath = file_path;
 
         return;
     }
@@ -113,16 +109,14 @@ public class FileReadDesc<T> where T : FileReadDescData, new()
  */
 public abstract class FileWriteDescData
 {
-    public string filePath;
-    public bool appendFlag;
+    public string filePath = "";
+    public bool appendFlag = false;
 
     /**
      * @brief コンストラクタ
      */
     public FileWriteDescData()
     {
-        this.Init();
-
         return;
     }
 
@@ -154,15 +148,13 @@ public abstract class FileWriteDescData
 public class FileWriteDesc<T> where T : FileWriteDescData, new()
 {
     public T data = new();
-    public T parentData;
+    public T parentData = null;
 
     /**
      * @brief コンストラクタ
      */
     public FileWriteDesc()
     {
-        this.Init();
-
         return;
     }
 
@@ -172,7 +164,7 @@ public class FileWriteDesc<T> where T : FileWriteDescData, new()
      */
     public FileWriteDesc(string file_path)
     {
-        this.Init(file_path);
+        this.data.filePath = file_path;
 
         return;
     }
@@ -221,8 +213,6 @@ public abstract class File
      */
     public File()
     {
-        this.Init();
-
         return;
     }
 

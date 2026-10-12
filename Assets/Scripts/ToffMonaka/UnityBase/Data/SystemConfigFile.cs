@@ -13,11 +13,11 @@ namespace UnityBase.Data {
  */
 public class SystemConfigFileData
 {
-    public Util.LANGUAGE_TYPE systemLanguageType;
-    public float soundBgmVolume;
-    public bool soundBgmMuteFlag;
-    public float soundSeVolume;
-    public bool soundSeMuteFlag;
+    public Util.LANGUAGE_TYPE systemLanguageType = Util.LANGUAGE_TYPE.ENGLISH;
+    public float soundBgmVolume = 0.5f;
+    public bool soundBgmMuteFlag = false;
+    public float soundSeVolume = 0.5f;
+    public bool soundSeMuteFlag = false;
 
     /**
      * @brief コンストラクタ
@@ -63,8 +63,8 @@ public class SystemConfigFile : ToffMonaka.Tml.File
 	public ToffMonaka.Tml.FileReadDesc<ToffMonaka.Tml.Data.IniFileReadDescData> readDesc = new();
 	public ToffMonaka.Tml.FileWriteDesc<ToffMonaka.Tml.Data.IniFileWriteDescData> writeDesc = new();
 
-    private bool _writeFlag;
-    private bool _deleteFlag;
+    private bool _writeFlag = false;
+    private bool _deleteFlag = false;
 
     /**
      * @brief コンストラクタ

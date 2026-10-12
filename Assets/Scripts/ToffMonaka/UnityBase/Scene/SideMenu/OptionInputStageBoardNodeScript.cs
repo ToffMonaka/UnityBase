@@ -8,7 +8,6 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using TMPro;
 using ToffMonaka.UnityBase.Data;
-using ToffMonaka.UnityBase.Sound;
 
 namespace ToffMonaka {
 namespace UnityBase.Scene.SideMenu {

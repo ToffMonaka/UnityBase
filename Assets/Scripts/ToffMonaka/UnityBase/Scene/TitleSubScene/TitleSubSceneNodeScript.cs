@@ -7,7 +7,6 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using TMPro;
 using DG.Tweening;
-using ToffMonaka.UnityBase.Sound;
 using ToffMonaka.UnityBase.Scene.SelectSubScene;
 using ToffMonaka.UnityBase.Scene.CoverSystem;
 

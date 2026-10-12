@@ -28,8 +28,6 @@ public class BinaryFileData
      */
     public BinaryFileData()
     {
-        this.Init();
-
         return;
     }
 

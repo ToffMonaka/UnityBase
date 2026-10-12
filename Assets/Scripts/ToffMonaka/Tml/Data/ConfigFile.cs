@@ -28,8 +28,6 @@ public class ConfigFileData
      */
     public ConfigFileData()
     {
-        this.Init();
-
         return;
     }
 

@@ -5,7 +5,6 @@
 
 using UnityEngine;
 using UnityEngine.UI;
-using ToffMonaka.UnityBase.Sound;
 
 namespace ToffMonaka {
 namespace UnityBase.Scene.SideMenu {

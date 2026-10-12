@@ -6,7 +6,6 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 using DG.Tweening;
-using ToffMonaka.UnityBase.Sound;
 
 namespace ToffMonaka {
 namespace UnityBase.Scene.SelectSubScene {

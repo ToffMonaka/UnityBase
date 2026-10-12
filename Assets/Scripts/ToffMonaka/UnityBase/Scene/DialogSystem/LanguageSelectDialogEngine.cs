@@ -35,7 +35,7 @@ public class LanguageSelectDialogExtension : SelectDialogExtension
  */
 public class LanguageSelectDialogItemExtension : SelectDialogItemExtension
 {
-    private Util.LANGUAGE_TYPE _languageType;
+    private Util.LANGUAGE_TYPE _languageType = Util.LANGUAGE_TYPE.ENGLISH;
 
     /**
      * @brief コンストラクタ

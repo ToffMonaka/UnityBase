@@ -24,8 +24,6 @@ public class GraphicManager
      */
     public GraphicManager()
     {
-        this.Init();
-
         return;
     }
 

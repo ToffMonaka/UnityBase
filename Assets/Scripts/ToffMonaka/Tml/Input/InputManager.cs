@@ -24,8 +24,6 @@ public class InputManager
      */
     public InputManager()
     {
-        this.Init();
-
         return;
     }
 

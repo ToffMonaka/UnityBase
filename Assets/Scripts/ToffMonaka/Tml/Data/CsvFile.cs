@@ -21,15 +21,13 @@ public static class CsvFileUtil
  */
 public class CsvFileData
 {
-	public string[][] valueArray;
+	public string[][] valueArray = System.Array.Empty<string[]>();
 
     /**
      * @brief コンストラクタ
      */
     public CsvFileData()
     {
-        this.Init();
-
         return;
     }
 

@@ -3,6 +3,9 @@
  * @brief SceneManagerファイル
  */
 
+using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.EnhancedTouch;
+
 namespace ToffMonaka {
 namespace UnityBase.Scene {
 /**
@@ -19,6 +22,11 @@ public class SceneManager : ToffMonaka.Tml.Scene.SceneManager
 {
     public new SceneManagerCreateDesc createDesc{get; private set;} = null;
 
+    private bool _enhancedTouchSupportEnableFlag = false;
+    private InputAction _moveInputAction = null;
+    private InputAction _jumpInputAction = null;
+    private InputAction _cameraInputAction = null;
+
     /**
      * @brief コンストラクタ
      */
@@ -32,6 +40,30 @@ public class SceneManager : ToffMonaka.Tml.Scene.SceneManager
      */
     public override void Init()
     {
+        if (this._moveInputAction != null) {
+            this._moveInputAction.Disable();
+
+            this._moveInputAction  = null;
+        }
+
+        if (this._jumpInputAction != null) {
+            this._jumpInputAction.Disable();
+
+            this._jumpInputAction  = null;
+        }
+
+        if (this._cameraInputAction != null) {
+            this._cameraInputAction.Disable();
+
+            this._cameraInputAction  = null;
+        }
+
+        if (this._enhancedTouchSupportEnableFlag) {
+            EnhancedTouchSupport.Disable();
+
+            this._enhancedTouchSupportEnableFlag = false;
+        }
+
         base.Init();
 
         return;
@@ -47,6 +79,19 @@ public class SceneManager : ToffMonaka.Tml.Scene.SceneManager
         if (base._OnCreate() < 0) {
             return (-1);
         }
+
+        EnhancedTouchSupport.Enable();
+
+        this._enhancedTouchSupportEnableFlag = true;
+
+        this._moveInputAction = InputSystem.actions.FindAction("Player/Move");
+        this._moveInputAction.Enable();
+
+        this._jumpInputAction = InputSystem.actions.FindAction("Player/Jump");
+        this._jumpInputAction.Enable();
+
+        this._cameraInputAction = InputSystem.actions.FindAction("Player/Camera");
+        this._cameraInputAction.Enable();
 
         return (0);
     }
@@ -86,6 +131,33 @@ public class SceneManager : ToffMonaka.Tml.Scene.SceneManager
     public new SubSceneNodeScript GetSubSceneNodeScript()
     {
         return (base.GetSubSceneNodeScript() as SubSceneNodeScript);
+    }
+
+    /**
+     * @brief GetMoveInputAction関数
+     * @return move_input_act (move_input_action)
+     */
+    public InputAction GetMoveInputAction()
+    {
+        return (this._moveInputAction);
+    }
+
+    /**
+     * @brief GetJumpInputAction関数
+     * @return jump_input_act (jump_input_action)
+     */
+    public InputAction GetJumpInputAction()
+    {
+        return (this._jumpInputAction);
+    }
+
+    /**
+     * @brief GetCameraInputAction関数
+     * @return camera_input_act (camera_input_action)
+     */
+    public InputAction GetCameraInputAction()
+    {
+        return (this._cameraInputAction);
     }
 }
 }

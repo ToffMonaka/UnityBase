@@ -9,7 +9,6 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using TMPro;
 using ToffMonaka.UnityBase.Data;
-using ToffMonaka.UnityBase.Sound;
 
 namespace ToffMonaka {
 namespace UnityBase.Scene.SideMenu {
@@ -35,7 +34,7 @@ public class CheatStageBoardNodeScript : StageBoardNodeScript
 
     public new CheatStageBoardNodeScriptCreateDesc createDesc{get; private set;} = null;
 
-    private CheatCommand _cheatCommand = new("");
+    private CheatCommand _cheatCommand = new();
     private CheatCommandCalculateOption _cheatCommandCalculateOption = new();
     private double _calculateValue = 0.0;
     private int _calculateResultValue = 0;

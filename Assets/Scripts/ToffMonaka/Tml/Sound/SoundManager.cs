@@ -24,8 +24,6 @@ public class SoundManager
      */
     public SoundManager()
     {
-        this.Init();
-
         return;
     }
 

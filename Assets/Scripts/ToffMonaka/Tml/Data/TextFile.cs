@@ -27,8 +27,6 @@ public class TextFileData
      */
     public TextFileData()
     {
-        this.Init();
-
         return;
     }
 
@@ -48,9 +46,9 @@ public class TextFileData
  */
 public class TextFileReadDescData : BinaryFileReadDescData
 {
-    public string text;
-    public string charsetName;
-    public StringUtil.NEWLINE_TYPE newlineType;
+    public string text = "";
+    public string charsetName = "utf-8";
+    public StringUtil.NEWLINE_TYPE newlineType = StringUtil.NEWLINE_TYPE.CRLF;
 
     /**
      * @brief コンストラクタ
@@ -94,9 +92,9 @@ public class TextFileReadDescData : BinaryFileReadDescData
  */
 public class TextFileWriteDescData : BinaryFileWriteDescData
 {
-	public int appendNewlineCount;
-    public string charsetName;
-    public StringUtil.NEWLINE_TYPE newlineType;
+	public int appendNewlineCount = 1;
+    public string charsetName = "utf-8";
+    public StringUtil.NEWLINE_TYPE newlineType = StringUtil.NEWLINE_TYPE.CRLF;
 
     /**
      * @brief コンストラクタ

@@ -37,17 +37,14 @@ public static class CheatCommandParserUtil
  */
 public class CheatCommandParserOperator
 {
-    private string _name_;
-    private int _priority;
+    private string _name_ = "";
+    private int _priority= 0;
 
     /**
      * @brief コンストラクタ
      */
     public CheatCommandParserOperator()
     {
-        this._name_ = "";
-        this._priority = 0;
-
         return;
     }
 
@@ -88,25 +85,18 @@ public class CheatCommandParserOperator
  */
 public class CheatCommandParserNode
 {
-    private CheatCommandParserUtil.NODE_TYPE _nodeType;
-    private string _text;
-    private List<CheatCommandParserNode> _argumentNodeContainer;
-    private CheatCommandParserOperator _operator_;
-    private CheatCommandParserNode _leftNode;
-    private CheatCommandParserNode _rightNode;
+    private CheatCommandParserUtil.NODE_TYPE _nodeType = CheatCommandParserUtil.NODE_TYPE.NONE;
+    private string _text = "";
+    private List<CheatCommandParserNode> _argumentNodeContainer = null;
+    private CheatCommandParserOperator _operator_ = null;
+    private CheatCommandParserNode _leftNode = null;
+    private CheatCommandParserNode _rightNode = null;
 
     /**
      * @brief コンストラクタ
      */
     public CheatCommandParserNode()
     {
-        this._nodeType = CheatCommandParserUtil.NODE_TYPE.NONE;
-        this._text = "";
-        this._argumentNodeContainer = null;
-        this._operator_ = null;
-        this._leftNode = null;
-        this._rightNode = null;
-
         return;
     }
 
@@ -117,11 +107,6 @@ public class CheatCommandParserNode
     public CheatCommandParserNode(CheatCommandParserUtil.NODE_TYPE node_type)
     {
         this._nodeType = node_type;
-        this._text = "";
-        this._argumentNodeContainer = null;
-        this._operator_ = null;
-        this._leftNode = null;
-        this._rightNode = null;
 
         return;
     }
@@ -135,10 +120,6 @@ public class CheatCommandParserNode
     {
         this._nodeType = node_type;
         this._text = txt;
-        this._argumentNodeContainer = null;
-        this._operator_ = null;
-        this._leftNode = null;
-        this._rightNode = null;
 
         return;
     }
@@ -154,9 +135,6 @@ public class CheatCommandParserNode
         this._nodeType = node_type;
         this._text = txt;
         this._argumentNodeContainer = arg_node_cont;
-        this._operator_ = null;
-        this._leftNode = null;
-        this._rightNode = null;
 
         return;
     }
@@ -173,7 +151,6 @@ public class CheatCommandParserNode
     {
         this._nodeType = node_type;
         this._text = txt;
-        this._argumentNodeContainer = null;
         this._operator_ = op;
         this._leftNode = left_node;
         this._rightNode = right_node;
@@ -241,19 +218,15 @@ public class CheatCommandParserNode
  */
 public class CheatCommandParser
 {
-    private string _code;
-    private int _codeIndex;
-    private List<CheatCommandParserNode> _nodeContainer;
+    private string _code = "";
+    private int _codeIndex = 0;
+    private List<CheatCommandParserNode> _nodeContainer = new();
 
     /**
      * @brief コンストラクタ
      */
     public CheatCommandParser()
     {
-        this._code = "";
-        this._codeIndex = 0;
-        this._nodeContainer = new List<CheatCommandParserNode>();
-
         this._Parse();
 
         return;
@@ -266,8 +239,6 @@ public class CheatCommandParser
     public CheatCommandParser(string code)
     {
         this._code = code;
-        this._codeIndex = 0;
-        this._nodeContainer = new List<CheatCommandParserNode>();
 
         this._Parse();
 
