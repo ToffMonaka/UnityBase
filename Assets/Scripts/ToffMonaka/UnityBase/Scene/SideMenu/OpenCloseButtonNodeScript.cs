@@ -6,6 +6,7 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 using DG.Tweening;
+using ToffMonaka.UnityBase.Data;
 
 namespace ToffMonaka {
 namespace UnityBase.Scene.SideMenu {
@@ -111,7 +112,7 @@ public class OpenCloseButtonNodeScript : ToffMonaka.Tml.Scene.NodeScript
 
 		switch (this.GetOpenType()) {
 		case 1: {
-            rect_transform.anchoredPosition = new Vector2(-80.0f + -rect_transform.sizeDelta.x - 8.0f, rect_transform.anchoredPosition.y);
+            rect_transform.anchoredPosition = new Vector2(-DataUtil.systemConfigFile.data.graphicUiMarginLeft + -rect_transform.sizeDelta.x - 8.0f, rect_transform.anchoredPosition.y);
 
             var open_close_sequence = DOTween.Sequence();
 
@@ -147,7 +148,7 @@ public class OpenCloseButtonNodeScript : ToffMonaka.Tml.Scene.NodeScript
 
             var open_close_sequence = DOTween.Sequence();
 
-            open_close_sequence.Append(rect_transform.DOAnchorPosX(-80.0f + -rect_transform.sizeDelta.x - 8.0f, 0.1f));
+            open_close_sequence.Append(rect_transform.DOAnchorPosX(-DataUtil.systemConfigFile.data.graphicUiMarginLeft + -rect_transform.sizeDelta.x - 8.0f, 0.1f));
             open_close_sequence.SetLink(this.gameObject);
 
             this.AddOpenCloseSequence(open_close_sequence);
@@ -155,7 +156,7 @@ public class OpenCloseButtonNodeScript : ToffMonaka.Tml.Scene.NodeScript
 			break;
 		}
 		default: {
-            rect_transform.anchoredPosition = new Vector2(-80.0f + -rect_transform.sizeDelta.x - 8.0f, rect_transform.anchoredPosition.y);
+            rect_transform.anchoredPosition = new Vector2(-DataUtil.systemConfigFile.data.graphicUiMarginLeft + -rect_transform.sizeDelta.x - 8.0f, rect_transform.anchoredPosition.y);
 
 			break;
 		}

@@ -50,7 +50,12 @@ public static class DataUtil
         STAGE,
         TEST_2D,
         TEST_3D,
-        IN_PREPARATION
+        IN_PREPARATION,
+        UI_MARGIN,
+        TOP,
+        BOTTOM,
+        LEFT,
+        RIGHT
     }
 
     /**
