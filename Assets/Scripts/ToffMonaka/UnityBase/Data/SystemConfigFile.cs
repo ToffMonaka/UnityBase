@@ -14,6 +14,12 @@ namespace UnityBase.Data {
 public class SystemConfigFileData
 {
     public Util.LANGUAGE_TYPE systemLanguageType = Util.LANGUAGE_TYPE.ENGLISH;
+    public float inputTest2DCameraSpeed = 0.5f;
+    public bool inputTest2DCameraInvertVerticalFlag = false;
+    public bool inputTest2DCameraInvertHorizontalFlag = false;
+    public float inputTest3DCameraSpeed = 0.5f;
+    public bool inputTest3DCameraInvertVerticalFlag = true;
+    public bool inputTest3DCameraInvertHorizontalFlag = false;
     public float graphicUiMarginTop = 8.0f;
     public float graphicUiMarginBottom = 8.0f;
     public float graphicUiMarginLeft = 80.0f;
@@ -49,6 +55,12 @@ public class SystemConfigFileData
 		}
 		}
 
+        this.inputTest2DCameraSpeed = 0.5f;
+        this.inputTest2DCameraInvertVerticalFlag = false;
+        this.inputTest2DCameraInvertHorizontalFlag = false;
+        this.inputTest3DCameraSpeed = 0.5f;
+        this.inputTest3DCameraInvertVerticalFlag = true;
+        this.inputTest3DCameraInvertHorizontalFlag = false;
         this.graphicUiMarginTop = 8.0f;
         this.graphicUiMarginBottom = 8.0f;
         this.graphicUiMarginLeft = 80.0f;
@@ -145,6 +157,41 @@ public class SystemConfigFile : ToffMonaka.Tml.File
 	        key_cont = ini_file.data.GetKeyContainer("INPUT");
 
 	        if (key_cont != null) {
+		        val = ini_file.data.GetValue(key_cont, "TEST_2D_CAMERA_SPEED");
+
+		        if (val != null) {
+                    this.data.inputTest2DCameraSpeed = float.Parse(val);
+		        }
+
+		        val = ini_file.data.GetValue(key_cont, "TEST_2D_CAMERA_INVERT_VERTICAL_FLG");
+
+		        if (val != null) {
+                    this.data.inputTest2DCameraInvertVerticalFlag = System.Convert.ToBoolean(int.Parse(val));
+		        }
+
+		        val = ini_file.data.GetValue(key_cont, "TEST_2D_CAMERA_INVERT_HORIZONTAL_FLG");
+
+		        if (val != null) {
+                    this.data.inputTest2DCameraInvertVerticalFlag = System.Convert.ToBoolean(int.Parse(val));
+		        }
+
+		        val = ini_file.data.GetValue(key_cont, "TEST_3D_CAMERA_SPEED");
+
+		        if (val != null) {
+                    this.data.inputTest3DCameraSpeed = float.Parse(val);
+		        }
+
+		        val = ini_file.data.GetValue(key_cont, "TEST_3D_CAMERA_INVERT_VERTICAL_FLG");
+
+		        if (val != null) {
+                    this.data.inputTest3DCameraInvertVerticalFlag = System.Convert.ToBoolean(int.Parse(val));
+		        }
+
+		        val = ini_file.data.GetValue(key_cont, "TEST_3D_CAMERA_INVERT_HORIZONTAL_FLG");
+
+		        if (val != null) {
+                    this.data.inputTest3DCameraInvertVerticalFlag = System.Convert.ToBoolean(int.Parse(val));
+		        }
 	        }
         }
 
@@ -237,6 +284,13 @@ public class SystemConfigFile : ToffMonaka.Tml.File
 
         {// Input Section Write
 	        txt_file.data.lineTextContainer.Add(ToffMonaka.Tml.Data.IniFileUtil.SECTION_START_CODE + "INPUT" + ToffMonaka.Tml.Data.IniFileUtil.SECTION_END_CODE);
+
+	        txt_file.data.lineTextContainer.Add("TEST_2D_CAMERA_SPEED" + ToffMonaka.Tml.Data.IniFileUtil.EQUAL_CODE + this.data.inputTest2DCameraSpeed.ToString());
+	        txt_file.data.lineTextContainer.Add("TEST_2D_CAMERA_INVERT_VERTICAL_FLG" + ToffMonaka.Tml.Data.IniFileUtil.EQUAL_CODE + System.Convert.ToInt32(this.data.inputTest2DCameraInvertVerticalFlag).ToString());
+	        txt_file.data.lineTextContainer.Add("TEST_2D_CAMERA_INVERT_HORIZONTAL_FLG" + ToffMonaka.Tml.Data.IniFileUtil.EQUAL_CODE + System.Convert.ToInt32(this.data.inputTest2DCameraInvertHorizontalFlag).ToString());
+	        txt_file.data.lineTextContainer.Add("TEST_3D_CAMERA_SPEED" + ToffMonaka.Tml.Data.IniFileUtil.EQUAL_CODE + this.data.inputTest3DCameraSpeed.ToString());
+	        txt_file.data.lineTextContainer.Add("TEST_3D_CAMERA_INVERT_VERTICAL_FLG" + ToffMonaka.Tml.Data.IniFileUtil.EQUAL_CODE + System.Convert.ToInt32(this.data.inputTest3DCameraInvertVerticalFlag).ToString());
+	        txt_file.data.lineTextContainer.Add("TEST_3D_CAMERA_INVERT_HORIZONTAL_FLG" + ToffMonaka.Tml.Data.IniFileUtil.EQUAL_CODE + System.Convert.ToInt32(this.data.inputTest3DCameraInvertHorizontalFlag).ToString());
 	        txt_file.data.lineTextContainer.Add(System.String.Empty);
         }
 

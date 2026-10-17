@@ -19,6 +19,7 @@ public static class DataUtil
     public enum MST_TEXT_ID : int
     {
         NONE = 0,
+        JOIN_SPACE,
         OK,
 		CANCEL,
         FORWARD,
@@ -40,10 +41,10 @@ public static class DataUtil
         INPUT,
         GRAPHIC,
         SOUND,
-        BGM_VOLUME,
-        BGM_MUTE,
-        SE_VOLUME,
-        SE_MUTE,
+        BGM,
+        SE,
+        VOLUME,
+        MUTE,
         CHEAT,
         COMMAND,
         DELETE_DATA,
@@ -55,7 +56,12 @@ public static class DataUtil
         TOP,
         BOTTOM,
         LEFT,
-        RIGHT
+        RIGHT,
+        CAMERA,
+        SPEED,
+        VERTICAL,
+        HORIZONTAL,
+        INVERT
     }
 
     /**
@@ -104,6 +110,15 @@ public static class DataUtil
     public static string GetText(DataUtil.MST_TEXT_ID mst_txt_id)
     {
         return (DataUtil.mstTextTableFile.data.entityArrayByMstTextId[(int)mst_txt_id].text);
+    }
+
+    /**
+     * @brief GetJoinSpaceText関数
+     * @return join_space_txt (join_space_text)
+     */
+    public static string GetJoinSpaceText()
+    {
+        return (DataUtil.mstTextTableFile.data.entityArrayByMstTextId[(int)DataUtil.MST_TEXT_ID.JOIN_SPACE].text);
     }
 }
 }

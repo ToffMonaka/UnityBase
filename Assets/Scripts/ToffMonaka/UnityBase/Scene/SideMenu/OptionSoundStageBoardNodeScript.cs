@@ -112,8 +112,8 @@ public class OptionSoundStageBoardNodeScript : StageBoardNodeScript
 
         this._nameText.SetText(DataUtil.GetText(DataUtil.MST_TEXT_ID.OPTION) + " > " + DataUtil.GetText(DataUtil.MST_TEXT_ID.SOUND));
 
-        this._soundBgmMuteNameText.SetText(DataUtil.GetText(DataUtil.MST_TEXT_ID.BGM_MUTE));
-        this._soundSeMuteNameText.SetText(DataUtil.GetText(DataUtil.MST_TEXT_ID.SE_MUTE));
+        this._soundBgmMuteNameText.SetText(DataUtil.GetText(DataUtil.MST_TEXT_ID.BGM) + DataUtil.GetJoinSpaceText() + DataUtil.GetText(DataUtil.MST_TEXT_ID.MUTE));
+        this._soundSeMuteNameText.SetText(DataUtil.GetText(DataUtil.MST_TEXT_ID.SE) + DataUtil.GetJoinSpaceText() + DataUtil.GetText(DataUtil.MST_TEXT_ID.MUTE));
         this._okButtonNameText.SetText(DataUtil.GetText(DataUtil.MST_TEXT_ID.OK));
         this._cancelButtonNameText.SetText(DataUtil.GetText(DataUtil.MST_TEXT_ID.CANCEL));
 
@@ -411,7 +411,7 @@ public class OptionSoundStageBoardNodeScript : StageBoardNodeScript
     {
         this._soundBgmVolume = (float)System.Math.Clamp(System.Math.Round(sound_bgm_vol, 1, System.MidpointRounding.AwayFromZero), 0.0, 1.0);
 
-        this._soundBgmVolumeNameText.SetText(DataUtil.GetText(DataUtil.MST_TEXT_ID.BGM_VOLUME) + " " + (this._soundBgmVolume * 10.0f).ToString());
+        this._soundBgmVolumeNameText.SetText(DataUtil.GetText(DataUtil.MST_TEXT_ID.BGM) + DataUtil.GetJoinSpaceText() + DataUtil.GetText(DataUtil.MST_TEXT_ID.VOLUME) + " " + (this._soundBgmVolume * 10.0f).ToString());
         this._soundBgmVolumeSlider.SetValueWithoutNotify(this._soundBgmVolume * 10.0f);
 
         return;
@@ -456,7 +456,7 @@ public class OptionSoundStageBoardNodeScript : StageBoardNodeScript
     {
         this._soundSeVolume = (float)System.Math.Clamp(System.Math.Round(sound_se_vol, 1, System.MidpointRounding.AwayFromZero), 0.0, 1.0);
 
-        this._soundSeVolumeNameText.SetText(DataUtil.GetText(DataUtil.MST_TEXT_ID.SE_VOLUME) + " " + (this._soundSeVolume * 10.0f).ToString());
+        this._soundSeVolumeNameText.SetText(DataUtil.GetText(DataUtil.MST_TEXT_ID.SE) + DataUtil.GetJoinSpaceText() + DataUtil.GetText(DataUtil.MST_TEXT_ID.VOLUME) + " " + (this._soundSeVolume * 10.0f).ToString());
         this._soundSeVolumeSlider.SetValueWithoutNotify(this._soundSeVolume * 10.0f);
 
         return;

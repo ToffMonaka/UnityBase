@@ -7,6 +7,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using Unity.Cinemachine;
 using EnhancedTouch = UnityEngine.InputSystem.EnhancedTouch;
+using ToffMonaka.UnityBase.Data;
 
 namespace ToffMonaka {
 namespace UnityBase.Scene.Test3DStageSubScene {
@@ -204,20 +205,28 @@ public class PlayerNodeScript : ToffMonaka.Tml.Scene.NodeScript
                         continue;
                     }
 
-                    input_camera_val = touch.delta * 0.25f;
+                    input_camera_val = touch.delta * (0.5f * DataUtil.systemConfigFile.data.inputTest3DCameraSpeed);
 
                     break;
                 }
             } else {
-                input_camera_val = Mouse.current.delta.ReadValue() * 0.25f;
+                input_camera_val = Mouse.current.delta.ReadValue() * (0.5f * DataUtil.systemConfigFile.data.inputTest3DCameraSpeed);
             }
         } else {
-            input_camera_val = SceneUtil.GetManager().GetCameraInputAction().ReadValue<Vector2>() * 2.0f;
+            input_camera_val = SceneUtil.GetManager().GetCameraInputAction().ReadValue<Vector2>() * (5.0f * DataUtil.systemConfigFile.data.inputTest3DCameraSpeed);
+        }
+
+        if (DataUtil.systemConfigFile.data.inputTest3DCameraInvertVerticalFlag) {
+            input_camera_val.y = -input_camera_val.y;
+        }
+
+        if (DataUtil.systemConfigFile.data.inputTest3DCameraInvertHorizontalFlag) {
+            input_camera_val.x = -input_camera_val.x;
         }
 
         if ((virtual_game_pad_node_script.GetCameraCursorFlag()) || (input_camera_val.sqrMagnitude > 0.0f)) {
             this._cameraPanTilt.PanAxis.Value = this._cameraPanTilt.PanAxis.ClampValue(this._cameraPanTilt.PanAxis.Value + input_camera_val.x);
-            this._cameraPanTilt.TiltAxis.Value = this._cameraPanTilt.TiltAxis.ClampValue(this._cameraPanTilt.TiltAxis.Value - input_camera_val.y);
+            this._cameraPanTilt.TiltAxis.Value = this._cameraPanTilt.TiltAxis.ClampValue(this._cameraPanTilt.TiltAxis.Value + input_camera_val.y);
         }
 
         this._inputMoveValue = SceneUtil.GetManager().GetMoveInputAction().ReadValue<Vector2>();

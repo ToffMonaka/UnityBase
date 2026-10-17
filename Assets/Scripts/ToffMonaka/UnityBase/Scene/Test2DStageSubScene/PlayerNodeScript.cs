@@ -6,6 +6,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using EnhancedTouch = UnityEngine.InputSystem.EnhancedTouch;
+using ToffMonaka.UnityBase.Data;
 
 namespace ToffMonaka {
 namespace UnityBase.Scene.Test2DStageSubScene {
@@ -189,19 +190,27 @@ public class PlayerNodeScript : ToffMonaka.Tml.Scene.NodeScript
                         continue;
                     }
 
-                    input_camera_val = touch.delta * 0.1f;
+                    input_camera_val = touch.delta * (0.1f * DataUtil.systemConfigFile.data.inputTest2DCameraSpeed);
 
                     break;
                 }
             } else {
-                input_camera_val = Mouse.current.delta.ReadValue() * 0.1f;
+                input_camera_val = Mouse.current.delta.ReadValue() * (0.1f * DataUtil.systemConfigFile.data.inputTest2DCameraSpeed);
             }
         } else {
-            input_camera_val = SceneUtil.GetManager().GetCameraInputAction().ReadValue<Vector2>() * 0.7f;
+            input_camera_val = SceneUtil.GetManager().GetCameraInputAction().ReadValue<Vector2>() * (1.0f * DataUtil.systemConfigFile.data.inputTest2DCameraSpeed);
+        }
+
+        if (DataUtil.systemConfigFile.data.inputTest2DCameraInvertVerticalFlag) {
+            input_camera_val.y = -input_camera_val.y;
+        }
+
+        if (DataUtil.systemConfigFile.data.inputTest2DCameraInvertHorizontalFlag) {
+            input_camera_val.x = -input_camera_val.x;
         }
 
         if ((virtual_game_pad_node_script.GetCameraCursorFlag()) || (input_camera_val.sqrMagnitude > 0.0f)) {
-            this._cameraTargetNode.transform.localPosition = new Vector3(Mathf.Clamp(this._cameraTargetNode.transform.localPosition.x + input_camera_val.x * 0.5f, -10.0f, 10.0f), Mathf.Clamp(this._cameraTargetNode.transform.localPosition.y + input_camera_val.y * 0.5f, -10.0f, 10.0f), 0.0f);
+            this._cameraTargetNode.transform.localPosition = new Vector3(Mathf.Clamp(this._cameraTargetNode.transform.localPosition.x + input_camera_val.x, -10.0f, 10.0f), Mathf.Clamp(this._cameraTargetNode.transform.localPosition.y + input_camera_val.y, -10.0f, 10.0f), 0.0f);
         } else {
             if (this._cameraTargetNode.transform.localPosition.sqrMagnitude > 0.0f) {
                 this._cameraTargetNode.transform.localPosition = Vector3.Lerp(this._cameraTargetNode.transform.localPosition, Vector3.zero, 0.2f);
