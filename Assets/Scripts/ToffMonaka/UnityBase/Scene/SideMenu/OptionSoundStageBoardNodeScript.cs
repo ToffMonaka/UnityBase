@@ -24,23 +24,19 @@ public class OptionSoundStageBoardNodeScriptCreateDesc : StageBoardNodeScriptCre
 public class OptionSoundStageBoardNodeScript : StageBoardNodeScript
 {
     [SerializeField] private ScrollRect _scrollRect = null;
-    [SerializeField] private TMP_Text _soundBgmVolumeNameText = null;
-    [SerializeField] private Slider _soundBgmVolumeSlider = null;
-    [SerializeField] private TMP_Text _soundBgmMuteNameText = null;
-    [SerializeField] private Toggle _soundBgmMuteToggle = null;
-    [SerializeField] private TMP_Text _soundSeVolumeNameText = null;
-    [SerializeField] private Slider _soundSeVolumeSlider = null;
-    [SerializeField] private TMP_Text _soundSeMuteNameText = null;
-    [SerializeField] private Toggle _soundSeMuteToggle = null;
+    [SerializeField] private TMP_Text _bgmVolumeNameText = null;
+    [SerializeField] private TMP_Text _bgmVolumeValueText = null;
+    [SerializeField] private Slider _bgmVolumeSlider = null;
+    [SerializeField] private TMP_Text _seVolumeNameText = null;
+    [SerializeField] private TMP_Text _seVolumeValueText = null;
+    [SerializeField] private Slider _seVolumeSlider = null;
     [SerializeField] private TMP_Text _okButtonNameText = null;
     [SerializeField] private TMP_Text _cancelButtonNameText = null;
 
     public new OptionSoundStageBoardNodeScriptCreateDesc createDesc{get; private set;} = null;
 
-    private float _soundBgmVolume = 1.0f;
-    private bool _soundBgmMuteFlag = false;
-    private float _soundSeVolume = 1.0f;
-    private bool _soundSeMuteFlag = false;
+    private float _bgmVolume = 0.5f;
+    private float _seVolume = 0.5f;
     private bool _restartFlag = false;
 
     /**
@@ -112,8 +108,9 @@ public class OptionSoundStageBoardNodeScript : StageBoardNodeScript
 
         this._nameText.SetText(DataUtil.GetText(DataUtil.MST_TEXT_ID.OPTION) + " > " + DataUtil.GetText(DataUtil.MST_TEXT_ID.SOUND));
 
-        this._soundBgmMuteNameText.SetText(DataUtil.GetText(DataUtil.MST_TEXT_ID.BGM) + DataUtil.GetJoinSpaceText() + DataUtil.GetText(DataUtil.MST_TEXT_ID.MUTE));
-        this._soundSeMuteNameText.SetText(DataUtil.GetText(DataUtil.MST_TEXT_ID.SE) + DataUtil.GetJoinSpaceText() + DataUtil.GetText(DataUtil.MST_TEXT_ID.MUTE));
+        this._bgmVolumeNameText.SetText(DataUtil.GetText(DataUtil.MST_TEXT_ID.BGM) + DataUtil.GetJoinSpaceText() + DataUtil.GetText(DataUtil.MST_TEXT_ID.VOLUME));
+        this._seVolumeNameText.SetText(DataUtil.GetText(DataUtil.MST_TEXT_ID.SE) + DataUtil.GetJoinSpaceText() + DataUtil.GetText(DataUtil.MST_TEXT_ID.VOLUME));
+
         this._okButtonNameText.SetText(DataUtil.GetText(DataUtil.MST_TEXT_ID.OK));
         this._cancelButtonNameText.SetText(DataUtil.GetText(DataUtil.MST_TEXT_ID.CANCEL));
 
@@ -158,10 +155,8 @@ public class OptionSoundStageBoardNodeScript : StageBoardNodeScript
 
         this._scrollRect.verticalNormalizedPosition = 1.0f;
 
-        this.SetSoundBgmVolume(DataUtil.systemConfigFile.data.soundBgmVolume);
-        this.SetSoundBgmMuteFlag(DataUtil.systemConfigFile.data.soundBgmMuteFlag);
-        this.SetSoundSeVolume(DataUtil.systemConfigFile.data.soundSeVolume);
-        this.SetSoundSeMuteFlag(DataUtil.systemConfigFile.data.soundSeMuteFlag);
+        this._SetBgmVolume(DataUtil.systemConfigFile.data.soundBgmVolume);
+        this._SetSeVolume(DataUtil.systemConfigFile.data.soundSeVolume);
 
         return;
     }
@@ -177,22 +172,22 @@ public class OptionSoundStageBoardNodeScript : StageBoardNodeScript
     }
 
     /**
-     * @brief OnSoundBgmVolumeSliderValueChanged関数
+     * @brief OnBgmVolumeSliderValueChanged関数
      * @param event_val (event_value)
      */
-    public void OnSoundBgmVolumeSliderValueChanged(float event_val)
+    public void OnBgmVolumeSliderValueChanged(float event_val)
     {
         if (!this.IsControllable()) {
             return;
         }
 
-        var old_val = this._soundBgmVolume;
+        var old_val = this._bgmVolume;
 
-        this.SetSoundBgmVolume(this._soundBgmVolumeSlider.value / 10.0f);
+        this._SetBgmVolume(this._bgmVolumeSlider.value / 10.0f);
 
-        SceneUtil.GetManager().SetSoundBgmVolume(this._soundBgmVolume);
+        SceneUtil.GetManager().SetSoundBgmVolume(this._bgmVolume);
 
-        if (this._soundBgmVolume != old_val) {
+        if (this._bgmVolume != old_val) {
             SceneUtil.GetManager().PlaySoundSe((int)SceneUtil.SOUND_SE_INDEX.OK2);
         }
 
@@ -200,10 +195,10 @@ public class OptionSoundStageBoardNodeScript : StageBoardNodeScript
     }
 
     /**
-     * @brief OnSoundBgmVolumeSliderLeftButtonPointerClick関数
+     * @brief OnBgmVolumeSliderLeftButtonPointerClick関数
      * @param event_dat (event_data)
      */
-    public void OnSoundBgmVolumeSliderLeftButtonPointerClick(PointerEventData event_dat)
+    public void OnBgmVolumeSliderLeftButtonPointerClick(PointerEventData event_dat)
     {
         if (!this.IsControllable()) {
             return;
@@ -211,18 +206,18 @@ public class OptionSoundStageBoardNodeScript : StageBoardNodeScript
 
         SceneUtil.GetManager().PlaySoundSe((int)SceneUtil.SOUND_SE_INDEX.OK2);
 
-        this.SetSoundBgmVolume(System.Math.Max(this._soundBgmVolume - 0.1f, 0.0f));
+        this._SetBgmVolume(System.Math.Max(this._bgmVolume - 0.1f, 0.0f));
 
-        SceneUtil.GetManager().SetSoundBgmVolume(this._soundBgmVolume);
+        SceneUtil.GetManager().SetSoundBgmVolume(this._bgmVolume);
 
         return;
     }
 
     /**
-     * @brief OnSoundBgmVolumeSliderRightButtonPointerClick関数
+     * @brief OnBgmVolumeSliderRightButtonPointerClick関数
      * @param event_dat (event_data)
      */
-    public void OnSoundBgmVolumeSliderRightButtonPointerClick(PointerEventData event_dat)
+    public void OnBgmVolumeSliderRightButtonPointerClick(PointerEventData event_dat)
     {
         if (!this.IsControllable()) {
             return;
@@ -230,53 +225,30 @@ public class OptionSoundStageBoardNodeScript : StageBoardNodeScript
 
         SceneUtil.GetManager().PlaySoundSe((int)SceneUtil.SOUND_SE_INDEX.OK2);
 
-        this.SetSoundBgmVolume(System.Math.Min(this._soundBgmVolume + 0.1f, 1.0f));
+        this._SetBgmVolume(System.Math.Min(this._bgmVolume + 0.1f, 1.0f));
 
-        SceneUtil.GetManager().SetSoundBgmVolume(this._soundBgmVolume);
-
-        return;
-    }
-
-    /**
-     * @brief OnSoundBgmMuteToggleValueChanged関数
-     * @param event_val (event_value)
-     */
-    public void OnSoundBgmMuteToggleValueChanged(bool event_val)
-    {
-        if (!this.IsControllable()) {
-            return;
-        }
-
-        SceneUtil.GetManager().SetSoundBgmMuteFlag(this._soundBgmMuteToggle.isOn);
-
-        if (this._soundBgmMuteToggle.isOn) {
-            SceneUtil.GetManager().PlaySoundSe((int)SceneUtil.SOUND_SE_INDEX.OK2);
-        } else {
-            SceneUtil.GetManager().PlaySoundSe((int)SceneUtil.SOUND_SE_INDEX.CANCEL);
-        }
-
-        this.SetSoundBgmMuteFlag(this._soundBgmMuteToggle.isOn);
+        SceneUtil.GetManager().SetSoundBgmVolume(this._bgmVolume);
 
         return;
     }
 
     /**
-     * @brief OnSoundSeVolumeSliderValueChanged関数
+     * @brief OnSeVolumeSliderValueChanged関数
      * @param event_val (event_value)
      */
-    public void OnSoundSeVolumeSliderValueChanged(float event_val)
+    public void OnSeVolumeSliderValueChanged(float event_val)
     {
         if (!this.IsControllable()) {
             return;
         }
 
-        var old_val = this._soundSeVolume;
+        var old_val = this._seVolume;
 
-        this.SetSoundSeVolume(this._soundSeVolumeSlider.value / 10.0f);
+        this._SetSeVolume(this._seVolumeSlider.value / 10.0f);
      
-        SceneUtil.GetManager().SetSoundSeVolume(this._soundSeVolume);
+        SceneUtil.GetManager().SetSoundSeVolume(this._seVolume);
 
-        if (this._soundSeVolume != old_val) {
+        if (this._seVolume != old_val) {
             SceneUtil.GetManager().PlaySoundSe((int)SceneUtil.SOUND_SE_INDEX.OK2);
         }
 
@@ -284,10 +256,10 @@ public class OptionSoundStageBoardNodeScript : StageBoardNodeScript
     }
 
     /**
-     * @brief OnSoundSeVolumeSliderLeftButtonPointerClick関数
+     * @brief OnSeVolumeSliderLeftButtonPointerClick関数
      * @param event_dat (event_data)
      */
-    public void OnSoundSeVolumeSliderLeftButtonPointerClick(PointerEventData event_dat)
+    public void OnSeVolumeSliderLeftButtonPointerClick(PointerEventData event_dat)
     {
         if (!this.IsControllable()) {
             return;
@@ -295,18 +267,18 @@ public class OptionSoundStageBoardNodeScript : StageBoardNodeScript
 
         SceneUtil.GetManager().PlaySoundSe((int)SceneUtil.SOUND_SE_INDEX.OK2);
 
-        this.SetSoundSeVolume(System.Math.Max(this._soundSeVolume - 0.1f, 0.0f));
+        this._SetSeVolume(System.Math.Max(this._seVolume - 0.1f, 0.0f));
 
-        SceneUtil.GetManager().SetSoundSeVolume(this._soundSeVolume);
+        SceneUtil.GetManager().SetSoundSeVolume(this._seVolume);
 
         return;
     }
 
     /**
-     * @brief OnSoundSeVolumeSliderRightButtonPointerClick関数
+     * @brief OnSeVolumeSliderRightButtonPointerClick関数
      * @param event_dat (event_data)
      */
-    public void OnSoundSeVolumeSliderRightButtonPointerClick(PointerEventData event_dat)
+    public void OnSeVolumeSliderRightButtonPointerClick(PointerEventData event_dat)
     {
         if (!this.IsControllable()) {
             return;
@@ -314,32 +286,9 @@ public class OptionSoundStageBoardNodeScript : StageBoardNodeScript
 
         SceneUtil.GetManager().PlaySoundSe((int)SceneUtil.SOUND_SE_INDEX.OK2);
 
-        this.SetSoundSeVolume(System.Math.Min(this._soundSeVolume + 0.1f, 1.0f));
+        this._SetSeVolume(System.Math.Min(this._seVolume + 0.1f, 1.0f));
 
-        SceneUtil.GetManager().SetSoundSeVolume(this._soundSeVolume);
-
-        return;
-    }
-
-    /**
-     * @brief OnSoundSeMuteToggleValueChanged関数
-     * @param event_val (event_value)
-     */
-    public void OnSoundSeMuteToggleValueChanged(bool event_val)
-    {
-        if (!this.IsControllable()) {
-            return;
-        }
-
-        SceneUtil.GetManager().SetSoundSeMuteFlag(this._soundSeMuteToggle.isOn);
-
-        if (this._soundSeMuteToggle.isOn) {
-            SceneUtil.GetManager().PlaySoundSe((int)SceneUtil.SOUND_SE_INDEX.OK2);
-        } else {
-            SceneUtil.GetManager().PlaySoundSe((int)SceneUtil.SOUND_SE_INDEX.CANCEL);
-        }
-
-        this.SetSoundSeMuteFlag(this._soundSeMuteToggle.isOn);
+        SceneUtil.GetManager().SetSoundSeVolume(this._seVolume);
 
         return;
     }
@@ -356,10 +305,8 @@ public class OptionSoundStageBoardNodeScript : StageBoardNodeScript
 
         SceneUtil.GetManager().PlaySoundSe((int)SceneUtil.SOUND_SE_INDEX.OK2);
 
-        DataUtil.systemConfigFile.data.soundBgmVolume = this._soundBgmVolume;
-        DataUtil.systemConfigFile.data.soundBgmMuteFlag = this._soundBgmMuteFlag;
-        DataUtil.systemConfigFile.data.soundSeVolume = this._soundSeVolume;
-        DataUtil.systemConfigFile.data.soundSeMuteFlag = this._soundSeMuteFlag;
+        DataUtil.systemConfigFile.data.soundBgmVolume = this._bgmVolume;
+        DataUtil.systemConfigFile.data.soundSeVolume = this._seVolume;
 
         DataUtil.systemConfigFile.Write(true);
 
@@ -385,9 +332,7 @@ public class OptionSoundStageBoardNodeScript : StageBoardNodeScript
         SceneUtil.GetManager().PlaySoundSe((int)SceneUtil.SOUND_SE_INDEX.CANCEL);
 
         SceneUtil.GetManager().SetSoundBgmVolume(DataUtil.systemConfigFile.data.soundBgmVolume);
-        SceneUtil.GetManager().SetSoundBgmMuteFlag(DataUtil.systemConfigFile.data.soundBgmMuteFlag);
         SceneUtil.GetManager().SetSoundSeVolume(DataUtil.systemConfigFile.data.soundSeVolume);
-        SceneUtil.GetManager().SetSoundSeMuteFlag(DataUtil.systemConfigFile.data.soundSeMuteFlag);
 
         this._onCloseStageBoard(this);
 
@@ -395,91 +340,29 @@ public class OptionSoundStageBoardNodeScript : StageBoardNodeScript
     }
 
     /**
-     * @brief GetSoundBgmVolume関数
-     * @return sound_bgm_vol (sound_bgm_volume)
+     * @brief _SetBgmVolume関数
+     * @param bgm_vol (bgm_volume)
      */
-    public float GetSoundBgmVolume()
+    private void _SetBgmVolume(float bgm_vol)
     {
-        return (this._soundBgmVolume);
-    }
+        this._bgmVolume = (float)System.Math.Clamp(System.Math.Round(bgm_vol, 1, System.MidpointRounding.AwayFromZero), 0.0, 1.0);
 
-    /**
-     * @brief SetSoundBgmVolume関数
-     * @param sound_bgm_vol (sound_bgm_volume)
-     */
-    public void SetSoundBgmVolume(float sound_bgm_vol)
-    {
-        this._soundBgmVolume = (float)System.Math.Clamp(System.Math.Round(sound_bgm_vol, 1, System.MidpointRounding.AwayFromZero), 0.0, 1.0);
-
-        this._soundBgmVolumeNameText.SetText(DataUtil.GetText(DataUtil.MST_TEXT_ID.BGM) + DataUtil.GetJoinSpaceText() + DataUtil.GetText(DataUtil.MST_TEXT_ID.VOLUME) + " " + (this._soundBgmVolume * 10.0f).ToString());
-        this._soundBgmVolumeSlider.SetValueWithoutNotify(this._soundBgmVolume * 10.0f);
+        this._bgmVolumeValueText.SetText((this._bgmVolume * 10.0f).ToString());
+        this._bgmVolumeSlider.SetValueWithoutNotify(this._bgmVolume * 10.0f);
 
         return;
     }
 
     /**
-     * @brief GetSoundBgmMuteFlag関数
-     * @return sound_bgm_mute_flg (sound_bgm_mute_flag)
+     * @brief _SetSeVolume関数
+     * @param se_vol (se_volume)
      */
-    public bool GetSoundBgmMuteFlag()
+    private void _SetSeVolume(float se_vol)
     {
-        return (this._soundBgmMuteFlag);
-    }
+        this._seVolume = (float)System.Math.Clamp(System.Math.Round(se_vol, 1, System.MidpointRounding.AwayFromZero), 0.0, 1.0);
 
-    /**
-     * @brief SetSoundBgmMuteFlag関数
-     * @param sound_bgm_mute_flg (sound_bgm_mute_flag)
-     */
-    public void SetSoundBgmMuteFlag(bool sound_bgm_mute_flg)
-    {
-        this._soundBgmMuteFlag = sound_bgm_mute_flg;
-
-        this._soundBgmMuteToggle.SetIsOnWithoutNotify(this._soundBgmMuteFlag);
-
-        return;
-    }
-
-    /**
-     * @brief GetSoundSeVolume関数
-     * @return sound_se_vol (sound_se_volume)
-     */
-    public float GetSoundSeVolume()
-    {
-        return (this._soundSeVolume);
-    }
-
-    /**
-     * @brief SetSoundSeVolume関数
-     * @param sound_se_vol (sound_se_volume)
-     */
-    public void SetSoundSeVolume(float sound_se_vol)
-    {
-        this._soundSeVolume = (float)System.Math.Clamp(System.Math.Round(sound_se_vol, 1, System.MidpointRounding.AwayFromZero), 0.0, 1.0);
-
-        this._soundSeVolumeNameText.SetText(DataUtil.GetText(DataUtil.MST_TEXT_ID.SE) + DataUtil.GetJoinSpaceText() + DataUtil.GetText(DataUtil.MST_TEXT_ID.VOLUME) + " " + (this._soundSeVolume * 10.0f).ToString());
-        this._soundSeVolumeSlider.SetValueWithoutNotify(this._soundSeVolume * 10.0f);
-
-        return;
-    }
-
-    /**
-     * @brief GetSoundSeMuteFlag関数
-     * @return sound_se_mute_flg (sound_se_mute_flag)
-     */
-    public bool GetSoundSeMuteFlag()
-    {
-        return (this._soundSeMuteFlag);
-    }
-
-    /**
-     * @brief SetSoundSeMuteFlag関数
-     * @param sound_se_mute_flg (sound_se_mute_flag)
-     */
-    public void SetSoundSeMuteFlag(bool sound_se_mute_flg)
-    {
-        this._soundSeMuteFlag = sound_se_mute_flg;
-
-        this._soundSeMuteToggle.SetIsOnWithoutNotify(this._soundSeMuteFlag);
+        this._seVolumeValueText.SetText((this._seVolume * 10.0f).ToString());
+        this._seVolumeSlider.SetValueWithoutNotify(this._seVolume * 10.0f);
 
         return;
     }

@@ -22,11 +22,9 @@ public class SceneManagerCreateDesc
     public string soundBgmPrefabFilePath = "";
     public AudioClip[] soundBgmAudioClipArray = null;
 	public float soundBgmVolume = 1.0f;
-	public bool soundBgmMuteFlag = false;
     public string soundSePrefabFilePath = "";
     public AudioClip[] soundSeAudioClipArray = null;
 	public float soundSeVolume = 1.0f;
-	public bool soundSeMuteFlag = false;
     public int scriptCount = 0;
 }
 
@@ -49,12 +47,10 @@ public class SceneManager
     private System.Tuple<GameObject, SoundBgmNodeScript> _soundBgmNodeScript = null;
     private AudioClip[] _soundBgmAudioClipArray = null;
 	private float _soundBgmVolume = 0.5f;
-	private bool _soundBgmMuteFlag = false;
     private string _soundSePrefabFilePath = "";
     private List<System.Tuple<GameObject, SoundSeNodeScript>> _soundSeNodeScriptContainer = new();
     private AudioClip[] _soundSeAudioClipArray = null;
 	private float _soundSeVolume = 0.5f;
-	private bool _soundSeMuteFlag = false;
     private List<Script>[] _scriptArray = null;
     private List<NodeScript>[]  _nodeScriptArray = null;
     private MainSceneNodeScript _mainSceneNodeScript = null;
@@ -115,11 +111,9 @@ public class SceneManager
         this._soundBgmPrefabFilePath = "";
         this._soundBgmAudioClipArray = null;
 	    this._soundBgmVolume = 0.5f;
-	    this._soundBgmMuteFlag = false;
         this._soundSePrefabFilePath = "";
         this._soundSeAudioClipArray = null;
 	    this._soundSeVolume = 0.5f;
-	    this._soundSeMuteFlag = false;
         this._nodeScriptArray = null;
         this._mainSceneNodeScript = null;
         this._subSceneNodeScript = null;
@@ -150,11 +144,9 @@ public class SceneManager
             this._soundBgmPrefabFilePath = desc.soundBgmPrefabFilePath;
             this._soundBgmAudioClipArray = (AudioClip[])this.createDesc.soundBgmAudioClipArray.Clone();
 	        this._soundBgmVolume = this.createDesc.soundBgmVolume;
-	        this._soundBgmMuteFlag = this.createDesc.soundBgmMuteFlag;
             this._soundSePrefabFilePath = desc.soundSePrefabFilePath;
             this._soundSeAudioClipArray = (AudioClip[])this.createDesc.soundSeAudioClipArray.Clone();
 	        this._soundSeVolume = this.createDesc.soundSeVolume;
-	        this._soundSeMuteFlag = this.createDesc.soundSeMuteFlag;
 
             this._scriptArray = new List<Script>[this.createDesc.scriptCount];
 
@@ -381,7 +373,7 @@ public class SceneManager
 
         this._soundBgmNodeScript.Item2.Open(0);
         this._soundBgmNodeScript.Item2.GetAudioSource().clip = this._soundBgmAudioClipArray[sound_bgm_index];
-        this._soundBgmNodeScript.Item2.GetAudioSource().volume = (this._soundBgmMuteFlag) ? 0.0f : this._soundBgmVolume;
+        this._soundBgmNodeScript.Item2.GetAudioSource().volume = this._soundBgmVolume;
         this._soundBgmNodeScript.Item2.GetAudioSource().Play();
 
         return;
@@ -458,32 +450,6 @@ public class SceneManager
     }
 
     /**
-     * @brief GetSoundBgmMuteFlag関数
-     * @return bgm_mute_flg (bgm_mute_flag)
-     */
-    public bool GetSoundBgmMuteFlag()
-    {
-        return (this._soundBgmMuteFlag);
-    }
-
-    /**
-     * @brief SetSoundBgmMuteFlag関数
-     * @param bgm_mute_flg (bgm_mute_flag)
-     */
-    public void SetSoundBgmMuteFlag(bool bgm_mute_flg)
-    {
-        if (bgm_mute_flg == this._soundBgmMuteFlag) {
-            return;
-        }
-
-        this._soundBgmMuteFlag = bgm_mute_flg;
-
-        this._FlushSoundBgmVolume();
-
-        return;
-    }
-
-    /**
      * @brief _FlushSoundBgmVolume関数
      */
     private void _FlushSoundBgmVolume()
@@ -492,7 +458,7 @@ public class SceneManager
             return;
         }
 
-        this._soundBgmNodeScript.Item2.GetAudioSource().volume = (this._soundBgmMuteFlag) ? 0.0f : this._soundBgmVolume;
+        this._soundBgmNodeScript.Item2.GetAudioSource().volume = this._soundBgmVolume;
 
         return;
     }
@@ -530,7 +496,7 @@ public class SceneManager
 
         sound_se_node_script.Item2.Open(0);
         sound_se_node_script.Item2.GetAudioSource().clip = this._soundSeAudioClipArray[sound_se_index];
-        sound_se_node_script.Item2.GetAudioSource().volume = (this._soundSeMuteFlag) ? 0.0f : this._soundSeVolume;
+        sound_se_node_script.Item2.GetAudioSource().volume = this._soundSeVolume;
         sound_se_node_script.Item2.GetAudioSource().Play();
 
         return;
@@ -601,38 +567,12 @@ public class SceneManager
     }
 
     /**
-     * @brief GetSoundSeMuteFlag関数
-     * @return se_mute_flg (se_mute_flag)
-     */
-    public bool GetSoundSeMuteFlag()
-    {
-        return (this._soundSeMuteFlag);
-    }
-
-    /**
-     * @brief SetSoundSeMuteFlag関数
-     * @param se_mute_flg (se_mute_flag)
-     */
-    public void SetSoundSeMuteFlag(bool se_mute_flg)
-    {
-        if (se_mute_flg == this._soundSeMuteFlag) {
-            return;
-        }
-
-        this._soundSeMuteFlag = se_mute_flg;
-
-        this._FlushSoundSeVolume();
-
-        return;
-    }
-
-    /**
      * @brief _FlushSoundSeVolume関数
      */
     private void _FlushSoundSeVolume()
     {
         foreach (var sound_se_node_script in this._soundSeNodeScriptContainer) {
-            sound_se_node_script.Item2.GetAudioSource().volume = (this._soundSeMuteFlag) ? 0.0f : this._soundSeVolume;
+            sound_se_node_script.Item2.GetAudioSource().volume = this._soundSeVolume;
         }
 
         return;

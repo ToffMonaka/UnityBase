@@ -292,11 +292,9 @@ public class MainSceneNodeScript : ToffMonaka.Tml.Scene.MainSceneNodeScript
             manager_create_desc.soundBgmPrefabFilePath = Util.FILE_PATH.SOUND_BGM_PREFAB;
             manager_create_desc.soundBgmAudioClipArray = this.GetSoundBgmAudioClipArray();
             manager_create_desc.soundBgmVolume = DataUtil.systemConfigFile.data.soundBgmVolume;
-            manager_create_desc.soundBgmMuteFlag = DataUtil.systemConfigFile.data.soundBgmMuteFlag;
             manager_create_desc.soundSePrefabFilePath = Util.FILE_PATH.SOUND_SE_PREFAB;
             manager_create_desc.soundSeAudioClipArray = this.GetSoundSeAudioClipArray();
             manager_create_desc.soundSeVolume = DataUtil.systemConfigFile.data.soundSeVolume;
-            manager_create_desc.soundSeMuteFlag = DataUtil.systemConfigFile.data.soundSeMuteFlag;
             manager_create_desc.scriptCount = (int)SceneUtil.SCRIPT_INDEX_COUNT;
 
             if (manager.Create(manager_create_desc) < 0) {

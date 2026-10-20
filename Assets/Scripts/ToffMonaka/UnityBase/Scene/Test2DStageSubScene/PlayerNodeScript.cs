@@ -201,12 +201,12 @@ public class PlayerNodeScript : ToffMonaka.Tml.Scene.NodeScript
             input_camera_val = SceneUtil.GetManager().GetCameraInputAction().ReadValue<Vector2>() * (1.0f * DataUtil.systemConfigFile.data.inputTest2DCameraSpeed);
         }
 
-        if (DataUtil.systemConfigFile.data.inputTest2DCameraInvertVerticalFlag) {
-            input_camera_val.y = -input_camera_val.y;
+        if (DataUtil.systemConfigFile.data.inputTest2DCameraInvertXFlag) {
+            input_camera_val.x = -input_camera_val.x;
         }
 
-        if (DataUtil.systemConfigFile.data.inputTest2DCameraInvertHorizontalFlag) {
-            input_camera_val.x = -input_camera_val.x;
+        if (DataUtil.systemConfigFile.data.inputTest2DCameraInvertYFlag) {
+            input_camera_val.y = -input_camera_val.y;
         }
 
         if ((virtual_game_pad_node_script.GetCameraCursorFlag()) || (input_camera_val.sqrMagnitude > 0.0f)) {

@@ -105,6 +105,7 @@ public class OptionSystemStageBoardNodeScript : StageBoardNodeScript
         this._nameText.SetText(DataUtil.GetText(DataUtil.MST_TEXT_ID.OPTION) + " > " + DataUtil.GetText(DataUtil.MST_TEXT_ID.SYSTEM));
 
         this._languageNameText.SetText(DataUtil.GetText(DataUtil.MST_TEXT_ID.LANGUAGE));
+
         this._okButtonNameText.SetText(DataUtil.GetText(DataUtil.MST_TEXT_ID.OK));
         this._cancelButtonNameText.SetText(DataUtil.GetText(DataUtil.MST_TEXT_ID.CANCEL));
 
@@ -149,7 +150,7 @@ public class OptionSystemStageBoardNodeScript : StageBoardNodeScript
 
         this._scrollRect.verticalNormalizedPosition = 1.0f;
 
-        this.SetLanguageType(DataUtil.systemConfigFile.data.systemLanguageType);
+        this._SetLanguageType(DataUtil.systemConfigFile.data.systemLanguageType);
 
         return;
     }
@@ -184,7 +185,7 @@ public class OptionSystemStageBoardNodeScript : StageBoardNodeScript
             {
                 var item_node_script_extension = item_node_script.GetExtension() as LanguageSelectDialogItemExtension;
 
-                this.SetLanguageType(item_node_script_extension.GetLanguageType());
+                this._SetLanguageType(item_node_script_extension.GetLanguageType());
 
                 return;
             };
@@ -241,19 +242,10 @@ public class OptionSystemStageBoardNodeScript : StageBoardNodeScript
     }
 
     /**
-     * @brief GetLanguageType関数
-     * @return language_type (language_type)
-     */
-    public Util.LANGUAGE_TYPE GetLanguageType()
-    {
-        return (this._languageType);
-    }
-
-    /**
-     * @brief SetLanguageType関数
+     * @brief _SetLanguageType関数
      * @param language_type (language_type)
      */
-    public void SetLanguageType(Util.LANGUAGE_TYPE language_type)
+    private void _SetLanguageType(Util.LANGUAGE_TYPE language_type)
     {
         this._languageType = language_type;
 

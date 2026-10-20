@@ -24,11 +24,28 @@ public class OptionGraphicStageBoardNodeScriptCreateDesc : StageBoardNodeScriptC
 public class OptionGraphicStageBoardNodeScript : StageBoardNodeScript
 {
     [SerializeField] private ScrollRect _scrollRect = null;
+    [SerializeField] private TMP_Text _uiMarginNameText = null;
+    [SerializeField] private TMP_Text _uiMarginTopNameText = null;
+    [SerializeField] private TMP_Text _uiMarginTopValueText = null;
+    [SerializeField] private Slider _uiMarginTopSlider = null;
+    [SerializeField] private TMP_Text _uiMarginBottomNameText = null;
+    [SerializeField] private TMP_Text _uiMarginBottomValueText = null;
+    [SerializeField] private Slider _uiMarginBottomSlider = null;
+    [SerializeField] private TMP_Text _uiMarginLeftNameText = null;
+    [SerializeField] private TMP_Text _uiMarginLeftValueText = null;
+    [SerializeField] private Slider _uiMarginLeftSlider = null;
+    [SerializeField] private TMP_Text _uiMarginRightNameText = null;
+    [SerializeField] private TMP_Text _uiMarginRightValueText = null;
+    [SerializeField] private Slider _uiMarginRightSlider = null;
     [SerializeField] private TMP_Text _okButtonNameText = null;
     [SerializeField] private TMP_Text _cancelButtonNameText = null;
 
     public new OptionGraphicStageBoardNodeScriptCreateDesc createDesc{get; private set;} = null;
 
+    private float _uiMarginTop = 8.0f;
+    private float _uiMarginBottom = 8.0f;
+    private float _uiMarginLeft = 80.0f;
+    private float _uiMarginRight = 80.0f;
     private bool _restartFlag = false;
 
     /**
@@ -100,6 +117,12 @@ public class OptionGraphicStageBoardNodeScript : StageBoardNodeScript
 
         this._nameText.SetText(DataUtil.GetText(DataUtil.MST_TEXT_ID.OPTION) + " > " + DataUtil.GetText(DataUtil.MST_TEXT_ID.GRAPHIC));
 
+        this._uiMarginNameText.SetText(DataUtil.GetText(DataUtil.MST_TEXT_ID.UI_MARGIN));
+        this._uiMarginTopNameText.SetText(DataUtil.GetText(DataUtil.MST_TEXT_ID.TOP));
+        this._uiMarginBottomNameText.SetText(DataUtil.GetText(DataUtil.MST_TEXT_ID.BOTTOM));
+        this._uiMarginLeftNameText.SetText(DataUtil.GetText(DataUtil.MST_TEXT_ID.LEFT));
+        this._uiMarginRightNameText.SetText(DataUtil.GetText(DataUtil.MST_TEXT_ID.RIGHT));
+
         this._okButtonNameText.SetText(DataUtil.GetText(DataUtil.MST_TEXT_ID.OK));
         this._cancelButtonNameText.SetText(DataUtil.GetText(DataUtil.MST_TEXT_ID.CANCEL));
 
@@ -144,6 +167,11 @@ public class OptionGraphicStageBoardNodeScript : StageBoardNodeScript
 
         this._scrollRect.verticalNormalizedPosition = 1.0f;
 
+        this._SetUiMarginTop(DataUtil.systemConfigFile.data.graphicUiMarginTop);
+        this._SetUiMarginBottom(DataUtil.systemConfigFile.data.graphicUiMarginBottom);
+        this._SetUiMarginLeft(DataUtil.systemConfigFile.data.graphicUiMarginLeft);
+        this._SetUiMarginRight(DataUtil.systemConfigFile.data.graphicUiMarginRight);
+
         return;
     }
 
@@ -153,6 +181,226 @@ public class OptionGraphicStageBoardNodeScript : StageBoardNodeScript
     protected override void _OnClose()
     {
         base._OnClose();
+
+        return;
+    }
+
+    /**
+     * @brief OnUiMarginTopSliderValueChanged関数
+     * @param event_val (event_value)
+     */
+    public void OnUiMarginTopSliderValueChanged(float event_val)
+    {
+        if (!this.IsControllable()) {
+            return;
+        }
+
+        var old_val = this._uiMarginTop;
+
+        this._SetUiMarginTop(this._uiMarginTopSlider.value);
+
+        if (this._uiMarginTop != old_val) {
+            SceneUtil.GetManager().PlaySoundSe((int)SceneUtil.SOUND_SE_INDEX.OK2);
+        }
+
+        return;
+    }
+
+    /**
+     * @brief OnUiMarginTopSliderLeftButtonPointerClick関数
+     * @param event_dat (event_data)
+     */
+    public void OnUiMarginTopSliderLeftButtonPointerClick(PointerEventData event_dat)
+    {
+        if (!this.IsControllable()) {
+            return;
+        }
+
+        SceneUtil.GetManager().PlaySoundSe((int)SceneUtil.SOUND_SE_INDEX.OK2);
+
+        this._SetUiMarginTop(System.Math.Max(this._uiMarginTop - 1.0f, 0.0f));
+
+        return;
+    }
+
+    /**
+     * @brief OnUiMarginTopSliderRightButtonPointerClick関数
+     * @param event_dat (event_data)
+     */
+    public void OnUiMarginTopSliderRightButtonPointerClick(PointerEventData event_dat)
+    {
+        if (!this.IsControllable()) {
+            return;
+        }
+
+        SceneUtil.GetManager().PlaySoundSe((int)SceneUtil.SOUND_SE_INDEX.OK2);
+
+        this._SetUiMarginTop(System.Math.Min(this._uiMarginTop + 1.0f, 100.0f));
+
+        return;
+    }
+
+    /**
+     * @brief OnUiMarginBottomSliderValueChanged関数
+     * @param event_val (event_value)
+     */
+    public void OnUiMarginBottomSliderValueChanged(float event_val)
+    {
+        if (!this.IsControllable()) {
+            return;
+        }
+
+        var old_val = this._uiMarginBottom;
+
+        this._SetUiMarginBottom(this._uiMarginBottomSlider.value);
+
+        if (this._uiMarginBottom != old_val) {
+            SceneUtil.GetManager().PlaySoundSe((int)SceneUtil.SOUND_SE_INDEX.OK2);
+        }
+
+        return;
+    }
+
+    /**
+     * @brief OnUiMarginBottomSliderLeftButtonPointerClick関数
+     * @param event_dat (event_data)
+     */
+    public void OnUiMarginBottomSliderLeftButtonPointerClick(PointerEventData event_dat)
+    {
+        if (!this.IsControllable()) {
+            return;
+        }
+
+        SceneUtil.GetManager().PlaySoundSe((int)SceneUtil.SOUND_SE_INDEX.OK2);
+
+        this._SetUiMarginBottom(System.Math.Max(this._uiMarginBottom - 1.0f, 0.0f));
+
+        return;
+    }
+
+    /**
+     * @brief OnUiMarginBottomSliderRightButtonPointerClick関数
+     * @param event_dat (event_data)
+     */
+    public void OnUiMarginBottomSliderRightButtonPointerClick(PointerEventData event_dat)
+    {
+        if (!this.IsControllable()) {
+            return;
+        }
+
+        SceneUtil.GetManager().PlaySoundSe((int)SceneUtil.SOUND_SE_INDEX.OK2);
+
+        this._SetUiMarginBottom(System.Math.Min(this._uiMarginBottom + 1.0f, 100.0f));
+
+        return;
+    }
+
+    /**
+     * @brief OnUiMarginLeftSliderValueChanged関数
+     * @param event_val (event_value)
+     */
+    public void OnUiMarginLeftSliderValueChanged(float event_val)
+    {
+        if (!this.IsControllable()) {
+            return;
+        }
+
+        var old_val = this._uiMarginLeft;
+
+        this._SetUiMarginLeft(this._uiMarginLeftSlider.value);
+
+        if (this._uiMarginLeft != old_val) {
+            SceneUtil.GetManager().PlaySoundSe((int)SceneUtil.SOUND_SE_INDEX.OK2);
+        }
+
+        return;
+    }
+
+    /**
+     * @brief OnUiMarginLeftSliderLeftButtonPointerClick関数
+     * @param event_dat (event_data)
+     */
+    public void OnUiMarginLeftSliderLeftButtonPointerClick(PointerEventData event_dat)
+    {
+        if (!this.IsControllable()) {
+            return;
+        }
+
+        SceneUtil.GetManager().PlaySoundSe((int)SceneUtil.SOUND_SE_INDEX.OK2);
+
+        this._SetUiMarginLeft(System.Math.Max(this._uiMarginLeft - 1.0f, 0.0f));
+
+        return;
+    }
+
+    /**
+     * @brief OnUiMarginLeftSliderRightButtonPointerClick関数
+     * @param event_dat (event_data)
+     */
+    public void OnUiMarginLeftSliderRightButtonPointerClick(PointerEventData event_dat)
+    {
+        if (!this.IsControllable()) {
+            return;
+        }
+
+        SceneUtil.GetManager().PlaySoundSe((int)SceneUtil.SOUND_SE_INDEX.OK2);
+
+        this._SetUiMarginLeft(System.Math.Min(this._uiMarginLeft + 1.0f, 100.0f));
+
+        return;
+    }
+
+    /**
+     * @brief OnUiMarginRightSliderValueChanged関数
+     * @param event_val (event_value)
+     */
+    public void OnUiMarginRightSliderValueChanged(float event_val)
+    {
+        if (!this.IsControllable()) {
+            return;
+        }
+
+        var old_val = this._uiMarginRight;
+
+        this._SetUiMarginRight(this._uiMarginRightSlider.value);
+
+        if (this._uiMarginRight != old_val) {
+            SceneUtil.GetManager().PlaySoundSe((int)SceneUtil.SOUND_SE_INDEX.OK2);
+        }
+
+        return;
+    }
+
+    /**
+     * @brief OnUiMarginRightSliderLeftButtonPointerClick関数
+     * @param event_dat (event_data)
+     */
+    public void OnUiMarginRightSliderLeftButtonPointerClick(PointerEventData event_dat)
+    {
+        if (!this.IsControllable()) {
+            return;
+        }
+
+        SceneUtil.GetManager().PlaySoundSe((int)SceneUtil.SOUND_SE_INDEX.OK2);
+
+        this._SetUiMarginRight(System.Math.Max(this._uiMarginRight - 1.0f, 0.0f));
+
+        return;
+    }
+
+    /**
+     * @brief OnUiMarginRightSliderRightButtonPointerClick関数
+     * @param event_dat (event_data)
+     */
+    public void OnUiMarginRightSliderRightButtonPointerClick(PointerEventData event_dat)
+    {
+        if (!this.IsControllable()) {
+            return;
+        }
+
+        SceneUtil.GetManager().PlaySoundSe((int)SceneUtil.SOUND_SE_INDEX.OK2);
+
+        this._SetUiMarginRight(System.Math.Min(this._uiMarginRight + 1.0f, 100.0f));
 
         return;
     }
@@ -169,7 +417,12 @@ public class OptionGraphicStageBoardNodeScript : StageBoardNodeScript
 
         SceneUtil.GetManager().PlaySoundSe((int)SceneUtil.SOUND_SE_INDEX.OK2);
 
-        //DataUtil.systemConfigFile.Write(true);
+        DataUtil.systemConfigFile.data.graphicUiMarginTop = this._uiMarginTop;
+        DataUtil.systemConfigFile.data.graphicUiMarginBottom = this._uiMarginBottom;
+        DataUtil.systemConfigFile.data.graphicUiMarginLeft = this._uiMarginLeft;
+        DataUtil.systemConfigFile.data.graphicUiMarginRight = this._uiMarginRight;
+
+        DataUtil.systemConfigFile.Write(true);
 
         if (this._restartFlag) {
             SceneUtil.GetManager().StartMainScene();
@@ -193,6 +446,62 @@ public class OptionGraphicStageBoardNodeScript : StageBoardNodeScript
         SceneUtil.GetManager().PlaySoundSe((int)SceneUtil.SOUND_SE_INDEX.CANCEL);
 
         this._onCloseStageBoard(this);
+
+        return;
+    }
+
+    /**
+     * @brief _SetUiMarginTop関数
+     * @param ui_margin_top (ui_margin_top)
+     */
+    private void _SetUiMarginTop(float ui_margin_top)
+    {
+        this._uiMarginTop = (float)System.Math.Clamp(System.Math.Round(ui_margin_top, 0, System.MidpointRounding.AwayFromZero), 0.0, 100.0);
+
+        this._uiMarginTopValueText.SetText(this._uiMarginTop.ToString());
+        this._uiMarginTopSlider.SetValueWithoutNotify(this._uiMarginTop);
+
+        return;
+    }
+
+    /**
+     * @brief _SetUiMarginBottom関数
+     * @param ui_margin_bottom (ui_margin_bottom)
+     */
+    private void _SetUiMarginBottom(float ui_margin_bottom)
+    {
+        this._uiMarginBottom = (float)System.Math.Clamp(System.Math.Round(ui_margin_bottom, 0, System.MidpointRounding.AwayFromZero), 0.0, 100.0);
+
+        this._uiMarginBottomValueText.SetText(this._uiMarginBottom.ToString());
+        this._uiMarginBottomSlider.SetValueWithoutNotify(this._uiMarginBottom);
+
+        return;
+    }
+
+    /**
+     * @brief _SetUiMarginLeft関数
+     * @param ui_margin_left (ui_margin_left)
+     */
+    private void _SetUiMarginLeft(float ui_margin_left)
+    {
+        this._uiMarginLeft = (float)System.Math.Clamp(System.Math.Round(ui_margin_left, 0, System.MidpointRounding.AwayFromZero), 0.0, 100.0);
+
+        this._uiMarginLeftValueText.SetText(this._uiMarginLeft.ToString());
+        this._uiMarginLeftSlider.SetValueWithoutNotify(this._uiMarginLeft);
+
+        return;
+    }
+
+    /**
+     * @brief _SetUiMarginRight関数
+     * @param ui_margin_right (ui_margin_right)
+     */
+    private void _SetUiMarginRight(float ui_margin_right)
+    {
+        this._uiMarginRight = (float)System.Math.Clamp(System.Math.Round(ui_margin_right, 0, System.MidpointRounding.AwayFromZero), 0.0, 100.0);
+
+        this._uiMarginRightValueText.SetText(this._uiMarginRight.ToString());
+        this._uiMarginRightSlider.SetValueWithoutNotify(this._uiMarginRight);
 
         return;
     }

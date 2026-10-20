@@ -59,9 +59,10 @@ public static class DataUtil
         RIGHT,
         CAMERA,
         SPEED,
-        VERTICAL,
-        HORIZONTAL,
-        INVERT
+        INVERT,
+        X,
+        Y,
+        Z
     }
 
     /**

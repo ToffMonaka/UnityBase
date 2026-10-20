@@ -15,19 +15,17 @@ public class SystemConfigFileData
 {
     public Util.LANGUAGE_TYPE systemLanguageType = Util.LANGUAGE_TYPE.ENGLISH;
     public float inputTest2DCameraSpeed = 0.5f;
-    public bool inputTest2DCameraInvertVerticalFlag = false;
-    public bool inputTest2DCameraInvertHorizontalFlag = false;
+    public bool inputTest2DCameraInvertXFlag = false;
+    public bool inputTest2DCameraInvertYFlag = false;
     public float inputTest3DCameraSpeed = 0.5f;
-    public bool inputTest3DCameraInvertVerticalFlag = true;
-    public bool inputTest3DCameraInvertHorizontalFlag = false;
+    public bool inputTest3DCameraInvertXFlag = false;
+    public bool inputTest3DCameraInvertYFlag = true;
     public float graphicUiMarginTop = 8.0f;
     public float graphicUiMarginBottom = 8.0f;
     public float graphicUiMarginLeft = 80.0f;
     public float graphicUiMarginRight = 80.0f;
     public float soundBgmVolume = 0.5f;
-    public bool soundBgmMuteFlag = false;
     public float soundSeVolume = 0.5f;
-    public bool soundSeMuteFlag = false;
 
     /**
      * @brief コンストラクタ
@@ -56,19 +54,17 @@ public class SystemConfigFileData
 		}
 
         this.inputTest2DCameraSpeed = 0.5f;
-        this.inputTest2DCameraInvertVerticalFlag = false;
-        this.inputTest2DCameraInvertHorizontalFlag = false;
+        this.inputTest2DCameraInvertXFlag = false;
+        this.inputTest2DCameraInvertYFlag = false;
         this.inputTest3DCameraSpeed = 0.5f;
-        this.inputTest3DCameraInvertVerticalFlag = true;
-        this.inputTest3DCameraInvertHorizontalFlag = false;
+        this.inputTest3DCameraInvertXFlag = false;
+        this.inputTest3DCameraInvertYFlag = true;
         this.graphicUiMarginTop = 8.0f;
         this.graphicUiMarginBottom = 8.0f;
         this.graphicUiMarginLeft = 80.0f;
         this.graphicUiMarginRight = 80.0f;
         this.soundBgmVolume = 0.5f;
-        this.soundBgmMuteFlag = false;
         this.soundSeVolume = 0.5f;
-        this.soundSeMuteFlag = false;
 
         return;
     }
@@ -163,16 +159,16 @@ public class SystemConfigFile : ToffMonaka.Tml.File
                     this.data.inputTest2DCameraSpeed = float.Parse(val);
 		        }
 
-		        val = ini_file.data.GetValue(key_cont, "TEST_2D_CAMERA_INVERT_VERTICAL_FLG");
+		        val = ini_file.data.GetValue(key_cont, "TEST_2D_CAMERA_INVERT_X_FLG");
 
 		        if (val != null) {
-                    this.data.inputTest2DCameraInvertVerticalFlag = System.Convert.ToBoolean(int.Parse(val));
+                    this.data.inputTest2DCameraInvertXFlag = System.Convert.ToBoolean(int.Parse(val));
 		        }
 
-		        val = ini_file.data.GetValue(key_cont, "TEST_2D_CAMERA_INVERT_HORIZONTAL_FLG");
+		        val = ini_file.data.GetValue(key_cont, "TEST_2D_CAMERA_INVERT_Y_FLG");
 
 		        if (val != null) {
-                    this.data.inputTest2DCameraInvertVerticalFlag = System.Convert.ToBoolean(int.Parse(val));
+                    this.data.inputTest2DCameraInvertYFlag = System.Convert.ToBoolean(int.Parse(val));
 		        }
 
 		        val = ini_file.data.GetValue(key_cont, "TEST_3D_CAMERA_SPEED");
@@ -181,16 +177,16 @@ public class SystemConfigFile : ToffMonaka.Tml.File
                     this.data.inputTest3DCameraSpeed = float.Parse(val);
 		        }
 
-		        val = ini_file.data.GetValue(key_cont, "TEST_3D_CAMERA_INVERT_VERTICAL_FLG");
+		        val = ini_file.data.GetValue(key_cont, "TEST_3D_CAMERA_INVERT_X_FLG");
 
 		        if (val != null) {
-                    this.data.inputTest3DCameraInvertVerticalFlag = System.Convert.ToBoolean(int.Parse(val));
+                    this.data.inputTest3DCameraInvertXFlag = System.Convert.ToBoolean(int.Parse(val));
 		        }
 
-		        val = ini_file.data.GetValue(key_cont, "TEST_3D_CAMERA_INVERT_HORIZONTAL_FLG");
+		        val = ini_file.data.GetValue(key_cont, "TEST_3D_CAMERA_INVERT_Y_FLG");
 
 		        if (val != null) {
-                    this.data.inputTest3DCameraInvertVerticalFlag = System.Convert.ToBoolean(int.Parse(val));
+                    this.data.inputTest3DCameraInvertYFlag = System.Convert.ToBoolean(int.Parse(val));
 		        }
 	        }
         }
@@ -235,22 +231,10 @@ public class SystemConfigFile : ToffMonaka.Tml.File
                     this.data.soundBgmVolume = float.Parse(val);
 		        }
 
-		        val = ini_file.data.GetValue(key_cont, "BGM_MUTE_FLG");
-
-		        if (val != null) {
-                    this.data.soundBgmMuteFlag = System.Convert.ToBoolean(int.Parse(val));
-		        }
-
 		        val = ini_file.data.GetValue(key_cont, "SE_VOL");
 
 		        if (val != null) {
                     this.data.soundSeVolume = float.Parse(val);
-		        }
-
-		        val = ini_file.data.GetValue(key_cont, "SE_MUTE_FLG");
-
-		        if (val != null) {
-                    this.data.soundSeMuteFlag = System.Convert.ToBoolean(int.Parse(val));
 		        }
 	        }
         }
@@ -286,11 +270,11 @@ public class SystemConfigFile : ToffMonaka.Tml.File
 	        txt_file.data.lineTextContainer.Add(ToffMonaka.Tml.Data.IniFileUtil.SECTION_START_CODE + "INPUT" + ToffMonaka.Tml.Data.IniFileUtil.SECTION_END_CODE);
 
 	        txt_file.data.lineTextContainer.Add("TEST_2D_CAMERA_SPEED" + ToffMonaka.Tml.Data.IniFileUtil.EQUAL_CODE + this.data.inputTest2DCameraSpeed.ToString());
-	        txt_file.data.lineTextContainer.Add("TEST_2D_CAMERA_INVERT_VERTICAL_FLG" + ToffMonaka.Tml.Data.IniFileUtil.EQUAL_CODE + System.Convert.ToInt32(this.data.inputTest2DCameraInvertVerticalFlag).ToString());
-	        txt_file.data.lineTextContainer.Add("TEST_2D_CAMERA_INVERT_HORIZONTAL_FLG" + ToffMonaka.Tml.Data.IniFileUtil.EQUAL_CODE + System.Convert.ToInt32(this.data.inputTest2DCameraInvertHorizontalFlag).ToString());
+	        txt_file.data.lineTextContainer.Add("TEST_2D_CAMERA_INVERT_X_FLG" + ToffMonaka.Tml.Data.IniFileUtil.EQUAL_CODE + System.Convert.ToInt32(this.data.inputTest2DCameraInvertXFlag).ToString());
+	        txt_file.data.lineTextContainer.Add("TEST_2D_CAMERA_INVERT_Y_FLG" + ToffMonaka.Tml.Data.IniFileUtil.EQUAL_CODE + System.Convert.ToInt32(this.data.inputTest2DCameraInvertYFlag).ToString());
 	        txt_file.data.lineTextContainer.Add("TEST_3D_CAMERA_SPEED" + ToffMonaka.Tml.Data.IniFileUtil.EQUAL_CODE + this.data.inputTest3DCameraSpeed.ToString());
-	        txt_file.data.lineTextContainer.Add("TEST_3D_CAMERA_INVERT_VERTICAL_FLG" + ToffMonaka.Tml.Data.IniFileUtil.EQUAL_CODE + System.Convert.ToInt32(this.data.inputTest3DCameraInvertVerticalFlag).ToString());
-	        txt_file.data.lineTextContainer.Add("TEST_3D_CAMERA_INVERT_HORIZONTAL_FLG" + ToffMonaka.Tml.Data.IniFileUtil.EQUAL_CODE + System.Convert.ToInt32(this.data.inputTest3DCameraInvertHorizontalFlag).ToString());
+	        txt_file.data.lineTextContainer.Add("TEST_3D_CAMERA_INVERT_X_FLG" + ToffMonaka.Tml.Data.IniFileUtil.EQUAL_CODE + System.Convert.ToInt32(this.data.inputTest3DCameraInvertXFlag).ToString());
+	        txt_file.data.lineTextContainer.Add("TEST_3D_CAMERA_INVERT_Y_FLG" + ToffMonaka.Tml.Data.IniFileUtil.EQUAL_CODE + System.Convert.ToInt32(this.data.inputTest3DCameraInvertYFlag).ToString());
 	        txt_file.data.lineTextContainer.Add(System.String.Empty);
         }
 
@@ -306,9 +290,7 @@ public class SystemConfigFile : ToffMonaka.Tml.File
         {// Sound Section Write
 	        txt_file.data.lineTextContainer.Add(ToffMonaka.Tml.Data.IniFileUtil.SECTION_START_CODE + "SOUND" + ToffMonaka.Tml.Data.IniFileUtil.SECTION_END_CODE);
 	        txt_file.data.lineTextContainer.Add("BGM_VOL" + ToffMonaka.Tml.Data.IniFileUtil.EQUAL_CODE + this.data.soundBgmVolume.ToString());
-	        txt_file.data.lineTextContainer.Add("BGM_MUTE_FLG" + ToffMonaka.Tml.Data.IniFileUtil.EQUAL_CODE + System.Convert.ToInt32(this.data.soundBgmMuteFlag).ToString());
 	        txt_file.data.lineTextContainer.Add("SE_VOL" + ToffMonaka.Tml.Data.IniFileUtil.EQUAL_CODE + this.data.soundSeVolume.ToString());
-	        txt_file.data.lineTextContainer.Add("SE_MUTE_FLG" + ToffMonaka.Tml.Data.IniFileUtil.EQUAL_CODE + System.Convert.ToInt32(this.data.soundSeMuteFlag).ToString());
 	        txt_file.data.lineTextContainer.Add(System.String.Empty);
         }
 
