@@ -25,7 +25,7 @@ public class SceneManagerCreateDesc
     public string soundSePrefabFilePath = "";
     public AudioClip[] soundSeAudioClipArray = null;
 	public float soundSeVolume = 1.0f;
-    public int scriptCount = 0;
+    public int scriptTypeCount = 0;
 }
 
 /**
@@ -52,10 +52,8 @@ public class SceneManager
     private AudioClip[] _soundSeAudioClipArray = null;
 	private float _soundSeVolume = 0.5f;
     private List<Script>[] _scriptArray = null;
-    private List<NodeScript>[]  _nodeScriptArray = null;
     private MainSceneNodeScript _mainSceneNodeScript = null;
     private SubSceneNodeScript _subSceneNodeScript = null;
-    private List<PartsScript>[]  _partsScriptArray = null;
 
     /**
      * @brief コンストラクタ
@@ -114,10 +112,8 @@ public class SceneManager
         this._soundSePrefabFilePath = "";
         this._soundSeAudioClipArray = null;
 	    this._soundSeVolume = 0.5f;
-        this._nodeScriptArray = null;
         this._mainSceneNodeScript = null;
         this._subSceneNodeScript = null;
-        this._partsScriptArray = null;
 
         return;
     }
@@ -148,22 +144,10 @@ public class SceneManager
             this._soundSeAudioClipArray = (AudioClip[])this.createDesc.soundSeAudioClipArray.Clone();
 	        this._soundSeVolume = this.createDesc.soundSeVolume;
 
-            this._scriptArray = new List<Script>[this.createDesc.scriptCount];
+            this._scriptArray = new List<Script>[this.createDesc.scriptTypeCount];
 
             for (int script_i = 0; script_i < this._scriptArray.Length; ++script_i) {
                 this._scriptArray[script_i] = new List<Script>();
-            }
-
-            this._nodeScriptArray = new List<NodeScript>[this.createDesc.scriptCount];
-
-            for (int node_script_i = 0; node_script_i < this._nodeScriptArray.Length; ++node_script_i) {
-                this._nodeScriptArray[node_script_i] = new List<NodeScript>();
-            }
-
-            this._partsScriptArray = new List<PartsScript>[this.createDesc.scriptCount];
-
-            for (int parts_script_i = 0; parts_script_i < this._partsScriptArray.Length; ++parts_script_i) {
-                this._partsScriptArray[parts_script_i] = new List<PartsScript>();
             }
         }
 
@@ -615,16 +599,6 @@ public class SceneManager
     }
 
     /**
-     * @brief GetNodeScriptContainer関数
-     * @param script_inex (script_inex)
-     * @return node_script_cont (node_script_container)
-     */
-    public List<NodeScript> GetNodeScriptContainer(int script_inex)
-    {
-        return (this._nodeScriptArray[script_inex]);
-    }
-
-    /**
      * @brief GetMainSceneNodeScript関数
      * @return main_scene_node_script (main_scene_node_script)
      */
@@ -643,16 +617,6 @@ public class SceneManager
     }
 
     /**
-     * @brief GetPartsScriptContainer関数
-     * @param script_inex (script_inex)
-     * @return parts_script_cont (parts_script_container)
-     */
-    public List<PartsScript> GetPartsScriptContainer(int script_inex)
-    {
-        return (this._partsScriptArray[script_inex]);
-    }
-
-    /**
      * @brief AddScript関数
      * @param script (script)
      * @return result_val (result_value)<br>
@@ -666,27 +630,17 @@ public class SceneManager
             return (-1);
         }
 
-        if (script.GetScriptIndex() >= 0) {
+        if (script.GetScriptIndex() != (int)SceneUtil.SCRIPT_SCENE_TYPE.NONE) {
             this._scriptArray[script.GetScriptIndex()].Add(script);
 
-		    switch (script.GetScriptType()) {
-		    case SceneUtil.SCRIPT_TYPE.NODE: {
-                this._nodeScriptArray[script.GetScriptIndex()].Add((NodeScript)script);
-
-			    break;
-		    }
-		    case SceneUtil.SCRIPT_TYPE.MAIN_SCENE_NODE: {
+		    switch (script.GetScriptSceneType()) {
+		    case SceneUtil.SCRIPT_SCENE_TYPE.MAIN: {
                 this._mainSceneNodeScript = (MainSceneNodeScript)script;
 
 			    break;
 		    }
-		    case SceneUtil.SCRIPT_TYPE.SUB_SCENE_NODE: {
+		    case SceneUtil.SCRIPT_SCENE_TYPE.SUB: {
                 this._subSceneNodeScript = (SubSceneNodeScript)script;
-
-			    break;
-		    }
-		    case SceneUtil.SCRIPT_TYPE.PARTS: {
-                this._partsScriptArray[script.GetScriptIndex()].Add((PartsScript)script);
 
 			    break;
 		    }
@@ -710,31 +664,21 @@ public class SceneManager
             return;
         }
 
-        if (script.GetScriptIndex() >= 0) {
+        if (script.GetScriptIndex() != (int)SceneUtil.SCRIPT_SCENE_TYPE.NONE) {
             this._scriptArray[script.GetScriptIndex()].Remove(script);
 
-		    switch (script.GetScriptType()) {
-		    case SceneUtil.SCRIPT_TYPE.NODE: {
-                this._nodeScriptArray[script.GetScriptIndex()].Remove((NodeScript)script);
-
-			    break;
-		    }
-		    case SceneUtil.SCRIPT_TYPE.MAIN_SCENE_NODE: {
+		    switch (script.GetScriptSceneType()) {
+		    case SceneUtil.SCRIPT_SCENE_TYPE.MAIN: {
                 if (this._mainSceneNodeScript == (MainSceneNodeScript)script) {
                     this._mainSceneNodeScript = null;
                 }
 
 			    break;
 		    }
-		    case SceneUtil.SCRIPT_TYPE.SUB_SCENE_NODE: {
+		    case SceneUtil.SCRIPT_SCENE_TYPE.SUB: {
                 if (this._subSceneNodeScript == (SubSceneNodeScript)script) {
                     this._subSceneNodeScript = null;
                 }
-
-			    break;
-		    }
-		    case SceneUtil.SCRIPT_TYPE.PARTS: {
-                this._partsScriptArray[script.GetScriptIndex()].Remove((PartsScript)script);
 
 			    break;
 		    }

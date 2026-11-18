@@ -38,7 +38,7 @@ public abstract class Select2BoardNodeScript : BoardNodeScript
      */
     protected override int _OnGetScriptIndex()
     {
-        return ((int)SceneUtil.SCRIPT_INDEX.SIDE_MENU_SELECT2_BOARD_NODE);
+        return ((int)SceneUtil.SCRIPT_TYPE.SIDE_MENU_SELECT2_BOARD_NODE);
     }
 
     /**

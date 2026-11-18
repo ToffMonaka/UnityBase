@@ -36,7 +36,7 @@ public class InfoFaqStageBoardNodeScript : StageBoardNodeScript
      */
     protected override int _OnGetScriptIndex()
     {
-        return ((int)SceneUtil.SCRIPT_INDEX.SIDE_MENU_INFO_FAQ_STAGE_BOARD_NODE);
+        return ((int)SceneUtil.SCRIPT_TYPE.SIDE_MENU_INFO_FAQ_STAGE_BOARD_NODE);
     }
 
     /**

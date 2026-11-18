@@ -29,7 +29,7 @@ public class DialogSystemNodeScript : ToffMonaka.Tml.Scene.NodeScript
      */
     protected override int _OnGetScriptIndex()
     {
-        return ((int)SceneUtil.SCRIPT_INDEX.DIALOG_SYSTEM_NODE);
+        return ((int)SceneUtil.SCRIPT_TYPE.DIALOG_SYSTEM_NODE);
     }
 
     /**

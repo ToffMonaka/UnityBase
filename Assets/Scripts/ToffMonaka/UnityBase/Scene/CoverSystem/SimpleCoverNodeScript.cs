@@ -62,7 +62,7 @@ public class SimpleCoverNodeScript : CoverNodeScript
      */
     protected override int _OnGetScriptIndex()
     {
-        return ((int)SceneUtil.SCRIPT_INDEX.SIMPLE_COVER_NODE);
+        return ((int)SceneUtil.SCRIPT_TYPE.SIMPLE_COVER_NODE);
     }
 
     /**

@@ -10,9 +10,9 @@ namespace UnityBase.Scene {
  */
 public static class SceneUtil
 {
-    public enum SCRIPT_INDEX : int
+    public enum SCRIPT_TYPE : int
     {
-        MAIN_SCENE_NODE = ToffMonaka.Tml.Scene.SceneUtil.SCRIPT_INDEX.COUNT,
+        MAIN_SCENE_NODE = ToffMonaka.Tml.Scene.SceneUtil.SCRIPT_TYPE.COUNT,
         SUB_SCENE_NODE,
         INIT_SUB_SCENE_NODE,
         TITLE_SUB_SCENE_NODE,
@@ -63,7 +63,14 @@ public static class SceneUtil
         SIMPLE_COVER_NODE,
 		COUNT
     }
-    public static readonly int SCRIPT_INDEX_COUNT = (int)SceneUtil.SCRIPT_INDEX.COUNT;
+    public static readonly int SCRIPT_TYPE_COUNT = (int)SceneUtil.SCRIPT_TYPE.COUNT;
+
+    public enum SCRIPT_NOTIFICATION_TYPE : int
+    {
+        ETC = ToffMonaka.Tml.Scene.SceneUtil.SCRIPT_NOTIFICATION_TYPE.COUNT,
+		COUNT
+    }
+    public static readonly int SCRIPT_NOTIFICATION_TYPE_COUNT = (int)SceneUtil.SCRIPT_NOTIFICATION_TYPE.COUNT;
 
     public enum SOUND_BGM_INDEX : int
     {

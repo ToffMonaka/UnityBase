@@ -63,7 +63,7 @@ public class InputDialogNodeScript : DialogNodeScript
      */
     protected override int _OnGetScriptIndex()
     {
-        return ((int)SceneUtil.SCRIPT_INDEX.INPUT_DIALOG_NODE);
+        return ((int)SceneUtil.SCRIPT_TYPE.INPUT_DIALOG_NODE);
     }
 
     /**

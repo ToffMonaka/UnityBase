@@ -25,7 +25,7 @@ public class SliderPartsScript : PartsScript
      */
     protected override int _OnGetScriptIndex()
     {
-        return ((int)SceneUtil.SCRIPT_INDEX.SLIDER_PARTS);
+        return ((int)SceneUtil.SCRIPT_TYPE.SLIDER_PARTS);
     }
 
     /**

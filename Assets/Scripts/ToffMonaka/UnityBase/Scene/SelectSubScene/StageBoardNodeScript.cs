@@ -35,7 +35,7 @@ public class StageBoardNodeScript : BoardNodeScript
      */
     protected override int _OnGetScriptIndex()
     {
-        return ((int)SceneUtil.SCRIPT_INDEX.SELECT_STAGE_BOARD_ITEM_NODE);
+        return ((int)SceneUtil.SCRIPT_TYPE.SELECT_STAGE_BOARD_ITEM_NODE);
     }
 
     /**

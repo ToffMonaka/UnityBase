@@ -40,7 +40,7 @@ public class ButtonPartsScript : PartsScript, IPointerDownHandler, IPointerUpHan
      */
     protected override int _OnGetScriptIndex()
     {
-        return ((int)SceneUtil.SCRIPT_INDEX.BUTTON_PARTS);
+        return ((int)SceneUtil.SCRIPT_TYPE.BUTTON_PARTS);
     }
 
     /**

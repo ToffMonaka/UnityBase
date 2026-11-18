@@ -29,7 +29,7 @@ public class SoundBgmNodeScript : NodeScript
      */
     protected override int _OnGetScriptIndex()
     {
-        return ((int)SceneUtil.SCRIPT_INDEX.SOUND_BGM_NODE);
+        return ((int)SceneUtil.SCRIPT_TYPE.SOUND_BGM_NODE);
     }
 
     /**

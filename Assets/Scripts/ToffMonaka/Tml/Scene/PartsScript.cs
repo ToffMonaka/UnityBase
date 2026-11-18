@@ -20,21 +20,12 @@ public abstract class PartsScript : Script
     public new PartsScriptCreateDesc createDesc{get; private set;} = null;
 
     /**
-     * @brief _OnGetScriptType関数
-     * @return script_type (script_type)
-     */
-    protected override SceneUtil.SCRIPT_TYPE _OnGetScriptType()
-    {
-        return (SceneUtil.SCRIPT_TYPE.PARTS);
-    }
-
-    /**
      * @brief _OnGetScriptIndex関数
      * @return script_index (script_index)
      */
     protected override int _OnGetScriptIndex()
     {
-        return ((int)SceneUtil.SCRIPT_INDEX.PARTS);
+        return ((int)SceneUtil.SCRIPT_TYPE.PARTS);
     }
 
     /**

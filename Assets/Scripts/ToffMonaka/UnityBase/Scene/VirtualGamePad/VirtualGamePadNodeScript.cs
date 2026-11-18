@@ -36,7 +36,7 @@ public class VirtualGamePadNodeScript : ToffMonaka.Tml.Scene.NodeScript
      */
     protected override int _OnGetScriptIndex()
     {
-        return ((int)SceneUtil.SCRIPT_INDEX.VIRTUAL_GAME_PAD_NODE);
+        return ((int)SceneUtil.SCRIPT_TYPE.VIRTUAL_GAME_PAD_NODE);
     }
 
     /**

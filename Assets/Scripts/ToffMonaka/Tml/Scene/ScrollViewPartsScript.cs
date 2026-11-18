@@ -51,7 +51,7 @@ public class ScrollViewPartsScript : PartsScript
      */
     protected override int _OnGetScriptIndex()
     {
-        return ((int)SceneUtil.SCRIPT_INDEX.SCROLL_VIEW_PARTS);
+        return ((int)SceneUtil.SCRIPT_TYPE.SCROLL_VIEW_PARTS);
     }
 
     /**

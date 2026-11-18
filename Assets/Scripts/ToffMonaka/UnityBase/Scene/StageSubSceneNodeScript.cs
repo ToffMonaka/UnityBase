@@ -27,7 +27,7 @@ public abstract class StageSubSceneNodeScript : SubSceneNodeScript
      */
     protected override int _OnGetScriptIndex()
     {
-        return ((int)SceneUtil.SCRIPT_INDEX.STAGE_SUB_SCENE_NODE);
+        return ((int)SceneUtil.SCRIPT_TYPE.STAGE_SUB_SCENE_NODE);
     }
 
     /**

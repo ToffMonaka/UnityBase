@@ -68,7 +68,7 @@ public class PlayerNodeScript : ToffMonaka.Tml.Scene.NodeScript
      */
     protected override int _OnGetScriptIndex()
     {
-        return ((int)SceneUtil.SCRIPT_INDEX.TEST_3D_STAGE_PLAYER_NODE);
+        return ((int)SceneUtil.SCRIPT_TYPE.TEST_3D_STAGE_PLAYER_NODE);
     }
 
     /**

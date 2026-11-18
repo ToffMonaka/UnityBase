@@ -36,7 +36,7 @@ public class SelectDialogItemNodeScript : ToffMonaka.Tml.Scene.NodeScript
      */
     protected override int _OnGetScriptIndex()
     {
-        return ((int)SceneUtil.SCRIPT_INDEX.SELECT_DIALOG_ITEM_NODE);
+        return ((int)SceneUtil.SCRIPT_TYPE.SELECT_DIALOG_ITEM_NODE);
     }
 
     /**

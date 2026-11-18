@@ -43,7 +43,7 @@ public abstract class CoverNodeScript : ToffMonaka.Tml.Scene.NodeScript
      */
     protected override int _OnGetScriptIndex()
     {
-        return ((int)SceneUtil.SCRIPT_INDEX.COVER_NODE);
+        return ((int)SceneUtil.SCRIPT_TYPE.COVER_NODE);
     }
 
     /**

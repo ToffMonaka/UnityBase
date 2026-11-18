@@ -36,7 +36,7 @@ public class SelectSubSceneNodeScript : SubSceneNodeScript
      */
     protected override int _OnGetScriptIndex()
     {
-        return ((int)SceneUtil.SCRIPT_INDEX.SELECT_SUB_SCENE_NODE);
+        return ((int)SceneUtil.SCRIPT_TYPE.SELECT_SUB_SCENE_NODE);
     }
 
     /**

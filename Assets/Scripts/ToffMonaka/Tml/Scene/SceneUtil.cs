@@ -21,17 +21,6 @@ public static class SceneUtil
         NODE,
         MAIN_SCENE_NODE,
         SUB_SCENE_NODE,
-        PARTS,
-		COUNT
-    }
-    public static readonly int SCRIPT_TYPE_COUNT = (int)SceneUtil.SCRIPT_TYPE.COUNT;
-
-    public enum SCRIPT_INDEX : int
-    {
-        NONE = -1,
-        NODE,
-        MAIN_SCENE_NODE,
-        SUB_SCENE_NODE,
         SOUND_BGM_NODE,
         SOUND_SE_NODE,
         PARTS,
@@ -40,7 +29,23 @@ public static class SceneUtil
         SLIDER_PARTS,
 		COUNT
     }
-    public static readonly int SCRIPT_INDEX_COUNT = (int)SceneUtil.SCRIPT_INDEX.COUNT;
+    public static readonly int SCRIPT_TYPE_COUNT = (int)SceneUtil.SCRIPT_TYPE.COUNT;
+
+    public enum SCRIPT_NOTIFICATION_TYPE : int
+    {
+        NONE = 0,
+		COUNT
+    }
+    public static readonly int SCRIPT_NOTIFICATION_TYPE_COUNT = (int)SceneUtil.SCRIPT_NOTIFICATION_TYPE.COUNT;
+
+    public enum SCRIPT_SCENE_TYPE : int
+    {
+        NONE = 0,
+        MAIN,
+        SUB,
+		COUNT
+    }
+    public static readonly int SCRIPT_SCENE_TYPE_COUNT = (int)SceneUtil.SCRIPT_SCENE_TYPE.COUNT;
 
     /**
      * @brief GetManager関数

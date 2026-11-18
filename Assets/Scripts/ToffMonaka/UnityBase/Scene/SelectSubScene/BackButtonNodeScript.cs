@@ -33,7 +33,7 @@ public class BackButtonNodeScript : ToffMonaka.Tml.Scene.NodeScript
      */
     protected override int _OnGetScriptIndex()
     {
-        return ((int)SceneUtil.SCRIPT_INDEX.SELECT_BACK_BUTTON_NODE);
+        return ((int)SceneUtil.SCRIPT_TYPE.SELECT_BACK_BUTTON_NODE);
     }
 
     /**

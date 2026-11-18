@@ -25,7 +25,7 @@ public class FieldNodeScript : ToffMonaka.Tml.Scene.NodeScript
      */
     protected override int _OnGetScriptIndex()
     {
-        return ((int)SceneUtil.SCRIPT_INDEX.TEST_2D_STAGE_FIELD_NODE);
+        return ((int)SceneUtil.SCRIPT_TYPE.TEST_2D_STAGE_FIELD_NODE);
     }
 
     /**

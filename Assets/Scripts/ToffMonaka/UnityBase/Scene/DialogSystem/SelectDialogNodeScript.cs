@@ -62,7 +62,7 @@ public class SelectDialogNodeScript : DialogNodeScript
      */
     protected override int _OnGetScriptIndex()
     {
-        return ((int)SceneUtil.SCRIPT_INDEX.SELECT_DIALOG_NODE);
+        return ((int)SceneUtil.SCRIPT_TYPE.SELECT_DIALOG_NODE);
     }
 
     /**

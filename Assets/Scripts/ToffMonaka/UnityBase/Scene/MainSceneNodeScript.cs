@@ -32,7 +32,7 @@ public class MainSceneNodeScript : ToffMonaka.Tml.Scene.MainSceneNodeScript
      */
     protected override int _OnGetScriptIndex()
     {
-        return ((int)SceneUtil.SCRIPT_INDEX.MAIN_SCENE_NODE);
+        return ((int)SceneUtil.SCRIPT_TYPE.MAIN_SCENE_NODE);
     }
 
     /**
@@ -295,7 +295,7 @@ public class MainSceneNodeScript : ToffMonaka.Tml.Scene.MainSceneNodeScript
             manager_create_desc.soundSePrefabFilePath = Util.FILE_PATH.SOUND_SE_PREFAB;
             manager_create_desc.soundSeAudioClipArray = this.GetSoundSeAudioClipArray();
             manager_create_desc.soundSeVolume = DataUtil.systemConfigFile.data.soundSeVolume;
-            manager_create_desc.scriptCount = (int)SceneUtil.SCRIPT_INDEX_COUNT;
+            manager_create_desc.scriptTypeCount = SceneUtil.SCRIPT_TYPE_COUNT;
 
             if (manager.Create(manager_create_desc) < 0) {
                 this._ReleaseManager();

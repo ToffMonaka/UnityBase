@@ -38,7 +38,7 @@ public class Test2DStageSubSceneNodeScript : StageSubSceneNodeScript
      */
     protected override int _OnGetScriptIndex()
     {
-        return ((int)SceneUtil.SCRIPT_INDEX.TEST_2D_STAGE_SUB_SCENE_NODE);
+        return ((int)SceneUtil.SCRIPT_TYPE.TEST_2D_STAGE_SUB_SCENE_NODE);
     }
 
     /**

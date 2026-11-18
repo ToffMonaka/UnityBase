@@ -36,7 +36,7 @@ public abstract class BoardNodeScript : ToffMonaka.Tml.Scene.NodeScript
      */
     protected override int _OnGetScriptIndex()
     {
-        return ((int)SceneUtil.SCRIPT_INDEX.SIDE_MENU_BOARD_NODE);
+        return ((int)SceneUtil.SCRIPT_TYPE.SIDE_MENU_BOARD_NODE);
     }
 
     /**

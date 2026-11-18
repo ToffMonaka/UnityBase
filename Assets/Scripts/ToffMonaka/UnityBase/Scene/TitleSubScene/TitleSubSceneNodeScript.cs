@@ -37,7 +37,7 @@ public class TitleSubSceneNodeScript : SubSceneNodeScript
      */
     protected override int _OnGetScriptIndex()
     {
-        return ((int)SceneUtil.SCRIPT_INDEX.TITLE_SUB_SCENE_NODE);
+        return ((int)SceneUtil.SCRIPT_TYPE.TITLE_SUB_SCENE_NODE);
     }
 
     /**

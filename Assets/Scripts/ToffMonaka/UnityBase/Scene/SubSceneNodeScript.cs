@@ -36,7 +36,7 @@ public abstract class SubSceneNodeScript : ToffMonaka.Tml.Scene.SubSceneNodeScri
      */
     protected override int _OnGetScriptIndex()
     {
-        return ((int)SceneUtil.SCRIPT_INDEX.SUB_SCENE_NODE);
+        return ((int)SceneUtil.SCRIPT_TYPE.SUB_SCENE_NODE);
     }
 
     /**

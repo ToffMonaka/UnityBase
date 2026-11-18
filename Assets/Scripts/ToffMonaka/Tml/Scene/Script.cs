@@ -21,8 +21,8 @@ public abstract class Script : MonoBehaviour
 {
     public ScriptCreateDesc createDesc{get; private set;} = null;
 
-    private SceneUtil.SCRIPT_TYPE _scriptType = SceneUtil.SCRIPT_TYPE.NONE;
-    private int _scriptIndex = (int)SceneUtil.SCRIPT_INDEX.NONE;
+    private int _scriptIndex = (int)SceneUtil.SCRIPT_TYPE.NONE;
+    private SceneUtil.SCRIPT_SCENE_TYPE _scriptSceneType = SceneUtil.SCRIPT_SCENE_TYPE.NONE;
     private bool _activeAutoFlag = true;
     private bool _managerAddedFlag = false;
     private bool _awakedFlag = false;
@@ -30,12 +30,12 @@ public abstract class Script : MonoBehaviour
     private bool _controlFlag = false;
 
     /**
-     * @brief _OnGetScriptType関数
-     * @return script_type (script_type)
+     * @brief _OnGetScriptSceneType関数
+     * @return script_scene_type (script_scene_type)
      */
-    protected virtual SceneUtil.SCRIPT_TYPE _OnGetScriptType()
+    protected virtual SceneUtil.SCRIPT_SCENE_TYPE _OnGetScriptSceneType()
     {
-        return (SceneUtil.SCRIPT_TYPE.NONE);
+        return (SceneUtil.SCRIPT_SCENE_TYPE.NONE);
     }
 
     /**
@@ -44,7 +44,7 @@ public abstract class Script : MonoBehaviour
      */
     protected virtual int _OnGetScriptIndex()
     {
-        return ((int)SceneUtil.SCRIPT_INDEX.NONE);
+        return ((int)SceneUtil.SCRIPT_TYPE.NONE);
     }
 
     /**
@@ -145,8 +145,8 @@ public abstract class Script : MonoBehaviour
             return;
         }
 
-        this._scriptType = this._OnGetScriptType();
         this._scriptIndex = this._OnGetScriptIndex();
+        this._scriptSceneType = this._OnGetScriptSceneType();
         this._activeAutoFlag = this._OnGetActiveAutoFlag();
 
         this._OnAwake();
@@ -362,21 +362,21 @@ public abstract class Script : MonoBehaviour
     }
 
     /**
-     * @brief GetScriptType関数
-     * @return script_type (script_type)
-     */
-    public SceneUtil.SCRIPT_TYPE GetScriptType()
-    {
-        return (this._scriptType);
-    }
-
-    /**
      * @brief GetScriptIndex関数
      * @return script_index (script_index)
      */
     public int GetScriptIndex()
     {
         return (this._scriptIndex);
+    }
+
+    /**
+     * @brief GetScriptSceneType関数
+     * @return script_scene_type (script_scene_type)
+     */
+    public SceneUtil.SCRIPT_SCENE_TYPE GetScriptSceneType()
+    {
+        return (this._scriptSceneType);
     }
 
     /**

@@ -28,7 +28,7 @@ public class FieldFallZonePartsScript : PartsScript
      */
     protected override int _OnGetScriptIndex()
     {
-        return ((int)SceneUtil.SCRIPT_INDEX.TEST_2D_STAGE_FIELD_FALL_ZONE_PARTS);
+        return ((int)SceneUtil.SCRIPT_TYPE.TEST_2D_STAGE_FIELD_FALL_ZONE_PARTS);
     }
 
     /**
