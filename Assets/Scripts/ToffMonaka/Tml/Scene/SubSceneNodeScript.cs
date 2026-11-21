@@ -20,21 +20,21 @@ public abstract class SubSceneNodeScript : NodeScript
     public new SubSceneNodeScriptCreateDesc createDesc{get; private set;} = null;
 
     /**
+     * @brief _OnGetScriptType関数
+     * @return script_type (script_type)
+     */
+    protected override SceneUtil.SCRIPT_TYPE _OnGetScriptType()
+    {
+        return (SceneUtil.SCRIPT_TYPE.SUB_SCENE_NODE);
+    }
+
+    /**
      * @brief _OnGetScriptSceneType関数
      * @return script_scene_type (script_scene_type)
      */
     protected override SceneUtil.SCRIPT_SCENE_TYPE _OnGetScriptSceneType()
     {
         return (SceneUtil.SCRIPT_SCENE_TYPE.SUB);
-    }
-
-    /**
-     * @brief _OnGetScriptIndex関数
-     * @return script_index (script_index)
-     */
-    protected override int _OnGetScriptIndex()
-    {
-        return ((int)SceneUtil.SCRIPT_TYPE.SUB_SCENE_NODE);
     }
 
     /**

@@ -46,12 +46,12 @@ public class ScrollViewPartsScript : PartsScript
     private System.Action<NodeScript, int> _onSetItemNodeScript = null;
 
     /**
-     * @brief _OnGetScriptIndex関数
-     * @return script_index (script_index)
+     * @brief _OnGetScriptType関数
+     * @return script_type (script_type)
      */
-    protected override int _OnGetScriptIndex()
+    protected override SceneUtil.SCRIPT_TYPE _OnGetScriptType()
     {
-        return ((int)SceneUtil.SCRIPT_TYPE.SCROLL_VIEW_PARTS);
+        return (SceneUtil.SCRIPT_TYPE.SCROLL_VIEW_PARTS);
     }
 
     /**

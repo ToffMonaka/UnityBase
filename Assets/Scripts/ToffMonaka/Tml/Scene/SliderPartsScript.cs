@@ -20,12 +20,12 @@ public class SliderPartsScript : PartsScript
     public new SliderPartsScriptCreateDesc createDesc{get; private set;} = null;
 
     /**
-     * @brief _OnGetScriptIndex関数
-     * @return script_index (script_index)
+     * @brief _OnGetScriptType関数
+     * @return script_type (script_type)
      */
-    protected override int _OnGetScriptIndex()
+    protected override SceneUtil.SCRIPT_TYPE _OnGetScriptType()
     {
-        return ((int)SceneUtil.SCRIPT_TYPE.SLIDER_PARTS);
+        return (SceneUtil.SCRIPT_TYPE.SLIDER_PARTS);
     }
 
     /**

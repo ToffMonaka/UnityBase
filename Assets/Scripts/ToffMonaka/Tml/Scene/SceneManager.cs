@@ -626,12 +626,12 @@ public class SceneManager
     {
         if ((script == null)
         || (script.GetManagerAddedFlag())
-        || (script.GetScriptIndex() >= this._scriptArray.Length)) {
+        || ((int)script.GetScriptType() >= this._scriptArray.Length)) {
             return (-1);
         }
 
-        if (script.GetScriptIndex() != (int)SceneUtil.SCRIPT_SCENE_TYPE.NONE) {
-            this._scriptArray[script.GetScriptIndex()].Add(script);
+        if (script.GetScriptType() != SceneUtil.SCRIPT_TYPE.NONE) {
+            this._scriptArray[(int)script.GetScriptType()].Add(script);
 
 		    switch (script.GetScriptSceneType()) {
 		    case SceneUtil.SCRIPT_SCENE_TYPE.MAIN: {
@@ -660,12 +660,12 @@ public class SceneManager
     {
         if ((script == null)
         || (!script.GetManagerAddedFlag())
-        || (script.GetScriptIndex() >= this._scriptArray.Length)) {
+        || ((int)script.GetScriptType() >= this._scriptArray.Length)) {
             return;
         }
 
-        if (script.GetScriptIndex() != (int)SceneUtil.SCRIPT_SCENE_TYPE.NONE) {
-            this._scriptArray[script.GetScriptIndex()].Remove(script);
+        if (script.GetScriptType() != SceneUtil.SCRIPT_TYPE.NONE) {
+            this._scriptArray[(int)script.GetScriptType()].Remove(script);
 
 		    switch (script.GetScriptSceneType()) {
 		    case SceneUtil.SCRIPT_SCENE_TYPE.MAIN: {
@@ -687,6 +687,15 @@ public class SceneManager
 
         script.SetManagerAddedFlag(false);
 
+        return;
+    }
+
+    /**
+     * @brief NotifyToScript関数
+     * @param notify_type (notify_type)
+     */
+    public void NotifyToScript(SceneUtil.SCRIPT_NOTIFY_TYPE notify_type)
+    {
         return;
     }
 }

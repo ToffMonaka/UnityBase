@@ -34,12 +34,12 @@ public class SelectBoardNodeScript : BoardNodeScript
     private System.Action<SelectBoardNodeScript, SceneUtil.SIDE_MENU_STAGE_BOARD_TYPE> _onOpenStageBoard = null;
 
     /**
-     * @brief _OnGetScriptIndex関数
-     * @return script_index (script_index)
+     * @brief _OnGetScriptType関数
+     * @return script_type (script_type)
      */
-    protected override int _OnGetScriptIndex()
+    protected override ToffMonaka.Tml.Scene.SceneUtil.SCRIPT_TYPE _OnGetScriptType()
     {
-        return ((int)SceneUtil.SCRIPT_TYPE.SIDE_MENU_SELECT_BOARD_NODE);
+        return ((ToffMonaka.Tml.Scene.SceneUtil.SCRIPT_TYPE)SceneUtil.SCRIPT_TYPE.SIDE_MENU_SELECT_BOARD_NODE);
     }
 
     /**

@@ -54,12 +54,12 @@ public class OptionInputStageBoardNodeScript : StageBoardNodeScript
     private bool _restartFlag = false;
 
     /**
-     * @brief _OnGetScriptIndex関数
-     * @return script_index (script_index)
+     * @brief _OnGetScriptType関数
+     * @return script_type (script_type)
      */
-    protected override int _OnGetScriptIndex()
+    protected override ToffMonaka.Tml.Scene.SceneUtil.SCRIPT_TYPE _OnGetScriptType()
     {
-        return ((int)SceneUtil.SCRIPT_TYPE.SIDE_MENU_OPTION_INPUT_STAGE_BOARD_NODE);
+        return ((ToffMonaka.Tml.Scene.SceneUtil.SCRIPT_TYPE)SceneUtil.SCRIPT_TYPE.SIDE_MENU_OPTION_INPUT_STAGE_BOARD_NODE);
     }
 
     /**
@@ -444,7 +444,7 @@ public class OptionInputStageBoardNodeScript : StageBoardNodeScript
     {
         this._test2DCameraSpeed = (float)System.Math.Clamp(System.Math.Round(test_2d_camera_speed, 1, System.MidpointRounding.AwayFromZero), 0.1, 1.0);
 
-        this._test2DCameraSpeedValueText.SetText((this._test2DCameraSpeed * 10.0f).ToString());
+        this._test2DCameraSpeedValueText.SetText("{0}", this._test2DCameraSpeed * 10.0f);
         this._test2DCameraSpeedSlider.SetValueWithoutNotify(this._test2DCameraSpeed * 10.0f);
 
         return;
@@ -484,7 +484,7 @@ public class OptionInputStageBoardNodeScript : StageBoardNodeScript
     {
         this._test3DCameraSpeed = (float)System.Math.Clamp(System.Math.Round(test_3d_camera_speed, 1, System.MidpointRounding.AwayFromZero), 0.1, 1.0);
 
-        this._test3DCameraSpeedValueText.SetText((this._test3DCameraSpeed * 10.0f).ToString());
+        this._test3DCameraSpeedValueText.SetText("{0}", this._test3DCameraSpeed * 10.0f);
         this._test3DCameraSpeedSlider.SetValueWithoutNotify(this._test3DCameraSpeed * 10.0f);
 
         return;

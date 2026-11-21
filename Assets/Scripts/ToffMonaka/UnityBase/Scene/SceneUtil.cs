@@ -65,12 +65,12 @@ public static class SceneUtil
     }
     public static readonly int SCRIPT_TYPE_COUNT = (int)SceneUtil.SCRIPT_TYPE.COUNT;
 
-    public enum SCRIPT_NOTIFICATION_TYPE : int
+    public enum SCRIPT_NOTIFY_TYPE : int
     {
-        ETC = ToffMonaka.Tml.Scene.SceneUtil.SCRIPT_NOTIFICATION_TYPE.COUNT,
+        ETC = ToffMonaka.Tml.Scene.SceneUtil.SCRIPT_NOTIFY_TYPE.COUNT,
 		COUNT
     }
-    public static readonly int SCRIPT_NOTIFICATION_TYPE_COUNT = (int)SceneUtil.SCRIPT_NOTIFICATION_TYPE.COUNT;
+    public static readonly int SCRIPT_NOTIFY_TYPE_COUNT = (int)SceneUtil.SCRIPT_NOTIFY_TYPE.COUNT;
 
     public enum SOUND_BGM_INDEX : int
     {

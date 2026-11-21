@@ -21,13 +21,23 @@ public abstract class Script : MonoBehaviour
 {
     public ScriptCreateDesc createDesc{get; private set;} = null;
 
-    private int _scriptIndex = (int)SceneUtil.SCRIPT_TYPE.NONE;
+    private SceneUtil.SCRIPT_TYPE _scriptType = SceneUtil.SCRIPT_TYPE.NONE;
     private SceneUtil.SCRIPT_SCENE_TYPE _scriptSceneType = SceneUtil.SCRIPT_SCENE_TYPE.NONE;
+    private SceneUtil.SCRIPT_NOTIFY_TYPE[] _scriptNotifyTypeArray = null;
     private bool _activeAutoFlag = true;
     private bool _managerAddedFlag = false;
     private bool _awakedFlag = false;
     private bool _createdFlag = false;
     private bool _controlFlag = false;
+
+    /**
+     * @brief _OnGetScriptType関数
+     * @return script_type (script_type)
+     */
+    protected virtual SceneUtil.SCRIPT_TYPE _OnGetScriptType()
+    {
+        return (SceneUtil.SCRIPT_TYPE.NONE);
+    }
 
     /**
      * @brief _OnGetScriptSceneType関数
@@ -39,12 +49,12 @@ public abstract class Script : MonoBehaviour
     }
 
     /**
-     * @brief _OnGetScriptIndex関数
-     * @return script_index (script_index)
+     * @brief _OnGetScriptNotifyTypeArray関数
+     * @return script_notify_type_ary (script_notify_type_array)
      */
-    protected virtual int _OnGetScriptIndex()
+    protected virtual SceneUtil.SCRIPT_NOTIFY_TYPE[] _OnGetScriptNotifyTypeArray()
     {
-        return ((int)SceneUtil.SCRIPT_TYPE.NONE);
+        return (null);
     }
 
     /**
@@ -145,8 +155,9 @@ public abstract class Script : MonoBehaviour
             return;
         }
 
-        this._scriptIndex = this._OnGetScriptIndex();
+        this._scriptType = this._OnGetScriptType();
         this._scriptSceneType = this._OnGetScriptSceneType();
+        this._scriptNotifyTypeArray = this._OnGetScriptNotifyTypeArray();
         this._activeAutoFlag = this._OnGetActiveAutoFlag();
 
         this._OnAwake();
@@ -362,12 +373,12 @@ public abstract class Script : MonoBehaviour
     }
 
     /**
-     * @brief GetScriptIndex関数
-     * @return script_index (script_index)
+     * @brief GetScriptType関数
+     * @return script_type (script_type)
      */
-    public int GetScriptIndex()
+    public SceneUtil.SCRIPT_TYPE GetScriptType()
     {
-        return (this._scriptIndex);
+        return (this._scriptType);
     }
 
     /**
@@ -377,6 +388,15 @@ public abstract class Script : MonoBehaviour
     public SceneUtil.SCRIPT_SCENE_TYPE GetScriptSceneType()
     {
         return (this._scriptSceneType);
+    }
+
+    /**
+     * @brief GetScriptNotifyTypeArray関数
+     * @return script_notify_type_ary (script_notify_type_array)
+     */
+    public SceneUtil.SCRIPT_NOTIFY_TYPE[] GetScriptNotifyTypeArray()
+    {
+        return (this._scriptNotifyTypeArray);
     }
 
     /**
@@ -478,6 +498,15 @@ public abstract class Script : MonoBehaviour
         }
 
         return (true);
+    }
+
+    /**
+     * @brief NotifyFromManager関数
+     * @param notify_type (notify_type)
+     */
+    public virtual void NotifyFromManager(SceneUtil.SCRIPT_NOTIFY_TYPE notify_type)
+    {
+        return;
     }
 }
 }

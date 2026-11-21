@@ -22,12 +22,12 @@ public abstract class StageSubSceneNodeScript : SubSceneNodeScript
     private SceneUtil.STAGE_TYPE _stageType = SceneUtil.STAGE_TYPE.NONE;
 
     /**
-     * @brief _OnGetScriptIndex関数
-     * @return script_index (script_index)
+     * @brief _OnGetScriptType関数
+     * @return script_type (script_type)
      */
-    protected override int _OnGetScriptIndex()
+    protected override ToffMonaka.Tml.Scene.SceneUtil.SCRIPT_TYPE _OnGetScriptType()
     {
-        return ((int)SceneUtil.SCRIPT_TYPE.STAGE_SUB_SCENE_NODE);
+        return ((ToffMonaka.Tml.Scene.SceneUtil.SCRIPT_TYPE)SceneUtil.SCRIPT_TYPE.STAGE_SUB_SCENE_NODE);
     }
 
     /**

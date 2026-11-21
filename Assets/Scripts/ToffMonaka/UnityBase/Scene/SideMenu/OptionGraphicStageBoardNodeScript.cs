@@ -49,12 +49,12 @@ public class OptionGraphicStageBoardNodeScript : StageBoardNodeScript
     private bool _restartFlag = false;
 
     /**
-     * @brief _OnGetScriptIndex関数
-     * @return script_index (script_index)
+     * @brief _OnGetScriptType関数
+     * @return script_type (script_type)
      */
-    protected override int _OnGetScriptIndex()
+    protected override ToffMonaka.Tml.Scene.SceneUtil.SCRIPT_TYPE _OnGetScriptType()
     {
-        return ((int)SceneUtil.SCRIPT_TYPE.SIDE_MENU_OPTION_GRAPHIC_STAGE_BOARD_NODE);
+        return ((ToffMonaka.Tml.Scene.SceneUtil.SCRIPT_TYPE)SceneUtil.SCRIPT_TYPE.SIDE_MENU_OPTION_GRAPHIC_STAGE_BOARD_NODE);
     }
 
     /**
@@ -458,7 +458,7 @@ public class OptionGraphicStageBoardNodeScript : StageBoardNodeScript
     {
         this._uiMarginTop = (float)System.Math.Clamp(System.Math.Round(ui_margin_top, 0, System.MidpointRounding.AwayFromZero), 0.0, 100.0);
 
-        this._uiMarginTopValueText.SetText(this._uiMarginTop.ToString());
+        this._uiMarginTopValueText.SetText("{0}", this._uiMarginTop);
         this._uiMarginTopSlider.SetValueWithoutNotify(this._uiMarginTop);
 
         return;
@@ -472,7 +472,7 @@ public class OptionGraphicStageBoardNodeScript : StageBoardNodeScript
     {
         this._uiMarginBottom = (float)System.Math.Clamp(System.Math.Round(ui_margin_bottom, 0, System.MidpointRounding.AwayFromZero), 0.0, 100.0);
 
-        this._uiMarginBottomValueText.SetText(this._uiMarginBottom.ToString());
+        this._uiMarginBottomValueText.SetText("{0}", this._uiMarginBottom);
         this._uiMarginBottomSlider.SetValueWithoutNotify(this._uiMarginBottom);
 
         return;
@@ -486,7 +486,7 @@ public class OptionGraphicStageBoardNodeScript : StageBoardNodeScript
     {
         this._uiMarginLeft = (float)System.Math.Clamp(System.Math.Round(ui_margin_left, 0, System.MidpointRounding.AwayFromZero), 0.0, 100.0);
 
-        this._uiMarginLeftValueText.SetText(this._uiMarginLeft.ToString());
+        this._uiMarginLeftValueText.SetText("{0}", this._uiMarginLeft);
         this._uiMarginLeftSlider.SetValueWithoutNotify(this._uiMarginLeft);
 
         return;
@@ -500,7 +500,7 @@ public class OptionGraphicStageBoardNodeScript : StageBoardNodeScript
     {
         this._uiMarginRight = (float)System.Math.Clamp(System.Math.Round(ui_margin_right, 0, System.MidpointRounding.AwayFromZero), 0.0, 100.0);
 
-        this._uiMarginRightValueText.SetText(this._uiMarginRight.ToString());
+        this._uiMarginRightValueText.SetText("{0}", this._uiMarginRight);
         this._uiMarginRightSlider.SetValueWithoutNotify(this._uiMarginRight);
 
         return;

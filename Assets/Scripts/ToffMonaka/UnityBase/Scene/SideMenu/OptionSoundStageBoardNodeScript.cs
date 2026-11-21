@@ -40,12 +40,12 @@ public class OptionSoundStageBoardNodeScript : StageBoardNodeScript
     private bool _restartFlag = false;
 
     /**
-     * @brief _OnGetScriptIndex関数
-     * @return script_index (script_index)
+     * @brief _OnGetScriptType関数
+     * @return script_type (script_type)
      */
-    protected override int _OnGetScriptIndex()
+    protected override ToffMonaka.Tml.Scene.SceneUtil.SCRIPT_TYPE _OnGetScriptType()
     {
-        return ((int)SceneUtil.SCRIPT_TYPE.SIDE_MENU_OPTION_SOUND_STAGE_BOARD_NODE);
+        return ((ToffMonaka.Tml.Scene.SceneUtil.SCRIPT_TYPE)SceneUtil.SCRIPT_TYPE.SIDE_MENU_OPTION_SOUND_STAGE_BOARD_NODE);
     }
 
     /**
@@ -347,7 +347,7 @@ public class OptionSoundStageBoardNodeScript : StageBoardNodeScript
     {
         this._bgmVolume = (float)System.Math.Clamp(System.Math.Round(bgm_vol, 1, System.MidpointRounding.AwayFromZero), 0.0, 1.0);
 
-        this._bgmVolumeValueText.SetText((this._bgmVolume * 10.0f).ToString());
+        this._bgmVolumeValueText.SetText("{0}", this._bgmVolume * 10.0f);
         this._bgmVolumeSlider.SetValueWithoutNotify(this._bgmVolume * 10.0f);
 
         return;
@@ -361,7 +361,7 @@ public class OptionSoundStageBoardNodeScript : StageBoardNodeScript
     {
         this._seVolume = (float)System.Math.Clamp(System.Math.Round(se_vol, 1, System.MidpointRounding.AwayFromZero), 0.0, 1.0);
 
-        this._seVolumeValueText.SetText((this._seVolume * 10.0f).ToString());
+        this._seVolumeValueText.SetText("{0}", this._seVolume * 10.0f);
         this._seVolumeSlider.SetValueWithoutNotify(this._seVolume * 10.0f);
 
         return;

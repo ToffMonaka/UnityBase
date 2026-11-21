@@ -20,12 +20,12 @@ public class FieldNodeScript : ToffMonaka.Tml.Scene.NodeScript
     public new FieldNodeScriptCreateDesc createDesc{get; private set;} = null;
 
     /**
-     * @brief _OnGetScriptIndex関数
-     * @return script_index (script_index)
+     * @brief _OnGetScriptType関数
+     * @return script_type (script_type)
      */
-    protected override int _OnGetScriptIndex()
+    protected override ToffMonaka.Tml.Scene.SceneUtil.SCRIPT_TYPE _OnGetScriptType()
     {
-        return ((int)SceneUtil.SCRIPT_TYPE.TEST_3D_STAGE_FIELD_NODE);
+        return ((ToffMonaka.Tml.Scene.SceneUtil.SCRIPT_TYPE)SceneUtil.SCRIPT_TYPE.TEST_3D_STAGE_FIELD_NODE);
     }
 
     /**

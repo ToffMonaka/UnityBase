@@ -57,12 +57,12 @@ public class PlayerNodeScript : ToffMonaka.Tml.Scene.NodeScript
 #pragma warning restore 0414
 
     /**
-     * @brief _OnGetScriptIndex関数
-     * @return script_index (script_index)
+     * @brief _OnGetScriptType関数
+     * @return script_type (script_type)
      */
-    protected override int _OnGetScriptIndex()
+    protected override ToffMonaka.Tml.Scene.SceneUtil.SCRIPT_TYPE _OnGetScriptType()
     {
-        return ((int)SceneUtil.SCRIPT_TYPE.TEST_2D_STAGE_PLAYER_NODE);
+        return ((ToffMonaka.Tml.Scene.SceneUtil.SCRIPT_TYPE)SceneUtil.SCRIPT_TYPE.TEST_2D_STAGE_PLAYER_NODE);
     }
 
     /**
@@ -368,7 +368,7 @@ public class PlayerNodeScript : ToffMonaka.Tml.Scene.NodeScript
 
                     this._UpdateRigidbodyPosition(this._GetSurfaceVelocity(leftover_vel, hit.normal), cnt + 1, false);
                 } else {
-                    if (this._ColliderCast(this._rigidbody.position + new Vector2(0.0f, this._moveStepHeight), leftover_vel.normalized, leftover_vel.magnitude, out RaycastHit2D hit2)) {
+                    if (this._ColliderCast(this._rigidbody.position + new Vector2(0.0f, this._moveStepHeight), leftover_vel.normalized, leftover_vel.magnitude, out _)) {
                         this._UpdateRigidbodyPosition(this._GetSurfaceVelocity(leftover_vel, hit.normal), cnt + 1, false);
                     } else {
                         if (this._ColliderCast(this._rigidbody.position + new Vector2(leftover_vel.x, this._moveStepHeight), Vector2.down, this._moveStepHeight, out RaycastHit2D hit3)) {

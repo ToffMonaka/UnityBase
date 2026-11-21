@@ -27,12 +27,12 @@ public class MainSceneNodeScript : ToffMonaka.Tml.Scene.MainSceneNodeScript
     public new MainSceneNodeScriptCreateDesc createDesc{get; private set;} = null;
 
     /**
-     * @brief _OnGetScriptIndex関数
-     * @return script_index (script_index)
+     * @brief _OnGetScriptType関数
+     * @return script_type (script_type)
      */
-    protected override int _OnGetScriptIndex()
+    protected override ToffMonaka.Tml.Scene.SceneUtil.SCRIPT_TYPE _OnGetScriptType()
     {
-        return ((int)SceneUtil.SCRIPT_TYPE.MAIN_SCENE_NODE);
+        return ((ToffMonaka.Tml.Scene.SceneUtil.SCRIPT_TYPE)SceneUtil.SCRIPT_TYPE.MAIN_SCENE_NODE);
     }
 
     /**
