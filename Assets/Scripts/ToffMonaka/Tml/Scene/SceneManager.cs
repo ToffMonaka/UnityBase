@@ -25,7 +25,9 @@ public class SceneManagerCreateDesc
     public string soundSePrefabFilePath = "";
     public AudioClip[] soundSeAudioClipArray = null;
 	public float soundSeVolume = 1.0f;
-    public int scriptTypeCount = 0;
+    public int scriptTypeCount = SceneUtil.SCRIPT_TYPE_COUNT;
+    public int scriptSceneTypeCount = SceneUtil.SCRIPT_SCENE_TYPE_COUNT;
+    public int scriptNotifyTypeCount = SceneUtil.SCRIPT_NOTIFY_TYPE_COUNT;
 }
 
 /**
@@ -52,8 +54,8 @@ public class SceneManager
     private AudioClip[] _soundSeAudioClipArray = null;
 	private float _soundSeVolume = 0.5f;
     private List<Script>[] _scriptArray = null;
-    private MainSceneNodeScript _mainSceneNodeScript = null;
-    private SubSceneNodeScript _subSceneNodeScript = null;
+    private Script[] _scriptArrayByScriptSceneType = null;
+    private List<Script>[] _scriptArrayByScriptNotifyType = null;
 
     /**
      * @brief コンストラクタ
@@ -112,8 +114,8 @@ public class SceneManager
         this._soundSePrefabFilePath = "";
         this._soundSeAudioClipArray = null;
 	    this._soundSeVolume = 0.5f;
-        this._mainSceneNodeScript = null;
-        this._subSceneNodeScript = null;
+        this._scriptArrayByScriptSceneType = null;
+        this._scriptArrayByScriptNotifyType = null;
 
         return;
     }
@@ -148,6 +150,18 @@ public class SceneManager
 
             for (int script_i = 0; script_i < this._scriptArray.Length; ++script_i) {
                 this._scriptArray[script_i] = new List<Script>();
+            }
+
+            this._scriptArrayByScriptSceneType = new Script[this.createDesc.scriptSceneTypeCount];
+
+            for (int script_i = 0; script_i < this._scriptArrayByScriptSceneType.Length; ++script_i) {
+                this._scriptArrayByScriptSceneType[script_i] = null;
+            }
+
+            this._scriptArrayByScriptNotifyType = new List<Script>[this.createDesc.scriptNotifyTypeCount];
+
+            for (int script_i = 0; script_i < this._scriptArrayByScriptNotifyType.Length; ++script_i) {
+                this._scriptArrayByScriptNotifyType[script_i] = new List<Script>();
             }
         }
 
@@ -564,38 +578,28 @@ public class SceneManager
 
     /**
      * @brief GetScript関数
-     * @param script_inex (script_inex)
+     * @param script_type (script_type)
      * @return script (script)<br>
      * null=失敗
      */
-    public Script GetScript(int script_inex)
+    public Script GetScript(SceneUtil.SCRIPT_SCENE_TYPE script_type)
     {
-        if ((script_inex < 0)
-        || (script_inex >= this._scriptArray.Length)) {
+        if (this._scriptArray[(int)script_type].Count <= 0) {
             return (null);
         }
 
-        if (this._scriptArray[script_inex].Count <= 0) {
-            return (null);
-        }
-
-        return (this._scriptArray[script_inex][0]);
+        return (this._scriptArray[(int)script_type][0]);
     }
 
     /**
      * @brief GetScriptContainer関数
-     * @param script_inex (script_inex)
+     * @param script_type (script_type)
      * @return script_cont (script_container)<br>
      * null=失敗
      */
-    public List<Script> GetScriptContainer(int script_inex)
+    public List<Script> GetScriptContainer(SceneUtil.SCRIPT_SCENE_TYPE script_type)
     {
-        if ((script_inex < 0)
-        || (script_inex >= this._scriptArray.Length)) {
-            return (null);
-        }
-
-        return (this._scriptArray[script_inex]);
+        return (this._scriptArray[(int)script_type]);
     }
 
     /**
@@ -604,7 +608,7 @@ public class SceneManager
      */
     public MainSceneNodeScript GetMainSceneNodeScript()
     {
-        return (this._mainSceneNodeScript);
+        return ((MainSceneNodeScript)this._scriptArrayByScriptSceneType[(int)SceneUtil.SCRIPT_SCENE_TYPE.MAIN]);
     }
 
     /**
@@ -613,7 +617,7 @@ public class SceneManager
      */
     public SubSceneNodeScript GetSubSceneNodeScript()
     {
-        return (this._subSceneNodeScript);
+        return ((SubSceneNodeScript)this._scriptArrayByScriptSceneType[(int)SceneUtil.SCRIPT_SCENE_TYPE.SUB]);
     }
 
     /**
@@ -633,18 +637,15 @@ public class SceneManager
         if (script.GetScriptType() != SceneUtil.SCRIPT_TYPE.NONE) {
             this._scriptArray[(int)script.GetScriptType()].Add(script);
 
-		    switch (script.GetScriptSceneType()) {
-		    case SceneUtil.SCRIPT_SCENE_TYPE.MAIN: {
-                this._mainSceneNodeScript = (MainSceneNodeScript)script;
+            if (script.GetScriptSceneType() != SceneUtil.SCRIPT_SCENE_TYPE.NONE) {
+                this._scriptArrayByScriptSceneType[(int)script.GetScriptSceneType()] = script;
+            }
 
-			    break;
-		    }
-		    case SceneUtil.SCRIPT_SCENE_TYPE.SUB: {
-                this._subSceneNodeScript = (SubSceneNodeScript)script;
-
-			    break;
-		    }
-		    }
+            if (script.GetScriptNotifyTypeArray() != null) {
+                foreach (var script_notify_type in script.GetScriptNotifyTypeArray()) {
+                    this._scriptArrayByScriptNotifyType[(int)script_notify_type].Add(script);
+                }
+            }
         }
 
         script.SetManagerAddedFlag(true);
@@ -667,22 +668,17 @@ public class SceneManager
         if (script.GetScriptType() != SceneUtil.SCRIPT_TYPE.NONE) {
             this._scriptArray[(int)script.GetScriptType()].Remove(script);
 
-		    switch (script.GetScriptSceneType()) {
-		    case SceneUtil.SCRIPT_SCENE_TYPE.MAIN: {
-                if (this._mainSceneNodeScript == (MainSceneNodeScript)script) {
-                    this._mainSceneNodeScript = null;
+            if (script.GetScriptSceneType() != SceneUtil.SCRIPT_SCENE_TYPE.NONE) {
+                if (this._scriptArrayByScriptSceneType[(int)script.GetScriptSceneType()] == script) {
+                    this._scriptArrayByScriptSceneType[(int)script.GetScriptSceneType()] = null;
                 }
+            }
 
-			    break;
-		    }
-		    case SceneUtil.SCRIPT_SCENE_TYPE.SUB: {
-                if (this._subSceneNodeScript == (SubSceneNodeScript)script) {
-                    this._subSceneNodeScript = null;
+            if (script.GetScriptNotifyTypeArray() != null) {
+                foreach (var script_notify_type in script.GetScriptNotifyTypeArray()) {
+                    this._scriptArrayByScriptNotifyType[(int)script_notify_type].Remove(script);
                 }
-
-			    break;
-		    }
-		    }
+            }
         }
 
         script.SetManagerAddedFlag(false);
@@ -696,6 +692,12 @@ public class SceneManager
      */
     public void NotifyToScript(SceneUtil.SCRIPT_NOTIFY_TYPE notify_type)
     {
+        var script_cont = this._scriptArrayByScriptNotifyType[(int)notify_type];
+
+        foreach (var script in script_cont) {
+            script.NotifyFromManager(notify_type);
+        }
+
         return;
     }
 }

@@ -296,6 +296,8 @@ public class MainSceneNodeScript : ToffMonaka.Tml.Scene.MainSceneNodeScript
             manager_create_desc.soundSeAudioClipArray = this.GetSoundSeAudioClipArray();
             manager_create_desc.soundSeVolume = DataUtil.systemConfigFile.data.soundSeVolume;
             manager_create_desc.scriptTypeCount = SceneUtil.SCRIPT_TYPE_COUNT;
+            manager_create_desc.scriptSceneTypeCount = SceneUtil.SCRIPT_SCENE_TYPE_COUNT;
+            manager_create_desc.scriptNotifyTypeCount = SceneUtil.SCRIPT_NOTIFY_TYPE_COUNT;
 
             if (manager.Create(manager_create_desc) < 0) {
                 this._ReleaseManager();

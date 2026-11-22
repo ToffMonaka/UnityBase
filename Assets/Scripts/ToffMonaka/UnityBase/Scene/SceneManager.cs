@@ -3,6 +3,7 @@
  * @brief SceneManagerファイル
  */
 
+using System.Collections.Generic;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.EnhancedTouch;
 
@@ -116,12 +117,34 @@ public class SceneManager : ToffMonaka.Tml.Scene.SceneManager
     }
 
     /**
+     * @brief GetScript関数
+     * @param script_type (script_type)
+     * @return script (script)<br>
+     * null=失敗
+     */
+    public ToffMonaka.Tml.Scene.Script GetScript(SceneUtil.SCRIPT_SCENE_TYPE script_type)
+    {
+        return (this.GetScript((ToffMonaka.Tml.Scene.SceneUtil.SCRIPT_SCENE_TYPE)script_type));
+    }
+
+    /**
+     * @brief GetScriptContainer関数
+     * @param script_type (script_type)
+     * @return script_cont (script_container)<br>
+     * null=失敗
+     */
+    public List<ToffMonaka.Tml.Scene.Script> GetScriptContainer(SceneUtil.SCRIPT_SCENE_TYPE script_type)
+    {
+        return (this.GetScriptContainer((ToffMonaka.Tml.Scene.SceneUtil.SCRIPT_SCENE_TYPE)script_type));
+    }
+
+    /**
      * @brief GetMainSceneNodeScript関数
      * @return main_scene_node_script (main_scene_node_script)
      */
     public new MainSceneNodeScript GetMainSceneNodeScript()
     {
-        return (base.GetMainSceneNodeScript() as MainSceneNodeScript);
+        return ((MainSceneNodeScript)base.GetMainSceneNodeScript());
     }
 
     /**
@@ -130,7 +153,7 @@ public class SceneManager : ToffMonaka.Tml.Scene.SceneManager
      */
     public new SubSceneNodeScript GetSubSceneNodeScript()
     {
-        return (base.GetSubSceneNodeScript() as SubSceneNodeScript);
+        return ((SubSceneNodeScript)base.GetSubSceneNodeScript());
     }
 
     /**

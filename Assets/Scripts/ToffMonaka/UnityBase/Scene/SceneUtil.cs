@@ -65,10 +65,15 @@ public static class SceneUtil
     }
     public static readonly int SCRIPT_TYPE_COUNT = (int)SceneUtil.SCRIPT_TYPE.COUNT;
 
+    public enum SCRIPT_SCENE_TYPE : int
+    {
+		COUNT = ToffMonaka.Tml.Scene.SceneUtil.SCRIPT_SCENE_TYPE.COUNT
+    }
+    public static readonly int SCRIPT_SCENE_TYPE_COUNT = (int)SceneUtil.SCRIPT_SCENE_TYPE.COUNT;
+
     public enum SCRIPT_NOTIFY_TYPE : int
     {
-        ETC = ToffMonaka.Tml.Scene.SceneUtil.SCRIPT_NOTIFY_TYPE.COUNT,
-		COUNT
+		COUNT = ToffMonaka.Tml.Scene.SceneUtil.SCRIPT_NOTIFY_TYPE.COUNT
     }
     public static readonly int SCRIPT_NOTIFY_TYPE_COUNT = (int)SceneUtil.SCRIPT_NOTIFY_TYPE.COUNT;
 
