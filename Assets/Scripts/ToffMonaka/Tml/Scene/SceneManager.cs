@@ -18,6 +18,8 @@ public class SceneManagerCreateDesc
     public GameObject mainSceneNode = null;
     public GameObject inputNode = null;
     public GameObject graphicNode = null;
+    public bool graphicVSyncFlag = true;
+    public int graphicFrameRate = 60;
     public GameObject soundNode = null;
     public string soundBgmPrefabFilePath = "";
     public AudioClip[] soundBgmAudioClipArray = null;
@@ -44,6 +46,8 @@ public class SceneManager
     private GameObject _inputNode = null;
     private EventSystem _inputEventSystem = null;
     private GameObject _graphicNode = null;
+    private bool _graphicVSyncFlag = true;
+    private int _graphicFrameRate = 60;
     private GameObject _soundNode = null;
     private string _soundBgmPrefabFilePath = "";
     private System.Tuple<GameObject, SoundBgmNodeScript> _soundBgmNodeScript = null;
@@ -107,6 +111,8 @@ public class SceneManager
         this._inputNode = null;
         this._inputEventSystem = null;
         this._graphicNode = null;
+	    this._graphicVSyncFlag = true;
+	    this._graphicFrameRate = 60;
         this._soundNode = null;
         this._soundBgmPrefabFilePath = "";
         this._soundBgmAudioClipArray = null;
@@ -163,6 +169,9 @@ public class SceneManager
             for (int script_i = 0; script_i < this._scriptArrayByScriptNotifyType.Length; ++script_i) {
                 this._scriptArrayByScriptNotifyType[script_i] = new List<Script>();
             }
+
+            this.SetGraphicVSyncFlag(this.createDesc.graphicVSyncFlag);
+            this.SetGraphicFrameRate(this.createDesc.graphicFrameRate);
         }
 
         int create_result_val = this._OnCreate();
@@ -348,6 +357,50 @@ public class SceneManager
     public GameObject GetGraphicNode()
     {
         return (this._graphicNode);
+    }
+
+    /**
+     * @brief GetGraphicVSyncFlag関数
+     * @return graphic_v_sync_flg (graphic_v_sync_flag)
+     */
+    public bool GetGraphicVSyncFlag()
+    {
+        return (this._graphicVSyncFlag);
+    }
+
+    /**
+     * @brief SetGraphicVSyncFlag関数
+     * @param graphic_v_sync_flg (graphic_v_sync_flag)
+     */
+    public void SetGraphicVSyncFlag(bool graphic_v_sync_flg)
+    {
+	    this._graphicVSyncFlag = graphic_v_sync_flg;
+
+        QualitySettings.vSyncCount = (graphic_v_sync_flg) ? 1 : 0;
+
+        return;
+    }
+
+    /**
+     * @brief GetGraphicFrameRate関数
+     * @return graphic_frame_rate (graphic_frame_rate)
+     */
+    public int GetGraphicFrameRate()
+    {
+        return (this._graphicFrameRate);
+    }
+
+    /**
+     * @brief SetGraphicFrameRate関数
+     * @param graphic_frame_rate (graphic_frame_rate)
+     */
+    public void SetGraphicFrameRate(int graphic_frame_rate)
+    {
+	    this._graphicFrameRate = graphic_frame_rate;
+
+        Application.targetFrameRate = this._graphicFrameRate;
+
+        return;
     }
 
     /**

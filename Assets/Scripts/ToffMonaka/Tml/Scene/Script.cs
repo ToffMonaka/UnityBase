@@ -471,7 +471,17 @@ public abstract class Script : MonoBehaviour
      * @return controllable_flg (controllable_flag)<br>
      * false=コントロール不可,true=コントロール可
      */
-    public virtual bool IsControllable()
+    public bool IsControllable()
+    {
+        return (this._IsControllable());
+    }
+
+    /**
+     * @brief _IsControllable関数
+     * @return controllable_flg (controllable_flag)<br>
+     * false=コントロール不可,true=コントロール可
+     */
+    protected virtual bool _IsControllable()
     {
         if (!this._createdFlag) {
             return (false);
@@ -497,6 +507,16 @@ public abstract class Script : MonoBehaviour
             }
         }
 
+        return (this._OnIsControllable());
+    }
+
+    /**
+     * @brief _OnIsControllable関数
+     * @return controllable_flg (controllable_flag)<br>
+     * false=コントロール不可,true=コントロール可
+     */
+    protected virtual bool _OnIsControllable()
+    {
         return (true);
     }
 
@@ -504,7 +524,18 @@ public abstract class Script : MonoBehaviour
      * @brief NotifyFromManager関数
      * @param notify_type (notify_type)
      */
-    public virtual void NotifyFromManager(SceneUtil.SCRIPT_NOTIFY_TYPE notify_type)
+    public void NotifyFromManager(SceneUtil.SCRIPT_NOTIFY_TYPE notify_type)
+    {
+        this._OnNotifyFromManager(notify_type);
+
+        return;
+    }
+
+    /**
+     * @brief _OnNotifyFromManager関数
+     * @param notify_type (notify_type)
+     */
+    protected virtual void _OnNotifyFromManager(SceneUtil.SCRIPT_NOTIFY_TYPE notify_type)
     {
         return;
     }

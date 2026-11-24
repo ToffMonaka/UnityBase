@@ -24,6 +24,11 @@ public class OptionGraphicStageBoardNodeScriptCreateDesc : StageBoardNodeScriptC
 public class OptionGraphicStageBoardNodeScript : StageBoardNodeScript
 {
     [SerializeField] private ScrollRect _scrollRect = null;
+    [SerializeField] private TMP_Text _vSyncNameText = null;
+    [SerializeField] private Toggle _vSyncToggle = null;
+    [SerializeField] private TMP_Text _frameRateNameText = null;
+    [SerializeField] private TMP_Text _frameRateValueText = null;
+    [SerializeField] private Slider _frameRateSlider = null;
     [SerializeField] private TMP_Text _uiMarginNameText = null;
     [SerializeField] private TMP_Text _uiMarginTopNameText = null;
     [SerializeField] private TMP_Text _uiMarginTopValueText = null;
@@ -42,6 +47,8 @@ public class OptionGraphicStageBoardNodeScript : StageBoardNodeScript
 
     public new OptionGraphicStageBoardNodeScriptCreateDesc createDesc{get; private set;} = null;
 
+    private bool _vSyncFlag = true;
+    private int _frameRate = 60;
     private float _uiMarginTop = 8.0f;
     private float _uiMarginBottom = 8.0f;
     private float _uiMarginLeft = 80.0f;
@@ -117,6 +124,8 @@ public class OptionGraphicStageBoardNodeScript : StageBoardNodeScript
 
         this._nameText.SetText(DataUtil.GetText(DataUtil.MST_TEXT_ID.OPTION) + " > " + DataUtil.GetText(DataUtil.MST_TEXT_ID.GRAPHIC));
 
+        this._vSyncNameText.SetText(DataUtil.GetText(DataUtil.MST_TEXT_ID.V_SYNC));
+        this._frameRateNameText.SetText(DataUtil.GetText(DataUtil.MST_TEXT_ID.FRAME_RATE));
         this._uiMarginNameText.SetText(DataUtil.GetText(DataUtil.MST_TEXT_ID.UI_MARGIN));
         this._uiMarginTopNameText.SetText(DataUtil.GetText(DataUtil.MST_TEXT_ID.TOP));
         this._uiMarginBottomNameText.SetText(DataUtil.GetText(DataUtil.MST_TEXT_ID.BOTTOM));
@@ -167,6 +176,8 @@ public class OptionGraphicStageBoardNodeScript : StageBoardNodeScript
 
         this._scrollRect.verticalNormalizedPosition = 1.0f;
 
+        this._SetVSyncFlag(DataUtil.systemConfigFile.data.graphicVSyncFlag);
+        this._SetFrameRate(DataUtil.systemConfigFile.data.graphicFrameRate);
         this._SetUiMarginTop(DataUtil.systemConfigFile.data.graphicUiMarginTop);
         this._SetUiMarginBottom(DataUtil.systemConfigFile.data.graphicUiMarginBottom);
         this._SetUiMarginLeft(DataUtil.systemConfigFile.data.graphicUiMarginLeft);
@@ -181,6 +192,82 @@ public class OptionGraphicStageBoardNodeScript : StageBoardNodeScript
     protected override void _OnClose()
     {
         base._OnClose();
+
+        return;
+    }
+
+    /**
+     * @brief OnVSyncToggleValueChanged関数
+     * @param event_val (event_value)
+     */
+    public void OnVSyncToggleValueChanged(bool event_val)
+    {
+        if (!this.IsControllable()) {
+            return;
+        }
+
+        if (this._vSyncToggle.isOn) {
+            SceneUtil.GetManager().PlaySoundSe((int)SceneUtil.SOUND_SE_INDEX.OK2);
+        } else {
+            SceneUtil.GetManager().PlaySoundSe((int)SceneUtil.SOUND_SE_INDEX.CANCEL);
+        }
+
+        this._SetVSyncFlag(this._vSyncToggle.isOn);
+
+        return;
+    }
+
+    /**
+     * @brief OnFrameRateSliderValueChanged関数
+     * @param event_val (event_value)
+     */
+    public void OnFrameRateSliderValueChanged(float event_val)
+    {
+        if (!this.IsControllable()) {
+            return;
+        }
+
+        var old_val = this._frameRate;
+
+        this._SetFrameRate((int)this._frameRateSlider.value);
+
+        if (this._frameRate != old_val) {
+            SceneUtil.GetManager().PlaySoundSe((int)SceneUtil.SOUND_SE_INDEX.OK2);
+        }
+
+        return;
+    }
+
+    /**
+     * @brief OnFrameRateSliderLeftButtonPointerClick関数
+     * @param event_dat (event_data)
+     */
+    public void OnFrameRateSliderLeftButtonPointerClick(PointerEventData event_dat)
+    {
+        if (!this.IsControllable()) {
+            return;
+        }
+
+        SceneUtil.GetManager().PlaySoundSe((int)SceneUtil.SOUND_SE_INDEX.OK2);
+
+        this._SetFrameRate(System.Math.Max(this._frameRate - 30, 30));
+
+        return;
+    }
+
+    /**
+     * @brief OnFrameRateSliderRightButtonPointerClick関数
+     * @param event_dat (event_data)
+     */
+    public void OnFrameRateSliderRightButtonPointerClick(PointerEventData event_dat)
+    {
+        if (!this.IsControllable()) {
+            return;
+        }
+
+        SceneUtil.GetManager().PlaySoundSe((int)SceneUtil.SOUND_SE_INDEX.OK2);
+
+        this._SetFrameRate(System.Math.Min(this._frameRate + 30, 120));
 
         return;
     }
@@ -417,6 +504,8 @@ public class OptionGraphicStageBoardNodeScript : StageBoardNodeScript
 
         SceneUtil.GetManager().PlaySoundSe((int)SceneUtil.SOUND_SE_INDEX.OK2);
 
+        DataUtil.systemConfigFile.data.graphicVSyncFlag = this._vSyncFlag;
+        DataUtil.systemConfigFile.data.graphicFrameRate = this._frameRate;
         DataUtil.systemConfigFile.data.graphicUiMarginTop = this._uiMarginTop;
         DataUtil.systemConfigFile.data.graphicUiMarginBottom = this._uiMarginBottom;
         DataUtil.systemConfigFile.data.graphicUiMarginLeft = this._uiMarginLeft;
@@ -446,6 +535,33 @@ public class OptionGraphicStageBoardNodeScript : StageBoardNodeScript
         SceneUtil.GetManager().PlaySoundSe((int)SceneUtil.SOUND_SE_INDEX.CANCEL);
 
         this._onCloseStageBoard(this);
+
+        return;
+    }
+
+    /**
+     * @brief _SetVSyncFlag関数
+     * @param v_sync_flg (v_sync_flag)
+     */
+    private void _SetVSyncFlag(bool v_sync_flg)
+    {
+        this._vSyncFlag = v_sync_flg;
+
+        this._vSyncToggle.SetIsOnWithoutNotify(this._vSyncFlag);
+
+        return;
+    }
+
+    /**
+     * @brief _SetFrameRate関数
+     * @param frame_rate (frame_rate)
+     */
+    private void _SetFrameRate(int frame_rate)
+    {
+        this._frameRate = System.Math.Clamp((int)(System.Math.Round(frame_rate / 30.0, System.MidpointRounding.AwayFromZero) * 30.0), 30, 120);
+
+        this._frameRateValueText.SetText("{0}", this._frameRate);
+        this._frameRateSlider.SetValueWithoutNotify(this._frameRate);
 
         return;
     }

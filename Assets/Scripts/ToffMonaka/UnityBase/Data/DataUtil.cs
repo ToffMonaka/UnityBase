@@ -62,7 +62,9 @@ public static class DataUtil
         INVERT,
         X,
         Y,
-        Z
+        Z,
+        V_SYNC,
+        FRAME_RATE
     }
 
     /**

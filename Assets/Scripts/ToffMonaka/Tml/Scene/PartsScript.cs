@@ -161,13 +161,13 @@ public abstract class PartsScript : Script
     }
 
     /**
-     * @brief IsControllable関数
+     * @brief _IsControllable関数
      * @return controllable_flg (controllable_flag)<br>
      * false=コントロール不可,true=コントロール可
      */
-    public override bool IsControllable()
+    protected override bool _IsControllable()
     {
-        if (!base.IsControllable()) {
+        if (!base._IsControllable()) {
             return (false);
         }
 

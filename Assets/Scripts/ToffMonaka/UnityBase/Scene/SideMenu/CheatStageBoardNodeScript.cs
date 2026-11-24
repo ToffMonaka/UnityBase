@@ -110,6 +110,7 @@ public class CheatStageBoardNodeScript : StageBoardNodeScript
         this._nameText.SetText(DataUtil.GetText(DataUtil.MST_TEXT_ID.CHEAT));
 
         this._commandNameText.SetText(DataUtil.GetText(DataUtil.MST_TEXT_ID.COMMAND));
+
         this._okButtonNameText.SetText(DataUtil.GetText(DataUtil.MST_TEXT_ID.OK));
         this._cancelButtonNameText.SetText(DataUtil.GetText(DataUtil.MST_TEXT_ID.CANCEL));
 

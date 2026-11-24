@@ -288,6 +288,8 @@ public class MainSceneNodeScript : ToffMonaka.Tml.Scene.MainSceneNodeScript
             manager_create_desc.mainSceneNode = this.gameObject;
             manager_create_desc.inputNode = this.GetInputNode();
             manager_create_desc.graphicNode = this.GetGraphicNode();
+            manager_create_desc.graphicVSyncFlag = DataUtil.systemConfigFile.data.graphicVSyncFlag;
+            manager_create_desc.graphicFrameRate = DataUtil.systemConfigFile.data.graphicFrameRate;
             manager_create_desc.soundNode = this.GetSoundNode();
             manager_create_desc.soundBgmPrefabFilePath = Util.FILE_PATH.SOUND_BGM_PREFAB;
             manager_create_desc.soundBgmAudioClipArray = this.GetSoundBgmAudioClipArray();

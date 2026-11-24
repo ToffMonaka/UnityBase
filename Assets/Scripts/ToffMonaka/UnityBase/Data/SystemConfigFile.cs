@@ -20,6 +20,8 @@ public class SystemConfigFileData
     public float inputTest3DCameraSpeed = 0.5f;
     public bool inputTest3DCameraInvertXFlag = false;
     public bool inputTest3DCameraInvertYFlag = true;
+    public bool graphicVSyncFlag = true;
+    public int graphicFrameRate = 60;
     public float graphicUiMarginTop = 8.0f;
     public float graphicUiMarginBottom = 8.0f;
     public float graphicUiMarginLeft = 80.0f;
@@ -59,6 +61,8 @@ public class SystemConfigFileData
         this.inputTest3DCameraSpeed = 0.5f;
         this.inputTest3DCameraInvertXFlag = false;
         this.inputTest3DCameraInvertYFlag = true;
+        this.graphicVSyncFlag = true;
+        this.graphicFrameRate = 60;
         this.graphicUiMarginTop = 8.0f;
         this.graphicUiMarginBottom = 8.0f;
         this.graphicUiMarginLeft = 80.0f;
@@ -144,7 +148,7 @@ public class SystemConfigFile : ToffMonaka.Tml.File
 		        val = ini_file.data.GetValue(key_cont, "LANGUAGE_TYPE");
 
 		        if (val != null) {
-                    this.data.systemLanguageType = (Util.LANGUAGE_TYPE)(int.Parse(val));
+                    this.data.systemLanguageType = (Util.LANGUAGE_TYPE)int.Parse(val);
 		        }
 	        }
         }
@@ -195,6 +199,18 @@ public class SystemConfigFile : ToffMonaka.Tml.File
 	        key_cont = ini_file.data.GetKeyContainer("GRAPHIC");
 
 	        if (key_cont != null) {
+		        val = ini_file.data.GetValue(key_cont, "V_SYNC_FLG");
+
+		        if (val != null) {
+                    this.data.graphicVSyncFlag = System.Convert.ToBoolean(int.Parse(val));
+		        }
+
+		        val = ini_file.data.GetValue(key_cont, "FRAME_RATE");
+
+		        if (val != null) {
+                    this.data.graphicFrameRate = int.Parse(val);
+		        }
+
 		        val = ini_file.data.GetValue(key_cont, "UI_MARGIN_TOP");
 
 		        if (val != null) {
@@ -280,6 +296,8 @@ public class SystemConfigFile : ToffMonaka.Tml.File
 
         {// Graphic Section Write
 	        txt_file.data.lineTextContainer.Add(ToffMonaka.Tml.Data.IniFileUtil.SECTION_START_CODE + "GRAPHIC" + ToffMonaka.Tml.Data.IniFileUtil.SECTION_END_CODE);
+	        txt_file.data.lineTextContainer.Add("V_SYNC_FLG" + ToffMonaka.Tml.Data.IniFileUtil.EQUAL_CODE + System.Convert.ToInt32(this.data.graphicVSyncFlag).ToString());
+	        txt_file.data.lineTextContainer.Add("FRAME_RATE" + ToffMonaka.Tml.Data.IniFileUtil.EQUAL_CODE + this.data.graphicFrameRate.ToString());
 	        txt_file.data.lineTextContainer.Add("UI_MARGIN_TOP" + ToffMonaka.Tml.Data.IniFileUtil.EQUAL_CODE + this.data.graphicUiMarginTop.ToString());
 	        txt_file.data.lineTextContainer.Add("UI_MARGIN_BOTTOM" + ToffMonaka.Tml.Data.IniFileUtil.EQUAL_CODE + this.data.graphicUiMarginBottom.ToString());
 	        txt_file.data.lineTextContainer.Add("UI_MARGIN_LEFT" + ToffMonaka.Tml.Data.IniFileUtil.EQUAL_CODE + this.data.graphicUiMarginLeft.ToString());

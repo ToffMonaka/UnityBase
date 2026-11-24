@@ -105,6 +105,7 @@ public class ExitStageBoardNodeScript : StageBoardNodeScript
 
         this._backToTitleNameText.SetText(DataUtil.GetText(DataUtil.MST_TEXT_ID.BACK_TO_TITLE));
         this._exitNameText.SetText(DataUtil.GetText(DataUtil.MST_TEXT_ID.EXIT));
+
         this._okButtonNameText.SetText(DataUtil.GetText(DataUtil.MST_TEXT_ID.OK));
         this._cancelButtonNameText.SetText(DataUtil.GetText(DataUtil.MST_TEXT_ID.CANCEL));
 
@@ -148,6 +149,7 @@ public class ExitStageBoardNodeScript : StageBoardNodeScript
         base._OnOpen();
 
         this._scrollRect.verticalNormalizedPosition = 1.0f;
+
         this._backToTitleToggle.SetIsOnWithoutNotify(false);
         this._exitToggle.SetIsOnWithoutNotify(false);
 
