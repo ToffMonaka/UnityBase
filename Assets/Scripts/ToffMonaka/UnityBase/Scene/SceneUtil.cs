@@ -73,7 +73,9 @@ public static class SceneUtil
 
     public enum SCRIPT_NOTIFY_TYPE : int
     {
-		COUNT = ToffMonaka.Tml.Scene.SceneUtil.SCRIPT_NOTIFY_TYPE.COUNT
+        LANGUAGE_TYPE_UPDATE = ToffMonaka.Tml.Scene.SceneUtil.SCRIPT_NOTIFY_TYPE.COUNT,
+        UI_MARGIN_UPDATE,
+		COUNT
     }
     public static readonly int SCRIPT_NOTIFY_TYPE_COUNT = (int)SceneUtil.SCRIPT_NOTIFY_TYPE.COUNT;
 

@@ -40,6 +40,20 @@ public abstract class BoardNodeScript : ToffMonaka.Tml.Scene.NodeScript
     }
 
     /**
+     * @brief _OnGetScriptNotifyTypeArray関数
+     * @return script_notify_type_ary (script_notify_type_array)
+     */
+    protected override ToffMonaka.Tml.Scene.SceneUtil.SCRIPT_NOTIFY_TYPE[] _OnGetScriptNotifyTypeArray()
+    {
+        ToffMonaka.Tml.Scene.SceneUtil.SCRIPT_NOTIFY_TYPE[] script_notify_type_ary = {
+            (ToffMonaka.Tml.Scene.SceneUtil.SCRIPT_NOTIFY_TYPE)Scene.SceneUtil.SCRIPT_NOTIFY_TYPE.LANGUAGE_TYPE_UPDATE,
+            (ToffMonaka.Tml.Scene.SceneUtil.SCRIPT_NOTIFY_TYPE)Scene.SceneUtil.SCRIPT_NOTIFY_TYPE.UI_MARGIN_UPDATE
+        };
+
+        return (script_notify_type_ary);
+    }
+
+    /**
      * @brief _OnGetBoardType関数
      * @return board_type (board_type)
      */
@@ -190,6 +204,26 @@ public abstract class BoardNodeScript : ToffMonaka.Tml.Scene.NodeScript
 		default: {
             rect_transform.anchoredPosition = new Vector2(-DataUtil.systemConfigFile.data.graphicUiMarginLeft + -rect_transform.sizeDelta.x - 8.0f, rect_transform.anchoredPosition.y);
 
+			break;
+		}
+		}
+
+        return;
+    }
+
+    /**
+     * @brief _OnNotifyFromManager関数
+     * @param notify_type (notify_type)
+     */
+    protected override void _OnNotifyFromManager(ToffMonaka.Tml.Scene.SceneUtil.SCRIPT_NOTIFY_TYPE notify_type)
+    {
+        base._OnNotifyFromManager(notify_type);
+
+		switch (notify_type) {
+		case (ToffMonaka.Tml.Scene.SceneUtil.SCRIPT_NOTIFY_TYPE)Scene.SceneUtil.SCRIPT_NOTIFY_TYPE.LANGUAGE_TYPE_UPDATE: {
+			break;
+		}
+		case (ToffMonaka.Tml.Scene.SceneUtil.SCRIPT_NOTIFY_TYPE)Scene.SceneUtil.SCRIPT_NOTIFY_TYPE.UI_MARGIN_UPDATE: {
 			break;
 		}
 		}

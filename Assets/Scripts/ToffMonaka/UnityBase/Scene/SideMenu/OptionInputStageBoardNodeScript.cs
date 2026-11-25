@@ -408,13 +408,9 @@ public class OptionInputStageBoardNodeScript : StageBoardNodeScript
         DataUtil.systemConfigFile.data.inputTest3DCameraInvertXFlag = this._test3DCameraInvertXFlag;
         DataUtil.systemConfigFile.data.inputTest3DCameraInvertYFlag = this._test3DCameraInvertYFlag;
 
-        DataUtil.systemConfigFile.Write(true);
+        //DataUtil.systemConfigFile.Write(true);
 
-        if (this._restartFlag) {
-            SceneUtil.GetManager().StartMainScene();
-        } else {
-            this._onCloseStageBoard(this);
-        }
+        this._onCloseStageBoard(this);
 
         return;
     }

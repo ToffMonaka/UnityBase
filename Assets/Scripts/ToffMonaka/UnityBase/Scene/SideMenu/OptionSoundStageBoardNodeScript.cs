@@ -308,13 +308,9 @@ public class OptionSoundStageBoardNodeScript : StageBoardNodeScript
         DataUtil.systemConfigFile.data.soundBgmVolume = this._bgmVolume;
         DataUtil.systemConfigFile.data.soundSeVolume = this._seVolume;
 
-        DataUtil.systemConfigFile.Write(true);
+        //DataUtil.systemConfigFile.Write(true);
 
-        if (this._restartFlag) {
-            SceneUtil.GetManager().StartMainScene();
-        } else {
-            this._onCloseStageBoard(this);
-        }
+        this._onCloseStageBoard(this);
 
         return;
     }

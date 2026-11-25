@@ -232,24 +232,7 @@ public class InitSubSceneNodeScript : SubSceneNodeScript
 		case 2: {
 		    switch (this._updateProgressCount) {
 		    case 0: {
-                {// MstTextTableFile Create
-		            switch (DataUtil.systemConfigFile.data.systemLanguageType) {
-		            case Util.LANGUAGE_TYPE.JAPANESE: {
-                        DataUtil.mstTextTableFile.readDesc.data.filePath = Util.FILE_PATH.JAPANESE_MST_TEXT_TABLE;
-
-			            break;
-		            }
-		            default: {
-                        DataUtil.mstTextTableFile.readDesc.data.filePath = Util.FILE_PATH.ENGLISH_MST_TEXT_TABLE;
-
-			            break;
-		            }
-		            }
-
-                    DataUtil.mstTextTableFile.readDesc.data.addressablesFlag = true;
-
-                    DataUtil.mstTextTableFile.Read();
-                }
+                DataUtil.mstTextTableFile.Read2();
 
                 ++this._updateProgressCount;
 

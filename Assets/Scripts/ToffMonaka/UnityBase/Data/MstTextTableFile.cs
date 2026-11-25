@@ -150,6 +150,31 @@ public class MstTextTableFile : ToffMonaka.Tml.File
     {
         return (-1);
     }
+
+    /**
+     * @brief Read2関数
+     * @return result_val (result_value)<br>
+     * 0未満=失敗
+     */
+    public int Read2()
+    {
+		switch (DataUtil.systemConfigFile.data.systemLanguageType) {
+		case Util.LANGUAGE_TYPE.JAPANESE: {
+            this.readDesc.data.filePath = Util.FILE_PATH.JAPANESE_MST_TEXT_TABLE;
+
+			break;
+		}
+		default: {
+            this.readDesc.data.filePath = Util.FILE_PATH.ENGLISH_MST_TEXT_TABLE;
+
+			break;
+		}
+		}
+
+        this.readDesc.data.addressablesFlag = true;
+
+        return (this.Read());
+    }
 }
 }
 }

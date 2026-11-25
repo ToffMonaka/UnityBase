@@ -166,6 +166,32 @@ public class OptionSystemStageBoardNodeScript : StageBoardNodeScript
     }
 
     /**
+     * @brief _OnNotifyFromManager関数
+     * @param notify_type (notify_type)
+     */
+    protected override void _OnNotifyFromManager(ToffMonaka.Tml.Scene.SceneUtil.SCRIPT_NOTIFY_TYPE notify_type)
+    {
+        base._OnNotifyFromManager(notify_type);
+
+		switch (notify_type) {
+		case (ToffMonaka.Tml.Scene.SceneUtil.SCRIPT_NOTIFY_TYPE)Scene.SceneUtil.SCRIPT_NOTIFY_TYPE.LANGUAGE_TYPE_UPDATE: {
+            this._nameText.SetText(DataUtil.GetText(DataUtil.MST_TEXT_ID.OPTION) + " > " + DataUtil.GetText(DataUtil.MST_TEXT_ID.SYSTEM));
+
+            this._languageNameText.SetText(DataUtil.GetText(DataUtil.MST_TEXT_ID.LANGUAGE));
+
+            this._okButtonNameText.SetText(DataUtil.GetText(DataUtil.MST_TEXT_ID.OK));
+            this._cancelButtonNameText.SetText(DataUtil.GetText(DataUtil.MST_TEXT_ID.CANCEL));
+
+            this._languageButtonNameText.SetText(DataUtil.GetText(Util.LANGUAGE_NAME_MST_TEXT_ID_ARRAY[(int)this._languageType]));
+
+			break;
+		}
+		}
+
+        return;
+    }
+
+    /**
      * @brief OnLanguageButtonPointerClick関数
      * @param event_dat (event_data)
      */
@@ -211,15 +237,17 @@ public class OptionSystemStageBoardNodeScript : StageBoardNodeScript
 
         SceneUtil.GetManager().PlaySoundSe((int)SceneUtil.SOUND_SE_INDEX.OK2);
 
-        DataUtil.systemConfigFile.data.systemLanguageType = this._languageType;
+        if ((this._languageType != DataUtil.systemConfigFile.data.systemLanguageType)) {
+            DataUtil.systemConfigFile.data.systemLanguageType = this._languageType;
 
-        DataUtil.systemConfigFile.Write(true);
+            //DataUtil.systemConfigFile.Write(true);
 
-        if (this._restartFlag) {
-            SceneUtil.GetManager().StartMainScene();
-        } else {
-            this._onCloseStageBoard(this);
+            DataUtil.mstTextTableFile.Read2();
+
+            SceneUtil.GetManager().NotifyToScript((ToffMonaka.Tml.Scene.SceneUtil.SCRIPT_NOTIFY_TYPE)SceneUtil.SCRIPT_NOTIFY_TYPE.LANGUAGE_TYPE_UPDATE);
         }
+
+        this._onCloseStageBoard(this);
 
         return;
     }
@@ -250,8 +278,6 @@ public class OptionSystemStageBoardNodeScript : StageBoardNodeScript
         this._languageType = language_type;
 
         this._languageButtonNameText.SetText(DataUtil.GetText(Util.LANGUAGE_NAME_MST_TEXT_ID_ARRAY[(int)this._languageType]));
-
-        this._SetRestartFlag((this._languageType != DataUtil.systemConfigFile.data.systemLanguageType));
 
         return;
     }

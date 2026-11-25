@@ -511,13 +511,14 @@ public class OptionGraphicStageBoardNodeScript : StageBoardNodeScript
         DataUtil.systemConfigFile.data.graphicUiMarginLeft = this._uiMarginLeft;
         DataUtil.systemConfigFile.data.graphicUiMarginRight = this._uiMarginRight;
 
-        DataUtil.systemConfigFile.Write(true);
+        //DataUtil.systemConfigFile.Write(true);
 
-        if (this._restartFlag) {
-            SceneUtil.GetManager().StartMainScene();
-        } else {
-            this._onCloseStageBoard(this);
-        }
+        SceneUtil.GetManager().SetGraphicVSyncFlag(DataUtil.systemConfigFile.data.graphicVSyncFlag);
+        SceneUtil.GetManager().SetGraphicFrameRate(DataUtil.systemConfigFile.data.graphicFrameRate);
+
+        SceneUtil.GetManager().NotifyToScript((ToffMonaka.Tml.Scene.SceneUtil.SCRIPT_NOTIFY_TYPE)SceneUtil.SCRIPT_NOTIFY_TYPE.UI_MARGIN_UPDATE);
+
+        this._onCloseStageBoard(this);
 
         return;
     }
