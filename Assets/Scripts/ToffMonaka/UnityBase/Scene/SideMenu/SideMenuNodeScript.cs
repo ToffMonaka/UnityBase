@@ -5,6 +5,7 @@
 
 using UnityEngine;
 using UnityEngine.UI;
+using ToffMonaka.UnityBase.Data;
 
 namespace ToffMonaka {
 namespace UnityBase.Scene.SideMenu {
@@ -21,6 +22,7 @@ public class SideMenuNodeScriptCreateDesc : ToffMonaka.Tml.Scene.NodeScriptCreat
 public class SideMenuNodeScript : ToffMonaka.Tml.Scene.NodeScript
 {
     [SerializeField] private Image _backgroundImage = null;
+    [SerializeField] private GameObject _uiMarginNode = null;
     [SerializeField] private OpenCloseButtonNodeScript _openCloseButtonNodeScript = null;
     [SerializeField] private SelectBoardNodeScript _selectBoardNodeScript = null;
     [SerializeField] private OptionSelect2BoardNodeScript _optionSelect2BoardNodeScript = null;
@@ -47,6 +49,19 @@ public class SideMenuNodeScript : ToffMonaka.Tml.Scene.NodeScript
     protected override ToffMonaka.Tml.Scene.SceneUtil.SCRIPT_TYPE _OnGetScriptType()
     {
         return ((ToffMonaka.Tml.Scene.SceneUtil.SCRIPT_TYPE)SceneUtil.SCRIPT_TYPE.SIDE_MENU_NODE);
+    }
+
+    /**
+     * @brief _OnGetScriptNotifyTypeArray関数
+     * @return script_notify_type_ary (script_notify_type_array)
+     */
+    protected override ToffMonaka.Tml.Scene.SceneUtil.SCRIPT_NOTIFY_TYPE[] _OnGetScriptNotifyTypeArray()
+    {
+        ToffMonaka.Tml.Scene.SceneUtil.SCRIPT_NOTIFY_TYPE[] script_notify_type_ary = {
+            (ToffMonaka.Tml.Scene.SceneUtil.SCRIPT_NOTIFY_TYPE)Scene.SceneUtil.SCRIPT_NOTIFY_TYPE.UI_MARGIN_UPDATE
+        };
+
+        return (script_notify_type_ary);
     }
 
     /**
@@ -357,6 +372,28 @@ public class SideMenuNodeScript : ToffMonaka.Tml.Scene.NodeScript
     protected override void _OnClose()
     {
         base._OnClose();
+
+        return;
+    }
+
+    /**
+     * @brief _OnNotifyFromManager関数
+     * @param notify_type (notify_type)
+     */
+    protected override void _OnNotifyFromManager(ToffMonaka.Tml.Scene.SceneUtil.SCRIPT_NOTIFY_TYPE notify_type)
+    {
+        base._OnNotifyFromManager(notify_type);
+
+		switch (notify_type) {
+		case (ToffMonaka.Tml.Scene.SceneUtil.SCRIPT_NOTIFY_TYPE)Scene.SceneUtil.SCRIPT_NOTIFY_TYPE.UI_MARGIN_UPDATE: {
+            var rect_transform = this._uiMarginNode.GetComponent<RectTransform>();
+
+            rect_transform.offsetMin = new Vector2(DataUtil.systemConfigFile.data.graphicUiMarginLeft, DataUtil.systemConfigFile.data.graphicUiMarginBottom);
+            rect_transform.offsetMax = new Vector2(-DataUtil.systemConfigFile.data.graphicUiMarginRight, -DataUtil.systemConfigFile.data.graphicUiMarginTop);
+
+			break;
+		}
+		}
 
         return;
     }

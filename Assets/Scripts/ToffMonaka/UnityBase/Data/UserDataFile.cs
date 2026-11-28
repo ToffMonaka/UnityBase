@@ -3,6 +3,8 @@
  * @brief UserDataFileファイル
  */
 
+using UnityEngine;
+
 namespace ToffMonaka {
 namespace UnityBase.Data {
 /**
@@ -151,6 +153,23 @@ public class UserDataFile : ToffMonaka.Tml.File
         }
 
         return (0);
+    }
+
+    /**
+     * @brief ReadForProject関数
+     * @return result_val (result_value)<br>
+     * 0未満=失敗
+     */
+    public int ReadForProject()
+    {
+        this.readDesc.data.filePath = Application.persistentDataPath + "/" + Util.FILE_PATH.USER_DATA;
+        this.writeDesc.data.filePath = this.readDesc.data.filePath;
+
+        if (!ToffMonaka.Tml.FileUtil.IsExistFile(this.readDesc.data.filePath)) {
+            return (this.Write());
+        }
+
+        return (this.Read());
     }
 
     /**

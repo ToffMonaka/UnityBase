@@ -8,6 +8,7 @@ using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.UI;
 using UnityEngine.EventSystems;
 using EnhancedTouch = UnityEngine.InputSystem.EnhancedTouch;
+using ToffMonaka.UnityBase.Data;
 
 namespace ToffMonaka {
 namespace UnityBase.Scene.VirtualGamePad {
@@ -24,6 +25,7 @@ public class VirtualGamePadNodeScriptCreateDesc : ToffMonaka.Tml.Scene.NodeScrip
 public class VirtualGamePadNodeScript : ToffMonaka.Tml.Scene.NodeScript
 {
     [SerializeField] private GameObject _cameraCursorNode = null;
+    [SerializeField] private GameObject _uiMarginNode = null;
 
     public new VirtualGamePadNodeScriptCreateDesc createDesc{get; private set;} = null;
 
@@ -37,6 +39,19 @@ public class VirtualGamePadNodeScript : ToffMonaka.Tml.Scene.NodeScript
     protected override ToffMonaka.Tml.Scene.SceneUtil.SCRIPT_TYPE _OnGetScriptType()
     {
         return ((ToffMonaka.Tml.Scene.SceneUtil.SCRIPT_TYPE)SceneUtil.SCRIPT_TYPE.VIRTUAL_GAME_PAD_NODE);
+    }
+
+    /**
+     * @brief _OnGetScriptNotifyTypeArray関数
+     * @return script_notify_type_ary (script_notify_type_array)
+     */
+    protected override ToffMonaka.Tml.Scene.SceneUtil.SCRIPT_NOTIFY_TYPE[] _OnGetScriptNotifyTypeArray()
+    {
+        ToffMonaka.Tml.Scene.SceneUtil.SCRIPT_NOTIFY_TYPE[] script_notify_type_ary = {
+            (ToffMonaka.Tml.Scene.SceneUtil.SCRIPT_NOTIFY_TYPE)Scene.SceneUtil.SCRIPT_NOTIFY_TYPE.UI_MARGIN_UPDATE
+        };
+
+        return (script_notify_type_ary);
     }
 
     /**
@@ -144,6 +159,28 @@ public class VirtualGamePadNodeScript : ToffMonaka.Tml.Scene.NodeScript
     protected override void _OnClose()
     {
         base._OnClose();
+
+        return;
+    }
+
+    /**
+     * @brief _OnNotifyFromManager関数
+     * @param notify_type (notify_type)
+     */
+    protected override void _OnNotifyFromManager(ToffMonaka.Tml.Scene.SceneUtil.SCRIPT_NOTIFY_TYPE notify_type)
+    {
+        base._OnNotifyFromManager(notify_type);
+
+		switch (notify_type) {
+		case (ToffMonaka.Tml.Scene.SceneUtil.SCRIPT_NOTIFY_TYPE)Scene.SceneUtil.SCRIPT_NOTIFY_TYPE.UI_MARGIN_UPDATE: {
+            var rect_transform = this._uiMarginNode.GetComponent<RectTransform>();
+
+            rect_transform.offsetMin = new Vector2(DataUtil.systemConfigFile.data.graphicUiMarginLeft, DataUtil.systemConfigFile.data.graphicUiMarginBottom);
+            rect_transform.offsetMax = new Vector2(-DataUtil.systemConfigFile.data.graphicUiMarginRight, -DataUtil.systemConfigFile.data.graphicUiMarginTop);
+
+			break;
+		}
+		}
 
         return;
     }

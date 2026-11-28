@@ -4,6 +4,7 @@
  */
 
 using UnityEngine;
+using ToffMonaka.UnityBase.Data;
 using ToffMonaka.UnityBase.Scene.Stage;
 using ToffMonaka.UnityBase.Scene.CoverSystem;
 
@@ -28,6 +29,7 @@ public class Test3DStageSubSceneNodeScript : StageSubSceneNodeScript
     [SerializeField] private PlayerNodeScript _playerNodeScript = null;
     [SerializeField] private GameObject _enemyLayoutNode = null;
     [SerializeField] private GameObject _objectLayoutNode = null;
+    [SerializeField] private GameObject _uiMarginNode = null;
 
     public new Test3DStageSubSceneNodeScriptCreateDesc createDesc{get; private set;} = null;
 #pragma warning restore 0414
@@ -39,6 +41,19 @@ public class Test3DStageSubSceneNodeScript : StageSubSceneNodeScript
     protected override ToffMonaka.Tml.Scene.SceneUtil.SCRIPT_TYPE _OnGetScriptType()
     {
         return ((ToffMonaka.Tml.Scene.SceneUtil.SCRIPT_TYPE)SceneUtil.SCRIPT_TYPE.TEST_3D_STAGE_SUB_SCENE_NODE);
+    }
+
+    /**
+     * @brief _OnGetScriptNotifyTypeArray関数
+     * @return script_notify_type_ary (script_notify_type_array)
+     */
+    protected override ToffMonaka.Tml.Scene.SceneUtil.SCRIPT_NOTIFY_TYPE[] _OnGetScriptNotifyTypeArray()
+    {
+        ToffMonaka.Tml.Scene.SceneUtil.SCRIPT_NOTIFY_TYPE[] script_notify_type_ary = {
+            (ToffMonaka.Tml.Scene.SceneUtil.SCRIPT_NOTIFY_TYPE)Scene.SceneUtil.SCRIPT_NOTIFY_TYPE.UI_MARGIN_UPDATE
+        };
+
+        return (script_notify_type_ary);
     }
 
     /**
@@ -192,6 +207,28 @@ public class Test3DStageSubSceneNodeScript : StageSubSceneNodeScript
 			break;
 		}
 		default: {
+			break;
+		}
+		}
+
+        return;
+    }
+
+    /**
+     * @brief _OnNotifyFromManager関数
+     * @param notify_type (notify_type)
+     */
+    protected override void _OnNotifyFromManager(ToffMonaka.Tml.Scene.SceneUtil.SCRIPT_NOTIFY_TYPE notify_type)
+    {
+        base._OnNotifyFromManager(notify_type);
+
+		switch (notify_type) {
+		case (ToffMonaka.Tml.Scene.SceneUtil.SCRIPT_NOTIFY_TYPE)Scene.SceneUtil.SCRIPT_NOTIFY_TYPE.UI_MARGIN_UPDATE: {
+            var rect_transform = this._uiMarginNode.GetComponent<RectTransform>();
+
+            rect_transform.offsetMin = new Vector2(DataUtil.systemConfigFile.data.graphicUiMarginLeft, DataUtil.systemConfigFile.data.graphicUiMarginBottom);
+            rect_transform.offsetMax = new Vector2(-DataUtil.systemConfigFile.data.graphicUiMarginRight, -DataUtil.systemConfigFile.data.graphicUiMarginTop);
+
 			break;
 		}
 		}

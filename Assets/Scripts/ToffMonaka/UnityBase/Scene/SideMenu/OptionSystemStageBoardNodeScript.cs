@@ -33,7 +33,6 @@ public class OptionSystemStageBoardNodeScript : StageBoardNodeScript
     public new OptionSystemStageBoardNodeScriptCreateDesc createDesc{get; private set;} = null;
 
     private Util.LANGUAGE_TYPE _languageType = Util.LANGUAGE_TYPE.NONE;
-    private bool _restartFlag = false;
 
     /**
      * @brief _OnGetScriptType関数
@@ -102,13 +101,6 @@ public class OptionSystemStageBoardNodeScript : StageBoardNodeScript
             return (-1);
         }
 
-        this._nameText.SetText(DataUtil.GetText(DataUtil.MST_TEXT_ID.OPTION) + " > " + DataUtil.GetText(DataUtil.MST_TEXT_ID.SYSTEM));
-
-        this._languageNameText.SetText(DataUtil.GetText(DataUtil.MST_TEXT_ID.LANGUAGE));
-
-        this._okButtonNameText.SetText(DataUtil.GetText(DataUtil.MST_TEXT_ID.OK));
-        this._cancelButtonNameText.SetText(DataUtil.GetText(DataUtil.MST_TEXT_ID.CANCEL));
-
         return (0);
     }
 
@@ -166,27 +158,20 @@ public class OptionSystemStageBoardNodeScript : StageBoardNodeScript
     }
 
     /**
-     * @brief _OnNotifyFromManager関数
-     * @param notify_type (notify_type)
+     * @brief _ResetText関数
      */
-    protected override void _OnNotifyFromManager(ToffMonaka.Tml.Scene.SceneUtil.SCRIPT_NOTIFY_TYPE notify_type)
+    protected override void _ResetText()
     {
-        base._OnNotifyFromManager(notify_type);
+        base._ResetText();
 
-		switch (notify_type) {
-		case (ToffMonaka.Tml.Scene.SceneUtil.SCRIPT_NOTIFY_TYPE)Scene.SceneUtil.SCRIPT_NOTIFY_TYPE.LANGUAGE_TYPE_UPDATE: {
-            this._nameText.SetText(DataUtil.GetText(DataUtil.MST_TEXT_ID.OPTION) + " > " + DataUtil.GetText(DataUtil.MST_TEXT_ID.SYSTEM));
+        this._nameText.SetText(DataUtil.GetText(DataUtil.MST_TEXT_ID.OPTION) + " > " + DataUtil.GetText(DataUtil.MST_TEXT_ID.SYSTEM));
 
-            this._languageNameText.SetText(DataUtil.GetText(DataUtil.MST_TEXT_ID.LANGUAGE));
+        this._languageNameText.SetText(DataUtil.GetText(DataUtil.MST_TEXT_ID.LANGUAGE));
 
-            this._okButtonNameText.SetText(DataUtil.GetText(DataUtil.MST_TEXT_ID.OK));
-            this._cancelButtonNameText.SetText(DataUtil.GetText(DataUtil.MST_TEXT_ID.CANCEL));
+        this._okButtonNameText.SetText(DataUtil.GetText(DataUtil.MST_TEXT_ID.OK));
+        this._cancelButtonNameText.SetText(DataUtil.GetText(DataUtil.MST_TEXT_ID.CANCEL));
 
-            this._languageButtonNameText.SetText(DataUtil.GetText(Util.LANGUAGE_NAME_MST_TEXT_ID_ARRAY[(int)this._languageType]));
-
-			break;
-		}
-		}
+        this._languageButtonNameText.SetText(DataUtil.GetText(Util.LANGUAGE_NAME_MST_TEXT_ID_ARRAY[(int)this._languageType]));
 
         return;
     }
@@ -242,7 +227,7 @@ public class OptionSystemStageBoardNodeScript : StageBoardNodeScript
 
             //DataUtil.systemConfigFile.Write(true);
 
-            DataUtil.mstTextTableFile.Read2();
+            DataUtil.mstTextTableFile.ReadForProject();
 
             SceneUtil.GetManager().NotifyToScript((ToffMonaka.Tml.Scene.SceneUtil.SCRIPT_NOTIFY_TYPE)SceneUtil.SCRIPT_NOTIFY_TYPE.LANGUAGE_TYPE_UPDATE);
         }
@@ -278,25 +263,6 @@ public class OptionSystemStageBoardNodeScript : StageBoardNodeScript
         this._languageType = language_type;
 
         this._languageButtonNameText.SetText(DataUtil.GetText(Util.LANGUAGE_NAME_MST_TEXT_ID_ARRAY[(int)this._languageType]));
-
-        return;
-    }
-
-    /**
-     * @brief _SetRestartFlag関数
-     * @param restart_flg (restart_flag)
-     */
-    private void _SetRestartFlag(bool restart_flg)
-    {
-        this._restartFlag = restart_flg;
-
-        if (this._restartFlag) {
-            this._okButtonNameText.SetText(DataUtil.GetText(DataUtil.MST_TEXT_ID.OK) + "\n" + DataUtil.GetText(DataUtil.MST_TEXT_ID.RESTART));
-            this._okButtonNameText.fontSize = 20.0f;
-        } else {
-            this._okButtonNameText.SetText(DataUtil.GetText(DataUtil.MST_TEXT_ID.OK));
-            this._okButtonNameText.fontSize = 32.0f;
-        }
 
         return;
     }

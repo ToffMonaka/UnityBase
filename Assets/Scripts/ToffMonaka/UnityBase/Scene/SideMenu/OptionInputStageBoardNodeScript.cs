@@ -51,7 +51,6 @@ public class OptionInputStageBoardNodeScript : StageBoardNodeScript
     private float _test3DCameraSpeed = 0.5f;
     private bool _test3DCameraInvertXFlag = false;
     private bool _test3DCameraInvertYFlag = true;
-    private bool _restartFlag = false;
 
     /**
      * @brief _OnGetScriptType関数
@@ -120,20 +119,6 @@ public class OptionInputStageBoardNodeScript : StageBoardNodeScript
             return (-1);
         }
 
-        this._nameText.SetText(DataUtil.GetText(DataUtil.MST_TEXT_ID.OPTION) + " > " + DataUtil.GetText(DataUtil.MST_TEXT_ID.INPUT));
-
-        this._test2DCameraNameText.SetText(DataUtil.GetText(DataUtil.MST_TEXT_ID.TEST_2D) + DataUtil.GetJoinSpaceText() + DataUtil.GetText(DataUtil.MST_TEXT_ID.CAMERA));
-        this._test2DCameraSpeedNameText.SetText(DataUtil.GetText(DataUtil.MST_TEXT_ID.SPEED));
-        this._test2DCameraInvertXNameText.SetText(DataUtil.GetText(DataUtil.MST_TEXT_ID.INVERT) + DataUtil.GetJoinSpaceText() + DataUtil.GetText(DataUtil.MST_TEXT_ID.X));
-        this._test2DCameraInvertYNameText.SetText(DataUtil.GetText(DataUtil.MST_TEXT_ID.INVERT) + DataUtil.GetJoinSpaceText() + DataUtil.GetText(DataUtil.MST_TEXT_ID.Y));
-        this._test3DCameraNameText.SetText(DataUtil.GetText(DataUtil.MST_TEXT_ID.TEST_3D) + DataUtil.GetJoinSpaceText() + DataUtil.GetText(DataUtil.MST_TEXT_ID.CAMERA));
-        this._test3DCameraSpeedNameText.SetText(DataUtil.GetText(DataUtil.MST_TEXT_ID.SPEED));
-        this._test3DCameraInvertXNameText.SetText(DataUtil.GetText(DataUtil.MST_TEXT_ID.INVERT) + DataUtil.GetJoinSpaceText() + DataUtil.GetText(DataUtil.MST_TEXT_ID.X));
-        this._test3DCameraInvertYNameText.SetText(DataUtil.GetText(DataUtil.MST_TEXT_ID.INVERT) + DataUtil.GetJoinSpaceText() + DataUtil.GetText(DataUtil.MST_TEXT_ID.Y));
-
-        this._okButtonNameText.SetText(DataUtil.GetText(DataUtil.MST_TEXT_ID.OK));
-        this._cancelButtonNameText.SetText(DataUtil.GetText(DataUtil.MST_TEXT_ID.CANCEL));
-
         return (0);
     }
 
@@ -191,6 +176,30 @@ public class OptionInputStageBoardNodeScript : StageBoardNodeScript
     protected override void _OnClose()
     {
         base._OnClose();
+
+        return;
+    }
+
+    /**
+     * @brief _ResetText関数
+     */
+    protected override void _ResetText()
+    {
+        base._ResetText();
+
+        this._nameText.SetText(DataUtil.GetText(DataUtil.MST_TEXT_ID.OPTION) + " > " + DataUtil.GetText(DataUtil.MST_TEXT_ID.INPUT));
+
+        this._test2DCameraNameText.SetText(DataUtil.GetText(DataUtil.MST_TEXT_ID.TEST_2D) + DataUtil.GetJoinSpaceText() + DataUtil.GetText(DataUtil.MST_TEXT_ID.CAMERA));
+        this._test2DCameraSpeedNameText.SetText(DataUtil.GetText(DataUtil.MST_TEXT_ID.SPEED));
+        this._test2DCameraInvertXNameText.SetText(DataUtil.GetText(DataUtil.MST_TEXT_ID.INVERT) + DataUtil.GetJoinSpaceText() + DataUtil.GetText(DataUtil.MST_TEXT_ID.X));
+        this._test2DCameraInvertYNameText.SetText(DataUtil.GetText(DataUtil.MST_TEXT_ID.INVERT) + DataUtil.GetJoinSpaceText() + DataUtil.GetText(DataUtil.MST_TEXT_ID.Y));
+        this._test3DCameraNameText.SetText(DataUtil.GetText(DataUtil.MST_TEXT_ID.TEST_3D) + DataUtil.GetJoinSpaceText() + DataUtil.GetText(DataUtil.MST_TEXT_ID.CAMERA));
+        this._test3DCameraSpeedNameText.SetText(DataUtil.GetText(DataUtil.MST_TEXT_ID.SPEED));
+        this._test3DCameraInvertXNameText.SetText(DataUtil.GetText(DataUtil.MST_TEXT_ID.INVERT) + DataUtil.GetJoinSpaceText() + DataUtil.GetText(DataUtil.MST_TEXT_ID.X));
+        this._test3DCameraInvertYNameText.SetText(DataUtil.GetText(DataUtil.MST_TEXT_ID.INVERT) + DataUtil.GetJoinSpaceText() + DataUtil.GetText(DataUtil.MST_TEXT_ID.Y));
+
+        this._okButtonNameText.SetText(DataUtil.GetText(DataUtil.MST_TEXT_ID.OK));
+        this._cancelButtonNameText.SetText(DataUtil.GetText(DataUtil.MST_TEXT_ID.CANCEL));
 
         return;
     }
@@ -508,25 +517,6 @@ public class OptionInputStageBoardNodeScript : StageBoardNodeScript
         this._test3DCameraInvertYFlag = test_3d_camera_invert_y_flg;
 
         this._test3DCameraInvertYToggle.SetIsOnWithoutNotify(this._test3DCameraInvertYFlag);
-
-        return;
-    }
-
-    /**
-     * @brief _SetRestartFlag関数
-     * @param restart_flg (restart_flag)
-     */
-    private void _SetRestartFlag(bool restart_flg)
-    {
-        this._restartFlag = restart_flg;
-
-        if (this._restartFlag) {
-            this._okButtonNameText.SetText(DataUtil.GetText(DataUtil.MST_TEXT_ID.OK) + "\n" + DataUtil.GetText(DataUtil.MST_TEXT_ID.RESTART));
-            this._okButtonNameText.fontSize = 20.0f;
-        } else {
-            this._okButtonNameText.SetText(DataUtil.GetText(DataUtil.MST_TEXT_ID.OK));
-            this._okButtonNameText.fontSize = 32.0f;
-        }
 
         return;
     }

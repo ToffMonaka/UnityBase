@@ -975,6 +975,7 @@ MonoBehaviour:
   _debugNameText: {fileID: 8851907437075125794}
   _companyNameText: {fileID: 2210995570269262657}
   _versionNameText: {fileID: 3717761163834534197}
+  _uiMarginNode: {fileID: 3801822704698876266}
 --- !u!1 &8771928023051681788
 GameObject:
   m_ObjectHideFlags: 0

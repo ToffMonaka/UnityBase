@@ -152,11 +152,11 @@ public class MstTextTableFile : ToffMonaka.Tml.File
     }
 
     /**
-     * @brief Read2関数
+     * @brief ReadForProject関数
      * @return result_val (result_value)<br>
      * 0未満=失敗
      */
-    public int Read2()
+    public int ReadForProject()
     {
 		switch (DataUtil.systemConfigFile.data.systemLanguageType) {
 		case Util.LANGUAGE_TYPE.JAPANESE: {

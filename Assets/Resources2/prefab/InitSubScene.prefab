@@ -587,6 +587,7 @@ MonoBehaviour:
   _dialogSystemNodeScript: {fileID: 0}
   _coverSystemNodeScript: {fileID: 3052626525106590391}
   _messageText: {fileID: 3741505704045232267}
+  _uiMarginNode: {fileID: 6442586266180099538}
 --- !u!1001 &3519749849574594799
 PrefabInstance:
   m_ObjectHideFlags: 0

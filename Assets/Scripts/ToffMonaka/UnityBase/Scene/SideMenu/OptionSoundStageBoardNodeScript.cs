@@ -37,7 +37,6 @@ public class OptionSoundStageBoardNodeScript : StageBoardNodeScript
 
     private float _bgmVolume = 0.5f;
     private float _seVolume = 0.5f;
-    private bool _restartFlag = false;
 
     /**
      * @brief _OnGetScriptType関数
@@ -106,14 +105,6 @@ public class OptionSoundStageBoardNodeScript : StageBoardNodeScript
             return (-1);
         }
 
-        this._nameText.SetText(DataUtil.GetText(DataUtil.MST_TEXT_ID.OPTION) + " > " + DataUtil.GetText(DataUtil.MST_TEXT_ID.SOUND));
-
-        this._bgmVolumeNameText.SetText(DataUtil.GetText(DataUtil.MST_TEXT_ID.BGM) + DataUtil.GetJoinSpaceText() + DataUtil.GetText(DataUtil.MST_TEXT_ID.VOLUME));
-        this._seVolumeNameText.SetText(DataUtil.GetText(DataUtil.MST_TEXT_ID.SE) + DataUtil.GetJoinSpaceText() + DataUtil.GetText(DataUtil.MST_TEXT_ID.VOLUME));
-
-        this._okButtonNameText.SetText(DataUtil.GetText(DataUtil.MST_TEXT_ID.OK));
-        this._cancelButtonNameText.SetText(DataUtil.GetText(DataUtil.MST_TEXT_ID.CANCEL));
-
         return (0);
     }
 
@@ -167,6 +158,24 @@ public class OptionSoundStageBoardNodeScript : StageBoardNodeScript
     protected override void _OnClose()
     {
         base._OnClose();
+
+        return;
+    }
+
+    /**
+     * @brief _ResetText関数
+     */
+    protected override void _ResetText()
+    {
+        base._ResetText();
+
+        this._nameText.SetText(DataUtil.GetText(DataUtil.MST_TEXT_ID.OPTION) + " > " + DataUtil.GetText(DataUtil.MST_TEXT_ID.SOUND));
+
+        this._bgmVolumeNameText.SetText(DataUtil.GetText(DataUtil.MST_TEXT_ID.BGM) + DataUtil.GetJoinSpaceText() + DataUtil.GetText(DataUtil.MST_TEXT_ID.VOLUME));
+        this._seVolumeNameText.SetText(DataUtil.GetText(DataUtil.MST_TEXT_ID.SE) + DataUtil.GetJoinSpaceText() + DataUtil.GetText(DataUtil.MST_TEXT_ID.VOLUME));
+
+        this._okButtonNameText.SetText(DataUtil.GetText(DataUtil.MST_TEXT_ID.OK));
+        this._cancelButtonNameText.SetText(DataUtil.GetText(DataUtil.MST_TEXT_ID.CANCEL));
 
         return;
     }
@@ -359,25 +368,6 @@ public class OptionSoundStageBoardNodeScript : StageBoardNodeScript
 
         this._seVolumeValueText.SetText("{0}", this._seVolume * 10.0f);
         this._seVolumeSlider.SetValueWithoutNotify(this._seVolume * 10.0f);
-
-        return;
-    }
-
-    /**
-     * @brief _SetRestartFlag関数
-     * @param restart_flg (restart_flag)
-     */
-    private void _SetRestartFlag(bool restart_flg)
-    {
-        this._restartFlag = restart_flg;
-
-        if (this._restartFlag) {
-            this._okButtonNameText.SetText(DataUtil.GetText(DataUtil.MST_TEXT_ID.OK) + "\n" + DataUtil.GetText(DataUtil.MST_TEXT_ID.RESTART));
-            this._okButtonNameText.fontSize = 20.0f;
-        } else {
-            this._okButtonNameText.SetText(DataUtil.GetText(DataUtil.MST_TEXT_ID.OK));
-            this._okButtonNameText.fontSize = 32.0f;
-        }
 
         return;
     }

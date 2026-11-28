@@ -1125,6 +1125,7 @@ MonoBehaviour:
   _coverSystemNodeScript: {fileID: 4825006774418545591}
   _stageBoardNodeScript: {fileID: 3523574777880363648}
   _backButtonNodeScript: {fileID: 6305099372278711010}
+  _uiMarginNode: {fileID: 8536693693495274661}
 --- !u!1 &6253974444106004136
 GameObject:
   m_ObjectHideFlags: 0

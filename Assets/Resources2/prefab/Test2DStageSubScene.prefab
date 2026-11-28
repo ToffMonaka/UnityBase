@@ -663,6 +663,7 @@ MonoBehaviour:
   _playerNodeScript: {fileID: 6635965854694719195}
   _enemyLayoutNode: {fileID: 5816953788015529731}
   _objectLayoutNode: {fileID: 1879646117174228356}
+  _uiMarginNode: {fileID: 8390410625355944823}
 --- !u!1 &4448557428763863681
 GameObject:
   m_ObjectHideFlags: 0

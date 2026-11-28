@@ -3662,6 +3662,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ToffMonaka.UnityBase.Scene.Ui.Menu.NodeScript
   _backgroundImage: {fileID: 2472993354825264631}
+  _uiMarginNode: {fileID: 6662850111671995198}
   _openCloseButtonNodeScript: {fileID: 3005210006900627422}
   _selectBoardNodeScript: {fileID: 8961266090062823491}
   _optionSelect2BoardNodeScript: {fileID: 3641102769179591854}

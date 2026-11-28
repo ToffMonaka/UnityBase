@@ -53,7 +53,6 @@ public class OptionGraphicStageBoardNodeScript : StageBoardNodeScript
     private float _uiMarginBottom = 8.0f;
     private float _uiMarginLeft = 80.0f;
     private float _uiMarginRight = 80.0f;
-    private bool _restartFlag = false;
 
     /**
      * @brief _OnGetScriptType関数
@@ -122,19 +121,6 @@ public class OptionGraphicStageBoardNodeScript : StageBoardNodeScript
             return (-1);
         }
 
-        this._nameText.SetText(DataUtil.GetText(DataUtil.MST_TEXT_ID.OPTION) + " > " + DataUtil.GetText(DataUtil.MST_TEXT_ID.GRAPHIC));
-
-        this._vSyncNameText.SetText(DataUtil.GetText(DataUtil.MST_TEXT_ID.V_SYNC));
-        this._frameRateNameText.SetText(DataUtil.GetText(DataUtil.MST_TEXT_ID.FRAME_RATE));
-        this._uiMarginNameText.SetText(DataUtil.GetText(DataUtil.MST_TEXT_ID.UI_MARGIN));
-        this._uiMarginTopNameText.SetText(DataUtil.GetText(DataUtil.MST_TEXT_ID.TOP));
-        this._uiMarginBottomNameText.SetText(DataUtil.GetText(DataUtil.MST_TEXT_ID.BOTTOM));
-        this._uiMarginLeftNameText.SetText(DataUtil.GetText(DataUtil.MST_TEXT_ID.LEFT));
-        this._uiMarginRightNameText.SetText(DataUtil.GetText(DataUtil.MST_TEXT_ID.RIGHT));
-
-        this._okButtonNameText.SetText(DataUtil.GetText(DataUtil.MST_TEXT_ID.OK));
-        this._cancelButtonNameText.SetText(DataUtil.GetText(DataUtil.MST_TEXT_ID.CANCEL));
-
         return (0);
     }
 
@@ -192,6 +178,29 @@ public class OptionGraphicStageBoardNodeScript : StageBoardNodeScript
     protected override void _OnClose()
     {
         base._OnClose();
+
+        return;
+    }
+
+    /**
+     * @brief _ResetText関数
+     */
+    protected override void _ResetText()
+    {
+        base._ResetText();
+
+        this._nameText.SetText(DataUtil.GetText(DataUtil.MST_TEXT_ID.OPTION) + " > " + DataUtil.GetText(DataUtil.MST_TEXT_ID.GRAPHIC));
+
+        this._vSyncNameText.SetText(DataUtil.GetText(DataUtil.MST_TEXT_ID.V_SYNC));
+        this._frameRateNameText.SetText(DataUtil.GetText(DataUtil.MST_TEXT_ID.FRAME_RATE));
+        this._uiMarginNameText.SetText(DataUtil.GetText(DataUtil.MST_TEXT_ID.UI_MARGIN));
+        this._uiMarginTopNameText.SetText(DataUtil.GetText(DataUtil.MST_TEXT_ID.TOP));
+        this._uiMarginBottomNameText.SetText(DataUtil.GetText(DataUtil.MST_TEXT_ID.BOTTOM));
+        this._uiMarginLeftNameText.SetText(DataUtil.GetText(DataUtil.MST_TEXT_ID.LEFT));
+        this._uiMarginRightNameText.SetText(DataUtil.GetText(DataUtil.MST_TEXT_ID.RIGHT));
+
+        this._okButtonNameText.SetText(DataUtil.GetText(DataUtil.MST_TEXT_ID.OK));
+        this._cancelButtonNameText.SetText(DataUtil.GetText(DataUtil.MST_TEXT_ID.CANCEL));
 
         return;
     }
@@ -619,25 +628,6 @@ public class OptionGraphicStageBoardNodeScript : StageBoardNodeScript
 
         this._uiMarginRightValueText.SetText("{0}", this._uiMarginRight);
         this._uiMarginRightSlider.SetValueWithoutNotify(this._uiMarginRight);
-
-        return;
-    }
-
-    /**
-     * @brief _SetRestartFlag関数
-     * @param restart_flg (restart_flag)
-     */
-    private void _SetRestartFlag(bool restart_flg)
-    {
-        this._restartFlag = restart_flg;
-
-        if (this._restartFlag) {
-            this._okButtonNameText.SetText(DataUtil.GetText(DataUtil.MST_TEXT_ID.OK) + "\n" + DataUtil.GetText(DataUtil.MST_TEXT_ID.RESTART));
-            this._okButtonNameText.fontSize = 20.0f;
-        } else {
-            this._okButtonNameText.SetText(DataUtil.GetText(DataUtil.MST_TEXT_ID.OK));
-            this._okButtonNameText.fontSize = 32.0f;
-        }
 
         return;
     }

@@ -103,15 +103,16 @@ public class SelectBoardNodeScript : BoardNodeScript
         this._onOpenSelect2Board = this.createDesc.onOpenSelect2Board;
         this._onOpenStageBoard = this.createDesc.onOpenStageBoard;
 
-        this._nameText.SetText(DataUtil.GetText(DataUtil.MST_TEXT_ID.MENU));
-
         this._itemNodeScript.gameObject.SetActive(false);
 
         {// Option ItemNodeScript Create
             var script = GameObject.Instantiate(this._itemNodeScript.gameObject, this._itemNodeScript.gameObject.transform.parent).GetComponent<SelectBoardItemNodeScript>();
             var script_create_desc = new SelectBoardItemNodeScriptCreateDesc();
 
-            script_create_desc.name = DataUtil.GetText(DataUtil.MST_TEXT_ID.OPTION);
+            script_create_desc.onGetName = (owner) =>
+            {
+                return (DataUtil.GetText(DataUtil.MST_TEXT_ID.OPTION));
+            };
             script_create_desc.onClick = (owner) =>
             {
                 this._onOpenSelect2Board(this, SceneUtil.SIDE_MENU_SELECT2_BOARD_TYPE.OPTION);
@@ -129,7 +130,10 @@ public class SelectBoardNodeScript : BoardNodeScript
             var script = GameObject.Instantiate(this._itemNodeScript.gameObject, this._itemNodeScript.gameObject.transform.parent).GetComponent<SelectBoardItemNodeScript>();
             var script_create_desc = new SelectBoardItemNodeScriptCreateDesc();
 
-            script_create_desc.name = DataUtil.GetText(DataUtil.MST_TEXT_ID.INFO);
+            script_create_desc.onGetName = (owner) =>
+            {
+                return (DataUtil.GetText(DataUtil.MST_TEXT_ID.INFO));
+            };
             script_create_desc.onClick = (owner) =>
             {
                 this._onOpenSelect2Board(this, SceneUtil.SIDE_MENU_SELECT2_BOARD_TYPE.INFO);
@@ -147,7 +151,10 @@ public class SelectBoardNodeScript : BoardNodeScript
             var script = GameObject.Instantiate(this._itemNodeScript.gameObject, this._itemNodeScript.gameObject.transform.parent).GetComponent<SelectBoardItemNodeScript>();
             var script_create_desc = new SelectBoardItemNodeScriptCreateDesc();
 
-            script_create_desc.name = DataUtil.GetText(DataUtil.MST_TEXT_ID.EXIT);
+            script_create_desc.onGetName = (owner) =>
+            {
+                return (DataUtil.GetText(DataUtil.MST_TEXT_ID.EXIT));
+            };
             script_create_desc.onClick = (owner) =>
             {
                 this._onOpenStageBoard(this, SceneUtil.SIDE_MENU_STAGE_BOARD_TYPE.EXIT);
@@ -166,7 +173,10 @@ public class SelectBoardNodeScript : BoardNodeScript
             var script = GameObject.Instantiate(this._itemNodeScript.gameObject, this._itemNodeScript.gameObject.transform.parent).GetComponent<SelectBoardItemNodeScript>();
             var script_create_desc = new SelectBoardItemNodeScriptCreateDesc();
 
-            script_create_desc.name = DataUtil.GetText(DataUtil.MST_TEXT_ID.CHEAT);
+            script_create_desc.onGetName = (owner) =>
+            {
+                return (DataUtil.GetText(DataUtil.MST_TEXT_ID.CHEAT));
+            };
             script_create_desc.onClick = (owner) =>
             {
                 this._onOpenStageBoard(this, SceneUtil.SIDE_MENU_STAGE_BOARD_TYPE.CHEAT);
@@ -230,6 +240,22 @@ public class SelectBoardNodeScript : BoardNodeScript
     protected override void _OnClose()
     {
         base._OnClose();
+
+        return;
+    }
+
+    /**
+     * @brief _ResetText関数
+     */
+    protected override void _ResetText()
+    {
+        base._ResetText();
+
+        this._nameText.SetText(DataUtil.GetText(DataUtil.MST_TEXT_ID.MENU));
+
+        foreach (var script in this._itemNodeScriptContainer) {
+            script.ResetText();
+        }
 
         return;
     }

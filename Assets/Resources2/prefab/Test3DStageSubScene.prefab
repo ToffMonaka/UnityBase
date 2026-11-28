@@ -848,6 +848,7 @@ MonoBehaviour:
   m_UnmodifiedMeshVersion: 555
   m_Size: {x: 1, y: 1, z: 1}
   m_LocalCenter: {x: 0, y: 0, z: 0}
+  m_PivotRatio: {x: 0, y: 0, z: 0}
   references:
     version: 2
     RefIds:
@@ -1214,6 +1215,7 @@ MonoBehaviour:
   m_UnmodifiedMeshVersion: 1093
   m_Size: {x: 10, y: 2, z: 10}
   m_LocalCenter: {x: 0, y: 0, z: 0}
+  m_PivotRatio: {x: 0, y: 0, z: 0}
   references:
     version: 2
     RefIds:
@@ -1502,6 +1504,7 @@ MonoBehaviour:
   _playerNodeScript: {fileID: 7499465529500482297}
   _enemyLayoutNode: {fileID: 2390498676638775700}
   _objectLayoutNode: {fileID: 528988737783813587}
+  _uiMarginNode: {fileID: 4623215688561211683}
 --- !u!1 &5997903049229771128
 GameObject:
   m_ObjectHideFlags: 0
@@ -3534,6 +3537,7 @@ MonoBehaviour:
   m_UnmodifiedMeshVersion: 1706
   m_Size: {x: 10, y: 5, z: 10}
   m_LocalCenter: {x: 0, y: 0, z: 0}
+  m_PivotRatio: {x: 0, y: 0, z: 0}
   references:
     version: 2
     RefIds:
@@ -3897,6 +3901,7 @@ MonoBehaviour:
   m_UnmodifiedMeshVersion: 1111
   m_Size: {x: 100, y: 1, z: 100}
   m_LocalCenter: {x: 0, y: 0, z: 0}
+  m_PivotRatio: {x: 0, y: 0, z: 0}
   references:
     version: 2
     RefIds:
@@ -4352,6 +4357,7 @@ MonoBehaviour:
   m_UnmodifiedMeshVersion: 1121
   m_Size: {x: 10, y: 2, z: 10}
   m_LocalCenter: {x: 0, y: 0, z: 0}
+  m_PivotRatio: {x: 0, y: 0, z: 0}
   references:
     version: 2
     RefIds:
@@ -4814,6 +4820,7 @@ MonoBehaviour:
   m_UnmodifiedMeshVersion: 1574
   m_Size: {x: 6, y: 2, z: 6}
   m_LocalCenter: {x: 0, y: 0, z: 0}
+  m_PivotRatio: {x: 0, y: 0, z: 0}
   references:
     version: 2
     RefIds:
@@ -5170,6 +5177,7 @@ MonoBehaviour:
   m_UnmodifiedMeshVersion: 1629
   m_Size: {x: 4, y: 1, z: 4}
   m_LocalCenter: {x: 0, y: 0, z: 0}
+  m_PivotRatio: {x: 0, y: 0, z: 0}
   references:
     version: 2
     RefIds:
@@ -5813,6 +5821,7 @@ MonoBehaviour:
   m_UnmodifiedMeshVersion: 821
   m_Size: {x: 10, y: 2, z: 10}
   m_LocalCenter: {x: 0, y: 0, z: 0}
+  m_PivotRatio: {x: 0, y: 0, z: 0}
   references:
     version: 2
     RefIds:

@@ -168,27 +168,8 @@ public class MainSceneNodeScript : ToffMonaka.Tml.Scene.MainSceneNodeScript
      */
     private void _StartDataFile()
     {
-        {// SystemConfigFile Create
-            DataUtil.systemConfigFile.readDesc.data.filePath = Application.persistentDataPath + "/" + Util.FILE_PATH.SYSTEM_CONFIG;
-            DataUtil.systemConfigFile.writeDesc.data.filePath = DataUtil.systemConfigFile.readDesc.data.filePath;
-
-            if (ToffMonaka.Tml.FileUtil.IsExistFile(DataUtil.systemConfigFile.readDesc.data.filePath)) {
-                DataUtil.systemConfigFile.Read();
-            } else {
-                DataUtil.systemConfigFile.Write();
-            }
-        }
-
-        {// UserDataFile Create
-            DataUtil.userDataFile.readDesc.data.filePath = Application.persistentDataPath + "/" + Util.FILE_PATH.USER_DATA;
-            DataUtil.userDataFile.writeDesc.data.filePath = DataUtil.userDataFile.readDesc.data.filePath;
-
-            if (ToffMonaka.Tml.FileUtil.IsExistFile(DataUtil.userDataFile.readDesc.data.filePath)) {
-                DataUtil.userDataFile.Read();
-            } else {
-                DataUtil.userDataFile.Write();
-            }
-        }
+        DataUtil.systemConfigFile.ReadForProject();
+        DataUtil.userDataFile.ReadForProject();
 
         return;
     }

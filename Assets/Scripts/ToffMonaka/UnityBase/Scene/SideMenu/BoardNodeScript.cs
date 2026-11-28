@@ -46,8 +46,7 @@ public abstract class BoardNodeScript : ToffMonaka.Tml.Scene.NodeScript
     protected override ToffMonaka.Tml.Scene.SceneUtil.SCRIPT_NOTIFY_TYPE[] _OnGetScriptNotifyTypeArray()
     {
         ToffMonaka.Tml.Scene.SceneUtil.SCRIPT_NOTIFY_TYPE[] script_notify_type_ary = {
-            (ToffMonaka.Tml.Scene.SceneUtil.SCRIPT_NOTIFY_TYPE)Scene.SceneUtil.SCRIPT_NOTIFY_TYPE.LANGUAGE_TYPE_UPDATE,
-            (ToffMonaka.Tml.Scene.SceneUtil.SCRIPT_NOTIFY_TYPE)Scene.SceneUtil.SCRIPT_NOTIFY_TYPE.UI_MARGIN_UPDATE
+            (ToffMonaka.Tml.Scene.SceneUtil.SCRIPT_NOTIFY_TYPE)Scene.SceneUtil.SCRIPT_NOTIFY_TYPE.LANGUAGE_TYPE_UPDATE
         };
 
         return (script_notify_type_ary);
@@ -114,6 +113,8 @@ public abstract class BoardNodeScript : ToffMonaka.Tml.Scene.NodeScript
         if (base._OnCreate() < 0) {
             return (-1);
         }
+
+        this._ResetText();
 
         return (0);
     }
@@ -221,13 +222,20 @@ public abstract class BoardNodeScript : ToffMonaka.Tml.Scene.NodeScript
 
 		switch (notify_type) {
 		case (ToffMonaka.Tml.Scene.SceneUtil.SCRIPT_NOTIFY_TYPE)Scene.SceneUtil.SCRIPT_NOTIFY_TYPE.LANGUAGE_TYPE_UPDATE: {
-			break;
-		}
-		case (ToffMonaka.Tml.Scene.SceneUtil.SCRIPT_NOTIFY_TYPE)Scene.SceneUtil.SCRIPT_NOTIFY_TYPE.UI_MARGIN_UPDATE: {
+            this._ResetText();
+
 			break;
 		}
 		}
 
+        return;
+    }
+
+    /**
+     * @brief _ResetText関数
+     */
+    protected virtual void _ResetText()
+    {
         return;
     }
 

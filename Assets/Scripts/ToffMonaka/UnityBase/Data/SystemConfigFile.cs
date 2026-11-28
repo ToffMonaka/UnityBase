@@ -322,6 +322,23 @@ public class SystemConfigFile : ToffMonaka.Tml.File
     }
 
     /**
+     * @brief ReadForProject関数
+     * @return result_val (result_value)<br>
+     * 0未満=失敗
+     */
+    public int ReadForProject()
+    {
+        this.readDesc.data.filePath = Application.persistentDataPath + "/" + Util.FILE_PATH.SYSTEM_CONFIG;
+        this.writeDesc.data.filePath = this.readDesc.data.filePath;
+
+        if (!ToffMonaka.Tml.FileUtil.IsExistFile(this.readDesc.data.filePath)) {
+            return (this.Write());
+        }
+
+        return (this.Read());
+    }
+
+    /**
      * @brief Write関数
      * @param delay_flg (delay_flag)
      * @return result_val (result_value)<br>

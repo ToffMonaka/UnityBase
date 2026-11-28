@@ -14,7 +14,7 @@ namespace UnityBase.Scene.SideMenu {
  */
 public class SelectBoardItemNodeScriptCreateDesc : ToffMonaka.Tml.Scene.NodeScriptCreateDesc
 {
-    public string name = "";
+    public System.Func<SelectBoardItemNodeScript, string> onGetName = null;
     public System.Action<SelectBoardItemNodeScript> onClick = null;
 }
 
@@ -27,6 +27,7 @@ public class SelectBoardItemNodeScript : ToffMonaka.Tml.Scene.NodeScript
 
     public new SelectBoardItemNodeScriptCreateDesc createDesc{get; private set;} = null;
 
+    private System.Func<SelectBoardItemNodeScript, string> _onGetName = null;
     private System.Action<SelectBoardItemNodeScript> _onClick = null;
 
     /**
@@ -69,9 +70,10 @@ public class SelectBoardItemNodeScript : ToffMonaka.Tml.Scene.NodeScript
             return (-1);
         }
 
+        this._onGetName = this.createDesc.onGetName;
         this._onClick = this.createDesc.onClick;
 
-        this._nameText.SetText(this.createDesc.name);
+        this.ResetText();
 
         return (0);
     }
@@ -121,6 +123,16 @@ public class SelectBoardItemNodeScript : ToffMonaka.Tml.Scene.NodeScript
     protected override void _OnClose()
     {
         base._OnClose();
+
+        return;
+    }
+
+    /**
+     * @brief ResetText関数
+     */
+    public void ResetText()
+    {
+        this._nameText.SetText(this._onGetName(this));
 
         return;
     }
